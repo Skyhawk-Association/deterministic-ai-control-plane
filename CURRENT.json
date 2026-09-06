@@ -1,6 +1,6 @@
 {
   "schema": "dacp-current-0.1",
-  "canonical_migration_status": "PENDING_GITHUB_READBACK_VERIFICATION",
+  "canonical_migration_status": "ACTIVE_GIT_CANONICAL",
   "repository": "Skyhawk-Association/deterministic-ai-control-plane",
   "branch": "main",
   "active_spec_path": "authoritative/DACP_Heuristics_Specification_0.1.1.md",
@@ -8,5 +8,6 @@
   "active_spec_status": "AUTHORITATIVE_ACTIVE_GENE_INTERIM_DECISION",
   "active_heuristic_count": 17,
   "active_spec_blob_sha": "b16d80c55da9c35e57801dd8574bc09ddb4249de",
-  "bootstrap_path": "CURRENT.md"
+  "bootstrap_path": "CURRENT.md",
+  "drive_role": "CONVENIENCE_MIRROR_AND_HISTORICAL_MIGRATION_SOURCE"
 }
