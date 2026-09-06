@@ -1,12 +1,13 @@
 # DACP Current Bootstrap
 
-**Canonical migration status:** PENDING GITHUB READ-BACK VERIFICATION  
+**Canonical migration status:** ACTIVE GIT CANONICAL  
 **Repository:** `Skyhawk-Association/deterministic-ai-control-plane`  
 **Default branch:** `main`  
-**Current intended specification:** `authoritative/DACP_Heuristics_Specification_0.1.1.md`  
+**Current specification:** `authoritative/DACP_Heuristics_Specification_0.1.1.md`  
 **Specification version:** `0.1.1`  
 **Specification status:** AUTHORITATIVE / ACTIVE / GENE INTERIM DECISION  
-**Active heuristic count:** 17
+**Active heuristic count:** 17  
+**Verified specification Git blob:** `b16d80c55da9c35e57801dd8574bc09ddb4249de`
 
 ## Load order before consequential DACP work
 
@@ -23,4 +24,6 @@ Apply the current specification as a version-scoped, continuously challengeable 
 
 H-017 standing role allocation: within Gene-governed DACP work, the AI owns the maximum safely executable share of reasoning and mechanical execution it is authorized and competent to perform; Gene owns the genuinely human material decisions. This standing allocation lasts for Gene's lifetime unless Gene explicitly supersedes it.
 
-**Integrity note:** This bootstrap becomes the Git canonical declaration only after the repository write is independently read back and this file is advanced from `PENDING GITHUB READ-BACK VERIFICATION` to `ACTIVE GIT CANONICAL`.
+## Canonical-source rule
+
+For current public DACP specification/governance state, this Git repository is canonical. Google Drive is a convenience mirror and historical migration source, not a competing current source. If a mirror disagrees with canonical Git, preserve the disagreement and resolve it against the exact Git version/blob plus applicable authority.
