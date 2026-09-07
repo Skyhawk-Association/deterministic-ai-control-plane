@@ -4,6 +4,10 @@
 Default mode preserves blinded independence: no provider sees the other's output.
 Optional --peer-challenge adds exactly one bounded reveal round after both initial
 answers are fixed. No retries. No consequential actions. Standard library only.
+
+Token ceilings are provider-native limits, not cross-provider-equivalent units.
+A provider result is SUCCEEDED only when provider completion metadata says the
+response completed normally enough to be scored as a final answer.
 """
 
 from __future__ import annotations
@@ -28,7 +32,8 @@ OPENAI_URL = "https://api.openai.com/v1/responses"
 ANTHROPIC_URL = "https://api.anthropic.com/v1/messages"
 DEFAULT_OPENAI_MODEL = "gpt-5.6-luna"
 DEFAULT_ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
-DEFAULT_MAX_OUTPUT_TOKENS = 300
+DEFAULT_OPENAI_MAX_OUTPUT_TOKENS = 128
+DEFAULT_ANTHROPIC_MAX_OUTPUT_TOKENS = 128
 DEFAULT_TIMEOUT_SECONDS = 60
 
 
@@ -51,6 +56,8 @@ class ProviderResult:
     request_id: str | None
     latency_ms: int
     usage: dict[str, Any] | None
+    completion_status: str | None = None
+    completion_reason: str | None = None
 
 
 def _post_json(
@@ -88,6 +95,31 @@ def _anthropic_text(data: dict[str, Any]) -> str:
     return "".join(pieces)
 
 
+def _openai_completion(data: dict[str, Any]) -> tuple[str, str | None, str | None]:
+    """Return normalized status, provider status, and completion reason."""
+    provider_status = data.get("status")
+    incomplete_reason = (data.get("incomplete_details") or {}).get("reason")
+    if provider_status == "completed":
+        return "SUCCEEDED", provider_status, None
+    if provider_status in {"queued", "in_progress"}:
+        return "PENDING", provider_status, incomplete_reason
+    if provider_status == "incomplete":
+        return "FAILED", provider_status, incomplete_reason or "incomplete"
+    return "FAILED", provider_status, incomplete_reason or provider_status or "missing_status"
+
+
+def _anthropic_completion(data: dict[str, Any]) -> tuple[str, str | None, str | None]:
+    """Return normalized status, provider stop reason, and completion reason."""
+    stop_reason = data.get("stop_reason")
+    if stop_reason in {"end_turn", "stop_sequence"}:
+        return "SUCCEEDED", stop_reason, stop_reason
+    if stop_reason in {"max_tokens", "model_context_window_exceeded"}:
+        return "FAILED", stop_reason, stop_reason
+    # tool_use, pause_turn, refusal, and unknown/missing reasons are not final
+    # answer completions for this text-comparison broker.
+    return "FAILED", stop_reason, stop_reason or "missing_stop_reason"
+
+
 def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -> ProviderResult:
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
@@ -112,18 +144,22 @@ def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -
             timeout=timeout,
         )
         text = _openai_text(data)
-        if not text:
-            raise ValueError("OpenAI response contained no output_text")
+        normalized, completion_status, completion_reason = _openai_completion(data)
+        if normalized == "SUCCEEDED" and not text:
+            raise ValueError("OpenAI completed response contained no output_text")
+        error = None if normalized == "SUCCEEDED" else f"OpenAI response not complete: status={completion_status!r}, reason={completion_reason!r}"
         return ProviderResult(
             "openai",
             model,
-            "SUCCEEDED",
-            text,
-            None,
+            normalized,
+            text or None,
+            error,
             status,
             headers.get("x-request-id") or data.get("id"),
             int((time.monotonic() - start) * 1000),
             data.get("usage"),
+            completion_status,
+            completion_reason,
         )
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")[:1000]
@@ -158,18 +194,22 @@ def call_anthropic(prompt: str, model: str, max_output_tokens: int, timeout: int
             timeout=timeout,
         )
         text = _anthropic_text(data)
-        if not text:
-            raise ValueError("Anthropic response contained no text block")
+        normalized, completion_status, completion_reason = _anthropic_completion(data)
+        if normalized == "SUCCEEDED" and not text:
+            raise ValueError("Anthropic completed response contained no text block")
+        error = None if normalized == "SUCCEEDED" else f"Anthropic response not complete: stop_reason={completion_reason!r}"
         return ProviderResult(
             "anthropic",
             model,
-            "SUCCEEDED",
-            text,
-            None,
+            normalized,
+            text or None,
+            error,
             status,
             headers.get("request-id") or data.get("id"),
             int((time.monotonic() - start) * 1000),
             data.get("usage"),
+            completion_status,
+            completion_reason,
         )
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")[:1000]
@@ -183,7 +223,10 @@ def call_anthropic(prompt: str, model: str, max_output_tokens: int, timeout: int
 def classify(results: list[ProviderResult], expected_exact: str | None) -> tuple[str, dict[str, Any]]:
     by_provider = {result.provider: result for result in results}
     if any(result.status != "SUCCEEDED" for result in results):
-        return "UNRESOLVED", {"reason": "one_or_more_provider_calls_not_succeeded"}
+        return "UNRESOLVED", {
+            "reason": "one_or_more_provider_calls_not_succeeded",
+            "provider_statuses": {result.provider: result.status for result in results},
+        }
 
     openai_text = (by_provider["openai"].text or "").strip()
     anthropic_text = (by_provider["anthropic"].text or "").strip()
@@ -241,18 +284,22 @@ def assess_peer_challenge(
         final_match = final_result.status == "SUCCEEDED" and final_text == expected
         detail[f"{provider}_initial_matches_expected"] = initial_match
         detail[f"{provider}_final_matches_expected"] = final_match
-        detail[f"{provider}_changed_after_peer"] = final_result.status == "SUCCEEDED" and final_text != initial_text
-        detail[f"{provider}_rescued"] = (not initial_match) and final_match
-        detail[f"{provider}_degraded"] = initial_match and (not final_match)
+        detail[f"{provider}_changed_after_peer"] = (
+            initial_result.status == "SUCCEEDED"
+            and final_result.status == "SUCCEEDED"
+            and final_text != initial_text
+        )
+        detail[f"{provider}_rescued"] = initial_result.status == "SUCCEEDED" and final_result.status == "SUCCEEDED" and (not initial_match) and final_match
+        detail[f"{provider}_degraded"] = initial_result.status == "SUCCEEDED" and final_result.status == "SUCCEEDED" and initial_match and (not final_match)
 
     both_final_succeeded = all(final[p].status == "SUCCEEDED" for p in ("openai", "anthropic"))
     final_openai = (final["openai"].text or "").strip()
     final_anthropic = (final["anthropic"].text or "").strip()
-    both_final_wrong = not detail["openai_final_matches_expected"] and not detail["anthropic_final_matches_expected"]
+    both_final_wrong = both_final_succeeded and not detail["openai_final_matches_expected"] and not detail["anthropic_final_matches_expected"]
     detail["rescue_observed"] = detail["openai_rescued"] or detail["anthropic_rescued"]
     detail["negative_value_observed"] = detail["openai_degraded"] or detail["anthropic_degraded"]
     detail["mutual_reinforcement_risk_observed"] = (
-        both_final_succeeded and both_final_wrong and final_openai == final_anthropic
+        both_final_wrong and final_openai == final_anthropic
     )
     return detail
 
@@ -279,11 +326,23 @@ def _log_provider_results(path: Path, run_id: str, results: list[ProviderResult]
         )
 
 
+def _provider_token_limits(args: argparse.Namespace) -> tuple[int, int]:
+    legacy = getattr(args, "max_output_tokens", None)
+    openai_limit = getattr(args, "openai_max_output_tokens", None)
+    anthropic_limit = getattr(args, "anthropic_max_output_tokens", None)
+    if openai_limit is None:
+        openai_limit = legacy if legacy is not None else DEFAULT_OPENAI_MAX_OUTPUT_TOKENS
+    if anthropic_limit is None:
+        anthropic_limit = legacy if legacy is not None else DEFAULT_ANTHROPIC_MAX_OUTPUT_TOKENS
+    return openai_limit, anthropic_limit
+
+
 def _dispatch_initial(prompt: str, args: argparse.Namespace) -> list[ProviderResult]:
+    openai_limit, anthropic_limit = _provider_token_limits(args)
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
         futures = [
-            pool.submit(call_openai, prompt, args.openai_model, args.max_output_tokens, args.timeout),
-            pool.submit(call_anthropic, prompt, args.anthropic_model, args.max_output_tokens, args.timeout),
+            pool.submit(call_openai, prompt, args.openai_model, openai_limit, args.timeout),
+            pool.submit(call_anthropic, prompt, args.anthropic_model, anthropic_limit, args.timeout),
         ]
         return [future.result() for future in futures]
 
@@ -308,10 +367,11 @@ def _dispatch_peer_challenge(
         "openai": sha256_text(openai_prompt),
         "anthropic": sha256_text(anthropic_prompt),
     }
+    openai_limit, anthropic_limit = _provider_token_limits(args)
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
         futures = [
-            pool.submit(call_openai, openai_prompt, args.openai_model, args.max_output_tokens, args.timeout),
-            pool.submit(call_anthropic, anthropic_prompt, args.anthropic_model, args.max_output_tokens, args.timeout),
+            pool.submit(call_openai, openai_prompt, args.openai_model, openai_limit, args.timeout),
+            pool.submit(call_anthropic, anthropic_prompt, args.anthropic_model, anthropic_limit, args.timeout),
         ]
         return [future.result() for future in futures], prompt_hashes
 
@@ -323,6 +383,12 @@ def run(args: argparse.Namespace) -> int:
     peer_challenge = bool(getattr(args, "peer_challenge", False))
     if peer_challenge and args.expect_exact is None:
         raise SystemExit("--peer-challenge requires --expect-exact for deterministic pre/post scoring")
+
+    openai_limit, anthropic_limit = _provider_token_limits(args)
+    if openai_limit < 1:
+        raise SystemExit("OpenAI max output tokens must be >= 1")
+    if anthropic_limit < 1:
+        raise SystemExit("Anthropic max output tokens must be >= 1")
 
     prompt = args.prompt if args.prompt is not None else Path(args.prompt_file).read_text(encoding="utf-8")
     run_id = f"dacp-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}"
@@ -336,7 +402,9 @@ def run(args: argparse.Namespace) -> int:
         "input_chars": len(prompt),
         "openai_model": args.openai_model,
         "anthropic_model": args.anthropic_model,
-        "max_output_tokens": args.max_output_tokens,
+        "openai_max_output_tokens": openai_limit,
+        "anthropic_max_output_tokens": anthropic_limit,
+        "token_budget_semantics": "provider_native_limits_not_cross_provider_equivalent_units",
         "timeout_seconds": args.timeout,
         "independence": "both initial provider calls dispatched before either result is consumed",
         "peer_challenge_enabled": peer_challenge,
@@ -362,6 +430,7 @@ def run(args: argparse.Namespace) -> int:
 
     if peer_challenge:
         if any(result.status != "SUCCEEDED" for result in initial_results):
+            terminal_state = "UNRESOLVED"
             verification = {
                 **initial_verification,
                 "pre_challenge_state": initial_state,
@@ -393,11 +462,14 @@ def run(args: argparse.Namespace) -> int:
                 "pre_challenge_state": initial_state,
                 "openai_initial_matches_expected": initial_verification["openai_matches_expected"],
                 "anthropic_initial_matches_expected": initial_verification["anthropic_matches_expected"],
-                "openai_matches_expected": final_verification["openai_matches_expected"],
-                "anthropic_matches_expected": final_verification["anthropic_matches_expected"],
+                "openai_matches_expected": final_verification.get("openai_matches_expected", False),
+                "anthropic_matches_expected": final_verification.get("anthropic_matches_expected", False),
                 "challenge_attempted": True,
                 "challenge": assessment,
             }
+            if any(result.status != "SUCCEEDED" for result in final_results):
+                terminal_state = "UNRESOLVED"
+                verification["reason"] = "one_or_more_challenge_provider_calls_not_succeeded"
 
     terminal_record = {
         "event": "run_completed",
@@ -435,7 +507,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--openai-model", default=os.environ.get("OPENAI_MODEL", DEFAULT_OPENAI_MODEL))
     parser.add_argument("--anthropic-model", default=os.environ.get("ANTHROPIC_MODEL", DEFAULT_ANTHROPIC_MODEL))
-    parser.add_argument("--max-output-tokens", type=int, default=DEFAULT_MAX_OUTPUT_TOKENS)
+    parser.add_argument(
+        "--max-output-tokens",
+        type=int,
+        default=None,
+        help="Legacy shared numeric cap applied in each provider's native token units; not cross-provider-equivalent",
+    )
+    parser.add_argument("--openai-max-output-tokens", type=int, default=None)
+    parser.add_argument("--anthropic-max-output-tokens", type=int, default=None)
     parser.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT_SECONDS)
     parser.add_argument("--log-dir", default="runs")
     parser.add_argument("--dry-run", action="store_true", help="Write audit preconditions without making API calls")
@@ -444,8 +523,6 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> int:
     args = build_parser().parse_args()
-    if args.max_output_tokens < 1:
-        raise SystemExit("--max-output-tokens must be >= 1")
     if args.timeout < 1:
         raise SystemExit("--timeout must be >= 1")
     return run(args)
