@@ -13,10 +13,18 @@
 
 1. `authoritative/Project Instructions 0.3.txt`
 2. `authoritative/DACP_Heuristics_Specification_0.1.1.md`
-3. `authoritative/DACP_Interim_Decision_Authority_0.2.md`
-4. `authoritative/DACP_Operational_Use_and_Correction_Authority_0.1.md`
-5. `authoritative/DACP_Endpoint_Stack_0.2.md`
-6. `authoritative/DACP_Governance_Supersession_Notice_0.3.md` when smoke-test/supersession history matters.
+3. `authoritative/DACP_Operational_State_Sync_0.1.md`
+4. `STATE_LOCATOR.json`
+5. `authoritative/DACP_Interim_Decision_Authority_0.2.md`
+6. `authoritative/DACP_Operational_Use_and_Correction_Authority_0.1.md`
+7. `authoritative/DACP_Endpoint_Stack_0.2.md`
+8. `authoritative/DACP_Governance_Supersession_Notice_0.3.md` when smoke-test/supersession history matters.
+
+## Operational state
+
+`STATE_LOCATOR.json` identifies the current shared private operational-state surface. For nontrivial or consequential DACP work, resolve the relevant current private state when authorized and available. Pending/candidate and raw/observational state do not become canonical merely by being present.
+
+Current review-ready heuristic patch: `authoritative/DACP_Heuristics_Specification_0.1.2.md` is **PROPOSED / NOT ACTIVE**. Canonical 0.1.1 remains governing until version promotion is completed through the applicable authority and compatibility gates.
 
 ## Universal operating instruction
 
@@ -32,4 +40,4 @@ Required response: `DACP 0.1.1 ACTIVE | Candidate capture: ON | Silent promotion
 
 ## Canonical-source rule
 
-For current public DACP specification/governance state, this Git repository is canonical. Google Drive is a convenience mirror and historical migration source, not a competing current source. If a mirror disagrees with canonical Git, preserve the disagreement and resolve it against the exact Git version/blob plus applicable authority.
+For current public DACP specification/governance state, this Git repository is canonical. Google Drive/private state is an operational evidence/continuity surface, not a competing canonical control source. If a mirror, state record, copied instruction, prior chat, local file, or remembered state disagrees with canonical Git, preserve the disagreement and resolve it against the exact Git version/blob plus applicable authority.
