@@ -7,9 +7,9 @@ answers are fixed. No retries. No consequential actions. Standard library only.
 
 Provider adapters normalize semantic control states without pretending provider-
 native parameters are interchangeable. Output ceilings remain separate native
-limits. Sampling temperature is pinned to 0 for the currently audited default
-model pair to reduce one source of run-to-run variation; this is not a guarantee
-of deterministic model output.
+limits. Sampling controls are left at each provider's documented default because a
+provider-neutral deterministic setting is not established for this model pair.
+Run-to-run model output must therefore be treated as potentially variable.
 """
 
 from __future__ import annotations
@@ -38,7 +38,6 @@ DEFAULT_ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
 DEFAULT_OPENAI_MAX_OUTPUT_TOKENS = 128
 DEFAULT_ANTHROPIC_MAX_OUTPUT_TOKENS = 128
 DEFAULT_TIMEOUT_SECONDS = 60
-BROKER_TEMPERATURE = 0.0
 OPENAI_REASONING_EFFORT = "none"
 
 
@@ -143,20 +142,6 @@ def _anthropic_completion(data: dict[str, Any]) -> tuple[str, str | None, str | 
     return "FAILED", stop_reason, stop_reason or "missing_stop_reason"
 
 
-def _model_identity_failure(
-    normalized: str,
-    requested_model: str,
-    response_model: str | None,
-    completion_reason: str | None,
-) -> tuple[str, str | None]:
-    if normalized != "SUCCEEDED":
-        return normalized, completion_reason
-    if response_model != requested_model:
-        actual = response_model if response_model is not None else "missing"
-        return "FAILED", f"response_model_mismatch:{actual}"
-    return normalized, completion_reason
-
-
 def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -> ProviderResult:
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
@@ -172,7 +157,6 @@ def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -
         ],
         "max_output_tokens": max_output_tokens,
         "reasoning": {"effort": OPENAI_REASONING_EFFORT},
-        "temperature": BROKER_TEMPERATURE,
         "store": False,
     }
     start = time.monotonic()
@@ -197,13 +181,6 @@ def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -
         elif normalized == "SUCCEEDED" and not text:
             normalized = "FAILED"
             completion_reason = "missing_output_text"
-
-        normalized, completion_reason = _model_identity_failure(
-            normalized,
-            model,
-            response_model,
-            completion_reason,
-        )
 
         error = None
         if normalized != "SUCCEEDED":
@@ -250,7 +227,6 @@ def call_anthropic(prompt: str, model: str, max_output_tokens: int, timeout: int
     payload = {
         "model": model,
         "max_tokens": max_output_tokens,
-        "temperature": BROKER_TEMPERATURE,
         "messages": [{"role": "user", "content": prompt}],
     }
     start = time.monotonic()
@@ -272,13 +248,6 @@ def call_anthropic(prompt: str, model: str, max_output_tokens: int, timeout: int
         if normalized == "SUCCEEDED" and not text:
             normalized = "FAILED"
             completion_reason = "missing_text_block"
-
-        normalized, completion_reason = _model_identity_failure(
-            normalized,
-            model,
-            response_model,
-            completion_reason,
-        )
 
         error = None
         if normalized != "SUCCEEDED":
@@ -507,13 +476,17 @@ def run(args: argparse.Namespace) -> int:
         "anthropic_max_output_tokens": anthropic_limit,
         "token_budget_semantics": "separate_provider_native_limits_not_cross_provider_equivalent_units",
         "shared_token_cap_supported": False,
-        "temperature": {"openai": BROKER_TEMPERATURE, "anthropic": BROKER_TEMPERATURE},
-        "sampling_semantics": "temperature_zero_reduces_randomness_but_does_not_guarantee_determinism",
+        "sampling_parameters": {"openai": "omitted_provider_default", "anthropic": "omitted_provider_default"},
+        "sampling_semantics": "provider_defaults_not_cross_provider_equivalent_and_not_deterministic",
         "prompt_role": {"openai": "user", "anthropic": "user"},
         "client_system_prompt": {"openai": False, "anthropic": False},
         "reasoning_semantics": {
             "openai": f"reasoning_effort_{OPENAI_REASONING_EFFORT}",
             "anthropic": "thinking_parameter_omitted_default_off_for_claude_haiku_4_5",
+        },
+        "model_identity_semantics": {
+            "openai": "requested_alias_logged_with_response_model; no dated snapshot currently exposed for gpt-5.6-luna",
+            "anthropic": "dated_model_id_requested_and_response_model_logged",
         },
         "provider_api": {
             "openai": {"endpoint": OPENAI_URL},
