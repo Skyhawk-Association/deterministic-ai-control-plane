@@ -5,9 +5,11 @@ Default mode preserves blinded independence: no provider sees the other's output
 Optional --peer-challenge adds exactly one bounded reveal round after both initial
 answers are fixed. No retries. No consequential actions. Standard library only.
 
-Token ceilings are provider-native limits, not cross-provider-equivalent units.
-A provider result is SUCCEEDED only when provider completion metadata says the
-response completed normally enough to be scored as a final answer.
+Provider adapters normalize semantic control states without pretending provider-
+native parameters are interchangeable. Output ceilings remain separate native
+limits. Sampling temperature is pinned to 0 for the currently audited default
+model pair to reduce one source of run-to-run variation; this is not a guarantee
+of deterministic model output.
 """
 
 from __future__ import annotations
@@ -30,11 +32,14 @@ from typing import Any
 
 OPENAI_URL = "https://api.openai.com/v1/responses"
 ANTHROPIC_URL = "https://api.anthropic.com/v1/messages"
+ANTHROPIC_API_VERSION = "2023-06-01"
 DEFAULT_OPENAI_MODEL = "gpt-5.6-luna"
 DEFAULT_ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
 DEFAULT_OPENAI_MAX_OUTPUT_TOKENS = 128
 DEFAULT_ANTHROPIC_MAX_OUTPUT_TOKENS = 128
 DEFAULT_TIMEOUT_SECONDS = 60
+BROKER_TEMPERATURE = 0.0
+OPENAI_REASONING_EFFORT = "none"
 
 
 def utc_now() -> str:
@@ -48,7 +53,7 @@ def sha256_text(text: str) -> str:
 @dataclass
 class ProviderResult:
     provider: str
-    model: str
+    model: str  # requested model ID
     status: str  # SUCCEEDED | FAILED | PENDING
     text: str | None
     error: str | None
@@ -58,6 +63,8 @@ class ProviderResult:
     usage: dict[str, Any] | None
     completion_status: str | None = None
     completion_reason: str | None = None
+    response_model: str | None = None
+    provider_metadata: dict[str, Any] | None = None
 
 
 def _post_json(
@@ -87,6 +94,17 @@ def _openai_text(data: dict[str, Any]) -> str:
     return "".join(pieces)
 
 
+def _openai_refusal(data: dict[str, Any]) -> str:
+    pieces: list[str] = []
+    for item in data.get("output", []):
+        if item.get("type") != "message":
+            continue
+        for content in item.get("content", []):
+            if content.get("type") == "refusal" and isinstance(content.get("refusal"), str):
+                pieces.append(content["refusal"])
+    return "".join(pieces)
+
+
 def _anthropic_text(data: dict[str, Any]) -> str:
     pieces: list[str] = []
     for item in data.get("content", []):
@@ -111,13 +129,32 @@ def _openai_completion(data: dict[str, Any]) -> tuple[str, str | None, str | Non
 def _anthropic_completion(data: dict[str, Any]) -> tuple[str, str | None, str | None]:
     """Return normalized status, provider stop reason, and completion reason."""
     stop_reason = data.get("stop_reason")
-    if stop_reason in {"end_turn", "stop_sequence"}:
+    if stop_reason == "end_turn":
         return "SUCCEEDED", stop_reason, stop_reason
-    if stop_reason in {"max_tokens", "model_context_window_exceeded"}:
+    if stop_reason in {
+        "max_tokens",
+        "model_context_window_exceeded",
+        "stop_sequence",
+        "tool_use",
+        "pause_turn",
+        "refusal",
+    }:
         return "FAILED", stop_reason, stop_reason
-    # tool_use, pause_turn, refusal, and unknown/missing reasons are not final
-    # answer completions for this text-comparison broker.
     return "FAILED", stop_reason, stop_reason or "missing_stop_reason"
+
+
+def _model_identity_failure(
+    normalized: str,
+    requested_model: str,
+    response_model: str | None,
+    completion_reason: str | None,
+) -> tuple[str, str | None]:
+    if normalized != "SUCCEEDED":
+        return normalized, completion_reason
+    if response_model != requested_model:
+        actual = response_model if response_model is not None else "missing"
+        return "FAILED", f"response_model_mismatch:{actual}"
+    return normalized, completion_reason
 
 
 def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -> ProviderResult:
@@ -127,9 +164,15 @@ def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -
 
     payload = {
         "model": model,
-        "input": prompt,
+        "input": [
+            {
+                "role": "user",
+                "content": [{"type": "input_text", "text": prompt}],
+            }
+        ],
         "max_output_tokens": max_output_tokens,
-        "reasoning": {"effort": "none"},
+        "reasoning": {"effort": OPENAI_REASONING_EFFORT},
+        "temperature": BROKER_TEMPERATURE,
         "store": False,
     }
     start = time.monotonic()
@@ -144,15 +187,36 @@ def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -
             timeout=timeout,
         )
         text = _openai_text(data)
+        refusal = _openai_refusal(data)
         normalized, completion_status, completion_reason = _openai_completion(data)
-        if normalized == "SUCCEEDED" and not text:
-            raise ValueError("OpenAI completed response contained no output_text")
-        error = None if normalized == "SUCCEEDED" else f"OpenAI response not complete: status={completion_status!r}, reason={completion_reason!r}"
+        response_model = data.get("model")
+
+        if normalized == "SUCCEEDED" and refusal:
+            normalized = "FAILED"
+            completion_reason = "refusal"
+        elif normalized == "SUCCEEDED" and not text:
+            normalized = "FAILED"
+            completion_reason = "missing_output_text"
+
+        normalized, completion_reason = _model_identity_failure(
+            normalized,
+            model,
+            response_model,
+            completion_reason,
+        )
+
+        error = None
+        if normalized != "SUCCEEDED":
+            error = (
+                "OpenAI response not scoreable: "
+                f"status={completion_status!r}, reason={completion_reason!r}"
+            )
+
         return ProviderResult(
             "openai",
             model,
             normalized,
-            text or None,
+            text or refusal or None,
             error,
             status,
             headers.get("x-request-id") or data.get("id"),
@@ -160,6 +224,13 @@ def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -
             data.get("usage"),
             completion_status,
             completion_reason,
+            response_model,
+            {
+                "temperature": data.get("temperature"),
+                "top_p": data.get("top_p"),
+                "service_tier": data.get("service_tier"),
+                "reasoning_effort": (data.get("reasoning") or {}).get("effort"),
+            },
         )
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")[:1000]
@@ -179,6 +250,7 @@ def call_anthropic(prompt: str, model: str, max_output_tokens: int, timeout: int
     payload = {
         "model": model,
         "max_tokens": max_output_tokens,
+        "temperature": BROKER_TEMPERATURE,
         "messages": [{"role": "user", "content": prompt}],
     }
     start = time.monotonic()
@@ -187,7 +259,7 @@ def call_anthropic(prompt: str, model: str, max_output_tokens: int, timeout: int
             url=ANTHROPIC_URL,
             headers={
                 "x-api-key": api_key,
-                "anthropic-version": "2023-06-01",
+                "anthropic-version": ANTHROPIC_API_VERSION,
                 "Content-Type": "application/json",
             },
             payload=payload,
@@ -195,9 +267,27 @@ def call_anthropic(prompt: str, model: str, max_output_tokens: int, timeout: int
         )
         text = _anthropic_text(data)
         normalized, completion_status, completion_reason = _anthropic_completion(data)
+        response_model = data.get("model")
+
         if normalized == "SUCCEEDED" and not text:
-            raise ValueError("Anthropic completed response contained no text block")
-        error = None if normalized == "SUCCEEDED" else f"Anthropic response not complete: stop_reason={completion_reason!r}"
+            normalized = "FAILED"
+            completion_reason = "missing_text_block"
+
+        normalized, completion_reason = _model_identity_failure(
+            normalized,
+            model,
+            response_model,
+            completion_reason,
+        )
+
+        error = None
+        if normalized != "SUCCEEDED":
+            error = (
+                "Anthropic response not scoreable: "
+                f"stop_reason={completion_status!r}, reason={completion_reason!r}"
+            )
+
+        usage = data.get("usage")
         return ProviderResult(
             "anthropic",
             model,
@@ -207,9 +297,15 @@ def call_anthropic(prompt: str, model: str, max_output_tokens: int, timeout: int
             status,
             headers.get("request-id") or data.get("id"),
             int((time.monotonic() - start) * 1000),
-            data.get("usage"),
+            usage,
             completion_status,
             completion_reason,
+            response_model,
+            {
+                "service_tier": (usage or {}).get("service_tier"),
+                "inference_geo": (usage or {}).get("inference_geo"),
+                "stop_details": data.get("stop_details"),
+            },
         )
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")[:1000]
@@ -289,18 +385,30 @@ def assess_peer_challenge(
             and final_result.status == "SUCCEEDED"
             and final_text != initial_text
         )
-        detail[f"{provider}_rescued"] = initial_result.status == "SUCCEEDED" and final_result.status == "SUCCEEDED" and (not initial_match) and final_match
-        detail[f"{provider}_degraded"] = initial_result.status == "SUCCEEDED" and final_result.status == "SUCCEEDED" and initial_match and (not final_match)
+        detail[f"{provider}_rescued"] = (
+            initial_result.status == "SUCCEEDED"
+            and final_result.status == "SUCCEEDED"
+            and (not initial_match)
+            and final_match
+        )
+        detail[f"{provider}_degraded"] = (
+            initial_result.status == "SUCCEEDED"
+            and final_result.status == "SUCCEEDED"
+            and initial_match
+            and (not final_match)
+        )
 
     both_final_succeeded = all(final[p].status == "SUCCEEDED" for p in ("openai", "anthropic"))
     final_openai = (final["openai"].text or "").strip()
     final_anthropic = (final["anthropic"].text or "").strip()
-    both_final_wrong = both_final_succeeded and not detail["openai_final_matches_expected"] and not detail["anthropic_final_matches_expected"]
+    both_final_wrong = (
+        both_final_succeeded
+        and not detail["openai_final_matches_expected"]
+        and not detail["anthropic_final_matches_expected"]
+    )
     detail["rescue_observed"] = detail["openai_rescued"] or detail["anthropic_rescued"]
     detail["negative_value_observed"] = detail["openai_degraded"] or detail["anthropic_degraded"]
-    detail["mutual_reinforcement_risk_observed"] = (
-        both_final_wrong and final_openai == final_anthropic
-    )
+    detail["mutual_reinforcement_risk_observed"] = both_final_wrong and final_openai == final_anthropic
     return detail
 
 
@@ -327,14 +435,7 @@ def _log_provider_results(path: Path, run_id: str, results: list[ProviderResult]
 
 
 def _provider_token_limits(args: argparse.Namespace) -> tuple[int, int]:
-    legacy = getattr(args, "max_output_tokens", None)
-    openai_limit = getattr(args, "openai_max_output_tokens", None)
-    anthropic_limit = getattr(args, "anthropic_max_output_tokens", None)
-    if openai_limit is None:
-        openai_limit = legacy if legacy is not None else DEFAULT_OPENAI_MAX_OUTPUT_TOKENS
-    if anthropic_limit is None:
-        anthropic_limit = legacy if legacy is not None else DEFAULT_ANTHROPIC_MAX_OUTPUT_TOKENS
-    return openai_limit, anthropic_limit
+    return args.openai_max_output_tokens, args.anthropic_max_output_tokens
 
 
 def _dispatch_initial(prompt: str, args: argparse.Namespace) -> list[ProviderResult]:
@@ -404,7 +505,20 @@ def run(args: argparse.Namespace) -> int:
         "anthropic_model": args.anthropic_model,
         "openai_max_output_tokens": openai_limit,
         "anthropic_max_output_tokens": anthropic_limit,
-        "token_budget_semantics": "provider_native_limits_not_cross_provider_equivalent_units",
+        "token_budget_semantics": "separate_provider_native_limits_not_cross_provider_equivalent_units",
+        "shared_token_cap_supported": False,
+        "temperature": {"openai": BROKER_TEMPERATURE, "anthropic": BROKER_TEMPERATURE},
+        "sampling_semantics": "temperature_zero_reduces_randomness_but_does_not_guarantee_determinism",
+        "prompt_role": {"openai": "user", "anthropic": "user"},
+        "client_system_prompt": {"openai": False, "anthropic": False},
+        "reasoning_semantics": {
+            "openai": f"reasoning_effort_{OPENAI_REASONING_EFFORT}",
+            "anthropic": "thinking_parameter_omitted_default_off_for_claude_haiku_4_5",
+        },
+        "provider_api": {
+            "openai": {"endpoint": OPENAI_URL},
+            "anthropic": {"endpoint": ANTHROPIC_URL, "anthropic_version": ANTHROPIC_API_VERSION},
+        },
         "timeout_seconds": args.timeout,
         "independence": "both initial provider calls dispatched before either result is consumed",
         "peer_challenge_enabled": peer_challenge,
@@ -505,16 +619,20 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="After both initial answers are fixed, reveal each peer answer once and deterministically score final answers",
     )
-    parser.add_argument("--openai-model", default=os.environ.get("OPENAI_MODEL", DEFAULT_OPENAI_MODEL))
-    parser.add_argument("--anthropic-model", default=os.environ.get("ANTHROPIC_MODEL", DEFAULT_ANTHROPIC_MODEL))
+    parser.add_argument("--openai-model", default=DEFAULT_OPENAI_MODEL)
+    parser.add_argument("--anthropic-model", default=DEFAULT_ANTHROPIC_MODEL)
     parser.add_argument(
-        "--max-output-tokens",
+        "--openai-max-output-tokens",
         type=int,
-        default=None,
-        help="Legacy shared numeric cap applied in each provider's native token units; not cross-provider-equivalent",
+        default=DEFAULT_OPENAI_MAX_OUTPUT_TOKENS,
+        help="OpenAI-native max_output_tokens ceiling; not comparable token-for-token with Anthropic",
     )
-    parser.add_argument("--openai-max-output-tokens", type=int, default=None)
-    parser.add_argument("--anthropic-max-output-tokens", type=int, default=None)
+    parser.add_argument(
+        "--anthropic-max-output-tokens",
+        type=int,
+        default=DEFAULT_ANTHROPIC_MAX_OUTPUT_TOKENS,
+        help="Anthropic-native max_tokens ceiling; not comparable token-for-token with OpenAI",
+    )
     parser.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT_SECONDS)
     parser.add_argument("--log-dir", default="runs")
     parser.add_argument("--dry-run", action="store_true", help="Write audit preconditions without making API calls")
