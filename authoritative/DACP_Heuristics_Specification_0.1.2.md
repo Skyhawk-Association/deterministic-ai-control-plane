@@ -1,8 +1,8 @@
 # Deterministic AI Control Plane
 ## Heuristics Specification 0.1.2
 
-**Status:** AUTHORITATIVE PROJECT SPECIFICATION / ACTIVE / GENE INTERIM DECISION  
-**Effective:** Immediately when persisted to canonical `main` and independently read back.  
+**Status:** PROPOSED HEURISTIC PATCH / REVIEW-READY / NOT ACTIVE  
+**Effective:** Not active. Promotion is blocked until canonical bootstrap/smoke-test compatibility can be changed without violating higher-authority execution-surface constraints.  
 **Supersedes:** `DACP_Heuristics_Specification_0.1.1.md` for the sections replaced below.  
 **Base specification:** `DACP_Heuristics_Specification_0.1.1.md`  
 **Active heuristic count:** 17  
@@ -148,4 +148,4 @@ A consumer resolving 0.1.2 must load the base specification identified above and
 
 ## Current acceptance status
 
-Heuristics Specification 0.1.2 is **AUTHORITATIVE / ACTIVE / GENE INTERIM DECISION** once canonical persistence and independent read-back are complete. It contains 17 active heuristics by composition with 0.1.1.
+Heuristics Specification 0.1.2 is **PROPOSED / REVIEW-READY / NOT ACTIVE**. Canonical 0.1.1 remains active until the bootstrap compatibility blocker is resolved and promotion is completed through the normal versioned process.
