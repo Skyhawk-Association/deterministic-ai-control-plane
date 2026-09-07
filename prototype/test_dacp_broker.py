@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,8 +10,20 @@ import dacp_broker
 
 
 class BrokerTests(unittest.TestCase):
-    def result(self, provider, text, status="SUCCEEDED"):
-        return dacp_broker.ProviderResult(provider, "test-model", status, text, None, 200, "req", 1, {"input_tokens": 1, "output_tokens": 1})
+    def result(self, provider, text, status="SUCCEEDED", completion_status="completed", completion_reason=None):
+        return dacp_broker.ProviderResult(
+            provider,
+            "test-model",
+            status,
+            text,
+            None,
+            200,
+            "req",
+            1,
+            {"input_tokens": 1, "output_tokens": 1},
+            completion_status,
+            completion_reason,
+        )
 
     def args(self, tmp, **overrides):
         values = dict(
@@ -20,7 +33,9 @@ class BrokerTests(unittest.TestCase):
             peer_challenge=False,
             openai_model="o",
             anthropic_model="a",
-            max_output_tokens=10,
+            max_output_tokens=None,
+            openai_max_output_tokens=10,
+            anthropic_max_output_tokens=20,
             timeout=5,
             log_dir=tmp,
             dry_run=False,
@@ -59,6 +74,68 @@ class BrokerTests(unittest.TestCase):
         self.assertEqual(state, "UNRESOLVED")
         self.assertIn("not_succeeded", detail["reason"])
 
+    def test_openai_incomplete_response_is_not_succeeded(self):
+        payload = {
+            "status": "incomplete",
+            "incomplete_details": {"reason": "max_output_tokens"},
+            "output": [{"type": "message", "content": [{"type": "output_text", "text": "partial"}]}],
+            "usage": {"output_tokens": 32},
+            "id": "resp_test",
+        }
+        with patch.dict(os.environ, {"OPENAI_API_KEY": "test"}), patch.object(
+            dacp_broker, "_post_json", return_value=(payload, {"x-request-id": "req"}, 200)
+        ):
+            result = dacp_broker.call_openai("x", "o", 32, 5)
+        self.assertEqual(result.status, "FAILED")
+        self.assertEqual(result.text, "partial")
+        self.assertEqual(result.completion_status, "incomplete")
+        self.assertEqual(result.completion_reason, "max_output_tokens")
+
+    def test_anthropic_max_tokens_is_not_succeeded(self):
+        payload = {
+            "stop_reason": "max_tokens",
+            "content": [{"type": "text", "text": "partial"}],
+            "usage": {"output_tokens": 32},
+            "id": "msg_test",
+        }
+        with patch.dict(os.environ, {"ANTHROPIC_API_KEY": "test"}), patch.object(
+            dacp_broker, "_post_json", return_value=(payload, {"request-id": "req"}, 200)
+        ):
+            result = dacp_broker.call_anthropic("x", "a", 32, 5)
+        self.assertEqual(result.status, "FAILED")
+        self.assertEqual(result.text, "partial")
+        self.assertEqual(result.completion_status, "max_tokens")
+        self.assertEqual(result.completion_reason, "max_tokens")
+
+    def test_anthropic_end_turn_is_succeeded(self):
+        payload = {
+            "stop_reason": "end_turn",
+            "content": [{"type": "text", "text": "173"}],
+            "usage": {"output_tokens": 5},
+            "id": "msg_test",
+        }
+        with patch.dict(os.environ, {"ANTHROPIC_API_KEY": "test"}), patch.object(
+            dacp_broker, "_post_json", return_value=(payload, {"request-id": "req"}, 200)
+        ):
+            result = dacp_broker.call_anthropic("x", "a", 128, 5)
+        self.assertEqual(result.status, "SUCCEEDED")
+        self.assertEqual(result.text, "173")
+        self.assertEqual(result.completion_status, "end_turn")
+
+    def test_provider_native_token_caps_are_separate_and_logged(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            args = self.args(tmp, dry_run=True, openai_max_output_tokens=11, anthropic_max_output_tokens=37)
+            rc = dacp_broker.run(args)
+            self.assertEqual(rc, 0)
+            event = json.loads(next(Path(tmp).glob("*.jsonl")).read_text(encoding="utf-8").splitlines()[0])
+            self.assertEqual(event["openai_max_output_tokens"], 11)
+            self.assertEqual(event["anthropic_max_output_tokens"], 37)
+            self.assertIn("not_cross_provider_equivalent", event["token_budget_semantics"])
+
+    def test_legacy_shared_token_cap_remains_supported(self):
+        args = self.args("x", max_output_tokens=32, openai_max_output_tokens=None, anthropic_max_output_tokens=None)
+        self.assertEqual(dacp_broker._provider_token_limits(args), (32, 32))
+
     def test_dry_run_writes_hash_not_prompt(self):
         with tempfile.TemporaryDirectory() as tmp:
             args = self.args(tmp, prompt="secret synthetic prompt", expect_exact=None, dry_run=True)
@@ -80,7 +157,7 @@ class BrokerTests(unittest.TestCase):
                 rc = dacp_broker.run(args)
             self.assertEqual(rc, 0)
             o.assert_called_once_with("TOKEN", "o", 10, 5)
-            a.assert_called_once_with("TOKEN", "a", 10, 5)
+            a.assert_called_once_with("TOKEN", "a", 20, 5)
             events = [json.loads(line) for line in next(Path(tmp).glob("*.jsonl")).read_text(encoding="utf-8").splitlines()]
             self.assertEqual([e["event"] for e in events], ["run_started", "provider_result", "provider_result", "run_completed"])
             self.assertEqual(events[1]["stage"], "initial")
@@ -141,6 +218,18 @@ class BrokerTests(unittest.TestCase):
         detail = dacp_broker.assess_peer_challenge(initial, final, "CORRECT")
         self.assertTrue(detail["mutual_reinforcement_risk_observed"])
         self.assertFalse(detail["rescue_observed"])
+
+    def test_peer_challenge_does_not_score_incomplete_challenge_output(self):
+        initial = [self.result("openai", "CORRECT"), self.result("anthropic", "WRONG")]
+        final = [
+            self.result("openai", "CORRECT"),
+            self.result("anthropic", "partial", status="FAILED", completion_status="max_tokens", completion_reason="max_tokens"),
+        ]
+        detail = dacp_broker.assess_peer_challenge(initial, final, "CORRECT")
+        self.assertFalse(detail["anthropic_changed_after_peer"])
+        self.assertFalse(detail["anthropic_rescued"])
+        self.assertFalse(detail["anthropic_degraded"])
+        self.assertFalse(detail["mutual_reinforcement_risk_observed"])
 
     def test_peer_challenge_not_attempted_if_initial_call_unresolved(self):
         with tempfile.TemporaryDirectory() as tmp:
