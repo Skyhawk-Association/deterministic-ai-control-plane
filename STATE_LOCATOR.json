@@ -1,0 +1,12 @@
+{
+  "schema": "dacp-state-locator-0.1",
+  "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
+  "current_private_state": {
+    "storage_class": "GOOGLE_DRIVE_SHARED",
+    "state_head_title": "DACP_STATE_HEAD",
+    "candidate_register_title": "DACP_CANDIDATE_REGISTER",
+    "observation_register_title": "DACP_OBSERVATION_REGISTER"
+  },
+  "future_private_state_target": "PRIVATE_NAS",
+  "rule": "Git stores the locator and contract, not the private corpus. Resolve the private state only when authorized and relevant."
+}
