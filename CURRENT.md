@@ -24,7 +24,7 @@
 
 `STATE_LOCATOR.json` identifies the current shared private operational-state surface. For nontrivial or consequential DACP work, resolve the relevant current private state when authorized and available. Pending/candidate and raw/observational state do not become canonical merely by being present.
 
-Current review-ready heuristic patch: `authoritative/DACP_Heuristics_Specification_0.1.2.md` is **PROPOSED / NOT ACTIVE**. Canonical 0.1.1 remains governing until version promotion is completed through the applicable authority and compatibility gates.
+Current review-ready heuristic patch: `authoritative/DACP_Heuristics_Specification_0.1.3.md` is **PROPOSED / NOT ACTIVE**. Canonical 0.1.1 remains governing until version promotion is completed through the applicable authority and compatibility gates. `authoritative/DACP_Heuristics_Specification_0.1.2.md` remains preserved as the immediate predecessor proposal.
 
 ## Universal operating instruction
 
