@@ -198,6 +198,23 @@ class BrokerTests(unittest.TestCase):
             self.assertEqual([e["event"] for e in events], ["run_started", "provider_result", "provider_result", "run_completed"])
             self.assertEqual(events[-1]["terminal_state"], "VERIFIED_MATCH")
 
+    def test_peer_challenge_final_contract_follows_untrusted_data(self):
+        prompt = dacp_broker.build_peer_challenge_prompt(
+            "Compute it. Return only the integer.",
+            "157",
+            "176",
+        )
+        data_pos = prompt.index("CHALLENGE_DATA=")
+        contract_pos = prompt.index("FINAL RESPONSE CONTRACT:")
+        self.assertLess(data_pos, contract_pos)
+        self.assertIn('"peer_initial_answer": "176"', prompt)
+        self.assertIn('"your_initial_answer": "157"', prompt)
+        self.assertTrue(
+            prompt.endswith(
+                "Your visible response must contain only the final answer requested by the original task."
+            )
+        )
+
     def test_peer_challenge_requires_deterministic_verifier(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaisesRegex(SystemExit, "requires --expect-exact"):
