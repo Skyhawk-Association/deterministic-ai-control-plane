@@ -91,6 +91,7 @@ class BrokerTests(unittest.TestCase):
         req = post.call_args.kwargs["payload"]
         self.assertNotIn("temperature", req)
         self.assertNotIn("top_p", req)
+        self.assertEqual(req["instructions"], dacp_broker.CLIENT_RESPONSE_CONTRACT)
         self.assertEqual(req["reasoning"], {"effort": "none"})
         self.assertEqual(req["input"], [{"role": "user", "content": [{"type": "input_text", "text": "PROMPT"}]}])
         self.assertEqual(req["max_output_tokens"], 37)
@@ -148,9 +149,53 @@ class BrokerTests(unittest.TestCase):
         req = post.call_args.kwargs["payload"]
         self.assertNotIn("temperature", req)
         self.assertNotIn("top_p", req)
+        self.assertEqual(req["system"], dacp_broker.CLIENT_RESPONSE_CONTRACT)
         self.assertEqual(req["messages"], [{"role": "user", "content": "PROMPT"}])
         self.assertEqual(req["max_tokens"], 41)
         self.assertEqual(post.call_args.kwargs["headers"]["anthropic-version"], "2023-06-01")
+
+    def test_same_semantic_response_contract_reaches_both_provider_adapters(self):
+        openai_payload = {
+            "status": "completed",
+            "output": [{"type": "message", "content": [{"type": "output_text", "text": "173"}]}],
+            "usage": {"output_tokens": 5},
+            "id": "resp",
+            "model": "o",
+            "reasoning": {"effort": "none"},
+        }
+        with patch.dict(os.environ, {"OPENAI_API_KEY": "test"}), patch.object(
+            dacp_broker, "_post_json", return_value=(openai_payload, {"x-request-id": "req"}, 200)
+        ) as openai_post:
+            dacp_broker.call_openai("TASK", "o", 37, 5)
+
+        anthropic_payload = {
+            "stop_reason": "end_turn",
+            "content": [{"type": "text", "text": "173"}],
+            "usage": {"output_tokens": 5},
+            "id": "msg",
+            "model": "a",
+        }
+        with patch.dict(os.environ, {"ANTHROPIC_API_KEY": "test"}), patch.object(
+            dacp_broker, "_post_json", return_value=(anthropic_payload, {"request-id": "req"}, 200)
+        ) as anthropic_post:
+            dacp_broker.call_anthropic("TASK", "a", 41, 5)
+
+        openai_req = openai_post.call_args.kwargs["payload"]
+        anthropic_req = anthropic_post.call_args.kwargs["payload"]
+
+        self.assertEqual(
+            openai_req["instructions"],
+            anthropic_req["system"],
+        )
+        self.assertEqual(openai_req["instructions"], dacp_broker.CLIENT_RESPONSE_CONTRACT)
+        self.assertEqual(
+            openai_req["input"],
+            [{"role": "user", "content": [{"type": "input_text", "text": "TASK"}]}],
+        )
+        self.assertEqual(
+            anthropic_req["messages"],
+            [{"role": "user", "content": "TASK"}],
+        )
 
     def test_provider_native_token_caps_are_separate_and_logged(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -181,7 +226,9 @@ class BrokerTests(unittest.TestCase):
             first = json.loads(raw.splitlines()[0])
             self.assertEqual(first["sampling_parameters"], {"openai": "omitted_provider_default", "anthropic": "omitted_provider_default"})
             self.assertEqual(first["prompt_role"], {"openai": "user", "anthropic": "user"})
-            self.assertEqual(first["client_system_prompt"], {"openai": False, "anthropic": False})
+            self.assertEqual(first["client_response_contract_active"], {"openai": True, "anthropic": True})
+            self.assertEqual(first["client_response_contract"]["openai_channel"], "instructions")
+            self.assertEqual(first["client_response_contract"]["anthropic_channel"], "system")
             self.assertIn("requested_alias", first["model_identity_semantics"]["openai"])
             self.assertIn("dated_model_id", first["model_identity_semantics"]["anthropic"])
 

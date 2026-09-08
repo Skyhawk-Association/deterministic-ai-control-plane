@@ -39,6 +39,11 @@ DEFAULT_OPENAI_MAX_OUTPUT_TOKENS = 128
 DEFAULT_ANTHROPIC_MAX_OUTPUT_TOKENS = 128
 DEFAULT_TIMEOUT_SECONDS = 60
 OPENAI_REASONING_EFFORT = "none"
+CLIENT_RESPONSE_CONTRACT = (
+    "Do all reasoning internally. "
+    "Return only the final answer in exactly the format requested by the user task. "
+    "Do not expose analysis, calculations, critique, explanation, or discussion."
+)
 
 
 def utc_now() -> str:
@@ -149,6 +154,7 @@ def call_openai(prompt: str, model: str, max_output_tokens: int, timeout: int) -
 
     payload = {
         "model": model,
+        "instructions": CLIENT_RESPONSE_CONTRACT,
         "input": [
             {
                 "role": "user",
@@ -226,6 +232,7 @@ def call_anthropic(prompt: str, model: str, max_output_tokens: int, timeout: int
 
     payload = {
         "model": model,
+        "system": CLIENT_RESPONSE_CONTRACT,
         "max_tokens": max_output_tokens,
         "messages": [{"role": "user", "content": prompt}],
     }
@@ -481,7 +488,12 @@ def run(args: argparse.Namespace) -> int:
         "sampling_parameters": {"openai": "omitted_provider_default", "anthropic": "omitted_provider_default"},
         "sampling_semantics": "provider_defaults_not_cross_provider_equivalent_and_not_deterministic",
         "prompt_role": {"openai": "user", "anthropic": "user"},
-        "client_system_prompt": {"openai": False, "anthropic": False},
+        "client_response_contract_active": {"openai": True, "anthropic": True},
+        "client_response_contract": {
+            "semantic": "final_only_original_format_no_visible_reasoning",
+            "openai_channel": "instructions",
+            "anthropic_channel": "system",
+        },
         "reasoning_semantics": {
             "openai": f"reasoning_effort_{OPENAI_REASONING_EFFORT}",
             "anthropic": "thinking_parameter_omitted_default_off_for_claude_haiku_4_5",
