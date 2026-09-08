@@ -20,6 +20,7 @@ import hashlib
 import json
 import os
 import socket
+import subprocess
 import sys
 import time
 import urllib.error
@@ -44,6 +45,7 @@ CLIENT_RESPONSE_CONTRACT = (
     "Return only the final answer in exactly the format requested by the user task. "
     "Do not expose analysis, calculations, critique, explanation, or discussion."
 )
+SHARED_EVIDENCE_ENV = "DACP_SHARED_EVIDENCE_ROOT"
 
 
 def utc_now() -> str:
@@ -52,6 +54,61 @@ def utc_now() -> str:
 
 def sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _broker_source_identity() -> dict[str, Any]:
+    source_path = Path(__file__).resolve()
+    identity: dict[str, Any] = {
+        "broker_sha256": sha256_file(source_path),
+        "git_commit": None,
+        "tracked_source_matches_head": None,
+    }
+    try:
+        commit = subprocess.run(
+            ["git", "-C", str(source_path.parent), "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout.strip()
+        diff = subprocess.run(
+            ["git", "-C", str(source_path.parent), "diff", "--quiet", "HEAD", "--", source_path.name],
+            check=False,
+        )
+        identity["git_commit"] = commit
+        identity["tracked_source_matches_head"] = diff.returncode == 0
+    except (OSError, subprocess.SubprocessError):
+        pass
+    return identity
+
+
+def _resolve_evidence_root(args: argparse.Namespace) -> tuple[Path, str]:
+    explicit = getattr(args, "log_dir", None)
+    if explicit:
+        root = Path(explicit)
+        mode = "EXPLICIT_LOG_DIR"
+    else:
+        shared = os.environ.get(SHARED_EVIDENCE_ENV)
+        if not shared:
+            raise SystemExit(
+                f"{SHARED_EVIDENCE_ENV} is not set; configure the shared evidence root "
+                "or use --log-dir as an explicit recovery/test override"
+            )
+        root = Path(shared)
+        mode = "SHARED_SYNC_ROOT"
+
+    try:
+        root.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        raise SystemExit(f"Evidence root unavailable: {root}: {exc}") from exc
+
+    if not root.is_dir():
+        raise SystemExit(f"Evidence root is not a directory: {root}")
+
+    return root, mode
 
 
 @dataclass
@@ -398,6 +455,154 @@ def append_jsonl(path: Path, record: dict[str, Any]) -> None:
         os.fsync(handle.fileno())
 
 
+def _read_jsonl_verified(path: Path, run_id: str) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    with path.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            if line.strip():
+                records.append(json.loads(line))
+
+    if not records:
+        raise RuntimeError("Persisted audit is empty")
+    if records[0].get("event") != "run_started":
+        raise RuntimeError("Persisted audit does not begin with run_started")
+    if records[-1].get("event") not in {"run_completed", "dry_run_complete"}:
+        raise RuntimeError("Persisted audit does not contain a terminal event")
+    if any(record.get("run_id") != run_id for record in records):
+        raise RuntimeError("Persisted audit contains a mismatched run_id")
+
+    return records
+
+
+def _write_json_atomic(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = path.with_name(path.name + ".tmp")
+    with temp_path.open("w", encoding="utf-8") as handle:
+        json.dump(payload, handle, ensure_ascii=False, indent=2, sort_keys=True)
+        handle.write("\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(temp_path, path)
+
+
+def _provider_receipt(
+    records: list[dict[str, Any]],
+    stage: str,
+    provider: str,
+) -> dict[str, Any] | None:
+    matches = [
+        record
+        for record in records
+        if record.get("event") == "provider_result"
+        and record.get("stage") == stage
+        and record.get("provider") == provider
+    ]
+    if not matches:
+        return None
+    if len(matches) != 1:
+        raise RuntimeError(f"Expected one {stage}/{provider} result; found {len(matches)}")
+
+    record = matches[0]
+    return {
+        "status": record.get("status"),
+        "text": record.get("text"),
+        "completion_status": record.get("completion_status"),
+        "completion_reason": record.get("completion_reason"),
+        "response_model": record.get("response_model"),
+        "http_status": record.get("http_status"),
+        "request_id": record.get("request_id"),
+        "latency_ms": record.get("latency_ms"),
+        "usage": record.get("usage"),
+        "provider_metadata": record.get("provider_metadata"),
+    }
+
+
+def _finalize_receipt(
+    audit_path: Path,
+    run_id: str,
+    expected_exact: str | None,
+    evidence_mode: str,
+) -> tuple[dict[str, Any], Path]:
+    records = _read_jsonl_verified(audit_path, run_id)
+    start = records[0]
+    terminal = records[-1]
+
+    initial = {
+        provider: _provider_receipt(records, "initial", provider)
+        for provider in ("openai", "anthropic")
+    }
+    challenge = {
+        provider: _provider_receipt(records, "challenge", provider)
+        for provider in ("openai", "anthropic")
+    }
+    if not any(challenge.values()):
+        challenge = None
+
+    receipt: dict[str, Any] = {
+        "schema": "dacp-run-receipt-0.1",
+        "run_id": run_id,
+        "terminal_state": terminal.get(
+            "terminal_state",
+            "DRY_RUN" if terminal.get("event") == "dry_run_complete" else None,
+        ),
+        "input_sha256": start.get("input_sha256"),
+        "expected_exact": expected_exact,
+        "source": start.get("broker_source"),
+        "experiment": {
+            "openai_model": start.get("openai_model"),
+            "anthropic_model": start.get("anthropic_model"),
+            "openai_max_output_tokens": start.get("openai_max_output_tokens"),
+            "anthropic_max_output_tokens": start.get("anthropic_max_output_tokens"),
+            "sampling_parameters": start.get("sampling_parameters"),
+            "reasoning_semantics": start.get("reasoning_semantics"),
+            "prompt_role": start.get("prompt_role"),
+            "client_response_contract_active": start.get("client_response_contract_active"),
+            "client_response_contract": start.get("client_response_contract"),
+            "peer_challenge_enabled": start.get("peer_challenge_enabled"),
+            "peer_challenge_round_cap": start.get("peer_challenge_round_cap"),
+            "automatic_retries": start.get("automatic_retries"),
+            "timeout_seconds": start.get("timeout_seconds"),
+        },
+        "initial": initial,
+        "challenge": challenge,
+        "verification": terminal.get("verification"),
+        "audit": {
+            "filename": audit_path.name,
+            "sha256": sha256_file(audit_path),
+            "record_count": len(records),
+            "readback_status": "VERIFIED_LOCAL_FILESYSTEM",
+        },
+        "storage": {
+            "mode": evidence_mode,
+            "remote_readback_status": "PENDING_EXTERNAL_VERIFICATION",
+        },
+        "receipt_readback_status": "PENDING",
+    }
+
+    receipt_path = audit_path.with_name(f"{run_id}.receipt.json")
+
+    _write_json_atomic(receipt_path, receipt)
+    first_readback = json.loads(receipt_path.read_text(encoding="utf-8"))
+    if first_readback != receipt:
+        raise RuntimeError("Receipt first readback did not match persisted content")
+
+    receipt["receipt_readback_status"] = "VERIFIED_LOCAL_FILESYSTEM"
+    _write_json_atomic(receipt_path, receipt)
+    final_readback = json.loads(receipt_path.read_text(encoding="utf-8"))
+    if final_readback != receipt:
+        raise RuntimeError("Receipt final readback did not match persisted content")
+
+    return final_readback, receipt_path
+
+
+def _print_receipt(receipt: dict[str, Any], receipt_path: Path) -> None:
+    print("=== DACP_RECEIPT_BEGIN ===")
+    print(json.dumps(receipt, indent=2, sort_keys=True))
+    print("=== DACP_RECEIPT_END ===")
+    print(f"RECEIPT_FILE={receipt_path}")
+    print(f"REMOTE_READBACK_REQUIRED={receipt_path.name}")
+
+
 def _log_provider_results(path: Path, run_id: str, results: list[ProviderResult], stage: str) -> None:
     for result in results:
         append_jsonl(
@@ -470,8 +675,10 @@ def run(args: argparse.Namespace) -> int:
         raise SystemExit("Anthropic max output tokens must be >= 1")
 
     prompt = args.prompt if args.prompt is not None else Path(args.prompt_file).read_text(encoding="utf-8")
+    evidence_root, evidence_mode = _resolve_evidence_root(args)
+    source_identity = _broker_source_identity()
     run_id = f"dacp-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}"
-    audit_path = Path(args.log_dir) / f"{run_id}.jsonl"
+    audit_path = evidence_root / f"{run_id}.jsonl"
 
     start_record = {
         "event": "run_started",
@@ -479,6 +686,8 @@ def run(args: argparse.Namespace) -> int:
         "timestamp": utc_now(),
         "input_sha256": sha256_text(prompt),
         "input_chars": len(prompt),
+        "broker_source": source_identity,
+        "evidence_storage_mode": evidence_mode,
         "openai_model": args.openai_model,
         "anthropic_model": args.anthropic_model,
         "openai_max_output_tokens": openai_limit,
@@ -517,7 +726,13 @@ def run(args: argparse.Namespace) -> int:
 
     if args.dry_run:
         append_jsonl(audit_path, {"event": "dry_run_complete", "run_id": run_id, "timestamp": utc_now()})
-        print(json.dumps({"run_id": run_id, "status": "DRY_RUN", "audit": str(audit_path)}, indent=2))
+        receipt, receipt_path = _finalize_receipt(
+            audit_path,
+            run_id,
+            args.expect_exact,
+            evidence_mode,
+        )
+        _print_receipt(receipt, receipt_path)
         return 0
 
     initial_results = _dispatch_initial(prompt, args)
@@ -582,16 +797,13 @@ def run(args: argparse.Namespace) -> int:
     }
     append_jsonl(audit_path, terminal_record)
 
-    summary = {
-        "run_id": run_id,
-        "terminal_state": terminal_state,
-        "input_sha256": start_record["input_sha256"],
-        "providers": {result.provider: result.status for result in final_results},
-        "verification": verification,
-        "peer_challenge_attempted": challenge_attempted,
-        "audit": str(audit_path),
-    }
-    print(json.dumps(summary, indent=2, sort_keys=True))
+    receipt, receipt_path = _finalize_receipt(
+        audit_path,
+        run_id,
+        args.expect_exact,
+        evidence_mode,
+    )
+    _print_receipt(receipt, receipt_path)
     return 0 if terminal_state in {"VERIFIED_MATCH", "SUPPORTED_AGREEMENT"} else 2
 
 
@@ -621,7 +833,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Anthropic-native max_tokens ceiling; not comparable token-for-token with OpenAI",
     )
     parser.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT_SECONDS)
-    parser.add_argument("--log-dir", default="runs")
+    parser.add_argument(
+        "--log-dir",
+        default=None,
+        help=(
+            "Explicit evidence-directory override. By default the broker requires "
+            "DACP_SHARED_EVIDENCE_ROOT so normal runs land on the shared private evidence surface."
+        ),
+    )
     parser.add_argument("--dry-run", action="store_true", help="Write audit preconditions without making API calls")
     return parser
 

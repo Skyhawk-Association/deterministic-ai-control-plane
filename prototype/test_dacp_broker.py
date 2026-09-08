@@ -328,5 +328,56 @@ class BrokerTests(unittest.TestCase):
             self.assertFalse(events[-1]["verification"]["challenge_attempted"])
 
 
+    def test_parser_defaults_to_shared_evidence_root(self):
+        args = dacp_broker.build_parser().parse_args(["--prompt", "x"])
+        self.assertIsNone(args.log_dir)
+
+    def test_missing_shared_root_stops_before_run_when_no_explicit_log_dir(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            args = self.args(tmp, log_dir=None, dry_run=True)
+            with patch.dict(
+                os.environ,
+                {dacp_broker.SHARED_EVIDENCE_ENV: ""},
+                clear=False,
+            ):
+                with self.assertRaisesRegex(SystemExit, "DACP_SHARED_EVIDENCE_ROOT"):
+                    dacp_broker.run(args)
+
+    def test_shared_root_writes_and_readbacks_compact_receipt(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            shared = Path(tmp) / "shared"
+            args = self.args(tmp, log_dir=None, dry_run=True)
+            with patch.dict(
+                os.environ,
+                {dacp_broker.SHARED_EVIDENCE_ENV: str(shared)},
+                clear=False,
+            ):
+                self.assertEqual(dacp_broker.run(args), 0)
+
+            audits = list(shared.glob("*.jsonl"))
+            receipts = list(shared.glob("*.receipt.json"))
+            self.assertEqual(len(audits), 1)
+            self.assertEqual(len(receipts), 1)
+
+            receipt = json.loads(receipts[0].read_text(encoding="utf-8"))
+            self.assertEqual(receipt["storage"]["mode"], "SHARED_SYNC_ROOT")
+            self.assertEqual(
+                receipt["storage"]["remote_readback_status"],
+                "PENDING_EXTERNAL_VERIFICATION",
+            )
+            self.assertEqual(
+                receipt["audit"]["readback_status"],
+                "VERIFIED_LOCAL_FILESYSTEM",
+            )
+            self.assertEqual(
+                receipt["receipt_readback_status"],
+                "VERIFIED_LOCAL_FILESYSTEM",
+            )
+            self.assertEqual(
+                receipt["audit"]["sha256"],
+                dacp_broker.sha256_file(audits[0]),
+            )
+
+
 if __name__ == "__main__":
     unittest.main()
