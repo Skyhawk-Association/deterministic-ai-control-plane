@@ -32,4 +32,4 @@ No software license is granted merely by public visibility. Licensing is intenti
 
 ## Implementation boundary
 
-This repository currently governs specifications, field use, evidence, and project operating rules. It does **not** by itself authorize construction of the DACP web application.
+This repository does not authorize application construction merely by existing. Application implementation is separately gated by an explicit Gene decision exposed through `CURRENT.md`. The currently active implementation authorization and executor allocation are identified there and in the corresponding authoritative decision file.

@@ -18,7 +18,7 @@
 5. `authoritative/DACP_Interim_Decision_Authority_0.2.md`
 6. `authoritative/DACP_Operational_Use_and_Correction_Authority_0.1.md`
 7. `authoritative/DACP_Endpoint_Stack_0.2.md`
-8. `authoritative/DACP_Application_Implementation_Authorization_0.1.md` when application implementation or executor/reviewer role allocation is germane.
+8. `authoritative/DACP_Application_Implementation_Authorization_0.2.md` when application implementation or executor/reviewer role allocation is germane.
 9. `authoritative/DACP_Governance_Supersession_Notice_0.3.md` when smoke-test/supersession history matters.
 
 ## Operational state
@@ -29,7 +29,7 @@ Current review-ready heuristic patch: `authoritative/DACP_Heuristics_Specificati
 
 ## Application implementation status
 
-Application implementation has been explicitly re-authorized by Gene through `authoritative/DACP_Application_Implementation_Authorization_0.1.md`, effective once that decision is merged to canonical `main` and independently read back. Under that decision, Claude is the primary implementation executor and ChatGPT is the independent reviewer / control-plane verifier. Gene retains genuinely human material decisions under the governing authority.
+Application implementation is explicitly authorized through `authoritative/DACP_Application_Implementation_Authorization_0.2.md`, effective once that decision is merged to canonical `main` and independently read back. Under that decision, ChatGPT is the primary DACP application implementation executor. Claude is removed from the critical implementation path and may be used only as an optional independent model when useful. Gene retains genuinely human material decisions under the governing authority.
 
 ## Universal operating instruction
 

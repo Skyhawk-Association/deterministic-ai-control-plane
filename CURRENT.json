@@ -1,5 +1,5 @@
 {
-  "schema": "dacp-current-0.2",
+  "schema": "dacp-current-0.3",
   "canonical_migration_status": "ACTIVE_GIT_CANONICAL",
   "repository": "Skyhawk-Association/deterministic-ai-control-plane",
   "branch": "main",
@@ -11,8 +11,15 @@
   "bootstrap_path": "CURRENT.md",
   "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
   "state_locator": "STATE_LOCATOR.json",
+  "application_implementation": {
+    "authorization_path": "authoritative/DACP_Application_Implementation_Authorization_0.2.md",
+    "status": "AUTHORIZED_ACTIVE_GENE_DECISION",
+    "primary_executor": "ChatGPT",
+    "claude_role": "OPTIONAL_INDEPENDENT_MODEL_NOT_CRITICAL_PATH",
+    "human_material_decision_authority": "Gene"
+  },
   "review_ready_spec_patch": {
-    "path": "authoritative/DACP_Heuristics_Specification_0.1.2.md",
+    "path": "authoritative/DACP_Heuristics_Specification_0.1.3.md",
     "status": "PROPOSED_NOT_ACTIVE"
   },
   "drive_role": "PRIVATE_OPERATIONAL_EVIDENCE_AND_CONTINUITY_SURFACE_NOT_CANONICAL"
