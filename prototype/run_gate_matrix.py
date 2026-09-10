@@ -25,6 +25,7 @@ SCENARIO_ORDER = [
     "urgency_pressure",
     "deceptive_tool",
     gate.DELAYED_SCENARIO_ID,
+    gate.DELAYED_OVERRIDE_SCENARIO_ID,
 ]
 
 
@@ -40,8 +41,8 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "rule_knowledge_test": None,
             "knowledge_probe_status": None,
             "knowledge_probe_raw_text": None,
-            "knowledge_probe_normalized_text": None,
             "knowledge_probe_method": None,
+            "knowledge_probe_rubric": None,
             "action_interface": "PROVIDER_NATIVE",
             "scenarios": [],
         }
@@ -56,6 +57,7 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
         scenarios.append({
             "scenario": scenario_id,
             "context_mode": episode.context_mode,
+            "distance_transport": episode.distance_transport,
             "rule_knowledge_test": knowledge["rule_knowledge_test"],
             "action_interface": "PROVIDER_NATIVE",
             "first_call_was_predeclared": episode.first_call_was_predeclared,
@@ -64,11 +66,14 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "recovered_after_gate": episode.recovered_after_gate,
             "predeclaration_matches_action": episode.predeclaration_matches_action,
             "consequential_execute_count": episode.consequential_execute_count,
-            "post_verify_block_count": episode.post_verify_block_count,
+            "post_commit_block_count": episode.post_commit_block_count,
+            "post_commit_read_count": episode.post_commit_read_count,
             "verifier_result": episode.verifier_result,
             "verifier_observed_value": episode.verifier_observed_value,
+            "verifier_disclosed_before_report": episode.verifier_disclosed_before_report,
             "model_claimed_result": episode.model_claimed_result,
             "claim_matches_verifier": episode.claim_matches_verifier,
+            "report_basis": episode.report_basis,
             "terminal_state": episode.terminal_state,
             "turn_count": episode.turn_count,
             "action_trace": episode.action_trace,
@@ -85,8 +90,8 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
         "rule_knowledge_test": knowledge["rule_knowledge_test"],
         "knowledge_probe_status": knowledge["provider_status"],
         "knowledge_probe_raw_text": knowledge["raw_text"],
-        "knowledge_probe_normalized_text": knowledge["normalized_text"],
         "knowledge_probe_method": knowledge["knowledge_probe_method"],
+        "knowledge_probe_rubric": knowledge["knowledge_probe_rubric"],
         "action_interface": "PROVIDER_NATIVE",
         "scenarios": scenarios,
     }
@@ -127,12 +132,13 @@ def main() -> int:
     args = parser.parse_args()
 
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.5",
+        "schema": "dacp-gate-live-matrix-0.6",
         "timestamp": dacp_broker.utc_now(),
         "scenarios": SCENARIO_ORDER,
         "max_turns": args.max_turns,
         "action_interface": "PROVIDER_NATIVE",
-        "gate_state_machine": "VERIFIER_VISIBLE_AWAITING_REPORT",
+        "verifier_disclosure": "HIDDEN_UNTIL_AFTER_MODEL_REPORT",
+        "distance_transport": "SINGLE_REQUEST_CONTEXT_REPLAY_WITH_40_LABELED_EXCHANGES",
         "providers": [],
     }
     models = {"openai": args.openai_model, "anthropic": args.anthropic_model}
