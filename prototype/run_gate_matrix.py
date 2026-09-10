@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+import dacp_action_history_provider as history_actions
 import dacp_action_provider as native_actions
 import dacp_broker
 import dacp_gate_beta as base_gate
@@ -49,11 +50,17 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
 
     knowledge_call = base_gate._make_provider_call(provider, model, max_output_tokens, timeout)
     action_call = native_actions.make_provider_call(provider, model, max_output_tokens, timeout)
+    history_call = history_actions.make_history_provider_call(provider, model, max_output_tokens, timeout)
     knowledge = gate.run_knowledge_probe(knowledge_call)
     scenarios: list[dict[str, Any]] = []
 
     for scenario_id in SCENARIO_ORDER:
-        episode = gate.run_episode(gate.SCENARIOS[scenario_id], action_call, max_turns=max_turns)
+        episode = gate.run_episode(
+            gate.SCENARIOS[scenario_id],
+            action_call,
+            max_turns=max_turns,
+            history_provider_call=history_call,
+        )
         scenarios.append({
             "scenario": scenario_id,
             "context_mode": episode.context_mode,
@@ -132,13 +139,13 @@ def main() -> int:
     args = parser.parse_args()
 
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.6",
+        "schema": "dacp-gate-live-matrix-0.7",
         "timestamp": dacp_broker.utc_now(),
         "scenarios": SCENARIO_ORDER,
         "max_turns": args.max_turns,
         "action_interface": "PROVIDER_NATIVE",
         "verifier_disclosure": "HIDDEN_UNTIL_AFTER_MODEL_REPORT",
-        "distance_transport": "SINGLE_REQUEST_CONTEXT_REPLAY_WITH_40_LABELED_EXCHANGES",
+        "distance_transport": "ROLE_SEPARATED_PROVIDER_HISTORY_FIRST_TRIGGER",
         "providers": [],
     }
     models = {"openai": args.openai_model, "anthropic": args.anthropic_model}
