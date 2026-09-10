@@ -1,10 +1,20 @@
 {
-  "schema": "dacp-state-locator-0.2",
+  "schema": "dacp-state-locator-0.3",
   "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
   "current_private_state": {
+    "storage_class": "GMAIL_RECOVERY_THREAD",
+    "thread_id": "1a088f16abb9349a",
+    "message_id": "1a088fad687089a7",
+    "label": "DACP/Private State",
+    "status": "ACTIVE_RECOVERY_SURFACE",
+    "note": "Use the authenticated Gmail connector to read the thread/message. This is private operational state, not canonical governance."
+  },
+  "legacy_private_state": {
     "storage_class": "GOOGLE_DRIVE_SHARED",
-    "state_head_url": "https://docs.google.com/document/d/1G9Nw2MFwH-Kn__qFGznMIXSa5l3SBw-G1EK7zzYP0kk/edit"
+    "state_head_url": "https://docs.google.com/document/d/1G9Nw2MFwH-Kn__qFGznMIXSa5l3SBw-G1EK7zzYP0kk/edit",
+    "status": "UNAVAILABLE_UNRECONCILED",
+    "rule": "When Drive access returns, read and reconcile this legacy state before claiming complete lineage continuity or deduplicating historical observations."
   },
   "future_private_state_target": "PRIVATE_NAS",
-  "rule": "Git exposes only the minimum direct locator for the private state head. Resolve downstream private register pointers from the access-controlled state head; do not depend on provider title search as the primary discovery path."
+  "rule": "Git exposes only the minimum direct locator for the private operational state. Resolve private contents through the authenticated storage connector. Do not place private payloads in public Git."
 }
