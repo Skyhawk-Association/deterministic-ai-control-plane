@@ -6,7 +6,8 @@ This driver deliberately keeps the experiment small:
 - three fixed scenarios per provider;
 - no automatic provider retries;
 - no real external state changes;
-- one aggregate JSON result plus a persisted JSON artifact.
+- one aggregate JSON result plus a persisted JSON artifact;
+- verified copy to DACP_SHARED_EVIDENCE_ROOT when configured.
 
 It never reads or prints API key values. Provider credentials are consumed only by
 existing dacp_broker provider adapters through environment variables.
@@ -17,6 +18,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import shutil
 from pathlib import Path
 from typing import Any
 
@@ -104,10 +106,48 @@ def _provider_record(
     }
 
 
+def _write_verified_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    readback = json.loads(path.read_text(encoding="utf-8"))
+    if readback != payload:
+        raise RuntimeError(f"JSON readback mismatch: {path}")
+
+
+def _publish_shared(local_path: Path, payload: dict[str, Any]) -> dict[str, Any]:
+    shared_root_raw = os.environ.get(dacp_broker.SHARED_EVIDENCE_ENV)
+    if not shared_root_raw:
+        return {
+            "status": "LOCAL_ONLY",
+            "shared_evidence_env": dacp_broker.SHARED_EVIDENCE_ENV,
+            "shared_path": None,
+        }
+
+    shared_root = Path(shared_root_raw)
+    shared_root.mkdir(parents=True, exist_ok=True)
+    shared_path = shared_root / "gate-matrix-results" / local_path.name
+    _write_verified_json(shared_path, payload)
+
+    return {
+        "status": "SHARED_EVIDENCE_VERIFIED",
+        "shared_evidence_env": dacp_broker.SHARED_EVIDENCE_ENV,
+        "shared_path": str(shared_path.resolve()),
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run DACP gate beta live matrix")
-    parser.add_argument("--openai-model", default=os.environ.get("DACP_OPENAI_MODEL", DEFAULT_MODELS["openai"]))
-    parser.add_argument("--anthropic-model", default=os.environ.get("DACP_ANTHROPIC_MODEL", DEFAULT_MODELS["anthropic"]))
+    parser.add_argument(
+        "--openai-model",
+        default=os.environ.get("DACP_OPENAI_MODEL", DEFAULT_MODELS["openai"]),
+    )
+    parser.add_argument(
+        "--anthropic-model",
+        default=os.environ.get("DACP_ANTHROPIC_MODEL", DEFAULT_MODELS["anthropic"]),
+    )
     parser.add_argument("--max-output-tokens", type=int, default=256)
     parser.add_argument("--timeout", type=int, default=60)
     parser.add_argument("--max-turns", type=int, default=gate.MAX_TURNS_DEFAULT)
@@ -115,7 +155,7 @@ def main() -> int:
     args = parser.parse_args()
 
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.1",
+        "schema": "dacp-gate-live-matrix-0.2",
         "timestamp": dacp_broker.utc_now(),
         "scenarios": SCENARIO_ORDER,
         "providers": [],
@@ -138,22 +178,18 @@ def main() -> int:
         )
 
     log_dir = Path(args.log_dir)
-    log_dir.mkdir(parents=True, exist_ok=True)
     stamp = output["timestamp"].replace(":", "").replace("-", "")
     output_path = log_dir / f"gate-live-matrix-{stamp}.json"
-    output_path.write_text(
-        json.dumps(output, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+    _write_verified_json(output_path, output)
 
-    readback = json.loads(output_path.read_text(encoding="utf-8"))
-    if readback != output:
-        raise RuntimeError("matrix result readback did not match persisted content")
+    evidence = _publish_shared(output_path, output)
 
     print("=== DACP_GATE_LIVE_MATRIX_BEGIN ===")
     print(json.dumps(output, indent=2, sort_keys=True))
     print("=== DACP_GATE_LIVE_MATRIX_END ===")
     print(f"RESULT_FILE={output_path.resolve()}")
+    print(f"EVIDENCE_STATUS={evidence['status']}")
+    print(f"SHARED_EVIDENCE_PATH={evidence['shared_path']}")
 
     missing = [
         record["provider"]
