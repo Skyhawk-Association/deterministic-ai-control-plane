@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""Run the DACP task-time gate live matrix across configured providers.
+
+This driver deliberately keeps the experiment small:
+- one knowledge probe per provider;
+- three fixed scenarios per provider;
+- no automatic provider retries;
+- no real external state changes;
+- one aggregate JSON result plus a persisted JSON artifact.
+
+It never reads or prints API key values. Provider credentials are consumed only by
+existing dacp_broker provider adapters through environment variables.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+from pathlib import Path
+from typing import Any
+
+import dacp_broker
+import dacp_gate_beta as gate
+
+
+DEFAULT_MODELS = {
+    "openai": dacp_broker.DEFAULT_OPENAI_MODEL,
+    "anthropic": dacp_broker.DEFAULT_ANTHROPIC_MODEL,
+}
+
+REQUIRED_ENV = {
+    "openai": "OPENAI_API_KEY",
+    "anthropic": "ANTHROPIC_API_KEY",
+}
+
+SCENARIO_ORDER = [
+    "buried_request",
+    "urgency_pressure",
+    "deceptive_tool",
+]
+
+
+def _provider_record(
+    provider: str,
+    model: str,
+    max_output_tokens: int,
+    timeout: int,
+    max_turns: int,
+) -> dict[str, Any]:
+    env_name = REQUIRED_ENV[provider]
+    if not os.environ.get(env_name):
+        return {
+            "provider": provider,
+            "model": model,
+            "credential_env": env_name,
+            "credential_present": False,
+            "status": "NOT_RUN_MISSING_CREDENTIAL",
+            "rule_knowledge_test": None,
+            "knowledge_probe_status": None,
+            "scenarios": [],
+        }
+
+    provider_call = gate._make_provider_call(
+        provider,
+        model,
+        max_output_tokens,
+        timeout,
+    )
+    knowledge = gate.run_knowledge_probe(provider_call)
+
+    scenarios: list[dict[str, Any]] = []
+    for scenario_id in SCENARIO_ORDER:
+        episode = gate.run_episode(
+            gate.SCENARIOS[scenario_id],
+            provider_call,
+            max_turns=max_turns,
+        )
+        scenarios.append(
+            {
+                "scenario": scenario_id,
+                "rule_knowledge_test": knowledge["rule_knowledge_test"],
+                "first_call_was_predeclared": episode.first_call_was_predeclared,
+                "gate_blocked_first_attempt": episode.gate_blocked_first_attempt,
+                "gate_block_count": episode.gate_block_count,
+                "recovered_after_gate": episode.recovered_after_gate,
+                "predeclaration_matches_action": episode.predeclaration_matches_action,
+                "verifier_result": episode.verifier_result,
+                "model_claimed_result": episode.model_claimed_result,
+                "claim_matches_verifier": episode.claim_matches_verifier,
+                "terminal_state": episode.terminal_state,
+            }
+        )
+
+    return {
+        "provider": provider,
+        "model": model,
+        "credential_env": env_name,
+        "credential_present": True,
+        "status": "RUN_COMPLETE",
+        "rule_knowledge_test": knowledge["rule_knowledge_test"],
+        "knowledge_probe_status": knowledge["provider_status"],
+        "scenarios": scenarios,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Run DACP gate beta live matrix")
+    parser.add_argument("--openai-model", default=os.environ.get("DACP_OPENAI_MODEL", DEFAULT_MODELS["openai"]))
+    parser.add_argument("--anthropic-model", default=os.environ.get("DACP_ANTHROPIC_MODEL", DEFAULT_MODELS["anthropic"]))
+    parser.add_argument("--max-output-tokens", type=int, default=256)
+    parser.add_argument("--timeout", type=int, default=60)
+    parser.add_argument("--max-turns", type=int, default=gate.MAX_TURNS_DEFAULT)
+    parser.add_argument("--log-dir", default="gate-matrix-results")
+    args = parser.parse_args()
+
+    output: dict[str, Any] = {
+        "schema": "dacp-gate-live-matrix-0.1",
+        "timestamp": dacp_broker.utc_now(),
+        "scenarios": SCENARIO_ORDER,
+        "providers": [],
+    }
+
+    model_by_provider = {
+        "openai": args.openai_model,
+        "anthropic": args.anthropic_model,
+    }
+
+    for provider in ("openai", "anthropic"):
+        output["providers"].append(
+            _provider_record(
+                provider,
+                model_by_provider[provider],
+                args.max_output_tokens,
+                args.timeout,
+                args.max_turns,
+            )
+        )
+
+    log_dir = Path(args.log_dir)
+    log_dir.mkdir(parents=True, exist_ok=True)
+    stamp = output["timestamp"].replace(":", "").replace("-", "")
+    output_path = log_dir / f"gate-live-matrix-{stamp}.json"
+    output_path.write_text(
+        json.dumps(output, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    readback = json.loads(output_path.read_text(encoding="utf-8"))
+    if readback != output:
+        raise RuntimeError("matrix result readback did not match persisted content")
+
+    print("=== DACP_GATE_LIVE_MATRIX_BEGIN ===")
+    print(json.dumps(output, indent=2, sort_keys=True))
+    print("=== DACP_GATE_LIVE_MATRIX_END ===")
+    print(f"RESULT_FILE={output_path.resolve()}")
+
+    missing = [
+        record["provider"]
+        for record in output["providers"]
+        if not record["credential_present"]
+    ]
+    return 2 if missing else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
