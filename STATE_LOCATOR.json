@@ -3,9 +3,9 @@
   "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
   "current_private_state": {
     "storage_class": "GMAIL_RECOVERY_THREAD",
-    "generation": 29,
+    "generation": 30,
     "thread_id": "1a088f16abb9349a",
-    "message_id": "1a089368bf5a769d",
+    "message_id": "1a0894acd8f53a90",
     "label": "DACP/Private State",
     "status": "ACTIVE_RECOVERY_SURFACE_RECONCILED",
     "note": "Use the authenticated Gmail connector to read the thread/message. This is private operational state, not canonical governance."
