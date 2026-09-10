@@ -9,7 +9,8 @@ from typing import Any
 
 import dacp_action_provider as native_actions
 import dacp_broker
-import dacp_gate_beta as gate
+import dacp_gate_beta as base_gate
+import dacp_gate_beta_v2 as gate
 
 DEFAULT_MODELS = {
     "openai": dacp_broker.DEFAULT_OPENAI_MODEL,
@@ -23,7 +24,7 @@ SCENARIO_ORDER = [
     "buried_request",
     "urgency_pressure",
     "deceptive_tool",
-    "long_context_buried_request",
+    gate.DELAYED_SCENARIO_ID,
 ]
 
 
@@ -38,14 +39,14 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "status": "NOT_RUN_MISSING_CREDENTIAL",
             "rule_knowledge_test": None,
             "knowledge_probe_status": None,
+            "knowledge_probe_raw_text": None,
+            "knowledge_probe_normalized_text": None,
+            "knowledge_probe_method": None,
             "action_interface": "PROVIDER_NATIVE",
             "scenarios": [],
         }
 
-    # Knowledge remains a separate text-output probe. Action episodes use
-    # provider-native function/tool calling so syntax does not contaminate the
-    # task-time control measurement.
-    knowledge_call = gate._make_provider_call(provider, model, max_output_tokens, timeout)
+    knowledge_call = base_gate._make_provider_call(provider, model, max_output_tokens, timeout)
     action_call = native_actions.make_provider_call(provider, model, max_output_tokens, timeout)
     knowledge = gate.run_knowledge_probe(knowledge_call)
     scenarios: list[dict[str, Any]] = []
@@ -54,6 +55,7 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
         episode = gate.run_episode(gate.SCENARIOS[scenario_id], action_call, max_turns=max_turns)
         scenarios.append({
             "scenario": scenario_id,
+            "context_mode": episode.context_mode,
             "rule_knowledge_test": knowledge["rule_knowledge_test"],
             "action_interface": "PROVIDER_NATIVE",
             "first_call_was_predeclared": episode.first_call_was_predeclared,
@@ -61,7 +63,10 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "gate_block_count": episode.gate_block_count,
             "recovered_after_gate": episode.recovered_after_gate,
             "predeclaration_matches_action": episode.predeclaration_matches_action,
+            "consequential_execute_count": episode.consequential_execute_count,
+            "post_verify_block_count": episode.post_verify_block_count,
             "verifier_result": episode.verifier_result,
+            "verifier_observed_value": episode.verifier_observed_value,
             "model_claimed_result": episode.model_claimed_result,
             "claim_matches_verifier": episode.claim_matches_verifier,
             "terminal_state": episode.terminal_state,
@@ -79,6 +84,9 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
         "status": "RUN_COMPLETE",
         "rule_knowledge_test": knowledge["rule_knowledge_test"],
         "knowledge_probe_status": knowledge["provider_status"],
+        "knowledge_probe_raw_text": knowledge["raw_text"],
+        "knowledge_probe_normalized_text": knowledge["normalized_text"],
+        "knowledge_probe_method": knowledge["knowledge_probe_method"],
         "action_interface": "PROVIDER_NATIVE",
         "scenarios": scenarios,
     }
@@ -119,11 +127,12 @@ def main() -> int:
     args = parser.parse_args()
 
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.4",
+        "schema": "dacp-gate-live-matrix-0.5",
         "timestamp": dacp_broker.utc_now(),
         "scenarios": SCENARIO_ORDER,
         "max_turns": args.max_turns,
         "action_interface": "PROVIDER_NATIVE",
+        "gate_state_machine": "VERIFIER_VISIBLE_AWAITING_REPORT",
         "providers": [],
     }
     models = {"openai": args.openai_model, "anthropic": args.anthropic_model}
