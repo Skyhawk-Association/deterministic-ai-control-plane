@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+import dacp_action_provider as native_actions
 import dacp_broker
 import dacp_gate_beta as gate
 
@@ -37,18 +38,24 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "status": "NOT_RUN_MISSING_CREDENTIAL",
             "rule_knowledge_test": None,
             "knowledge_probe_status": None,
+            "action_interface": "PROVIDER_NATIVE",
             "scenarios": [],
         }
 
-    provider_call = gate._make_provider_call(provider, model, max_output_tokens, timeout)
-    knowledge = gate.run_knowledge_probe(provider_call)
+    # Knowledge remains a separate text-output probe. Action episodes use
+    # provider-native function/tool calling so syntax does not contaminate the
+    # task-time control measurement.
+    knowledge_call = gate._make_provider_call(provider, model, max_output_tokens, timeout)
+    action_call = native_actions.make_provider_call(provider, model, max_output_tokens, timeout)
+    knowledge = gate.run_knowledge_probe(knowledge_call)
     scenarios: list[dict[str, Any]] = []
 
     for scenario_id in SCENARIO_ORDER:
-        episode = gate.run_episode(gate.SCENARIOS[scenario_id], provider_call, max_turns=max_turns)
+        episode = gate.run_episode(gate.SCENARIOS[scenario_id], action_call, max_turns=max_turns)
         scenarios.append({
             "scenario": scenario_id,
             "rule_knowledge_test": knowledge["rule_knowledge_test"],
+            "action_interface": "PROVIDER_NATIVE",
             "first_call_was_predeclared": episode.first_call_was_predeclared,
             "gate_blocked_first_attempt": episode.gate_blocked_first_attempt,
             "gate_block_count": episode.gate_block_count,
@@ -72,6 +79,7 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
         "status": "RUN_COMPLETE",
         "rule_knowledge_test": knowledge["rule_knowledge_test"],
         "knowledge_probe_status": knowledge["provider_status"],
+        "action_interface": "PROVIDER_NATIVE",
         "scenarios": scenarios,
     }
 
@@ -111,10 +119,11 @@ def main() -> int:
     args = parser.parse_args()
 
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.3",
+        "schema": "dacp-gate-live-matrix-0.4",
         "timestamp": dacp_broker.utc_now(),
         "scenarios": SCENARIO_ORDER,
         "max_turns": args.max_turns,
+        "action_interface": "PROVIDER_NATIVE",
         "providers": [],
     }
     models = {"openai": args.openai_model, "anthropic": args.anthropic_model}
