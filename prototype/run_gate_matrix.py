@@ -1,55 +1,32 @@
 #!/usr/bin/env python3
-"""Run the DACP task-time gate live matrix across configured providers.
-
-This driver deliberately keeps the experiment small:
-- one knowledge probe per provider;
-- three fixed scenarios per provider;
-- no automatic provider retries;
-- no real external state changes;
-- one aggregate JSON result plus a persisted JSON artifact;
-- verified copy to DACP_SHARED_EVIDENCE_ROOT when configured.
-
-It never reads or prints API key values. Provider credentials are consumed only by
-existing dacp_broker provider adapters through environment variables.
-"""
-
 from __future__ import annotations
 
 import argparse
 import json
 import os
-import shutil
 from pathlib import Path
 from typing import Any
 
 import dacp_broker
 import dacp_gate_beta as gate
 
-
 DEFAULT_MODELS = {
     "openai": dacp_broker.DEFAULT_OPENAI_MODEL,
     "anthropic": dacp_broker.DEFAULT_ANTHROPIC_MODEL,
 }
-
 REQUIRED_ENV = {
     "openai": "OPENAI_API_KEY",
     "anthropic": "ANTHROPIC_API_KEY",
 }
-
 SCENARIO_ORDER = [
     "buried_request",
     "urgency_pressure",
     "deceptive_tool",
+    "long_context_buried_request",
 ]
 
 
-def _provider_record(
-    provider: str,
-    model: str,
-    max_output_tokens: int,
-    timeout: int,
-    max_turns: int,
-) -> dict[str, Any]:
+def _provider_record(provider: str, model: str, max_output_tokens: int, timeout: int, max_turns: int) -> dict[str, Any]:
     env_name = REQUIRED_ENV[provider]
     if not os.environ.get(env_name):
         return {
@@ -63,36 +40,29 @@ def _provider_record(
             "scenarios": [],
         }
 
-    provider_call = gate._make_provider_call(
-        provider,
-        model,
-        max_output_tokens,
-        timeout,
-    )
+    provider_call = gate._make_provider_call(provider, model, max_output_tokens, timeout)
     knowledge = gate.run_knowledge_probe(provider_call)
-
     scenarios: list[dict[str, Any]] = []
+
     for scenario_id in SCENARIO_ORDER:
-        episode = gate.run_episode(
-            gate.SCENARIOS[scenario_id],
-            provider_call,
-            max_turns=max_turns,
-        )
-        scenarios.append(
-            {
-                "scenario": scenario_id,
-                "rule_knowledge_test": knowledge["rule_knowledge_test"],
-                "first_call_was_predeclared": episode.first_call_was_predeclared,
-                "gate_blocked_first_attempt": episode.gate_blocked_first_attempt,
-                "gate_block_count": episode.gate_block_count,
-                "recovered_after_gate": episode.recovered_after_gate,
-                "predeclaration_matches_action": episode.predeclaration_matches_action,
-                "verifier_result": episode.verifier_result,
-                "model_claimed_result": episode.model_claimed_result,
-                "claim_matches_verifier": episode.claim_matches_verifier,
-                "terminal_state": episode.terminal_state,
-            }
-        )
+        episode = gate.run_episode(gate.SCENARIOS[scenario_id], provider_call, max_turns=max_turns)
+        scenarios.append({
+            "scenario": scenario_id,
+            "rule_knowledge_test": knowledge["rule_knowledge_test"],
+            "first_call_was_predeclared": episode.first_call_was_predeclared,
+            "gate_blocked_first_attempt": episode.gate_blocked_first_attempt,
+            "gate_block_count": episode.gate_block_count,
+            "recovered_after_gate": episode.recovered_after_gate,
+            "predeclaration_matches_action": episode.predeclaration_matches_action,
+            "verifier_result": episode.verifier_result,
+            "model_claimed_result": episode.model_claimed_result,
+            "claim_matches_verifier": episode.claim_matches_verifier,
+            "terminal_state": episode.terminal_state,
+            "turn_count": episode.turn_count,
+            "action_trace": episode.action_trace,
+            "unparseable_turn_count": episode.unparseable_turn_count,
+            "turns": episode.turns,
+        })
 
     return {
         "provider": provider,
@@ -108,12 +78,8 @@ def _provider_record(
 
 def _write_verified_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(payload, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
-    readback = json.loads(path.read_text(encoding="utf-8"))
-    if readback != payload:
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if json.loads(path.read_text(encoding="utf-8")) != payload:
         raise RuntimeError(f"JSON readback mismatch: {path}")
 
 
@@ -125,12 +91,8 @@ def _publish_shared(local_path: Path, payload: dict[str, Any]) -> dict[str, Any]
             "shared_evidence_env": dacp_broker.SHARED_EVIDENCE_ENV,
             "shared_path": None,
         }
-
-    shared_root = Path(shared_root_raw)
-    shared_root.mkdir(parents=True, exist_ok=True)
-    shared_path = shared_root / "gate-matrix-results" / local_path.name
+    shared_path = Path(shared_root_raw) / "gate-matrix-results" / local_path.name
     _write_verified_json(shared_path, payload)
-
     return {
         "status": "SHARED_EVIDENCE_VERIFIED",
         "shared_evidence_env": dacp_broker.SHARED_EVIDENCE_ENV,
@@ -140,14 +102,8 @@ def _publish_shared(local_path: Path, payload: dict[str, Any]) -> dict[str, Any]
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run DACP gate beta live matrix")
-    parser.add_argument(
-        "--openai-model",
-        default=os.environ.get("DACP_OPENAI_MODEL", DEFAULT_MODELS["openai"]),
-    )
-    parser.add_argument(
-        "--anthropic-model",
-        default=os.environ.get("DACP_ANTHROPIC_MODEL", DEFAULT_MODELS["anthropic"]),
-    )
+    parser.add_argument("--openai-model", default=os.environ.get("DACP_OPENAI_MODEL", DEFAULT_MODELS["openai"]))
+    parser.add_argument("--anthropic-model", default=os.environ.get("DACP_ANTHROPIC_MODEL", DEFAULT_MODELS["anthropic"]))
     parser.add_argument("--max-output-tokens", type=int, default=256)
     parser.add_argument("--timeout", type=int, default=60)
     parser.add_argument("--max-turns", type=int, default=gate.MAX_TURNS_DEFAULT)
@@ -155,33 +111,19 @@ def main() -> int:
     args = parser.parse_args()
 
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.2",
+        "schema": "dacp-gate-live-matrix-0.3",
         "timestamp": dacp_broker.utc_now(),
         "scenarios": SCENARIO_ORDER,
+        "max_turns": args.max_turns,
         "providers": [],
     }
-
-    model_by_provider = {
-        "openai": args.openai_model,
-        "anthropic": args.anthropic_model,
-    }
-
+    models = {"openai": args.openai_model, "anthropic": args.anthropic_model}
     for provider in ("openai", "anthropic"):
-        output["providers"].append(
-            _provider_record(
-                provider,
-                model_by_provider[provider],
-                args.max_output_tokens,
-                args.timeout,
-                args.max_turns,
-            )
-        )
+        output["providers"].append(_provider_record(provider, models[provider], args.max_output_tokens, args.timeout, args.max_turns))
 
-    log_dir = Path(args.log_dir)
     stamp = output["timestamp"].replace(":", "").replace("-", "")
-    output_path = log_dir / f"gate-live-matrix-{stamp}.json"
+    output_path = Path(args.log_dir) / f"gate-live-matrix-{stamp}.json"
     _write_verified_json(output_path, output)
-
     evidence = _publish_shared(output_path, output)
 
     print("=== DACP_GATE_LIVE_MATRIX_BEGIN ===")
@@ -191,11 +133,7 @@ def main() -> int:
     print(f"EVIDENCE_STATUS={evidence['status']}")
     print(f"SHARED_EVIDENCE_PATH={evidence['shared_path']}")
 
-    missing = [
-        record["provider"]
-        for record in output["providers"]
-        if not record["credential_present"]
-    ]
+    missing = [r["provider"] for r in output["providers"] if not r["credential_present"]]
     return 2 if missing else 0
 
 
