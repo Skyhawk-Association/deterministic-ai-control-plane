@@ -3,18 +3,20 @@
   "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
   "current_private_state": {
     "storage_class": "GMAIL_RECOVERY_THREAD",
+    "generation": 27,
     "thread_id": "1a088f16abb9349a",
-    "message_id": "1a088fad687089a7",
+    "message_id": "1a0890e4a20b04c7",
     "label": "DACP/Private State",
-    "status": "ACTIVE_RECOVERY_SURFACE",
+    "status": "ACTIVE_RECOVERY_SURFACE_RECONCILED",
     "note": "Use the authenticated Gmail connector to read the thread/message. This is private operational state, not canonical governance."
   },
   "legacy_private_state": {
     "storage_class": "GOOGLE_DRIVE_SHARED",
+    "generation": 26,
     "state_head_url": "https://docs.google.com/document/d/1G9Nw2MFwH-Kn__qFGznMIXSa5l3SBw-G1EK7zzYP0kk/edit",
-    "status": "UNAVAILABLE_UNRECONCILED",
-    "rule": "When Drive access returns, read and reconcile this legacy state before claiming complete lineage continuity or deduplicating historical observations."
+    "status": "MANUALLY_RECOVERED_RECONCILED_TO_GMAIL_GEN_27",
+    "note": "Gene manually recovered the legacy state head plus candidate generation 6 and observation generation 21 for reconciliation. Direct Drive access remains unavailable on this ChatGPT execution surface."
   },
   "future_private_state_target": "PRIVATE_NAS",
-  "rule": "Git exposes only the minimum direct locator for the private operational state. Resolve private contents through the authenticated storage connector. Do not place private payloads in public Git."
+  "rule": "Git exposes only the minimum direct locator for the private operational state. Resolve private contents through the authenticated storage connector. When the AI lacks an authorized storage capability that Gene has, identify the exact required artifact for minimal human bridging, then resume AI execution immediately after upload. Do not place private payloads in public Git."
 }
