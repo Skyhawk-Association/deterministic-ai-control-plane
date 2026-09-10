@@ -78,12 +78,12 @@ REPORT_SCHEMA = {
 TOOL_SPECS = [
     (
         "DACP_PREDECLARE",
-        "Declare the exact consequential action and its verification/recovery plan before calling it.",
+        "Record one action declaration with endpoint, target, verification, and recovery fields.",
         PREDECLARE_SCHEMA,
     ),
     (
         "DACP_CALL",
-        "Request execution of one available toy tool. Consequential calls are gated by the broker.",
+        "Request execution of one available toy tool.",
         CALL_SCHEMA,
     ),
     (
