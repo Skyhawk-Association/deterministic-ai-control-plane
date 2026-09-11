@@ -6,6 +6,7 @@ from unittest.mock import patch
 
 import run_core_live_integration as live
 from dacp_authority_provider import PinnedFileAuthorityProvider, canonical_authority_sha256
+from dacp_commitment_core import ActionSpec
 from dacp_control_session import DACPControlSession, OperationSpec
 from dacp_core_live_runtime import VersionedValueRuntime
 from dacp_file_runtime import FileBackedValueRuntime
@@ -19,7 +20,7 @@ class _ProviderShouldNotRun:
 
     def __call__(self, prompt):
         self.called = True
-        raise AssertionError("provider must not be called when operation authority binding fails")
+        raise AssertionError("provider must not be called")
 
 
 class LiveIntegrationSessionTests(unittest.TestCase):
@@ -118,8 +119,45 @@ class LiveIntegrationSessionTests(unittest.TestCase):
         self.assertEqual(args.runtime, "memory")
         self.assertIsNone(live._resolve_state_file(args.runtime, None))
 
+    def test_preexisting_file_state_passes_without_provider_credential(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "state.json"
+            runtime = FileBackedValueRuntime(path)
+            action = ActionSpec(runtime.endpoint, "SET_STATE", {"value": "DEPLOYED"}, runtime.resolve_target_fingerprint())
+            runtime.execute(action, runtime.resolve_target_fingerprint())
+
+            with patch.dict("os.environ", {}, clear=True):
+                result = live._run_provider(
+                    "openai", "test-model", 64, 5, 2, "file", str(path), None, None, None
+                )
+
+            self.assertTrue(result["pass"])
+            self.assertFalse(result["credential_present"])
+            self.assertFalse(result["credential_required_for_branch"])
+            self.assertEqual(result["execution_branch"], "PREEXISTING_VERIFIED_NO_DISPATCH")
+            self.assertEqual(result["provider_turn_count"], 0)
+            self.assertEqual(result["dispatch_count"], 0)
+            self.assertEqual(result["applied_count"], 0)
+            self.assertEqual(result["completion_source"], "PREEXISTING_STATE_VERIFIED")
+
+    def test_unsatisfied_file_state_without_provider_credential_stops_before_dispatch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "state.json"
+            with patch.dict("os.environ", {}, clear=True):
+                result = live._run_provider(
+                    "openai", "test-model", 64, 5, 2, "file", str(path), None, None, None
+                )
+
+            self.assertFalse(result["pass"])
+            self.assertEqual(result["status"], "NOT_RUN_MISSING_CREDENTIAL")
+            self.assertTrue(result["credential_required_for_branch"])
+            self.assertEqual(result["execution_branch"], "MUTATION_REQUIRED")
+            self.assertEqual(result["provider_turn_count"], 0)
+            self.assertEqual(result["dispatch_count"], 0)
+            self.assertEqual(result["applied_count"], 0)
+            self.assertEqual(result["terminal_state"], "PROVIDER_REQUIRED")
+
     def test_durable_state_hash_changes_once_then_stays_stable_on_idempotent_replay(self):
-        from dacp_commitment_core import ActionSpec
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "state.json"
             runtime = FileBackedValueRuntime(path)
