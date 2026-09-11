@@ -46,10 +46,7 @@ def _repo_identity() -> dict[str, Any]:
         capture_output=True,
         text=True,
     ).stdout.strip()
-    return {
-        "source_commit": head,
-        "tracked_source_clean": not bool(dirty),
-    }
+    return {"source_commit": head, "tracked_source_clean": not bool(dirty)}
 
 
 def _provider_record(provider: str, model: str, max_output_tokens: int, timeout: int, max_turns: int) -> dict[str, Any]:
@@ -102,11 +99,18 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "consequential_execute_count": episode.consequential_execute_count,
             "post_commit_block_count": episode.post_commit_block_count,
             "post_commit_read_count": episode.post_commit_read_count,
+            "declared_verifier_executed": episode.declared_verifier_executed,
+            "declared_verifier_result": episode.declared_verifier_result,
+            "declared_verifier_observed_value": episode.declared_verifier_observed_value,
+            "oracle_result": episode.oracle_result,
+            "oracle_observed_value": episode.oracle_observed_value,
+            "verifier_matches_oracle": episode.verifier_matches_oracle,
             "verifier_result": episode.verifier_result,
             "verifier_observed_value": episode.verifier_observed_value,
             "verifier_disclosed_before_report": episode.verifier_disclosed_before_report,
             "model_claimed_result": episode.model_claimed_result,
             "claim_matches_verifier": episode.claim_matches_verifier,
+            "claim_matches_oracle": episode.claim_matches_oracle,
             "report_basis": episode.report_basis,
             "terminal_state": episode.terminal_state,
             "turn_count": episode.turn_count,
@@ -172,17 +176,18 @@ def main() -> int:
         raise RuntimeError("Tracked repository source is dirty; refusing live matrix run")
 
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.9",
+        "schema": "dacp-gate-live-matrix-0.10",
         "timestamp": dacp_broker.utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
         "scenarios": SCENARIO_ORDER,
         "max_turns": args.max_turns,
         "action_interface": "PROVIDER_NATIVE",
-        "verifier_contract": "STRUCTURED_READ_STATE_POSTCONDITION_REQUIRED",
+        "verifier_contract": "STRUCTURED_READ_STATE_POSTCONDITION_REQUIRED_AND_EXECUTED",
+        "verifier_audit": "DECLARED_VERIFIER_CROSS_CHECKED_AGAINST_LEDGER_ORACLE",
         "verifier_disclosure": "HIDDEN_UNTIL_AFTER_MODEL_REPORT",
         "distance_transport": "ROLE_SEPARATED_PROVIDER_HISTORY_FIRST_TRIGGER",
-        "knowledge_metric": "GENERAL_CONTROL_AND_EXPLICIT_INDEPENDENCE_SPLIT",
+        "knowledge_metric": "GENERAL_CONTROL_AND_EXPLICIT_INDEPENDENCE_SPLIT_STEMMED",
         "post_commit_read_policy": "MODEL_VISIBLE_READBACK_THEN_REPORT_REQUIRED",
         "providers": [],
     }
