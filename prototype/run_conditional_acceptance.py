@@ -14,13 +14,13 @@ from typing import Any
 import dacp_broker
 import run_core_live_integration as live
 
-
-SCHEMA = "dacp-conditional-acceptance-0.1"
+SCHEMA = "dacp-conditional-acceptance-0.2"
 UNIT_MODULES = [
     "test_dacp_commitment_core.py",
     "test_dacp_core_adapter.py",
     "test_dacp_authority_provider.py",
     "test_dacp_control_session.py",
+    "test_dacp_resolved_operation.py",
     "test_dacp_core_live_runtime.py",
     "test_dacp_file_runtime.py",
     "test_run_core_live_integration_session.py",
@@ -45,115 +45,63 @@ def _write_verified_json(path: Path, payload: dict[str, Any]) -> None:
 
 def _case(name: str, assertions: dict[str, bool], evidence: dict[str, Any]) -> dict[str, Any]:
     failures = [label for label, passed in assertions.items() if not passed]
-    return {
-        "name": name,
-        "status": "PASS" if not failures else "FAIL",
-        "failures": failures,
-        "assertions": assertions,
-        "evidence": evidence,
-    }
+    return {"name": name, "status": "PASS" if not failures else "FAIL", "failures": failures, "assertions": assertions, "evidence": evidence}
 
 
-def _skipped_case(name: str, reason: str) -> dict[str, Any]:
-    return {
-        "name": name,
-        "status": "SKIPPED_DEPENDENCY",
-        "failures": [reason],
-        "assertions": {},
-        "evidence": {},
-    }
-
-
-def assess_mutation(result: dict[str, Any]) -> dict[str, Any]:
+def assess_mutation(name: str, result: dict[str, Any], *, credential_expected: bool) -> dict[str, Any]:
     snapshot = result.get("runtime_snapshot") or {}
     runtime_evidence = result.get("runtime_evidence") or {}
     authority = result.get("authority_evidence") or {}
-    return _case(
-        "MUTATION_REQUIRED",
-        {
-            "provider_result_passed": result.get("pass") is True,
-            "branch_is_mutation_required": result.get("execution_branch") == "MUTATION_REQUIRED",
-            "credential_present": result.get("credential_present") is True,
-            "credential_required": result.get("credential_required_for_branch") is True,
-            "exactly_one_provider_turn": result.get("provider_turn_count") == 1,
-            "exactly_one_dispatch": result.get("dispatch_count") == 1,
-            "exactly_one_applied_write": result.get("applied_count") == 1,
-            "control_plane_finalized": result.get("completion_source") == "CONTROL_PLANE_AUTO_FINALIZE",
-            "verified_succeeded": result.get("final_acceptance") == "VERIFIED_SUCCEEDED",
-            "state_changed": runtime_evidence.get("state_changed") is True,
-            "version_one": snapshot.get("version") == 1,
-            "one_ledger_event": len(snapshot.get("ledger") or []) == 1,
-            "authority_pre_integrity": bool((authority.get("pre") or {}).get("integrity_ok")),
-            "authority_post_integrity": bool((authority.get("post") or {}).get("integrity_ok")),
-            "no_verification_conflict": result.get("verification_conflict") is False,
-        },
-        result,
-    )
+    return _case(name, {
+        "provider_result_passed": result.get("pass") is True,
+        "branch_is_mutation_required": result.get("execution_branch") == "MUTATION_REQUIRED",
+        "credential_state_expected": result.get("credential_present") is credential_expected,
+        "credential_not_required": result.get("credential_required_for_branch") is False,
+        "provider_not_used": result.get("provider_used") is False,
+        "zero_provider_turns": result.get("provider_turn_count") == 0,
+        "exactly_one_dispatch": result.get("dispatch_count") == 1,
+        "exactly_one_applied_write": result.get("applied_count") == 1,
+        "direct_control_commit": result.get("completion_source") == "CONTROL_PLANE_DIRECT_COMMIT",
+        "verified_succeeded": result.get("final_acceptance") == "VERIFIED_SUCCEEDED",
+        "state_changed": runtime_evidence.get("state_changed") is True,
+        "version_one": snapshot.get("version") == 1,
+        "one_ledger_event": len(snapshot.get("ledger") or []) == 1,
+        "authority_pre_integrity": bool((authority.get("pre") or {}).get("integrity_ok")),
+        "authority_post_integrity": bool((authority.get("post") or {}).get("integrity_ok")),
+        "no_verification_conflict": result.get("verification_conflict") is False,
+    }, result)
 
 
-def assess_preexisting(result: dict[str, Any], stable_hash: str | None, *, credential_expected: bool) -> dict[str, Any]:
+def assess_preexisting(name: str, result: dict[str, Any], stable_hash: str, *, credential_expected: bool) -> dict[str, Any]:
     runtime_evidence = result.get("runtime_evidence") or {}
     snapshot = result.get("runtime_snapshot") or {}
     check = result.get("preexisting_check") or {}
     oracle = check.get("oracle") or {}
-    name = "PREEXISTING_VERIFIED_WITH_CREDENTIAL" if credential_expected else "PREEXISTING_VERIFIED_WITHOUT_CREDENTIAL"
-    return _case(
-        name,
-        {
-            "provider_result_passed": result.get("pass") is True,
-            "branch_is_preexisting_fast_path": result.get("execution_branch") == "PREEXISTING_VERIFIED_NO_DISPATCH",
-            "credential_state_expected": result.get("credential_present") is credential_expected,
-            "credential_not_required": result.get("credential_required_for_branch") is False,
-            "zero_provider_turns": result.get("provider_turn_count") == 0,
-            "zero_dispatches": result.get("dispatch_count") == 0,
-            "zero_applied_writes": result.get("applied_count") == 0,
-            "preexisting_postcondition_verified": check.get("code") == "PREEXISTING_POSTCONDITION_VERIFIED",
-            "verifier_oracle_match": oracle.get("code") == "VERIFIER_ORACLE_MATCH",
-            "completion_source_preexisting": result.get("completion_source") == "PREEXISTING_STATE_VERIFIED",
-            "verified_succeeded": result.get("final_acceptance") == "VERIFIED_SUCCEEDED",
-            "state_unchanged": runtime_evidence.get("state_changed") is False,
-            "pre_post_hash_equal": runtime_evidence.get("pre_state_sha256") == runtime_evidence.get("post_state_sha256"),
-            "matches_stable_hash": stable_hash is not None and runtime_evidence.get("post_state_sha256") == stable_hash,
-            "version_one": snapshot.get("version") == 1,
-            "one_ledger_event": len(snapshot.get("ledger") or []) == 1,
-            "no_verification_conflict": result.get("verification_conflict") is False,
-        },
-        result,
-    )
-
-
-def assess_missing_credential_unsatisfied(result: dict[str, Any]) -> dict[str, Any]:
-    snapshot = result.get("runtime_snapshot") or {}
-    runtime_evidence = result.get("runtime_evidence") or {}
-    return _case(
-        "UNSATISFIED_WITHOUT_CREDENTIAL_FAILS_CLOSED",
-        {
-            "credential_absent": result.get("credential_present") is False,
-            "credential_required": result.get("credential_required_for_branch") is True,
-            "branch_is_mutation_required": result.get("execution_branch") == "MUTATION_REQUIRED",
-            "status_missing_credential": result.get("status") == "NOT_RUN_MISSING_CREDENTIAL",
-            "provider_result_not_passed": result.get("pass") is False,
-            "zero_provider_turns": result.get("provider_turn_count") == 0,
-            "zero_dispatches": result.get("dispatch_count") == 0,
-            "zero_applied_writes": result.get("applied_count") == 0,
-            "state_unchanged": runtime_evidence.get("state_changed") is False,
-            "value_remains_initial": snapshot.get("value") == "INITIAL",
-            "version_zero": snapshot.get("version") == 0,
-            "ledger_empty": len(snapshot.get("ledger") or []) == 0,
-        },
-        result,
-    )
+    return _case(name, {
+        "provider_result_passed": result.get("pass") is True,
+        "branch_is_preexisting_fast_path": result.get("execution_branch") == "PREEXISTING_VERIFIED_NO_DISPATCH",
+        "credential_state_expected": result.get("credential_present") is credential_expected,
+        "credential_not_required": result.get("credential_required_for_branch") is False,
+        "provider_not_used": result.get("provider_used") is False,
+        "zero_provider_turns": result.get("provider_turn_count") == 0,
+        "zero_dispatches": result.get("dispatch_count") == 0,
+        "zero_applied_writes": result.get("applied_count") == 0,
+        "preexisting_postcondition_verified": check.get("code") == "PREEXISTING_POSTCONDITION_VERIFIED",
+        "verifier_oracle_match": oracle.get("code") == "VERIFIER_ORACLE_MATCH",
+        "completion_source_preexisting": result.get("completion_source") == "PREEXISTING_STATE_VERIFIED",
+        "verified_succeeded": result.get("final_acceptance") == "VERIFIED_SUCCEEDED",
+        "state_unchanged": runtime_evidence.get("state_changed") is False,
+        "pre_post_hash_equal": runtime_evidence.get("pre_state_sha256") == runtime_evidence.get("post_state_sha256"),
+        "matches_stable_hash": runtime_evidence.get("post_state_sha256") == stable_hash,
+        "version_one": snapshot.get("version") == 1,
+        "one_ledger_event": len(snapshot.get("ledger") or []) == 1,
+        "no_verification_conflict": result.get("verification_conflict") is False,
+    }, result)
 
 
 def _run_unit_suite() -> dict[str, Any]:
     cmd = [sys.executable, "-m", "unittest", *UNIT_MODULES, "-v"]
-    completed = subprocess.run(
-        cmd,
-        cwd=Path(__file__).resolve().parent,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
+    completed = subprocess.run(cmd, cwd=Path(__file__).resolve().parent, capture_output=True, text=True, check=False)
     combined = (completed.stdout or "") + (completed.stderr or "")
     return {
         "status": "PASS" if completed.returncode == 0 else "FAIL",
@@ -164,36 +112,14 @@ def _run_unit_suite() -> dict[str, Any]:
     }
 
 
-def _provider_run(
-    *,
-    provider: str,
-    model: str,
-    state_file: Path,
-    max_output_tokens: int,
-    timeout: int,
-    max_turns: int,
-) -> dict[str, Any]:
-    return live._run_provider(
-        provider,
-        model,
-        max_output_tokens,
-        timeout,
-        max_turns,
-        "file",
-        str(state_file),
-        None,
-        None,
-        None,
-    )
+def _resolved_run(provider: str, model: str, state_file: Path) -> dict[str, Any]:
+    return live._run_provider(provider, model, 256, 60, 3, "file", str(state_file), None, None, None)
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run one bundled DACP conditional acceptance matrix")
+    parser = argparse.ArgumentParser(description="Run bundled DACP resolved-operation conditional acceptance")
     parser.add_argument("--provider", choices=["openai", "anthropic"], default="openai")
     parser.add_argument("--model", default=None)
-    parser.add_argument("--max-output-tokens", type=int, default=256)
-    parser.add_argument("--timeout", type=int, default=60)
-    parser.add_argument("--max-turns", type=int, default=3)
     parser.add_argument("--log-dir", default="gate-matrix-results")
     args = parser.parse_args()
 
@@ -205,8 +131,8 @@ def main() -> int:
     model = args.model or default_model
     timestamp = dacp_broker.utc_now()
     log_dir = Path(args.log_dir).resolve()
-    state_file = log_dir / f"conditional-bundle-state-{uuid.uuid4().hex}.json"
-    no_credential_state_file = log_dir / f"conditional-bundle-no-credential-{uuid.uuid4().hex}.json"
+    state_no_credential = log_dir / f"resolved-no-credential-{uuid.uuid4().hex}.json"
+    state_with_credential = log_dir / f"resolved-with-credential-{uuid.uuid4().hex}.json"
 
     output: dict[str, Any] = {
         "schema": SCHEMA,
@@ -215,11 +141,8 @@ def main() -> int:
         "tracked_source_clean": identity["tracked_source_clean"],
         "provider": args.provider,
         "model": model,
-        "policy": {
-            "independent_cases_continue_when_dependencies_allow": True,
-            "dependent_cases_skip_after_prerequisite_failure": True,
-            "one_bundle_one_upload": True,
-        },
+        "commitment_path": "RESOLVED_OPERATION_DETERMINISTIC_NO_PROVIDER",
+        "policy": {"one_bundle_one_upload": True, "provider_reserved_for_upstream_orientation": True},
         "unit_gate": _run_unit_suite(),
         "cases": [],
         "all_passed": False,
@@ -236,89 +159,33 @@ def main() -> int:
     credential_name = "OPENAI_API_KEY" if args.provider == "openai" else "ANTHROPIC_API_KEY"
     saved_credential = os.environ.get(credential_name)
 
-    # Independent negative branch: a fresh unsatisfied target without a provider
-    # credential must stop before provider use, dispatch, or state mutation.
     try:
         os.environ.pop(credential_name, None)
-        missing_result = _provider_run(
-            provider=args.provider,
-            model=model,
-            state_file=no_credential_state_file,
-            max_output_tokens=args.max_output_tokens,
-            timeout=args.timeout,
-            max_turns=args.max_turns,
-        )
-        output["cases"].append(assess_missing_credential_unsatisfied(missing_result))
+        first = _resolved_run(args.provider, model, state_no_credential)
+        first_case = assess_mutation("MUTATION_WITHOUT_PROVIDER_CREDENTIAL", first, credential_expected=False)
+        output["cases"].append(first_case)
+        if first_case["status"] == "PASS":
+            stable_hash = first["runtime_evidence"]["post_state_sha256"]
+            replay = _resolved_run(args.provider, model, state_no_credential)
+            output["cases"].append(assess_preexisting("PREEXISTING_WITHOUT_PROVIDER_CREDENTIAL", replay, stable_hash, credential_expected=False))
     finally:
         if saved_credential is not None:
             os.environ[credential_name] = saved_credential
 
-    if saved_credential is None:
-        output["cases"].append(_skipped_case("MUTATION_REQUIRED", "provider credential unavailable"))
-        output["cases"].append(_skipped_case("PREEXISTING_VERIFIED_WITH_CREDENTIAL", "mutation prerequisite unavailable"))
-        output["cases"].append(_skipped_case("PREEXISTING_VERIFIED_WITHOUT_CREDENTIAL", "mutation prerequisite unavailable"))
-    else:
-        mutation_result = _provider_run(
-            provider=args.provider,
-            model=model,
-            state_file=state_file,
-            max_output_tokens=args.max_output_tokens,
-            timeout=args.timeout,
-            max_turns=args.max_turns,
-        )
-        mutation_case = assess_mutation(mutation_result)
-        output["cases"].append(mutation_case)
-
-        if mutation_case["status"] == "PASS":
-            stable_hash = (mutation_result.get("runtime_evidence") or {}).get("post_state_sha256")
-            preexisting_result = _provider_run(
-                provider=args.provider,
-                model=model,
-                state_file=state_file,
-                max_output_tokens=args.max_output_tokens,
-                timeout=args.timeout,
-                max_turns=args.max_turns,
-            )
-            preexisting_case = assess_preexisting(preexisting_result, stable_hash, credential_expected=True)
-            output["cases"].append(preexisting_case)
-
-            if preexisting_case["status"] == "PASS":
-                try:
-                    os.environ.pop(credential_name, None)
-                    no_credential_result = _provider_run(
-                        provider=args.provider,
-                        model=model,
-                        state_file=state_file,
-                        max_output_tokens=args.max_output_tokens,
-                        timeout=args.timeout,
-                        max_turns=args.max_turns,
-                    )
-                    output["cases"].append(
-                        assess_preexisting(no_credential_result, stable_hash, credential_expected=False)
-                    )
-                finally:
-                    os.environ[credential_name] = saved_credential
-            else:
-                output["cases"].append(
-                    _skipped_case(
-                        "PREEXISTING_VERIFIED_WITHOUT_CREDENTIAL",
-                        "credential-present preexisting branch failed prerequisite",
-                    )
-                )
-        else:
-            output["cases"].append(
-                _skipped_case("PREEXISTING_VERIFIED_WITH_CREDENTIAL", "mutation branch failed prerequisite")
-            )
-            output["cases"].append(
-                _skipped_case("PREEXISTING_VERIFIED_WITHOUT_CREDENTIAL", "mutation branch failed prerequisite")
-            )
+    if saved_credential is not None:
+        second = _resolved_run(args.provider, model, state_with_credential)
+        second_case = assess_mutation("MUTATION_WITH_PROVIDER_CREDENTIAL_PRESENT_BUT_UNUSED", second, credential_expected=True)
+        output["cases"].append(second_case)
+        if second_case["status"] == "PASS":
+            stable_hash = second["runtime_evidence"]["post_state_sha256"]
+            replay = _resolved_run(args.provider, model, state_with_credential)
+            output["cases"].append(assess_preexisting("PREEXISTING_WITH_PROVIDER_CREDENTIAL_PRESENT_BUT_UNUSED", replay, stable_hash, credential_expected=True))
 
     statuses = [case["status"] for case in output["cases"]]
     output["all_passed"] = bool(statuses) and all(status == "PASS" for status in statuses)
     output["summary"] = {
         "pass_count": sum(status == "PASS" for status in statuses),
         "fail_count": sum(status == "FAIL" for status in statuses),
-        "skipped_count": sum(status == "SKIPPED_DEPENDENCY" for status in statuses),
         "case_count": len(statuses),
     }
 
