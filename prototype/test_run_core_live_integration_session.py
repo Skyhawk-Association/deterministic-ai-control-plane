@@ -1,3 +1,4 @@
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -7,20 +8,55 @@ import run_core_live_integration as live
 from dacp_control_session import DACPControlSession, OperationSpec
 from dacp_core_live_runtime import VersionedValueRuntime
 from dacp_file_runtime import FileBackedValueRuntime
+from dacp_operation_manifest import SCHEMA, load_operation_manifest
 from dacp_runtime_contract import bind_core_runtime
 
 
+class _ProviderShouldNotRun:
+    def __init__(self):
+        self.called = False
+
+    def __call__(self, prompt):
+        self.called = True
+        raise AssertionError("provider must not be called when operation authority binding fails")
+
+
 class LiveIntegrationSessionTests(unittest.TestCase):
-    def test_operation_factory_matches_runtime_authority(self):
+    def test_default_operation_manifest_matches_runtime_authority(self):
         runtime = VersionedValueRuntime()
-        operation = live._operation_for_runtime(runtime)
+        loaded = live._resolve_operation_manifest(None)
+        operation = loaded.operation
         self.assertIsInstance(operation, OperationSpec)
+        self.assertEqual(loaded.raw["schema"], SCHEMA)
         self.assertEqual(operation.endpoint, runtime.endpoint)
         self.assertEqual(operation.args, {"value": runtime.authorized_value})
         self.assertEqual(
             operation.action_spec(runtime.resolve_target_fingerprint()).action_fingerprint,
             runtime.resolve_authority().action_fingerprint,
         )
+
+    def test_manifest_hash_is_exact_file_hash(self):
+        loaded = live._resolve_operation_manifest(None)
+        self.assertEqual(loaded.sha256, live._sha256_file(loaded.path))
+
+    def test_mismatched_manifest_fails_before_provider_call(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "operation.json"
+            source = json.loads(live.DEFAULT_OPERATION_MANIFEST.read_text(encoding="utf-8"))
+            source["args"] = {"value": "UNAUTHORIZED"}
+            source["verifier"]["expected_value"] = "UNAUTHORIZED"
+            path.write_text(json.dumps(source), encoding="utf-8")
+            loaded = load_operation_manifest(path)
+            runtime = VersionedValueRuntime()
+            provider = _ProviderShouldNotRun()
+            session = DACPControlSession(
+                loaded.operation,
+                bind_core_runtime(runtime, now_epoch=lambda: 1),
+                provider,
+            )
+            with self.assertRaises(RuntimeError):
+                session.run()
+            self.assertFalse(provider.called)
 
     def test_runtime_binding_has_required_session_boundaries(self):
         runtime = VersionedValueRuntime()
@@ -53,10 +89,11 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             with patch.dict("os.environ", {live.DEFAULT_STATE_ENV: str(configured)}, clear=False):
                 self.assertEqual(live._default_state_file(), configured.resolve())
 
-    def test_parser_defaults_to_file_runtime(self):
+    def test_parser_defaults_to_file_runtime_and_default_manifest(self):
         args = live._build_parser().parse_args([])
         self.assertEqual(args.runtime, "file")
         self.assertIsNone(args.state_file)
+        self.assertIsNone(args.operation_manifest)
 
     def test_memory_runtime_remains_explicit(self):
         args = live._build_parser().parse_args(["--runtime", "memory"])
