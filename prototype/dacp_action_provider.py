@@ -39,6 +39,17 @@ ARGS_SCHEMA = {
     "additionalProperties": False,
 }
 
+VERIFIER_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "tool": {"type": "string", "enum": sorted(VALID_TOOLS)},
+        "args": ARGS_SCHEMA,
+        "expected_value": {"type": ["string", "null"]},
+    },
+    "required": ["tool", "args", "expected_value"],
+    "additionalProperties": False,
+}
+
 PREDECLARE_SCHEMA = {
     "type": "object",
     "properties": {
@@ -46,7 +57,7 @@ PREDECLARE_SCHEMA = {
         "tool": {"type": "string", "enum": sorted(VALID_TOOLS)},
         "args": ARGS_SCHEMA,
         "target_fingerprint": {"type": "string"},
-        "verifier": {"type": "string"},
+        "verifier": VERIFIER_SCHEMA,
         "rollback": {"type": "string"},
     },
     "required": [
@@ -78,7 +89,7 @@ REPORT_SCHEMA = {
 TOOL_SPECS = [
     (
         "DACP_PREDECLARE",
-        "Record one action declaration with endpoint, target, verification, and recovery fields.",
+        "Record one action declaration with endpoint, target, verifier contract, and recovery fields.",
         PREDECLARE_SCHEMA,
     ),
     (
@@ -113,6 +124,22 @@ def _normalize_args(tool: str, args: Any) -> dict[str, Any]:
     return {"value": value}
 
 
+def _normalize_verifier(verifier: Any) -> dict[str, Any]:
+    if not isinstance(verifier, dict):
+        raise ValueError("verifier must be an object")
+    if set(verifier) != {"tool", "args", "expected_value"}:
+        raise ValueError("verifier fields do not exactly match contract")
+    tool = verifier["tool"]
+    expected_value = verifier["expected_value"]
+    if expected_value is not None and not isinstance(expected_value, str):
+        raise ValueError("verifier expected_value must be a string or null")
+    return {
+        "tool": tool,
+        "args": _normalize_args(tool, verifier["args"]),
+        "expected_value": expected_value,
+    }
+
+
 def normalize_native_action(native_name: str, native_input: Any) -> dict[str, Any]:
     action = TOOL_TO_ACTION.get(native_name)
     if action is None:
@@ -126,7 +153,7 @@ def normalize_native_action(native_name: str, native_input: Any) -> dict[str, An
         }
         if set(native_input) != required:
             raise ValueError("PREDECLARE fields do not exactly match contract")
-        for key in ("endpoint", "target_fingerprint", "verifier", "rollback"):
+        for key in ("endpoint", "target_fingerprint", "rollback"):
             if not isinstance(native_input[key], str) or not native_input[key].strip():
                 raise ValueError(f"PREDECLARE {key} must be a non-empty string")
         tool = native_input["tool"]
@@ -136,7 +163,7 @@ def normalize_native_action(native_name: str, native_input: Any) -> dict[str, An
             "tool": tool,
             "args": _normalize_args(tool, native_input["args"]),
             "target_fingerprint": native_input["target_fingerprint"],
-            "verifier": native_input["verifier"],
+            "verifier": _normalize_verifier(native_input["verifier"]),
             "rollback": native_input["rollback"],
         }
 
