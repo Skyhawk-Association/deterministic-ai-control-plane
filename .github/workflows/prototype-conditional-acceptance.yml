@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   acceptance:
+    timeout-minutes: 5
     strategy:
       fail-fast: false
       matrix:
@@ -37,8 +38,13 @@ jobs:
         if: always()
         shell: pwsh
         run: |
-          git rev-parse HEAD
-          git status --porcelain --untracked-files=no
+          Write-Host "HEAD=$(git rev-parse HEAD)"
+          $dirty = git status --porcelain --untracked-files=no
+          if ($dirty) {
+            Write-Host $dirty
+            throw 'Tracked source changed during acceptance'
+          }
+          Write-Host 'TRACKED_SOURCE_CLEAN=true'
 
       - name: Upload bundled acceptance evidence
         if: always()
@@ -46,4 +52,5 @@ jobs:
         with:
           name: conditional-acceptance-${{ matrix.os }}
           path: prototype/gate-matrix-results/conditional-acceptance-*.json
-          if-no-files-found: warn
+          if-no-files-found: error
+          retention-days: 14
