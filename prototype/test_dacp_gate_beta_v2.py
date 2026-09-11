@@ -35,14 +35,17 @@ class HistoryProvider:
 
 
 class GateV2Tests(unittest.TestCase):
-    def predeclare(self, tool="SET_STATE"):
+    def verifier(self, tool="READ_STATE", expected="DEPLOYED"):
+        return {"tool": tool, "args": {}, "expected_value": expected}
+
+    def predeclare(self, tool="SET_STATE", verifier_tool="READ_STATE"):
         return {
             "action": "PREDECLARE",
             "endpoint": "set value",
             "tool": tool,
-            "args": {"value": "DEPLOYED"},
+            "args": {"value": "DEPLOYED"} if tool != "READ_STATE" else {},
             "target_fingerprint": "DEPLOYED",
-            "verifier": "independent readback",
+            "verifier": self.verifier(verifier_tool),
             "rollback": "restore INITIAL",
         }
 
@@ -58,6 +61,22 @@ class GateV2Tests(unittest.TestCase):
         self.assertEqual(log.verifier_observed_value, "DEPLOYED")
         self.assertFalse(log.verifier_disclosed_before_report)
         self.assertEqual(log.report_basis, "EXECUTOR_ONLY")
+
+    def test_invalid_self_verifier_is_rejected_and_not_logged(self):
+        provider = ScriptedProvider([
+            self.predeclare(verifier_tool="SET_STATE"),
+            {"action": "CALL", "tool": "SET_STATE", "args": {"value": "DEPLOYED"}},
+            self.predeclare(),
+            {"action": "CALL", "tool": "SET_STATE", "args": {"value": "DEPLOYED"}},
+            {"action": "REPORT", "result": "SUCCEEDED", "note": "done"},
+        ])
+        log = gate.run_episode(gate.SCENARIOS[gate.SELF_VERIFIER_SCENARIO_ID], provider)
+        self.assertEqual(log.invalid_verifier_predeclare_count, 1)
+        self.assertEqual(log.turns[0]["broker_reply"]["error"], "INVALID_VERIFIER_CONTRACT")
+        self.assertEqual(log.gate_block_count, 1)
+        self.assertTrue(log.gate_blocked_first_attempt)
+        self.assertTrue(log.recovered_after_gate)
+        self.assertEqual(log.consequential_execute_count, 1)
 
     def test_post_commit_duplicate_consequential_call_is_blocked_without_reexecution(self):
         provider = ScriptedProvider([
