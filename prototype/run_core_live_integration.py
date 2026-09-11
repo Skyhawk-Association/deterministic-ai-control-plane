@@ -13,6 +13,7 @@ from typing import Any
 from dacp_authority_provider import HASH_MODE, PinnedFileAuthorityProvider
 from dacp_commit_journal import DurableCommitJournal
 from dacp_core_live_runtime import VersionedValueRuntime
+from dacp_file_lock import InterProcessFileLock, LockTimeoutError
 from dacp_file_runtime import FileBackedValueRuntime
 from dacp_operation_manifest import LoadedOperation, load_operation_manifest
 from dacp_resolved_operation import DACPResolvedOperation
@@ -22,6 +23,7 @@ DEFAULT_STATE_ENV = "DACP_STATE_FILE"
 DEFAULT_OPERATION_MANIFEST = Path(__file__).resolve().parent / "operations" / "tracked-value-deploy.json"
 DEFAULT_AUTHORITY_MANIFEST = Path(__file__).resolve().parent / "authorities" / "tracked-value-deploy-authority.json"
 DEFAULT_AUTHORITY_SHA256 = "46bf8723794841351a97ec063ed64897a60330ebd2ba9ff52b815655e8d834d3"
+DEFAULT_LOCK_TIMEOUT_SECONDS = 10.0
 
 
 def _utc_now() -> str:
@@ -71,6 +73,10 @@ def _journal_path(state_path: Path) -> Path:
     return state_path.with_name(state_path.name + ".commit-journal.json")
 
 
+def _lock_path(state_path: Path) -> Path:
+    return state_path.with_name(state_path.name + ".commit.lock")
+
+
 def _resolve_operation_manifest(path: str | Path | None) -> LoadedOperation:
     return load_operation_manifest(path or DEFAULT_OPERATION_MANIFEST)
 
@@ -92,16 +98,15 @@ def _make_runtime(runtime_kind: str, state_file: str | Path | None) -> DACPRunti
     return FileBackedValueRuntime(resolved)
 
 
-def _run_resolved(
+def _run_resolved_locked(
     runtime_kind: str,
-    state_file: str | None,
+    resolved_state_file: Path | None,
     operation_manifest: str | None,
     authority_manifest: str | None,
     authority_sha256: str | None,
 ) -> dict[str, Any]:
     loaded_operation = _resolve_operation_manifest(operation_manifest)
     operation = loaded_operation.operation
-    resolved_state_file = _resolve_state_file(runtime_kind, state_file)
     runtime = _make_runtime(runtime_kind, resolved_state_file)
     authority_path, authority_pin = _resolve_authority_config(authority_manifest, authority_sha256)
     authority = PinnedFileAuthorityProvider(authority_path, authority_pin, runtime.resolve_target_fingerprint)
@@ -151,6 +156,14 @@ def _run_resolved(
             and runtime_transition_ok
             and not result.verification_conflict
         )
+    elif result.execution_branch == "RECOVERY_REQUEST_MISMATCH_BLOCKED":
+        runtime_transition_ok = (
+            result.dispatch_count == 0
+            and result.applied_count == 0
+            and post_snapshot == pre_snapshot
+            and (state_changed is False if state_path is not None else True)
+        )
+        pass_condition = False
     elif preexisting_expected:
         runtime_transition_ok = (
             result.execution_branch == "PREEXISTING_VERIFIED_NO_DISPATCH"
@@ -227,6 +240,71 @@ def _run_resolved(
     }
 
 
+def _run_resolved(
+    runtime_kind: str,
+    state_file: str | None,
+    operation_manifest: str | None,
+    authority_manifest: str | None,
+    authority_sha256: str | None,
+    *,
+    lock_timeout_seconds: float = DEFAULT_LOCK_TIMEOUT_SECONDS,
+) -> dict[str, Any]:
+    resolved_state_file = _resolve_state_file(runtime_kind, state_file)
+    if runtime_kind == "memory":
+        return _run_resolved_locked(
+            runtime_kind,
+            resolved_state_file,
+            operation_manifest,
+            authority_manifest,
+            authority_sha256,
+        )
+
+    if resolved_state_file is None:
+        raise RuntimeError("file runtime did not resolve a state path")
+
+    lock_path = _lock_path(resolved_state_file)
+    try:
+        with InterProcessFileLock(lock_path, timeout_seconds=lock_timeout_seconds):
+            result = _run_resolved_locked(
+                runtime_kind,
+                resolved_state_file,
+                operation_manifest,
+                authority_manifest,
+                authority_sha256,
+            )
+    except LockTimeoutError as exc:
+        return {
+            "provider_dependency": False,
+            "provider_used": False,
+            "provider_turn_count": 0,
+            "execution_branch": "CONCURRENT_OPERATION_LOCK_TIMEOUT",
+            "runtime_kind": runtime_kind,
+            "status": "PENDING",
+            "pass": False,
+            "terminal_state": "PENDING",
+            "final_acceptance": None,
+            "completion_source": "CONCURRENT_OPERATION_IN_PROGRESS",
+            "dispatch_count": 0,
+            "applied_count": 0,
+            "reconciliation_count": 0,
+            "rebind_count": 0,
+            "verification_conflict": False,
+            "runtime_transition_ok": True,
+            "lock_evidence": {
+                "path": str(lock_path),
+                "timeout_seconds": lock_timeout_seconds,
+                "error": str(exc),
+            },
+        }
+
+    result["lock_evidence"] = {
+        "path": str(lock_path),
+        "timeout_seconds": lock_timeout_seconds,
+        "acquired": True,
+    }
+    return result
+
+
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run DACP deterministic resolved-operation commitment")
     parser.add_argument("--runtime", choices=["file", "memory"], default="file")
@@ -234,6 +312,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--operation-manifest", default=None)
     parser.add_argument("--authority-manifest", default=None)
     parser.add_argument("--authority-sha256", default=None)
+    parser.add_argument("--lock-timeout", type=float, default=DEFAULT_LOCK_TIMEOUT_SECONDS)
     parser.add_argument("--log-dir", default="gate-matrix-results")
     return parser
 
@@ -250,10 +329,11 @@ def main() -> int:
         args.operation_manifest,
         args.authority_manifest,
         args.authority_sha256,
+        lock_timeout_seconds=args.lock_timeout,
     )
 
     output = {
-        "schema": "dacp-core-live-integration-1.2",
+        "schema": "dacp-core-live-integration-1.3",
         "timestamp": _utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
@@ -261,6 +341,7 @@ def main() -> int:
         "provider_dependency": False,
         "commitment_path": "RESOLVED_OPERATION_DETERMINISTIC_NO_PROVIDER",
         "recovery_contract": "DURABLE_DISPATCH_INTENT_RECONCILE_BEFORE_REDISPATCH",
+        "concurrency_contract": "ONE_DURABLE_RESOURCE_ONE_COMMITMENT_PROCESS_AT_A_TIME",
         "runtime_contract": "DACPRuntime/evidence_snapshot",
         "authority_contract": "PinnedFileAuthorityProvider/dacp-authority-manifest-0.1",
         "authority_hash_mode": HASH_MODE,
