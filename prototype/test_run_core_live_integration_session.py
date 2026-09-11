@@ -7,20 +7,12 @@ from unittest.mock import patch
 import run_core_live_integration as live
 from dacp_authority_provider import PinnedFileAuthorityProvider, canonical_authority_sha256
 from dacp_commitment_core import ActionSpec
-from dacp_control_session import DACPControlSession, OperationSpec
+from dacp_control_session import OperationSpec
 from dacp_core_live_runtime import VersionedValueRuntime
 from dacp_file_runtime import FileBackedValueRuntime
 from dacp_operation_manifest import SCHEMA, load_operation_manifest
+from dacp_resolved_operation import DACPResolvedOperation
 from dacp_runtime_contract import bind_core_runtime
-
-
-class _ProviderShouldNotRun:
-    def __init__(self):
-        self.called = False
-
-    def __call__(self, prompt):
-        self.called = True
-        raise AssertionError("provider must not be called")
 
 
 class LiveIntegrationSessionTests(unittest.TestCase):
@@ -33,10 +25,7 @@ class LiveIntegrationSessionTests(unittest.TestCase):
         self.assertIsInstance(operation, OperationSpec)
         self.assertEqual(loaded.raw["schema"], SCHEMA)
         self.assertEqual(operation.endpoint, runtime.endpoint)
-        self.assertEqual(
-            operation.action_spec(runtime.resolve_target_fingerprint()).action_fingerprint,
-            authority.resolve_authority().action_fingerprint,
-        )
+        self.assertEqual(operation.action_spec(runtime.resolve_target_fingerprint()).action_fingerprint, authority.resolve_authority().action_fingerprint)
 
     def test_manifest_hash_is_exact_file_hash(self):
         loaded = live._resolve_operation_manifest(None)
@@ -46,7 +35,7 @@ class LiveIntegrationSessionTests(unittest.TestCase):
         data = json.loads(live.DEFAULT_AUTHORITY_MANIFEST.read_text(encoding="utf-8"))
         self.assertEqual(live.DEFAULT_AUTHORITY_SHA256, canonical_authority_sha256(data))
 
-    def test_mismatched_manifest_fails_before_provider_call(self):
+    def test_mismatched_manifest_fails_before_dispatch(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "operation.json"
             source = json.loads(live.DEFAULT_OPERATION_MANIFEST.read_text(encoding="utf-8"))
@@ -57,15 +46,11 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             runtime = VersionedValueRuntime()
             authority_path, authority_pin = live._resolve_authority_config(None, None)
             authority = PinnedFileAuthorityProvider(authority_path, authority_pin, runtime.resolve_target_fingerprint)
-            provider = _ProviderShouldNotRun()
-            session = DACPControlSession(
-                loaded.operation,
-                bind_core_runtime(runtime, authority, now_epoch=lambda: 1),
-                provider,
-            )
-            with self.assertRaises(RuntimeError):
-                session.run()
-            self.assertFalse(provider.called)
+            result = DACPResolvedOperation(loaded.operation, bind_core_runtime(runtime, authority, now_epoch=lambda: 1)).run()
+            self.assertEqual(result.execution_branch, "CONTROL_BLOCKED")
+            self.assertEqual(result.dispatch_count, 0)
+            self.assertEqual(result.applied_count, 0)
+            self.assertEqual(runtime.value, "INITIAL")
 
     def test_runtime_binding_has_separate_authority_and_execution_boundaries(self):
         runtime = VersionedValueRuntime()
@@ -125,14 +110,10 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             runtime = FileBackedValueRuntime(path)
             action = ActionSpec(runtime.endpoint, "SET_STATE", {"value": "DEPLOYED"}, runtime.resolve_target_fingerprint())
             runtime.execute(action, runtime.resolve_target_fingerprint())
-
             with patch.dict("os.environ", {}, clear=True):
-                result = live._run_provider(
-                    "openai", "test-model", 64, 5, 2, "file", str(path), None, None, None
-                )
-
+                result = live._run_provider("openai", "test-model", 64, 5, 2, "file", str(path), None, None, None)
             self.assertTrue(result["pass"])
-            self.assertFalse(result["credential_present"])
+            self.assertFalse(result["provider_used"])
             self.assertFalse(result["credential_required_for_branch"])
             self.assertEqual(result["execution_branch"], "PREEXISTING_VERIFIED_NO_DISPATCH")
             self.assertEqual(result["provider_turn_count"], 0)
@@ -140,22 +121,21 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             self.assertEqual(result["applied_count"], 0)
             self.assertEqual(result["completion_source"], "PREEXISTING_STATE_VERIFIED")
 
-    def test_unsatisfied_file_state_without_provider_credential_stops_before_dispatch(self):
+    def test_unsatisfied_file_state_succeeds_without_provider_credential(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "state.json"
             with patch.dict("os.environ", {}, clear=True):
-                result = live._run_provider(
-                    "openai", "test-model", 64, 5, 2, "file", str(path), None, None, None
-                )
-
-            self.assertFalse(result["pass"])
-            self.assertEqual(result["status"], "NOT_RUN_MISSING_CREDENTIAL")
-            self.assertTrue(result["credential_required_for_branch"])
+                result = live._run_provider("openai", "test-model", 64, 5, 2, "file", str(path), None, None, None)
+            self.assertTrue(result["pass"])
+            self.assertFalse(result["provider_used"])
+            self.assertFalse(result["credential_required_for_branch"])
             self.assertEqual(result["execution_branch"], "MUTATION_REQUIRED")
             self.assertEqual(result["provider_turn_count"], 0)
-            self.assertEqual(result["dispatch_count"], 0)
-            self.assertEqual(result["applied_count"], 0)
-            self.assertEqual(result["terminal_state"], "PROVIDER_REQUIRED")
+            self.assertEqual(result["dispatch_count"], 1)
+            self.assertEqual(result["applied_count"], 1)
+            self.assertEqual(result["terminal_state"], "REPORTED")
+            self.assertEqual(result["completion_source"], "CONTROL_PLANE_DIRECT_COMMIT")
+            self.assertEqual(result["final_acceptance"], "VERIFIED_SUCCEEDED")
 
     def test_durable_state_hash_changes_once_then_stays_stable_on_idempotent_replay(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -167,7 +147,6 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             after_first_hash = live._sha256_file(path)
             self.assertTrue(first.applied)
             self.assertNotEqual(initial_hash, after_first_hash)
-
             restarted = FileBackedValueRuntime(path)
             second_action = ActionSpec(restarted.endpoint, "SET_STATE", {"value": "DEPLOYED"}, restarted.resolve_target_fingerprint())
             second = restarted.execute(second_action, restarted.resolve_target_fingerprint())
@@ -177,8 +156,8 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             self.assertEqual(restarted.evidence_snapshot()["version"], 1)
             self.assertEqual(len(restarted.evidence_snapshot()["ledger"]), 1)
 
-    def test_live_module_imports_reusable_session(self):
-        self.assertIsNotNone(DACPControlSession)
+    def test_live_module_imports_resolved_operation_executor(self):
+        self.assertIsNotNone(DACPResolvedOperation)
 
 
 if __name__ == "__main__":
