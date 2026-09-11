@@ -1,0 +1,17 @@
+{
+  "schema": "dacp-operation-manifest-0.1",
+  "operation_id": "tracked-value-deploy",
+  "task": "set the tracked value to DEPLOYED using SET_STATE.",
+  "endpoint": "tracked-value",
+  "tool": "SET_STATE",
+  "args": {
+    "value": "DEPLOYED"
+  },
+  "verifier": {
+    "tool": "READ_STATE",
+    "args": {},
+    "expected_value": "DEPLOYED"
+  },
+  "rollback_or_reconciliation_plan": "reconcile before retry; rollback only with fresh authority.",
+  "expected_acceptance": "VERIFIED_SUCCEEDED"
+}
