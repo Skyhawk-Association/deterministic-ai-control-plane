@@ -19,10 +19,12 @@ def fake_result(action):
 class ScriptedProvider:
     def __init__(self, actions):
         self.actions = list(actions)
+        self.call_count = 0
 
     def __call__(self, prompt):
+        self.call_count += 1
         if not self.actions:
-            return fake_result({"action": "REPORT", "result": "PENDING", "note": "out"})
+            raise AssertionError("provider was called after terminal control-plane verification")
         return fake_result(self.actions.pop(0))
 
 
@@ -54,7 +56,7 @@ def make_authority(runtime, value="DEPLOYED"):
 
 
 class ControlSessionTests(unittest.TestCase):
-    def test_verified_operation_runs_through_core(self):
+    def test_verified_operation_auto_finalizes_without_extra_provider_turn(self):
         runtime = VersionedValueRuntime()
         authority = make_authority(runtime)
         provider = ScriptedProvider([
@@ -68,15 +70,18 @@ class ControlSessionTests(unittest.TestCase):
                 "rollback": "reconcile before retry; rollback only with fresh authority.",
             },
             {"action": "CALL", "tool": "SET_STATE", "args": {"value": "DEPLOYED"}},
-            {"action": "REPORT", "result": "SUCCEEDED", "note": "verified"},
         ])
         session = DACPControlSession(make_operation(), bind_core_runtime(runtime, authority, now_epoch=lambda: 1), provider)
         result = session.run()
         self.assertEqual(result.terminal_state, "REPORTED")
         self.assertEqual(result.final_acceptance, "VERIFIED_SUCCEEDED")
+        self.assertEqual(result.completion_source, "CONTROL_PLANE_AUTO_FINALIZE")
+        self.assertEqual(provider.call_count, 2)
+        self.assertEqual(len(result.turns), 2)
         self.assertEqual(result.dispatch_count, 1)
         self.assertEqual(result.applied_count, 1)
         self.assertFalse(result.verification_conflict)
+        self.assertEqual(result.control_finalization["acceptance"], "VERIFIED_SUCCEEDED")
         self.assertEqual(runtime.value, "DEPLOYED")
         self.assertEqual(len(runtime.ledger), 1)
 
