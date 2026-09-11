@@ -1,0 +1,15 @@
+{
+  "schema": "dacp-authority-manifest-0.1",
+  "authority_id": "AUTH-TRACKED-VALUE-DEPLOY-001",
+  "trust_root_id": "local-pinned-authority-root",
+  "scope": {
+    "endpoint": "tracked-value",
+    "tool": "SET_STATE",
+    "args": {
+      "value": "DEPLOYED"
+    }
+  },
+  "target_binding": "RESOLVE_CURRENT_AT_USE",
+  "valid_through_epoch": 4102444800,
+  "revoked": false
+}
