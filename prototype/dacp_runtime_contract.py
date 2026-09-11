@@ -15,12 +15,7 @@ from dacp_core_adapter import CoreRuntime
 
 @runtime_checkable
 class DACPRuntime(Protocol):
-    """Minimal runtime surface consumed by the deterministic control plane.
-
-    A concrete runtime owns external state access and execution mechanics. It does not
-    decide whether an action is admitted, whether a duplicate is allowed, or whether
-    completion can be accepted. Those remain control-plane decisions.
-    """
+    """Minimal runtime surface consumed by the deterministic control plane."""
 
     endpoint: str
     authorized_value: Any
@@ -45,6 +40,9 @@ class DACPRuntime(Protocol):
         ...
 
     def routine_read(self) -> dict[str, Any]:
+        ...
+
+    def evidence_snapshot(self) -> dict[str, Any]:
         ...
 
 
