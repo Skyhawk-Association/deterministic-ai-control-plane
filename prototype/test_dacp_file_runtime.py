@@ -2,9 +2,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from dacp_commitment_core import Outcome, VerifierSpec
+from dacp_commitment_core import ActionSpec, Outcome, VerifierSpec
 from dacp_file_runtime import FileBackedValueRuntime
-from dacp_runtime_contract import DACPRuntime, bind_core_runtime
+from dacp_runtime_contract import DACPRuntime
+
+
+def action(runtime, value="DEPLOYED"):
+    return ActionSpec(runtime.endpoint, "SET_STATE", {"value": value}, runtime.resolve_target_fingerprint())
 
 
 class FileBackedValueRuntimeTests(unittest.TestCase):
@@ -13,9 +17,7 @@ class FileBackedValueRuntimeTests(unittest.TestCase):
             path = Path(tmp) / "state.json"
             runtime = FileBackedValueRuntime(path)
             self.assertIsInstance(runtime, DACPRuntime)
-            core_runtime = bind_core_runtime(runtime, now_epoch=lambda: 1)
-            action = runtime.authorized_action
-            receipt = core_runtime.execute(action, runtime.resolve_target_fingerprint())
+            receipt = runtime.execute(action(runtime), runtime.resolve_target_fingerprint())
             self.assertEqual(receipt.outcome, Outcome.SUCCEEDED)
             self.assertTrue(receipt.applied)
 
@@ -32,12 +34,12 @@ class FileBackedValueRuntimeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "state.json"
             first_runtime = FileBackedValueRuntime(path)
-            first = first_runtime.execute(first_runtime.authorized_action, "tracked-value@v0")
+            first = first_runtime.execute(action(first_runtime), "tracked-value@v0")
             self.assertTrue(first.applied)
 
             restarted = FileBackedValueRuntime(path)
             before = restarted._read_state()
-            second = restarted.execute(restarted.authorized_action, restarted.resolve_target_fingerprint())
+            second = restarted.execute(action(restarted), restarted.resolve_target_fingerprint())
             after = restarted._read_state()
 
             self.assertEqual(second.outcome, Outcome.SUCCEEDED)
@@ -51,20 +53,28 @@ class FileBackedValueRuntimeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "state.json"
             runtime = FileBackedValueRuntime(path)
-            action = runtime.authorized_action
-            first = runtime.execute(action, "tracked-value@v0")
+            first_action = action(runtime)
+            first = runtime.execute(first_action, "tracked-value@v0")
             self.assertTrue(first.applied)
-            stale = runtime.execute(action, "tracked-value@v0")
+            stale = runtime.execute(first_action, "tracked-value@v0")
             self.assertFalse(stale.applied)
             self.assertTrue(stale.precondition_failed)
             self.assertEqual(runtime.routine_read()["value"], "DEPLOYED")
             self.assertEqual(runtime.routine_read()["target_fingerprint"], "tracked-value@v1")
 
+    def test_runtime_mechanics_do_not_encode_authorized_value(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "state.json"
+            runtime = FileBackedValueRuntime(path)
+            receipt = runtime.execute(action(runtime, "OTHER"), runtime.resolve_target_fingerprint())
+            self.assertTrue(receipt.applied)
+            self.assertEqual(runtime.routine_read()["value"], "OTHER")
+
     def test_ledger_tamper_becomes_pending_oracle(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "state.json"
             runtime = FileBackedValueRuntime(path)
-            runtime.execute(runtime.authorized_action, "tracked-value@v0")
+            runtime.execute(action(runtime), "tracked-value@v0")
             state = runtime._read_state()
             state["ledger"][0]["version"] = 99
             runtime._write_state(state)
