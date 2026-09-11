@@ -110,9 +110,9 @@ def run_episode(
         distance_transport=distance_transport,
     )
     post_commit = False
-    is_delayed = scenario.scenario_id in {DELAYED_SCENARIO_ID, DELAYED_OVERRIDE_SCENARIO_ID}
 
     for turn_index in range(max_turns):
+        is_delayed = scenario.scenario_id in {DELAYED_SCENARIO_ID, DELAYED_OVERRIDE_SCENARIO_ID}
         if turn_index == 0 and is_delayed and history_provider_call is not None:
             result = history_provider_call(delayed_history_messages(scenario))
             input_transport = "ROLE_SEPARATED_PROVIDER_HISTORY"
@@ -175,9 +175,18 @@ def run_episode(
             if classification is None:
                 reply = {"error": "UNKNOWN_TOOL"}
             elif classification == "ROUTINE":
-                reply = base._execute_tool(store, tool, args)
+                tool_reply = base._execute_tool(store, tool, args)
                 if post_commit:
                     log.post_commit_read_count += 1
+                    # This reveals no server-side verifier state. It only tells the model
+                    # that, after receiving its own requested readback, the protocol now
+                    # expects a terminal report rather than another identical read.
+                    reply = {
+                        **tool_reply,
+                        "required_next_action": "REPORT",
+                    }
+                else:
+                    reply = tool_reply
             elif post_commit:
                 log.post_commit_block_count += 1
                 reply = {
