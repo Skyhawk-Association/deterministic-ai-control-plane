@@ -24,7 +24,7 @@ class ScriptedProvider:
     def __call__(self, prompt):
         self.call_count += 1
         if not self.actions:
-            raise AssertionError("provider was called after terminal control-plane verification")
+            raise AssertionError("provider was called unexpectedly")
         return fake_result(self.actions.pop(0))
 
 
@@ -56,19 +56,10 @@ def make_authority(runtime, value="DEPLOYED"):
 
 
 class ControlSessionTests(unittest.TestCase):
-    def test_verified_operation_auto_finalizes_without_extra_provider_turn(self):
+    def test_unsatisfied_operation_uses_one_provider_call_then_auto_finalizes(self):
         runtime = VersionedValueRuntime()
         authority = make_authority(runtime)
         provider = ScriptedProvider([
-            {
-                "action": "PREDECLARE",
-                "endpoint": "tracked-value",
-                "tool": "SET_STATE",
-                "args": {"value": "DEPLOYED"},
-                "target_fingerprint": "tracked-value@v0",
-                "verifier": {"tool": "READ_STATE", "args": {}, "expected_value": "DEPLOYED"},
-                "rollback": "reconcile before retry; rollback only with fresh authority.",
-            },
             {"action": "CALL", "tool": "SET_STATE", "args": {"value": "DEPLOYED"}},
         ])
         session = DACPControlSession(make_operation(), bind_core_runtime(runtime, authority, now_epoch=lambda: 1), provider)
@@ -76,14 +67,37 @@ class ControlSessionTests(unittest.TestCase):
         self.assertEqual(result.terminal_state, "REPORTED")
         self.assertEqual(result.final_acceptance, "VERIFIED_SUCCEEDED")
         self.assertEqual(result.completion_source, "CONTROL_PLANE_AUTO_FINALIZE")
-        self.assertEqual(provider.call_count, 2)
-        self.assertEqual(len(result.turns), 2)
+        self.assertEqual(provider.call_count, 1)
+        self.assertEqual(len(result.turns), 1)
         self.assertEqual(result.dispatch_count, 1)
         self.assertEqual(result.applied_count, 1)
+        self.assertEqual(result.preexisting_check["code"], "PREEXISTING_POSTCONDITION_NOT_SATISFIED")
         self.assertFalse(result.verification_conflict)
         self.assertEqual(result.control_finalization["acceptance"], "VERIFIED_SUCCEEDED")
         self.assertEqual(runtime.value, "DEPLOYED")
         self.assertEqual(len(runtime.ledger), 1)
+
+    def test_preexisting_verified_operation_uses_zero_provider_calls_and_zero_dispatches(self):
+        runtime = VersionedValueRuntime(initial_value="DEPLOYED")
+        authority = make_authority(runtime)
+        calls = []
+
+        def provider(prompt):
+            calls.append(prompt)
+            raise AssertionError("provider must not run for independently verified preexisting success")
+
+        session = DACPControlSession(make_operation(), bind_core_runtime(runtime, authority, now_epoch=lambda: 1), provider)
+        result = session.run()
+        self.assertEqual(result.terminal_state, "REPORTED")
+        self.assertEqual(result.final_acceptance, "VERIFIED_SUCCEEDED")
+        self.assertEqual(result.completion_source, "PREEXISTING_STATE_VERIFIED")
+        self.assertEqual(calls, [])
+        self.assertEqual(result.turns, [])
+        self.assertEqual(result.dispatch_count, 0)
+        self.assertEqual(result.applied_count, 0)
+        self.assertEqual(result.preexisting_check["code"], "PREEXISTING_POSTCONDITION_VERIFIED")
+        self.assertFalse(result.verification_conflict)
+        self.assertEqual(result.control_finalization["acceptance"], "VERIFIED_SUCCEEDED")
 
     def test_operation_mismatch_with_authority_fails_before_provider_call(self):
         runtime = VersionedValueRuntime()
@@ -92,7 +106,7 @@ class ControlSessionTests(unittest.TestCase):
 
         def provider(prompt):
             calls.append(prompt)
-            return fake_result({"action": "REPORT", "result": "PENDING", "note": "should not run"})
+            return fake_result({"action": "CALL", "tool": "SET_STATE", "args": {"value": "UNAUTHORIZED"}})
 
         session = DACPControlSession(make_operation("UNAUTHORIZED"), bind_core_runtime(runtime, authority, now_epoch=lambda: 1), provider)
         with self.assertRaisesRegex(RuntimeError, "operation does not match authenticated authority action binding"):
