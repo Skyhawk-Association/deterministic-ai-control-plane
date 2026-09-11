@@ -1,90 +1,107 @@
-# DACP broker v0
+# Deterministic AI Control Plane prototype
 
-A deliberately tiny experiment to remove Gene from the mechanical relay path between OpenAI and Anthropic while preserving deterministic commitment rules.
+This directory contains the working DACP prototype and the field/regression evidence that led to the current implementation path.
 
-## What it does
+## Current live path
 
-- Sends the exact same task/evidence string to OpenAI and Anthropic.
-- Dispatches both initial calls before consuming either result, so neither provider sees the other's first answer.
-- Performs **no automatic retries**.
-- Writes a local append-only JSONL audit record. The input itself is not logged, only its SHA-256 hash.
-- Can deterministically verify a known exact answer with `--expect-exact`.
-- Treats model agreement without an objective verifier as `SUPPORTED_AGREEMENT`, never as proof.
-- Optionally performs exactly one bounded peer-challenge round with `--peer-challenge`.
-- Makes no consequential external actions.
+The default live entrypoint is:
 
-## Bounded peer challenge
+```sh
+python3 run_live.py --provider openai
+```
 
-`--peer-challenge` is deliberately narrow and requires `--expect-exact`.
+`run_live.py` delegates to `run_core_live_integration.py`, which wires one provider-native action stream into one deterministic control path:
 
-1. Both providers answer independently and those answers are fixed and logged.
-2. Only after both initial calls succeed, each provider receives the other's initial answer exactly once.
-3. The deterministic oracle is never disclosed to either provider.
-4. Each provider may keep or revise its answer once. There is no second challenge round and no automatic retry.
-5. The audit preserves initial and final provider results plus deterministic flags for rescue, degradation, and same-wrong-answer convergence.
+`provider native action -> dacp_action_provider -> NativeActionAdapter -> CommitmentCore -> VersionedValueRuntime`
 
-Peer output is serialized inside a controller-generated challenge prompt and explicitly marked as untrusted data, not authority. Instructions embedded in a peer answer do not acquire control authority merely because another model reads them.
+The model proposes actions. The deterministic layer owns consequential admission and completion.
 
-## Terminal states
+### Current control ownership
 
-- `VERIFIED_MATCH` - both providers match an objective expected string.
-- `SUPPORTED_AGREEMENT` - both independently return the same text, but there is no objective verifier.
-- `DISAGREEMENT` - successful provider outputs differ, or one/both fail an exact-answer verifier.
-- `UNRESOLVED` - a provider call failed or has an uncertain/PENDING outcome.
+`dacp_commitment_core.py` owns:
 
-With peer challenge enabled, the terminal state is based on final answers. The audit also preserves the pre-challenge state and per-provider initial/final verifier results, so a correct-to-wrong flip cannot be hidden by the final classification.
+- exact declaration/action binding;
+- verifier admission through a gate-controlled registry;
+- authenticated action-bound authority checks;
+- commit-time authority revalidation;
+- commit-time target revalidation;
+- duplicate consequential-dispatch suppression;
+- explicit `PENDING` handling for uncertain outcomes;
+- independent postcondition verification;
+- optional independent oracle comparison;
+- fail-closed verification-conflict handling;
+- final completion acceptance;
+- tamper-aware boundary trace anchoring/reconstruction primitives.
 
-## Cost discipline
+`dacp_core_adapter.py` translates normalized `PREDECLARE`, `CALL`, and `REPORT` actions into the core. It deliberately does not duplicate the core's safety decisions.
 
-Defaults are intentionally cost-sensitive and output is capped at 300 tokens:
+`dacp_core_live_runtime.py` is the first minimal live runtime. It supplies a versioned value, authenticated authority proof, conditional write boundary, direct-state verifier, and append-only ledger replay oracle.
 
-- OpenAI: `gpt-5.6-luna`
-- Anthropic: `claude-haiku-4-5-20251001`
+`dacp_action_provider.py` is the provider-native action interface for OpenAI and Anthropic. OpenAI is the default/primary implementation path. Anthropic remains available as an optional independent path and is not a required implementation gate.
 
-Override with `OPENAI_MODEL`, `ANTHROPIC_MODEL`, or CLI flags. Provider pricing changes over time; the broker controls token ceilings rather than pretending a stale hard-coded dollar estimate is authoritative.
+## Verified live behavior
+
+The current integrated live path is expected to demonstrate all of the following before a successful completion claim is accepted:
+
+1. a matching consequential declaration is admitted;
+2. exactly one consequential write dispatch occurs;
+3. the resulting state is independently read back;
+4. the ledger oracle independently agrees with the observed result;
+5. no verification conflict remains;
+6. the model's final claim matches the control-plane classification;
+7. completion is accepted as `VERIFIED_SUCCEEDED` only after those checks.
+
+A redundant consequential declaration or call after verified completion is blocked without disturbing the completed state.
+
+## Tests
+
+No third-party Python packages are required for the deterministic prototype tests.
+
+Core implementation tests:
+
+```sh
+python3 -m unittest -v \
+  test_dacp_commitment_core.py \
+  test_dacp_core_adapter.py \
+  test_dacp_core_live_runtime.py
+```
+
+The broader historical regression suite remains useful while migration continues because it preserves failure cases that motivated the consolidated core.
+
+## Legacy / regression surfaces
+
+The following runners and guard modules are **not the current application execution path**. They are intentionally retained as field evidence and regression fixtures while the consolidated implementation absorbs their proven behavior:
+
+- `run_gate_matrix.py`
+- `run_uncertain_matrix.py`
+- `run_commit_guard_matrix.py`
+- `run_rollback_guard_matrix.py`
+- `run_authority_guard_matrix.py`
+- `run_authority_revocation_matrix.py`
+- `run_trace_guard_matrix.py`
+- their corresponding `dacp_*_guard.py` and `test_*` modules
+
+Do not add new standalone matrix families merely to test another prompt behavior when the requirement can be expressed and tested directly in `CommitmentCore`. New controls should be added only when current evidence exposes a causal gap the core cannot express simply.
 
 ## Credentials
 
-Set credentials in the environment. Never put keys in Git or the audit log.
+Provider credentials come from environment variables and must never be committed or written into public evidence:
 
 ```sh
 export OPENAI_API_KEY='...'
 export ANTHROPIC_API_KEY='...'
 ```
 
-## Blinded exact-answer experiment
+Only the credential for the selected provider is required by the default live runner.
 
-```sh
-python3 dacp_broker.py \
-  --prompt 'Return exactly: DACP-BROKER-V0-TEST' \
-  --expect-exact 'DACP-BROKER-V0-TEST' \
-  --max-output-tokens 50
-```
+## Historical broker v0
 
-## One-round peer-challenge experiment
+The prototype began as a deliberately small two-provider broker experiment. It sent the same prompt to OpenAI and Anthropic, performed no automatic retries, recorded append-only JSONL audit data, supported an optional one-round peer challenge, and distinguished objective verification from mere model agreement.
 
-```sh
-python3 dacp_broker.py \
-  --prompt 'Solve the objectively checkable task and return only the final answer.' \
-  --expect-exact 'KNOWN-ANSWER' \
-  --peer-challenge \
-  --max-output-tokens 50
-```
+That work remains useful provenance, but the current implementation no longer depends on two-provider agreement or Claude availability. The project has moved from probabilistic peer comparison toward deterministic commitment at the execution boundary.
 
-Before spending API credit, the transport/audit path can be exercised without network calls:
+Historical broker terminal states included `VERIFIED_MATCH`, `SUPPORTED_AGREEMENT`, `DISAGREEMENT`, and `UNRESOLVED`. The current commitment path instead classifies consequential execution through explicit lifecycle states and accepts success only after deterministic gate and verification evidence.
 
-```sh
-python3 dacp_broker.py --prompt 'synthetic test' --dry-run
-```
+## Non-goals
 
-## Tests
-
-No third-party packages are required.
-
-```sh
-python3 -m unittest -v test_dacp_broker.py
-```
-
-## Explicit non-goals for v0
-
-No agent framework, vector database, message bus, recursive debate, multi-round consensus loop, automatic heuristic promotion, autonomous repair, external side effects, or dashboard. The peer-challenge option is one bounded reveal round, not a permission slip for the models to form a parliament.
+The current prototype still does not need an agent framework, vector database, message bus, recursive debate system, automatic heuristic promotion, or multi-model parliament. Additional machinery must earn its existence by solving an evidenced control problem better than the smaller design.
