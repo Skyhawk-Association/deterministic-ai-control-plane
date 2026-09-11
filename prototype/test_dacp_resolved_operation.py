@@ -158,6 +158,40 @@ class ResolvedOperationTests(unittest.TestCase):
             self.assertEqual(restarted_runtime.evidence_snapshot()["value"], "DEPLOYED")
             self.assertIsNone(restarted_journal.unresolved_for(op.operation_id))
 
+    def test_restart_with_same_operation_id_but_different_request_is_blocked(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            state_path = Path(tmp) / "state.json"
+            journal_path = Path(tmp) / "commit-journal.json"
+            original = operation("DEPLOYED")
+            runtime = FileBackedValueRuntime(state_path)
+            auth = authority(runtime, "DEPLOYED")
+            journal = DurableCommitJournal(journal_path)
+            seed_intent(journal, runtime, original, auth)
+
+            changed = operation("OTHER")
+            restarted_runtime = FileBackedValueRuntime(state_path)
+            changed_auth = authority(restarted_runtime, "OTHER")
+            restarted_journal = DurableCommitJournal(journal_path)
+            result = DACPResolvedOperation(
+                changed,
+                bind_core_runtime(
+                    restarted_runtime,
+                    changed_auth,
+                    now_epoch=lambda: 1,
+                    dispatch_journal=restarted_journal,
+                    operation_id=changed.operation_id,
+                ),
+                commit_journal=restarted_journal,
+            ).run()
+
+            self.assertEqual(result.execution_branch, "RECOVERY_REQUEST_MISMATCH_BLOCKED")
+            self.assertEqual(result.terminal_state, "CONTROL_BLOCKED")
+            self.assertEqual(result.completion_source, "UNRESOLVED_PRIOR_REQUEST_MISMATCH")
+            self.assertEqual(result.dispatch_count, 0)
+            self.assertEqual(result.applied_count, 0)
+            self.assertEqual(restarted_runtime.evidence_snapshot()["value"], "INITIAL")
+            self.assertIsNotNone(restarted_journal.unresolved_for(original.operation_id))
+
 
 if __name__ == "__main__":
     unittest.main()
