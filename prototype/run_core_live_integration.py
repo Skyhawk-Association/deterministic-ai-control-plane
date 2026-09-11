@@ -164,6 +164,9 @@ def _run_provider(
         },
         "terminal_state": session_result.terminal_state,
         "final_acceptance": session_result.final_acceptance,
+        "completion_source": session_result.completion_source,
+        "control_finalization": session_result.control_finalization,
+        "provider_turn_count": len(session_result.turns),
         "dispatch_count": session_result.dispatch_count,
         "applied_count": session_result.applied_count,
         "reconciliation_count": session_result.reconciliation_count,
@@ -221,7 +224,7 @@ def main() -> int:
     )
 
     output = {
-        "schema": "dacp-core-live-integration-0.7",
+        "schema": "dacp-core-live-integration-0.8",
         "timestamp": dacp_broker.utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
@@ -233,6 +236,7 @@ def main() -> int:
         "authority_default_sha256": DEFAULT_AUTHORITY_SHA256,
         "runtime_default": "file",
         "operation_contract": "dacp-operation-manifest-0.1",
+        "completion_contract": "CONTROL_PLANE_AUTO_FINALIZE_AFTER_TERMINAL_VERIFICATION",
         "durable_evidence_contract": "PRE_POST_STATE_SHA256_AND_SNAPSHOT",
         "provider_result": provider_result,
     }
