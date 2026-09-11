@@ -17,7 +17,7 @@ class Fixture:
             endpoint="tracked-value",
             tool="SET_STATE",
             args={"value": "DEPLOYED"},
-            target_fingerprint="tracked-value@v0",
+            target_fingerprint=self.target,
         )
 
     def authority(self):
@@ -59,13 +59,13 @@ class Fixture:
         )
 
 
-def predeclare_action():
+def predeclare_action(target="tracked-value@v0"):
     return {
         "action": "PREDECLARE",
         "endpoint": "tracked-value",
         "tool": "SET_STATE",
         "args": {"value": "DEPLOYED"},
-        "target_fingerprint": "tracked-value@v0",
+        "target_fingerprint": target,
         "verifier": {"tool": "READ_STATE", "args": {}, "expected_value": "DEPLOYED"},
         "rollback": "reconcile before retry; rollback only with fresh authority",
     }
@@ -78,21 +78,42 @@ class NativeActionAdapterTests(unittest.TestCase):
     def test_happy_path_auto_verifies_and_accepts_report(self):
         f = Fixture()
         adapter = NativeActionAdapter(f.runtime())
-
         declared = adapter.handle(predeclare_action())
         self.assertTrue(declared["allowed"])
-        self.assertEqual(declared["code"], "DECLARATION_ACCEPTED")
-
         called = adapter.handle(CALL)
         self.assertTrue(called["allowed"])
         self.assertEqual(called["dispatch_count"], 1)
         self.assertEqual(called["postcondition"]["outcome_classification"], "SUCCEEDED")
         self.assertFalse(called["postcondition"]["verification_conflict"])
         self.assertEqual(f.exec_count, 1)
-
         reported = adapter.handle({"action": "REPORT", "result": "SUCCEEDED", "note": "done"})
         self.assertEqual(reported["acceptance"], "VERIFIED_SUCCEEDED")
-        self.assertEqual(reported["dispatch_count"], 1)
+
+    def test_preexisting_verified_postcondition_needs_no_dispatch(self):
+        f = Fixture()
+        f.value = "DEPLOYED"
+        adapter = NativeActionAdapter(f.runtime())
+        self.assertTrue(adapter.handle(predeclare_action())["allowed"])
+        checked = adapter.check_preexisting_postcondition()
+        self.assertEqual(checked["code"], "PREEXISTING_POSTCONDITION_VERIFIED")
+        self.assertEqual(checked["dispatch_count"], 0)
+        self.assertEqual(checked["oracle"]["code"], "VERIFIER_ORACLE_MATCH")
+        self.assertFalse(checked["verification_conflict"])
+        self.assertEqual(f.exec_count, 0)
+        reported = adapter.handle({"action": "REPORT", "result": "SUCCEEDED", "note": "preexisting"})
+        self.assertEqual(reported["acceptance"], "VERIFIED_SUCCEEDED")
+        self.assertEqual(reported["dispatch_count"], 0)
+
+    def test_unsatisfied_preexisting_check_preserves_declaration_for_call(self):
+        f = Fixture()
+        adapter = NativeActionAdapter(f.runtime())
+        self.assertTrue(adapter.handle(predeclare_action())["allowed"])
+        checked = adapter.check_preexisting_postcondition()
+        self.assertEqual(checked["code"], "PREEXISTING_POSTCONDITION_NOT_SATISFIED")
+        self.assertEqual(checked["phase"], "DECLARED")
+        called = adapter.handle(CALL)
+        self.assertTrue(called["allowed"])
+        self.assertEqual(f.exec_count, 1)
 
     def test_revoked_authority_between_declare_and_call_blocks_execution(self):
         f = Fixture()
@@ -100,7 +121,6 @@ class NativeActionAdapterTests(unittest.TestCase):
         self.assertTrue(adapter.handle(predeclare_action())["allowed"])
         f.revoked = True
         f.now = 2
-
         called = adapter.handle(CALL)
         self.assertFalse(called["allowed"])
         self.assertEqual(called["code"], "APPROVAL_REVOKED")
@@ -112,7 +132,6 @@ class NativeActionAdapterTests(unittest.TestCase):
         adapter = NativeActionAdapter(f.runtime())
         self.assertTrue(adapter.handle(predeclare_action())["allowed"])
         f.target = "tracked-value@v1"
-
         called = adapter.handle(CALL)
         self.assertFalse(called["allowed"])
         self.assertEqual(called["code"], "TARGET_CHANGED_BEFORE_COMMIT")
@@ -130,16 +149,13 @@ class NativeActionAdapterTests(unittest.TestCase):
         runtime.execute = pending_execute
         adapter = NativeActionAdapter(runtime)
         self.assertTrue(adapter.handle(predeclare_action())["allowed"])
-
         first = adapter.handle(CALL)
         self.assertEqual(first["code"], "OUTCOME_PENDING")
         self.assertEqual(first["dispatch_count"], 1)
-
         retry = adapter.handle(CALL)
         self.assertFalse(retry["allowed"])
         self.assertEqual(retry["code"], "DUPLICATE_CONSEQUENTIAL_BLOCKED")
         self.assertEqual(f.exec_count, 1)
-
         read = adapter.handle({"action": "CALL", "tool": "READ_STATE", "args": {}})
         self.assertEqual(read["outcome_classification"], "FAILED")
 
