@@ -96,6 +96,17 @@ class FileBackedValueRuntime:
                 response={"error": "UNAUTHORIZED_OR_UNSUPPORTED_ACTION"},
                 applied=False,
             )
+        if state["value"] == self.authorized_value:
+            return ExecutionReceipt(
+                outcome=Outcome.SUCCEEDED,
+                response={
+                    "applied": False,
+                    "already_satisfied": True,
+                    "value": state["value"],
+                    "target_fingerprint": current_fingerprint,
+                },
+                applied=False,
+            )
         next_version = state["version"] + 1
         event = {
             "sequence": len(state["ledger"]) + 1,
