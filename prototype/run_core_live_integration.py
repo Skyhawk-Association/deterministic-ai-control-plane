@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from dacp_authority_provider import HASH_MODE, PinnedFileAuthorityProvider
+from dacp_commit_journal import DurableCommitJournal
 from dacp_core_live_runtime import VersionedValueRuntime
 from dacp_file_runtime import FileBackedValueRuntime
 from dacp_operation_manifest import LoadedOperation, load_operation_manifest
@@ -66,6 +67,10 @@ def _resolve_state_file(runtime_kind: str, state_file: str | Path | None) -> Pat
     return _default_state_file()
 
 
+def _journal_path(state_path: Path) -> Path:
+    return state_path.with_name(state_path.name + ".commit-journal.json")
+
+
 def _resolve_operation_manifest(path: str | Path | None) -> LoadedOperation:
     return load_operation_manifest(path or DEFAULT_OPERATION_MANIFEST)
 
@@ -101,21 +106,52 @@ def _run_resolved(
     authority_path, authority_pin = _resolve_authority_config(authority_manifest, authority_sha256)
     authority = PinnedFileAuthorityProvider(authority_path, authority_pin, runtime.resolve_target_fingerprint)
     state_path = resolved_state_file if runtime_kind == "file" else None
+    journal = DurableCommitJournal(_journal_path(state_path)) if state_path is not None else None
 
     pre_snapshot = runtime.evidence_snapshot()
     pre_state_sha256 = _sha256_file(state_path)
     pre_authority = authority.evidence_snapshot()
+    pre_journal = journal.evidence_snapshot() if journal is not None else None
     preexisting_expected = pre_snapshot["value"] == operation.expected_value
 
-    resolved = DACPResolvedOperation(operation, bind_core_runtime(runtime, authority, now_epoch=lambda: 1))
+    core_runtime = bind_core_runtime(
+        runtime,
+        authority,
+        now_epoch=lambda: 1,
+        dispatch_journal=journal,
+        operation_id=operation.operation_id if journal is not None else None,
+    )
+    resolved = DACPResolvedOperation(operation, core_runtime, commit_journal=journal)
     result = resolved.run()
 
     post_snapshot = runtime.evidence_snapshot()
     post_state_sha256 = _sha256_file(state_path)
     post_authority = authority.evidence_snapshot()
+    post_journal = journal.evidence_snapshot() if journal is not None else None
     state_changed = pre_state_sha256 != post_state_sha256 if state_path is not None else None
 
-    if preexisting_expected:
+    if result.execution_branch == "RECOVERY_PENDING_NO_REDISPATCH":
+        runtime_transition_ok = (
+            result.dispatch_count == 0
+            and result.applied_count == 0
+            and post_snapshot == pre_snapshot
+            and (state_changed is False if state_path is not None else True)
+        )
+        pass_condition = False
+    elif result.execution_branch == "RECOVERY_VERIFIED_NO_REDISPATCH":
+        runtime_transition_ok = (
+            result.dispatch_count == 0
+            and result.applied_count == 0
+            and post_snapshot["value"] == operation.expected_value
+            and (state_changed is False if state_path is not None else True)
+        )
+        pass_condition = (
+            result.terminal_state == "REPORTED"
+            and result.final_acceptance == operation.expected_acceptance
+            and runtime_transition_ok
+            and not result.verification_conflict
+        )
+    elif preexisting_expected:
         runtime_transition_ok = (
             result.execution_branch == "PREEXISTING_VERIFIED_NO_DISPATCH"
             and result.dispatch_count == 0
@@ -123,6 +159,12 @@ def _run_resolved(
             and (state_changed is False if state_path is not None else post_snapshot["value"] == operation.expected_value)
             and pre_snapshot["version"] == post_snapshot["version"]
             and len(pre_snapshot["ledger"]) == len(post_snapshot["ledger"])
+        )
+        pass_condition = (
+            result.terminal_state == "REPORTED"
+            and result.final_acceptance == operation.expected_acceptance
+            and runtime_transition_ok
+            and not result.verification_conflict
         )
     else:
         runtime_transition_ok = (
@@ -132,16 +174,15 @@ def _run_resolved(
             and post_snapshot["value"] == operation.expected_value
             and (state_changed is True if state_path is not None else True)
         )
+        pass_condition = (
+            result.terminal_state == "REPORTED"
+            and result.final_acceptance == operation.expected_acceptance
+            and runtime_transition_ok
+            and not result.verification_conflict
+        )
 
     authority_integrity_ok = bool(pre_authority.get("integrity_ok")) and bool(post_authority.get("integrity_ok"))
-    pass_condition = (
-        result.terminal_state == "REPORTED"
-        and result.final_acceptance == operation.expected_acceptance
-        and post_snapshot["value"] == operation.expected_value
-        and runtime_transition_ok
-        and authority_integrity_ok
-        and not result.verification_conflict
-    )
+    pass_condition = pass_condition and authority_integrity_ok
 
     return {
         "provider_dependency": False,
@@ -149,7 +190,7 @@ def _run_resolved(
         "provider_turn_count": 0,
         "execution_branch": result.execution_branch,
         "runtime_kind": runtime_kind,
-        "status": "PASS" if pass_condition else "FAIL",
+        "status": "PASS" if pass_condition else ("PENDING" if result.terminal_state == "PENDING" else "FAIL"),
         "pass": pass_condition,
         "operation_id": operation.operation_id,
         "operation_manifest": {
@@ -158,10 +199,12 @@ def _run_resolved(
             "schema": loaded_operation.raw["schema"],
         },
         "authority_evidence": {"pre": pre_authority, "post": post_authority},
+        "journal_evidence": {"pre": pre_journal, "post": post_journal},
         "declaration_result": result.declaration_result,
         "preexisting_check": result.preexisting_check,
         "commit_result": result.commit_result,
         "pending_reconciliation": result.pending_reconciliation,
+        "recovery_record": result.recovery_record,
         "terminal_state": result.terminal_state,
         "final_acceptance": result.final_acceptance,
         "completion_source": result.completion_source,
@@ -210,21 +253,23 @@ def main() -> int:
     )
 
     output = {
-        "schema": "dacp-core-live-integration-1.1",
+        "schema": "dacp-core-live-integration-1.2",
         "timestamp": _utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
         "application_mode": "RESOLVED_OPERATION_COMMITMENT",
         "provider_dependency": False,
         "commitment_path": "RESOLVED_OPERATION_DETERMINISTIC_NO_PROVIDER",
+        "recovery_contract": "DURABLE_DISPATCH_INTENT_RECONCILE_BEFORE_REDISPATCH",
         "runtime_contract": "DACPRuntime/evidence_snapshot",
         "authority_contract": "PinnedFileAuthorityProvider/dacp-authority-manifest-0.1",
         "authority_hash_mode": HASH_MODE,
         "authority_default_sha256": DEFAULT_AUTHORITY_SHA256,
         "runtime_default": "file",
         "operation_contract": "dacp-operation-manifest-0.1",
+        "commit_journal_contract": "dacp-commit-journal-0.1",
         "completion_contract": "DETERMINISTIC_PRECHECK_DIRECT_COMMIT_VERIFY_FINALIZE",
-        "durable_evidence_contract": "PRE_POST_STATE_SHA256_AND_SNAPSHOT",
+        "durable_evidence_contract": "PRE_POST_STATE_SHA256_AND_COMMIT_JOURNAL",
         "operation_result": operation_result,
     }
 
@@ -235,6 +280,8 @@ def main() -> int:
     print(json.dumps(output, indent=2, sort_keys=True))
     print("=== DACP_CORE_LIVE_INTEGRATION_END ===")
     print(f"RESULT_FILE={path.resolve()}")
+    if operation_result.get("status") == "PENDING":
+        return 2
     return 0 if operation_result.get("pass") else 1
 
 
