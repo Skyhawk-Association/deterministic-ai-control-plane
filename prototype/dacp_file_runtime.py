@@ -6,33 +6,22 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from dacp_commitment_core import ActionSpec, AuthorityProof, ExecutionReceipt, Outcome, VerificationReceipt, VerifierSpec
+from dacp_commitment_core import ActionSpec, ExecutionReceipt, Outcome, VerificationReceipt, VerifierSpec
 
 
 class FileBackedValueRuntime:
-    """Durable single-resource runtime with atomic replace and readback verification."""
+    """Durable single-resource execution runtime with atomic replace and readback verification."""
 
-    def __init__(self, path: str | Path, *, endpoint: str = "tracked-value", authorized_value: str = "DEPLOYED"):
+    def __init__(self, path: str | Path, *, endpoint: str = "tracked-value", initial_value: str = "INITIAL"):
         self.path = Path(path)
         self.endpoint = endpoint
-        self.authorized_value = authorized_value
+        self.initial_value = initial_value
         if not self.path.exists():
-            self._write_state({"value": "INITIAL", "version": 0, "ledger": []})
-        state = self._read_state()
-        self._authorized_action = ActionSpec(
-            endpoint=self.endpoint,
-            tool="SET_STATE",
-            args={"value": self.authorized_value},
-            target_fingerprint=self._fingerprint(state["version"]),
-        )
+            self._write_state({"value": self.initial_value, "version": 0, "ledger": []})
+        self._read_state()
 
-    @property
-    def authorized_action(self) -> ActionSpec:
-        return self._authorized_action
-
-    @staticmethod
-    def _fingerprint(version: int) -> str:
-        return f"tracked-value@v{version}"
+    def _fingerprint(self, version: int) -> str:
+        return f"{self.endpoint}@v{version}"
 
     def _read_state(self) -> dict[str, Any]:
         raw = self.path.read_text(encoding="utf-8")
@@ -65,17 +54,6 @@ class FileBackedValueRuntime:
         state = self._read_state()
         return self._fingerprint(state["version"])
 
-    def resolve_authority(self) -> AuthorityProof:
-        return AuthorityProof(
-            authority_id="AUTH-FILE-001",
-            action_fingerprint=self._authorized_action.action_fingerprint,
-            target_fingerprint=self._authorized_action.target_fingerprint,
-            trust_root_id="local-file-runtime-root",
-            valid_through_epoch=4_102_444_800,
-            revoked=False,
-            trust_root_compromised=False,
-        )
-
     def routine_read(self) -> dict[str, Any]:
         state = self._read_state()
         return {"value": state["value"], "target_fingerprint": self._fingerprint(state["version"])}
@@ -101,13 +79,20 @@ class FileBackedValueRuntime:
                 applied=False,
                 precondition_failed=True,
             )
-        if action.tool != "SET_STATE" or action.args != {"value": self.authorized_value}:
+        if action.endpoint != self.endpoint or action.tool != "SET_STATE":
             return ExecutionReceipt(
                 outcome=Outcome.FAILED,
-                response={"error": "UNAUTHORIZED_OR_UNSUPPORTED_ACTION"},
+                response={"error": "UNSUPPORTED_ACTION"},
                 applied=False,
             )
-        if state["value"] == self.authorized_value:
+        if set(action.args) != {"value"} or not isinstance(action.args.get("value"), str):
+            return ExecutionReceipt(
+                outcome=Outcome.FAILED,
+                response={"error": "INVALID_VALUE"},
+                applied=False,
+            )
+        requested = action.args["value"]
+        if state["value"] == requested:
             return ExecutionReceipt(
                 outcome=Outcome.SUCCEEDED,
                 response={"applied": False, "already_satisfied": True, "value": state["value"], "target_fingerprint": current_fingerprint},
@@ -118,14 +103,14 @@ class FileBackedValueRuntime:
             "sequence": len(state["ledger"]) + 1,
             "op": "SET_STATE",
             "prior_value": state["value"],
-            "value": self.authorized_value,
+            "value": requested,
             "version": next_version,
         }
-        next_state = {"value": self.authorized_value, "version": next_version, "ledger": [*state["ledger"], event]}
+        next_state = {"value": requested, "version": next_version, "ledger": [*state["ledger"], event]}
         self._write_state(next_state)
         return ExecutionReceipt(
             outcome=Outcome.SUCCEEDED,
-            response={"applied": True, "value": self.authorized_value, "target_fingerprint": self._fingerprint(next_version)},
+            response={"applied": True, "value": requested, "target_fingerprint": self._fingerprint(next_version)},
             applied=True,
         )
 
@@ -137,7 +122,7 @@ class FileBackedValueRuntime:
 
     def oracle_verify(self, verifier: VerifierSpec) -> VerificationReceipt:
         state = self._read_state()
-        replayed = "INITIAL"
+        replayed = self.initial_value
         expected_version = 0
         for index, event in enumerate(state["ledger"], start=1):
             if event.get("sequence") != index or event.get("op") != "SET_STATE":
