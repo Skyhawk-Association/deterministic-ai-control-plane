@@ -38,13 +38,7 @@ class CoreRuntime:
 
 
 class NativeActionAdapter:
-    """Translate normalized provider actions into deterministic CommitmentCore operations.
-
-    Provider models may propose PREDECLARE / CALL / REPORT actions. This adapter does
-    not let them own admission, authority, commit-time revalidation, verification, or
-    completion acceptance. Those decisions remain in CommitmentCore and the runtime's
-    authenticated control inputs.
-    """
+    """Translate normalized actions into deterministic CommitmentCore operations."""
 
     def __init__(
         self,
@@ -127,8 +121,7 @@ class NativeActionAdapter:
             verifier=verifier,
             authority_id=authority.authority_id,
             success_evidence=(
-                f"{verifier.verifier_id} must observe {verifier.expected_value!r} "
-                "independently from the executor"
+                f"{verifier.verifier_id} must observe {verifier.expected_value!r} independently from the executor"
             ),
             rollback_or_reconciliation_plan=str(action.get("rollback", "")),
         )
@@ -140,14 +133,48 @@ class NativeActionAdapter:
         )
         return self._decision_payload(decision)
 
+    def check_preexisting_postcondition(self) -> dict[str, Any]:
+        """Verify an already-satisfied postcondition before any consequential dispatch."""
+        declaration = self.core.declaration
+        if declaration is None or self.core.phase != Phase.DECLARED:
+            return {
+                "allowed": False,
+                "code": "PREEXISTING_CHECK_NOT_ALLOWED",
+                "phase": self.core.phase.value,
+            }
+
+        receipt = self.runtime.verify(declaration.verifier)
+        decision = self.core.verify_preexisting(receipt)
+        payload = self._decision_payload(decision)
+        payload["verification"] = {
+            "outcome": receipt.outcome.value,
+            "observed_value": receipt.observed_value,
+            "source_id": receipt.source_id,
+            "terminal": receipt.terminal,
+        }
+
+        if self.core.phase == Phase.VERIFIED and self.runtime.oracle_verify is not None:
+            oracle = self.runtime.oracle_verify(declaration.verifier)
+            oracle_decision = self.core.compare_oracle(oracle)
+            payload["oracle"] = {
+                "outcome": oracle.outcome.value,
+                "observed_value": oracle.observed_value,
+                "source_id": oracle.source_id,
+                "terminal": oracle.terminal,
+                "code": oracle_decision.code,
+            }
+            payload["verification_conflict"] = self.core.verification_conflict
+            payload["phase"] = self.core.phase.value
+            payload["required_next_action"] = oracle_decision.required_next_action
+
+        payload["outcome_classification"] = self.core.final_outcome.value
+        payload["dispatch_count"] = self.core.dispatch_count
+        return payload
+
     def _run_bound_verification(self) -> dict[str, Any]:
         declaration = self.core.declaration
         if declaration is None:
-            return {
-                "allowed": False,
-                "code": "DECLARATION_MISSING",
-                "phase": self.core.phase.value,
-            }
+            return {"allowed": False, "code": "DECLARATION_MISSING", "phase": self.core.phase.value}
 
         receipt = self.runtime.verify(declaration.verifier)
         decision = self.core.reconcile(receipt)
@@ -184,11 +211,7 @@ class NativeActionAdapter:
             if self.core.phase in {Phase.PENDING, Phase.DISPATCHED}:
                 return self._run_bound_verification()
             if self.runtime.routine_read is None:
-                return {
-                    "allowed": False,
-                    "code": "ROUTINE_READ_UNAVAILABLE",
-                    "phase": self.core.phase.value,
-                }
+                return {"allowed": False, "code": "ROUTINE_READ_UNAVAILABLE", "phase": self.core.phase.value}
             return {
                 "allowed": True,
                 "code": "ROUTINE_READ",
@@ -230,8 +253,6 @@ class NativeActionAdapter:
                 "precondition_failed": receipt.precondition_failed,
             }
 
-        # Verification is control-plane-owned. Do not depend on the model remembering
-        # to ask for a readback after a determinate consequential executor response.
         if decision.allowed and receipt is not None and receipt.outcome != Outcome.PENDING:
             payload["postcondition"] = self._run_bound_verification()
         return payload
@@ -240,11 +261,7 @@ class NativeActionAdapter:
         try:
             claim = Outcome(str(action.get("result")))
         except ValueError:
-            return {
-                "allowed": False,
-                "code": "INVALID_REPORT_RESULT",
-                "phase": self.core.phase.value,
-            }
+            return {"allowed": False, "code": "INVALID_REPORT_RESULT", "phase": self.core.phase.value}
         report = self.core.report(claim)
         payload = self._report_payload(report)
         payload["dispatch_count"] = self.core.dispatch_count
@@ -253,11 +270,7 @@ class NativeActionAdapter:
 
     def handle(self, action: dict[str, Any]) -> dict[str, Any]:
         if not isinstance(action, dict):
-            return {
-                "allowed": False,
-                "code": "INVALID_ACTION",
-                "phase": self.core.phase.value,
-            }
+            return {"allowed": False, "code": "INVALID_ACTION", "phase": self.core.phase.value}
         kind = action.get("action")
         if kind == "PREDECLARE":
             return self._predeclare(action)
@@ -265,8 +278,4 @@ class NativeActionAdapter:
             return self._call(action)
         if kind == "REPORT":
             return self._report(action)
-        return {
-            "allowed": False,
-            "code": "UNKNOWN_ACTION",
-            "phase": self.core.phase.value,
-        }
+        return {"allowed": False, "code": "UNKNOWN_ACTION", "phase": self.core.phase.value}
