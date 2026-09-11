@@ -15,11 +15,7 @@ from dacp_commitment_core import (
 
 @dataclass
 class VersionedValueRuntime:
-    """Minimal provider-independent runtime used by the first live core integration.
-
-    The executor mutates one versioned value. The declared verifier reads current
-    state directly. The oracle independently replays the append-only ledger.
-    """
+    """Minimal provider-independent in-memory runtime."""
 
     endpoint: str = "tracked-value"
     initial_value: str = "INITIAL"
@@ -63,110 +59,51 @@ class VersionedValueRuntime:
         )
 
     def routine_read(self) -> dict[str, Any]:
+        return {"value": self.value, "target_fingerprint": self.target_fingerprint}
+
+    def evidence_snapshot(self) -> dict[str, Any]:
         return {
+            "runtime_kind": "memory",
             "value": self.value,
+            "version": self.version,
             "target_fingerprint": self.target_fingerprint,
+            "ledger": list(self.ledger),
         }
 
     def execute(self, action: ActionSpec, expected_fingerprint: str) -> ExecutionReceipt:
         if action.tool != "SET_STATE":
-            return ExecutionReceipt(
-                outcome=Outcome.FAILED,
-                response={"error": "UNSUPPORTED_CONSEQUENTIAL_TOOL", "tool": action.tool},
-                applied=False,
-            )
+            return ExecutionReceipt(Outcome.FAILED, {"error": "UNSUPPORTED_CONSEQUENTIAL_TOOL", "tool": action.tool}, applied=False)
         if expected_fingerprint != self.target_fingerprint:
             return ExecutionReceipt(
-                outcome=Outcome.FAILED,
-                response={
-                    "error": "PRECONDITION_FAILED",
-                    "expected_target_fingerprint": expected_fingerprint,
-                    "current_target_fingerprint": self.target_fingerprint,
-                },
+                Outcome.FAILED,
+                {"error": "PRECONDITION_FAILED", "expected_target_fingerprint": expected_fingerprint, "current_target_fingerprint": self.target_fingerprint},
                 applied=False,
                 precondition_failed=True,
             )
         requested = action.args.get("value")
         if not isinstance(requested, str):
-            return ExecutionReceipt(
-                outcome=Outcome.FAILED,
-                response={"error": "INVALID_VALUE"},
-                applied=False,
-            )
-
+            return ExecutionReceipt(Outcome.FAILED, {"error": "INVALID_VALUE"}, applied=False)
         prior = self.value
         self.version += 1
         self.value = requested
-        self.ledger.append(
-            {
-                "sequence": len(self.ledger) + 1,
-                "op": "SET_STATE",
-                "prior_value": prior,
-                "value": requested,
-                "version": self.version,
-            }
-        )
-        return ExecutionReceipt(
-            outcome=Outcome.SUCCEEDED,
-            response={
-                "applied": True,
-                "value": self.value,
-                "target_fingerprint": self.target_fingerprint,
-            },
-            applied=True,
-        )
+        self.ledger.append({"sequence": len(self.ledger) + 1, "op": "SET_STATE", "prior_value": prior, "value": requested, "version": self.version})
+        return ExecutionReceipt(Outcome.SUCCEEDED, {"applied": True, "value": self.value, "target_fingerprint": self.target_fingerprint}, applied=True)
 
     def verify(self, verifier: VerifierSpec) -> VerificationReceipt:
         if verifier.tool != "READ_STATE" or verifier.args != {}:
-            return VerificationReceipt(
-                outcome=Outcome.FAILED,
-                observed_value=None,
-                source_id="direct-state-read",
-                independent_from_executor=True,
-            )
+            return VerificationReceipt(Outcome.FAILED, None, "direct-state-read", True)
         outcome = Outcome.SUCCEEDED if self.value == verifier.expected_value else Outcome.FAILED
-        return VerificationReceipt(
-            outcome=outcome,
-            observed_value=self.value,
-            source_id="direct-state-read",
-            independent_from_executor=True,
-        )
+        return VerificationReceipt(outcome, self.value, "direct-state-read", True)
 
     def oracle_verify(self, verifier: VerifierSpec) -> VerificationReceipt:
         replayed = self.initial_value
         expected_version = 0
         for event in self.ledger:
-            if event.get("sequence") != expected_version + 1:
-                return VerificationReceipt(
-                    outcome=Outcome.PENDING,
-                    observed_value=replayed,
-                    source_id="ledger-replay-oracle",
-                    independent_from_executor=True,
-                    terminal=False,
-                )
-            if event.get("op") != "SET_STATE":
-                return VerificationReceipt(
-                    outcome=Outcome.PENDING,
-                    observed_value=replayed,
-                    source_id="ledger-replay-oracle",
-                    independent_from_executor=True,
-                    terminal=False,
-                )
+            if event.get("sequence") != expected_version + 1 or event.get("op") != "SET_STATE":
+                return VerificationReceipt(Outcome.PENDING, replayed, "ledger-replay-oracle", True, terminal=False)
             expected_version += 1
             if event.get("version") != expected_version:
-                return VerificationReceipt(
-                    outcome=Outcome.PENDING,
-                    observed_value=replayed,
-                    source_id="ledger-replay-oracle",
-                    independent_from_executor=True,
-                    terminal=False,
-                )
+                return VerificationReceipt(Outcome.PENDING, replayed, "ledger-replay-oracle", True, terminal=False)
             replayed = event.get("value")
-
         outcome = Outcome.SUCCEEDED if replayed == verifier.expected_value else Outcome.FAILED
-        return VerificationReceipt(
-            outcome=outcome,
-            observed_value=replayed,
-            source_id="ledger-replay-oracle",
-            independent_from_executor=True,
-        )
+        return VerificationReceipt(outcome, replayed, "ledger-replay-oracle", True)
