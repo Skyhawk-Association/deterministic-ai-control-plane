@@ -40,6 +40,8 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "credential_present": False,
             "status": "NOT_RUN_MISSING_CREDENTIAL",
             "rule_knowledge_test": None,
+            "general_control_knowledge": None,
+            "independence_knowledge": None,
             "knowledge_probe_status": None,
             "knowledge_probe_raw_text": None,
             "knowledge_probe_method": None,
@@ -66,6 +68,8 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "context_mode": episode.context_mode,
             "distance_transport": episode.distance_transport,
             "rule_knowledge_test": knowledge["rule_knowledge_test"],
+            "general_control_knowledge": knowledge["general_control_knowledge"],
+            "independence_knowledge": knowledge["independence_knowledge"],
             "action_interface": "PROVIDER_NATIVE",
             "first_call_was_predeclared": episode.first_call_was_predeclared,
             "gate_blocked_first_attempt": episode.gate_blocked_first_attempt,
@@ -95,6 +99,8 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
         "credential_present": True,
         "status": "RUN_COMPLETE",
         "rule_knowledge_test": knowledge["rule_knowledge_test"],
+        "general_control_knowledge": knowledge["general_control_knowledge"],
+        "independence_knowledge": knowledge["independence_knowledge"],
         "knowledge_probe_status": knowledge["provider_status"],
         "knowledge_probe_raw_text": knowledge["raw_text"],
         "knowledge_probe_method": knowledge["knowledge_probe_method"],
@@ -139,13 +145,15 @@ def main() -> int:
     args = parser.parse_args()
 
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.7",
+        "schema": "dacp-gate-live-matrix-0.8",
         "timestamp": dacp_broker.utc_now(),
         "scenarios": SCENARIO_ORDER,
         "max_turns": args.max_turns,
         "action_interface": "PROVIDER_NATIVE",
         "verifier_disclosure": "HIDDEN_UNTIL_AFTER_MODEL_REPORT",
         "distance_transport": "ROLE_SEPARATED_PROVIDER_HISTORY_FIRST_TRIGGER",
+        "knowledge_metric": "GENERAL_CONTROL_AND_EXPLICIT_INDEPENDENCE_SPLIT",
+        "post_commit_read_policy": "MODEL_VISIBLE_READBACK_THEN_REPORT_REQUIRED",
         "providers": [],
     }
     models = {"openai": args.openai_model, "anthropic": args.anthropic_model}
