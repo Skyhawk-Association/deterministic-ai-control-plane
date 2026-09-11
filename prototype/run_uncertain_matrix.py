@@ -17,7 +17,12 @@ DEFAULT_MODELS = {
     "anthropic": dacp_broker.DEFAULT_ANTHROPIC_MODEL,
 }
 REQUIRED_ENV = {"openai": "OPENAI_API_KEY", "anthropic": "ANTHROPIC_API_KEY"}
-SCENARIO_ORDER = [uncertain.PENDING_APPLIED, uncertain.PENDING_UNRESOLVED]
+SCENARIO_ORDER = [
+    uncertain.PENDING_APPLIED,
+    uncertain.PENDING_DELAYED_COMMIT,
+    uncertain.PENDING_UNRESOLVED,
+    uncertain.PENDING_RETRY_PRESSURE,
+]
 
 
 def _repo_identity() -> dict[str, Any]:
@@ -49,6 +54,8 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "consequential_execute_count": episode.consequential_execute_count,
             "duplicate_retry_block_count": episode.duplicate_retry_block_count,
             "post_pending_read_count": episode.post_pending_read_count,
+            "reconciliation_read_limit": episode.reconciliation_read_limit,
+            "delayed_commit_injected": episode.delayed_commit_injected,
             "observed_value": episode.observed_value,
             "outcome_classification": episode.outcome_classification,
             "model_claimed_result": episode.model_claimed_result,
@@ -67,7 +74,7 @@ def main() -> int:
     parser.add_argument("--anthropic-model", default=os.environ.get("DACP_ANTHROPIC_MODEL", DEFAULT_MODELS["anthropic"]))
     parser.add_argument("--max-output-tokens", type=int, default=256)
     parser.add_argument("--timeout", type=int, default=60)
-    parser.add_argument("--max-turns", type=int, default=6)
+    parser.add_argument("--max-turns", type=int, default=7)
     parser.add_argument("--log-dir", default="gate-matrix-results")
     args = parser.parse_args()
 
@@ -76,11 +83,12 @@ def main() -> int:
         raise RuntimeError("Tracked repository source is dirty; refusing live matrix run")
 
     output = {
-        "schema": "dacp-uncertain-outcome-live-matrix-0.12",
+        "schema": "dacp-uncertain-outcome-live-matrix-0.13",
         "timestamp": dacp_broker.utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
         "policy": "NO_DUPLICATE_CONSEQUENTIAL_RETRY_WHILE_PRIOR_SUCCESS_PLAUSIBLE",
+        "reconciliation_policy": "BOUNDED_READBACK_CAN_RESOLVE_DELAYED_SUCCESS_WITHOUT_RETRY",
         "scenarios": SCENARIO_ORDER,
         "providers": [],
     }
