@@ -10,7 +10,7 @@ The default live entrypoint is:
 python3 run_live.py --provider openai
 ```
 
-That command now uses the durable local file runtime by default. Unless overridden, state is stored at:
+That command uses the durable local file runtime by default. Unless overridden, state is stored at:
 
 ```text
 ~/.dacp/runtime/tracked-value.json
@@ -24,9 +24,27 @@ python3 run_live.py --provider openai --runtime memory
 
 `run_live.py` delegates to `run_core_live_integration.py`, which wires one provider-native action stream into one deterministic control path:
 
-`provider native action -> dacp_action_provider -> DACPControlSession -> NativeActionAdapter -> CommitmentCore -> DACPRuntime`
+`operation manifest -> provider native action -> dacp_action_provider -> DACPControlSession -> NativeActionAdapter -> CommitmentCore -> DACPRuntime`
 
-The model proposes actions. The deterministic layer owns consequential admission and completion. The runtime owns only state access and execution mechanics.
+The model proposes actions. The deterministic layer owns consequential admission and completion. The runtime owns state access, authenticated authority, execution mechanics, verification, and evidence snapshots.
+
+## Operation manifests
+
+The default operation is no longer hard-coded in the live runner. It is loaded from:
+
+```text
+operations/tracked-value-deploy.json
+```
+
+The manifest schema is `dacp-operation-manifest-0.1`. A different operation request may be supplied with:
+
+```sh
+python3 run_live.py --provider openai --operation-manifest path/to/operation.json
+```
+
+A manifest is **request data, not authority**. It cannot authorize itself. Before any provider call, `DACPControlSession` resolves the runtime's authenticated authority and requires the manifest-derived action fingerprint and target fingerprint to match that authority exactly. A mismatched manifest fails closed before model invocation or state mutation.
+
+Every live result records the exact manifest path, schema, and SHA-256 so the operation request used for that run is reconstructible.
 
 ### Current control ownership
 
@@ -47,6 +65,8 @@ The model proposes actions. The deterministic layer owns consequential admission
 
 `dacp_control_session.py` owns the provider conversation shell and operation description. It transports normalized actions but does not decide whether a consequential action is authorized, safe to dispatch, verified, or acceptable as complete.
 
+`dacp_operation_manifest.py` validates versioned operation JSON and converts it into `OperationSpec`. It does not create or broaden authority.
+
 `dacp_core_adapter.py` translates normalized `PREDECLARE`, `CALL`, and `REPORT` actions into the core. It deliberately does not duplicate the core's safety decisions.
 
 `dacp_runtime_contract.py` defines the reusable `DACPRuntime` boundary consumed by the control plane.
@@ -61,6 +81,7 @@ The model proposes actions. The deterministic layer owns consequential admission
 
 Live result artifacts include:
 
+- operation manifest path/schema/SHA-256;
 - pre-run runtime snapshot;
 - post-run runtime snapshot;
 - pre-run state SHA-256 for the file runtime;
@@ -75,14 +96,16 @@ For an already-satisfied restart run, valid durable evidence requires zero appli
 
 The current integrated live path is expected to demonstrate all of the following before a successful completion claim is accepted:
 
-1. a matching consequential declaration is admitted;
-2. exactly one controlled consequential dispatch occurs;
-3. a state mutation occurs only when the desired state is not already satisfied;
-4. the resulting state is independently read back;
-5. the ledger oracle independently agrees with the observed result;
-6. no verification conflict remains;
-7. the model's final claim matches the control-plane classification;
-8. completion is accepted as `VERIFIED_SUCCEEDED` only after those checks.
+1. the requested operation manifest is structurally valid and its exact SHA-256 is recorded;
+2. the manifest-derived action matches independently supplied runtime authority before any provider call;
+3. a matching consequential declaration is admitted;
+4. exactly one controlled consequential dispatch occurs;
+5. a state mutation occurs only when the desired state is not already satisfied;
+6. the resulting state is independently read back;
+7. the ledger oracle independently agrees with the observed result;
+8. no verification conflict remains;
+9. the model's final claim matches the control-plane classification;
+10. completion is accepted as `VERIFIED_SUCCEEDED` only after those checks.
 
 A repeated already-satisfied request may still traverse one controlled dispatch, but the runtime must report `applied=false` and preserve the durable state byte-for-byte.
 
