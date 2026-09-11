@@ -11,6 +11,7 @@ from dacp_commitment_core import ActionSpec, AuthorityProof
 
 SCHEMA = "dacp-authority-manifest-0.1"
 TARGET_BINDING = "RESOLVE_CURRENT_AT_USE"
+HASH_MODE = "CANONICAL_JSON_SHA256"
 _REQUIRED_KEYS = {
     "schema",
     "authority_id",
@@ -24,8 +25,33 @@ _SCOPE_KEYS = {"endpoint", "tool", "args"}
 TargetResolver = Callable[[], str]
 
 
-def _sha256_bytes(payload: bytes) -> str:
-    return hashlib.sha256(payload).hexdigest()
+def _canonical_json(value: Any) -> str:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+
+
+def canonical_authority_sha256(value: Any) -> str:
+    return hashlib.sha256(_canonical_json(value).encode("utf-8")).hexdigest()
+
+
+def _reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key in authority manifest: {key}")
+        result[key] = value
+    return result
+
+
+def _decode_manifest(payload: bytes) -> dict[str, Any]:
+    try:
+        data = json.loads(payload.decode("utf-8"), object_pairs_hook=_reject_duplicate_keys)
+    except UnicodeDecodeError as exc:
+        raise ValueError("authority manifest must be UTF-8") from exc
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"invalid authority manifest JSON: {exc}") from exc
+    if not isinstance(data, dict):
+        raise ValueError("authority manifest must be a JSON object")
+    return data
 
 
 def _require_nonblank_string(value: Any, field: str) -> str:
@@ -98,39 +124,33 @@ class StaticAuthorityProvider:
 
 
 class PinnedFileAuthorityProvider:
-    """Authority source authenticated by an expected SHA-256 pin.
+    """Authority source authenticated by a canonical-JSON SHA-256 pin.
 
-    The manifest is loaded only after its exact bytes match the configured pin. The
-    trusted grant is cached. Every later authority resolution rechecks the file bytes;
-    missing, unreadable, or changed content is surfaced as trust-root compromise using
-    the cached trusted grant rather than trusting modified content.
+    The pin covers parsed authority semantics rather than platform-specific file bytes,
+    so CRLF/LF conversion, insignificant whitespace, and object key order do not alter
+    trust identity. Duplicate keys are rejected. Any semantic change, malformed content,
+    missing file, or unreadable file causes integrity failure. The trusted grant is
+    cached after initialization so later tampering cannot become new authority.
     """
 
     def __init__(self, path: str | Path, expected_sha256: str, target_resolver: TargetResolver):
         self.path = Path(path).expanduser().resolve()
         self.expected_sha256 = expected_sha256.strip().lower()
         if len(self.expected_sha256) != 64 or any(c not in "0123456789abcdef" for c in self.expected_sha256):
-            raise ValueError("authority SHA-256 pin must be 64 lowercase/uppercase hex characters")
+            raise ValueError("authority SHA-256 pin must be 64 hex characters")
         self.target_resolver = target_resolver
 
         payload = self.path.read_bytes()
-        observed = _sha256_bytes(payload)
+        data = _decode_manifest(payload)
+        grant = self._parse_grant(data)
+        observed = canonical_authority_sha256(data)
         if observed != self.expected_sha256:
-            raise ValueError("authority manifest SHA-256 pin mismatch at initialization")
-        self._grant = self._parse_grant(payload)
+            raise ValueError("authority manifest canonical SHA-256 pin mismatch at initialization")
+        self._grant = grant
         self._trusted_sha256 = observed
 
     @staticmethod
-    def _parse_grant(payload: bytes) -> AuthorityGrant:
-        try:
-            data = json.loads(payload.decode("utf-8"))
-        except UnicodeDecodeError as exc:
-            raise ValueError("authority manifest must be UTF-8") from exc
-        except json.JSONDecodeError as exc:
-            raise ValueError(f"invalid authority manifest JSON: {exc}") from exc
-
-        if not isinstance(data, dict):
-            raise ValueError("authority manifest must be a JSON object")
+    def _parse_grant(data: dict[str, Any]) -> AuthorityGrant:
         if set(data) != _REQUIRED_KEYS:
             missing = sorted(_REQUIRED_KEYS - set(data))
             extra = sorted(set(data) - _REQUIRED_KEYS)
@@ -167,8 +187,10 @@ class PinnedFileAuthorityProvider:
 
     def _observed_sha256(self) -> str | None:
         try:
-            return _sha256_bytes(self.path.read_bytes())
-        except OSError:
+            data = _decode_manifest(self.path.read_bytes())
+            self._parse_grant(data)
+            return canonical_authority_sha256(data)
+        except (OSError, ValueError):
             return None
 
     def resolve_authority(self) -> AuthorityProof:
@@ -191,6 +213,7 @@ class PinnedFileAuthorityProvider:
         return {
             "authority_kind": "pinned_file",
             "schema": SCHEMA,
+            "hash_mode": HASH_MODE,
             "path": str(self.path),
             "expected_sha256": self.expected_sha256,
             "observed_sha256": observed,
