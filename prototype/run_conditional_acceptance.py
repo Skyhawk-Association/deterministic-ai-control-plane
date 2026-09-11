@@ -4,17 +4,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import subprocess
 import sys
 import uuid
 from pathlib import Path
 from typing import Any
 
-import dacp_broker
 import run_core_live_integration as live
 
-SCHEMA = "dacp-conditional-acceptance-0.2"
+SCHEMA = "dacp-conditional-acceptance-0.3"
 UNIT_MODULES = [
     "test_dacp_commitment_core.py",
     "test_dacp_core_adapter.py",
@@ -48,17 +46,16 @@ def _case(name: str, assertions: dict[str, bool], evidence: dict[str, Any]) -> d
     return {"name": name, "status": "PASS" if not failures else "FAIL", "failures": failures, "assertions": assertions, "evidence": evidence}
 
 
-def assess_mutation(name: str, result: dict[str, Any], *, credential_expected: bool) -> dict[str, Any]:
+def assess_mutation(result: dict[str, Any]) -> dict[str, Any]:
     snapshot = result.get("runtime_snapshot") or {}
     runtime_evidence = result.get("runtime_evidence") or {}
     authority = result.get("authority_evidence") or {}
-    return _case(name, {
-        "provider_result_passed": result.get("pass") is True,
-        "branch_is_mutation_required": result.get("execution_branch") == "MUTATION_REQUIRED",
-        "credential_state_expected": result.get("credential_present") is credential_expected,
-        "credential_not_required": result.get("credential_required_for_branch") is False,
+    return _case("MUTATION_REQUIRED", {
+        "provider_dependency_absent": result.get("provider_dependency") is False,
         "provider_not_used": result.get("provider_used") is False,
         "zero_provider_turns": result.get("provider_turn_count") == 0,
+        "provider_result_passed": result.get("pass") is True,
+        "branch_is_mutation_required": result.get("execution_branch") == "MUTATION_REQUIRED",
         "exactly_one_dispatch": result.get("dispatch_count") == 1,
         "exactly_one_applied_write": result.get("applied_count") == 1,
         "direct_control_commit": result.get("completion_source") == "CONTROL_PLANE_DIRECT_COMMIT",
@@ -72,18 +69,17 @@ def assess_mutation(name: str, result: dict[str, Any], *, credential_expected: b
     }, result)
 
 
-def assess_preexisting(name: str, result: dict[str, Any], stable_hash: str, *, credential_expected: bool) -> dict[str, Any]:
+def assess_preexisting(result: dict[str, Any], stable_hash: str) -> dict[str, Any]:
     runtime_evidence = result.get("runtime_evidence") or {}
     snapshot = result.get("runtime_snapshot") or {}
     check = result.get("preexisting_check") or {}
     oracle = check.get("oracle") or {}
-    return _case(name, {
-        "provider_result_passed": result.get("pass") is True,
-        "branch_is_preexisting_fast_path": result.get("execution_branch") == "PREEXISTING_VERIFIED_NO_DISPATCH",
-        "credential_state_expected": result.get("credential_present") is credential_expected,
-        "credential_not_required": result.get("credential_required_for_branch") is False,
+    return _case("PREEXISTING_VERIFIED", {
+        "provider_dependency_absent": result.get("provider_dependency") is False,
         "provider_not_used": result.get("provider_used") is False,
         "zero_provider_turns": result.get("provider_turn_count") == 0,
+        "provider_result_passed": result.get("pass") is True,
+        "branch_is_preexisting_fast_path": result.get("execution_branch") == "PREEXISTING_VERIFIED_NO_DISPATCH",
         "zero_dispatches": result.get("dispatch_count") == 0,
         "zero_applied_writes": result.get("applied_count") == 0,
         "preexisting_postcondition_verified": check.get("code") == "PREEXISTING_POSTCONDITION_VERIFIED",
@@ -112,14 +108,8 @@ def _run_unit_suite() -> dict[str, Any]:
     }
 
 
-def _resolved_run(provider: str, model: str, state_file: Path) -> dict[str, Any]:
-    return live._run_provider(provider, model, 256, 60, 3, "file", str(state_file), None, None, None)
-
-
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run bundled DACP resolved-operation conditional acceptance")
-    parser.add_argument("--provider", choices=["openai", "anthropic"], default="openai")
-    parser.add_argument("--model", default=None)
+    parser = argparse.ArgumentParser(description="Run bundled DACP deterministic resolved-operation acceptance")
     parser.add_argument("--log-dir", default="gate-matrix-results")
     args = parser.parse_args()
 
@@ -127,21 +117,17 @@ def main() -> int:
     if not identity["tracked_source_clean"]:
         raise RuntimeError("tracked repository source is dirty; refusing bundled acceptance")
 
-    default_model = dacp_broker.DEFAULT_OPENAI_MODEL if args.provider == "openai" else dacp_broker.DEFAULT_ANTHROPIC_MODEL
-    model = args.model or default_model
-    timestamp = dacp_broker.utc_now()
+    timestamp = live._utc_now()
     log_dir = Path(args.log_dir).resolve()
-    state_no_credential = log_dir / f"resolved-no-credential-{uuid.uuid4().hex}.json"
-    state_with_credential = log_dir / f"resolved-with-credential-{uuid.uuid4().hex}.json"
+    state_file = log_dir / f"resolved-bundle-state-{uuid.uuid4().hex}.json"
 
     output: dict[str, Any] = {
         "schema": SCHEMA,
         "timestamp": timestamp,
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
-        "provider": args.provider,
-        "model": model,
         "commitment_path": "RESOLVED_OPERATION_DETERMINISTIC_NO_PROVIDER",
+        "provider_dependency": False,
         "policy": {"one_bundle_one_upload": True, "provider_reserved_for_upstream_orientation": True},
         "unit_gate": _run_unit_suite(),
         "cases": [],
@@ -156,33 +142,17 @@ def main() -> int:
         print(f"RESULT_SHA256={_sha256_file(path)}")
         return 1
 
-    credential_name = "OPENAI_API_KEY" if args.provider == "openai" else "ANTHROPIC_API_KEY"
-    saved_credential = os.environ.get(credential_name)
+    mutation = live._run_resolved("file", str(state_file), None, None, None)
+    mutation_case = assess_mutation(mutation)
+    output["cases"].append(mutation_case)
 
-    try:
-        os.environ.pop(credential_name, None)
-        first = _resolved_run(args.provider, model, state_no_credential)
-        first_case = assess_mutation("MUTATION_WITHOUT_PROVIDER_CREDENTIAL", first, credential_expected=False)
-        output["cases"].append(first_case)
-        if first_case["status"] == "PASS":
-            stable_hash = first["runtime_evidence"]["post_state_sha256"]
-            replay = _resolved_run(args.provider, model, state_no_credential)
-            output["cases"].append(assess_preexisting("PREEXISTING_WITHOUT_PROVIDER_CREDENTIAL", replay, stable_hash, credential_expected=False))
-    finally:
-        if saved_credential is not None:
-            os.environ[credential_name] = saved_credential
-
-    if saved_credential is not None:
-        second = _resolved_run(args.provider, model, state_with_credential)
-        second_case = assess_mutation("MUTATION_WITH_PROVIDER_CREDENTIAL_PRESENT_BUT_UNUSED", second, credential_expected=True)
-        output["cases"].append(second_case)
-        if second_case["status"] == "PASS":
-            stable_hash = second["runtime_evidence"]["post_state_sha256"]
-            replay = _resolved_run(args.provider, model, state_with_credential)
-            output["cases"].append(assess_preexisting("PREEXISTING_WITH_PROVIDER_CREDENTIAL_PRESENT_BUT_UNUSED", replay, stable_hash, credential_expected=True))
+    if mutation_case["status"] == "PASS":
+        stable_hash = mutation["runtime_evidence"]["post_state_sha256"]
+        replay = live._run_resolved("file", str(state_file), None, None, None)
+        output["cases"].append(assess_preexisting(replay, stable_hash))
 
     statuses = [case["status"] for case in output["cases"]]
-    output["all_passed"] = bool(statuses) and all(status == "PASS" for status in statuses)
+    output["all_passed"] = len(statuses) == 2 and all(status == "PASS" for status in statuses)
     output["summary"] = {
         "pass_count": sum(status == "PASS" for status in statuses),
         "fail_count": sum(status == "FAIL" for status in statuses),
