@@ -5,6 +5,13 @@ import dacp_action_provider as actions
 
 
 class NativeActionAdapterTests(unittest.TestCase):
+    def verifier(self, expected="DEPLOYED"):
+        return {
+            "tool": "READ_STATE",
+            "args": {"value": None},
+            "expected_value": expected,
+        }
+
     def test_openai_native_call_is_normalized(self):
         seen = {}
 
@@ -70,7 +77,7 @@ class NativeActionAdapterTests(unittest.TestCase):
                                 "tool": "SET_STATE",
                                 "args": {"value": "DEPLOYED"},
                                 "target_fingerprint": "f",
-                                "verifier": "v",
+                                "verifier": self.verifier(),
                                 "rollback": "r",
                             },
                         }
@@ -82,7 +89,9 @@ class NativeActionAdapterTests(unittest.TestCase):
 
         result = actions.call_anthropic_action("p", "claude-test", 256, 60, transport)
         self.assertEqual(result.status, "SUCCEEDED")
-        self.assertEqual(json.loads(result.text)["action"], "PREDECLARE")
+        parsed = json.loads(result.text)
+        self.assertEqual(parsed["action"], "PREDECLARE")
+        self.assertEqual(parsed["verifier"], {"tool": "READ_STATE", "args": {}, "expected_value": "DEPLOYED"})
         self.assertEqual(
             seen["payload"]["tool_choice"],
             {"type": "any", "disable_parallel_tool_use": True},
@@ -113,6 +122,20 @@ class NativeActionAdapterTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             actions.normalize_native_action(
                 "DACP_CALL", {"tool": "SET_STATE", "args": {"value": None}}
+            )
+
+    def test_predeclare_requires_structured_verifier(self):
+        with self.assertRaises(ValueError):
+            actions.normalize_native_action(
+                "DACP_PREDECLARE",
+                {
+                    "endpoint": "e",
+                    "tool": "SET_STATE",
+                    "args": {"value": "DEPLOYED"},
+                    "target_fingerprint": "f",
+                    "verifier": "trust the setter",
+                    "rollback": "r",
+                },
             )
 
 
