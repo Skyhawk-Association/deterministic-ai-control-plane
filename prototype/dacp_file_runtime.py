@@ -80,6 +80,17 @@ class FileBackedValueRuntime:
         state = self._read_state()
         return {"value": state["value"], "target_fingerprint": self._fingerprint(state["version"])}
 
+    def evidence_snapshot(self) -> dict[str, Any]:
+        state = self._read_state()
+        return {
+            "runtime_kind": "file",
+            "path": str(self.path.resolve()),
+            "value": state["value"],
+            "version": state["version"],
+            "target_fingerprint": self._fingerprint(state["version"]),
+            "ledger": list(state["ledger"]),
+        }
+
     def execute(self, action: ActionSpec, expected_fingerprint: str) -> ExecutionReceipt:
         state = self._read_state()
         current_fingerprint = self._fingerprint(state["version"])
@@ -99,12 +110,7 @@ class FileBackedValueRuntime:
         if state["value"] == self.authorized_value:
             return ExecutionReceipt(
                 outcome=Outcome.SUCCEEDED,
-                response={
-                    "applied": False,
-                    "already_satisfied": True,
-                    "value": state["value"],
-                    "target_fingerprint": current_fingerprint,
-                },
+                response={"applied": False, "already_satisfied": True, "value": state["value"], "target_fingerprint": current_fingerprint},
                 applied=False,
             )
         next_version = state["version"] + 1
@@ -115,11 +121,7 @@ class FileBackedValueRuntime:
             "value": self.authorized_value,
             "version": next_version,
         }
-        next_state = {
-            "value": self.authorized_value,
-            "version": next_version,
-            "ledger": [*state["ledger"], event],
-        }
+        next_state = {"value": self.authorized_value, "version": next_version, "ledger": [*state["ledger"], event]}
         self._write_state(next_state)
         return ExecutionReceipt(
             outcome=Outcome.SUCCEEDED,
