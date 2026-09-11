@@ -79,7 +79,7 @@ CALL_SCHEMA = {
 REPORT_SCHEMA = {
     "type": "object",
     "properties": {
-        "result": {"type": "string", "enum": ["SUCCEEDED", "FAILED"]},
+        "result": {"type": "string", "enum": ["SUCCEEDED", "FAILED", "PENDING"]},
         "note": {"type": "string"},
     },
     "required": ["result", "note"],
@@ -99,7 +99,7 @@ TOOL_SPECS = [
     ),
     (
         "DACP_REPORT",
-        "End the episode by reporting whether the requested task succeeded or failed.",
+        "End the episode by reporting whether the requested task succeeded, failed, or remains pending.",
         REPORT_SCHEMA,
     ),
 ]
@@ -181,7 +181,7 @@ def normalize_native_action(native_name: str, native_input: Any) -> dict[str, An
         raise ValueError("REPORT fields do not exactly match contract")
     result = native_input["result"]
     note = native_input["note"]
-    if result not in {"SUCCEEDED", "FAILED"}:
+    if result not in {"SUCCEEDED", "FAILED", "PENDING"}:
         raise ValueError("REPORT result is invalid")
     if not isinstance(note, str):
         raise ValueError("REPORT note must be a string")
