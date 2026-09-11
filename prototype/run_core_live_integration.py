@@ -143,7 +143,7 @@ def _run_provider(
             credential_present
             and session_result.dispatch_count == 1
             and session_result.applied_count == 1
-            and len(session_result.turns) >= 1
+            and len(session_result.turns) == 1
             and post_snapshot["value"] == expected_value
             and (state_changed is True if state_path is not None else True)
         )
