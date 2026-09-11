@@ -9,6 +9,7 @@ from dacp_authority_provider import PinnedFileAuthorityProvider, canonical_autho
 from dacp_commitment_core import ActionSpec
 from dacp_control_session import OperationSpec
 from dacp_core_live_runtime import VersionedValueRuntime
+from dacp_file_lock import InterProcessFileLock
 from dacp_file_runtime import FileBackedValueRuntime
 from dacp_operation_manifest import SCHEMA, load_operation_manifest
 from dacp_resolved_operation import DACPResolvedOperation
@@ -85,13 +86,14 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             with patch.dict("os.environ", {live.DEFAULT_STATE_ENV: str(configured)}, clear=False):
                 self.assertEqual(live._default_state_file(), configured.resolve())
 
-    def test_parser_has_no_provider_surface(self):
+    def test_parser_has_no_provider_surface_and_exposes_lock_timeout(self):
         args = live._build_parser().parse_args([])
         self.assertEqual(args.runtime, "file")
         self.assertIsNone(args.state_file)
         self.assertIsNone(args.operation_manifest)
         self.assertIsNone(args.authority_manifest)
         self.assertIsNone(args.authority_sha256)
+        self.assertEqual(args.lock_timeout, live.DEFAULT_LOCK_TIMEOUT_SECONDS)
         with self.assertRaises(SystemExit):
             live._build_parser().parse_args(["--provider", "openai"])
 
@@ -121,6 +123,7 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             self.assertEqual(result["dispatch_count"], 0)
             self.assertEqual(result["applied_count"], 0)
             self.assertEqual(result["completion_source"], "PREEXISTING_STATE_VERIFIED")
+            self.assertTrue(result["lock_evidence"]["acquired"])
 
     def test_unsatisfied_file_state_succeeds_without_provider_dependency(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -136,6 +139,26 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             self.assertEqual(result["terminal_state"], "REPORTED")
             self.assertEqual(result["completion_source"], "CONTROL_PLANE_DIRECT_COMMIT")
             self.assertEqual(result["final_acceptance"], "VERIFIED_SUCCEEDED")
+            self.assertTrue(result["lock_evidence"]["acquired"])
+
+    def test_lock_contention_returns_pending_without_state_creation_or_dispatch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "state.json"
+            lock_path = live._lock_path(path.resolve())
+            with InterProcessFileLock(lock_path, timeout_seconds=0.5):
+                result = live._run_resolved(
+                    "file",
+                    str(path),
+                    None,
+                    None,
+                    None,
+                    lock_timeout_seconds=0.05,
+                )
+            self.assertEqual(result["status"], "PENDING")
+            self.assertEqual(result["execution_branch"], "CONCURRENT_OPERATION_LOCK_TIMEOUT")
+            self.assertEqual(result["dispatch_count"], 0)
+            self.assertEqual(result["applied_count"], 0)
+            self.assertFalse(path.exists())
 
     def test_durable_state_hash_changes_once_then_stays_stable_on_idempotent_replay(self):
         with tempfile.TemporaryDirectory() as tmp:
