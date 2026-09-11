@@ -1,0 +1,49 @@
+name: DACP Prototype Conditional Acceptance
+
+on:
+  push:
+    branches:
+      - prototype/task-time-gate-beta-v0
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acceptance:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run bundled deterministic acceptance
+        shell: pwsh
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = 'Stop'
+          python prototype/run_conditional_acceptance.py --log-dir prototype/gate-matrix-results
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Show exact source identity
+        if: always()
+        shell: pwsh
+        run: |
+          git rev-parse HEAD
+          git status --porcelain --untracked-files=no
+
+      - name: Upload bundled acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conditional-acceptance-${{ matrix.os }}
+          path: prototype/gate-matrix-results/conditional-acceptance-*.json
+          if-no-files-found: warn
