@@ -3,29 +3,20 @@ from __future__ import annotations
 import time
 from typing import Any, Protocol, runtime_checkable
 
-from dacp_commitment_core import (
-    ActionSpec,
-    AuthorityProof,
-    ExecutionReceipt,
-    VerifierSpec,
-    VerificationReceipt,
-)
+from dacp_authority_provider import AuthorityProvider
+from dacp_commitment_core import ActionSpec, ExecutionReceipt, VerifierSpec, VerificationReceipt
 from dacp_core_adapter import CoreRuntime
 
 
 @runtime_checkable
 class DACPRuntime(Protocol):
-    """Minimal runtime surface consumed by the deterministic control plane."""
+    """Execution/state surface consumed by the deterministic control plane.
+
+    A runtime owns target resolution, execution mechanics, verification, and state
+    evidence. It does not grant authority for consequential actions.
+    """
 
     endpoint: str
-    authorized_value: Any
-
-    @property
-    def authorized_action(self) -> ActionSpec:
-        ...
-
-    def resolve_authority(self) -> AuthorityProof:
-        ...
 
     def resolve_target_fingerprint(self) -> str:
         ...
@@ -46,14 +37,16 @@ class DACPRuntime(Protocol):
         ...
 
 
-def bind_core_runtime(runtime: DACPRuntime, *, now_epoch=None) -> CoreRuntime:
-    """Bind a concrete DACP runtime to the callback shape used by NativeActionAdapter."""
+def bind_core_runtime(runtime: DACPRuntime, authority: AuthorityProvider, *, now_epoch=None) -> CoreRuntime:
+    """Bind separate execution and authority boundaries to NativeActionAdapter."""
 
     if not isinstance(runtime, DACPRuntime):
         raise TypeError("runtime does not satisfy DACPRuntime protocol")
+    if not isinstance(authority, AuthorityProvider):
+        raise TypeError("authority does not satisfy AuthorityProvider protocol")
     clock = now_epoch or (lambda: int(time.time()))
     return CoreRuntime(
-        resolve_authority=runtime.resolve_authority,
+        resolve_authority=authority.resolve_authority,
         resolve_target_fingerprint=runtime.resolve_target_fingerprint,
         now_epoch=clock,
         execute=runtime.execute,
