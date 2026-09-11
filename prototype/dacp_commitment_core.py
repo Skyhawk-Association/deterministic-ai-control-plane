@@ -152,12 +152,7 @@ Executor = Callable[[ActionSpec, str], ExecutionReceipt]
 
 
 class CommitmentCore:
-    """Provider-neutral deterministic commitment state machine.
-
-    The model may propose declarations and calls, but this object owns admission,
-    commit-time authority/target checks, duplicate suppression, uncertain-outcome
-    handling, verification conflict handling, and completion acceptance.
-    """
+    """Provider-neutral deterministic commitment state machine."""
 
     def __init__(self, verifier_policy: VerifierPolicy):
         self.verifier_policy = verifier_policy
@@ -211,7 +206,44 @@ class CommitmentCore:
             target_fingerprint=current_target_fingerprint,
             verifier_id=declaration.verifier.verifier_id,
         )
-        return GateDecision(True, "DECLARATION_ACCEPTED", self.phase, "CALL")
+        return GateDecision(True, "DECLARATION_ACCEPTED", self.phase, "CHECK_OR_CALL")
+
+    def verify_preexisting(self, verifier_receipt: VerificationReceipt) -> GateDecision:
+        """Check whether the declared postcondition is already independently satisfied.
+
+        This is a no-dispatch fast path. Failure to prove the postcondition leaves the
+        declaration intact for normal commit. Success still requires oracle comparison
+        before final acceptance.
+        """
+        if self.phase != Phase.DECLARED or self.declaration is None:
+            return GateDecision(False, "PREEXISTING_CHECK_NOT_ALLOWED", self.phase, "PREDECLARE")
+        if not verifier_receipt.independent_from_executor:
+            return GateDecision(False, "NONINDEPENDENT_PREEXISTING_VERIFICATION_BLOCKED", self.phase, "CALL")
+
+        expected = self.declaration.verifier.expected_value
+        satisfied = (
+            verifier_receipt.outcome == Outcome.SUCCEEDED
+            and verifier_receipt.terminal
+            and verifier_receipt.observed_value == expected
+        )
+        self._record(
+            "PREEXISTING_CHECK",
+            source_id=verifier_receipt.source_id,
+            outcome=verifier_receipt.outcome.value,
+            observed_value=verifier_receipt.observed_value,
+            terminal=verifier_receipt.terminal,
+            satisfied=satisfied,
+        )
+        if not satisfied:
+            self.verifier_receipt = None
+            self.oracle_receipt = None
+            self.final_outcome = Outcome.PENDING
+            return GateDecision(True, "PREEXISTING_POSTCONDITION_NOT_SATISFIED", self.phase, "CALL")
+
+        self.verifier_receipt = verifier_receipt
+        self.final_outcome = Outcome.SUCCEEDED
+        self.phase = Phase.VERIFIED
+        return GateDecision(True, "PREEXISTING_POSTCONDITION_VERIFIED", self.phase, "ORACLE")
 
     def commit(
         self,
