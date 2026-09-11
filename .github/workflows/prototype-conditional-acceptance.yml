@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - prototype/task-time-gate-beta-v0
+      - main
   workflow_dispatch:
 
 permissions:
