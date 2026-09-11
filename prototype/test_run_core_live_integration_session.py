@@ -1,6 +1,7 @@
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import run_core_live_integration as live
 from dacp_control_session import DACPControlSession, OperationSpec
@@ -38,9 +39,29 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             self.assertIsInstance(durable, FileBackedValueRuntime)
             self.assertTrue(path.exists())
 
-    def test_file_runtime_requires_state_path(self):
-        with self.assertRaises(ValueError):
-            live._make_runtime("file", None)
+    def test_file_runtime_resolves_default_state_path(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            with patch.dict("os.environ", {}, clear=False):
+                with patch("pathlib.Path.home", return_value=home):
+                    resolved = live._resolve_state_file("file", None)
+            self.assertEqual(resolved, (home / ".dacp" / "runtime" / "tracked-value.json").resolve())
+
+    def test_state_file_environment_override(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            configured = Path(tmp) / "custom-state.json"
+            with patch.dict("os.environ", {live.DEFAULT_STATE_ENV: str(configured)}, clear=False):
+                self.assertEqual(live._default_state_file(), configured.resolve())
+
+    def test_parser_defaults_to_file_runtime(self):
+        args = live._build_parser().parse_args([])
+        self.assertEqual(args.runtime, "file")
+        self.assertIsNone(args.state_file)
+
+    def test_memory_runtime_remains_explicit(self):
+        args = live._build_parser().parse_args(["--runtime", "memory"])
+        self.assertEqual(args.runtime, "memory")
+        self.assertIsNone(live._resolve_state_file(args.runtime, None))
 
     def test_durable_state_hash_changes_once_then_stays_stable_on_idempotent_replay(self):
         with tempfile.TemporaryDirectory() as tmp:
