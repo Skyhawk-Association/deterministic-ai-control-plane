@@ -24,6 +24,16 @@ class ScriptedProvider:
         return fake_result(self.actions.pop(0))
 
 
+class HistoryProvider:
+    def __init__(self, action):
+        self.action = action
+        self.histories = []
+
+    def __call__(self, messages):
+        self.histories.append(messages)
+        return fake_result(self.action)
+
+
 class GateV2Tests(unittest.TestCase):
     def predeclare(self, tool="SET_STATE"):
         return {
@@ -75,7 +85,7 @@ class GateV2Tests(unittest.TestCase):
         self.assertFalse(log.claim_matches_verifier)
         self.assertFalse(log.verifier_disclosed_before_report)
 
-    def test_model_may_read_state_after_commit_without_repeating_consequential_write(self):
+    def test_model_read_state_after_commit_gets_value_and_report_signal(self):
         provider = ScriptedProvider([
             self.predeclare(),
             {"action": "CALL", "tool": "SET_STATE", "args": {"value": "DEPLOYED"}},
@@ -85,27 +95,26 @@ class GateV2Tests(unittest.TestCase):
         log = gate.run_episode(gate.SCENARIOS["buried_request"], provider)
         self.assertEqual(log.consequential_execute_count, 1)
         self.assertEqual(log.post_commit_read_count, 1)
-        self.assertEqual(log.turns[2]["broker_reply"], {"value": "DEPLOYED"})
+        self.assertEqual(log.turns[2]["broker_reply"], {"value": "DEPLOYED", "required_next_action": "REPORT"})
         self.assertEqual(log.report_basis, "EXECUTOR_PLUS_MODEL_READ")
+        self.assertTrue(log.claim_matches_verifier)
 
-    def test_delayed_context_places_rule_once_before_40_labeled_exchanges(self):
+    def test_role_separated_delayed_history_has_rule_once_and_40_exchanges(self):
+        scenario = gate.SCENARIOS[gate.DELAYED_SCENARIO_ID]
+        history = HistoryProvider(self.predeclare())
         provider = ScriptedProvider([
-            self.predeclare(),
             {"action": "CALL", "tool": "SET_STATE", "args": {"value": "DEPLOYED"}},
             {"action": "REPORT", "result": "SUCCEEDED", "note": "done"},
         ])
-        scenario = gate.SCENARIOS[gate.DELAYED_SCENARIO_ID]
-        log = gate.run_episode(scenario, provider)
-        first_prompt = provider.prompts[0]
-        self.assertEqual(first_prompt.count("SESSION RULE ESTABLISHED AT TURN 0"), 1)
-        self.assertIn("USER TURN 40:", first_prompt)
-        self.assertIn("ASSISTANT TURN 40:", first_prompt)
-        self.assertIn("USER TURN 41:", first_prompt)
+        log = gate.run_episode(scenario, provider, history_provider_call=history)
+        messages = history.histories[0]
+        self.assertEqual(len(messages), 83)
+        self.assertEqual(sum(gate.SESSION_RULE in m["content"] for m in messages), 1)
+        self.assertEqual(messages[-1]["role"], "user")
+        self.assertEqual(messages[-1]["content"], scenario.user_task)
         self.assertEqual(log.context_mode, "RULE_ONCE_40_TURNS_EARLIER")
-        self.assertEqual(
-            log.distance_transport,
-            "SINGLE_REQUEST_CONTEXT_REPLAY_WITH_40_LABELED_EXCHANGES",
-        )
+        self.assertEqual(log.distance_transport, "ROLE_SEPARATED_PROVIDER_HISTORY_FIRST_TRIGGER")
+        self.assertEqual(log.turns[0]["input_transport"], "ROLE_SEPARATED_PROVIDER_HISTORY")
 
     def test_override_pressure_scenario_explicitly_requests_rule_violation(self):
         scenario = gate.SCENARIOS[gate.DELAYED_OVERRIDE_SCENARIO_ID]
