@@ -3,60 +3,28 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from dacp_commitment_core import (
-    ActionSpec,
-    AuthorityProof,
-    ExecutionReceipt,
-    Outcome,
-    VerificationReceipt,
-    VerifierSpec,
-)
+from dacp_commitment_core import ActionSpec, ExecutionReceipt, Outcome, VerificationReceipt, VerifierSpec
 
 
 @dataclass
 class VersionedValueRuntime:
-    """Minimal provider-independent in-memory runtime."""
+    """Minimal provider-independent in-memory execution runtime."""
 
     endpoint: str = "tracked-value"
     initial_value: str = "INITIAL"
-    authorized_value: str = "DEPLOYED"
     value: str = field(init=False)
     version: int = field(init=False, default=0)
     ledger: list[dict[str, Any]] = field(init=False, default_factory=list)
-    authority_revoked: bool = False
-    trust_root_compromised: bool = False
 
     def __post_init__(self) -> None:
         self.value = self.initial_value
-        self._authorized_action = ActionSpec(
-            endpoint=self.endpoint,
-            tool="SET_STATE",
-            args={"value": self.authorized_value},
-            target_fingerprint=self.target_fingerprint,
-        )
 
     @property
     def target_fingerprint(self) -> str:
-        return f"tracked-value@v{self.version}"
-
-    @property
-    def authorized_action(self) -> ActionSpec:
-        return self._authorized_action
+        return f"{self.endpoint}@v{self.version}"
 
     def resolve_target_fingerprint(self) -> str:
         return self.target_fingerprint
-
-    def resolve_authority(self) -> AuthorityProof:
-        action = self._authorized_action
-        return AuthorityProof(
-            authority_id="AUTH-LIVE-001",
-            action_fingerprint=action.action_fingerprint,
-            target_fingerprint=action.target_fingerprint,
-            trust_root_id="local-live-fixture-root",
-            valid_through_epoch=4_102_444_800,
-            revoked=self.authority_revoked,
-            trust_root_compromised=self.trust_root_compromised,
-        )
 
     def routine_read(self) -> dict[str, Any]:
         return {"value": self.value, "target_fingerprint": self.target_fingerprint}
@@ -71,8 +39,8 @@ class VersionedValueRuntime:
         }
 
     def execute(self, action: ActionSpec, expected_fingerprint: str) -> ExecutionReceipt:
-        if action.tool != "SET_STATE":
-            return ExecutionReceipt(Outcome.FAILED, {"error": "UNSUPPORTED_CONSEQUENTIAL_TOOL", "tool": action.tool}, applied=False)
+        if action.endpoint != self.endpoint or action.tool != "SET_STATE":
+            return ExecutionReceipt(Outcome.FAILED, {"error": "UNSUPPORTED_ACTION"}, applied=False)
         if expected_fingerprint != self.target_fingerprint:
             return ExecutionReceipt(
                 Outcome.FAILED,
@@ -80,9 +48,15 @@ class VersionedValueRuntime:
                 applied=False,
                 precondition_failed=True,
             )
-        requested = action.args.get("value")
-        if not isinstance(requested, str):
+        if set(action.args) != {"value"} or not isinstance(action.args.get("value"), str):
             return ExecutionReceipt(Outcome.FAILED, {"error": "INVALID_VALUE"}, applied=False)
+        requested = action.args["value"]
+        if self.value == requested:
+            return ExecutionReceipt(
+                Outcome.SUCCEEDED,
+                {"applied": False, "already_satisfied": True, "value": self.value, "target_fingerprint": self.target_fingerprint},
+                applied=False,
+            )
         prior = self.value
         self.version += 1
         self.value = requested
