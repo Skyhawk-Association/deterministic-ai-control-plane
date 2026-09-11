@@ -11,7 +11,7 @@ from typing import Any
 
 import dacp_action_provider as native_actions
 import dacp_broker
-from dacp_authority_provider import PinnedFileAuthorityProvider
+from dacp_authority_provider import HASH_MODE, PinnedFileAuthorityProvider
 from dacp_control_session import DACPControlSession
 from dacp_core_live_runtime import VersionedValueRuntime
 from dacp_file_runtime import FileBackedValueRuntime
@@ -22,7 +22,7 @@ from dacp_runtime_contract import DACPRuntime, bind_core_runtime
 DEFAULT_STATE_ENV = "DACP_STATE_FILE"
 DEFAULT_OPERATION_MANIFEST = Path(__file__).resolve().parent / "operations" / "tracked-value-deploy.json"
 DEFAULT_AUTHORITY_MANIFEST = Path(__file__).resolve().parent / "authorities" / "tracked-value-deploy-authority.json"
-DEFAULT_AUTHORITY_SHA256 = "f9c7edcd5f2fc628c846ce8c24e7d25a940687dbc20df646e97f5eb5531efaf6"
+DEFAULT_AUTHORITY_SHA256 = "46bf8723794841351a97ec063ed64897a60330ebd2ba9ff52b815655e8d834d3"
 
 
 def _repo_identity() -> dict[str, Any]:
@@ -190,7 +190,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--state-file", default=None, help="durable state path; defaults to DACP_STATE_FILE or ~/.dacp/runtime/tracked-value.json")
     parser.add_argument("--operation-manifest", default=None, help="operation request JSON; defaults to operations/tracked-value-deploy.json")
     parser.add_argument("--authority-manifest", default=None, help="alternate authority JSON; requires --authority-sha256")
-    parser.add_argument("--authority-sha256", default=None, help="trusted SHA-256 pin for alternate authority JSON")
+    parser.add_argument("--authority-sha256", default=None, help="trusted canonical-JSON SHA-256 pin for alternate authority JSON")
     parser.add_argument("--max-output-tokens", type=int, default=256)
     parser.add_argument("--timeout", type=int, default=60)
     parser.add_argument("--max-turns", type=int, default=6)
@@ -229,6 +229,7 @@ def main() -> int:
         "session_contract": "DACPControlSession/OperationSpec",
         "runtime_contract": "DACPRuntime/evidence_snapshot",
         "authority_contract": "PinnedFileAuthorityProvider/dacp-authority-manifest-0.1",
+        "authority_hash_mode": HASH_MODE,
         "authority_default_sha256": DEFAULT_AUTHORITY_SHA256,
         "runtime_default": "file",
         "operation_contract": "dacp-operation-manifest-0.1",
