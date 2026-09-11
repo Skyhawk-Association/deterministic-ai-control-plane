@@ -10,108 +10,57 @@ The default live entrypoint is:
 python3 run_live.py --provider openai
 ```
 
-That command uses the durable local file runtime by default. Unless overridden, state is stored at:
+That command uses the durable local file runtime by default. Unless overridden, state is stored at `~/.dacp/runtime/tracked-value.json`. `DACP_STATE_FILE` or `--state-file <path>` may override it. The in-memory runtime remains available explicitly for disposable/test runs with `--runtime memory`.
 
-```text
-~/.dacp/runtime/tracked-value.json
-```
+The current path is:
 
-You may instead set `DACP_STATE_FILE` or pass `--state-file <path>`. The in-memory runtime remains available explicitly for disposable/test runs:
+`operation manifest -> provider native action -> DACPControlSession -> NativeActionAdapter -> CommitmentCore -> DACPRuntime`
 
-```sh
-python3 run_live.py --provider openai --runtime memory
-```
+with a separate authority input:
 
-`run_live.py` delegates to `run_core_live_integration.py`, which wires one provider-native action stream into one deterministic control path:
+`pinned authority manifest -> PinnedFileAuthorityProvider -> CommitmentCore`
 
-`operation manifest -> provider native action -> dacp_action_provider -> DACPControlSession -> NativeActionAdapter -> CommitmentCore -> DACPRuntime`
+The model proposes actions. The operation manifest describes requested intent. The authority provider supplies permission. The runtime owns only state access, execution mechanics, verification, and evidence. The deterministic core owns consequential admission and completion.
 
-The model proposes actions. The deterministic layer owns consequential admission and completion. The runtime owns state access, authenticated authority, execution mechanics, verification, and evidence snapshots.
+## Operation manifests are requests, not permission
 
-## Operation manifests
+The default request is `operations/tracked-value-deploy.json`, schema `dacp-operation-manifest-0.1`. A different operation may be supplied with `--operation-manifest <path>`.
 
-The default operation is no longer hard-coded in the live runner. It is loaded from:
+Every live result records the exact operation manifest path, schema, and SHA-256. Loading an operation manifest never creates authority. Before provider execution can lead to commitment, the manifest-derived action must match independently supplied authority.
 
-```text
-operations/tracked-value-deploy.json
-```
+## Authority is separate from the executor
 
-The manifest schema is `dacp-operation-manifest-0.1`. A different operation request may be supplied with:
+The default prototype authority is `authorities/tracked-value-deploy-authority.json`, schema `dacp-authority-manifest-0.1`. Its exact expected SHA-256 is pinned in the versioned live runner. The runtime cannot mint, broaden, revoke, or repair that authority.
 
-```sh
-python3 run_live.py --provider openai --operation-manifest path/to/operation.json
-```
+`PinnedFileAuthorityProvider` loads a grant only when the initial bytes match the trusted SHA-256 pin. It rechecks the authority file on every authority resolution. If the file is missing or changed after initialization, the cached trusted grant is returned with `trust_root_compromised=true`, causing consequential commitment to fail closed rather than trusting the changed file.
 
-A manifest is **request data, not authority**. It cannot authorize itself. Before any provider call, `DACPControlSession` resolves the runtime's authenticated authority and requires the manifest-derived action fingerprint and target fingerprint to match that authority exactly. A mismatched manifest fails closed before model invocation or state mutation.
+An alternate authority file requires both `--authority-manifest <path>` and `--authority-sha256 <trusted-pin>`. Supplying a file without an independently provided pin is rejected.
 
-Every live result records the exact manifest path, schema, and SHA-256 so the operation request used for that run is reconstructible.
+This pinned-file authority is a bounded prototype trust root, not the intended final human-authentication mechanism. It proves separation of authority from the executor and tamper detection. A production authority source must ultimately be backed by an authenticated user/service control boundary appropriate to the consequence.
 
-### Current control ownership
+## Runtime boundary
 
-`dacp_commitment_core.py` owns:
+`dacp_runtime_contract.py` defines `DACPRuntime`. A runtime exposes target resolution, execution, direct verification, oracle verification, routine reads, and evidence snapshots. It does **not** expose `resolve_authority()`.
 
-- exact declaration/action binding;
-- verifier admission through a gate-controlled registry;
-- authenticated action-bound authority checks;
-- commit-time authority revalidation;
-- commit-time target revalidation;
-- duplicate consequential-dispatch suppression;
-- explicit `PENDING` handling for uncertain outcomes;
-- independent postcondition verification;
-- optional independent oracle comparison;
-- fail-closed verification-conflict handling;
-- final completion acceptance;
-- tamper-aware boundary trace anchoring/reconstruction primitives.
+`dacp_file_runtime.py` is the default durable runtime. It persists state and ledger together using versioned preconditions, atomic replacement, and readback. It knows how to perform a mechanically valid `SET_STATE`; it does not decide which value is authorized. Repeating an already-satisfied operation is idempotent and does not increment the version or append another ledger event.
 
-`dacp_control_session.py` owns the provider conversation shell and operation description. It transports normalized actions but does not decide whether a consequential action is authorized, safe to dispatch, verified, or acceptable as complete.
+`dacp_core_live_runtime.py` provides the same execution/state boundary in memory for deterministic tests and disposable runs.
 
-`dacp_operation_manifest.py` validates versioned operation JSON and converts it into `OperationSpec`. It does not create or broaden authority.
+## Control ownership
 
-`dacp_core_adapter.py` translates normalized `PREDECLARE`, `CALL`, and `REPORT` actions into the core. It deliberately does not duplicate the core's safety decisions.
+`dacp_commitment_core.py` owns exact declaration/action binding, authority validation, commit-time target and authority revalidation, duplicate suppression, uncertain-outcome handling, independent verification/oracle comparison, verification conflicts, and final acceptance.
 
-`dacp_runtime_contract.py` defines the reusable `DACPRuntime` boundary consumed by the control plane.
+`dacp_control_session.py` owns the provider conversation shell. `dacp_core_adapter.py` translates normalized PREDECLARE/CALL/REPORT actions into core operations. Neither is allowed to silently replace core authority or completion decisions.
 
-`dacp_file_runtime.py` is the current default application runtime. It persists state and its ledger in one JSON document using versioned preconditions, atomic temp-file replacement, exact readback, independent file-state verification, and independent ledger replay. Repeating an already-satisfied operation after restart is idempotent: it verifies success without incrementing the version or adding another ledger event.
+`dacp_authority_provider.py` owns authority-source parsing, pin validation, target-bound proof generation, revocation state, and authority integrity evidence. `dacp_operation_manifest.py` owns operation-request parsing only.
 
-`dacp_core_live_runtime.py` retains the in-memory runtime for deterministic tests and disposable runs.
+## Evidence
 
-`dacp_action_provider.py` is the provider-native action interface for OpenAI and Anthropic. OpenAI is the default/primary implementation path. Anthropic remains available as an optional independent path and is not a required implementation gate.
+Current live artifacts record source commit identity, operation manifest identity, authority integrity evidence before and after execution, runtime pre/post snapshots, durable state SHA-256 before and after execution, core lifecycle events, provider turns, dispatch count, applied count, and final acceptance.
 
-## Durable evidence
-
-Live result artifacts include:
-
-- operation manifest path/schema/SHA-256;
-- pre-run runtime snapshot;
-- post-run runtime snapshot;
-- pre-run state SHA-256 for the file runtime;
-- post-run state SHA-256;
-- an explicit `state_changed` flag;
-- runtime transition validity;
-- core lifecycle events and provider turns.
-
-For an already-satisfied restart run, valid durable evidence requires zero applied writes, unchanged version/ledger, identical pre/post SHA-256, and `state_changed=false` while completion remains independently verified.
-
-## Verified live behavior
-
-The current integrated live path is expected to demonstrate all of the following before a successful completion claim is accepted:
-
-1. the requested operation manifest is structurally valid and its exact SHA-256 is recorded;
-2. the manifest-derived action matches independently supplied runtime authority before any provider call;
-3. a matching consequential declaration is admitted;
-4. exactly one controlled consequential dispatch occurs;
-5. a state mutation occurs only when the desired state is not already satisfied;
-6. the resulting state is independently read back;
-7. the ledger oracle independently agrees with the observed result;
-8. no verification conflict remains;
-9. the model's final claim matches the control-plane classification;
-10. completion is accepted as `VERIFIED_SUCCEEDED` only after those checks.
-
-A repeated already-satisfied request may still traverse one controlled dispatch, but the runtime must report `applied=false` and preserve the durable state byte-for-byte.
+A valid already-satisfied durable run requires zero applied writes, unchanged version/ledger, identical pre/post state SHA-256, no verification conflict, intact authority evidence, and `VERIFIED_SUCCEEDED`.
 
 ## Tests
-
-No third-party Python packages are required for the deterministic prototype tests.
 
 Core implementation tests include:
 
@@ -119,6 +68,7 @@ Core implementation tests include:
 python3 -m unittest -v \
   test_dacp_commitment_core.py \
   test_dacp_core_adapter.py \
+  test_dacp_authority_provider.py \
   test_dacp_control_session.py \
   test_dacp_core_live_runtime.py \
   test_dacp_file_runtime.py \
@@ -126,42 +76,12 @@ python3 -m unittest -v \
   test_run_live.py
 ```
 
-The broader historical regression suite remains useful while migration continues because it preserves failure cases that motivated the consolidated core.
-
-## Legacy / regression surfaces
-
-The following runners and guard modules are **not the current application execution path**. They are intentionally retained as field evidence and regression fixtures while the consolidated implementation absorbs their proven behavior:
-
-- `run_gate_matrix.py`
-- `run_uncertain_matrix.py`
-- `run_commit_guard_matrix.py`
-- `run_rollback_guard_matrix.py`
-- `run_authority_guard_matrix.py`
-- `run_authority_revocation_matrix.py`
-- `run_trace_guard_matrix.py`
-- their corresponding `dacp_*_guard.py` and `test_*` modules
-
-Do not add new standalone matrix families merely to test another prompt behavior when the requirement can be expressed and tested directly in `CommitmentCore`. New controls should be added only when current evidence exposes a causal gap the core cannot express simply.
+The broader historical matrix runners remain regression/evidence surfaces, not the current application execution path. Do not add standalone matrix families when a requirement can be expressed and tested directly in the consolidated core.
 
 ## Credentials
 
-Provider credentials come from environment variables and must never be committed or written into public evidence:
-
-```sh
-export OPENAI_API_KEY='...'
-export ANTHROPIC_API_KEY='...'
-```
-
-Only the credential for the selected provider is required by the default live runner.
-
-## Historical broker v0
-
-The prototype began as a deliberately small two-provider broker experiment. It sent the same prompt to OpenAI and Anthropic, performed no automatic retries, recorded append-only JSONL audit data, supported an optional one-round peer challenge, and distinguished objective verification from mere model agreement.
-
-That work remains useful provenance, but the current implementation no longer depends on two-provider agreement or Claude availability. The project has moved from probabilistic peer comparison toward deterministic commitment at the execution boundary.
-
-Historical broker terminal states included `VERIFIED_MATCH`, `SUPPORTED_AGREEMENT`, `DISAGREEMENT`, and `UNRESOLVED`. The current commitment path instead classifies consequential execution through explicit lifecycle states and accepts success only after deterministic gate and verification evidence.
+Provider credentials come from environment variables and must never be committed or written into public evidence. OpenAI is the primary implementation path; Anthropic remains optional and is not a required gate.
 
 ## Non-goals
 
-The current prototype still does not need an agent framework, vector database, message bus, recursive debate system, automatic heuristic promotion, or multi-model parliament. Additional machinery must earn its existence by solving an evidenced control problem better than the smaller design.
+The prototype still does not need an agent framework, vector database, message bus, recursive debate system, automatic heuristic promotion, or multi-model parliament. Additional machinery must solve an evidenced control problem better than the smaller design before it earns a chair at the table.
