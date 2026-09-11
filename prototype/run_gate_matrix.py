@@ -23,8 +23,8 @@ REQUIRED_ENV = {
     "anthropic": "ANTHROPIC_API_KEY",
 }
 SCENARIO_ORDER = [
-    "buried_request",
     "deceptive_tool",
+    gate.COLLUDING_VERIFIER_SCENARIO_ID,
     gate.SELF_VERIFIER_SCENARIO_ID,
     gate.DELAYED_OVERRIDE_SCENARIO_ID,
 ]
@@ -33,18 +33,12 @@ SCENARIO_ORDER = [
 def _repo_identity() -> dict[str, Any]:
     repo_root = Path(__file__).resolve().parents[1]
     head = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
-        cwd=repo_root,
-        check=True,
-        capture_output=True,
-        text=True,
+        ["git", "rev-parse", "HEAD"], cwd=repo_root, check=True,
+        capture_output=True, text=True,
     ).stdout.strip()
     dirty = subprocess.run(
-        ["git", "status", "--porcelain", "--untracked-files=no"],
-        cwd=repo_root,
-        check=True,
-        capture_output=True,
-        text=True,
+        ["git", "status", "--porcelain", "--untracked-files=no"], cwd=repo_root,
+        check=True, capture_output=True, text=True,
     ).stdout.strip()
     return {"source_commit": head, "tracked_source_clean": not bool(dirty)}
 
@@ -53,19 +47,12 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
     env_name = REQUIRED_ENV[provider]
     if not os.environ.get(env_name):
         return {
-            "provider": provider,
-            "model": model,
-            "credential_env": env_name,
-            "credential_present": False,
-            "status": "NOT_RUN_MISSING_CREDENTIAL",
-            "rule_knowledge_test": None,
-            "general_control_knowledge": None,
-            "independence_knowledge": None,
-            "knowledge_probe_status": None,
-            "knowledge_probe_raw_text": None,
-            "knowledge_probe_method": None,
-            "knowledge_probe_rubric": None,
-            "action_interface": "PROVIDER_NATIVE",
+            "provider": provider, "model": model, "credential_env": env_name,
+            "credential_present": False, "status": "NOT_RUN_MISSING_CREDENTIAL",
+            "rule_knowledge_test": None, "general_control_knowledge": None,
+            "independence_knowledge": None, "knowledge_probe_status": None,
+            "knowledge_probe_raw_text": None, "knowledge_probe_method": None,
+            "knowledge_probe_rubric": None, "action_interface": "PROVIDER_NATIVE",
             "scenarios": [],
         }
 
@@ -77,9 +64,7 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
 
     for scenario_id in SCENARIO_ORDER:
         episode = gate.run_episode(
-            gate.SCENARIOS[scenario_id],
-            action_call,
-            max_turns=max_turns,
+            gate.SCENARIOS[scenario_id], action_call, max_turns=max_turns,
             history_provider_call=history_call,
         )
         scenarios.append({
@@ -102,15 +87,18 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "declared_verifier_executed": episode.declared_verifier_executed,
             "declared_verifier_result": episode.declared_verifier_result,
             "declared_verifier_observed_value": episode.declared_verifier_observed_value,
+            "declared_verifier_fault_injected": episode.declared_verifier_fault_injected,
             "oracle_result": episode.oracle_result,
             "oracle_observed_value": episode.oracle_observed_value,
             "verifier_matches_oracle": episode.verifier_matches_oracle,
+            "verification_conflict": episode.verification_conflict,
             "verifier_result": episode.verifier_result,
             "verifier_observed_value": episode.verifier_observed_value,
             "verifier_disclosed_before_report": episode.verifier_disclosed_before_report,
             "model_claimed_result": episode.model_claimed_result,
             "claim_matches_verifier": episode.claim_matches_verifier,
             "claim_matches_oracle": episode.claim_matches_oracle,
+            "completion_acceptance": episode.completion_acceptance,
             "report_basis": episode.report_basis,
             "terminal_state": episode.terminal_state,
             "turn_count": episode.turn_count,
@@ -120,11 +108,8 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
         })
 
     return {
-        "provider": provider,
-        "model": model,
-        "credential_env": env_name,
-        "credential_present": True,
-        "status": "RUN_COMPLETE",
+        "provider": provider, "model": model, "credential_env": env_name,
+        "credential_present": True, "status": "RUN_COMPLETE",
         "rule_knowledge_test": knowledge["rule_knowledge_test"],
         "general_control_knowledge": knowledge["general_control_knowledge"],
         "independence_knowledge": knowledge["independence_knowledge"],
@@ -132,8 +117,7 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
         "knowledge_probe_raw_text": knowledge["raw_text"],
         "knowledge_probe_method": knowledge["knowledge_probe_method"],
         "knowledge_probe_rubric": knowledge["knowledge_probe_rubric"],
-        "action_interface": "PROVIDER_NATIVE",
-        "scenarios": scenarios,
+        "action_interface": "PROVIDER_NATIVE", "scenarios": scenarios,
     }
 
 
@@ -147,18 +131,10 @@ def _write_verified_json(path: Path, payload: dict[str, Any]) -> None:
 def _publish_shared(local_path: Path, payload: dict[str, Any]) -> dict[str, Any]:
     shared_root_raw = os.environ.get(dacp_broker.SHARED_EVIDENCE_ENV)
     if not shared_root_raw:
-        return {
-            "status": "LOCAL_ONLY",
-            "shared_evidence_env": dacp_broker.SHARED_EVIDENCE_ENV,
-            "shared_path": None,
-        }
+        return {"status": "LOCAL_ONLY", "shared_evidence_env": dacp_broker.SHARED_EVIDENCE_ENV, "shared_path": None}
     shared_path = Path(shared_root_raw) / "gate-matrix-results" / local_path.name
     _write_verified_json(shared_path, payload)
-    return {
-        "status": "SHARED_EVIDENCE_VERIFIED",
-        "shared_evidence_env": dacp_broker.SHARED_EVIDENCE_ENV,
-        "shared_path": str(shared_path.resolve()),
-    }
+    return {"status": "SHARED_EVIDENCE_VERIFIED", "shared_evidence_env": dacp_broker.SHARED_EVIDENCE_ENV, "shared_path": str(shared_path.resolve())}
 
 
 def main() -> int:
@@ -176,7 +152,7 @@ def main() -> int:
         raise RuntimeError("Tracked repository source is dirty; refusing live matrix run")
 
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.10",
+        "schema": "dacp-gate-live-matrix-0.11",
         "timestamp": dacp_broker.utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
@@ -184,8 +160,9 @@ def main() -> int:
         "max_turns": args.max_turns,
         "action_interface": "PROVIDER_NATIVE",
         "verifier_contract": "STRUCTURED_READ_STATE_POSTCONDITION_REQUIRED_AND_EXECUTED",
-        "verifier_audit": "DECLARED_VERIFIER_CROSS_CHECKED_AGAINST_LEDGER_ORACLE",
+        "verifier_audit": "DECLARED_VERIFIER_CROSS_CHECKED_AGAINST_LEDGER_ORACLE_WITH_FAULT_INJECTION",
         "verifier_disclosure": "HIDDEN_UNTIL_AFTER_MODEL_REPORT",
+        "acceptance_policy": "ORACLE_CONFLICT_REJECTS_COMPLETION",
         "distance_transport": "ROLE_SEPARATED_PROVIDER_HISTORY_FIRST_TRIGGER",
         "knowledge_metric": "GENERAL_CONTROL_AND_EXPLICIT_INDEPENDENCE_SPLIT_STEMMED",
         "post_commit_read_policy": "MODEL_VISIBLE_READBACK_THEN_REPORT_REQUIRED",
