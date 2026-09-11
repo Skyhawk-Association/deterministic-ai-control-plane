@@ -28,6 +28,25 @@ class FileBackedValueRuntimeTests(unittest.TestCase):
             self.assertEqual(restarted.verify(verifier).outcome, Outcome.SUCCEEDED)
             self.assertEqual(restarted.oracle_verify(verifier).outcome, Outcome.SUCCEEDED)
 
+    def test_repeated_operation_after_restart_is_idempotent(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "state.json"
+            first_runtime = FileBackedValueRuntime(path)
+            first = first_runtime.execute(first_runtime.authorized_action, "tracked-value@v0")
+            self.assertTrue(first.applied)
+
+            restarted = FileBackedValueRuntime(path)
+            before = restarted._read_state()
+            second = restarted.execute(restarted.authorized_action, restarted.resolve_target_fingerprint())
+            after = restarted._read_state()
+
+            self.assertEqual(second.outcome, Outcome.SUCCEEDED)
+            self.assertFalse(second.applied)
+            self.assertTrue(second.response.get("already_satisfied"))
+            self.assertEqual(after, before)
+            self.assertEqual(len(after["ledger"]), 1)
+            self.assertEqual(after["version"], 1)
+
     def test_stale_precondition_does_not_overwrite(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "state.json"
