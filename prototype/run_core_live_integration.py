@@ -97,10 +97,6 @@ def _run_provider(
     authority_manifest: str | None,
     authority_sha256: str | None,
 ) -> dict[str, Any]:
-    env_name = "OPENAI_API_KEY" if provider == "openai" else "ANTHROPIC_API_KEY"
-    if not os.environ.get(env_name):
-        return {"provider": provider, "model": model, "credential_present": False, "status": "NOT_RUN_MISSING_CREDENTIAL", "turns": []}
-
     loaded_operation = _resolve_operation_manifest(operation_manifest)
     operation = loaded_operation.operation
     resolved_state_file = _resolve_state_file(runtime_kind, state_file)
@@ -108,11 +104,21 @@ def _run_provider(
     authority_path, authority_pin = _resolve_authority_config(authority_manifest, authority_sha256)
     authority = PinnedFileAuthorityProvider(authority_path, authority_pin, runtime.resolve_target_fingerprint)
     state_path = resolved_state_file if runtime_kind == "file" else None
+
     pre_snapshot = runtime.evidence_snapshot()
     pre_state_sha256 = _sha256_file(state_path)
     pre_authority = authority.evidence_snapshot()
+    expected_value = operation.expected_value
+    preexisting_expected = pre_snapshot["value"] == expected_value
 
-    provider_call = native_actions.make_provider_call(provider, model, max_output_tokens, timeout)
+    env_name = "OPENAI_API_KEY" if provider == "openai" else "ANTHROPIC_API_KEY"
+    credential_present = bool(os.environ.get(env_name))
+    provider_call = (
+        native_actions.make_provider_call(provider, model, max_output_tokens, timeout)
+        if credential_present
+        else None
+    )
+
     session = DACPControlSession(operation, bind_core_runtime(runtime, authority, now_epoch=lambda: 1), provider_call)
     session_result = session.run(max_turns=max_turns)
 
@@ -121,25 +127,32 @@ def _run_provider(
     post_authority = authority.evidence_snapshot()
     state_changed = pre_state_sha256 != post_state_sha256 if state_path is not None else None
 
-    expected_value = operation.expected_value
-    if runtime_kind == "memory":
-        runtime_transition_ok = session_result.applied_count in {0, 1} and post_snapshot["value"] == expected_value
-    elif pre_snapshot["value"] == expected_value:
+    if preexisting_expected:
+        expected_branch = "PREEXISTING_VERIFIED_NO_DISPATCH"
         runtime_transition_ok = (
             session_result.applied_count == 0
-            and state_changed is False
+            and session_result.dispatch_count == 0
+            and len(session_result.turns) == 0
+            and (state_changed is False if state_path is not None else post_snapshot["value"] == expected_value)
             and pre_snapshot["version"] == post_snapshot["version"]
             and len(pre_snapshot["ledger"]) == len(post_snapshot["ledger"])
         )
     else:
-        runtime_transition_ok = session_result.applied_count == 1 and state_changed is True
+        expected_branch = "MUTATION_REQUIRED"
+        runtime_transition_ok = (
+            credential_present
+            and session_result.dispatch_count == 1
+            and session_result.applied_count == 1
+            and len(session_result.turns) >= 1
+            and post_snapshot["value"] == expected_value
+            and (state_changed is True if state_path is not None else True)
+        )
 
     authority_integrity_ok = bool(pre_authority.get("integrity_ok")) and bool(post_authority.get("integrity_ok"))
     pass_condition = (
         session_result.terminal_state == "REPORTED"
         and session_result.final_acceptance == operation.expected_acceptance
         and post_snapshot["value"] == expected_value
-        and session_result.dispatch_count == 1
         and runtime_transition_ok
         and authority_integrity_ok
         and not session_result.verification_conflict
@@ -148,9 +161,11 @@ def _run_provider(
     return {
         "provider": provider,
         "model": model,
-        "credential_present": True,
+        "credential_present": credential_present,
+        "credential_required_for_branch": not preexisting_expected,
+        "execution_branch": expected_branch,
         "runtime_kind": runtime_kind,
-        "status": "PASS" if pass_condition else "FAIL",
+        "status": "PASS" if pass_condition else ("NOT_RUN_MISSING_CREDENTIAL" if not credential_present and not preexisting_expected else "FAIL"),
         "pass": pass_condition,
         "operation_id": operation.operation_id,
         "operation_manifest": {
@@ -158,10 +173,9 @@ def _run_provider(
             "sha256": loaded_operation.sha256,
             "schema": loaded_operation.raw["schema"],
         },
-        "authority_evidence": {
-            "pre": pre_authority,
-            "post": post_authority,
-        },
+        "authority_evidence": {"pre": pre_authority, "post": post_authority},
+        "declaration_result": session_result.declaration_result,
+        "preexisting_check": session_result.preexisting_check,
         "terminal_state": session_result.terminal_state,
         "final_acceptance": session_result.final_acceptance,
         "completion_source": session_result.completion_source,
@@ -196,14 +210,13 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--authority-sha256", default=None, help="trusted canonical-JSON SHA-256 pin for alternate authority JSON")
     parser.add_argument("--max-output-tokens", type=int, default=256)
     parser.add_argument("--timeout", type=int, default=60)
-    parser.add_argument("--max-turns", type=int, default=6)
+    parser.add_argument("--max-turns", type=int, default=3)
     parser.add_argument("--log-dir", default="gate-matrix-results")
     return parser
 
 
 def main() -> int:
     args = _build_parser().parse_args()
-
     identity = _repo_identity()
     if not identity["tracked_source_clean"]:
         raise RuntimeError("Tracked repository source is dirty; refusing live integration run")
@@ -224,19 +237,19 @@ def main() -> int:
     )
 
     output = {
-        "schema": "dacp-core-live-integration-0.8",
+        "schema": "dacp-core-live-integration-0.9",
         "timestamp": dacp_broker.utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
-        "provider_role": "PRIMARY_IMPLEMENTATION_PATH" if args.provider == "openai" else "OPTIONAL_INDEPENDENT_PATH",
-        "session_contract": "DACPControlSession/OperationSpec",
+        "provider_role": "MUTATION_PROPOSAL_ONLY",
+        "session_contract": "DACPControlSession/DeterministicDeclarationPrecheck",
         "runtime_contract": "DACPRuntime/evidence_snapshot",
         "authority_contract": "PinnedFileAuthorityProvider/dacp-authority-manifest-0.1",
         "authority_hash_mode": HASH_MODE,
         "authority_default_sha256": DEFAULT_AUTHORITY_SHA256,
         "runtime_default": "file",
         "operation_contract": "dacp-operation-manifest-0.1",
-        "completion_contract": "CONTROL_PLANE_AUTO_FINALIZE_AFTER_TERMINAL_VERIFICATION",
+        "completion_contract": "PREEXISTING_FAST_PATH_OR_CONTROL_PLANE_AUTO_FINALIZE",
         "durable_evidence_contract": "PRE_POST_STATE_SHA256_AND_SNAPSHOT",
         "provider_result": provider_result,
     }
@@ -250,9 +263,11 @@ def main() -> int:
     print("=== DACP_CORE_LIVE_INTEGRATION_END ===")
     print(f"RESULT_FILE={path.resolve()}")
 
-    if not provider_result.get("credential_present"):
+    if provider_result.get("pass"):
+        return 0
+    if provider_result.get("status") == "NOT_RUN_MISSING_CREDENTIAL":
         return 2
-    return 0 if provider_result.get("pass") else 1
+    return 1
 
 
 if __name__ == "__main__":
