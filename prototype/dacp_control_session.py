@@ -4,7 +4,7 @@ import json
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
-from dacp_commitment_core import ActionSpec
+from dacp_commitment_core import ActionSpec, Phase
 from dacp_core_adapter import CoreRuntime, NativeActionAdapter
 
 
@@ -53,7 +53,7 @@ class OperationSpec:
                 ),
                 f"Use rollback text: {self.rollback_or_reconciliation_plan}",
                 "Do not invent broader authority.",
-                "After the broker confirms a terminal classification, REPORT that classification.",
+                "Once the broker reaches terminal verification, stop; the control plane finalizes the verified classification.",
             ]
         )
 
@@ -67,6 +67,8 @@ class SessionResult:
     applied_count: int
     reconciliation_count: int
     verification_conflict: bool
+    completion_source: str | None = None
+    control_finalization: dict[str, Any] | None = None
     core_events: list[dict[str, Any]] = field(default_factory=list)
     turns: list[dict[str, Any]] = field(default_factory=list)
 
@@ -87,6 +89,8 @@ class SessionResult:
             "applied_count": self.applied_count,
             "reconciliation_count": self.reconciliation_count,
             "verification_conflict": self.verification_conflict,
+            "completion_source": self.completion_source,
+            "control_finalization": self.control_finalization,
             "core_events": self.core_events,
             "turns": self.turns,
         }
@@ -98,7 +102,9 @@ class DACPControlSession:
     This class transports normalized model actions and records broker replies. It does
     not decide whether a consequential action is authorized, safe to dispatch, verified,
     or acceptable as complete; those decisions remain in NativeActionAdapter and
-    CommitmentCore.
+    CommitmentCore. Once the core reaches a terminal VERIFIED phase, the session closes
+    through the existing deterministic REPORT path without asking the provider to restate
+    a classification the control plane already owns.
     """
 
     def __init__(self, operation: OperationSpec, runtime: CoreRuntime, provider_call: ProviderCall):
@@ -115,6 +121,17 @@ class DACPControlSession:
         if authority.target_fingerprint != initial_target_fingerprint:
             raise RuntimeError("operation target does not match authenticated authority target binding")
 
+    def _finalize_verified_core(self) -> dict[str, Any]:
+        if self.adapter.core.phase != Phase.VERIFIED:
+            raise RuntimeError("control-plane finalization requires terminal VERIFIED phase")
+        return self.adapter.handle(
+            {
+                "action": "REPORT",
+                "result": self.adapter.core.final_outcome.value,
+                "note": "control-plane finalized terminal verified classification",
+            }
+        )
+
     def run(self, max_turns: int = 6) -> SessionResult:
         initial_target = self.runtime.resolve_target_fingerprint()
         self._validate_operation_binding(initial_target)
@@ -123,6 +140,8 @@ class DACPControlSession:
         turns: list[dict[str, Any]] = []
         terminal = "INCOMPLETE"
         final_acceptance = None
+        completion_source = None
+        control_finalization = None
 
         for turn_index in range(max_turns):
             prompt = "\n\n".join(transcript)
@@ -166,6 +185,14 @@ class DACPControlSession:
             if action.get("action") == "REPORT":
                 final_acceptance = reply.get("acceptance")
                 terminal = "REPORTED"
+                completion_source = "PROVIDER_REPORT"
+                break
+
+            if self.adapter.core.phase == Phase.VERIFIED:
+                control_finalization = self._finalize_verified_core()
+                final_acceptance = control_finalization.get("acceptance")
+                terminal = "REPORTED"
+                completion_source = "CONTROL_PLANE_AUTO_FINALIZE"
                 break
         else:
             terminal = "TIMEOUT_NO_REPORT"
@@ -178,6 +205,8 @@ class DACPControlSession:
             applied_count=self.adapter.core.applied_count,
             reconciliation_count=self.adapter.core.reconciliation_count,
             verification_conflict=self.adapter.core.verification_conflict,
+            completion_source=completion_source,
+            control_finalization=control_finalization,
             core_events=list(self.adapter.core.events),
             turns=turns,
         )
