@@ -5,7 +5,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 import run_core_live_integration as live
-from dacp_authority_provider import PinnedFileAuthorityProvider
+from dacp_authority_provider import PinnedFileAuthorityProvider, canonical_authority_sha256
 from dacp_control_session import DACPControlSession, OperationSpec
 from dacp_core_live_runtime import VersionedValueRuntime
 from dacp_file_runtime import FileBackedValueRuntime
@@ -41,8 +41,9 @@ class LiveIntegrationSessionTests(unittest.TestCase):
         loaded = live._resolve_operation_manifest(None)
         self.assertEqual(loaded.sha256, live._sha256_file(loaded.path))
 
-    def test_default_authority_pin_is_exact_file_hash(self):
-        self.assertEqual(live.DEFAULT_AUTHORITY_SHA256, live._sha256_file(live.DEFAULT_AUTHORITY_MANIFEST))
+    def test_default_authority_pin_matches_canonical_manifest_semantics(self):
+        data = json.loads(live.DEFAULT_AUTHORITY_MANIFEST.read_text(encoding="utf-8"))
+        self.assertEqual(live.DEFAULT_AUTHORITY_SHA256, canonical_authority_sha256(data))
 
     def test_mismatched_manifest_fails_before_provider_call(self):
         with tempfile.TemporaryDirectory() as tmp:
