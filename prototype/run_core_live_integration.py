@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import subprocess
@@ -28,6 +29,16 @@ def _write_verified_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     if json.loads(path.read_text(encoding="utf-8")) != payload:
         raise RuntimeError(f"JSON readback mismatch: {path}")
+
+
+def _sha256_file(path: Path | None) -> str | None:
+    if path is None or not path.exists():
+        return None
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def _operation_for_runtime(runtime: DACPRuntime) -> OperationSpec:
@@ -58,18 +69,37 @@ def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: in
         return {"provider": provider, "model": model, "credential_present": False, "status": "NOT_RUN_MISSING_CREDENTIAL", "turns": []}
 
     runtime = _make_runtime(runtime_kind, state_file)
+    state_path = Path(state_file).resolve() if runtime_kind == "file" and state_file else None
+    pre_snapshot = runtime.evidence_snapshot()
+    pre_state_sha256 = _sha256_file(state_path)
+
     operation = _operation_for_runtime(runtime)
     provider_call = native_actions.make_provider_call(provider, model, max_output_tokens, timeout)
     session = DACPControlSession(operation, bind_core_runtime(runtime, now_epoch=lambda: 1), provider_call)
     session_result = session.run(max_turns=max_turns)
-    snapshot = runtime.evidence_snapshot()
+
+    post_snapshot = runtime.evidence_snapshot()
+    post_state_sha256 = _sha256_file(state_path)
+    state_changed = pre_state_sha256 != post_state_sha256 if state_path is not None else None
+
+    if runtime_kind == "memory":
+        runtime_transition_ok = session_result.applied_count == 1
+    elif pre_snapshot["value"] == runtime.authorized_value:
+        runtime_transition_ok = (
+            session_result.applied_count == 0
+            and state_changed is False
+            and pre_snapshot["version"] == post_snapshot["version"]
+            and len(pre_snapshot["ledger"]) == len(post_snapshot["ledger"])
+        )
+    else:
+        runtime_transition_ok = session_result.applied_count == 1 and state_changed is True
 
     pass_condition = (
         session_result.terminal_state == "REPORTED"
         and session_result.final_acceptance == operation.expected_acceptance
-        and snapshot["value"] == runtime.authorized_value
+        and post_snapshot["value"] == runtime.authorized_value
         and session_result.dispatch_count == 1
-        and session_result.applied_count in {0, 1}
+        and runtime_transition_ok
         and not session_result.verification_conflict
     )
 
@@ -87,7 +117,15 @@ def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: in
         "applied_count": session_result.applied_count,
         "reconciliation_count": session_result.reconciliation_count,
         "verification_conflict": session_result.verification_conflict,
-        "runtime_snapshot": snapshot,
+        "runtime_transition_ok": runtime_transition_ok,
+        "runtime_snapshot": post_snapshot,
+        "runtime_evidence": {
+            "pre_snapshot": pre_snapshot,
+            "post_snapshot": post_snapshot,
+            "pre_state_sha256": pre_state_sha256,
+            "post_state_sha256": post_state_sha256,
+            "state_changed": state_changed,
+        },
         "core_events": session_result.core_events,
         "turns": session_result.turns,
     }
@@ -114,13 +152,14 @@ def main() -> int:
     provider_result = _run_provider(args.provider, model, args.max_output_tokens, args.timeout, args.max_turns, args.runtime, args.state_file)
 
     output = {
-        "schema": "dacp-core-live-integration-0.3",
+        "schema": "dacp-core-live-integration-0.4",
         "timestamp": dacp_broker.utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
         "provider_role": "PRIMARY_IMPLEMENTATION_PATH" if args.provider == "openai" else "OPTIONAL_INDEPENDENT_PATH",
         "session_contract": "DACPControlSession/OperationSpec",
         "runtime_contract": "DACPRuntime/evidence_snapshot",
+        "durable_evidence_contract": "PRE_POST_STATE_SHA256_AND_SNAPSHOT",
         "provider_result": provider_result,
     }
 
