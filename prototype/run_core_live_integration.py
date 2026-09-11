@@ -6,10 +6,10 @@ import hashlib
 import json
 import os
 import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import dacp_broker
 from dacp_authority_provider import HASH_MODE, PinnedFileAuthorityProvider
 from dacp_core_live_runtime import VersionedValueRuntime
 from dacp_file_runtime import FileBackedValueRuntime
@@ -21,6 +21,10 @@ DEFAULT_STATE_ENV = "DACP_STATE_FILE"
 DEFAULT_OPERATION_MANIFEST = Path(__file__).resolve().parent / "operations" / "tracked-value-deploy.json"
 DEFAULT_AUTHORITY_MANIFEST = Path(__file__).resolve().parent / "authorities" / "tracked-value-deploy-authority.json"
 DEFAULT_AUTHORITY_SHA256 = "46bf8723794841351a97ec063ed64897a60330ebd2ba9ff52b815655e8d834d3"
+
+
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
 def _repo_identity() -> dict[str, Any]:
@@ -83,20 +87,13 @@ def _make_runtime(runtime_kind: str, state_file: str | Path | None) -> DACPRunti
     return FileBackedValueRuntime(resolved)
 
 
-def _run_provider(
-    provider: str,
-    model: str,
-    max_output_tokens: int,
-    timeout: int,
-    max_turns: int,
+def _run_resolved(
     runtime_kind: str,
     state_file: str | None,
     operation_manifest: str | None,
     authority_manifest: str | None,
     authority_sha256: str | None,
 ) -> dict[str, Any]:
-    # provider/model arguments remain for CLI compatibility and future upstream orientation.
-    # Resolved-operation commitment itself is deterministic and does not call a provider.
     loaded_operation = _resolve_operation_manifest(operation_manifest)
     operation = loaded_operation.operation
     resolved_state_file = _resolve_state_file(runtime_kind, state_file)
@@ -109,8 +106,6 @@ def _run_provider(
     pre_state_sha256 = _sha256_file(state_path)
     pre_authority = authority.evidence_snapshot()
     preexisting_expected = pre_snapshot["value"] == operation.expected_value
-    credential_name = "OPENAI_API_KEY" if provider == "openai" else "ANTHROPIC_API_KEY"
-    credential_present = bool(os.environ.get(credential_name))
 
     resolved = DACPResolvedOperation(operation, bind_core_runtime(runtime, authority, now_epoch=lambda: 1))
     result = resolved.run()
@@ -149,12 +144,9 @@ def _run_provider(
     )
 
     return {
-        "provider": provider,
-        "model": model,
+        "provider_dependency": False,
         "provider_used": False,
         "provider_turn_count": 0,
-        "credential_present": credential_present,
-        "credential_required_for_branch": False,
         "execution_branch": result.execution_branch,
         "runtime_kind": runtime_kind,
         "status": "PASS" if pass_condition else "FAIL",
@@ -189,22 +181,16 @@ def _run_provider(
             "state_changed": state_changed,
         },
         "core_events": result.core_events,
-        "turns": [],
     }
 
 
 def _build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Run DACP resolved-operation commitment integration")
-    parser.add_argument("--provider", choices=["openai", "anthropic"], default="openai")
-    parser.add_argument("--model", default=None)
+    parser = argparse.ArgumentParser(description="Run DACP deterministic resolved-operation commitment")
     parser.add_argument("--runtime", choices=["file", "memory"], default="file")
     parser.add_argument("--state-file", default=None)
     parser.add_argument("--operation-manifest", default=None)
     parser.add_argument("--authority-manifest", default=None)
     parser.add_argument("--authority-sha256", default=None)
-    parser.add_argument("--max-output-tokens", type=int, default=256)
-    parser.add_argument("--timeout", type=int, default=60)
-    parser.add_argument("--max-turns", type=int, default=3)
     parser.add_argument("--log-dir", default="gate-matrix-results")
     return parser
 
@@ -215,21 +201,22 @@ def main() -> int:
     if not identity["tracked_source_clean"]:
         raise RuntimeError("Tracked repository source is dirty; refusing live integration run")
 
-    default_model = dacp_broker.DEFAULT_OPENAI_MODEL if args.provider == "openai" else dacp_broker.DEFAULT_ANTHROPIC_MODEL
-    model = args.model or default_model
-    provider_result = _run_provider(
-        args.provider, model, args.max_output_tokens, args.timeout, args.max_turns,
-        args.runtime, args.state_file, args.operation_manifest,
-        args.authority_manifest, args.authority_sha256,
+    operation_result = _run_resolved(
+        args.runtime,
+        args.state_file,
+        args.operation_manifest,
+        args.authority_manifest,
+        args.authority_sha256,
     )
 
     output = {
-        "schema": "dacp-core-live-integration-1.0",
-        "timestamp": dacp_broker.utc_now(),
+        "schema": "dacp-core-live-integration-1.1",
+        "timestamp": _utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
-        "provider_role": "UPSTREAM_ORIENTATION_ONLY_NOT_USED_IN_RESOLVED_COMMIT",
-        "session_contract": "DACPResolvedOperation/DeterministicCommit",
+        "application_mode": "RESOLVED_OPERATION_COMMITMENT",
+        "provider_dependency": False,
+        "commitment_path": "RESOLVED_OPERATION_DETERMINISTIC_NO_PROVIDER",
         "runtime_contract": "DACPRuntime/evidence_snapshot",
         "authority_contract": "PinnedFileAuthorityProvider/dacp-authority-manifest-0.1",
         "authority_hash_mode": HASH_MODE,
@@ -238,7 +225,7 @@ def main() -> int:
         "operation_contract": "dacp-operation-manifest-0.1",
         "completion_contract": "DETERMINISTIC_PRECHECK_DIRECT_COMMIT_VERIFY_FINALIZE",
         "durable_evidence_contract": "PRE_POST_STATE_SHA256_AND_SNAPSHOT",
-        "provider_result": provider_result,
+        "operation_result": operation_result,
     }
 
     stamp = output["timestamp"].replace(":", "").replace("-", "")
@@ -248,7 +235,7 @@ def main() -> int:
     print(json.dumps(output, indent=2, sort_keys=True))
     print("=== DACP_CORE_LIVE_INTEGRATION_END ===")
     print(f"RESULT_FILE={path.resolve()}")
-    return 0 if provider_result.get("pass") else 1
+    return 0 if operation_result.get("pass") else 1
 
 
 if __name__ == "__main__":
