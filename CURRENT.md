@@ -29,7 +29,9 @@ Current review-ready heuristic patch: `authoritative/DACP_Heuristics_Specificati
 
 ## Application implementation status
 
-Application implementation is explicitly authorized through `authoritative/DACP_Application_Implementation_Authorization_0.2.md`, effective once that decision is merged to canonical `main` and independently read back. Under that decision, ChatGPT is the primary DACP application implementation executor. Claude is removed from the critical implementation path and may be used only as an optional independent model when useful. Gene retains genuinely human material decisions under the governing authority.
+Application implementation is explicitly authorized through `authoritative/DACP_Application_Implementation_Authorization_0.2.md`. ChatGPT is the primary DACP application implementation executor. Claude is removed from the critical implementation path and may be used only as an optional independent model when useful. Gene retains genuinely human material decisions under the governing authority.
+
+The first accepted application implementation slice is now merged to canonical `main`: **local single-resource resolved commitment**. The merge commit that introduced the accepted prototype is `33b39ec4bd3fabdb15a2de3227dbbbff4fa62e18`; the accepted prototype branch head was `afb06b361b0d3de805c68b7e8d14504d4f01f525`. Cross-platform acceptance passed on Windows and Ubuntu. The accepted scope includes provider-free deterministic resolved commitment, separate authority binding, preexisting-state no-dispatch completion, durable dispatch-intent journaling, restart reconciliation without blind redispatch, request-mismatch blocking, and interprocess serialization with lock contention failing `PENDING` without dispatch. This is not a claim of production authentication, distributed consensus/locking, multi-resource transactions, or production deployment readiness.
 
 ## Universal operating instruction
 
