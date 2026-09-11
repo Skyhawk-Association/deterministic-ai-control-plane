@@ -42,6 +42,25 @@ class LiveIntegrationSessionTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             live._make_runtime("file", None)
 
+    def test_durable_state_hash_changes_once_then_stays_stable_on_idempotent_replay(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "state.json"
+            runtime = FileBackedValueRuntime(path)
+            initial_hash = live._sha256_file(path)
+
+            first = runtime.execute(runtime.authorized_action, runtime.resolve_target_fingerprint())
+            after_first_hash = live._sha256_file(path)
+            self.assertTrue(first.applied)
+            self.assertNotEqual(initial_hash, after_first_hash)
+
+            restarted = FileBackedValueRuntime(path)
+            second = restarted.execute(restarted.authorized_action, restarted.resolve_target_fingerprint())
+            after_second_hash = live._sha256_file(path)
+            self.assertFalse(second.applied)
+            self.assertEqual(after_first_hash, after_second_hash)
+            self.assertEqual(restarted.evidence_snapshot()["version"], 1)
+            self.assertEqual(len(restarted.evidence_snapshot()["ledger"]), 1)
+
     def test_live_module_imports_reusable_session(self):
         self.assertIsNotNone(DACPControlSession)
 
