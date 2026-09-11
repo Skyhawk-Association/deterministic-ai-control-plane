@@ -85,13 +85,15 @@ class LiveIntegrationSessionTests(unittest.TestCase):
             with patch.dict("os.environ", {live.DEFAULT_STATE_ENV: str(configured)}, clear=False):
                 self.assertEqual(live._default_state_file(), configured.resolve())
 
-    def test_parser_defaults_to_file_runtime_default_operation_and_authority(self):
+    def test_parser_has_no_provider_surface(self):
         args = live._build_parser().parse_args([])
         self.assertEqual(args.runtime, "file")
         self.assertIsNone(args.state_file)
         self.assertIsNone(args.operation_manifest)
         self.assertIsNone(args.authority_manifest)
         self.assertIsNone(args.authority_sha256)
+        with self.assertRaises(SystemExit):
+            live._build_parser().parse_args(["--provider", "openai"])
 
     def test_alternate_authority_requires_path_and_pin_together(self):
         with self.assertRaises(ValueError):
@@ -104,33 +106,31 @@ class LiveIntegrationSessionTests(unittest.TestCase):
         self.assertEqual(args.runtime, "memory")
         self.assertIsNone(live._resolve_state_file(args.runtime, None))
 
-    def test_preexisting_file_state_passes_without_provider_credential(self):
+    def test_preexisting_file_state_passes_without_provider_dependency(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "state.json"
             runtime = FileBackedValueRuntime(path)
             action = ActionSpec(runtime.endpoint, "SET_STATE", {"value": "DEPLOYED"}, runtime.resolve_target_fingerprint())
             runtime.execute(action, runtime.resolve_target_fingerprint())
-            with patch.dict("os.environ", {}, clear=True):
-                result = live._run_provider("openai", "test-model", 64, 5, 2, "file", str(path), None, None, None)
+            result = live._run_resolved("file", str(path), None, None, None)
             self.assertTrue(result["pass"])
+            self.assertFalse(result["provider_dependency"])
             self.assertFalse(result["provider_used"])
-            self.assertFalse(result["credential_required_for_branch"])
-            self.assertEqual(result["execution_branch"], "PREEXISTING_VERIFIED_NO_DISPATCH")
             self.assertEqual(result["provider_turn_count"], 0)
+            self.assertEqual(result["execution_branch"], "PREEXISTING_VERIFIED_NO_DISPATCH")
             self.assertEqual(result["dispatch_count"], 0)
             self.assertEqual(result["applied_count"], 0)
             self.assertEqual(result["completion_source"], "PREEXISTING_STATE_VERIFIED")
 
-    def test_unsatisfied_file_state_succeeds_without_provider_credential(self):
+    def test_unsatisfied_file_state_succeeds_without_provider_dependency(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "state.json"
-            with patch.dict("os.environ", {}, clear=True):
-                result = live._run_provider("openai", "test-model", 64, 5, 2, "file", str(path), None, None, None)
+            result = live._run_resolved("file", str(path), None, None, None)
             self.assertTrue(result["pass"])
+            self.assertFalse(result["provider_dependency"])
             self.assertFalse(result["provider_used"])
-            self.assertFalse(result["credential_required_for_branch"])
-            self.assertEqual(result["execution_branch"], "MUTATION_REQUIRED")
             self.assertEqual(result["provider_turn_count"], 0)
+            self.assertEqual(result["execution_branch"], "MUTATION_REQUIRED")
             self.assertEqual(result["dispatch_count"], 1)
             self.assertEqual(result["applied_count"], 1)
             self.assertEqual(result["terminal_state"], "REPORTED")
