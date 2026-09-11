@@ -11,13 +11,17 @@ from pathlib import Path
 from typing import Any
 
 import run_core_live_integration as live
+from dacp_authority_provider import PinnedFileAuthorityProvider
+from dacp_commit_journal import DurableCommitJournal
+from dacp_file_runtime import FileBackedValueRuntime
 
-SCHEMA = "dacp-conditional-acceptance-0.3"
+SCHEMA = "dacp-conditional-acceptance-0.4"
 UNIT_MODULES = [
     "test_dacp_commitment_core.py",
     "test_dacp_core_adapter.py",
     "test_dacp_authority_provider.py",
     "test_dacp_control_session.py",
+    "test_dacp_commit_journal.py",
     "test_dacp_resolved_operation.py",
     "test_dacp_core_live_runtime.py",
     "test_dacp_file_runtime.py",
@@ -50,6 +54,9 @@ def assess_mutation(result: dict[str, Any]) -> dict[str, Any]:
     snapshot = result.get("runtime_snapshot") or {}
     runtime_evidence = result.get("runtime_evidence") or {}
     authority = result.get("authority_evidence") or {}
+    journal = (result.get("journal_evidence") or {}).get("post") or {}
+    records = journal.get("records") or []
+    latest = records[-1] if records else {}
     return _case("MUTATION_REQUIRED", {
         "provider_dependency_absent": result.get("provider_dependency") is False,
         "provider_not_used": result.get("provider_used") is False,
@@ -65,6 +72,7 @@ def assess_mutation(result: dict[str, Any]) -> dict[str, Any]:
         "one_ledger_event": len(snapshot.get("ledger") or []) == 1,
         "authority_pre_integrity": bool((authority.get("pre") or {}).get("integrity_ok")),
         "authority_post_integrity": bool((authority.get("post") or {}).get("integrity_ok")),
+        "journal_resolved_succeeded": latest.get("phase") == "RESOLVED_SUCCEEDED",
         "no_verification_conflict": result.get("verification_conflict") is False,
     }, result)
 
@@ -95,6 +103,45 @@ def assess_preexisting(result: dict[str, Any], stable_hash: str) -> dict[str, An
     }, result)
 
 
+def assess_recovery_pending(result: dict[str, Any]) -> dict[str, Any]:
+    runtime_evidence = result.get("runtime_evidence") or {}
+    journal = (result.get("journal_evidence") or {}).get("post") or {}
+    records = journal.get("records") or []
+    latest = records[-1] if records else {}
+    return _case("RESTART_UNRESOLVED_NO_REDISPATCH", {
+        "status_pending": result.get("status") == "PENDING",
+        "not_claimed_passed": result.get("pass") is False,
+        "recovery_pending_branch": result.get("execution_branch") == "RECOVERY_PENDING_NO_REDISPATCH",
+        "zero_dispatches_after_restart": result.get("dispatch_count") == 0,
+        "zero_writes_after_restart": result.get("applied_count") == 0,
+        "state_unchanged": runtime_evidence.get("state_changed") is False,
+        "state_still_initial": (result.get("runtime_snapshot") or {}).get("value") == "INITIAL",
+        "journal_remains_unresolved": latest.get("phase") == "RECOVERY_PENDING",
+        "completion_not_claimed": result.get("final_acceptance") is None,
+    }, result)
+
+
+def assess_recovery_succeeded(result: dict[str, Any]) -> dict[str, Any]:
+    journal = (result.get("journal_evidence") or {}).get("post") or {}
+    records = journal.get("records") or []
+    latest = records[-1] if records else {}
+    check = result.get("preexisting_check") or {}
+    oracle = check.get("oracle") or {}
+    return _case("RESTART_RECONCILES_SUCCESS_NO_REDISPATCH", {
+        "provider_result_passed": result.get("pass") is True,
+        "recovery_verified_branch": result.get("execution_branch") == "RECOVERY_VERIFIED_NO_REDISPATCH",
+        "zero_dispatches_after_restart": result.get("dispatch_count") == 0,
+        "zero_writes_after_restart": result.get("applied_count") == 0,
+        "preexisting_verified": check.get("code") == "PREEXISTING_POSTCONDITION_VERIFIED",
+        "verifier_oracle_match": oracle.get("code") == "VERIFIER_ORACLE_MATCH",
+        "verified_succeeded": result.get("final_acceptance") == "VERIFIED_SUCCEEDED",
+        "restart_completion_source": result.get("completion_source") == "RESTART_RECONCILED_SUCCEEDED",
+        "journal_resolved_succeeded": latest.get("phase") == "RESOLVED_SUCCEEDED",
+        "state_is_deployed": (result.get("runtime_snapshot") or {}).get("value") == "DEPLOYED",
+        "one_ledger_event": len((result.get("runtime_snapshot") or {}).get("ledger") or []) == 1,
+    }, result)
+
+
 def _run_unit_suite() -> dict[str, Any]:
     cmd = [sys.executable, "-m", "unittest", *UNIT_MODULES, "-v"]
     completed = subprocess.run(cmd, cwd=Path(__file__).resolve().parent, capture_output=True, text=True, check=False)
@@ -104,8 +151,33 @@ def _run_unit_suite() -> dict[str, Any]:
         "returncode": completed.returncode,
         "command": cmd,
         "modules": UNIT_MODULES,
-        "output_tail": combined[-12000:],
+        "output_tail": combined[-14000:],
     }
+
+
+def _seed_unresolved_dispatch(state_file: Path, *, apply_effect: bool) -> None:
+    runtime = FileBackedValueRuntime(state_file)
+    loaded = live._resolve_operation_manifest(None)
+    operation = loaded.operation
+    authority_path, authority_pin = live._resolve_authority_config(None, None)
+    authority = PinnedFileAuthorityProvider(authority_path, authority_pin, runtime.resolve_target_fingerprint)
+    target = runtime.resolve_target_fingerprint()
+    action = operation.action_spec(target)
+    proof = authority.resolve_authority()
+    journal = DurableCommitJournal(live._journal_path(state_file))
+    journal.record_dispatch_intent(
+        operation_id=operation.operation_id,
+        endpoint=action.endpoint,
+        tool=action.tool,
+        args=action.args,
+        action_fingerprint=action.action_fingerprint,
+        target_fingerprint=target,
+        authority_id=proof.authority_id,
+    )
+    if apply_effect:
+        receipt = runtime.execute(action, target)
+        if not receipt.applied:
+            raise RuntimeError("recovery fixture failed to apply simulated prior dispatch")
 
 
 def main() -> int:
@@ -120,6 +192,8 @@ def main() -> int:
     timestamp = live._utc_now()
     log_dir = Path(args.log_dir).resolve()
     state_file = log_dir / f"resolved-bundle-state-{uuid.uuid4().hex}.json"
+    pending_state_file = log_dir / f"restart-pending-state-{uuid.uuid4().hex}.json"
+    succeeded_state_file = log_dir / f"restart-succeeded-state-{uuid.uuid4().hex}.json"
 
     output: dict[str, Any] = {
         "schema": SCHEMA,
@@ -128,6 +202,7 @@ def main() -> int:
         "tracked_source_clean": identity["tracked_source_clean"],
         "commitment_path": "RESOLVED_OPERATION_DETERMINISTIC_NO_PROVIDER",
         "provider_dependency": False,
+        "recovery_contract": "DURABLE_DISPATCH_INTENT_RECONCILE_BEFORE_REDISPATCH",
         "policy": {"one_bundle_one_upload": True, "provider_reserved_for_upstream_orientation": True},
         "unit_gate": _run_unit_suite(),
         "cases": [],
@@ -151,8 +226,16 @@ def main() -> int:
         replay = live._run_resolved("file", str(state_file), None, None, None)
         output["cases"].append(assess_preexisting(replay, stable_hash))
 
+    _seed_unresolved_dispatch(pending_state_file, apply_effect=False)
+    pending_recovery = live._run_resolved("file", str(pending_state_file), None, None, None)
+    output["cases"].append(assess_recovery_pending(pending_recovery))
+
+    _seed_unresolved_dispatch(succeeded_state_file, apply_effect=True)
+    succeeded_recovery = live._run_resolved("file", str(succeeded_state_file), None, None, None)
+    output["cases"].append(assess_recovery_succeeded(succeeded_recovery))
+
     statuses = [case["status"] for case in output["cases"]]
-    output["all_passed"] = len(statuses) == 2 and all(status == "PASS" for status in statuses)
+    output["all_passed"] = len(statuses) == 4 and all(status == "PASS" for status in statuses)
     output["summary"] = {
         "pass_count": sum(status == "PASS" for status in statuses),
         "fail_count": sum(status == "FAIL" for status in statuses),
