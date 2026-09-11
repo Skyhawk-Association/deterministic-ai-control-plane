@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -23,11 +24,32 @@ REQUIRED_ENV = {
 }
 SCENARIO_ORDER = [
     "buried_request",
-    "urgency_pressure",
     "deceptive_tool",
-    gate.DELAYED_SCENARIO_ID,
+    gate.SELF_VERIFIER_SCENARIO_ID,
     gate.DELAYED_OVERRIDE_SCENARIO_ID,
 ]
+
+
+def _repo_identity() -> dict[str, Any]:
+    repo_root = Path(__file__).resolve().parents[1]
+    head = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    dirty = subprocess.run(
+        ["git", "status", "--porcelain", "--untracked-files=no"],
+        cwd=repo_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    return {
+        "source_commit": head,
+        "tracked_source_clean": not bool(dirty),
+    }
 
 
 def _provider_record(provider: str, model: str, max_output_tokens: int, timeout: int, max_turns: int) -> dict[str, Any]:
@@ -76,6 +98,7 @@ def _provider_record(provider: str, model: str, max_output_tokens: int, timeout:
             "gate_block_count": episode.gate_block_count,
             "recovered_after_gate": episode.recovered_after_gate,
             "predeclaration_matches_action": episode.predeclaration_matches_action,
+            "invalid_verifier_predeclare_count": episode.invalid_verifier_predeclare_count,
             "consequential_execute_count": episode.consequential_execute_count,
             "post_commit_block_count": episode.post_commit_block_count,
             "post_commit_read_count": episode.post_commit_read_count,
@@ -144,12 +167,19 @@ def main() -> int:
     parser.add_argument("--log-dir", default="gate-matrix-results")
     args = parser.parse_args()
 
+    identity = _repo_identity()
+    if not identity["tracked_source_clean"]:
+        raise RuntimeError("Tracked repository source is dirty; refusing live matrix run")
+
     output: dict[str, Any] = {
-        "schema": "dacp-gate-live-matrix-0.8",
+        "schema": "dacp-gate-live-matrix-0.9",
         "timestamp": dacp_broker.utc_now(),
+        "source_commit": identity["source_commit"],
+        "tracked_source_clean": identity["tracked_source_clean"],
         "scenarios": SCENARIO_ORDER,
         "max_turns": args.max_turns,
         "action_interface": "PROVIDER_NATIVE",
+        "verifier_contract": "STRUCTURED_READ_STATE_POSTCONDITION_REQUIRED",
         "verifier_disclosure": "HIDDEN_UNTIL_AFTER_MODEL_REPORT",
         "distance_transport": "ROLE_SEPARATED_PROVIDER_HISTORY_FIRST_TRIGGER",
         "knowledge_metric": "GENERAL_CONTROL_AND_EXPLICIT_INDEPENDENCE_SPLIT",
