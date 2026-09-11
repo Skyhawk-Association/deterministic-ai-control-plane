@@ -17,6 +17,9 @@ from dacp_file_runtime import FileBackedValueRuntime
 from dacp_runtime_contract import DACPRuntime, bind_core_runtime
 
 
+DEFAULT_STATE_ENV = "DACP_STATE_FILE"
+
+
 def _repo_identity() -> dict[str, Any]:
     repo_root = Path(__file__).resolve().parents[1]
     head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo_root, check=True, capture_output=True, text=True).stdout.strip()
@@ -41,6 +44,21 @@ def _sha256_file(path: Path | None) -> str | None:
     return digest.hexdigest()
 
 
+def _default_state_file() -> Path:
+    configured = os.environ.get(DEFAULT_STATE_ENV)
+    if configured:
+        return Path(configured).expanduser().resolve()
+    return (Path.home() / ".dacp" / "runtime" / "tracked-value.json").resolve()
+
+
+def _resolve_state_file(runtime_kind: str, state_file: str | Path | None) -> Path | None:
+    if runtime_kind == "memory":
+        return None
+    if state_file is not None:
+        return Path(state_file).expanduser().resolve()
+    return _default_state_file()
+
+
 def _operation_for_runtime(runtime: DACPRuntime) -> OperationSpec:
     return OperationSpec(
         operation_id="tracked-value-deploy",
@@ -55,12 +73,13 @@ def _operation_for_runtime(runtime: DACPRuntime) -> OperationSpec:
     )
 
 
-def _make_runtime(runtime_kind: str, state_file: str | None) -> DACPRuntime:
+def _make_runtime(runtime_kind: str, state_file: str | Path | None) -> DACPRuntime:
     if runtime_kind == "memory":
         return VersionedValueRuntime()
-    if not state_file:
-        raise ValueError("--state-file is required when --runtime file")
-    return FileBackedValueRuntime(state_file)
+    resolved = _resolve_state_file(runtime_kind, state_file)
+    if resolved is None:
+        raise RuntimeError("file runtime did not resolve a state path")
+    return FileBackedValueRuntime(resolved)
 
 
 def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: int, max_turns: int, runtime_kind: str, state_file: str | None) -> dict[str, Any]:
@@ -68,8 +87,9 @@ def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: in
     if not os.environ.get(env_name):
         return {"provider": provider, "model": model, "credential_present": False, "status": "NOT_RUN_MISSING_CREDENTIAL", "turns": []}
 
-    runtime = _make_runtime(runtime_kind, state_file)
-    state_path = Path(state_file).resolve() if runtime_kind == "file" and state_file else None
+    resolved_state_file = _resolve_state_file(runtime_kind, state_file)
+    runtime = _make_runtime(runtime_kind, resolved_state_file)
+    state_path = resolved_state_file if runtime_kind == "file" else None
     pre_snapshot = runtime.evidence_snapshot()
     pre_state_sha256 = _sha256_file(state_path)
 
@@ -131,17 +151,33 @@ def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: in
     }
 
 
-def main() -> int:
+def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run primary-provider live DACP commitment-core integration")
     parser.add_argument("--provider", choices=["openai", "anthropic"], default="openai")
     parser.add_argument("--model", default=None)
-    parser.add_argument("--runtime", choices=["memory", "file"], default="memory")
-    parser.add_argument("--state-file", default=None)
+    parser.add_argument(
+        "--runtime",
+        choices=["file", "memory"],
+        default="file",
+        help="execution runtime; durable file state is the application default",
+    )
+    parser.add_argument(
+        "--state-file",
+        default=None,
+        help=(
+            "durable state path for --runtime file; defaults to DACP_STATE_FILE or "
+            "~/.dacp/runtime/tracked-value.json"
+        ),
+    )
     parser.add_argument("--max-output-tokens", type=int, default=256)
     parser.add_argument("--timeout", type=int, default=60)
     parser.add_argument("--max-turns", type=int, default=6)
     parser.add_argument("--log-dir", default="gate-matrix-results")
-    args = parser.parse_args()
+    return parser
+
+
+def main() -> int:
+    args = _build_parser().parse_args()
 
     identity = _repo_identity()
     if not identity["tracked_source_clean"]:
@@ -152,13 +188,14 @@ def main() -> int:
     provider_result = _run_provider(args.provider, model, args.max_output_tokens, args.timeout, args.max_turns, args.runtime, args.state_file)
 
     output = {
-        "schema": "dacp-core-live-integration-0.4",
+        "schema": "dacp-core-live-integration-0.5",
         "timestamp": dacp_broker.utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
         "provider_role": "PRIMARY_IMPLEMENTATION_PATH" if args.provider == "openai" else "OPTIONAL_INDEPENDENT_PATH",
         "session_contract": "DACPControlSession/OperationSpec",
         "runtime_contract": "DACPRuntime/evidence_snapshot",
+        "runtime_default": "file",
         "durable_evidence_contract": "PRE_POST_STATE_SHA256_AND_SNAPSHOT",
         "provider_result": provider_result,
     }
