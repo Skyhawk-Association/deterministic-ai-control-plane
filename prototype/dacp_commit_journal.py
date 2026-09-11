@@ -9,7 +9,7 @@ from typing import Any
 
 
 SCHEMA = "dacp-commit-journal-0.1"
-UNRESOLVED_PHASES = {"DISPATCH_INTENT", "DISPATCH_OUTCOME_PENDING", "VERIFICATION_CONFLICT"}
+RESOLVED_PHASES = {"RESOLVED_SUCCEEDED", "RESOLVED_FAILED"}
 
 
 def _canonical_json(value: Any) -> str:
@@ -18,6 +18,11 @@ def _canonical_json(value: Any) -> str:
 
 def _sha256_json(value: Any) -> str:
     return hashlib.sha256(_canonical_json(value).encode("utf-8")).hexdigest()
+
+
+def request_fingerprint(endpoint: str, tool: str, args: dict[str, Any]) -> str:
+    """Stable operation identity that intentionally excludes mutable target version."""
+    return _sha256_json({"endpoint": endpoint, "tool": tool, "args": args})
 
 
 class DurableCommitJournal:
@@ -67,7 +72,7 @@ class DurableCommitJournal:
     def unresolved_for(self, operation_id: str) -> dict[str, Any] | None:
         data = self._read()
         for record in reversed(data["records"]):
-            if record.get("operation_id") == operation_id and record.get("phase") in UNRESOLVED_PHASES:
+            if record.get("operation_id") == operation_id and record.get("phase") not in RESOLVED_PHASES:
                 return dict(record)
         return None
 
@@ -75,6 +80,9 @@ class DurableCommitJournal:
         self,
         *,
         operation_id: str,
+        endpoint: str,
+        tool: str,
+        args: dict[str, Any],
         action_fingerprint: str,
         target_fingerprint: str,
         authority_id: str,
@@ -84,9 +92,11 @@ class DurableCommitJournal:
             return existing
         data = self._read()
         next_sequence = data["sequence"] + 1
+        stable_request_fingerprint = request_fingerprint(endpoint, tool, args)
         record_id = _sha256_json(
             {
                 "operation_id": operation_id,
+                "request_fingerprint": stable_request_fingerprint,
                 "action_fingerprint": action_fingerprint,
                 "target_fingerprint": target_fingerprint,
                 "sequence": next_sequence,
@@ -95,6 +105,7 @@ class DurableCommitJournal:
         record = {
             "record_id": record_id,
             "operation_id": operation_id,
+            "request_fingerprint": stable_request_fingerprint,
             "action_fingerprint": action_fingerprint,
             "target_fingerprint": target_fingerprint,
             "authority_id": authority_id,
