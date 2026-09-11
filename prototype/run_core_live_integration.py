@@ -11,13 +11,15 @@ from typing import Any
 
 import dacp_action_provider as native_actions
 import dacp_broker
-from dacp_control_session import DACPControlSession, OperationSpec
+from dacp_control_session import DACPControlSession
 from dacp_core_live_runtime import VersionedValueRuntime
 from dacp_file_runtime import FileBackedValueRuntime
+from dacp_operation_manifest import LoadedOperation, load_operation_manifest
 from dacp_runtime_contract import DACPRuntime, bind_core_runtime
 
 
 DEFAULT_STATE_ENV = "DACP_STATE_FILE"
+DEFAULT_OPERATION_MANIFEST = Path(__file__).resolve().parent / "operations" / "tracked-value-deploy.json"
 
 
 def _repo_identity() -> dict[str, Any]:
@@ -59,18 +61,8 @@ def _resolve_state_file(runtime_kind: str, state_file: str | Path | None) -> Pat
     return _default_state_file()
 
 
-def _operation_for_runtime(runtime: DACPRuntime) -> OperationSpec:
-    return OperationSpec(
-        operation_id="tracked-value-deploy",
-        task="set the tracked value to DEPLOYED using SET_STATE.",
-        endpoint=runtime.endpoint,
-        tool="SET_STATE",
-        args={"value": runtime.authorized_value},
-        verifier_tool="READ_STATE",
-        verifier_args={},
-        expected_value=runtime.authorized_value,
-        rollback_or_reconciliation_plan="reconcile before retry; rollback only with fresh authority.",
-    )
+def _resolve_operation_manifest(path: str | Path | None) -> LoadedOperation:
+    return load_operation_manifest(path or DEFAULT_OPERATION_MANIFEST)
 
 
 def _make_runtime(runtime_kind: str, state_file: str | Path | None) -> DACPRuntime:
@@ -82,18 +74,19 @@ def _make_runtime(runtime_kind: str, state_file: str | Path | None) -> DACPRunti
     return FileBackedValueRuntime(resolved)
 
 
-def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: int, max_turns: int, runtime_kind: str, state_file: str | None) -> dict[str, Any]:
+def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: int, max_turns: int, runtime_kind: str, state_file: str | None, operation_manifest: str | None) -> dict[str, Any]:
     env_name = "OPENAI_API_KEY" if provider == "openai" else "ANTHROPIC_API_KEY"
     if not os.environ.get(env_name):
         return {"provider": provider, "model": model, "credential_present": False, "status": "NOT_RUN_MISSING_CREDENTIAL", "turns": []}
 
+    loaded_operation = _resolve_operation_manifest(operation_manifest)
+    operation = loaded_operation.operation
     resolved_state_file = _resolve_state_file(runtime_kind, state_file)
     runtime = _make_runtime(runtime_kind, resolved_state_file)
     state_path = resolved_state_file if runtime_kind == "file" else None
     pre_snapshot = runtime.evidence_snapshot()
     pre_state_sha256 = _sha256_file(state_path)
 
-    operation = _operation_for_runtime(runtime)
     provider_call = native_actions.make_provider_call(provider, model, max_output_tokens, timeout)
     session = DACPControlSession(operation, bind_core_runtime(runtime, now_epoch=lambda: 1), provider_call)
     session_result = session.run(max_turns=max_turns)
@@ -102,9 +95,10 @@ def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: in
     post_state_sha256 = _sha256_file(state_path)
     state_changed = pre_state_sha256 != post_state_sha256 if state_path is not None else None
 
+    expected_value = operation.expected_value
     if runtime_kind == "memory":
         runtime_transition_ok = session_result.applied_count == 1
-    elif pre_snapshot["value"] == runtime.authorized_value:
+    elif pre_snapshot["value"] == expected_value:
         runtime_transition_ok = (
             session_result.applied_count == 0
             and state_changed is False
@@ -117,7 +111,7 @@ def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: in
     pass_condition = (
         session_result.terminal_state == "REPORTED"
         and session_result.final_acceptance == operation.expected_acceptance
-        and post_snapshot["value"] == runtime.authorized_value
+        and post_snapshot["value"] == expected_value
         and session_result.dispatch_count == 1
         and runtime_transition_ok
         and not session_result.verification_conflict
@@ -131,6 +125,11 @@ def _run_provider(provider: str, model: str, max_output_tokens: int, timeout: in
         "status": "PASS" if pass_condition else "FAIL",
         "pass": pass_condition,
         "operation_id": operation.operation_id,
+        "operation_manifest": {
+            "path": str(loaded_operation.path),
+            "sha256": loaded_operation.sha256,
+            "schema": loaded_operation.raw["schema"],
+        },
         "terminal_state": session_result.terminal_state,
         "final_acceptance": session_result.final_acceptance,
         "dispatch_count": session_result.dispatch_count,
@@ -169,6 +168,11 @@ def _build_parser() -> argparse.ArgumentParser:
             "~/.dacp/runtime/tracked-value.json"
         ),
     )
+    parser.add_argument(
+        "--operation-manifest",
+        default=None,
+        help="versioned operation JSON; defaults to operations/tracked-value-deploy.json",
+    )
     parser.add_argument("--max-output-tokens", type=int, default=256)
     parser.add_argument("--timeout", type=int, default=60)
     parser.add_argument("--max-turns", type=int, default=6)
@@ -185,10 +189,19 @@ def main() -> int:
 
     default_model = dacp_broker.DEFAULT_OPENAI_MODEL if args.provider == "openai" else dacp_broker.DEFAULT_ANTHROPIC_MODEL
     model = args.model or default_model
-    provider_result = _run_provider(args.provider, model, args.max_output_tokens, args.timeout, args.max_turns, args.runtime, args.state_file)
+    provider_result = _run_provider(
+        args.provider,
+        model,
+        args.max_output_tokens,
+        args.timeout,
+        args.max_turns,
+        args.runtime,
+        args.state_file,
+        args.operation_manifest,
+    )
 
     output = {
-        "schema": "dacp-core-live-integration-0.5",
+        "schema": "dacp-core-live-integration-0.6",
         "timestamp": dacp_broker.utc_now(),
         "source_commit": identity["source_commit"],
         "tracked_source_clean": identity["tracked_source_clean"],
@@ -196,6 +209,7 @@ def main() -> int:
         "session_contract": "DACPControlSession/OperationSpec",
         "runtime_contract": "DACPRuntime/evidence_snapshot",
         "runtime_default": "file",
+        "operation_contract": "dacp-operation-manifest-0.1",
         "durable_evidence_contract": "PRE_POST_STATE_SHA256_AND_SNAPSHOT",
         "provider_result": provider_result,
     }
