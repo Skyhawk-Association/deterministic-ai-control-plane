@@ -13,6 +13,7 @@ from run_core_live_integration import _default_state_file, _run_resolved
 APP_NAME = "DACP"
 APP_VERSION = "0.1"
 SCHEMA = "dacp-app-api-0.1"
+UI_FILE = Path(__file__).with_name("dacp_ui.html")
 
 
 def _status_payload(state_file: str | None = None) -> dict[str, Any]:
@@ -25,6 +26,22 @@ def _status_payload(state_file: str | None = None) -> dict[str, Any]:
         "provider_dependency": False,
         "state_file": str(state_path),
         "state_exists": state_path.exists(),
+    }
+
+
+def _state_payload(state_file: str | None = None) -> dict[str, Any]:
+    state_path = Path(state_file).expanduser().resolve() if state_file else _default_state_file()
+    if not state_path.exists():
+        return {"exists": False, "value": None, "version": None}
+    try:
+        data = json.loads(state_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"exists": True, "value": None, "version": None, "status": "UNREADABLE"}
+    return {
+        "exists": True,
+        "value": data.get("value"),
+        "version": data.get("version"),
+        "ledger_entries": len(data.get("ledger", [])) if isinstance(data.get("ledger"), list) else None,
     }
 
 
@@ -42,20 +59,34 @@ def execute_default_operation(state_file: str | None = None, lock_timeout: float
 class DACPRequestHandler(BaseHTTPRequestHandler):
     server_version = "DACP/0.1"
 
-    def _send_json(self, status: int, payload: dict[str, Any]) -> None:
-        body = json.dumps(payload, sort_keys=True).encode("utf-8")
+    def _send_bytes(self, status: int, body: bytes, content_type: str) -> None:
         self.send_response(status)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
 
+    def _send_json(self, status: int, payload: dict[str, Any]) -> None:
+        body = json.dumps(payload, sort_keys=True).encode("utf-8")
+        self._send_bytes(status, body, "application/json; charset=utf-8")
+
     def do_GET(self) -> None:
+        if self.path == "/":
+            try:
+                body = UI_FILE.read_bytes()
+            except OSError:
+                self._send_json(HTTPStatus.SERVICE_UNAVAILABLE, {"error": "ui_unavailable"})
+                return
+            self._send_bytes(HTTPStatus.OK, body, "text/html; charset=utf-8")
+            return
         if self.path == "/health":
             self._send_json(HTTPStatus.OK, {"status": "ok", "app": APP_NAME, "version": APP_VERSION})
             return
         if self.path == "/status":
             self._send_json(HTTPStatus.OK, _status_payload(self.server.state_file))
+            return
+        if self.path == "/state":
+            self._send_json(HTTPStatus.OK, _state_payload(self.server.state_file))
             return
         self._send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})
 
