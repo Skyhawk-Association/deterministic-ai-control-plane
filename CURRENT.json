@@ -45,6 +45,20 @@
         "CONSERVATIVE_NEGATIVE_PROBE_SEMANTICS",
         "EXCEPTION_CLASSIFICATION"
       ]
+    },
+    "app_shell": {
+      "human_name": "DACP 0.1",
+      "entrypoint": "prototype/dacp_app.py",
+      "main_merge_commit": "295984f53fd033dc49c5b2400029f10605bcc4d8",
+      "pr": 10,
+      "ci_run": 34671480926,
+      "ci": "WINDOWS_AND_UBUNTU_PASS",
+      "local_app_tests": "3_OF_3_PASS",
+      "existing_unit_tests": "64_OF_64_PASS",
+      "bundled_acceptance": "5_OF_5_PASS",
+      "runtime_smoke": "HEALTH_STATUS_MUTATE_THEN_ZERO_DISPATCH_REPLAY_PASS",
+      "provider_dependency": false,
+      "network_scope": "LOOPBACK_ONLY"
     }
   },
   "review_ready_spec_patch": {
