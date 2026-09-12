@@ -1,22 +1,30 @@
 {
-  "schema": "dacp-state-locator-0.3",
+  "schema": "dacp-state-locator-0.4",
   "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
   "current_private_state": {
+    "storage_class": "GOOGLE_DRIVE_LOCAL_SYNC",
+    "generation": 32,
+    "root_folder_id": "18YtEqUhReyDLIRl_IYwICNw2sK09jVNl",
+    "state_head_file_id": "11wB9eqiFX-OI761xUCh82aGwCzxqZZkB",
+    "state_head_name": "DACP_PRIVATE_STATE_HEAD.json",
+    "local_root": "C:\\Users\\genea\\My Drive\\DACP Private Operational",
+    "status": "ACTIVE_VERIFIED_SYNC_AND_CONNECTOR_READBACK",
+    "note": "Private operational state is written through the locally synced Google Drive folder and must be independently read back through the authenticated Google Drive connector before consequential reliance. This is private operational state, not canonical governance."
+  },
+  "recovery_private_state": {
     "storage_class": "GMAIL_RECOVERY_THREAD",
     "generation": 31,
     "thread_id": "1a088f16abb9349a",
     "message_id": "1a090e78eac0400c",
     "label": "DACP/Private State",
-    "status": "ACTIVE_RECOVERY_SURFACE_RECONCILED",
-    "note": "Use the authenticated Gmail connector to read the thread/message. This is private operational state, not canonical governance."
+    "status": "FALLBACK_PRESERVED"
   },
   "legacy_private_state": {
     "storage_class": "GOOGLE_DRIVE_SHARED",
     "generation": 26,
     "state_head_url": "https://docs.google.com/document/d/1G9Nw2MFwH-Kn__qFGznMIXSa5l3SBw-G1EK7zzYP0kk/edit",
-    "status": "MANUALLY_RECOVERED_RECONCILED_TO_GMAIL_GEN_27",
-    "note": "Gene manually recovered the legacy state head plus candidate generation 6 and observation generation 21 for reconciliation. Direct Drive access remains unavailable on this ChatGPT execution surface."
+    "status": "SUPERSEDED_BY_RECONCILED_GENERATIONS"
   },
   "future_private_state_target": "PRIVATE_NAS",
-  "rule": "Git exposes only the minimum direct locator for the private operational state. Resolve private contents through the authenticated storage connector. When the AI lacks an authorized storage capability that Gene has, identify the exact required artifact for minimal human bridging, then resume AI execution immediately after upload. Do not place private payloads in public Git."
+  "rule": "Git exposes only the minimum direct locator for the private operational state. Public Git remains canonical for governance/specification. Private operational payloads remain private. Storage transitions require integrity, coverage, access-control, and independent read-back verification before activation."
 }
