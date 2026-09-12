@@ -13,7 +13,7 @@
   "state_locator": "STATE_LOCATOR.json",
   "current_private_state": {
     "storage_class": "GOOGLE_DRIVE_LOCAL_SYNC",
-    "generation": 33,
+    "generation": 34,
     "root_folder_id": "18YtEqUhReyDLIRl_IYwICNw2sK09jVNl",
     "state_head_file_id": "11wB9eqiFX-OI761xUCh82aGwCzxqZZkB",
     "status": "ACTIVE_VERIFIED",
