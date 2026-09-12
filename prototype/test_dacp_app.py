@@ -34,6 +34,14 @@ class DACPAppTests(unittest.TestCase):
         except HTTPError as exc:
             return exc.code, json.loads(exc.read().decode("utf-8"))
 
+    def test_root_serves_human_interface(self) -> None:
+        with urlopen(self.base + "/", timeout=5) as response:
+            body = response.read().decode("utf-8")
+            self.assertEqual(response.status, 200)
+            self.assertIn("DACP 0.1", body)
+            self.assertIn("Apply authorized state", body)
+            self.assertIn("zero dispatch", body)
+
     def test_health_and_status(self) -> None:
         status, health = self._json("/health")
         self.assertEqual(status, 200)
@@ -42,6 +50,9 @@ class DACPAppTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertEqual(app_status["app"], APP_NAME)
         self.assertFalse(app_status["state_exists"])
+        status, tracked = self._json("/state")
+        self.assertEqual(status, 200)
+        self.assertEqual(tracked, {"exists": False, "value": None, "version": None})
 
     def test_authorized_operation_mutates_once_then_replays_without_dispatch(self) -> None:
         status, first = self._json("/operations/tracked-value-deploy", method="POST")
@@ -55,6 +66,12 @@ class DACPAppTests(unittest.TestCase):
         self.assertEqual(second["dispatch_count"], 0)
         self.assertEqual(second["applied_count"], 0)
         self.assertEqual(second["execution_branch"], "PREEXISTING_VERIFIED_NO_DISPATCH")
+        status, tracked = self._json("/state")
+        self.assertEqual(status, 200)
+        self.assertTrue(tracked["exists"])
+        self.assertEqual(tracked["value"], "DEPLOYED")
+        self.assertEqual(tracked["version"], 1)
+        self.assertEqual(tracked["ledger_entries"], 1)
 
     def test_unknown_route_is_404(self) -> None:
         status, payload = self._json("/nope")
