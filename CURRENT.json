@@ -1,5 +1,5 @@
 {
-  "schema": "dacp-current-0.4",
+  "schema": "dacp-current-0.5",
   "canonical_migration_status": "ACTIVE_GIT_CANONICAL",
   "repository": "Skyhawk-Association/deterministic-ai-control-plane",
   "branch": "main",
@@ -11,6 +11,14 @@
   "bootstrap_path": "CURRENT.md",
   "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
   "state_locator": "STATE_LOCATOR.json",
+  "current_private_state": {
+    "storage_class": "GOOGLE_DRIVE_LOCAL_SYNC",
+    "generation": 32,
+    "root_folder_id": "18YtEqUhReyDLIRl_IYwICNw2sK09jVNl",
+    "state_head_file_id": "11wB9eqiFX-OI761xUCh82aGwCzxqZZkB",
+    "status": "ACTIVE_VERIFIED_SYNC_AND_CONNECTOR_READBACK",
+    "gmail_recovery_generation": 31
+  },
   "application_implementation": {
     "authorization_path": "authoritative/DACP_Application_Implementation_Authorization_0.2.md",
     "status": "AUTHORIZED_ACTIVE_GENE_DECISION",
@@ -32,5 +40,6 @@
     "path": "authoritative/DACP_Heuristics_Specification_0.1.3.md",
     "status": "PROPOSED_NOT_ACTIVE"
   },
-  "drive_role": "PRIVATE_OPERATIONAL_EVIDENCE_AND_CONTINUITY_SURFACE_NOT_CANONICAL"
+  "drive_role": "ACTIVE_PRIVATE_OPERATIONAL_STATE_AND_EVIDENCE_SURFACE_NOT_CANONICAL",
+  "future_private_state_target": "PRIVATE_NAS"
 }
