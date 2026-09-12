@@ -23,7 +23,7 @@
 
 ## Operational state
 
-`STATE_LOCATOR.json` identifies the current shared private operational-state surface. Current private state is generation 33 on the verified Google Drive local-sync surface, with independent authenticated Drive connector readback and canonical locator activation. Gmail generation 31 is retained only as a recovery fallback. For nontrivial or consequential DACP work, resolve the relevant current private state when authorized and available. Pending/candidate and raw/observational state do not become canonical merely by being present.
+`STATE_LOCATOR.json` identifies the current shared private operational-state surface. Current private state is generation 34 on the verified Google Drive local-sync surface, with independent authenticated Drive connector readback and canonical locator activation. Gmail generation 31 is retained only as a recovery fallback. For nontrivial or consequential DACP work, resolve the relevant current private state when authorized and available. Pending/candidate and raw/observational state do not become canonical merely by being present.
 
 Current review-ready heuristic patch: `authoritative/DACP_Heuristics_Specification_0.1.3.md` is **PROPOSED / NOT ACTIVE**. Canonical 0.1.1 remains governing until version promotion is completed through the applicable authority and compatibility gates. `authoritative/DACP_Heuristics_Specification_0.1.2.md` remains preserved as the immediate predecessor proposal.
 
@@ -49,4 +49,4 @@ Required response: `DACP 0.1.1 ACTIVE | Candidate capture: ON | Silent promotion
 
 ## Canonical-source rule
 
-For current public DACP specification/governance state, this Git repository is canonical. Google Drive/private state is an operational evidence/continuity surface, not a competing canonical control source. If a mirror, state record, copied instruction, prior chat, local file, or remembered state disagrees with canonical Git, preserve the disagreement and resolve it against the exact Git version/blob plus applicable authority.
+For current public DACP specification/governance state, this Git repository is canonical. Google Drive/private state is an operational evidence/continuity surface, not a competing canonical control source. If a mirror, state record, copied instruction, prior chat, local file, or remembered state disagrees with canonical Git, preserve the disagreement and resolve it against the exact canonical Git state plus applicable authority.
