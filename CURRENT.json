@@ -34,6 +34,17 @@
       "bundled_acceptance_cases": "5_OF_5_PASS",
       "provider_dependency": false,
       "scope_boundary": "NOT_PRODUCTION_AUTH_NOT_DISTRIBUTED_CONSENSUS_NOT_MULTI_RESOURCE_TRANSACTIONS"
+    },
+    "openonce_bakeoff": {
+      "evidence_path": "docs/OPENONCE_RECOVERY_BAKEOFF_2026-09-12.md",
+      "evaluated_commit": "92cf4e85f62252ff760033f6e7a0868ce0d7b405",
+      "decision": "KEEP_DACP_KERNEL_NO_OPENONCE_RUNTIME_DEPENDENCY_FOR_0_1",
+      "borrow_patterns": [
+        "PROVIDER_PROBE_CONTRACTS",
+        "PROVIDER_CAPABILITY_AND_CONFORMANCE_METADATA",
+        "CONSERVATIVE_NEGATIVE_PROBE_SEMANTICS",
+        "EXCEPTION_CLASSIFICATION"
+      ]
     }
   },
   "review_ready_spec_patch": {
