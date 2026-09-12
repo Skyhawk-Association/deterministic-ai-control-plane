@@ -2,6 +2,21 @@
 
 This directory contains the working DACP prototype and the field/regression evidence that led to the current implementation path.
 
+## DACP 0.1 local application shell
+
+`dacp_app.py` is the first human-facing application surface built on the accepted commitment kernel. It uses only the Python standard library and defaults to loopback-only HTTP on `127.0.0.1:8765`.
+
+```sh
+python3 dacp_app.py
+```
+
+Current endpoints are intentionally narrow:
+
+- `GET /health` reports application liveness and human-facing version `DACP 0.1`.
+- `GET /status` reports the local resolved-commitment mode and durable state location.
+- `POST /operations/tracked-value-deploy` invokes the already-authorized tracked-value operation through the existing authority, precheck, journal, lock, commit, and independent-verification path.
+
+The HTTP surface does not accept arbitrary tools, arguments, authority, filesystem paths, or provider prompts from a caller. Expanding that surface requires a later explicitly controlled slice rather than letting a generic request body quietly become permission.
 ## Current resolved-operation path
 
 The default entrypoint is:

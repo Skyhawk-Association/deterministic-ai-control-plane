@@ -5,6 +5,7 @@ on:
     branches:
       - prototype/task-time-gate-beta-v0
       - main
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -26,6 +27,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+
+      - name: Run DACP 0.1 app shell tests
+        shell: pwsh
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = 'Stop'
+          Push-Location prototype
+          python -m unittest test_dacp_app.py -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Pop-Location
 
       - name: Run bundled deterministic acceptance
         shell: pwsh
