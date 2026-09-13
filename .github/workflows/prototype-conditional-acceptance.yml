@@ -34,7 +34,7 @@ jobs:
           Set-StrictMode -Version Latest
           $ErrorActionPreference = 'Stop'
           Push-Location prototype
-          python -m unittest test_dacp_app.py -v
+          python -m unittest test_dacp_app.py test_start_dacp.py -v
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           Pop-Location
 
