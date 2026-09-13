@@ -3,7 +3,7 @@
   "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
   "current_private_state": {
     "storage_class": "GOOGLE_DRIVE_LOCAL_SYNC",
-    "generation": 35,
+    "generation": 36,
     "root_folder_id": "18YtEqUhReyDLIRl_IYwICNw2sK09jVNl",
     "state_head_file_id": "11wB9eqiFX-OI761xUCh82aGwCzxqZZkB",
     "state_head_name": "DACP_PRIVATE_STATE_HEAD.json",

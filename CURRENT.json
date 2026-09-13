@@ -13,7 +13,7 @@
   "state_locator": "STATE_LOCATOR.json",
   "current_private_state": {
     "storage_class": "GOOGLE_DRIVE_LOCAL_SYNC",
-    "generation": 35,
+    "generation": 36,
     "root_folder_id": "18YtEqUhReyDLIRl_IYwICNw2sK09jVNl",
     "state_head_file_id": "11wB9eqiFX-OI761xUCh82aGwCzxqZZkB",
     "status": "ACTIVE_VERIFIED",
@@ -59,6 +59,22 @@
       "runtime_smoke": "HEALTH_STATUS_MUTATE_THEN_ZERO_DISPATCH_REPLAY_PASS",
       "provider_dependency": false,
       "network_scope": "LOOPBACK_ONLY"
+    },
+    "local_ui": {
+      "human_name": "DACP 0.1",
+      "entrypoint": "prototype/dacp_app.py",
+      "ui_file": "prototype/dacp_ui.html",
+      "main_merge_commit": "4dc7dbd230bc3c6d0dab41f504dd837fc9ffe133",
+      "pr": 13,
+      "ci_run": 34726600159,
+      "ci": "WINDOWS_AND_UBUNTU_PASS",
+      "local_app_tests": "4_OF_4_PASS",
+      "existing_unit_tests": "64_OF_64_PASS",
+      "bundled_acceptance": "5_OF_5_PASS",
+      "runtime_smoke": "UI_RENDER_MUTATE_THEN_ZERO_DISPATCH_REPLAY_PASS",
+      "provider_dependency": false,
+      "network_scope": "LOOPBACK_ONLY",
+      "authority_surface": "EXISTING_AUTHORIZED_OPERATION_ONLY"
     }
   },
   "review_ready_spec_patch": {
