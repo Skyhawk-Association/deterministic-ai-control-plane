@@ -1,19 +1,19 @@
 # Deterministic AI Control Plane
 ## Heuristics Specification 0.1.4
 
-**Status:** PROPOSED HEURISTIC PATCH / REVIEW-READY / NOT ACTIVE  
-**Effective:** Not active. Canonical 0.1.1 remains governing until promotion is completed through the applicable authority and compatibility gates.  
-**Supersedes:** `DACP_Heuristics_Specification_0.1.3.md` for the sections replaced below if this patch is promoted.  
+**Status:** AUTHORITATIVE PROJECT SPECIFICATION / ACTIVE / GENE INTERIM DECISION  
+**Effective:** Immediately upon canonical persistence and independent read-back verification following Gene's explicit 2026-09-13 approval.  
+**Supersedes:** `DACP_Heuristics_Specification_0.1.1.md` as the active canonical specification; incorporates the intervening 0.1.2 and 0.1.3 proposed refinements through the composition rule below.  
 **Base specification:** `DACP_Heuristics_Specification_0.1.3.md`, which composes over `DACP_Heuristics_Specification_0.1.2.md` and `DACP_Heuristics_Specification_0.1.1.md`.  
-**Active heuristic count if promoted:** 17  
-**Decision source:** 2026-09-13/14 field use exposed repeated control-application failures involving source precedence, task-time capability resolution, commit-time target identity, repeated same-cause retries, and avoidable transfer of mechanical execution back to Gene.  
-**Implementation boundary:** This specification governs behavior and field use. It does not authorize building or expanding the DACP application.
+**Active heuristic count:** 17  
+**Decision source:** Gene's explicit 2026-09-13 approval of 0.1.4 after 2026-09-13/14 field use exposed repeated control-application failures involving source precedence, task-time capability resolution, commit-time target identity, repeated same-cause retries, and avoidable transfer of mechanical execution back to Gene.  
+**Implementation boundary:** This specification governs behavior and field use. It does not itself expand DACP application implementation authority.
 
 ## Composition rule
 
-A consumer resolving 0.1.4 must first resolve 0.1.1, then apply the 0.1.2 replacements, then the 0.1.3 replacements, then replace **H-003, H-005, H-016, and H-017** with the sections below. All other 0.1.3, 0.1.2, and 0.1.1 controls remain unchanged.
+The active 0.1.4 specification is resolved cumulatively: first resolve 0.1.1, then apply the 0.1.2 replacements, then the 0.1.3 replacements, then replace **H-003, H-005, H-016, and H-017** with the sections below. All other 0.1.3, 0.1.2, and 0.1.1 controls remain unchanged.
 
-This patch does not create a new heuristic. The observed failures fit existing causal controls but showed that those controls were still too permissive about source precedence, failed-attempt reorientation, capability discovery, and human handoff.
+This version does not create a new heuristic. The observed failures fit existing causal controls but showed that those controls were still too permissive about source precedence, failed-attempt reorientation, capability discovery, and human handoff.
 
 ## Field evidence summary
 
@@ -68,7 +68,7 @@ The data/instruction boundary must survive serialization into tools: prefer stru
 
 **Intended scope:** UNIVERSAL.
 
-**Status:** ACTIVE / GENE INTERIM DECISION if 0.1.4 is promoted.
+**Status:** ACTIVE / GENE INTERIM DECISION.
 
 ---
 
@@ -112,7 +112,7 @@ Success evidence must correspond to the actual endpoint, not merely an implement
 
 **Intended scope:** UNIVERSAL.
 
-**Status:** ACTIVE / GENE INTERIM DECISION if 0.1.4 is promoted.
+**Status:** ACTIVE / GENE INTERIM DECISION.
 
 ---
 
@@ -158,7 +158,7 @@ Evaluate the failure of a control layer separately from the severity of the outc
 
 **Intended scope:** UNIVERSAL governance / task-time application rule.
 
-**Status:** ACTIVE / GENE INTERIM DECISION if 0.1.4 is promoted.
+**Status:** ACTIVE / GENE INTERIM DECISION.
 
 ---
 
@@ -204,19 +204,19 @@ Routine technical choices necessary to execute an already authorized endpoint ar
 
 **Intended scope:** UNIVERSAL within Gene-governed DACP work for Gene's lifetime unless Gene explicitly supersedes this standing role allocation.
 
-**Status:** ACTIVE / GENE INTERIM DECISION / STANDING LIFETIME ROLE ALLOCATION if 0.1.4 is promoted.
+**Status:** ACTIVE / GENE INTERIM DECISION / STANDING LIFETIME ROLE ALLOCATION.
 
 ---
 
-## 0.1.3 -> 0.1.4 proposed refinement summary
+## 0.1.3 -> 0.1.4 refinement summary
 
 - H-003 now makes source precedence explicit: narrower authoritative domain/runbook/technical-map guidance governs over generic model habit and rediscovery unless current competent evidence shows it is stale or inapplicable.
 - H-005 now treats failed target/path/precondition checks as evidence that must alter the next attempt and requires endpoint-level verification rather than implementation-proxy success.
 - H-016 now makes repeated same-cause control-application failure recurrence-aware and requires explicit AI-side reorientation after one demonstrated same-cause failure before the next materially similar commit.
 - H-017 now requires task-time capability resolution before mechanical handoff and forbids generalizing failure of one execution adapter into absence of all execution capability.
-- No new heuristic was added; the active heuristic count remains 17 if promoted.
-- No application implementation is authorized by this patch.
+- No new heuristic was added; the active heuristic count remains 17.
+- No additional application implementation authority is created by this specification version.
 
-## Review status
+## Current acceptance status
 
-Heuristics Specification 0.1.4 is **PROPOSED / REVIEW-READY / NOT ACTIVE**. Canonical 0.1.1 remains governing. 0.1.3 remains the prior review-ready proposal until this patch is deliberately accepted, rejected, or superseded through the applicable authority and compatibility gates. No silent promotion is permitted.
+Heuristics Specification 0.1.4 is **AUTHORITATIVE / ACTIVE / GENE INTERIM DECISION**. It contains 17 active heuristics through the cumulative composition rule above. It remains version-scoped, evidence-bound, continuously challengeable, and subject to the standing correction process.
