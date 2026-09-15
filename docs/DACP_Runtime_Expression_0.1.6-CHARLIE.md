@@ -11,13 +11,13 @@ Charlie preserves Bravo's sparse-control architecture and adds only the changes 
 - tightens evidence verification against selective/cherry-picked support by requiring reasonably obtainable contrary evidence to be addressed;
 - preserves verifier independence before cross-review so disagreement is generated before reconciliation;
 - formalizes evolutionary candidate competition in LEARN/PERSIST without silently promoting any candidate;
-- makes internal transparency absolute: no deception of Gene, governing authority, reviewers, verifiers, audit state, or DACP's own controls;
+- requires truthful internal transparency: no deception of Gene, governing authority, reviewers, verifiers, audit state, or DACP's own controls, including no concealment of the fact that authorized withholding occurred;
 - keeps competitor monitoring, public positioning, and market strategy outside the runtime core; they enter Charlie only as evidence when relevant to the current task;
 - carries forward Bravo's authority, closure, selective re-plumbing, capability lifecycle, provider overlays, and verification requirements unchanged except where explicitly refined below.
 
 No item in this synopsis is active merely because it is listed here. This document is a candidate until deliberately accepted, persisted as active authority, and independently verified.
 
-**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 3  
+**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 4  
 **Predecessor:** `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md`  
 **Purpose:** Preserve Bravo's sparse deterministic control architecture while adding bounded adversarial competition, explicit external-state reorientation, evidence-set challenge, verifier independence, and terminology clarity without turning the runtime specification into a strategy or market-monitoring document.
 
@@ -34,6 +34,8 @@ Before a material success claim, also ask:
 These are traversal and challenge invariants, not substitutes for retrieval, authority, or evidence.
 
 For Charlie, **material** means capable of changing the authorized objective, scope, selected action, consequence severity, reversibility, evidence-supported conclusion, verifier result, or success claim. Harmless low-risk details that cannot reasonably alter those states are non-material.
+
+When an item plausibly approaches a high consequence or low-reversibility boundary but is judged non-material, record that near-miss materiality determination and its basis. Routine low-risk non-material items require no such record.
 
 ## 2. Full control graph
 
@@ -56,6 +58,7 @@ Minimum CWS fields:
 - dependency edges;
 - critical-junction triggers;
 - verifier set and verifier-independence state where applicable;
+- verification resource constraints or the applicable default verification bound;
 - closure state;
 - invalidation log;
 - active provider/model overlays;
@@ -84,7 +87,7 @@ Bind authority, target identity where material, exact scope/parameters, protecti
 
 For materially consequential or weakly reversible decisions, generate at least one **materially different competent alternative** before final COMMIT unless the alternative would be artificial ceremony or no competent alternative exists. Record the selected path and the reason the alternative was rejected or constrained. Record the determination when alternative generation is skipped as ceremony or as having no competent alternative. Do not require alternative generation for harmless low-risk work.
 
-Consequential execution remains blocked while any material REQUIRED item is `CONTRADICTED`, `UNRESOLVED`, or `CYCLIC_UNRESOLVED`.
+Consequential execution remains blocked while any material REQUIRED item is `CONTRADICTED`, `UNRESOLVED`, or `CYCLIC_UNRESOLVED`. `SUPERSEDED` and `RE_PLUMBED` are traceability states, not terminal pass states; the applicable successor or replacement item must reach a passable terminal closure state before consequential execution proceeds.
 
 ### EXECUTE
 Use the smallest competent authorized surface. Failure of one adapter does not erase a verified capability. Dependent consequential steps block on failed, pending, unresolved, contradicted, or materially unverified predecessors.
@@ -94,7 +97,7 @@ Every completion claim receives an acceptance check scaled to consequence and ob
 
 For material conclusions, plans, names, architectures, or success claims, run a bounded **adversarial falsification pass** that attempts to produce a competent counterexample, conflicting explanation, or failure mode. Any material unresolved objection becomes `UNRESOLVED` or `CONTRADICTED` and blocks closure under the existing closure rules.
 
-When a conclusion depends on an evidence set, VERIFY must check whether reasonably obtainable contrary evidence has been excluded. The verifier need not infer malicious intent; it must detect materially selective support. Contrary evidence is either incorporated, explicitly rebutted, or logged as unavailable/out of scope with reason. **Reasonably obtainable** means accessible through currently authorized sources within a verification effort proportionate to the task's consequence, reversibility, freshness requirement, and predeclared resource constraints; it does not require unbounded search.
+When a conclusion depends on an evidence set, VERIFY must check whether reasonably obtainable contrary evidence has been excluded. The verifier need not infer malicious intent; it must detect materially selective support. Contrary evidence is either incorporated, explicitly rebutted, or logged as unavailable/out of scope with reason. **Reasonably obtainable** means accessible through currently authorized sources within the CWS's declared verification resource constraints, or, when no special constraint is declared, within an effort proportionate to the task's consequence, reversibility, and freshness requirement; it does not require unbounded search.
 
 ### LEARN / PERSIST
 Persist verified deltas, capability lifecycle changes, causal failure fingerprints, user corrections, verifier results, graph relations, retrieval triggers, provider-overlay evidence, and candidate control refinements.
@@ -147,6 +150,8 @@ A consequential action is passable only when every material REQUIRED item is one
 - `STOPPED` by competent authority where stopping is the correct endpoint.
 
 Any material `CONTRADICTED`, `UNRESOLVED`, or `CYCLIC_UNRESOLVED` item blocks consequential execution or success declaration.
+
+`SUPERSEDED` and `RE_PLUMBED` preserve audit history but are not independently passable closure states. Each must point to an applicable successor or replacement REQUIRED item, and that successor/replacement must itself reach `RESOLVED`, permitted `CONSTRAINED`, or correct-endpoint `STOPPED` before closure.
 
 Source contradictions are preserved and resolved using task/domain-specific source-precedence rules plus live-state verification where applicable. There is no universal `authoritative > recent > multiple > single` hierarchy.
 
@@ -204,7 +209,7 @@ The Microsoft ACS naming evidence must be independently reconfirmed at promotion
 
 Charlie does **not** add a permanent competitor-monitoring subsystem, public-relations engine, or market-strategy loop to the runtime state machine.
 
-Competitive products, public legitimacy, policy shifts, infrastructure constraints, deployment barriers, and other external developments may be retrieved as current evidence when relevant to FRAME/RETRIEVE or supplied by an **external monitoring feed** outside the runtime core. Their significance is evaluated through the same evidence, authority, consequence, and critical-junction machinery as other external state.
+An **external monitoring feed** is any process outside the runtime core that supplies candidate external-state evidence for FRAME or RETRIEVE. Competitive products, public legitimacy, policy shifts, infrastructure constraints, deployment barriers, and other external developments may be retrieved as current evidence when relevant to FRAME/RETRIEVE or supplied by such a feed. Their significance is evaluated through the same evidence, authority, consequence, and critical-junction machinery as other external state.
 
 This preserves strategic awareness without converting the runtime specification into an intelligence or branding system.
 
@@ -238,9 +243,11 @@ Charlie is not ready for activation until at least these conceptual and implemen
 10. **Terminology migration:** every promoted reference to the per-task working set is semantically consistent after ACS -> CWS rename.
 11. **Internal transparency:** a shortcut that would hide dissent or falsely imply success is rejected while the underlying task continues through a truthful path.
 12. **Confidential non-disclosure boundary:** authorized withholding that is disclosed as withholding passes; concealed material withholding or an unrecorded entitlement determination fails.
-13. **Anti-ceremony:** low-risk routine work does not acquire adversarial or alternative-generation overhead merely because Charlie exists.
-14. **Bravo preservation:** existing Bravo scenarios for privacy, cyclic evidence, same-cause recurrence, capability recovery, alternate surfaces, and resulting-state verification still pass.
-15. **Irrelevant external-evidence containment:** a competitive, public, policy, infrastructure, or deployment change irrelevant to the current task does not expand the CWS or trigger a critical junction.
+13. **Materiality near-miss:** a plausibly high-consequence or weakly reversible item judged non-material records the determination; routine low-risk work does not acquire logging ceremony.
+14. **Closure traceability states:** a `SUPERSEDED` or `RE_PLUMBED` item cannot close the task by itself; its successor/replacement must reach a passable terminal state.
+15. **Anti-ceremony:** low-risk routine work does not acquire adversarial or alternative-generation overhead merely because Charlie exists.
+16. **Bravo preservation:** existing Bravo scenarios for privacy, cyclic evidence, same-cause recurrence, capability recovery, alternate surfaces, and resulting-state verification still pass.
+17. **Irrelevant external-evidence containment:** a competitive, public, policy, infrastructure, or deployment change irrelevant to the current task does not expand the CWS or trigger a critical junction.
 
 ## 17. Decision boundary and test status
 
@@ -255,7 +262,8 @@ Current evidence consists of:
 - independent Claude adversarial review of the proposed Charlie additions;
 - independent Claude adversarial review of Charlie Design Pass 1;
 - independent Claude adversarial review of Charlie Design Pass 2;
+- independent Claude adversarial review of Charlie Design Pass 3;
 - current external evidence of an ACS naming collision and contemporary control-plane/guided-determinism competition;
-- this reconciled Design Pass 3.
+- this reconciled Design Pass 4.
 
 This is not implementation proof. Charlie must remain noncanonical until its required regression evidence exists or Gene explicitly decides what level of evidence is sufficient for the next lifecycle step under governing authority.
