@@ -11,7 +11,7 @@ Charlie preserves Bravo's sparse-control architecture and adds only the changes 
 - tightens evidence verification against selective/cherry-picked support by requiring reasonably obtainable contrary evidence to be addressed;
 - preserves verifier independence before cross-review so disagreement is generated before reconciliation;
 - formalizes evolutionary candidate competition in LEARN/PERSIST without silently promoting any candidate;
-- requires truthful internal transparency: no deception of Gene, governing authority, reviewers, verifiers, audit state, or DACP's own controls, including no concealment of the fact that authorized withholding occurred;
+- requires truthful internal transparency: no deception of Gene, governing authority, reviewers, verifiers, audit records, or DACP's own control state, including no concealment of the fact that authorized withholding occurred;
 - records near-miss non-material determinations when an item plausibly approaches a high-consequence or low-reversibility boundary;
 - makes `SUPERSEDED` and `RE_PLUMBED` explicitly non-terminal traceability states whose successor/replacement must reach a passable closure state;
 - keeps competitor monitoring, public positioning, and market strategy outside the runtime core; they enter Charlie only as evidence when relevant to the current task;
@@ -19,7 +19,7 @@ Charlie preserves Bravo's sparse-control architecture and adds only the changes 
 
 No item in this synopsis is active merely because it is listed here. This document is a candidate until deliberately accepted, persisted as active authority, and independently verified.
 
-**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 6  
+**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 7  
 **Predecessor:** `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md`  
 **Purpose:** Preserve Bravo's sparse deterministic control architecture while adding bounded adversarial competition, explicit external-state reorientation, evidence-set challenge, verifier independence, and terminology clarity without turning the runtime specification into a strategy or market-monitoring document.
 
@@ -252,6 +252,7 @@ Charlie is not ready for activation until at least these conceptual and implemen
 15. **Anti-ceremony:** low-risk routine work does not acquire adversarial or alternative-generation overhead merely because Charlie exists.
 16. **Bravo preservation:** existing Bravo scenarios for privacy, cyclic evidence, same-cause recurrence, capability recovery, alternate surfaces, and resulting-state verification still pass. Decompose these scenario classes into independent fixtures during implementation so partial failure cannot be hidden by an omnibus result.
 17. **Irrelevant external-evidence containment:** a competitive, public, policy, infrastructure, or deployment change irrelevant to the current task does not expand the CWS or trigger a critical junction.
+18. **Naming-collision reconfirmation:** if the external ACS naming collision is stale, withdrawn, or no longer material at promotion time, the CWS rename is re-evaluated rather than silently carried forward; the reconfirmation outcome and source identity are recorded.
 
 ## 17. Decision boundary and test status
 
@@ -269,7 +270,8 @@ Current evidence consists of:
 - independent Claude adversarial review of Charlie Design Pass 3;
 - canonical Git readback disproving a stale raw-Git cache finding during the attempted Design Pass 4 review, while retaining and incorporating the remaining valid observations from that review;
 - independent Claude adversarial review of immutable Charlie Design Pass 5;
+- independent Claude quality review of Charlie Design Pass 6, verdict `READY FOR GENE REVIEW`, with no MUST FIX findings;
 - current external evidence of an ACS naming collision and contemporary control-plane/guided-determinism competition;
-- this reconciled Design Pass 6.
+- this reconciled Design Pass 7.
 
 This is not implementation proof. Charlie must remain noncanonical until its required regression evidence exists or Gene explicitly decides what level of evidence is sufficient for the next lifecycle step under governing authority.
