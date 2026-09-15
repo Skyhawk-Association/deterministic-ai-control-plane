@@ -1,14 +1,14 @@
 {
-  "schema": "dacp-current-0.6",
+  "schema": "dacp-current-0.7",
   "canonical_migration_status": "ACTIVE_GIT_CANONICAL",
   "repository": "Skyhawk-Association/deterministic-ai-control-plane",
   "branch": "main",
-  "active_spec_path": "docs/DACP_Runtime_Expression_0.1.5-BRAVO.md",
-  "active_spec_version": "0.1.5-BRAVO",
+  "active_spec_path": "docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md",
+  "active_spec_version": "0.1.6-CHARLIE",
   "active_spec_status": "AUTHORITATIVE_ACTIVE_GENE_INTERIM_DECISION",
-  "active_spec_blob_sha": "22a02142a46347d0690b47459069d3d237984554",
-  "activation_decision_path": "authoritative/DACP_0.1.5_BRAVO_Activation_2026-09-14.md",
-  "predecessor_spec_path": "authoritative/DACP_Heuristics_Specification_0.1.4.md",
+  "active_spec_blob_sha": "545c9fac04f66eb1f188bb861ec7bc55362aecb5",
+  "activation_decision_path": "authoritative/DACP_0.1.6_CHARLIE_Activation_2026-09-15.md",
+  "predecessor_spec_path": "docs/DACP_Runtime_Expression_0.1.5-BRAVO.md",
   "bootstrap_path": "CURRENT.md",
   "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
   "state_locator": "STATE_LOCATOR.json",
@@ -26,12 +26,12 @@
     "primary_executor": "ChatGPT",
     "claude_role": "OPTIONAL_INDEPENDENT_MODEL_NOT_CRITICAL_PATH",
     "human_material_decision_authority": "Gene",
-    "bravo_migration_status": "NOT_YET_IMPLEMENTATION_REGRESSION_VERIFIED"
+    "charlie_migration_status": "NOT_YET_IMPLEMENTATION_REGRESSION_VERIFIED"
   },
-  "bravo_test_evidence": {
-    "status": "SCENARIO_LEVEL_CONCEPTUAL_NOT_IMPLEMENTATION_PROOF",
-    "chatgpt_scenarios": "12_OF_12_PASS",
-    "claude_scenarios": "12_OF_12_PASS"
+  "charlie_test_evidence": {
+    "status": "DESIGN_REVIEW_AND_SCENARIO_LEVEL_CONCEPTUAL_NOT_IMPLEMENTATION_PROOF",
+    "final_independent_review": "READY_FOR_GENE_REVIEW_NO_MATERIAL_DEFECTS_FOUND_IN_CHECKED_CATEGORIES",
+    "regression_fixture_count_specified": 18
   },
   "drive_role": "ACTIVE_PRIVATE_OPERATIONAL_STATE_AND_EVIDENCE_SURFACE_NOT_CANONICAL",
   "future_private_state_target": "PRIVATE_NAS"
