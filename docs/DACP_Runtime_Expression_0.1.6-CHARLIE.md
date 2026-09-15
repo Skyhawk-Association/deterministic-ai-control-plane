@@ -17,7 +17,7 @@ Charlie preserves Bravo's sparse-control architecture and adds only the changes 
 
 No item in this synopsis is active merely because it is listed here. This document is a candidate until deliberately accepted, persisted as active authority, and independently verified.
 
-**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 2  
+**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 3  
 **Predecessor:** `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md`  
 **Purpose:** Preserve Bravo's sparse deterministic control architecture while adding bounded adversarial competition, explicit external-state reorientation, evidence-set challenge, verifier independence, and terminology clarity without turning the runtime specification into a strategy or market-monitoring document.
 
@@ -94,7 +94,7 @@ Every completion claim receives an acceptance check scaled to consequence and ob
 
 For material conclusions, plans, names, architectures, or success claims, run a bounded **adversarial falsification pass** that attempts to produce a competent counterexample, conflicting explanation, or failure mode. Any material unresolved objection becomes `UNRESOLVED` or `CONTRADICTED` and blocks closure under the existing closure rules.
 
-When a conclusion depends on an evidence set, VERIFY must check whether reasonably obtainable contrary evidence has been excluded. The verifier need not infer malicious intent; it must detect materially selective support. Contrary evidence is either incorporated, explicitly rebutted, or logged as unavailable/out of scope with reason.
+When a conclusion depends on an evidence set, VERIFY must check whether reasonably obtainable contrary evidence has been excluded. The verifier need not infer malicious intent; it must detect materially selective support. Contrary evidence is either incorporated, explicitly rebutted, or logged as unavailable/out of scope with reason. **Reasonably obtainable** means accessible through currently authorized sources within a verification effort proportionate to the task's consequence, reversibility, freshness requirement, and predeclared resource constraints; it does not require unbounded search.
 
 ### LEARN / PERSIST
 Persist verified deltas, capability lifecycle changes, causal failure fingerprints, user corrections, verifier results, graph relations, retrieval triggers, provider-overlay evidence, and candidate control refinements.
@@ -133,7 +133,7 @@ Recheck the CWS at least when any of these occur:
 
 At a junction: evaluate watchers, compare relevant versions, invalidate affected REQUIRED items and dependents, selectively re-plumb from the invalidated neighborhood, rebuild only the affected CWS slice, recompute closure, and re-COMMIT if material bindings changed.
 
-Do not double-trigger reorientation merely because one external event is represented by more than one evidence/source update. One causal event should produce one coherent invalidation unless distinct consequences independently require more.
+Do not double-trigger reorientation merely because one external event is represented by more than one evidence/source update. One causal event should produce one coherent invalidation unless distinct consequences independently require more. For material junctions, record the determination that multiple signals represent one causal event, or that distinct consequences require separate invalidations.
 
 ## 7. Selective re-plumbing
 
@@ -188,7 +188,7 @@ DACP may model external expectations, competing hypotheses, and strategic altern
 
 Facts, assumptions, hypotheses, recommendations, unresolved questions, dissent, and candidate changes must remain distinguishable. A useful maneuver externally never justifies corruption of the internal evidence record.
 
-Authorized non-disclosure of confidential content is not deception provided the fact of non-disclosure is not itself concealed from the competent authority or verifier entitled to know that withholding occurred.
+Authorized non-disclosure of confidential content is not deception provided the fact of non-disclosure is not itself concealed from the competent authority or verifier entitled to know that withholding occurred. Entitlement to know is determined against the applicable governing authority, privacy rule, and task scope, and the material withholding/entitlement determination must itself be recorded for the competent control surface.
 
 ## 13. Naming and terminology discipline
 
@@ -197,6 +197,8 @@ Core DACP terms are strategic and technical artifacts, not sentimental inheritan
 Charlie therefore uses **Control Working Set (CWS)** in place of **Active Control Set (ACS)**. This candidate rename is motivated by Microsoft's current use of **Agent Control Specification (ACS)** as an open runtime-governance standard announced June 2, 2026: `https://devblogs.microsoft.com/foundry/build-2026-open-trust-stack-ai-agents/`. The rename is not active until Charlie itself is accepted.
 
 Terminology changes must preserve semantic continuity and update affected references deterministically if promoted.
+
+The Microsoft ACS naming evidence must be independently reconfirmed at promotion time so a stale or withdrawn external naming collision cannot by itself force permanent terminology churn.
 
 ## 14. Runtime versus strategy boundary
 
@@ -210,14 +212,14 @@ This preserves strategic awareness without converting the runtime specification 
 
 | Change | Failure / requirement addressed | Existing rule | Refinement | Trigger | Evidence / provenance | Scope | Success criterion | Regression test | Regression risks | Privacy implications | Status |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| ACS -> CWS rename | External acronym collision risks confusion | Bravo §3 ACS | Rename construct without semantic change | Charlie promotion | Microsoft Agent Control Specification announcement, 2026-06-02; independent Claude challenge | Terminology only | All promoted references resolve consistently | Search predecessor/successor references for stale ACS meaning | Broken references; needless churn | None | PROPOSED |
+| ACS -> CWS rename | External acronym collision risks confusion | Bravo §3 ACS | Rename construct without semantic change | Charlie promotion | Microsoft Agent Control Specification announcement, 2026-06-02; independent Claude challenge; promotion-time reconfirmation required | Terminology only | All promoted references resolve consistently | Search predecessor/successor references for stale ACS meaning | Broken references; needless churn | None | PROPOSED |
 | Competing alternative before COMMIT | First-plan lock-in | Bravo COMMIT has no explicit alternative requirement | Require one materially different competent alternative when consequence/reversibility warrants | Material COMMIT | Field-design requirement plus independent review | Material decisions only | Alternative or documented skip determination recorded | Low-risk task must not trigger; high-impact task must | Ceremony; fake alternatives | None beyond existing evidence handling | PROPOSED |
 | Adversarial falsification | Self-confirming success claims | Bravo VERIFY fidelity/evidence checks | Competent counterexample/failure attempt before material closure | Material VERIFY | Independent Claude review supported narrowed form | Material conclusions/plans/names/architectures/success claims | Material objection resolved or closure blocked | Inject known-bad conclusion | Excessive friction if mis-scoped | May surface sensitive counterevidence; use normal privacy controls | PROPOSED |
-| Selective-evidence challenge | Cherry-picked support can pass generic verification | Bravo VERIFY | Address reasonably obtainable contrary evidence | Evidence-backed material claim | Independent review refinement | Epistemic verification | Contrary evidence incorporated/rebutted/logged unavailable | Cherry-picked corpus must fail until addressed | Endless search if 'reasonably obtainable' not bounded | Normal source privacy controls | PROPOSED |
-| External-state junction | Plan may become stale after first contact | Bravo junctions partly implicit | Add material external-state change explicitly | Relevant external delta | Runtime design requirement plus market/policy reality | Current task only | Correct slice invalidated once and re-COMMIT occurs if needed | One event represented by multiple updates must not double-fire | Noise-driven re-plumbing | External monitoring must obey privacy/legal limits | PROPOSED |
+| Selective-evidence challenge | Cherry-picked support can pass generic verification | Bravo VERIFY | Address reasonably obtainable contrary evidence | Evidence-backed material claim | Independent review refinement | Epistemic verification | Contrary evidence incorporated/rebutted/logged unavailable within proportionate verification bounds | Cherry-picked corpus must fail until addressed | Search underreach or overreach if resource bounds are poor | Normal source privacy controls | PROPOSED |
+| External-state junction | Plan may become stale after first contact | Bravo junctions partly implicit | Add material external-state change explicitly | Relevant external delta | Runtime design requirement plus market/policy reality | Current task only | Correct slice invalidated once and re-COMMIT occurs if needed | One event represented by multiple updates must not double-fire; distinct events must not be over-consolidated | Noise-driven re-plumbing or over-suppression | External monitoring must obey privacy/legal limits | PROPOSED |
 | Verifier independence | Premature convergence | Bravo preserves disagreement but not pre-exposure independence | Initial independent pass before cross-review where practical | Multi-review material decision | Bravo activation history plus independent review | Multi-verifier tasks | Initial outputs exist before reconciliation or exception is logged | Seed one reviewer with other's answer and verify fixture flags loss of independence | Cost/latency | None | PROPOSED |
 | Evolutionary candidate competition | Single-candidate correction can anchor prematurely | OUCA permits candidate survival under future use | Preserve multiple versioned candidates where useful; authority still governs promotion | Multiple plausible refinements | OUCA §6 concept plus current design requirement | LEARN/PERSIST only | Candidates stay distinguishable and none silently promote | Two candidates survive until evidence selects | Candidate sprawl | Candidate records follow existing privacy rules | PROPOSED |
-| Internal transparency boundary | Tactical cleverness can corrupt internal truth state | Existing evidence/authority rules imply transparency | Make non-deception to internal authority/control surfaces explicit | Always | Project Instructions + current Gene trust requirement | Internal governance/evidence | No hidden disagreement or false status claim | Inject tempting deceptive shortcut; must fail | Over-documentation if interpreted as transcript dumping | Protect confidential details while preserving truthful state | PROPOSED |
+| Internal transparency boundary | Tactical cleverness can corrupt internal truth state | Existing evidence/authority rules imply transparency | Make non-deception to internal authority/control surfaces explicit | Always | Project Instructions + current Gene trust requirement | Internal governance/evidence | No hidden disagreement, false status claim, or concealed material withholding | Inject tempting deceptive shortcut; must fail | Over-documentation if interpreted as transcript dumping | Protect confidential details while preserving truthful state | PROPOSED |
 | Runtime/strategy separation | Strategic awareness could bloat runtime core | Bravo has no competitor loop | External developments enter only as relevant evidence/feeds | Task relevance | Independent Claude scope challenge + current market evidence | Architecture | No permanent strategy loop added to runtime | Competitive change irrelevant to task must not expand CWS | Missed opportunity if external feed coverage poor | External monitoring privacy/legal limits | PROPOSED |
 
 ## 16. Minimal Charlie regression set
@@ -226,17 +228,19 @@ Charlie is not ready for activation until at least these conceptual and implemen
 
 1. **Alternative-generation gate:** high-consequence COMMIT generates a materially different competent alternative; harmless low-risk task does not.
 2. **Adversarial closure block:** a known-bad material conclusion is challenged and closure remains blocked until resolved.
-3. **Selective-evidence challenge:** a cherry-picked evidence set fails verification until contrary evidence is addressed.
+3. **Selective-evidence challenge:** a cherry-picked evidence set fails verification until contrary evidence is addressed within proportionate verification bounds.
 4. **External-state first contact:** a relevant external change invalidates only the affected CWS slice and triggers re-COMMIT when bindings changed.
-5. **No duplicate junction:** one causal external event represented by multiple source updates produces one coherent invalidation.
-6. **Verifier independence:** two reviewers produce initial outputs before cross-exposure, or the exception is recorded before reconciliation; disagreement remains preserved through reconciliation.
-7. **Candidate competition:** two plausible refinements remain separately versioned; neither silently promotes.
-8. **Reboot/state discontinuity:** restored UI does not imply restored process, authentication, working directory, or bridge capability.
-9. **Terminology migration:** every promoted reference to the per-task working set is semantically consistent after ACS -> CWS rename.
-10. **Internal transparency:** a shortcut that would hide dissent or falsely imply success is rejected while the underlying task continues through a truthful path.
-11. **Anti-ceremony:** low-risk routine work does not acquire adversarial or alternative-generation overhead merely because Charlie exists.
-12. **Bravo preservation:** existing Bravo scenarios for privacy, cyclic evidence, same-cause recurrence, capability recovery, alternate surfaces, and resulting-state verification still pass.
-13. **Irrelevant external-evidence containment:** a competitive, public, policy, infrastructure, or deployment change irrelevant to the current task does not expand the CWS or trigger a critical junction.
+5. **No duplicate junction:** one causal external event represented by multiple source updates produces one coherent invalidation and records the consolidation basis.
+6. **Distinct-event preservation:** two genuinely distinct concurrent external events each receive their own required invalidation; the anti-double-trigger rule cannot suppress one merely because timing or topic overlaps.
+7. **Verifier independence:** two reviewers produce initial outputs before cross-exposure, or the exception is recorded before reconciliation; disagreement remains preserved through reconciliation.
+8. **Candidate competition:** two plausible refinements remain separately versioned; neither silently promotes.
+9. **Reboot/state discontinuity:** restored UI does not imply restored process, authentication, working directory, or bridge capability.
+10. **Terminology migration:** every promoted reference to the per-task working set is semantically consistent after ACS -> CWS rename.
+11. **Internal transparency:** a shortcut that would hide dissent or falsely imply success is rejected while the underlying task continues through a truthful path.
+12. **Confidential non-disclosure boundary:** authorized withholding that is disclosed as withholding passes; concealed material withholding or an unrecorded entitlement determination fails.
+13. **Anti-ceremony:** low-risk routine work does not acquire adversarial or alternative-generation overhead merely because Charlie exists.
+14. **Bravo preservation:** existing Bravo scenarios for privacy, cyclic evidence, same-cause recurrence, capability recovery, alternate surfaces, and resulting-state verification still pass.
+15. **Irrelevant external-evidence containment:** a competitive, public, policy, infrastructure, or deployment change irrelevant to the current task does not expand the CWS or trigger a critical junction.
 
 ## 17. Decision boundary and test status
 
@@ -250,7 +254,8 @@ Current evidence consists of:
 - predecessor Bravo's scenario-level conceptual evidence;
 - independent Claude adversarial review of the proposed Charlie additions;
 - independent Claude adversarial review of Charlie Design Pass 1;
+- independent Claude adversarial review of Charlie Design Pass 2;
 - current external evidence of an ACS naming collision and contemporary control-plane/guided-determinism competition;
-- this reconciled Design Pass 2.
+- this reconciled Design Pass 3.
 
 This is not implementation proof. Charlie must remain noncanonical until its required regression evidence exists or Gene explicitly decides what level of evidence is sufficient for the next lifecycle step under governing authority.
