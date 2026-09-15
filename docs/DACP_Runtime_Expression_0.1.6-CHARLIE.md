@@ -12,12 +12,14 @@ Charlie preserves Bravo's sparse-control architecture and adds only the changes 
 - preserves verifier independence before cross-review so disagreement is generated before reconciliation;
 - formalizes evolutionary candidate competition in LEARN/PERSIST without silently promoting any candidate;
 - requires truthful internal transparency: no deception of Gene, governing authority, reviewers, verifiers, audit state, or DACP's own controls, including no concealment of the fact that authorized withholding occurred;
+- records near-miss non-material determinations when an item plausibly approaches a high-consequence or low-reversibility boundary;
+- makes `SUPERSEDED` and `RE_PLUMBED` explicitly non-terminal traceability states whose successor/replacement must reach a passable closure state;
 - keeps competitor monitoring, public positioning, and market strategy outside the runtime core; they enter Charlie only as evidence when relevant to the current task;
-- carries forward Bravo's authority, closure, selective re-plumbing, capability lifecycle, provider overlays, and verification requirements unchanged except where explicitly refined below.
+- carries forward Bravo's authority, selective re-plumbing, capability lifecycle, provider overlays, and verification requirements unchanged except where explicitly refined below.
 
 No item in this synopsis is active merely because it is listed here. This document is a candidate until deliberately accepted, persisted as active authority, and independently verified.
 
-**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 5  
+**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 6  
 **Predecessor:** `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md`  
 **Purpose:** Preserve Bravo's sparse deterministic control architecture while adding bounded adversarial competition, explicit external-state reorientation, evidence-set challenge, verifier independence, and terminology clarity without turning the runtime specification into a strategy or market-monitoring document.
 
@@ -85,7 +87,7 @@ Use the governing invariant to traverse the full graph only far enough to build 
 ### COMMIT
 Bind authority, target identity where material, exact scope/parameters, protections, execution ownership, success evidence, verifier, and failure/reorientation path.
 
-For materially consequential or weakly reversible decisions, generate at least one **materially different competent alternative** before final COMMIT unless the alternative would be artificial ceremony or no competent alternative exists. Record the selected path and the reason the alternative was rejected or constrained. Record the determination when alternative generation is skipped as ceremony or as having no competent alternative. Do not require alternative generation for harmless low-risk work.
+For materially consequential or weakly reversible decisions, generate at least one **materially different competent alternative** before final COMMIT unless the alternative would be artificial ceremony or no competent alternative exists. For this rule, **artificial ceremony** means generating a nominal alternative when, on current evidence, no competent alternative could materially change the authorized objective, scope, selected action, consequence severity, reversibility, evidence-supported conclusion, or committed bindings. Record the selected path and the reason the alternative was rejected or constrained. Record the determination when alternative generation is skipped as artificial ceremony or as having no competent alternative. Do not require alternative generation for harmless low-risk work.
 
 Consequential execution remains blocked while any material REQUIRED item is `CONTRADICTED`, `UNRESOLVED`, or `CYCLIC_UNRESOLVED`. `SUPERSEDED` and `RE_PLUMBED` are traceability states, not terminal pass states; the applicable successor or replacement item must reach a passable terminal closure state before consequential execution proceeds.
 
@@ -225,6 +227,8 @@ This preserves strategic awareness without converting the runtime specification 
 | Verifier independence | Premature convergence | Bravo preserves disagreement but not pre-exposure independence | Initial independent pass before cross-review where practical | Multi-review material decision | Bravo activation history plus independent review | Multi-verifier tasks | Initial outputs exist before reconciliation or exception is logged | Seed one reviewer with other's answer and verify fixture flags loss of independence | Cost/latency | None | PROPOSED |
 | Evolutionary candidate competition | Single-candidate correction can anchor prematurely | OUCA permits candidate survival under future use | Preserve multiple versioned candidates where useful; authority still governs promotion | Multiple plausible refinements | OUCA §6 concept plus current design requirement | LEARN/PERSIST only | Candidates stay distinguishable and none silently promote | Two candidates survive until evidence selects | Candidate sprawl | Candidate records follow existing privacy rules | PROPOSED |
 | Internal transparency boundary | Tactical cleverness can corrupt internal truth state | Existing evidence/authority rules imply transparency | Make non-deception to internal authority/control surfaces explicit | Always | Project Instructions + current Gene trust requirement | Internal governance/evidence | No hidden disagreement, false status claim, or concealed material withholding | Inject tempting deceptive shortcut; must fail | Over-documentation if interpreted as transcript dumping | Protect confidential details while preserving truthful state | PROPOSED |
+| Materiality near-miss logging | Borderline items can evade all material-only controls through an invisible non-material judgment | Bravo has no explicit near-miss record | Record only plausible high-consequence/low-reversibility non-material determinations | Near materiality boundary | Adversarial review finding + current design requirement | Materiality gate | Borderline non-material call has recorded basis; routine low-risk work does not | Regression §16.13 | Logging creep if threshold is applied too broadly | May record sensitive rationale; normal privacy controls apply | PROPOSED |
+| Traceability-state closure | `SUPERSEDED`/`RE_PLUMBED` had no explicit terminal closure disposition | Bravo lists states but closure enumerates only terminal pass/block states | Require successor/replacement to reach a passable terminal state | Closure with traceability state present | Adversarial review finding | Closure semantics | Traceability marker cannot close task by itself | Regression §16.14 | Broken lineage if successor reference is missing | None beyond existing state records | PROPOSED |
 | Runtime/strategy separation | Strategic awareness could bloat runtime core | Bravo has no competitor loop | External developments enter only as relevant evidence/feeds | Task relevance | Independent Claude scope challenge + current market evidence | Architecture | No permanent strategy loop added to runtime | Competitive change irrelevant to task must not expand CWS | Missed opportunity if external feed coverage poor | External monitoring privacy/legal limits | PROPOSED |
 
 ## 16. Minimal Charlie regression set
@@ -264,7 +268,8 @@ Current evidence consists of:
 - independent Claude adversarial review of Charlie Design Pass 2;
 - independent Claude adversarial review of Charlie Design Pass 3;
 - canonical Git readback disproving a stale raw-Git cache finding during the attempted Design Pass 4 review, while retaining and incorporating the remaining valid observations from that review;
+- independent Claude adversarial review of immutable Charlie Design Pass 5;
 - current external evidence of an ACS naming collision and contemporary control-plane/guided-determinism competition;
-- this reconciled Design Pass 5.
+- this reconciled Design Pass 6.
 
 This is not implementation proof. Charlie must remain noncanonical until its required regression evidence exists or Gene explicitly decides what level of evidence is sufficient for the next lifecycle step under governing authority.
