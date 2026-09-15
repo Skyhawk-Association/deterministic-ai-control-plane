@@ -6,7 +6,7 @@ Charlie preserves Bravo's sparse-control architecture and adds only the changes 
 
 - renames **Active Control Set (ACS)** to **Control Working Set (CWS)** to avoid the now-material external ACS naming collision;
 - requires a bounded competing-alternative check before material COMMIT decisions when consequence or reversibility warrants it;
-- adds an explicit adversarial falsification pass before material success claims;
+- adds an explicit adversarial falsification pass for material conclusions, plans, names, architectures, and success claims;
 - treats material external-state changes as critical junctions that can invalidate and selectively re-plumb the current control state;
 - tightens evidence verification against selective/cherry-picked support by requiring reasonably obtainable contrary evidence to be addressed;
 - preserves verifier independence before cross-review so disagreement is generated before reconciliation;
@@ -17,7 +17,7 @@ Charlie preserves Bravo's sparse-control architecture and adds only the changes 
 
 No item in this synopsis is active merely because it is listed here. This document is a candidate until deliberately accepted, persisted as active authority, and independently verified.
 
-**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 4  
+**Status:** NONCANONICAL CANDIDATE / DESIGN PASS 5  
 **Predecessor:** `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md`  
 **Purpose:** Preserve Bravo's sparse deterministic control architecture while adding bounded adversarial competition, explicit external-state reorientation, evidence-set challenge, verifier independence, and terminology clarity without turning the runtime specification into a strategy or market-monitoring document.
 
@@ -203,7 +203,7 @@ Charlie therefore uses **Control Working Set (CWS)** in place of **Active Contro
 
 Terminology changes must preserve semantic continuity and update affected references deterministically if promoted.
 
-The Microsoft ACS naming evidence must be independently reconfirmed at promotion time so a stale or withdrawn external naming collision cannot by itself force permanent terminology churn.
+The Microsoft ACS naming evidence must be independently reconfirmed at promotion time so a stale or withdrawn external naming collision cannot by itself force permanent terminology churn. The reconfirmation outcome and source identity must be recorded in the promotion evidence.
 
 ## 14. Runtime versus strategy boundary
 
@@ -217,7 +217,7 @@ This preserves strategic awareness without converting the runtime specification 
 
 | Change | Failure / requirement addressed | Existing rule | Refinement | Trigger | Evidence / provenance | Scope | Success criterion | Regression test | Regression risks | Privacy implications | Status |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| ACS -> CWS rename | External acronym collision risks confusion | Bravo §3 ACS | Rename construct without semantic change | Charlie promotion | Microsoft Agent Control Specification announcement, 2026-06-02; independent Claude challenge; promotion-time reconfirmation required | Terminology only | All promoted references resolve consistently | Search predecessor/successor references for stale ACS meaning | Broken references; needless churn | None | PROPOSED |
+| ACS -> CWS rename | External acronym collision risks confusion | Bravo §3 ACS | Rename construct without semantic change | Charlie promotion | Microsoft Agent Control Specification announcement, 2026-06-02; independent Claude challenge; promotion-time reconfirmation and recorded source required | Terminology only | All promoted references resolve consistently | Search predecessor/successor references for stale ACS meaning | Broken references; needless churn | None | PROPOSED |
 | Competing alternative before COMMIT | First-plan lock-in | Bravo COMMIT has no explicit alternative requirement | Require one materially different competent alternative when consequence/reversibility warrants | Material COMMIT | Field-design requirement plus independent review | Material decisions only | Alternative or documented skip determination recorded | Low-risk task must not trigger; high-impact task must | Ceremony; fake alternatives | None beyond existing evidence handling | PROPOSED |
 | Adversarial falsification | Self-confirming success claims | Bravo VERIFY fidelity/evidence checks | Competent counterexample/failure attempt before material closure | Material VERIFY | Independent Claude review supported narrowed form | Material conclusions/plans/names/architectures/success claims | Material objection resolved or closure blocked | Inject known-bad conclusion | Excessive friction if mis-scoped | May surface sensitive counterevidence; use normal privacy controls | PROPOSED |
 | Selective-evidence challenge | Cherry-picked support can pass generic verification | Bravo VERIFY | Address reasonably obtainable contrary evidence | Evidence-backed material claim | Independent review refinement | Epistemic verification | Contrary evidence incorporated/rebutted/logged unavailable within proportionate verification bounds | Cherry-picked corpus must fail until addressed | Search underreach or overreach if resource bounds are poor | Normal source privacy controls | PROPOSED |
@@ -246,7 +246,7 @@ Charlie is not ready for activation until at least these conceptual and implemen
 13. **Materiality near-miss:** a plausibly high-consequence or weakly reversible item judged non-material records the determination; routine low-risk work does not acquire logging ceremony.
 14. **Closure traceability states:** a `SUPERSEDED` or `RE_PLUMBED` item cannot close the task by itself; its successor/replacement must reach a passable terminal state.
 15. **Anti-ceremony:** low-risk routine work does not acquire adversarial or alternative-generation overhead merely because Charlie exists.
-16. **Bravo preservation:** existing Bravo scenarios for privacy, cyclic evidence, same-cause recurrence, capability recovery, alternate surfaces, and resulting-state verification still pass.
+16. **Bravo preservation:** existing Bravo scenarios for privacy, cyclic evidence, same-cause recurrence, capability recovery, alternate surfaces, and resulting-state verification still pass. Decompose these scenario classes into independent fixtures during implementation so partial failure cannot be hidden by an omnibus result.
 17. **Irrelevant external-evidence containment:** a competitive, public, policy, infrastructure, or deployment change irrelevant to the current task does not expand the CWS or trigger a critical junction.
 
 ## 17. Decision boundary and test status
@@ -263,7 +263,8 @@ Current evidence consists of:
 - independent Claude adversarial review of Charlie Design Pass 1;
 - independent Claude adversarial review of Charlie Design Pass 2;
 - independent Claude adversarial review of Charlie Design Pass 3;
+- canonical Git readback disproving a stale raw-Git cache finding during the attempted Design Pass 4 review, while retaining and incorporating the remaining valid observations from that review;
 - current external evidence of an ACS naming collision and contemporary control-plane/guided-determinism competition;
-- this reconciled Design Pass 4.
+- this reconciled Design Pass 5.
 
 This is not implementation proof. Charlie must remain noncanonical until its required regression evidence exists or Gene explicitly decides what level of evidence is sufficient for the next lifecycle step under governing authority.
