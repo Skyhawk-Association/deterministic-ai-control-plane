@@ -3,53 +3,48 @@
 **Canonical migration status:** ACTIVE GIT CANONICAL  
 **Repository:** `Skyhawk-Association/deterministic-ai-control-plane`  
 **Default branch:** `main`  
-**Current specification:** `authoritative/DACP_Heuristics_Specification_0.1.4.md`  
-**Specification version:** `0.1.4`  
+**Current specification:** `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md`  
+**Specification version:** `0.1.5-BRAVO`  
 **Specification status:** AUTHORITATIVE / ACTIVE / GENE INTERIM DECISION  
-**Active heuristic count:** 17  
-**Verified specification Git blob:** `191e297427b793370d8354e1244324a71168e3a9`
+**Activation decision:** `authoritative/DACP_0.1.5_BRAVO_Activation_2026-09-14.md`  
+**Verified specification Git blob:** `22a02142a46347d0690b47459069d3d237984554`
 
 ## Load order before consequential DACP work
 
 1. `authoritative/Project Instructions 0.3.txt`
-2. `authoritative/DACP_Heuristics_Specification_0.1.4.md`
-3. `authoritative/DACP_Operational_State_Sync_0.1.md`
-4. `STATE_LOCATOR.json`
-5. `authoritative/DACP_Interim_Decision_Authority_0.2.md`
-6. `authoritative/DACP_Operational_Use_and_Correction_Authority_0.1.md`
-7. `authoritative/DACP_Endpoint_Stack_0.2.md`
-8. `authoritative/DACP_Application_Implementation_Authorization_0.2.md` when application implementation or executor/reviewer role allocation is germane.
-9. `authoritative/DACP_Governance_Supersession_Notice_0.3.md` when smoke-test/supersession history matters.
+2. `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md`
+3. `authoritative/DACP_0.1.5_BRAVO_Activation_2026-09-14.md`
+4. `authoritative/DACP_Operational_State_Sync_0.1.md`
+5. `STATE_LOCATOR.json`
+6. `authoritative/DACP_Interim_Decision_Authority_0.2.md`
+7. `authoritative/DACP_Operational_Use_and_Correction_Authority_0.1.md`
+8. `authoritative/DACP_Endpoint_Stack_0.2.md`
+9. `authoritative/DACP_Application_Implementation_Authorization_0.2.md` when application implementation or executor/reviewer role allocation is germane.
+10. `authoritative/DACP_Governance_Supersession_Notice_0.3.md` when smoke-test/supersession history matters.
 
 ## Operational state
 
 `STATE_LOCATOR.json` identifies the current shared private operational-state surface. Current private state is generation 36 on the verified Google Drive local-sync surface, with independent authenticated Drive connector readback and canonical locator activation. Gmail generation 31 is retained only as a recovery fallback. For nontrivial or consequential DACP work, resolve the relevant current private state when authorized and available. Pending/candidate and raw/observational state do not become canonical merely by being present.
 
-Heuristics Specification 0.1.4 is the current active canonical specification following Gene's explicit 2026-09-13 approval and canonical persistence/read-back verification. It resolves cumulatively over preserved 0.1.1, 0.1.2, and 0.1.3 predecessor material. Those predecessor versions remain preserved as provenance and are not competing current specifications.
+DACP Runtime Expression 0.1.5-BRAVO is the current active specification following Gene's explicit 2026-09-14 approval in toto with no changes and canonical activation. `DACP_Heuristics_Specification_0.1.4.md` and earlier versions remain preserved as provenance and predecessor control baselines, not competing current specifications. Bravo's present test evidence remains scenario-level conceptual evidence rather than implementation proof.
 
 ## Application implementation status
 
-Application implementation is explicitly authorized through `authoritative/DACP_Application_Implementation_Authorization_0.2.md`. ChatGPT is the primary DACP application implementation executor. Claude is removed from the critical implementation path and may be used only as an optional independent model when useful. Gene retains genuinely human material decisions under the governing authority.
+Application implementation remains explicitly authorized through `authoritative/DACP_Application_Implementation_Authorization_0.2.md`. ChatGPT is the primary DACP application implementation executor. Claude is removed from the critical implementation path and may be used only as an optional independent model when useful. Gene retains genuinely human material decisions under the governing authority.
 
-The first accepted application implementation slice is now merged to canonical `main`: **local single-resource resolved commitment**. The merge commit that introduced the accepted prototype is `33b39ec4bd3fabdb15a2de3227dbbbff4fa62e18`; the accepted prototype branch head was `afb06b361b0d3de805c68b7e8d14504d4f01f525`. Cross-platform acceptance passed on Windows and Ubuntu. The accepted scope includes provider-free deterministic resolved commitment, separate authority binding, preexisting-state no-dispatch completion, durable dispatch-intent journaling, restart reconciliation without blind redispatch, request-mismatch blocking, and interprocess serialization with lock contention failing `PENDING` without dispatch. This is not a claim of production authentication, distributed consensus/locking, multi-resource transactions, or production deployment readiness.
-
-The first human-facing DACP 0.1 application shell is now merged to canonical `main` at `295984f53fd033dc49c5b2400029f10605bcc4d8` through PR #10. `prototype/dacp_app.py` exposes a loopback-only, provider-free stdlib HTTP surface for health/status and the existing authorized tracked-value operation. Pull-request CI passed on Windows and Ubuntu; local app tests passed 3/3, the existing unit suite passed 64/64, bundled conditional acceptance passed 5/5, and a direct runtime smoke verified one mutation dispatch followed by zero-dispatch preexisting-state replay. The shell does not accept arbitrary tools, arguments, authority, filesystem paths, or provider prompts.
-
-The first human-facing local control room for DACP 0.1 is now merged to canonical `main` at `4dc7dbd230bc3c6d0dab41f504dd837fc9ffe133` through PR #13. The loopback UI is served at `/`, reads current tracked state through `/state`, and exposes only the already-authorized tracked-value operation. Pull-request CI passed on Windows and Ubuntu; local app tests passed 4/4, the existing deterministic unit suite passed 64/64, bundled conditional acceptance passed 5/5, and a direct runtime smoke verified UI render, one mutation dispatch, and then zero-dispatch preexisting-state replay. The UI does not accept arbitrary tools, commands, filesystem paths, authority, or provider prompts.
-
-The OpenOnce recovery-semantics bakeoff is recorded in `docs/OPENONCE_RECOVERY_BAKEOFF_2026-09-12.md`. For DACP 0.1, the accepted commitment kernel remains the implementation path and OpenOnce is **not** a runtime dependency. Useful OpenOnce recovery patterns may be borrowed narrowly, especially provider-probe contracts, provider capability/conformance metadata, conservative negative-probe semantics, and exception classification. The downstream build-vs-borrow question is therefore closed for the current local single-resource scope unless new evidence materially changes the comparison.
+Existing accepted application slices and the local control room remain canonical implementation evidence. Bravo activation does not itself claim that those implementations have been migrated to, or regression-tested against, Bravo.
 
 ## Universal operating instruction
 
-Apply the current specification as a version-scoped, continuously challengeable control hypothesis. Question material gates where doing so can affect correctness. Correct evidence-demonstrated defects through the authorized versioned process. Do not create ceremony for harmless low-risk work.
+Apply Bravo as a version-scoped, continuously challengeable control hypothesis. For material tasks, use the governing invariant, sparse control graph, Active Control Set, deterministic critical-junction rechecks, selective re-plumbing, closure, verification, and LEARN/PERSIST controls proportionally. Do not create ceremony for harmless low-risk work.
 
-H-017 standing role allocation: within Gene-governed DACP work, the AI owns the maximum safely executable share of reasoning and mechanical execution it is authorized and competent to perform; Gene owns the genuinely human material decisions. Before returning mechanical work to Gene, resolve current task-time capability across relevant authorized execution surfaces rather than generalizing from failure of one adapter. This standing allocation lasts for Gene's lifetime unless Gene explicitly supersedes it.
+Within Gene-governed DACP work, the AI owns the maximum safely executable share of reasoning and mechanical execution it is authorized and competent to perform; Gene owns genuinely human material decisions. Before returning mechanical work to Gene, resolve current task-time capability across relevant authorized execution surfaces rather than generalizing from failure of one adapter.
 
 ## Deterministic project smoke test
 
 Command: `DACP_CHECK_01`
 
-Required response: `DACP 0.1.4 ACTIVE | Candidate capture: ON | Silent promotion: BLOCKED | Review: Philip / Jennie / Jake / Gene`
+Required response remains governed by the current Project Instructions and applicable supersession authority. Do not infer or silently rewrite that exact-response contract merely from the active runtime-spec version.
 
 ## Canonical-source rule
 
