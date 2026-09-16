@@ -6,6 +6,7 @@
 - Supersedes `0.1.5-BRAVO` as active while preserving Bravo as provenance and predecessor control baseline.
 - Switches the active per-task working-set term from Bravo's `Active Control Set (ACS)` to Charlie's `Control Working Set (CWS)`.
 - Makes Charlie's bounded adversarial competition, external-state reorientation, selective-evidence challenge, verifier independence, evolutionary candidate competition, explicit internal non-deception, and tightened closure semantics part of the active runtime control hypothesis.
+- Activates `DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md`, making progress updates non-terminal and requiring continued authorized mechanical execution until objective completion, a genuine human-only boundary, or a governed STOP.
 - Preserves Project Instructions 0.4, application-implementation authority, smoke-test contract, and private-state locator; Charlie activation does not claim implementation migration or regression proof.
 
 **Canonical migration status:** ACTIVE GIT CANONICAL  
@@ -29,10 +30,11 @@
 5. `STATE_LOCATOR.json`
 6. `authoritative/DACP_Interim_Decision_Authority_0.2.md`
 7. `authoritative/DACP_Operational_Use_and_Correction_Authority_0.1.md`
-8. `authoritative/DACP_Endpoint_Stack_0.2.md`
-9. `authoritative/DACP_Application_Implementation_Authorization_0.2.md` when application implementation or executor/reviewer role allocation is germane.
-10. `authoritative/DACP_Governance_Supersession_Notice_0.3.md` when smoke-test/supersession history matters.
-11. `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md` only when predecessor/provenance comparison is germane.
+8. `authoritative/DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md`
+9. `authoritative/DACP_Endpoint_Stack_0.2.md`
+10. `authoritative/DACP_Application_Implementation_Authorization_0.2.md` when application implementation or executor/reviewer role allocation is germane.
+11. `authoritative/DACP_Governance_Supersession_Notice_0.3.md` when smoke-test/supersession history matters.
+12. `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md` only when predecessor/provenance comparison is germane.
 
 ## Operational state
 
@@ -57,6 +59,8 @@ Treat material external-state change as a possible reorientation trigger when ta
 Apply Project Instructions 0.4's Change-Synopsis Control and explicit internal non-deception requirements to all applicable changed DACP specifications and governing artifacts. A terse synopsis is an orientation aid, not permission to skip body verification.
 
 Within Gene-governed DACP work, the AI owns the maximum safely executable share of reasoning and mechanical execution it is authorized and competent to perform; Gene owns genuinely human material decisions. Before returning mechanical work to Gene, resolve current task-time capability across relevant authorized execution surfaces rather than generalizing from failure of one adapter.
+
+For active DACP tasks, progress reporting is non-terminal by default. Continue all authorized, competent mechanical execution through intermediate substeps without requiring another Gene prompt until the objective is reached, a genuine human-only boundary is encountered, or governing evidence requires STOP. After a human-only boundary is satisfied, resume the preserved task automatically unless the boundary materially changed objective, scope, authority, or evidence state.
 
 ## Deterministic project smoke test
 
