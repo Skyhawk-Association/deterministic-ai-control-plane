@@ -1,36 +1,37 @@
 {
-  "schema": "dacp-current-0.7",
+  "schema": "dacp-current-0.8",
   "canonical_migration_status": "ACTIVE_GIT_CANONICAL",
   "repository": "Skyhawk-Association/deterministic-ai-control-plane",
   "branch": "main",
-  "active_spec_path": "docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md",
-  "active_spec_version": "0.1.6-CHARLIE",
-  "active_spec_status": "AUTHORITATIVE_ACTIVE_GENE_INTERIM_DECISION",
-  "active_spec_blob_sha": "545c9fac04f66eb1f188bb861ec7bc55362aecb5",
-  "activation_decision_path": "authoritative/DACP_0.1.6_CHARLIE_Activation_2026-09-15.md",
-  "predecessor_spec_path": "docs/DACP_Runtime_Expression_0.1.5-BRAVO.md",
-  "bootstrap_path": "CURRENT.md",
-  "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
+  "active_spec_path": "docs/DACP_Runtime_Expression_0.1.7-DELTA.md",
+  "active_spec_version": "0.1.7-DELTA",
+  "active_spec_status": "AUTHORITATIVE_ACTIVE_GENE_DECISION",
+  "active_spec_blob_sha": "69eee83df64bd0a36e394ea38176348de2834938",
+  "activation_decision_path": "authoritative/DACP_0.1.7_DELTA_Activation_2026-09-18.md",
+  "predecessor_spec_path": "docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md",
+  "project_instructions": "authoritative/Project Instructions 0.5.txt",
+  "control_application_enforcement": "authoritative/DACP_Control_Application_Enforcement_0.1.md",
+  "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.2.md",
   "state_locator": "STATE_LOCATOR.json",
+  "regression_matrix": "tests/DACP_0.1.7_DELTA_Regression_Matrix.md",
   "current_private_state": {
     "storage_class": "GOOGLE_DRIVE_LOCAL_SYNC",
     "generation": 36,
     "root_folder_id": "18YtEqUhReyDLIRl_IYwICNw2sK09jVNl",
     "state_head_file_id": "11wB9eqiFX-OI761xUCh82aGwCzxqZZkB",
-    "status": "ACTIVE_VERIFIED",
+    "status": "ACTIVE_VERIFIED_PRE_DELTA_SCHEMA_MIGRATION",
     "gmail_recovery_generation": 31
   },
   "application_implementation": {
-    "authorization_path": "authoritative/DACP_Application_Implementation_Authorization_0.2.md",
+    "authorization_path": "authoritative/DACP_Application_Implementation_Authorization_0.3.md",
     "status": "AUTHORIZED_ACTIVE_GENE_DECISION",
     "primary_executor": "ChatGPT",
     "claude_role": "OPTIONAL_INDEPENDENT_MODEL_NOT_CRITICAL_PATH",
     "human_material_decision_authority": "Gene",
-    "charlie_migration_status": "NOT_YET_IMPLEMENTATION_REGRESSION_VERIFIED"
+    "delta_migration_status": "NOT_YET_IMPLEMENTATION_REGRESSION_VERIFIED"
   },
-  "charlie_test_evidence": {
-    "status": "DESIGN_REVIEW_AND_SCENARIO_LEVEL_CONCEPTUAL_NOT_IMPLEMENTATION_PROOF",
-    "final_independent_review": "READY_FOR_GENE_REVIEW_NO_MATERIAL_DEFECTS_FOUND_IN_CHECKED_CATEGORIES",
+  "delta_test_evidence": {
+    "status": "CORPUS_REGRESSION_MATRIX_DEFINED_FIELD_FAILURE_EVIDENCE_DIRECT_IMPLEMENTATION_AUTOMATION_PENDING",
     "regression_fixture_count_specified": 18
   },
   "drive_role": "ACTIVE_PRIVATE_OPERATIONAL_STATE_AND_EVIDENCE_SURFACE_NOT_CANONICAL",
