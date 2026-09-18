@@ -2,74 +2,84 @@
 
 ## Change Synopsis
 
-- Promotes `0.1.6-CHARLIE` Design Pass 7 from reviewed successor candidate to the current active DACP runtime specification by Gene's explicit 2026-09-15 decision.
-- Supersedes `0.1.5-BRAVO` as active while preserving Bravo as provenance and predecessor control baseline.
-- Switches the active per-task working-set term from Bravo's `Active Control Set (ACS)` to Charlie's `Control Working Set (CWS)`.
-- Makes Charlie's bounded adversarial competition, external-state reorientation, selective-evidence challenge, verifier independence, evolutionary candidate competition, explicit internal non-deception, and tightened closure semantics part of the active runtime control hypothesis.
-- Activates `DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md`, making progress updates non-terminal and requiring continued authorized mechanical execution until objective completion, a genuine human-only boundary, or a governed STOP.
-- Activates `DACP_Path_Viability_Revalidation_Control_0.1.md`, requiring whole-route revalidation when cumulative human time, dependency/workaround depth, supportability risk, compatibility evidence, or a materially simpler competent route can change whether the selected path remains proportionate.
-- Preserves Project Instructions 0.4, application-implementation authority, smoke-test contract, and private-state locator; Charlie activation does not claim implementation migration or regression proof.
+- Activates 0.1.7-DELTA as the successor to 0.1.6-CHARLIE after repeated field evidence showed that retrieval/awareness of valid controls did not reliably cause their application to the next action.
+- Activates Project Instructions 0.5 and Control Application Enforcement 0.1.
+- Replaces awareness-based compliance with task-time Control Application Receipts, execution-context binding, exact-source resolution, ownership binding, and a hard pre-output gate for material executable actions.
+- Makes repeated CONTROL_APPLICATION_FAILURE a mandatory whole-route reorientation trigger.
+- Activates Operational State Sync 0.2, Operational Use and Correction Authority 0.2, Endpoint Stack 0.3, and Application Implementation Authorization 0.3.
+- Preserves Charlie and earlier artifacts as provenance.
+- Does not claim that every existing DACP application slice already implements Delta; implementation/regression migration remains a separate evidence requirement.
 
-**Canonical migration status:** ACTIVE GIT CANONICAL  
-**Repository:** `Skyhawk-Association/deterministic-ai-control-plane`  
-**Default branch:** `main`  
-**Current specification:** `docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md`  
-**Specification version:** `0.1.6-CHARLIE`  
-**Specification status:** AUTHORITATIVE / ACTIVE / GENE INTERIM DECISION  
-**Activation decision:** `authoritative/DACP_0.1.6_CHARLIE_Activation_2026-09-15.md`  
-**Verified specification Git blob:** `545c9fac04f66eb1f188bb861ec7bc55362aecb5`
+**Canonical migration status:** ACTIVE GIT CANONICAL
+**Repository:** Skyhawk-Association/deterministic-ai-control-plane
+**Default branch:** main
+**Current specification:** docs/DACP_Runtime_Expression_0.1.7-DELTA.md
+**Specification version:** 0.1.7-DELTA
+**Specification status:** AUTHORITATIVE / ACTIVE / GENE DECISION
+**Activation decision:** authoritative/DACP_0.1.7_DELTA_Activation_2026-09-18.md
+**Verified specification Git blob:** 69eee83df64bd0a36e394ea38176348de2834938
 
-**Predecessor specification:** `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md`  
+**Predecessor specification:** docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md
 **Predecessor status:** SUPERSEDED AS ACTIVE / PRESERVED AS PROVENANCE
 
 ## Load order before consequential DACP work
 
-1. `authoritative/Project Instructions 0.4.txt`
-2. `docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md`
-3. `authoritative/DACP_0.1.6_CHARLIE_Activation_2026-09-15.md`
-4. `authoritative/DACP_Operational_State_Sync_0.1.md`
-5. `STATE_LOCATOR.json`
-6. `authoritative/DACP_Interim_Decision_Authority_0.2.md`
-7. `authoritative/DACP_Operational_Use_and_Correction_Authority_0.1.md`
-8. `authoritative/DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md`
-9. `authoritative/DACP_Path_Viability_Revalidation_Control_0.1.md`
-10. `authoritative/DACP_Endpoint_Stack_0.2.md`
-11. `authoritative/DACP_Application_Implementation_Authorization_0.2.md` when application implementation or executor/reviewer role allocation is germane.
-12. `authoritative/DACP_Governance_Supersession_Notice_0.3.md` when smoke-test/supersession history matters.
-13. `docs/DACP_Runtime_Expression_0.1.5-BRAVO.md` only when predecessor/provenance comparison is germane.
+1. authoritative/Project Instructions 0.5.txt
+2. docs/DACP_Runtime_Expression_0.1.7-DELTA.md
+3. authoritative/DACP_0.1.7_DELTA_Activation_2026-09-18.md
+4. authoritative/DACP_Control_Application_Enforcement_0.1.md
+5. authoritative/DACP_Operational_State_Sync_0.2.md
+6. STATE_LOCATOR.json
+7. authoritative/DACP_Interim_Decision_Authority_0.2.md
+8. authoritative/DACP_Operational_Use_and_Correction_Authority_0.2.md
+9. authoritative/DACP_Path_Viability_Revalidation_Control_0.1.md when path-viability provenance/detail is germane.
+10. authoritative/DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md when continuation/human-boundary provenance/detail is germane.
+11. authoritative/DACP_Endpoint_Stack_0.3.md
+12. authoritative/DACP_Application_Implementation_Authorization_0.3.md when application implementation is germane.
+13. tests/DACP_0.1.7_DELTA_Regression_Matrix.md when action-gating/regression evidence is germane.
+14. authoritative/DACP_Governance_Supersession_Notice_0.3.md when smoke-test history matters.
+15. predecessor specifications only for provenance/comparison.
 
 ## Operational state
 
-`STATE_LOCATOR.json` identifies the current shared private operational-state surface. Current private state is generation 36 on the verified Google Drive local-sync surface, with independent authenticated Drive connector readback and canonical locator activation. Gmail generation 31 is retained only as a recovery fallback. For nontrivial or consequential DACP work, resolve the relevant current private state when authorized and available. Pending/candidate and raw/observational state do not become canonical merely by being present.
+STATE_LOCATOR.json identifies the private operational-state surface. Current private state remains generation 36 on the verified Google Drive local-sync surface at this activation boundary. Private state is evidence/continuity, not competing canonical governance.
 
-DACP Runtime Expression 0.1.6-CHARLIE is the current active specification following Gene's explicit 2026-09-15 approval and canonical activation. `0.1.5-BRAVO`, `DACP_Heuristics_Specification_0.1.4.md`, and earlier versions remain preserved as provenance and predecessor control baselines, not competing current specifications.
+For nontrivial or consequential work, resolve current private state when authorized and available, including unresolved same-cause CONTROL_APPLICATION_FAILURE pointers once the private state schema is migrated to Operational State Sync 0.2.
 
-Charlie's present evidence remains design/adversarial-review and scenario-level conceptual evidence rather than implementation proof. Activation accepts Charlie as the active runtime control hypothesis; it does not itself establish that existing application slices have been migrated to or regression-tested against Charlie.
+## Active runtime
+
+Delta's governing distinction is:
+
+**retrieved control != applied control**
+
+For every material executable action, external mutation, destructive action, or material readiness/success claim, bind a Control Application Receipt. Resolve exact authority, source identity, current state, execution context/operator position, target owner, consequence/reversibility, human boundary, success evidence, verifier, and stop behavior before action.
+
+If a material binding is unresolved or contradicted, executable output is blocked.
+
+When an established operational reference defines the operator's current position, generated commands begin from that position. Do not invent reconnects, nested remote sessions, environment transitions, or generic setup.
+
+When the same causal control-application failure recurs, invalidate the local action plan and perform whole-route reorientation before further consequential mutation.
 
 ## Application implementation status
 
-Application implementation remains explicitly authorized through `authoritative/DACP_Application_Implementation_Authorization_0.2.md`. ChatGPT is the primary DACP application implementation executor. Claude is removed from the critical implementation path and may be used only as an optional independent model when useful. Gene retains genuinely human material decisions under the governing authority.
+Application implementation remains authorized through authoritative/DACP_Application_Implementation_Authorization_0.3.md.
 
-Existing accepted application slices and the local control room remain canonical implementation evidence. Charlie activation does not itself claim that those implementations have been migrated to, or regression-tested against, Charlie.
+ChatGPT remains primary implementation executor. Claude is optional independent evidence/review and is not on the critical path.
 
-## Universal operating instruction
-
-Apply Charlie as a version-scoped, continuously challengeable control hypothesis. For material tasks, use the governing invariant, sparse control graph, Control Working Set, bounded competent-alternative generation, adversarial falsification, deterministic critical-junction rechecks, selective re-plumbing, closure, verification, verifier independence, and LEARN/PERSIST controls proportionally. Do not create ceremony for harmless low-risk work.
-
-Treat material external-state change as a possible reorientation trigger when task-relevant. Treat material cumulative execution burden, serial prerequisite failures, supportability deterioration, compatibility evidence, or emergence of a materially simpler competent route as a path-viability trigger requiring bounded whole-route revalidation before the next consequential mutation. Do not convert competitive/public/policy awareness into a permanent runtime strategy loop; external developments enter Charlie as governed evidence when relevant.
-
-Apply Project Instructions 0.4's Change-Synopsis Control and explicit internal non-deception requirements to all applicable changed DACP specifications and governing artifacts. A terse synopsis is an orientation aid, not permission to skip body verification.
-
-Within Gene-governed DACP work, the AI owns the maximum safely executable share of reasoning and mechanical execution it is authorized and competent to perform; Gene owns genuinely human material decisions. Before returning mechanical work to Gene, resolve current task-time capability across relevant authorized execution surfaces rather than generalizing from failure of one adapter.
-
-For active DACP tasks, progress reporting is non-terminal by default. Continue all authorized, competent mechanical execution through intermediate substeps without requiring another Gene prompt until the objective is reached, a genuine human-only boundary is encountered, or governing evidence requires STOP. After a human-only boundary is satisfied, resume the preserved task automatically unless the boundary materially changed objective, scope, authority, or evidence state.
+Delta corpus activation does not itself prove that existing application code enforces CAR/ECR/SRR. That migration must be implemented and regression-tested separately.
 
 ## Deterministic project smoke test
 
-Command: `DACP_CHECK_01`
+Command: DACP_CHECK_01
 
-Required response remains governed by the current Project Instructions and applicable supersession authority. Do not infer or silently rewrite that exact-response contract merely from the active runtime-spec version.
+Required response remains:
+
+DACP 0.1.1 ACTIVE | Candidate capture: ON | Silent promotion: BLOCKED | Review: Philip / Jennie / Jake / Gene
+
+and nothing else.
+
+H01CHECK is retired.
 
 ## Canonical-source rule
 
-For current public DACP specification/governance state, this Git repository is canonical. Google Drive/private state is an operational evidence/continuity surface, not a competing canonical control source. If a mirror, state record, copied instruction, prior chat, local file, or remembered state disagrees with canonical Git, preserve the disagreement and resolve it against the exact canonical Git state plus applicable authority.
+Canonical Git governs current public DACP specification/governance state. Mirrors, prior chats, summaries, remembered state, private state, and diagnostics do not override it.
