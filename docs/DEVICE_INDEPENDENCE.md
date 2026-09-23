@@ -7,7 +7,7 @@ The project must not depend on a particular Mac, Windows machine, Pixel, termina
 ## Operating model
 
 - GitHub holds public durable DACP state.
-- ChatGPT/DACP performs reasoning, orchestration, and authorized remote actions.
+- Claude performs reasoning, orchestration, and authorized remote actions (ChatGPT retired 2026-09-23).
 - Terminal/SSH/local tools are selected only when a task requires that execution surface.
 - A local Git clone is a working copy, not authority merely because it exists.
 - Local work becomes authoritative only through the governed Git commit/persistence/read-back path.

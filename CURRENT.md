@@ -2,6 +2,10 @@
 
 ## Change Synopsis
 
+- 2026-09-23 (Gene decision; authoritative/DACP_Decision_Record_2026-09-23_Executor_Transfer.md): Claude becomes primary executor, ChatGPT retired; Project Instructions 0.6, Application Implementation Authorization 0.4, Interim Decision Authority 0.3, Supersession Notice 0.4 activated; bootstrap must bind live main HEAD SHA; reviewer group removed. Active runtime specification unchanged.
+
+### 0.1.7-DELTA activation (2026-09-18)
+
 - Activates 0.1.7-DELTA as the successor to 0.1.6-CHARLIE after repeated field evidence showed that retrieval/awareness of valid controls did not reliably cause their application to the next action.
 - Activates Project Instructions 0.5 and Control Application Enforcement 0.1.
 - Replaces awareness-based compliance with task-time Control Application Receipts, execution-context binding, exact-source resolution, ownership binding, and a hard pre-output gate for material executable actions.
@@ -22,22 +26,26 @@
 **Predecessor specification:** docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md
 **Predecessor status:** SUPERSEDED AS ACTIVE / PRESERVED AS PROVENANCE
 
+## Bootstrap source resolution
+
+Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.githubusercontent.com). Record the main HEAD commit SHA and verify the active specification blob (`git rev-parse HEAD:docs/DACP_Runtime_Expression_0.1.7-DELTA.md` must equal the blob below). A rendered github.com /blob/ page is not bootstrap evidence. No uncached path = GOVERNED STOP or Gene-supplied HEAD SHA. See docs/BOOTSTRAP_CONTRACT.md.
+
 ## Load order before consequential DACP work
 
-1. authoritative/Project Instructions 0.5.txt
+1. authoritative/Project Instructions 0.6.txt
 2. docs/DACP_Runtime_Expression_0.1.7-DELTA.md
 3. authoritative/DACP_0.1.7_DELTA_Activation_2026-09-18.md
 4. authoritative/DACP_Control_Application_Enforcement_0.1.md
 5. authoritative/DACP_Operational_State_Sync_0.2.md
 6. STATE_LOCATOR.json
-7. authoritative/DACP_Interim_Decision_Authority_0.2.md
+7. authoritative/DACP_Interim_Decision_Authority_0.3.md
 8. authoritative/DACP_Operational_Use_and_Correction_Authority_0.2.md
 9. authoritative/DACP_Path_Viability_Revalidation_Control_0.1.md when path-viability provenance/detail is germane.
 10. authoritative/DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md when continuation/human-boundary provenance/detail is germane.
 11. authoritative/DACP_Endpoint_Stack_0.3.md
-12. authoritative/DACP_Application_Implementation_Authorization_0.3.md when application implementation is germane.
+12. authoritative/DACP_Application_Implementation_Authorization_0.4.md when application implementation is germane.
 13. tests/DACP_0.1.7_DELTA_Regression_Matrix.md when action-gating/regression evidence is germane.
-14. authoritative/DACP_Governance_Supersession_Notice_0.3.md when smoke-test history matters.
+14. authoritative/DACP_Governance_Supersession_Notice_0.4.md when smoke-test history matters.
 15. predecessor specifications only for provenance/comparison.
 
 ## Operational state
@@ -62,9 +70,9 @@ When the same causal control-application failure recurs, invalidate the local ac
 
 ## Application implementation status
 
-Application implementation remains authorized through authoritative/DACP_Application_Implementation_Authorization_0.3.md.
+Application implementation remains authorized through authoritative/DACP_Application_Implementation_Authorization_0.4.md.
 
-ChatGPT remains primary implementation executor. Claude is optional independent evidence/review and is not on the critical path.
+Claude is primary implementation executor (Claude Code, repository-scoped token). ChatGPT is retired from DACP; its work remains provenance.
 
 Delta corpus activation does not itself prove that existing application code enforces CAR/ECR/SRR. That migration must be implemented and regression-tested separately.
 
@@ -72,9 +80,9 @@ Delta corpus activation does not itself prove that existing application code enf
 
 Command: DACP_CHECK_01
 
-Required response remains:
+Required response:
 
-DACP 0.1.1 ACTIVE | Candidate capture: ON | Silent promotion: BLOCKED | Review: Philip / Jennie / Jake / Gene
+DACP 0.1.7-DELTA ACTIVE | Candidate capture: ON | Silent promotion: BLOCKED | Review: Gene
 
 and nothing else.
 

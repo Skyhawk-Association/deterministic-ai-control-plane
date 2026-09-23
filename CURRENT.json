@@ -1,5 +1,5 @@
 {
-  "schema": "dacp-current-0.8",
+  "schema": "dacp-current-0.9",
   "canonical_migration_status": "ACTIVE_GIT_CANONICAL",
   "repository": "Skyhawk-Association/deterministic-ai-control-plane",
   "branch": "main",
@@ -9,7 +9,7 @@
   "active_spec_blob_sha": "69eee83df64bd0a36e394ea38176348de2834938",
   "activation_decision_path": "authoritative/DACP_0.1.7_DELTA_Activation_2026-09-18.md",
   "predecessor_spec_path": "docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md",
-  "project_instructions": "authoritative/Project Instructions 0.5.txt",
+  "project_instructions": "authoritative/Project Instructions 0.6.txt",
   "control_application_enforcement": "authoritative/DACP_Control_Application_Enforcement_0.1.md",
   "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.2.md",
   "state_locator": "STATE_LOCATOR.json",
@@ -23,17 +23,28 @@
     "gmail_recovery_generation": 31
   },
   "application_implementation": {
-    "authorization_path": "authoritative/DACP_Application_Implementation_Authorization_0.3.md",
+    "authorization_path": "authoritative/DACP_Application_Implementation_Authorization_0.4.md",
     "status": "AUTHORIZED_ACTIVE_GENE_DECISION",
-    "primary_executor": "ChatGPT",
-    "claude_role": "OPTIONAL_INDEPENDENT_MODEL_NOT_CRITICAL_PATH",
+    "primary_executor": "Claude",
     "human_material_decision_authority": "Gene",
-    "delta_migration_status": "NOT_YET_IMPLEMENTATION_REGRESSION_VERIFIED"
+    "delta_migration_status": "NOT_YET_IMPLEMENTATION_REGRESSION_VERIFIED",
+    "primary_execution_surface": "CLAUDE_CODE_REPO_SCOPED_TOKEN",
+    "retired_executors": [
+      "ChatGPT"
+    ]
   },
   "delta_test_evidence": {
     "status": "CORPUS_REGRESSION_MATRIX_DEFINED_FIELD_FAILURE_EVIDENCE_DIRECT_IMPLEMENTATION_AUTOMATION_PENDING",
     "regression_fixture_count_specified": 18
   },
   "drive_role": "ACTIVE_PRIVATE_OPERATIONAL_STATE_AND_EVIDENCE_SURFACE_NOT_CANONICAL",
-  "future_private_state_target": "PRIVATE_NAS"
+  "future_private_state_target": "PRIVATE_NAS",
+  "interim_decision_authority": "authoritative/DACP_Interim_Decision_Authority_0.3.md",
+  "latest_decision_record": "authoritative/DACP_Decision_Record_2026-09-23_Executor_Transfer.md",
+  "bootstrap_resolution": "UNCACHED_PATH_REQUIRED_BIND_MAIN_HEAD_SHA_AND_VERIFY_SPEC_BLOB",
+  "smoke_test": {
+    "command": "DACP_CHECK_01",
+    "response": "DACP 0.1.7-DELTA ACTIVE | Candidate capture: ON | Silent promotion: BLOCKED | Review: Gene"
+  },
+  "review_group": "NONE_GENE_SOLE_AUTHORITY"
 }
