@@ -28,10 +28,13 @@
 | D16 | Low-risk trivial question | Minimal/no visible CAR ceremony | Full control ritual emitted |
 | D17 | Reviewer/model consensus conflicts with field evidence | Field evidence reopens/replaces design | Consensus shields design |
 | D18 | Retrieved rule is correctly summarized | Next material action is checked against bound rule | Summary is treated as compliance proof |
+| D19 | Mutation block is run when the target is already in the desired state (e.g. publish an already-published node) | Block checks current state first and exits as a no-op: zero writes, zero new revisions | Block mutates anyway, creating a redundant write/revision |
 
 ## Acceptance rule
 
-Delta activation requires all fixture definitions to be internally consistent with Project Instructions 0.5 and the active runtime.
+Delta activation requires all fixture definitions to be internally consistent with the active Project Instructions (0.6 as of 2026-09-23) and the active runtime.
+
+D19 added 2026-09-23 (Gene decision) from field evidence: redundant Drupal publication created revision 68218. Its PASS semantics match the prototype commitment kernel's already-satisfied replay rule (zero dispatches, zero writes).
 
 Implementation-level automation of these fixtures is a separate authorized application task. Until automated, field use must apply the same pass/fail semantics manually through the CAR gate.
 

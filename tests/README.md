@@ -1,6 +1,6 @@
 # DACP Public Test Surface
 
-Real use is the primary adversarial test surface for the active heuristic specification.
+Real use is the primary adversarial test surface for the active runtime specification named by `CURRENT.md`. The current required fixture set is `DACP_0.1.7_DELTA_Regression_Matrix.md`.
 
 This directory is for public regression/adversarial test descriptions and later machine-executable tests when implementation is separately authorized.
 
