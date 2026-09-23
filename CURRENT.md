@@ -51,7 +51,7 @@ Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.g
 
 ## Operational state
 
-STATE_LOCATOR.json identifies the private operational-state surface. Current private state remains generation 36 on the verified Google Drive local-sync surface at this activation boundary. Private state is evidence/continuity, not competing canonical governance.
+STATE_LOCATOR.json identifies the private operational-state surface. Current private state is generation 37 on the verified Google Drive local-sync surface, migrated to Operational State Sync 0.2 on 2026-09-23 (schema includes failure-series pointers). Private state is evidence/continuity, not competing canonical governance.
 
 For nontrivial or consequential work, resolve current private state when authorized and available, including unresolved same-cause CONTROL_APPLICATION_FAILURE pointers once the private state schema is migrated to Operational State Sync 0.2.
 

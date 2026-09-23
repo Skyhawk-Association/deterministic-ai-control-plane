@@ -1,15 +1,15 @@
 {
   "schema": "dacp-state-locator-0.4",
-  "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.1.md",
+  "operational_state_contract": "authoritative/DACP_Operational_State_Sync_0.2.md",
   "current_private_state": {
     "storage_class": "GOOGLE_DRIVE_LOCAL_SYNC",
-    "generation": 36,
+    "generation": 37,
     "root_folder_id": "18YtEqUhReyDLIRl_IYwICNw2sK09jVNl",
     "state_head_file_id": "11wB9eqiFX-OI761xUCh82aGwCzxqZZkB",
     "state_head_name": "DACP_PRIVATE_STATE_HEAD.json",
     "local_root": "C:\\Users\\genea\\My Drive\\DACP Private Operational",
-    "status": "ACTIVE_VERIFIED",
-    "note": "Private operational state is written through the locally synced Google Drive folder and independently read back through the authenticated Google Drive connector before consequential reliance. This is private operational state, not canonical governance."
+    "status": "ACTIVE_VERIFIED_SYNC_0_2",
+    "note": "Private operational state is written through the locally synced Google Drive folder and read back from the local filesystem on Gene's PC before consequential reliance (the claude.ai Drive connector cannot read this folder). This is private operational state, not canonical governance."
   },
   "recovery_private_state": {
     "storage_class": "GMAIL_RECOVERY_THREAD",

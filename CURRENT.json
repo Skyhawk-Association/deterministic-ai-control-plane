@@ -16,10 +16,10 @@
   "regression_matrix": "tests/DACP_0.1.7_DELTA_Regression_Matrix.md",
   "current_private_state": {
     "storage_class": "GOOGLE_DRIVE_LOCAL_SYNC",
-    "generation": 36,
+    "generation": 37,
     "root_folder_id": "18YtEqUhReyDLIRl_IYwICNw2sK09jVNl",
     "state_head_file_id": "11wB9eqiFX-OI761xUCh82aGwCzxqZZkB",
-    "status": "ACTIVE_VERIFIED_PRE_DELTA_SCHEMA_MIGRATION",
+    "status": "ACTIVE_VERIFIED_SYNC_0_2",
     "gmail_recovery_generation": 31
   },
   "application_implementation": {
