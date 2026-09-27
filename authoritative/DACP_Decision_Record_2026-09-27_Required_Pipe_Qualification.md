@@ -1,7 +1,7 @@
 # DACP Decision Record 2026-09-27 — Required Pipe Qualification
 
-**Status:** AUTHORITATIVE PROJECT DECISION / GENE DECISION  
-**Decided:** 2026-09-27  
+**Status:** AUTHORITATIVE PROJECT DECISION / GENE DECISION
+**Decided:** 2026-09-27
 **Effective:** upon canonical persistence and independent read-back verification
 
 ## Decision

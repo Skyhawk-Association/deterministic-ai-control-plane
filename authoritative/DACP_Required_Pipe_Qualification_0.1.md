@@ -9,8 +9,8 @@
 - Prohibits shifting machine-retrievable transport work to Gene merely because one adapter failed.
 - Adds explicit regression coverage for write-only/read-only half-pipes and adapter failover.
 
-**Status:** AUTHORITATIVE PROJECT CONTROL / ACTIVE / GENE DECISION  
-**Effective:** upon canonical persistence and independent read-back verification  
+**Status:** AUTHORITATIVE PROJECT CONTROL / ACTIVE / GENE DECISION
+**Effective:** upon canonical persistence and independent read-back verification
 **Decision record:** authoritative/DACP_Decision_Record_2026-09-27_Required_Pipe_Qualification.md
 
 ## 1. Failure addressed
