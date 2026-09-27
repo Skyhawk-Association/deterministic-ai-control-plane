@@ -1,0 +1,25 @@
+SKYHAWK AI REPORT
+Task: step 3a preview
+Generated: 2026-09-27T21:44:01Z
+Report-ID: 20260927T214401Z-step-3a-preview
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+CSS pure append: +495 lines (SQUADRON FAMILY (CMS))
+No syntax errors detected in /tmp/p3a/squadron_look.php
+No syntax errors detected in /tmp/p3a/lostd.php
+PHP MODE PREVIEW (no writes)
+INSIGNIA now 6: vma131_diamondbacks_willow_grove.jpg fid=59118, vma131_diamondbacks_a4.jpg fid=59119, vma131_diamondbacks.jpg fid=59120, nas_willow_grove.jpg fid=59122, mag49.jpg fid=59121, nas_willow_grove_jrb.jpg fid=59123
+  MOVE vma131_diamondbacks_willow_grove.jpg -> record (already shown in record text)
+  MOVE vma131_diamondbacks_a4.jpg -> record (already shown in record text)
+  MOVE nas_willow_grove.jpg -> record (already shown in record text)
+  MOVE mag49.jpg -> record (already shown in record text)
+  MOVE nas_willow_grove_jrb.jpg -> record (already shown in record text)
+HERO_FILE 160024-a-4m-ddjun93-vma-131-qg-00-fallon-j-cupido-06.jpg on_disk=yes managed=fid 58572
+FIELD field_sq_hero_image will be created
+VIEW squadron_actions eva_jump will be added
+PLAN wrapper group_sq_page .skyhawk-squadron-cms; panel classes/ids; jump bar; hero photo; 49779 insignia 6 -> 1
+PHP_PREVIEW_DONE NO_WRITES
+PREVIEW_DONE NO_WRITES
+===== END =====
