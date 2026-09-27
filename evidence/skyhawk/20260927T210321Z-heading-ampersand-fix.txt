@@ -1,0 +1,15 @@
+SKYHAWK AI REPORT
+Task: heading ampersand fix
+Generated: 2026-09-27T21:03:21Z
+Report-ID: 20260927T210321Z-heading-ampersand-fix
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+  VERIFY heading shows a plain ampersand PASS
+  VERIFY no double escaping PASS
+PHP_RESULT PASS
+sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync
+SKYHAWK_COMMIT 5dd59a0
+RESULT PASS skyhawk=5dd59a0 lostd=194f086
+===== END =====
