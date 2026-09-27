@@ -28,7 +28,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** GitHub/Source Reconstruction, Termux SSH Notes and Site Menu references moved to Git (DACP 2c02d66); Drupal pages now pointers (49463 rev 68240, 49458 rev 68241, 49457 rev 68242). All governing references are now readable from Git. Before that: DACP Authorization 0.6 (a466b8e).
+**Last verified step:** Website LOST-D pointer (node 2479, rev 68243) now carries the freshness warning. Before that: remaining references to Git (DACP 2c02d66, c44b237); all governing references are readable from Git.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
