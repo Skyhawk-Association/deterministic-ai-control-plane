@@ -24,12 +24,13 @@
 - Large outputs: `( commands ) 2>&1 | ~/bin/ai-report "task"` pushes a secret-scanned report to evidence/skyhawk/ in this repository; paste only its one-line result.
 - skyhawk.org Git remote is private (`github-skyhawk` identity, account geneatwell). The same identity pushes this DACP repo (clone on A2: `/home/darwus/dacp-repo`). Organization deploy keys are disabled.
 - Composer only via `bin/skyhawk-composer` (require or update, then functional check, then `finish`). Its pending marker is git-ignored.
+- Never pipe or `tail` a command that asks a question (`skyhawk-composer finish`, anything without `-y`): the prompt is hidden and Enter answers No.
 - Configuration: site-wide `config:import` fails validation because of orphaned configuration from old modules and themes. Apply structure through the entity API, then `drush config:export -y`, then commit only the expected files.
 - Backups before structural database work: dump to `/home/darwus/skyhawk_backups`, download to the Envy (`Desktop\ChatGPT\pre_update_<version>_<timestamp>\database.sql.gz`), verify SHA-256, then delete the server copy.
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** views_field_view 1.0 installed and enabled via skyhawk-composer (skyhawk.org 8af8142) for the collection pages. Before that: step 3.3, 373 photo placements.
+**Last verified step:** Step 3.4: collection pages built (Views section_items and squadron_collection_pages; skyhawk.org af061a2), test paths /squadrons-test/vma-131/<slug>, admin roles only. Before that: views_field_view installed (8af8142).
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
@@ -45,7 +46,7 @@
 **Next steps (in order)**
 1. Done: shared contribute block and Gabby link (skyhawk.org 87737c5).
 2. Done: Skyhawks Assigned off the landing display (skyhawk.org 7ab995a).
-3. Brian’s collections. DECIDED by Gene 2026-09-27: (a) collection sections as taxonomy terms (unit, collection, heading, order, Brian’s text as rich text), with document and photo placements pointing at their section; (b) Brian’s text sits at the top of each section (exact text/file interleaving not kept; explain to Brian). Then: backup (Rules), vocabulary and fields, sections and document placements, photo placements, collection View with test pages at /squadrons/vma-131-test/<collection>. About 220 documents, 356 photos, 60 sections. Progress: 3.1 done (skyhawk.org 0bec5cb); 3.2 and 3.3 done; 3.4 in progress: views_field_view installed; next the collection View (sections listed in order, each embedding its documents and photos) and test pages.
+3. Brian’s collections. DECIDED by Gene 2026-09-27: (a) collection sections as taxonomy terms (unit, collection, heading, order, Brian’s text as rich text), with document and photo placements pointing at their section; (b) Brian’s text sits at the top of each section (exact text/file interleaving not kept; explain to Brian). Then: backup (Rules), vocabulary and fields, sections and document placements, photo placements, collection View with test pages at /squadrons/vma-131-test/<collection>. About 220 documents, 356 photos, 60 sections. Progress: 3.1 done (skyhawk.org 0bec5cb); 3.2, 3.3 and 3.4 done: test collection pages at /squadrons-test/vma-131/{squadron-home, final-inspection, diamondback-stories, usmc-stories, us-military-stories, tails-of-aviation, aircraft-photos, squadron-mates, archives}. Still to do in step 3: Explore menu and back link on the test page pointing at these; at cutover the paths become /squadrons/<unit>/<slug> and the interim nodes 49770-49777 retire.
 3b. Brian Putney has an existing skyhawk.org login: give his account view access to unpublished pages, so the test page stays hidden from the public but visible to him.
 3c. One email to Brian pointing only at /squadrons/vma-131-test and its collection pages (draft exists in chat history; update its URLs). Brian is the only stakeholder whose sign-off gates cutover.
 4. Unit identity on the `skyhawk_units` term (service mapped to the navy, marine, joint or heritage modifier). How the class gets applied is still to be decided.
