@@ -1,0 +1,7 @@
+DACP PIPE QUALIFICATION EVIDENCE
+Executor: ChatGPT
+Producer path: ChatGPT -> Desktop Commander -> Windows local Git clone
+Repository: Skyhawk-Association/deterministic-ai-control-plane
+Branch: main
+Purpose: prove write -> commit -> push -> independent GitHub readback without Gene transporting content
+Expected token: PIPE_ROUNDTRIP_20260927T222300Z_PASS_CANDIDATE
