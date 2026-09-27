@@ -1,0 +1,46 @@
+SKYHAWK AI REPORT
+Task: step 3.1 sections config
+Generated: 2026-09-27T20:29:12Z
+Report-ID: 20260927T202912Z-step-3-1-sections-config
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+BACKUP pre_squadron_step3_20260927T201938Z: server copy removed (procedure completed)
+PHP MODE EXECUTE
+PLAN vocabulary collection_sections; storage taxonomy_term.field_unit; field collection_sections.field_unit; storage taxonomy_term.field_unit_collection; field collection_sections.field_unit_collection; storage taxonomy_term.field_section_weight; field collection_sections.field_section_weight; storage taxonomy_term.field_section_text; field collection_sections.field_section_text; storage media.field_collection_section; field media.document.field_collection_section; field media.image.field_collection_section
+  VERIFY vocabulary                         PASS
+  VERIFY term field field_unit              PASS
+  VERIFY term field field_unit_collection   PASS
+  VERIFY term field field_section_weight    PASS
+  VERIFY term field field_section_text      PASS
+  VERIFY media document section field       PASS
+  VERIFY media image section field          PASS
+PHP_RESULT PASS
+sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_form_display.media.document.default.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_form_display.media.document.media_library.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_form_display.media.image.default.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_form_display.media.image.media_library.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_view_display.media.document.default.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_view_display.media.document.media_library.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_view_display.media.image.default.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_view_display.media.image.full.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_view_display.media.image.media_library.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_form_display.taxonomy_term.collection_sections.default.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_view_display.taxonomy_term.collection_sections.default.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.field.media.document.field_collection_section.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.field.media.image.field_collection_section.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.field.taxonomy_term.collection_sections.field_section_text.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.field.taxonomy_term.collection_sections.field_section_weight.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.field.taxonomy_term.collection_sections.field_unit.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.field.taxonomy_term.collection_sections.field_unit_collection.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.storage.media.field_collection_section.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.storage.taxonomy_term.field_section_text.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.storage.taxonomy_term.field_section_weight.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.storage.taxonomy_term.field_unit.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.storage.taxonomy_term.field_unit_collection.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/taxonomy.vocabulary.collection_sections.yml
+SKYHAWK_COMMIT 0bec5cb
+RESULT PASS skyhawk=0bec5cb lostd=b000e41
+===== END =====
