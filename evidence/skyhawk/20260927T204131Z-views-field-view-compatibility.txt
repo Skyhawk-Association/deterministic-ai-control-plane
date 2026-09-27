@@ -1,0 +1,14 @@
+SKYHAWK AI REPORT
+Task: views_field_view compatibility
+Generated: 2026-09-27T20:41:31Z
+Report-ID: 20260927T204131Z-views-field-view-compatibility
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+name     : drupal/views_field_view
+versions : 1.x-dev, 1.0.0, 1.0.0-beta6, 1.0.0-beta5, 1.0.0-beta4, 1.0.0-beta3, 1.0.0-beta2, dev-1.x
+names    : drupal/views_field_view
+requires
+drupal/core ^9 || ^10 || ^11
+===== END =====
