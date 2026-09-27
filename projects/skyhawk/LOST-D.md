@@ -8,7 +8,7 @@
 **Public file. Never put here:** passwords, SSH/API keys, token links (upload, manage or verify tokens), member personal data (names, email or contact details of attendees or contributors), backup contents, database contents, server IP addresses.
 
 ## Governing references (read before acting)
-- Skyhawk Working Rules: Drupal node 49418 ("ACTIVE RULES"). Binding for every executor.
+- Skyhawk Working Rules: `projects/skyhawk/RULES.md` in this repository (public URL `https://raw.githubusercontent.com/Skyhawk-Association/deterministic-ai-control-plane/main/projects/skyhawk/RULES.md`). Binding for every executor.
 - Drupal Environment Reference: node 49461. GitHub / Source Reconstruction Reference: node 49463. Termux SSH Notes: node 49458. Site Menu Reference: node 49457.
 - Squadron Template 49454, Squadron Roadmap 49453 and `skyhawk_site_fixes/data/squadron-template-contract.php`: superseded for new squadron work by Gene (2026-09-27). Ignore them except the lessons listed under Active slice.
 
@@ -26,7 +26,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** View `squadron_collection` committed to skyhawk.org as `1235ae1` (2026-09-27). Tree clean, local equals GitHub.
+**Last verified step:** Skyhawk Working Rules moved to Git as `projects/skyhawk/RULES.md`, AI-neutral, with the shared-passdown rule (DACP repository, same push as this passdown). Before that: View `squadron_collection`, skyhawk.org commit `1235ae1`.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
@@ -40,6 +40,7 @@
 **Lessons kept from the old template:** thumbnails open the original in a new window, with a way back to the squadron page; Gabby's Histories is linked with the unit preselected; no large aircraft-assignment tables on the landing page; the complete Commanding Officers list is collapsible on the landing page; scrape the target unit first; never clone another unit's content.
 
 **Next steps (in order)**
+0. Governance handoff: point Drupal nodes 49418 (Rules) and 2479 (LOST-D) at Git; move a sanitized Environment Reference (49461) to Git; record DACP Authorization 0.6 (both AIs authorized executors). Then continue with step 1.
 1. Shared contribute block: a second EVA view over the node, building the Share a Story, Add Photographs, Send a Correction, photo archive and Gabby buttons from the unit designation.
 2. Take `field_sq_assigned_aircraft` off the landing display, with a Gabby link instead.
 3. Brian's collections (199 documents, 356 images) as per-placement media, using `vma131_mapping.json` from Gene's working folder. Collection pages via Views at `/squadrons/vma-131/<collection>`.
