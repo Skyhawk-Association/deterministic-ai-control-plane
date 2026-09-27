@@ -28,7 +28,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** Website LOST-D pointer (node 2479, rev 68243) now carries the freshness warning. Before that: remaining references to Git (DACP 2c02d66, c44b237); all governing references are readable from Git.
+**Last verified step:** Contribute buttons and Gabby link on the Squadron page (View `squadron_actions`, EVA), skyhawk.org commit 87737c5. Before that: website LOST-D freshness warning.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
@@ -42,7 +42,7 @@
 **Lessons kept from the old template:** thumbnails open the original in a new window, with a way back to the squadron page; Gabby's Histories is linked with the unit preselected; no large aircraft-assignment tables on the landing page; the complete Commanding Officers list is collapsible on the landing page; scrape the target unit first; never clone another unit's content.
 
 **Next steps (in order)**
-1. Shared contribute block: a second EVA view over the node, building the Share a Story, Add Photographs, Send a Correction, photo archive and Gabby buttons from the unit designation.
+1. Done: shared contribute block and Gabby link (skyhawk.org 87737c5).
 2. Take `field_sq_assigned_aircraft` off the landing display, with a Gabby link instead.
 3. Brian's collections (199 documents, 356 images) as per-placement media, using `vma131_mapping.json` from Gene's working folder. Collection pages via Views at `/squadrons/vma-131/<collection>`.
 4. Unit identity on the `skyhawk_units` term (service mapped to the navy, marine, joint or heritage modifier). How the class gets applied is still to be decided.
