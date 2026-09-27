@@ -29,7 +29,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** Step 3.2: VMA-131 collection sections and document placements created from vma131_mapping.json (CREATED sections=90 (unpublished) document_placements=221; content only, no config change). Before that: step 3.1 (skyhawk.org 0bec5cb).
+**Last verified step:** Step 3.3: VMA-131 photo placements created (CREATED photo_placements=373; content only). Before that: step 3.2, 90 sections and 221 document placements.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
@@ -45,7 +45,7 @@
 **Next steps (in order)**
 1. Done: shared contribute block and Gabby link (skyhawk.org 87737c5).
 2. Done: Skyhawks Assigned off the landing display (skyhawk.org 7ab995a).
-3. Brian’s collections. DECIDED by Gene 2026-09-27: (a) collection sections as taxonomy terms (unit, collection, heading, order, Brian’s text as rich text), with document and photo placements pointing at their section; (b) Brian’s text sits at the top of each section (exact text/file interleaving not kept; explain to Brian). Then: backup (Rules), vocabulary and fields, sections and document placements, photo placements, collection View with test pages at /squadrons/vma-131-test/<collection>. About 220 documents, 356 photos, 60 sections. Progress: 3.1 done (skyhawk.org 0bec5cb); 3.2 done; next 3.3 photo placements.
+3. Brian’s collections. DECIDED by Gene 2026-09-27: (a) collection sections as taxonomy terms (unit, collection, heading, order, Brian’s text as rich text), with document and photo placements pointing at their section; (b) Brian’s text sits at the top of each section (exact text/file interleaving not kept; explain to Brian). Then: backup (Rules), vocabulary and fields, sections and document placements, photo placements, collection View with test pages at /squadrons/vma-131-test/<collection>. About 220 documents, 356 photos, 60 sections. Progress: 3.1 done (skyhawk.org 0bec5cb); 3.2 and 3.3 done; next 3.4 collection View and test pages.
 3b. Brian Putney has an existing skyhawk.org login: give his account view access to unpublished pages, so the test page stays hidden from the public but visible to him.
 3c. One email to Brian pointing only at /squadrons/vma-131-test and its collection pages (draft exists in chat history; update its URLs). Brian is the only stakeholder whose sign-off gates cutover.
 4. Unit identity on the `skyhawk_units` term (service mapped to the navy, marine, joint or heritage modifier). How the class gets applied is still to be decided.
