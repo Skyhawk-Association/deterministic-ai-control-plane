@@ -29,7 +29,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** Step 3.3: VMA-131 photo placements created (CREATED photo_placements=373; content only). Before that: step 3.2, 90 sections and 221 document placements.
+**Last verified step:** views_field_view 1.0 installed and enabled via skyhawk-composer (skyhawk.org 8af8142) for the collection pages. Before that: step 3.3, 373 photo placements.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
@@ -38,14 +38,14 @@
 - View `squadron_collection` has three EVA displays (Voices, Research, Visual record), filtered by the page's unit and placed inside their panels. Links open in a new window.
 - Test node **49779**, unpublished, at `/squadrons/vma-131-test`. The live VMA-131 page, node 49417 at `/article-unit/vma131`, is unchanged until Brian Putney signs off. `/squadrons/vma-131-preview` redirects 301 to it.
 - VMA-131 assets: 356 images in `sites/default/files/vma131-preview/images` (with `manifest.tsv`; 1 placeholder photo pending from Brian). Interim section pages are nodes 49770–49777.
-- Modules added: field_group 4.0, eva 3.1. Core 11.4.8, webform 6.3.1 (security updates applied 2026-09-27).
+- Modules added: field_group 4.0, eva 3.1, views_field_view 1.0. Core 11.4.8, webform 6.3.1 (security updates applied 2026-09-27).
 
 **Lessons kept from the old template:** thumbnails open the original in a new window, with a way back to the squadron page; Gabby's Histories is linked with the unit preselected; no large aircraft-assignment tables on the landing page; the complete Commanding Officers list is collapsible on the landing page; scrape the target unit first; never clone another unit's content.
 
 **Next steps (in order)**
 1. Done: shared contribute block and Gabby link (skyhawk.org 87737c5).
 2. Done: Skyhawks Assigned off the landing display (skyhawk.org 7ab995a).
-3. Brian’s collections. DECIDED by Gene 2026-09-27: (a) collection sections as taxonomy terms (unit, collection, heading, order, Brian’s text as rich text), with document and photo placements pointing at their section; (b) Brian’s text sits at the top of each section (exact text/file interleaving not kept; explain to Brian). Then: backup (Rules), vocabulary and fields, sections and document placements, photo placements, collection View with test pages at /squadrons/vma-131-test/<collection>. About 220 documents, 356 photos, 60 sections. Progress: 3.1 done (skyhawk.org 0bec5cb); 3.2 and 3.3 done; next 3.4 collection View and test pages.
+3. Brian’s collections. DECIDED by Gene 2026-09-27: (a) collection sections as taxonomy terms (unit, collection, heading, order, Brian’s text as rich text), with document and photo placements pointing at their section; (b) Brian’s text sits at the top of each section (exact text/file interleaving not kept; explain to Brian). Then: backup (Rules), vocabulary and fields, sections and document placements, photo placements, collection View with test pages at /squadrons/vma-131-test/<collection>. About 220 documents, 356 photos, 60 sections. Progress: 3.1 done (skyhawk.org 0bec5cb); 3.2 and 3.3 done; 3.4 in progress: views_field_view installed; next the collection View (sections listed in order, each embedding its documents and photos) and test pages.
 3b. Brian Putney has an existing skyhawk.org login: give his account view access to unpublished pages, so the test page stays hidden from the public but visible to him.
 3c. One email to Brian pointing only at /squadrons/vma-131-test and its collection pages (draft exists in chat history; update its URLs). Brian is the only stakeholder whose sign-off gates cutover.
 4. Unit identity on the `skyhawk_units` term (service mapped to the navy, marine, joint or heritage modifier). How the class gets applied is still to be decided.
