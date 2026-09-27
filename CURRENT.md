@@ -2,6 +2,7 @@
 
 ## Change Synopsis
 
+- 2026-09-27 (Gene decision; authoritative/DACP_Decision_Record_2026-09-27_Required_Pipe_Qualification.md): required persistence/evidence/state/handoff pipes must prove write -> persist -> consumer read-back -> verify -> continue for the intended executor; adapter failure requires authorized alternate-route resolution before capability failure or human transport.
 - 2026-09-27 (Gene decision; authoritative/DACP_Decision_Record_2026-09-27_Dual_Executors.md): Claude and ChatGPT are both authorized executors, one at a time; Application Implementation Authorization 0.6; Skyhawk LOST-D, Rules and Environment Reference now live under projects/skyhawk/.
 - 2026-09-23 credential scope correction (authoritative/DACP_Decision_Record_2026-09-23_Credential_Scope_Correction.md): Application Implementation Authorization 0.5 replaces the repo-scoped-token claim with the actual credential model.
 - 2026-09-23 (Gene decision; authoritative/DACP_Decision_Record_2026-09-23_Executor_Transfer.md): Claude becomes primary executor, ChatGPT retired; Project Instructions 0.6, Application Implementation Authorization 0.4, Interim Decision Authority 0.3, Supersession Notice 0.4 activated; bootstrap must bind live main HEAD SHA; reviewer group removed. Active runtime specification unchanged.
@@ -34,21 +35,22 @@ Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.g
 
 ## Load order before consequential DACP work
 
-1. authoritative/Project Instructions 0.6.txt
+1. authoritative/Project Instructions 0.7.txt
 2. docs/DACP_Runtime_Expression_0.1.7-DELTA.md
 3. authoritative/DACP_0.1.7_DELTA_Activation_2026-09-18.md
 4. authoritative/DACP_Control_Application_Enforcement_0.1.md
-5. authoritative/DACP_Operational_State_Sync_0.2.md
-6. STATE_LOCATOR.json
-7. authoritative/DACP_Interim_Decision_Authority_0.3.md
-8. authoritative/DACP_Operational_Use_and_Correction_Authority_0.2.md
-9. authoritative/DACP_Path_Viability_Revalidation_Control_0.1.md when path-viability provenance/detail is germane.
-10. authoritative/DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md when continuation/human-boundary provenance/detail is germane.
-11. authoritative/DACP_Endpoint_Stack_0.3.md
-12. authoritative/DACP_Application_Implementation_Authorization_0.6.md when application implementation is germane.
-13. tests/DACP_0.1.7_DELTA_Regression_Matrix.md when action-gating/regression evidence is germane.
-14. authoritative/DACP_Governance_Supersession_Notice_0.4.md when smoke-test history matters.
-15. predecessor specifications only for provenance/comparison.
+5. authoritative/DACP_Required_Pipe_Qualification_0.1.md
+6. authoritative/DACP_Operational_State_Sync_0.2.md
+7. STATE_LOCATOR.json
+8. authoritative/DACP_Interim_Decision_Authority_0.3.md
+9. authoritative/DACP_Operational_Use_and_Correction_Authority_0.2.md
+10. authoritative/DACP_Path_Viability_Revalidation_Control_0.1.md when path-viability provenance/detail is germane.
+11. authoritative/DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md when continuation/human-boundary provenance/detail is germane.
+12. authoritative/DACP_Endpoint_Stack_0.3.md
+13. authoritative/DACP_Application_Implementation_Authorization_0.6.md when application implementation is germane.
+14. tests/DACP_0.1.7_DELTA_Regression_Matrix.md when action-gating/regression evidence is germane.
+15. authoritative/DACP_Governance_Supersession_Notice_0.4.md when smoke-test history matters.
+16. predecessor specifications only for provenance/comparison.
 
 ## Operational state
 
@@ -69,6 +71,8 @@ If a material binding is unresolved or contradicted, executable output is blocke
 When an established operational reference defines the operator's current position, generated commands begin from that position. Do not invent reconnects, nested remote sessions, environment transitions, or generic setup.
 
 When the same causal control-application failure recurs, invalidate the local action plan and perform whole-route reorientation before further consequential mutation.
+
+A required persistence, evidence, state, or handoff pipe is operational only after the intended executor proves the complete write -> persist -> consumer read-back -> verify -> continue route. One adapter failure does not establish capability failure while an authorized competent alternate route exists; machine-retrievable transport must not be returned to Gene merely because the first adapter failed.
 
 ## Application implementation status
 
