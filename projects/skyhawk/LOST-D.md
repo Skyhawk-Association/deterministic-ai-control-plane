@@ -29,7 +29,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** ai-report pipe installed on A2 (reports to evidence/skyhawk/ in this repository; Rules Section 6 updated). Before that: contribute block and Gabby link (skyhawk.org 87737c5).
+**Last verified step:** Skyhawks Assigned removed from the Squadron landing display (data kept, still editable; Gabby link covers it), skyhawk.org 7ab995a. Before that: ai-report pipe installed.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
@@ -44,7 +44,7 @@
 
 **Next steps (in order)**
 1. Done: shared contribute block and Gabby link (skyhawk.org 87737c5).
-2. Take `field_sq_assigned_aircraft` off the landing display, with a Gabby link instead.
+2. Done: Skyhawks Assigned off the landing display (skyhawk.org 7ab995a).
 3. Brian's collections (199 documents, 356 images) as per-placement media, using `vma131_mapping.json` from Gene's working folder. Collection pages via Views at `/squadrons/vma-131/<collection>`.
 4. Unit identity on the `skyhawk_units` term (service mapped to the navy, marine, joint or heritage modifier). How the class gets applied is still to be decided.
 5. Parity check against node 49417, then Gene's review, Brian's sign-off and cutover.
