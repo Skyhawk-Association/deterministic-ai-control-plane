@@ -46,11 +46,13 @@
 1. Done: shared contribute block and Gabby link (skyhawk.org 87737c5).
 2. Done: Skyhawks Assigned off the landing display (skyhawk.org 7ab995a).
 3. Brian’s collections. PROPOSED, awaiting Gene: (a) collection sections as taxonomy terms (unit, collection, heading, order, Brian’s text as rich text), with document and photo placements pointing at their section; (b) Brian’s text sits at the top of each section (exact text/file interleaving not kept; explain to Brian). Then: backup (Rules), vocabulary and fields, sections and document placements, photo placements, collection View with test pages at /squadrons/vma-131-test/<collection>. About 220 documents, 356 photos, 60 sections.
+3b. Brian Putney has an existing skyhawk.org login: give his account view access to unpublished pages, so the test page stays hidden from the public but visible to him.
+3c. One email to Brian pointing only at /squadrons/vma-131-test and its collection pages (draft exists in chat history; update its URLs). Brian is the only stakeholder whose sign-off gates cutover.
 4. Unit identity on the `skyhawk_units` term (service mapped to the navy, marine, joint or heritage modifier). How the class gets applied is still to be decided.
 5. Parity check against node 49417, then Gene's review, Brian's sign-off and cutover.
 6. Documentation: the Environment Reference's Squadron CMS section (a draft exists, shelved until 131 is done).
 
-**Open decisions (Gene):** make Rules section 6 (evidence transport) AI-neutral; choose the canonical Windows evidence folder; choose the unit-identity class mechanism; approve orphaned-configuration cleanup; delete node 49778; fix the journal PDF URI error in the logs; send the drafted email to Brian after the page review.
+**Open decisions (Gene):** choose the canonical Windows evidence folder; choose the unit-identity class mechanism; approve orphaned-configuration cleanup; delete node 49778; fix the journal PDF URI error in the logs.
 
 **Half-done:** none.
 
