@@ -1,0 +1,19 @@
+SKYHAWK AI REPORT
+Task: hide skyhawks assigned
+Generated: 2026-09-27T15:19:21Z
+Report-ID: 20260927T151921Z-hide-skyhawks-assigned
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+STATE on_display=1 in_record_group=1
+  VERIFY assigned table gone PASS
+  VERIFY record panel still there PASS
+  VERIFY gabby link still there PASS
+  VERIFY data kept on node PASS
+  VERIFY still in edit form PASS
+PHP_RESULT PASS
+sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync
+SKYHAWK_COMMIT 7ab995a
+RESULT PASS skyhawk=7ab995a lostd=f062955
+===== END =====
