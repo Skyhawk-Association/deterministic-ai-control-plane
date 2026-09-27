@@ -21,6 +21,7 @@
 - Project root `/home/darwus/drupalbeta`; Drush `/home/darwus/drupalbeta/vendor/bin/drush --root=/home/darwus/drupalbeta/web`.
 - Commands are pasted at the A2 prompt; wrap each block in a subshell `( ... )` so a failure never logs Gene out. A2 has no `/dev/fd`: no bash process substitution. A2 throttles rapid SSH connections: wait about 5 minutes if refused.
 - Files move by `scp` from Windows (host alias `A2`); Gene's working folder is `C:\Users\genea\dacp-work\vma131`.
+- Large outputs: `( commands ) 2>&1 | ~/bin/ai-report "task"` pushes a secret-scanned report to evidence/skyhawk/ in this repository; paste only its one-line result.
 - skyhawk.org Git remote is private (`github-skyhawk` identity, account geneatwell). The same identity pushes this DACP repo (clone on A2: `/home/darwus/dacp-repo`). Organization deploy keys are disabled.
 - Composer only via `bin/skyhawk-composer` (require or update, then functional check, then `finish`). Its pending marker is git-ignored.
 - Configuration: site-wide `config:import` fails validation because of orphaned configuration from old modules and themes. Apply structure through the entity API, then `drush config:export -y`, then commit only the expected files.
@@ -28,7 +29,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** Contribute buttons and Gabby link on the Squadron page (View `squadron_actions`, EVA), skyhawk.org commit 87737c5. Before that: website LOST-D freshness warning.
+**Last verified step:** ai-report pipe installed on A2 (reports to evidence/skyhawk/ in this repository; Rules Section 6 updated). Before that: contribute block and Gabby link (skyhawk.org 87737c5).
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
