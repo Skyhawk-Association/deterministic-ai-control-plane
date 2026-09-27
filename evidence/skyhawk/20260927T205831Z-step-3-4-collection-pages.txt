@@ -1,0 +1,25 @@
+SKYHAWK AI REPORT
+Task: step 3.4 collection pages
+Generated: 2026-09-27T20:58:31Z
+Report-ID: 20260927T205831Z-step-3-4-collection-pages
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+PHP MODE EXECUTE
+ACCESS roles=admin,co ; pages at /squadrons-test/<unit>/<slug> ; views new
+  VERIFY squadron-home        sections 32/32 new-window links  53 thumbnails  13 PASS
+  VERIFY final-inspection     sections  7/ 7 new-window links  43 thumbnails   1 PASS
+  VERIFY diamondback-stories  sections  3/ 3 new-window links  25 thumbnails   1 PASS
+  VERIFY usmc-stories         sections  5/ 5 new-window links  37 thumbnails   1 PASS
+  VERIFY us-military-stories  sections  5/ 5 new-window links  31 thumbnails   1 PASS
+  VERIFY tails-of-aviation    sections  5/ 5 new-window links  26 thumbnails   1 PASS
+  VERIFY aircraft-photos      sections  9/ 9 new-window links 130 thumbnails 125 PASS
+  VERIFY squadron-mates       sections 12/12 new-window links 229 thumbnails 227 PASS
+  VERIFY archives             sections 12/12 new-window links  36 thumbnails   3 PASS
+  VERIFY anonymous blocked HTTP=403 PASS
+PHP_RESULT PASS
+sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync
+SKYHAWK_COMMIT af061a2
+RESULT PASS skyhawk=af061a2 lostd=8c7a86d
+===== END =====
