@@ -11,7 +11,7 @@
 
 ## Governing references (read before acting)
 - Skyhawk Working Rules: `projects/skyhawk/RULES.md` in this repository (public URL `https://raw.githubusercontent.com/Skyhawk-Association/deterministic-ai-control-plane/main/projects/skyhawk/RULES.md`). Binding for every executor.
-- Environment Reference: `projects/skyhawk/ENVIRONMENT.md` in this repository (Drupal node 49461 points here). GitHub / Source Reconstruction Reference: node 49463. Termux SSH Notes: node 49458. Site Menu Reference: node 49457.
+- Environment Reference: `projects/skyhawk/ENVIRONMENT.md` in this repository (Drupal node 49461 points here). GitHub / Source Reconstruction Reference: `projects/skyhawk/GITHUB.md`. Termux SSH Notes: `projects/skyhawk/TERMUX.md`. Site Menu Reference: `projects/skyhawk/SITE_MENU.md`. (Their Drupal pages 49463, 49458 and 49457 point here.)
 - Squadron Template 49454, Squadron Roadmap 49453 and `skyhawk_site_fixes/data/squadron-template-contract.php`: superseded for new squadron work by Gene (2026-09-27). Ignore them except the lessons listed under Active slice.
 
 ## Executors
@@ -28,7 +28,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** DACP Authorization 0.6 and decision record 2026-09-27 (both AIs authorized executors; Git passdown), committed with this LOST-D update. Governance handoff complete. Before that: Environment Reference to Git (DACP 7cacabe).
+**Last verified step:** GitHub/Source Reconstruction, Termux SSH Notes and Site Menu references moved to Git (DACP 2c02d66); Drupal pages now pointers (49463 rev 68240, 49458 rev 68241, 49457 rev 68242). All governing references are now readable from Git. Before that: DACP Authorization 0.6 (a466b8e).
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
