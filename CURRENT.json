@@ -23,15 +23,14 @@
     "gmail_recovery_generation": 31
   },
   "application_implementation": {
-    "authorization_path": "authoritative/DACP_Application_Implementation_Authorization_0.5.md",
+    "authorization_path": "authoritative/DACP_Application_Implementation_Authorization_0.6.md",
     "status": "AUTHORIZED_ACTIVE_GENE_DECISION",
-    "primary_executor": "Claude",
+    "primary_executor": "Claude or ChatGPT, one at a time (Gene chooses)",
     "human_material_decision_authority": "Gene",
     "delta_migration_status": "NOT_YET_IMPLEMENTATION_REGRESSION_VERIFIED",
-    "primary_execution_surface": "CLAUDE_CODE_GENE_MACHINE_GENE_CREDENTIALS_POLICY_BOUNDED",
-    "retired_executors": [
-      "ChatGPT"
-    ]
+    "primary_execution_surface": "CLAUDE_OR_CHATGPT_ONE_AT_A_TIME; A2_COMMANDS_RUN_BY_GENE",
+    "retired_executors": [],
+    "shared_passdown": "projects/skyhawk/LOST-D.md"
   },
   "delta_test_evidence": {
     "status": "CORPUS_REGRESSION_MATRIX_DEFINED_FIELD_FAILURE_EVIDENCE_DIRECT_IMPLEMENTATION_AUTOMATION_PENDING",
@@ -40,7 +39,7 @@
   "drive_role": "ACTIVE_PRIVATE_OPERATIONAL_STATE_AND_EVIDENCE_SURFACE_NOT_CANONICAL",
   "future_private_state_target": "PRIVATE_NAS",
   "interim_decision_authority": "authoritative/DACP_Interim_Decision_Authority_0.3.md",
-  "latest_decision_record": "authoritative/DACP_Decision_Record_2026-09-23_Credential_Scope_Correction.md",
+  "latest_decision_record": "authoritative/DACP_Decision_Record_2026-09-27_Dual_Executors.md",
   "bootstrap_resolution": "UNCACHED_PATH_REQUIRED_BIND_MAIN_HEAD_SHA_AND_VERIFY_SPEC_BLOB",
   "smoke_test": {
     "command": "DACP_CHECK_01",

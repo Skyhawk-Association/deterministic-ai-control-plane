@@ -15,7 +15,7 @@
 - Squadron Template 49454, Squadron Roadmap 49453 and `skyhawk_site_fixes/data/squadron-template-contract.php`: superseded for new squadron work by Gene (2026-09-27). Ignore them except the lessons listed under Active slice.
 
 ## Executors
-- Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record pending: DACP Authorization 0.6.
+- Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.6.md`.
 
 ## Operating facts (non-secret)
 - Project root `/home/darwus/drupalbeta`; Drush `/home/darwus/drupalbeta/vendor/bin/drush --root=/home/darwus/drupalbeta/web`.
@@ -28,7 +28,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** Environment Reference moved to Git as `projects/skyhawk/ENVIRONMENT.md` (sanitized; DACP 7cacabe); Drupal node 49461 now points there (rev 68239). Before that: Drupal Rules and LOST-D pointers (DACP 86ce6d8).
+**Last verified step:** DACP Authorization 0.6 and decision record 2026-09-27 (both AIs authorized executors; Git passdown), committed with this LOST-D update. Governance handoff complete. Before that: Environment Reference to Git (DACP 7cacabe).
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
@@ -42,7 +42,6 @@
 **Lessons kept from the old template:** thumbnails open the original in a new window, with a way back to the squadron page; Gabby's Histories is linked with the unit preselected; no large aircraft-assignment tables on the landing page; the complete Commanding Officers list is collapsible on the landing page; scrape the target unit first; never clone another unit's content.
 
 **Next steps (in order)**
-0. Governance handoff: record DACP Authorization 0.6 (both AIs authorized executors). Then continue with step 1.
 1. Shared contribute block: a second EVA view over the node, building the Share a Story, Add Photographs, Send a Correction, photo archive and Gabby buttons from the unit designation.
 2. Take `field_sq_assigned_aircraft` off the landing display, with a Gabby link instead.
 3. Brian's collections (199 documents, 356 images) as per-placement media, using `vma131_mapping.json` from Gene's working folder. Collection pages via Views at `/squadrons/vma-131/<collection>`.

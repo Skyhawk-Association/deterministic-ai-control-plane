@@ -12,7 +12,8 @@ ACTIVE:
 - DACP_Interim_Decision_Authority_0.3.md
 - DACP_Operational_Use_and_Correction_Authority_0.2.md
 - DACP_Endpoint_Stack_0.3.md
-- DACP_Application_Implementation_Authorization_0.5.md
+- DACP_Application_Implementation_Authorization_0.6.md
+- DACP_Decision_Record_2026-09-27_Dual_Executors.md
 - DACP_Governance_Supersession_Notice_0.4.md
 - DACP_Decision_Record_2026-09-23_Executor_Transfer.md (decision 2 corrected by the next record)
 - DACP_Decision_Record_2026-09-23_Credential_Scope_Correction.md
@@ -23,7 +24,7 @@ SUPERSEDED (provenance only):
 - DACP_Heuristics_Specification_0.1.1 (+ .sha256), 0.1.2, 0.1.3, 0.1.4
 - DACP_Runtime_Expression_0.1.5-alpha.md
 - DACP_0.1.5_BRAVO / 0.1.6_CHARLIE activation records
-- DACP_Application_Implementation_Authorization 0.1, 0.2, 0.3, 0.4
+- DACP_Application_Implementation_Authorization 0.1, 0.2, 0.3, 0.4, 0.5
 - DACP_Interim_Decision_Authority_0.2
 - DACP_Operational_State_Sync_0.1
 - DACP_Operational_Use_and_Correction_Authority_0.1

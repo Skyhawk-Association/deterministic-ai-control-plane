@@ -2,6 +2,7 @@
 
 ## Change Synopsis
 
+- 2026-09-27 (Gene decision; authoritative/DACP_Decision_Record_2026-09-27_Dual_Executors.md): Claude and ChatGPT are both authorized executors, one at a time; Application Implementation Authorization 0.6; Skyhawk LOST-D, Rules and Environment Reference now live under projects/skyhawk/.
 - 2026-09-23 credential scope correction (authoritative/DACP_Decision_Record_2026-09-23_Credential_Scope_Correction.md): Application Implementation Authorization 0.5 replaces the repo-scoped-token claim with the actual credential model.
 - 2026-09-23 (Gene decision; authoritative/DACP_Decision_Record_2026-09-23_Executor_Transfer.md): Claude becomes primary executor, ChatGPT retired; Project Instructions 0.6, Application Implementation Authorization 0.4, Interim Decision Authority 0.3, Supersession Notice 0.4 activated; bootstrap must bind live main HEAD SHA; reviewer group removed. Active runtime specification unchanged.
 
@@ -44,7 +45,7 @@ Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.g
 9. authoritative/DACP_Path_Viability_Revalidation_Control_0.1.md when path-viability provenance/detail is germane.
 10. authoritative/DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md when continuation/human-boundary provenance/detail is germane.
 11. authoritative/DACP_Endpoint_Stack_0.3.md
-12. authoritative/DACP_Application_Implementation_Authorization_0.5.md when application implementation is germane.
+12. authoritative/DACP_Application_Implementation_Authorization_0.6.md when application implementation is germane.
 13. tests/DACP_0.1.7_DELTA_Regression_Matrix.md when action-gating/regression evidence is germane.
 14. authoritative/DACP_Governance_Supersession_Notice_0.4.md when smoke-test history matters.
 15. predecessor specifications only for provenance/comparison.
@@ -71,9 +72,9 @@ When the same causal control-application failure recurs, invalidate the local ac
 
 ## Application implementation status
 
-Application implementation remains authorized through authoritative/DACP_Application_Implementation_Authorization_0.5.md.
+Application implementation remains authorized through authoritative/DACP_Application_Implementation_Authorization_0.6.md.
 
-Claude is primary implementation executor (Claude Code on Gene's machine, Gene's GitHub credentials, policy-bounded authority). ChatGPT is retired from DACP; its work remains provenance.
+Claude and ChatGPT are both authorized implementation executors, used one at a time as Gene chooses (Authorization 0.6). Shared working state: projects/skyhawk/LOST-D.md.
 
 Delta corpus activation does not itself prove that existing application code enforces CAR/ECR/SRR. That migration must be implemented and regression-tested separately.
 
