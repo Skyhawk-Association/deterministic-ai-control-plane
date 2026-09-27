@@ -30,7 +30,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** Step 3.4: collection pages built (Views section_items and squadron_collection_pages; skyhawk.org af061a2), test paths /squadrons-test/vma-131/<slug>, admin roles only. Before that: views_field_view installed (8af8142).
+**Last verified step:** Collection page headings fixed (ampersand was double-escaped), skyhawk.org 5dd59a0. Before that: step 3.4 collection pages (af061a2), all nine pages verified.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
