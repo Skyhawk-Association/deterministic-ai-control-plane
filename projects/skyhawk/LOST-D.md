@@ -58,7 +58,34 @@
 
 **Open decisions (Gene):** choose the canonical Windows evidence folder; unit-identity tint CLOSED (Marines scarlet and gold, all others blue and gold; e844788); history: colours DECIDED by Gene 2026-09-28: U.S. Navy = blue and gold; U.S. Marine Corps = scarlet and gold; tint is an optional use of the hidden unit taxonomy; joint-use stations later); approve orphaned-configuration cleanup; delete node 49778; fix the journal PDF URI error in the logs.
 
-**Half-done:** none.
+## Active slice: Reunion system
+
+**Source continuity:** Gene authorized project-chat reconstruction on 2026-09-28. Relevant prior project chat: `Reunion Page Setup`. The durable statements below are cross-checked against current `skyhawk.org` source/config on `origin/main`; chat history is continuity evidence, not authority.
+
+**Verified working 2026 photo path**
+- Webform `reunion_2026_photo_upload` is open and accepts up to 20 images per submission. Contributor identity/person, public credit, rights consent and optional batch caption are shared across the batch.
+- `skyhawk_gallery` marker `SKYHAWK_REUNION_WEBFORM_MEDIA_BRIDGE_V1` converts every submitted FID into exactly one `skyhawk_contributed_photo` Media entity and is idempotent by `field_media_image.target_id`.
+- Current bridge binds the 2026 Reunion Event directly to node 49466. Media carries Reunion Event, Reunion Person, public credit, caption and rights consent.
+- Acceptance already proved one six-photo submission persisted all six FIDs and mapped them one-to-one to Media, followed by a fresh successful multi-photo submission. This architecture is accepted reusable Reunion infrastructure; before reuse for another Reunion, resolve the event context instead of cloning the hard-coded 2026 event ID.
+- Public gallery View `reunion_2026_photos` is at `/reunions/2026/photos`, 30 items/page, newest first, filtered to published contributed-photo Media for Event 49466. Detail View `reunion_2026_photo_detail` serves `/reunions/2026/photos/{mid}`.
+- Do not replace this working Webform/Media bridge with the older token-upload path merely because token-era Reunion classes/routes remain in the codebase.
+
+**Current Reunion-management direction**
+- Authenticated Ready Room routes exist at `/ready-room/reunions`, `/ready-room/reunion/{node}`, `/ready-room/reunion/{node}/newsletter` and `/ready-room/reunions/request`.
+- `ReunionReadyRoomController` binds management authority to the authenticated owner of the `reunion_event`; no administrator shortcut is encoded in that owner gate.
+- `ReunionRequestForm` marker `SKYHAWK_REUNION_SOURCE_INTAKE_V1` is the newer self-service intake direction: an active authenticated member may upload one source document or paste source text; Drupal preserves the source, creates an unpublished `reunion_event` draft owned by that account, records source provenance/hash in the revision log, verifies persistence, creates no token and activates no authority.
+- Production activation is intentionally NOT complete. The form itself states the unresolved gate: one primary accountable current member plus at least one additional current-member continuity contact, using an authoritative current-membership source rather than guessed email/role relationships.
+- `ReunionNewsletterUpdateForm` marker `SKYHAWK_REUNION_READY_ROOM_UPDATE_V1` is presently an acceptance fixture limited to Event 49464 and its authenticated owner. It preserves newsletter history, verifies private-to-public copy/hash/persistence and HTTP retrieval, and explicitly labels the general current-member gate as deferred. Do not generalize that fixture by assumption.
+- Older token-era routes/forms still exist: `/community/event-submission/{token}`, `/reunion/verify/{token}`, `/reunion/manage/{token}` and the token admin. They are historical/transition mechanisms alongside the newer authenticated Ready Room path; determine actual live ownership/use before modifying or retiring them.
+
+**Reunion next steps**
+1. Reinspect live Drupal before mutation and identify which Reunion entry points are currently exposed/used in menus or content; do not infer product ownership from source-file presence.
+2. Preserve the accepted 2026 multi-photo Webform/Media architecture. Generalize only the hard-coded Event 49466 binding when a real second-Reunion use case requires it.
+3. Finish the authenticated Ready Room model by resolving the authoritative current-membership eligibility source and the required continuity-contact relationship. Those are human/material product gates, not values to infer.
+4. After those gates are decided, reconcile/retire superseded token-era Reunion intake/management paths cleanly rather than layering a third mechanism.
+5. Keep Reunion work separate from VMA-131/Squadron CMS review; neither is a prerequisite for the other.
+
+**Half-done:** Reunion self-service activation is intentionally incomplete pending the membership/continuity gates above; 2026 photo upload itself is accepted working infrastructure.
 
 ## Previous LOST-D (Drupal node 2479, verbatim at migration, 2026-09-27T14:26Z)
 
