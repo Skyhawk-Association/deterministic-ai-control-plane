@@ -418,6 +418,8 @@ The channel has three independently verified states: A2 evidence production, evi
 
 Shared passdown. LOST-D in Git (projects/skyhawk/LOST-D.md, public URL) is the shared working state for every executor. Claude and ChatGPT are both authorized executors, used one at a time as Gene chooses; neither needs the other's agreement unless Gene asks for the tunnel. Every session starts by reading LOST-D and these Rules from Git. Every verified consequential step updates LOST-D (last verified step, next step, open decisions, half-done work) and pushes it in the same run as the change. Never put passwords, keys, token links, member personal data or backup contents in LOST-D.
 
+Near a usage limit. When Gene says a usage limit is near (for example 90 percent), or a response starts running long, the executor does the handover first: a paste-ready command that brings LOST-D current and pushes it, plus the one-sentence resume instruction for the next AI. No new work starts until that is done, and responses stay short from then on.
+
 - Code and documentation are one transaction. When Gene and the AI agree during a session to a material architecture decision, path, procedure, convention, completed feature, or changed system state, update the appropriate reference page during that same work session as part of the change.
 
 - Do not postpone documentation until the end. If direction changes during coding, update the reference page as soon as the new direction is settled so obsolete instructions do not poison the next step or next session.
