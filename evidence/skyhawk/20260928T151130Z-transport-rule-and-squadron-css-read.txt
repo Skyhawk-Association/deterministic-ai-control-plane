@@ -1,0 +1,504 @@
+SKYHAWK AI REPORT
+Task: transport rule and squadron css read
+Generated: 2026-09-28T15:11:30Z
+Report-ID: 20260928T151130Z-transport-rule-and-squadron-css-read
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+RULE PUSHED afa8c05
+== skyhawk-global.css squadron section
+2301 /home/darwus/drupalbeta/web/modules/custom/skyhawk_site_fixes/css/skyhawk-global.css
+ SQUADRON FAMILY (CMS) - START
+==============================================================================
+
+ Presentation of every node of content type "squadron" (Squadron CMS).
+ Reusable for any unit: nothing here names a squadron, a node or a file.
+
+ SCOPE
+   Every selector below starts with .skyhawk-squadron-cms, the class of the
+   outer Field Group wrapper (group_sq_page) on node.squadron.default.
+   Nothing here reaches outside that wrapper.
+
+ MARKUP CONTRACT (Field Group classes and ids on node.squadron.default)
+   group_sq_page       .skyhawk-squadron-cms                       #squadron-page
+   group_sq_hero       .skyhawk-feature .squadron-hero              #squadron-top
+   group_sq_snapshot   .skyhawk-reference .squadron-snapshot        #squadron-snapshot
+   eva_jump (View squadron_actions)  nav.squadron-jump  links to the band ids
+   bands               .squadron-band (+ --alt, --navy, .squadron-split)
+                       #squadron-welcome, -history, -stories, -people,
+                       -featured, -aircraft, -remember, -research, -record
+   The semantic classes (skyhawk-focus, -feature, -context, -note,
+   -reference) stay on the groups for meaning; inside this scope they are
+   presented as full-width bands instead of boxed blocks.
+
+ TOKENS
+   Only the global tokens of the SKYHAWK SEMANTIC VISUAL SYSTEM (:root).
+   --sq-kicker-ink darkens the gold token so small kicker text on light
+   bands keeps readable contrast; gold itself is used on dark bands.
+
+ NOT HERE
+   css/squadron.css is legacy-only (.skyhawk-squadron-page, the three old
+   body-marker pages). Do not copy rules between the two families.
+==============================================================================
+*/
+
+/* ---- Wrapper ------------------------------------------------------------ */
+
+.skyhawk-squadron-cms {
+  --sq-pad-x: clamp(1rem, 4%, 2.5rem);
+  --sq-pad-y: clamp(2rem, 5vw, 3.75rem);
+  --sq-gap: clamp(1.25rem, 3.5vw, 2.75rem);
+  --sq-line: color-mix(in srgb, var(--skyhawk-slate) 22%, #ffffff);
+  --sq-kicker-ink: color-mix(in srgb, var(--skyhawk-gold) 62%, #000000);
+  --sq-sticky-top: var(--drupal-displace-offset-top, 0px);
+
+  min-width: 0;
+  margin: 0 0 var(--skyhawk-block-gap);
+  color: var(--skyhawk-charcoal);
+  line-height: 1.55;
+  overflow-x: clip;
+}
+
+.skyhawk-squadron-cms h2,
+.skyhawk-squadron-cms h3 {
+  overflow-wrap: break-word;
+}
+
+.skyhawk-squadron-cms [id^="squadron-"] {
+  scroll-margin-top: calc(var(--sq-sticky-top) + 3.5rem);
+}
+
+/* ---- Kickers (gold) ----------------------------------------------------- */
+
+/* skyhawk-focus-label: kicker groups. squadron-label: kickers carried in
+   imported section text. */
+.skyhawk-squadron-cms .skyhawk-focus-label,
+.skyhawk-squadron-cms .squadron-label {
+  display: block;
+  margin: 0 0 0.4rem;
+  color: var(--sq-kicker-ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.skyhawk-squadron-cms .squadron-hero .skyhawk-focus-label,
+.skyhawk-squadron-cms .squadron-band--navy .skyhawk-focus-label,
+.skyhawk-squadron-cms .squadron-band--navy .squadron-label {
+  color: var(--skyhawk-gold);
+}
+
+/* ---- Hero: name over the unit photo, unit patch small --------------------- */
+
+.skyhawk-squadron-cms .squadron-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--sq-gap);
+  align-content: end;
+  min-height: clamp(20rem, 62vh, 36rem);
+  margin: 0;
+  padding: clamp(3rem, 8vw, 5.5rem) var(--sq-pad-x) clamp(2rem, 5vw, 3.5rem);
+  border: 0;
+  border-radius: var(--skyhawk-block-radius) var(--skyhawk-block-radius) 0 0;
+  background: var(--skyhawk-navy);
+  color: #ffffff;
+}
+
+/* Legibility layer between photo and text. */
+.skyhawk-squadron-cms .squadron-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    0deg,
+    color-mix(in srgb, var(--skyhawk-navy) 94%, transparent) 0%,
+    color-mix(in srgb, var(--skyhawk-navy) 55%, transparent) 45%,
+    color-mix(in srgb, var(--skyhawk-navy) 15%, transparent) 100%
+  );
+}
+
+.skyhawk-squadron-cms .squadron-hero > * {
+  grid-column: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+/* Hero photo fills the band behind everything; without one the band is navy. */
+.skyhawk-squadron-cms .squadron-hero > .field--name-field-sq-hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.skyhawk-squadron-cms .squadron-hero > .field--name-field-sq-hero-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.skyhawk-squadron-cms .squadron-hero > .field--name-field-sq-designation {
+  color: #ffffff;
+  font-size: clamp(2.75rem, 8vw, 5.75rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+.skyhawk-squadron-cms .squadron-hero > .field--name-field-sq-handle {
+  margin-top: 0.5rem;
+  color: #ffffff;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.skyhawk-squadron-cms .squadron-hero > .field--name-field-sq-tagline {
+  max-width: 46rem;
+  margin-top: 1rem;
+  color: #ffffff;
+  font-size: 1.15rem;
+}
+
+/* Unit patch: right column, small. */
+.skyhawk-squadron-cms .squadron-hero > .field--name-field-sq-insignia {
+  grid-column: 2;
+  grid-row: 1 / span 5;
+  align-self: end;
+}
+
+.skyhawk-squadron-cms .squadron-hero > .field--name-field-sq-insignia img {
+  display: block;
+  width: clamp(5rem, 11vw, 9rem);
+  height: auto;
+  filter: drop-shadow(0 0.35rem 0.8rem rgba(0, 0, 0, 0.45));
+}
+
+/* ---- Snapshot: navy band in columns -------------------------------------- */
+
+.skyhawk-squadron-cms .squadron-snapshot {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  margin: 0;
+  padding: 0 var(--sq-pad-x);
+  border: 0;
+  border-top: 0.2rem solid var(--skyhawk-gold);
+  border-radius: 0;
+  background: var(--skyhawk-navy);
+  color: #ffffff;
+}
+
+.skyhawk-squadron-cms .squadron-snapshot > .field {
+  min-width: 0;
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  overflow-wrap: anywhere;
+}
+
+.skyhawk-squadron-cms .squadron-snapshot > .field:last-child {
+  border-right: 0;
+}
+
+.skyhawk-squadron-cms .squadron-snapshot .field__label {
+  display: block;
+  float: none;
+  margin: 0 0 0.2rem;
+  color: var(--skyhawk-gold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.skyhawk-squadron-cms .squadron-snapshot .field__label::after {
+  content: none;
+}
+
+.skyhawk-squadron-cms .squadron-snapshot .field__item,
+.skyhawk-squadron-cms .squadron-snapshot a {
+  color: #ffffff;
+}
+
+/* ---- Jump bar ------------------------------------------------------------- */
+
+/* The EVA container is the wrapper's direct child, so it can stay in view
+   while the page scrolls; without :has() support the bar simply scrolls. */
+.skyhawk-squadron-cms > :has(.squadron-jump) {
+  position: sticky;
+  top: var(--sq-sticky-top);
+  z-index: 5;
+}
+
+.skyhawk-squadron-cms .squadron-jump {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.25rem;
+  padding: 0 var(--sq-pad-x);
+  border-bottom: 1px solid var(--sq-line);
+  background: #ffffff;
+  box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.06);
+}
+
+.skyhawk-squadron-cms .squadron-jump a {
+  display: block;
+  padding: 0.85rem 0.75rem;
+  color: var(--skyhawk-navy);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.skyhawk-squadron-cms .squadron-jump a:hover,
+.skyhawk-squadron-cms .squadron-jump a:focus-visible {
+  box-shadow: inset 0 -0.2rem 0 var(--skyhawk-gold);
+  color: var(--skyhawk-navy);
+}
+
+.skyhawk-squadron-cms .squadron-jump a:focus-visible {
+  outline: 2px solid var(--skyhawk-navy);
+  outline-offset: -2px;
+}
+
+/* ---- Section bands (alternating) ------------------------------------------ */
+
+.skyhawk-squadron-cms .squadron-band {
+  margin: 0;
+  padding: var(--sq-pad-y) var(--sq-pad-x);
+  border: 0;
+  border-radius: 0;
+  background: #ffffff;
+}
+
+.skyhawk-squadron-cms .squadron-band--alt {
+  background: var(--skyhawk-neutral-muted);
+}
+
+/* Heritage feature keeps its semantic tint as a band. */
+.skyhawk-squadron-cms .squadron-band.skyhawk-heritage {
+  background: var(--skyhawk-khaki-muted);
+  border-top: 0.2rem solid var(--skyhawk-khaki);
+}
+
+.skyhawk-squadron-cms .squadron-band--navy {
+  background: var(--skyhawk-navy);
+  color: #ffffff;
+}
+
+.skyhawk-squadron-cms .squadron-band--navy h2,
+.skyhawk-squadron-cms .squadron-band--navy h3,
+.skyhawk-squadron-cms .squadron-band--navy a {
+  color: #ffffff;
+}
+
+.skyhawk-squadron-cms .squadron-band h2 {
+  margin: 0.35rem 0 1.1rem;
+  color: var(--skyhawk-navy);
+  font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+  line-height: 1.1;
+}
+
+.skyhawk-squadron-cms .squadron-band h3 {
+  color: var(--skyhawk-navy);
+}
+
+.skyhawk-squadron-cms .squadron-band .field--type-text-long {
+  max-width: 54rem;
+}
+
+.skyhawk-squadron-cms .squadron-lead {
+  color: var(--skyhawk-slate);
+  font-size: 1.15rem;
+}
+
+.skyhawk-squadron-cms .squadron-band--navy .squadron-lead {
+  color: #ffffff;
+}
+
+.skyhawk-squadron-cms .squadron-band > :first-child {
+  margin-top: 0;
+}
+
+.skyhawk-squadron-cms .squadron-band > :last-child {
+  margin-bottom: 0;
+}
+
+/* Detailed record (details element) closes the page. */
+.skyhawk-squadron-cms .squadron-record {
+  border-radius: 0 0 var(--skyhawk-block-radius) var(--skyhawk-block-radius);
+}
+
+.skyhawk-squadron-cms .squadron-record > summary {
+  color: var(--skyhawk-navy);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---- Two-column image and text -------------------------------------------- */
+
+/* In a .squadron-split band the first image field and the block after it sit
+   side by side; everything else in the band runs full width below them. On
+   --alt bands the image moves to the right. No image: one column. */
+.skyhawk-squadron-cms .squadron-split > .field--type-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--skyhawk-block-radius);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12);
+}
+
+.skyhawk-squadron-cms .squadron-split > .field--type-image {
+  margin: 0 0 var(--sq-gap);
+}
+
+@media (min-width: 900px) {
+  .skyhawk-squadron-cms .squadron-split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--sq-gap);
+    align-items: center;
+  }
+
+  .skyhawk-squadron-cms .squadron-split > * {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .skyhawk-squadron-cms .squadron-split > .field--type-image {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .skyhawk-squadron-cms .squadron-split > .field--type-image + * {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .skyhawk-squadron-cms .squadron-split.squadron-band--alt > .field--type-image {
+    grid-column: 2;
+  }
+
+  .skyhawk-squadron-cms .squadron-split.squadron-band--alt > .field--type-image + * {
+    grid-column: 1;
+  }
+
+  .skyhawk-squadron-cms .squadron-split > .field--type-image ~ * {
+    margin-top: var(--sq-gap);
+  }
+
+  .skyhawk-squadron-cms .squadron-split > .field--type-image + * {
+    margin-top: 0;
+  }
+}
+
+/* Featured story: image floats beside the text. */
+.skyhawk-squadron-cms .squadron-featured > .field--type-image {
+  float: right;
+  max-width: min(40%, 18rem);
+  margin: 0 0 1rem 1.5rem;
+}
+
+.skyhawk-squadron-cms .squadron-featured::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* ---- Explore as cards ----------------------------------------------------- */
+
+.skyhawk-squadron-cms .view-display-id-eva_explore h2 {
+  margin-top: var(--sq-gap);
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+}
+
+.skyhawk-squadron-cms .view-display-id-eva_explore ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.9rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skyhawk-squadron-cms .view-display-id-eva_explore li {
+  min-width: 0;
+  margin: 0;
+}
+
+.skyhawk-squadron-cms .view-display-id-eva_explore li a {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  min-height: 6.5rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--sq-line);
+  border-top: 0.25rem solid var(--skyhawk-gold);
+  border-radius: var(--skyhawk-block-radius);
+  background: #ffffff;
+  color: var(--skyhawk-navy);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+  overflow-wrap: break-word;
+}
+
+.skyhawk-squadron-cms .view-display-id-eva_explore li a:hover,
+.skyhawk-squadron-cms .view-display-id-eva_explore li a:focus-visible {
+  background: var(--skyhawk-navy-muted);
+  border-color: var(--skyhawk-navy);
+  border-top-color: var(--skyhawk-gold);
+}
+
+.skyhawk-squadron-cms .view-display-id-eva_explore li a:focus-visible {
+  outline: 3px solid var(--skyhawk-gold);
+  outline-offset: 2px;
+}
+
+/* ---- Small screens --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  .skyhawk-squadron-cms .squadron-hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .skyhawk-squadron-cms .squadron-hero > .field--name-field-sq-insignia {
+    grid-column: 1;
+    grid-row: auto;
+    order: -1;
+    margin-bottom: 1rem;
+  }
+
+  .skyhawk-squadron-cms .squadron-snapshot > .field {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .skyhawk-squadron-cms .squadron-jump {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .skyhawk-squadron-cms .squadron-featured > .field--type-image {
+    float: none;
+    max-width: 100%;
+    margin: 0 0 1rem;
+  }
+}
+
+/* SQUADRON FAMILY (CMS) - END */
+===== END =====
