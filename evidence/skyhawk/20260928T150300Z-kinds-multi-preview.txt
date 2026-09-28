@@ -1,0 +1,25 @@
+SKYHAWK AI REPORT
+Task: kinds multi preview
+Generated: 2026-09-28T15:03:00Z
+Report-ID: 20260928T150300Z-kinds-multi-preview
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+PHP MODE PREVIEW (no writes)
+== ACCESS CHECK (anonymous, read-only)
+  OLD term 1 "RVAH-3" published=1 anonymous_HTTP=200
+  OLD term 2 "VA-106" published=1 anonymous_HTTP=200
+  OLD term 3 "VA-112" published=1 anonymous_HTTP=200
+  NEW term 350 "VSF-76" published=1 anonymous_HTTP=200
+  NEW term 351 "VSF-86" published=1 anonymous_HTTP=200
+  NEW term 352 "A-4 Skyhawks Still Flying" published=1 anonymous_HTTP=200
+  anonymous has "access content": yes
+== KIND FIELD cardinality now 1
+  NMC       term 339 "NMC (Naval Missle Center), PMTC (Pacific Missile Test Center and predecessor NMC)" kinds=unit
+  Patuxent  term 335 "NAS Patuxent River, MD" kinds=facility
+  HU-2      term 302 "HU-2" kinds=compendium
+PLAN cardinality -> unlimited; NMC +facility; HU-2 +facility; Patuxent unchanged
+PHP_PREVIEW_DONE NO_WRITES
+PREVIEW_DONE NO_WRITES
+===== END =====
