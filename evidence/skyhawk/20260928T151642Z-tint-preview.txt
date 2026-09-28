@@ -1,0 +1,15 @@
+SKYHAWK AI REPORT
+Task: tint preview
+Generated: 2026-09-28T15:16:42Z
+Report-ID: 20260928T151642Z-tint-preview
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+CSS tint: will append 17 lines
+PHP MODE PREVIEW (no writes)
+TEST NODE unit=VMA-131 affiliation=U.S. Marine Corps
+PLAN add eva_identity (marker) to squadron_actions; place in group_sq_page
+PHP_PREVIEW_DONE NO_WRITES
+PREVIEW_DONE NO_WRITES
+===== END =====
