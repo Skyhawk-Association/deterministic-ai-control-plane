@@ -1,0 +1,173 @@
+REUNION WORKER BEE UNATTENDED PREP
+DATE=2026-09-28
+STATUS=SOURCE_PREP_COMPLETE_PRODUCTION_NOT_RUN
+
+CANONICAL DACP HEAD AT PREP START=9398fa7ea407c14f6b4f36ae8be22eee1c45b1ee
+
+SKYHAWK SOURCE COMMITS
+1f545b54934466c0f7b1e4a40d89d7497b2b09f4 Prepare scoped Reunion Worker Bee access
+b18414c227dd7947244d2f3d553165cbb699901d Add owner-managed Reunion Worker Bee assignment
+
+REMOTE READBACK
+skyhawk.org local HEAD and fetched origin/main both equal b18414c227dd7947244d2f3d553165cbb699901d.
+
+SOURCE PREP NOW PRESENT
+- Ready Room list/manage logic is deployment-order safe:
+  - before field_reunion_worker exists, owner-only behavior remains.
+  - after field_reunion_worker exists, owner OR assigned Worker Bee can list/manage that one event.
+- No administrator bypass was added.
+- Existing Reunion request wording was corrected to the accepted two-person model:
+  accountable owner + optional Worker Bee; no third continuity person.
+- ReunionNewsletterUpdateForm remains a deliberately restricted Event 49464 acceptance fixture.
+- New owner-only route prepared:
+  /ready-room/reunion/{node}/worker
+- New ReunionWorkerForm prepared:
+  - owner only;
+  - blank email revokes Worker Bee;
+  - existing active Drupal account is reused by exact email;
+  - owner cannot assign self redundantly;
+  - blocked or duplicate/colliding accounts stop without mutation;
+  - a new account is active, receives no authorized_user or other member role;
+  - durable authority is the event field relationship, not the email link;
+  - Drupal 11 NotificationHandler::sendRegisterAdminCreated is used for core account-created mail;
+  - persisted field value is read back and verified after save;
+  - if event save fails after creating a new account, the newly created account is deleted before rethrow;
+  - if mail notification is not confirmed, the account and assignment remain and the form warns not to recreate it.
+- field_reunion_worker is explicitly hidden from the generic Ready Room node edit form.
+  Only the accountable owner sees the dedicated Worker Bee assignment link.
+  The assigned Worker Bee cannot alter the Worker Bee relationship.
+
+LOCAL VERIFICATION LIMIT
+- git diff --check passed before both source commits.
+- Windows/Envy does not have PHP or Composer on PATH, so PHP lint/runtime verification was NOT claimed.
+- A2 PHP lint and Drupal runtime acceptance remain required before production success can be claimed.
+
+AUTHENTICATED / AUTHORIZED PERMISSION SPLIT PREP
+
+Current built-in authenticated permissions are exactly 20.
+
+KEEP ON AUTHENTICATED SAFE BASELINE
+- access content
+- access site-wide contact form
+- change own username
+- delete own files
+- search content
+- subscribe to newsletters
+- use advanced search
+- use text format webform_default
+- view article_journal_public revisions
+- view media
+- view own unpublished content
+- view page revisions
+
+MOVE/ENSURE ON authorized_user BEFORE REMOVING FROM authenticated
+- access user contact forms
+- access user profiles
+- contribute skyhawk photos
+
+Evidence:
+- authorized_user already has access user contact forms and access user profiles.
+- authorized_user currently lacks contribute skyhawk photos.
+- contribute skyhawk photos gates the custom Skyhawk photo-contribution routes.
+- subscribe to newsletters and the two revision-view permissions are also currently granted to anonymous, so they are not treated as member-only entitlements.
+- webform_default is the enforced Drupal Webform default text format and currently names authenticated as its role.
+
+REMOVE FROM authenticated AS INSTITUTIONAL
+- administer account settings
+- administer permissions
+- administer users
+- view import_users feeds
+- view own import_users feeds
+
+Existing narrower institutional homes are already present:
+- admin role is is_admin=true.
+- CO, SDO Coordinator, and SecTreas carry administer users.
+- CO, SDO Coordinator, and SecTreas carry administer permissions.
+- SDO also carries administer users.
+- SecTreas carries import_users feed operations.
+- Existing Reunion Staff remains too broad and is not used for Worker Bee.
+
+TRANSITIONAL MEMBER NORMALIZATION PREP
+Before any nonmember Worker Bee account is created:
+1. enumerate current active Drupal accounts;
+2. compute accounts lacking authorized_user from live state at execution time;
+3. assign authorized_user to that accepted pre-Worker-Bee population;
+4. add contribute skyhawk photos to authorized_user;
+5. verify all preexisting active accounts now carry authorized_user;
+6. only then reduce the built-in authenticated role to the safe baseline above.
+
+Do not hard-code historical 731/717 counts as execution expectations. Recompute live counts.
+
+FIELD PREP
+Planned structural field:
+- entity: node
+- bundle: reunion_event
+- machine name: field_reunion_worker
+- type: entity_reference
+- target: user
+- cardinality: 1
+- required: false
+- no duplicate owner field
+- owner remains node UID
+- generic node-edit form component remains hidden
+
+This is a structural Drupal configuration/database change and therefore requires:
+- specifically named DB backup;
+- SHA-256;
+- download to the hardware used for the work;
+- local checksum verification;
+- Drupal entity/config API creation on A2;
+- no site-wide config import;
+- config export only after live structure verifies;
+- commit only expected exported configuration.
+
+FUTURE LIVE ACCEPTANCE CASES
+1. owner can manage own Reunion.
+2. assigned Worker Bee can manage that Reunion.
+3. Worker Bee cannot manage another Reunion.
+4. unrelated authenticated account cannot manage it.
+5. revocation immediately removes Worker Bee authority.
+6. replacement transfers authority.
+7. owner retains authority throughout.
+8. nonmember Worker Bee lacks authorized_user and member-only privileges.
+9. existing member Worker Bee may retain authorized_user if already a member.
+10. legacy valid token remains operational until account path is accepted.
+11. invalid legacy upload/manage/verify behavior remains at accepted hardened results.
+
+TOKEN RETIREMENT INVENTORY - DO NOT REMOVE YET
+- routes:
+  /community/event-submission/{token}
+  /reunion/verify/{token}
+  /reunion/manage/{token}
+- admin route/form:
+  /admin/skyhawk/reunion-token
+  ReunionTokenAdminForm
+- source:
+  ReunionUploadForm
+  ReunionManageForm
+  ReunionController legacy verify/manage URL generation
+  token-era source references in skyhawk_site_fixes routing/module
+- reunion_event fields:
+  field_manage_token
+  field_verify_token
+  field_verify_expiry
+  field_organizer_email where token-era-only use is proven at retirement time
+- token state/storage and any remaining node-body links must be re-inventoried live before deletion.
+- generic /upload/{token} is a separate system and MUST NOT be retired with Reunion tokens.
+
+PRODUCTION_NOT_RUN=YES
+A2_DEPLOYMENT_NOT_RUN=YES
+DB_MUTATION_NOT_RUN=YES
+EMAIL_NOT_SENT=YES
+USER_ACCOUNT_NOT_CREATED=YES
+FIELD_NOT_CREATED=YES
+PERMISSIONS_NOT_CHANGED=YES
+TOKENS_NOT_RETIRED=YES
+
+NEXT A2 GATE
+1. lint the prepared skyhawk.org PHP source on A2 using PHP 8.4;
+2. create and locally verify the required pre-structural-change database backup;
+3. live-preflight current role/account state;
+4. normalize preexisting active users to authorized_user and reduce built-in authenticated permissions;
+5. create field_reunion_worker through Drupal entity/config APIs;
+6. rebuild cache and run owner/Worker Bee acceptance.
