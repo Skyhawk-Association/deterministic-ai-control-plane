@@ -1,0 +1,99 @@
+SKYHAWK AI REPORT
+Task: step 4 unit values preview
+Generated: 2026-09-28T14:23:40Z
+Report-ID: 20260928T142340Z-step-4-unit-values-preview
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+PHP MODE PREVIEW (no writes)
+PLAN matched_terms=129 pageless_terms=37 new_terms=84 total_after=250
+KINDS (pages) {"operator":17,"evaluation":2,"proposal":6,"unit":151,"facility":34,"compendium":2,"reference":1}
+  NEW Sky Resources                                operator   Civilian
+  NEW Collings Foundation                          operator   Civilian
+  NEW Top Aces (formerly Discover Air)             operator   Civilian
+  NEW Draken International                         operator   Civilian
+  NEW Pacific Aero Ventures LLC:                   operator   Civilian
+  NEW TASS                                         operator   Civilian
+  NEW Valiant Air Command War Bird Museum          operator   Civilian
+  NEW Argentina - Air Force                        operator   Foreign Military
+  NEW Argentina Navy                               operator   Foreign Military
+  NEW Australia                                    operator   Foreign Military
+  NEW Belgium                                      evaluation Foreign Military
+  NEW Brazil - Navy                                operator   Foreign Military
+  NEW France                                       evaluation Foreign Military
+  NEW Indonesia                                    operator   Foreign Military
+  NEW Israel - Air Force                           operator   Foreign Military
+  NEW Kuwait                                       operator   Foreign Military
+  NEW Canada                                       proposal   Foreign Military
+  NEW Greece                                       proposal   Foreign Military
+  NEW Indian Navy                                  proposal   Foreign Military
+  NEW Lebanon                                      proposal   Foreign Military
+  NEW Netherlands                                  proposal   Foreign Military
+  NEW Switzerland                                  proposal   Foreign Military
+  NEW Malaysia                                     operator   Foreign Military
+  NEW New Zealand                                  operator   Foreign Military
+  NEW Singapore                                    operator   Foreign Military
+  NEW Station Operations and Engineering Squadron  unit       U.S. Marine Corps
+  NEW MARS-37                                      unit       U.S. Marine Corps
+  NEW MCAS Cherry Point.                           facility   U.S. Marine Corps
+  NEW MCAS El Toro, CA.                            facility   U.S. Marine Corps
+  NEW MCAS Kaneohe Bay, HI.                        facility   U.S. Marine Corps
+  NEW FAGU (Fleet Air Gunnery Unit), || Navy Fleet unit       U.S. Navy
+  NEW NAF Willow Grove, PA || VMA-131 (Regulars) - compendium U.S. Marine Corps
+  NEW Skyhawks and Blue Angels                     unit       U.S. Navy
+  NEW A/C came from, and went back to              compendium Joint Navy/Marine
+  NEW JTTU                                         unit       U.S. Navy
+  NEW NADC (Naval Air Development Center)          facility   U.S. Navy
+  NEW NAEC (Naval Air Engineering Center),         facility   U.S. Navy
+  NEW NOTS(Naval Ordinance Test Station) (NWC, NWT facility   U.S. Navy
+  NEW NAF Detroit, MI.                             facility   U.S. Navy
+  NEW NPTC (Naval Parachute Test Center)           facility   U.S. Navy
+  NEW NARF (Naval Air Rework Facility), O & R & FA facility   U.S. Navy
+  NEW NAS Alameda, CA:                             facility   U.S. Navy
+  NEW NARF (Naval Air Rework Facility) O & R & NAD facility   U.S. Navy
+  NEW NAS Atlanta, GA                              facility   U.S. Navy
+  NEW NAAS/NAS Chase Field, TX                     facility   U.S. Navy
+  NEW NAS Cubi Point, Phillipines                  facility   U.S. Navy
+  NEW NAS Dallas, TX                               facility   U.S. Navy
+  NEW NAS New York, NY.                            facility   U.S. Navy
+  NEW NAS Glenview, IL                             facility   U.S. Navy
+  NEW NAS Glynco, GA                               facility   U.S. Navy
+  NEW NAS Grosse Ile, MI.                          facility   U.S. Navy
+  NEW NAS Jacksonville, FL.                        facility   U.S. Navy
+  NEW NAS Key West, FL.                            facility   U.S. Navy
+  NEW NAS Lemoore, CA                              facility   U.S. Navy
+  NEW NAS Los Alamitos,                            facility   U.S. Navy
+  NEW NAS Memphis, TN.                             facility   U.S. Navy
+  NEW NAS Twin Cities, Minneapolis, MN.            facility   U.S. Navy
+  NEW NAS New Orleans, LA                          facility   U.S. Navy
+  NEW NAS Norfolk, VA.                             facility   U.S. Navy
+  NEW NAS North Island, CA                         facility   U.S. Navy
+  NEW NAS Oceana, VA                               facility   U.S. Navy
+  NEW NAS Olathe, KS                               facility   U.S. Navy
+  NEW NAS Pensacola, FL                            facility   U.S. Navy
+  NEW NWTC (Naval Weapons Test Center) & NWTS (Nav facility   U.S. Navy
+  NEW NATU (Naval A/C Torpedo Unit) NARF (Naval Ai facility   U.S. Navy
+  NEW NAS South Weymouth, MA                       facility   U.S. Navy
+  NEW NAS Patuxent River, MD                       unit       U.S. Navy
+  NEW NFWS (Navy Fighter Weapons School) TOP GUN   unit       U.S. Navy
+  NEW NTPS (Naval Test Pilot School)               unit       U.S. Navy
+  NEW NWEF (Naval Weapons & Evaluation Facility)   unit       U.S. Navy
+  NEW NMC (Naval Missle Center), PMTC (Pacific Mis unit       U.S. Navy
+  NEW Replacement Air Group (RAG) Training Squadro unit       U.S. Navy
+  NEW TW-1                                         unit       U.S. Navy
+  NEW TW-2                                         unit       U.S. Navy
+  NEW TW-3                                         unit       U.S. Navy
+  NEW TW-6                                         unit       U.S. Navy
+  NEW Volunteer Attack Squadron VA-0686            unit       U.S. Navy
+  NEW VF(AW)-3                                     unit       U.S. Navy
+  NEW VRF-31                                       unit       U.S. Navy
+  NEW VSF-1                                        unit       U.S. Navy
+  NEW VSF-3                                        unit       U.S. Navy
+  NEW VSF-76                                       unit       U.S. Navy
+  NEW VSF-86                                       unit       U.S. Navy
+  NEW A-4 Skyhawks Still Flying                    reference  Reference
+VMA-124R page: /article-unit/vma124r -> /node/146 ; target alias /article-unit/vma124 free
+PHP_PREVIEW_DONE NO_WRITES
+PREVIEW_DONE NO_WRITES
+===== END =====
