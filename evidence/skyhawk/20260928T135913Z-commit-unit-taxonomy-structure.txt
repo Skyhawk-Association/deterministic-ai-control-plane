@@ -1,0 +1,13 @@
+SKYHAWK AI REPORT
+Task: commit unit taxonomy structure
+Generated: 2026-09-28T13:59:13Z
+Report-ID: 20260928T135913Z-commit-unit-taxonomy-structure
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+== diff expected vs actual (empty = match)
+SKYHAWK_COMMIT 4003276
+removed '/home/darwus/skyhawk_backups/pre_unit_taxonomy_20260928T010141Z.sql.gz'
+RESULT PASS skyhawk=4003276 lostd=b2e9a0b
+===== END =====
