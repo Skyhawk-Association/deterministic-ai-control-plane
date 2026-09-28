@@ -1,0 +1,106 @@
+SKYHAWK AI REPORT
+Task: morning live reinspection
+Generated: 2026-09-28T13:55:06Z
+Report-ID: 20260928T135506Z-morning-live-reinspection
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+== skyhawk.org git
+7eafd3d 2026-09-27 21:49:05 +0000 Squadron CMS 3a: live squadron look in skyhawk-global.css (SQUADRON FAMILY (CMS)); wrapper, bands, hero photo field, jump bar; hero shows unit patch only
+status_lines=10
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_form_display.taxonomy_term.skyhawk_units.default.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.entity_view_display.taxonomy_term.skyhawk_units.default.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.storage.taxonomy_term.field_unit_branch.yml
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/taxonomy.vocabulary.skyhawk_units.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.field.taxonomy_term.skyhawk_units.field_unit_affiliation.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.field.taxonomy_term.skyhawk_units.field_unit_designations.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.field.taxonomy_term.skyhawk_units.field_unit_kind.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.storage.taxonomy_term.field_unit_affiliation.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.storage.taxonomy_term.field_unit_designations.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/field.storage.taxonomy_term.field_unit_kind.yml
+parity=PASS
+== config drift
+ [notice] No differences between DB and sync directory.
+== skyhawk_units fields
+  field_sdo_listed_emails (email)
+  field_sdo_reviewed_by (entity_reference)
+  field_sdo_review_date (datetime)
+  field_sdo_review_notes (string_long)
+  field_sdo_review_status (list_string)
+  field_unit_affiliation (string)
+  field_unit_branch (list_string)
+  field_unit_designations (string)
+  field_unit_kind (list_string)
+  field_unit_sdos (entity_reference)
+  terms=166
+  field_unit_kind set on 0 terms
+  storage: {"allowed_values":{"unit":"Unit","facility":"Facility","operator":"Operator","compendium":"Compendium","evaluation":"Evaluation","proposal":"Proposal","reference":"Reference"},"allowed_values_function":""}
+== staged files in /tmp (newest 15)
+total 20032
+-rw-r--r-- 1 darwus darwus    1682 Sep 28 01:58 unit-taxonomy-actual-files.txt
+-rw-r--r-- 1 darwus darwus    1712 Sep 28 01:58 unit-taxonomy-git-status.txt
+-rw-r--r-- 1 darwus darwus    1506 Sep 28 01:58 unit-taxonomy-expected-files.txt
+-rw-r--r-- 1 darwus darwus       3 Sep 28 01:58 unit_taxonomy_pre_term_count
+-rw-r--r-- 1 darwus darwus    4648 Sep 28 01:58 unit_taxonomy_postcheck.php
+-rw-r--r-- 1 darwus darwus     679 Sep 28 01:58 unit_taxonomy_tablesizes.php
+-rw-r--r-- 1 darwus darwus    1982 Sep 28 01:58 unit_taxonomy_precheck.php
+-rw-r--r-- 1 darwus darwus    1424 Sep 27 22:08 check_brian_access.php
+drwxr-xr-x 2 darwus darwus    4096 Sep 27 21:44 p3a
+-rw-r--r-- 1 darwus darwus   20528 Sep 27 21:43 squadron_look.zip
+drwxr-xr-x 2 darwus darwus    4096 Sep 27 21:06 p34b
+-rw-r--r-- 1 darwus darwus    3908 Sep 27 21:06 explore.zip
+-rw-r--r-- 1 darwus darwus    1771 Sep 27 21:03 amp_fix.zip
+-rw-r--r-- 1 darwus darwus    3293 Sep 27 21:02 amp_fix.sh
+drwxr-xr-x 2 darwus darwus    4096 Sep 27 20:58 p34
+== backups on A2
+total 170M
+-rw-rw-r-- 1 darwus darwus 5.3K Aug 15 18:46 composer.json.before-20260827T164007Z-2317167
+-rw-rw-r-- 1 darwus darwus 592K Aug 15 18:46 composer.lock.before-20260827T164007Z-2317167
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 15:41 control-plane-20260830T154058Z-2668138
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 16:01 intake-owner-20260830T160105Z-2257055
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 16:11 intake-presentation-20260830T161100Z-2299062
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 18:16 july-event-bootstrap-20260830T181616Z-2785943
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 18:18 july-event-bootstrap-v2-20260830T181812Z-2790590
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 21:55 july-lineage-recovery-20260830T215549Z-3961354
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 15:50 lostd-alias-20260830T155026Z-2211099
+-rw-r--r-- 1 darwus darwus 9.6K Aug 30 03:27 lostd-before-persistence-close-20260830T032735Z-3327557.html
+-rw-r--r-- 1 darwus darwus 9.6K Aug 30 15:56 lostd-before-state-20260830T155600Z-2230969.html
+-rw-r--r-- 1 darwus darwus  144 Aug 30 15:56 lostd-before-state-20260830T155600Z-2230969.html.sha256
+drwxr-xr-x 3 darwus darwus 4.0K Aug 19 21:46 modeling-cleanup-20260819-214650
+-rw-r--r-- 1 darwus darwus  73M Sep 20 21:53 pre_reunion_media_bridge_20260920T215349Z.sql.gz
+-rw-r--r-- 1 darwus darwus  96M Sep 28 01:01 pre_unit_taxonomy_20260928T010141Z.sql.gz
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 22:15 reunion-account-contract-20260830T221548Z-4043656
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 22:18 reunion-account-interface-20260830T221845Z-4054341
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 23:57 reunion-august-ready-room-20260830T235757Z-236878
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 22:43 reunion-controls-placement-20260830T224358Z-4149219
+drwxr-xr-x 2 darwus darwus 4.0K Aug 31 00:06 reunion-filename-agnostic-20260831T000602Z-269319
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 22:53 reunion-human-order-20260830T225322Z-4184811
+drwxr-xr-x 2 darwus darwus 4.0K Aug 31 01:24 reunion-keeper-mail-20260831T012420Z-569806
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 18:39 reunion-member-install-20260830T183910Z-2875693
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 19:12 reunion-owner-form-20260830T191256Z-3016185
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 20:07 reunion-pdf-first-20260830T200747Z-3240288
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 21:53 reunion-pdf-first-integrated-20260830T215304Z-3943426
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 21:57 reunion-purpose-fix-20260830T215751Z-3971207
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 18:31 reunion-ready-room-20260830T183108Z-2842595
+drwxr-xr-x 2 darwus darwus 4.0K Aug 31 00:32 reunion-self-service-20260831T003249Z-373818
+drwxr-xr-x 2 darwus darwus 4.0K Aug 31 00:34 reunion-self-service-20260831T003407Z-377803
+drwxr-xr-x 2 darwus darwus 4.0K Sep 14 01:11 reunion_2026_pretester_20260914T005322Z
+drwxr-xr-x 3 darwus darwus 4.0K Aug 19 21:09 site-fixes-20260819-210908
+-rw-rw-r-- 1 darwus darwus  16K Aug 12 20:30 skyhawk_gallery.module.pre_reunion_media_bridge_20260920T215349Z
+-rw-r--r-- 1 darwus darwus  20K Aug 30 16:16 upload-token-system-before-july-20260830T161601Z-2668138.html
+-rw-r--r-- 1 darwus darwus  157 Aug 30 16:16 upload-token-system-before-july-20260830T161601Z-2668138.html.sha256
+-rw-r--r-- 1 darwus darwus  20K Aug 30 16:19 upload-token-system-before-july-20260830T161915Z-2327227.html
+-rw-r--r-- 1 darwus darwus  157 Aug 30 16:19 upload-token-system-before-july-20260830T161915Z-2327227.html.sha256
+-rw-r--r-- 1 darwus darwus  20K Aug 30 03:27 upload-token-system-before-persistence-close-20260830T032735Z-3327557.html
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 16:40 uploader-complete-20260830T164018Z-2414332
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 16:43 uploader-complete-20260830T164337Z-2427301
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 16:37 uploader-owner-20260830T163703Z-2403218
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 16:55 uploader-real-20260830T165520Z-2469780
+drwxr-xr-x 2 darwus darwus 4.0K Aug 30 16:34 uploader-ux-20260830T163428Z-2389554
+== DACP clone
+5663da1 Gate unit taxonomy handoff on live reinspection
+status_lines=0
+RULE added
+RULE pushed f05abc5
+===== END =====
