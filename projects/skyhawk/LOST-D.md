@@ -22,6 +22,7 @@
 - Commands are pasted at the A2 prompt; wrap each block in a subshell `( ... )` so a failure never logs Gene out. A2 has no `/dev/fd`: no bash process substitution. A2 throttles rapid SSH connections: wait about 5 minutes if refused.
 - A2 is a shared hosting server: no AI gets direct access, ever. Gene runs every A2 command.
 - Files move by `scp` from Windows (host alias `A2`); Gene's working folder is `C:\Users\genea\dacp-work\vma131`.
+- A2 transport (Gene 2026-09-28): never chain scp and ssh on one line; copy and connect are separate commands, each with -o ConnectTimeout=20; keep A2 connections per step to a minimum (backups: A2 writes the checksum beside the dump, one scp brings both down, compare on Windows, delete in the next A2 block). A2 is fragile until the hosting move.
 - Large outputs: `( commands ) 2>&1 | ~/bin/ai-report "task"` pushes a secret-scanned report to evidence/skyhawk/ in this repository; paste only its one-line result.
 - skyhawk.org Git remote is private (`github-skyhawk` identity, account geneatwell). The same identity pushes this DACP repo (clone on A2: `/home/darwus/dacp-repo`). Organization deploy keys are disabled.
 - Composer only via `bin/skyhawk-composer` (require or update, then functional check, then `finish`). Its pending marker is git-ignored.

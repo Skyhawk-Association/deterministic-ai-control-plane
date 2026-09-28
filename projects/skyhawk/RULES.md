@@ -390,6 +390,7 @@ The channel has three independently verified states: A2 evidence production, evi
 - Reports are never published under the web root. The former web-served /downloads/chatgpt-debug-* channel was retired on 2026-09-27 and its artifacts were quarantined.
 
 ### Transport
+- A2 transport (Gene 2026-09-28): never chain scp and ssh on one line; copy and connect are separate commands, each with -o ConnectTimeout=20; keep A2 connections per step to a minimum (backups: A2 writes the checksum beside the dump, one scp brings both down, compare on Windows, delete in the next A2 block). A2 is fragile until the hosting move.
 - Preferred: pipe any block into `~/bin/ai-report "task"` on A2, i.e. `( commands ) 2>&1 | ~/bin/ai-report "task"`. The report is written to /home/darwus/ai-reports, secret-scanned (passwords, keys, token links, email and IP addresses block publication), and pushed to evidence/skyhawk/<Report-ID>.txt in this public repository. Gene pastes only the one-line result; the AI reads the report from Git (clone, not the cached raw URL). Blocked or oversized reports stay local. Never pipe output that may contain member personal data. Reports are pruned after 30 days.
 - Reports and exports move as files: scp from A2 to Gene's working folder on Windows, then upload to the executing AI. Short results may be pasted.
 - Shared working state does not travel in reports. It lives in LOST-D in Git, which every executor reads directly from its public URL.
