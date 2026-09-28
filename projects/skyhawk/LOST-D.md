@@ -70,6 +70,12 @@
 - Public gallery View `reunion_2026_photos` is at `/reunions/2026/photos`, 30 items/page, newest first, filtered to published contributed-photo Media for Event 49466. Detail View `reunion_2026_photo_detail` serves `/reunions/2026/photos/{mid}`.
 - Do not replace this working Webform/Media bridge with the older token-upload path merely because token-era Reunion classes/routes remain in the codebase.
 
+**Historical production provenance (sanitized)**
+- A read-only production baseline captured 2026-09-14 exists privately on the Envy/Drive as `derived/reunion_2026_production_baseline_20260914T025036Z.json` with matching SHA-256 sidecar. The raw file is NOT suitable for public Git because it contains credentials and member-level data.
+- That baseline proves the Reunion system was already materially in production by 2026-09-14: 2 `reunion_event` nodes, 150 `reunion_person` nodes, 150 `reunion_attendance` nodes, 7 contributed-photo Media records, and 7 submissions to `reunion_2026_photo_upload` at capture time. Treat those counts as historical evidence only, not current counts.
+- The same baseline showed enabled menu entry points for Reunions, Submit a Reunion, My Reunion Events, Request a Reunion, 2026 Reunion, Reunion Photos and Upload Photos. This establishes that the newer Ready Room/request surfaces were not merely dead source files by that date, while still requiring current live reinspection before mutation.
+- Event 49466 was already the published 2026 Reunion hub with registration/hotel links, Reunion documents, photo-gallery/upload links and durable post-event wording; its 2026 photo/gallery role therefore predates the later multi-photo bridge acceptance.
+
 **Current Reunion-management direction**
 - Authenticated Ready Room routes exist at `/ready-room/reunions`, `/ready-room/reunion/{node}`, `/ready-room/reunion/{node}/newsletter` and `/ready-room/reunions/request`.
 - `ReunionReadyRoomController` binds management authority to the authenticated owner of the `reunion_event`; no administrator shortcut is encoded in that owner gate.
