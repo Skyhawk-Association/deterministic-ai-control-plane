@@ -1,0 +1,17 @@
+SKYHAWK AI REPORT
+Task: tint
+Generated: 2026-09-28T15:18:17Z
+Report-ID: 20260928T151817Z-tint
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+CSS tint: will append 17 lines
+PHP MODE EXECUTE
+TEST NODE unit=VMA-131 affiliation=U.S. Marine Corps
+PLAN add eva_identity (marker) to squadron_actions; place in group_sq_page
+  VERIFY marker skyhawk-unit-marine inside the page wrapper PASS
+PHP_RESULT PASS
+ [success] Cache rebuild complete.
+  VERIFY browsers are served the tint CSS FAIL (CSS left in place; nothing committed)
+===== END =====
