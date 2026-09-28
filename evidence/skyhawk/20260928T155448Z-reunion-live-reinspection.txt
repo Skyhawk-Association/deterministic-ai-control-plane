@@ -1,0 +1,43 @@
+SKYHAWK AI REPORT
+Task: reunion live reinspection
+Generated: 2026-09-28T15:54:48Z
+Report-ID: 20260928T155448Z-reunion-live-reinspection
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+== menu links mentioning reunion / ready-room / token routes
+  [main] Ready Room | internal:/article-ready-room/readyroom-homepage | enabled=1
+  [main] Ready Room Home | internal:/article-ready-room/readyroom-homepage | enabled=1
+  [main] Reunions | internal:/reunions | enabled=1
+  [main] Submit a Reunion | internal:/node/49349 | enabled=1
+  [main] My Reunion Events | internal:/ready-room/reunions | enabled=1
+  [main] 2026 Reunion | internal:/reunions/2026 | enabled=1
+  [main] Request a Reunion | internal:/ready-room/reunions/request | enabled=1
+  [main] Reunion Photos | internal:/reunions/2026/photos | enabled=1
+  [main] Upload Photos | internal:/form/reunion-2026-photo-upload | enabled=1
+== reunion content (counts; event titles only)
+  reunion_event total=2
+  reunion_person total=150
+  reunion_attendance total=150
+  event 49464 "2026 Skyhawkers Reunion" published=0 changed=2026-09-13
+  event 49466 "USMC A-4 Skyhawk Reunion 2026" published=1 changed=2026-09-13
+== 2026 photo path
+  webform status=open submissions=29
+  contributed-photo media for event 49466=57 (all events)
+== content linking to token-era routes (counts)
+  token-route links in node bodies: 1
+  token-route links in node bodies: 
+== anonymous HTTP status
+  /reunions                            200
+  /reunions/2026/photos                200
+  /form/reunion-2026-photo-upload      200
+  /ready-room/reunions                 403
+  /ready-room/reunions/request         403
+  /community/event-submission/test     200
+  /reunion/verify/test                 302
+  /reunion/manage/test                 200
+  /node/49466                          301
+== git
+  skyhawk.org e844788 status_lines=0
+===== END =====
