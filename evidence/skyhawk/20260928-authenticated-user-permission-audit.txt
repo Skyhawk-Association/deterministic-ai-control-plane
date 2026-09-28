@@ -1,0 +1,98 @@
+AUTHENTICATED USER PERMISSION AUDIT
+DATE=2026-09-28
+
+SKYHAWK_HEAD=d5c9688590b07cc981361b6b9ea61547b9dc6f0e
+
+AUTHENTICATED_USER_PERMISSION_AUDIT
+ACTIVE_USER_COUNT=731
+NO_EXPLICIT_ROLE_COUNT=5
+ADMIN_ROLE_IDS=admin
+ACTIVE_ADMIN_ACCOUNT_COUNT=4
+ACTIVE_ADMIN_UIDS=1,11,1060,2229
+AUTHENTICATED_PERMISSION_COUNT=20
+
+ROLE_POPULATION
+admin=4
+authenticated=19
+authenticated_user=1
+authorized_user=717
+blade=1
+board=15
+co=6
+journal=7
+modeling=3
+modeling_controller=1
+photo_reviewer=1
+reunion_staff=1
+sdo=6
+sdo_coordinator=5
+sectreas=5
+xo=10
+
+AUTHENTICATED_PERMISSIONS
+PERMISSION=access content
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,modeling_controller,photo_reviewer,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=access site-wide contact form
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=access user contact forms
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=access user profiles
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=administer account settings
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,sdo_coordinator,sectreas
+  ACTIVE_USERS_WOULD_LOSE=702
+PERMISSION=administer permissions
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,co,sdo_coordinator,sectreas
+  ACTIVE_USERS_WOULD_LOSE=699
+PERMISSION=administer users
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,co,sdo,sdo_coordinator,sectreas
+  ACTIVE_USERS_WOULD_LOSE=695
+PERMISSION=change own username
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=contribute skyhawk photos
+  OTHER_ROLE_COVERAGE=admin,photo_reviewer
+  ACTIVE_USERS_WOULD_LOSE=708
+PERMISSION=delete own files
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,blade,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=search content
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=subscribe to newsletters
+  OTHER_ROLE_COVERAGE=admin
+  ACTIVE_USERS_WOULD_LOSE=708
+PERMISSION=use advanced search
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=use text format webform_default
+  OTHER_ROLE_COVERAGE=admin
+  ACTIVE_USERS_WOULD_LOSE=708
+PERMISSION=view article_journal_public revisions
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=view import_users feeds
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,co
+  ACTIVE_USERS_WOULD_LOSE=704
+PERMISSION=view media
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=view own import_users feeds
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,sectreas
+  ACTIVE_USERS_WOULD_LOSE=704
+PERMISSION=view own unpublished content
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,modeling_controller,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+PERMISSION=view page revisions
+  OTHER_ROLE_COVERAGE=admin,authenticated_user,authorized_user,board,co,journal,modeling,sdo,sdo_coordinator,sectreas,xo
+  ACTIVE_USERS_WOULD_LOSE=5
+
+AUDIT=PASS
+
+NOTE:
+No usernames, names, email addresses, passwords or other contact data are recorded.
+This is read-only live Drupal evidence. No permission has been changed.
