@@ -32,7 +32,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** field_unit_kind allows multiple values (skyhawk.org 26fad97); NMC and HU-2 gained Facility so all facilities lists NMC, NAS Patuxent River and HU-2 (Gene 2026-09-28; prune later on user feedback). Unit term page access checked read-only and left unchanged (public stays public; paywalled stays paywalled).
+**Last verified step:** Squadron identity tint (skyhawk.org e844788, verified visually by Gene 2026-09-28): invisible unit marker from the hidden unit taxonomy (View squadron_actions, eva_identity) + SQUADRON IDENTITY TINT section in skyhawk-global.css. Marine Corps = scarlet and gold; Navy = blue and gold (section default); other affiliations keep the default until Gene decides. Lesson: do not verify served CSS through the anonymous home page (page-cached, may reference an older aggregate); verify on the target page after Ctrl+F5.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
@@ -56,7 +56,7 @@
 5. Parity check against node 49417, then Gene's review, Brian's sign-off and cutover.
 6. Documentation: the Environment Reference's Squadron CMS section (a draft exists, shelved until 131 is done).
 
-**Open decisions (Gene):** choose the canonical Windows evidence folder; choose the unit-identity class mechanism (tint colours DECIDED by Gene 2026-09-28: U.S. Navy = blue and gold; U.S. Marine Corps = scarlet and gold; tint is an optional use of the hidden unit taxonomy; joint-use stations later); approve orphaned-configuration cleanup; delete node 49778; fix the journal PDF URI error in the logs.
+**Open decisions (Gene):** choose the canonical Windows evidence folder; unit-identity class mechanism DONE (marker + CSS :has, e844788); tint for Foreign, Civilian and joint-use still open (colours DECIDED by Gene 2026-09-28: U.S. Navy = blue and gold; U.S. Marine Corps = scarlet and gold; tint is an optional use of the hidden unit taxonomy; joint-use stations later); approve orphaned-configuration cleanup; delete node 49778; fix the journal PDF URI error in the logs.
 
 **Half-done:** none.
 
