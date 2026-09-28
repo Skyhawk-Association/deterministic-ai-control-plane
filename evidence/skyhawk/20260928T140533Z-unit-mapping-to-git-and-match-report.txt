@@ -1,0 +1,270 @@
+SKYHAWK AI REPORT
+Task: unit mapping to git and match report
+Generated: 2026-09-28T14:05:33Z
+Report-ID: 20260928T140533Z-unit-mapping-to-git-and-match-report
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+SECRET_SCAN PASS
+DACP_COMMIT 3d045a3
+ROWS 213
+NODE FIELDS REFERENCING skyhawk_units: squadron.field_sq_unit
+TERMS 166
+MATCH {"via_field":0,"via_name":128,"none":85,"ambiguous":0}
+TERMS matched by >1 page: 0
+TERMS with no page: 38
+  46 VA-724
+  47 VA-725
+  48 VA-727
+  49 VA-741
+  51 VA-771
+  54 VA-792
+  57 VA-813
+  58 VA-821
+  61 VA-832
+  65 VA-876
+  66 VA-879
+  67 VA-881
+  68 VA-882
+  70 VA-911
+  71 VA-912
+  86 VF-126
+  87 VF-127
+  89 VF-43
+  90 VF-44
+  91 VF-45
+  92 VF-741
+  93 VF-753
+  94 VFA-126
+  95 VFA-127
+  96 VFA-201
+  97 VFA-203
+  98 VFA-204
+  99 VFC-111
+  100 VFC-12
+  101 VFC-13
+  104 VT-2
+  111 VT-27
+  112 VT-3
+  113 VT-31
+  116 VT-5
+  138 VMA-124
+  140 VMA-132
+  165 VMF-233
+--- PAGE LIST ---
+/article-unit/a4llc                      -> -                        no match | Civilian | civilian operator
+/article-unit/collings-foundation        -> -                        no match | Civilian | operator/collection
+/article-unit/discover-air               -> -                        no match | Civilian | civilian operator
+/article-unit/draken-international       -> -                        no match | Civilian | operator/collection
+/article-unit/pacific-aero-ventures      -> -                        no match | Civilian | operator/collection
+/article-unit/tass                       -> -                        no match | Civilian | operator/collection
+/article-unit/vac                        -> -                        no match | Civilian | operator/collection
+/article-unit/argentine-air-force        -> -                        no match | Foreign Military | operator
+/article-unit/argentine-third            -> -                        no match | Foreign Military | operator
+/article-unit/australia-navy             -> -                        no match | Foreign Military | operator
+/article-unit/belgium-evualuates         -> -                        no match | Foreign Military | evaluation
+/article-unit/brazil-navy-skyhawks       -> -                        no match | Foreign Military | operator
+/article-unit/france-evaulates           -> -                        no match | Foreign Military | evaluation
+/article-unit/indonesia                  -> -                        no match | Foreign Military | operator
+/article-unit/israeli-skyhawks           -> -                        no match | Foreign Military | operator
+/article-unit/kuwait                     -> -                        no match | Foreign Military | operator
+/article-unit/proposal-canada            -> -                        no match | Foreign Military | proposal
+/article-unit/proposal-greece            -> -                        no match | Foreign Military | proposal
+/article-unit/proposal-india-navy        -> -                        no match | Foreign Military | proposal
+/article-unit/proposal-lebanon           -> -                        no match | Foreign Military | proposal
+/article-unit/proposal-netherlands       -> -                        no match | Foreign Military | proposal
+/article-unit/proposal-switzerland       -> -                        no match | Foreign Military | proposal
+/article-unit/rmaf-air-force             -> -                        no match | Foreign Military | operator
+/article-unit/rnzaf-skyhawks             -> -                        no match | Foreign Military | operator
+/article-unit/rsaf-skyhawks              -> -                        no match | Foreign Military | operator
+/article-unit/aes12                      -> -                        no match | U.S. Marine Corps | unit
+/article-unit/mag11                      -> 122 MAG-11               name | U.S. Marine Corps | unit
+/article-unit/mag12                      -> 123 MAG-12               name | U.S. Marine Corps | unit
+/article-unit/mag13                      -> 124 MAG-13               name | U.S. Marine Corps | unit
+/article-unit/mag14                      -> 125 MAG-14               name | U.S. Marine Corps | unit
+/article-unit/mag15                      -> 126 MAG-15               name | U.S. Marine Corps | unit
+/article-unit/mag17                      -> 127 MAG-17               name | U.S. Marine Corps | unit
+/article-unit/mag24                      -> 128 MAG-24               name | U.S. Marine Corps | unit
+/article-unit/mag31                      -> 129 MAG-31               name | U.S. Marine Corps | unit
+/article-unit/mag32                      -> 130 MAG-32               name | U.S. Marine Corps | unit
+/article-unit/mag33                      -> 131 MAG-33               name | U.S. Marine Corps | unit
+/article-unit/mag41                      -> 132 MAG-41               name | U.S. Marine Corps | unit
+/article-unit/mag42                      -> 133 MAG-42               name | U.S. Marine Corps | unit
+/article-unit/mag46                      -> 134 MAG-46               name | U.S. Marine Corps | unit
+/article-unit/mag49                      -> 135 MAG-49               name | U.S. Marine Corps | unit
+/article-unit/mars37                     -> -                        no match | U.S. Marine Corps | unit
+/article-unit/mcas-cherry-point          -> -                        no match | U.S. Marine Corps | unit
+/article-unit/mcas-el-toro               -> -                        no match | U.S. Marine Corps | unit
+/article-unit/mcas-kaneohe-bay           -> -                        no match | U.S. Marine Corps | unit
+/article-unit/vma121                     -> 136 VMA-121              name | U.S. Marine Corps | unit
+/article-unit/vma123                     -> 137 VMA-123              name | U.S. Marine Corps | unit
+/article-unit/vma124r                    -> -                        no match | U.S. Marine Corps | unit
+/article-unit/vma131                     -> 139 VMA-131              name | U.S. Marine Corps | unit
+/article-unit/vma133                     -> 141 VMA-133              name | U.S. Marine Corps | unit
+/article-unit/vma134                     -> 142 VMA-134              name | U.S. Marine Corps | unit
+/article-unit/vma142                     -> 143 VMA-142              name | U.S. Marine Corps | unit
+/article-unit/vma143                     -> 144 VMA-143              name | U.S. Marine Corps | unit
+/article-unit/vma144                     -> 145 VMA-144              name | U.S. Marine Corps | unit
+/article-unit/vma211                     -> 146 VMA-211              name | U.S. Marine Corps | unit
+/article-unit/vma212                     -> 147 VMA-212              name | U.S. Marine Corps | unit
+/article-unit/vma214                     -> 148 VMA-214              name | U.S. Marine Corps | unit
+/article-unit/vma217                     -> 149 VMA-217              name | U.S. Marine Corps | unit
+/article-unit/vma223                     -> 150 VMA-223              name | U.S. Marine Corps | unit
+/article-unit/vma224                     -> 151 VMA-224              name | U.S. Marine Corps | unit
+/article-unit/vma225                     -> 152 VMA-225              name | U.S. Marine Corps | unit
+/article-unit/vma233                     -> 153 VMA-233              name | U.S. Marine Corps | unit
+/article-unit/vma241                     -> 154 VMA-241              name | U.S. Marine Corps | unit
+/article-unit/vma242                     -> 155 VMA-242              name | U.S. Marine Corps | unit
+/article-unit/vma311                     -> 156 VMA-311              name | U.S. Marine Corps | unit
+/article-unit/vma322                     -> 157 VMA-322              name | U.S. Marine Corps | unit
+/article-unit/vma324                     -> 158 VMA-324              name | U.S. Marine Corps | unit
+/article-unit/vma331                     -> 159 VMA-331              name | U.S. Marine Corps | unit
+/article-unit/vma332                     -> 160 VMA-332              name | U.S. Marine Corps | unit
+/article-unit/vma533                     -> 161 VMA-533              name | U.S. Marine Corps | unit
+/article-unit/vma543                     -> 162 VMA-543              name | U.S. Marine Corps | unit
+/article-unit/vmat102                    -> 163 VMAT-102             name | U.S. Marine Corps | unit
+/article-unit/vmat203                    -> 164 VMAT-203             name | U.S. Marine Corps | unit
+/article-unit/vmt103                     -> 166 VMT-103              name | U.S. Marine Corps | unit
+/article-unit/fagu                       -> -                        no match | U.S. Navy | unit
+/article-unit/naf-willow-grove           -> -                        no match | U.S. Marine Corps | Marine unit compendium at Joint Reserve Base
+/article-unit/blues                      -> -                        no match | U.S. Navy | unit
+/article-unit/hu2                        -> -                        no match | Joint Navy/Marine | mixed unit compendium
+/article-unit/jttu                       -> -                        no match | U.S. Navy | unit
+/article-unit/nads-warminster            -> -                        no match | U.S. Navy | unit
+/article-unit/naec-natf-lakehurst        -> -                        no match | U.S. Navy | unit
+/article-unit/naf-china-lake             -> -                        no match | U.S. Navy | unit
+/article-unit/naf-detroit                -> -                        no match | U.S. Navy | unit
+/article-unit/naf-el-centro              -> -                        no match | U.S. Navy | unit
+/article-unit/narf-jacksonville          -> -                        no match | U.S. Navy | unit
+/article-unit/narf-nas-alameda           -> -                        no match | U.S. Navy | unit
+/article-unit/narf-pensacola             -> -                        no match | U.S. Navy | unit
+/article-unit/nas-atlanta                -> -                        no match | U.S. Navy | unit
+/article-unit/nas-chase-field            -> -                        no match | U.S. Navy | Navy trainer facility
+/article-unit/nas-cubi-point             -> -                        no match | U.S. Navy | unit
+/article-unit/nas-dallas                 -> -                        no match | U.S. Navy | unit
+/article-unit/nas-floyd-bennett-field    -> -                        no match | U.S. Navy | unit
+/article-unit/nas-glenview               -> -                        no match | U.S. Navy | unit
+/article-unit/nas-glynco                 -> -                        no match | U.S. Navy | unit
+/article-unit/nas-grosse-ile             -> -                        no match | U.S. Navy | unit
+/article-unit/nas-jacksonville-reserves  -> -                        no match | U.S. Navy | unit
+/article-unit/nas-key-west               -> -                        no match | U.S. Navy | unit
+/article-unit/nas-lemoore                -> -                        no match | U.S. Navy | unit
+/article-unit/nas-los-alamitos           -> -                        no match | U.S. Navy | unit
+/article-unit/nas-memphis                -> -                        no match | U.S. Navy | unit
+/article-unit/nas-minneapolis            -> -                        no match | U.S. Navy | unit
+/article-unit/nas-new-orleans            -> -                        no match | U.S. Navy | unit
+/article-unit/nas-norfolk                -> -                        no match | U.S. Navy | unit
+/article-unit/nas-north-island           -> -                        no match | U.S. Navy | unit
+/article-unit/nas-oceana                 -> -                        no match | U.S. Navy | unit
+/article-unit/nas-olathe                 -> -                        no match | U.S. Navy | unit
+/article-unit/nas-pensacola              -> -                        no match | U.S. Navy | unit
+/article-unit/nas-point-mugu             -> -                        no match | U.S. Navy | unit
+/article-unit/nas-quonset-point          -> -                        no match | U.S. Navy | Navy facility with Navy aircraft
+/article-unit/nas-south-weymouth         -> -                        no match | U.S. Navy | unit
+/article-unit/natc-pax                   -> -                        no match | U.S. Navy | unit
+/article-unit/nfws                       -> -                        no match | U.S. Navy | unit
+/article-unit/ntps-patuxent-river        -> -                        no match | U.S. Navy | unit
+/article-unit/nwef-albuquerque           -> -                        no match | U.S. Navy | unit
+/article-unit/pmtc-point-mugu            -> -                        no match | U.S. Navy | unit
+/article-unit/rag-cvg4                   -> -                        no match | U.S. Navy | unit
+/article-unit/rvah3                      -> 1 RVAH-3                 name | U.S. Navy | unit
+/article-unit/tw1                        -> -                        no match | U.S. Navy | unit
+/article-unit/tw2                        -> -                        no match | U.S. Navy | unit
+/article-unit/tw3                        -> -                        no match | U.S. Navy | unit
+/article-unit/tw6                        -> -                        no match | U.S. Navy | unit
+/article-unit/va0686                     -> -                        no match | U.S. Navy | unit
+/article-unit/va106                      -> 2 VA-106                 name | U.S. Navy | unit
+/article-unit/va112                      -> 3 VA-112                 name | U.S. Navy | unit
+/article-unit/va113                      -> 4 VA-113                 name | U.S. Navy | unit
+/article-unit/va12                       -> 5 VA-12                  name | U.S. Navy | unit
+/article-unit/va125                      -> 6 VA-125                 name | U.S. Navy | unit
+/article-unit/va126                      -> 7 VA-126                 name | U.S. Navy | unit
+/article-unit/va127                      -> 8 VA-127                 name | U.S. Navy | unit
+/article-unit/va133                      -> 9 VA-133                 name | U.S. Navy | unit
+/article-unit/va134                      -> 10 VA-134                name | U.S. Navy | unit
+/article-unit/va144                      -> 11 VA-144                name | U.S. Navy | unit
+/article-unit/va146                      -> 12 VA-146                name | U.S. Navy | unit
+/article-unit/va15                       -> 13 VA-15                 name | U.S. Navy | unit
+/article-unit/va152                      -> 14 VA-152                name | U.S. Navy | unit
+/article-unit/va153                      -> 15 VA-153                name | U.S. Navy | unit
+/article-unit/va155                      -> 16 VA-155                name | U.S. Navy | unit
+/article-unit/va163                      -> 17 VA-163                name | U.S. Navy | unit
+/article-unit/va164                      -> 18 VA-164                name | U.S. Navy | unit
+/article-unit/va172                      -> 19 VA-172                name | U.S. Navy | unit
+/article-unit/va192                      -> 20 VA-192                name | U.S. Navy | unit
+/article-unit/va195                      -> 21 VA-195                name | U.S. Navy | unit
+/article-unit/va202                      -> 22 VA-202                name | U.S. Navy | unit
+/article-unit/va203                      -> 23 VA-203                name | U.S. Navy | unit
+/article-unit/va204                      -> 24 VA-204                name | U.S. Navy | unit
+/article-unit/va205                      -> 25 VA-205                name | U.S. Navy | unit
+/article-unit/va209                      -> 26 VA-209                name | U.S. Navy | unit
+/article-unit/va210                      -> 27 VA-210                name | U.S. Navy | unit
+/article-unit/va212                      -> 28 VA-212                name | U.S. Navy | unit
+/article-unit/va216                      -> 29 VA-216                name | U.S. Navy | unit
+/article-unit/va22                       -> 30 VA-22                 name | U.S. Navy | unit
+/article-unit/va23                       -> 31 VA-23                 name | U.S. Navy | unit
+/article-unit/va303                      -> 32 VA-303                name | U.S. Navy | unit
+/article-unit/va304                      -> 33 VA-304                name | U.S. Navy | unit
+/article-unit/va305                      -> 34 VA-305                name | U.S. Navy | unit
+/article-unit/va34                       -> 35 VA-34                 name | U.S. Navy | unit
+/article-unit/va36                       -> 36 VA-36                 name | U.S. Navy | unit
+/article-unit/va43                       -> 37 VA-43                 name | U.S. Navy | unit
+/article-unit/va44                       -> 38 VA-44                 name | U.S. Navy | unit
+/article-unit/va45                       -> 39 VA-45                 name | U.S. Navy | unit
+/article-unit/va46                       -> 40 VA-46                 name | U.S. Navy | unit
+/article-unit/va55                       -> 41 VA-55                 name | U.S. Navy | unit
+/article-unit/va56                       -> 42 VA-56                 name | U.S. Navy | unit
+/article-unit/va64                       -> 43 VA-64                 name | U.S. Navy | unit
+/article-unit/va66                       -> 44 VA-66                 name | U.S. Navy | unit
+/article-unit/va72                       -> 45 VA-72                 name | U.S. Navy | unit
+/article-unit/va76                       -> 50 VA-76                 name | U.S. Navy | unit
+/article-unit/va776                      -> 52 VA-776                name | U.S. Navy | unit
+/article-unit/va791                      -> 53 VA-791                name | U.S. Navy | unit
+/article-unit/va81                       -> 55 VA-81                 name | U.S. Navy | unit
+/article-unit/va811                      -> 56 VA-811                name | U.S. Navy | unit
+/article-unit/va83                       -> 59 VA-83                 name | U.S. Navy | unit
+/article-unit/va831                      -> 60 VA-831                name | U.S. Navy | unit
+/article-unit/va86                       -> 62 VA-86                 name | U.S. Navy | unit
+/article-unit/va861                      -> 63 VA-861                name | U.S. Navy | unit
+/article-unit/va873                      -> 64 VA-873                name | U.S. Navy | unit
+/article-unit/va892                      -> 69 VA-892                name | U.S. Navy | unit
+/article-unit/va93                       -> 72 VA-93                 name | U.S. Navy | unit
+/article-unit/va94                       -> 73 VA-94                 name | U.S. Navy | unit
+/article-unit/va95                       -> 74 VA-95                 name | U.S. Navy | unit
+/article-unit/vaq33                      -> 75 VAQ-33                name | U.S. Navy | unit
+/article-unit/vc1                        -> 76 VC-1                  name | U.S. Navy | unit
+/article-unit/vc10                       -> 77 VC-10                 name | U.S. Navy | unit
+/article-unit/vc12                       -> 78 VC-12                 name | U.S. Navy | unit
+/article-unit/vc13                       -> 79 VC-13                 name | U.S. Navy | unit
+/article-unit/vc2                        -> 80 VC-2                  name | U.S. Navy | unit
+/article-unit/vc4                        -> 81 VC-4                  name | U.S. Navy | unit
+/article-unit/vc5                        -> 82 VC-5                  name | U.S. Navy | unit
+/article-unit/vc7                        -> 83 VC-7                  name | U.S. Navy | unit
+/article-unit/vc8                        -> 84 VC-8                  name | U.S. Navy | unit
+/article-unit/vf101                      -> 85 VF-101                name | U.S. Navy | unit
+/article-unit/vf171                      -> 88 VF-171                name | U.S. Navy | unit
+/article-unit/vfaw3                      -> -                        no match | U.S. Navy | unit
+/article-unit/vrf31                      -> -                        no match | U.S. Navy | unit
+/article-unit/vsf1                       -> -                        no match | U.S. Navy | unit
+/article-unit/vsf3                       -> -                        no match | U.S. Navy | unit
+/article-unit/vsf76                      -> -                        no match | U.S. Navy | unit
+/article-unit/vsf86                      -> -                        no match | U.S. Navy | unit
+/article-unit/vt1                        -> 102 VT-1                 name | U.S. Navy | unit
+/article-unit/vt19                       -> 103 VT-19                name | U.S. Navy | unit
+/article-unit/vt21                       -> 105 VT-21                name | U.S. Navy | unit
+/article-unit/vt22                       -> 106 VT-22                name | U.S. Navy | unit
+/article-unit/vt23                       -> 107 VT-23                name | U.S. Navy | unit
+/article-unit/vt24                       -> 108 VT-24                name | U.S. Navy | unit
+/article-unit/vt25                       -> 109 VT-25                name | U.S. Navy | unit
+/article-unit/vt26                       -> 110 VT-26                name | U.S. Navy | unit
+/article-unit/vt35                       -> 114 VT-35                name | U.S. Navy | unit
+/article-unit/vt4                        -> 115 VT-4                 name | U.S. Navy | unit
+/article-unit/vt7                        -> 117 VT-7                 name | U.S. Navy | unit
+/article-unit/vt86                       -> 118 VT-86                name | U.S. Navy | unit
+/article-unit/vt9                        -> 119 VT-9                 name | U.S. Navy | unit
+/article-unit/vx4                        -> 120 VX-4                 name | U.S. Navy | unit
+/article-unit/vx5                        -> 121 VX-5                 name | U.S. Navy | unit
+/node/49222                              -> -                        no match | Reference | current-operator reference
+REPORT_DONE (read-only)
+===== END =====
