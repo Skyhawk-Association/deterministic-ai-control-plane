@@ -1,0 +1,33 @@
+REUNION LEGACY TOKEN COMPATIBILITY
+DATE=2026-09-28
+
+SKYHAWK_HEAD=d5c9688590b07cc981361b6b9ea61547b9dc6f0e
+
+PRIOR REGRESSION:
+0260cf4 imposed a 24-hex token-shape assumption.
+The actual stored historical token returned HTTP 404.
+That run stopped and was not accepted as PASS.
+
+CORRECTION:
+No token-format assumption.
+Presented token must exactly match Drupal state using hash_equals().
+Token value itself is not recorded.
+
+RESULT:
+STORED_TOKEN_PRESENT=YES
+VALID_STORED_TOKEN_STATUS=200
+INVALID_UPLOAD_STATUS=404
+INVALID_MANAGE_STATUS=404
+INVALID_VERIFY_STATUS=302
+
+VALID_HISTORICAL_LINK_PRESERVED=YES
+INVALID_UPLOAD_FORM_EXPOSED=NO
+INVALID_MANAGE_FORM_EXPOSED=NO
+
+OVERALL=PASS
+
+PRODUCT DIRECTION:
+Legacy token system is transitional only.
+Durable Reunion authority is moving to:
+1 accountable current Association member plus
+1 optional scoped Worker Bee account.
