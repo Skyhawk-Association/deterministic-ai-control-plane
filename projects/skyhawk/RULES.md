@@ -42,6 +42,8 @@ If that line is absent, the block is procedurally invalid and should not be run.
 
 - After every result, determine whether current truth actually changed. Update the Rules or project reference only when needed.
 
+- A2 Windows/Envy reconnect rule: when a reconnect is actually required, use `ssh -o ConnectTimeout=20 -a A2` because A2 currently has intermittent connection-delay/failure behavior. Do not prepend SSH when the operator is already at the A2 prompt.
+
 ### Authorization Establishment and Exercise
 
 - Do not repeat an authorization ceremony when authoritative, scoped responsibility has already been established and remains valid.
