@@ -1,0 +1,36 @@
+REUNION MEMBER / WORKER BEE CUTOVER
+DATE=2026-09-28
+STATUS=LIVE_CUTOVER_COMMITTED_AND_RUNTIME_VERIFIED
+
+SKYHAWK_COMMIT=cc8b5c4c201c6eb18fa060ea1b65ea4761ef34d8
+
+USER-SUPPLIED A2 RESULT
+REUNION_MEMBER_WORKER_CUTOVER=COMMITTED_AND_VERIFIED
+BACKUP_REQUIRED=YES - VERIFIED ON ENVY
+
+VERIFIED CUTOVER CLAIMS FROM THE EXECUTED A2 GATE
+- built-in authenticated role reduced to the defined universal logged-in baseline;
+- pre-Worker-Bee active Drupal population normalized to authorized_user;
+- member-only profile/contact/photo permissions ensured on authorized_user;
+- institutional permissions removed from the automatic authenticated role while preserved on narrower existing roles;
+- optional single-value field_reunion_worker created on reunion_event through Drupal entity/config APIs;
+- field targets user, is not required, and is not the owner identity;
+- accountable owner path is gated by authorized_user;
+- Ready Room management is owner UID OR assigned Worker Bee UID;
+- Worker Bee relationship is hidden from the generic node edit form and changed only by the owner-only assignment surface;
+- source lint and cache rebuild passed;
+- source/config committed and pushed;
+- local commit SHA matched fetched origin/main after push;
+- resulting live role/field/member-gate checks passed.
+
+ROLLBACK
+- pre-cutover database backup was created on A2 and SHA-256 verified on the Envy before mutation.
+- server backup is intentionally retained until Worker Bee end-to-end acceptance is complete.
+
+NOT YET ACCEPTED
+- no Worker Bee account has yet been created for this acceptance cycle;
+- no Worker Bee assignment/revocation/replacement/one-Reunion-only runtime acceptance has yet passed;
+- legacy Reunion token machinery remains in service and must not be retired until account-path acceptance passes.
+
+NEXT
+Use one controlled real Worker Bee identity to prove account creation/email control, assignment, one-Reunion-only access, revocation and replacement. Then retire Reunion token-era machinery in one controlled change.
