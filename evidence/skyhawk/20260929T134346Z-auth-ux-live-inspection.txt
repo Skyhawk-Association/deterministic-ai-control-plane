@@ -1,0 +1,175 @@
+SKYHAWK AI REPORT
+Task: auth ux live inspection
+Generated: 2026-09-29T13:43:46Z
+Report-ID: 20260929T134346Z-auth-ux-live-inspection
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+== git
+dbc0e3a81aea36d982076402f7217dcc1e528db0
+dbc0e3a 2026-09-29 02:04:23 +0000 Show Paddles message only after failed login
+80afa99 2026-09-29 01:56:17 +0000 Fix Naval Aviation login failure presentation
+d8c843b 2026-09-29 01:38:46 +0000 Improve authentication messages with Naval Aviation voice
+f9a5490 2026-09-29 00:54:08 +0000 Fix Worker Bee mail result verification
+02e5a8e 2026-09-29 00:28:06 +0000 Use Drupal 11.4 user account notification API
+status_lines=0
+== parity
+PASS
+== d8c843b present?
+yes, d8c843b is in HEAD
+== changes to the module since d8c843b
+ .../skyhawk_site_fixes/skyhawk_site_fixes.module   | 62 +++++++++++++++++++---
+ 1 file changed, 56 insertions(+), 6 deletions(-)
+diff --git a/web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module b/web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module
+index 6c8c61d..effb226 100644
+--- a/web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module
++++ b/web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module
+@@ -1681,17 +1681,67 @@ function skyhawk_site_fixes_form_user_login_form_alter(
+   \Drupal\Core\Form\FormStateInterface $form_state,
+   $form_id
+ ): void {
+-  if (isset($form['name'])) {
+-    $form['name']['#description'] = t(
+-      'Enter your Skyhawk account credentials. If the flight deck crew waves you off, use Reset your password rather than repeatedly trying the same approach.'
+-    );
+-  }
+-
+   if (isset($form['pass'])) {
+     $form['pass']['#description'] = t(
+       'Passwords are case-sensitive. Caps Lock has ruined more approaches than anyone cares to admit.'
+     );
+   }
++
++  // Core deliberately uses one generic authentication failure for both an
++  // unknown account and a wrong password. Keep that privacy behavior, but
++  // replace the presentation after core validation has made its decision.
++  $form['#validate'][] =
++    'skyhawk_site_fixes_user_login_message_validate';
++}
++
++/**
++ * Rewords Drupal core's generic login failure without changing its semantics.
++ */
++function skyhawk_site_fixes_user_login_message_validate(
++  array &$form,
++  \Drupal\Core\Form\FormStateInterface $form_state
++): void {
++  $errors = $form_state->getErrors();
++
++  if (!$errors) {
++    return;
++  }
++
++  $changed = FALSE;
++
++  foreach ($errors as $name => $message) {
++    $plain = html_entity_decode(
++      strip_tags((string) $message),
++      ENT_QUOTES | ENT_HTML5,
++      'UTF-8'
++    );
++
++    if (
++      stripos(
++        $plain,
++        'Unrecognized username or password'
++      ) !== FALSE
++    ) {
++      $errors[$name] = t(
++        'Paddles sent you around. Watch the ball next time around! We couldn\'t sign you in with those credentials. Check the creds or use <a href=":url">Reset your password</a> below.',
++        [
++          ':url' => \Drupal\Core\Url::fromRoute('user.pass')->toString(),
++        ]
++      );
++
++      $changed = TRUE;
++    }
++  }
++
++  if (!$changed) {
++    return;
++  }
++
++  $form_state->clearErrors();
++
++  foreach ($errors as $name => $message) {
++    $form_state->setErrorByName($name, $message);
++  }
+ }
+ 
+ /**
+== login-related functions (current file)
+1679:function skyhawk_site_fixes_form_user_login_form_alter(
+1700:function skyhawk_site_fixes_user_login_message_validate(
+1679: function skyhawk_site_fixes_form_user_login_form_alter(
+1680:   array &$form,
+1681:   \Drupal\Core\Form\FormStateInterface $form_state,
+1682:   $form_id
+1683: ): void {
+1684:   if (isset($form['pass'])) {
+1685:     $form['pass']['#description'] = t(
+1686:       'Passwords are case-sensitive. Caps Lock has ruined more approaches than anyone cares to admit.'
+1687:     );
+1688:   }
+1689: 
+1690:   // Core deliberately uses one generic authentication failure for both an
+1691:   // unknown account and a wrong password. Keep that privacy behavior, but
+1692:   // replace the presentation after core validation has made its decision.
+1693:   $form['#validate'][] =
+1694:     'skyhawk_site_fixes_user_login_message_validate';
+1695: }
+----
+1700: function skyhawk_site_fixes_user_login_message_validate(
+1701:   array &$form,
+1702:   \Drupal\Core\Form\FormStateInterface $form_state
+1703: ): void {
+1704:   $errors = $form_state->getErrors();
+1705: 
+1706:   if (!$errors) {
+1707:     return;
+1708:   }
+1709: 
+1710:   $changed = FALSE;
+1711: 
+1712:   foreach ($errors as $name => $message) {
+1713:     $plain = html_entity_decode(
+1714:       strip_tags((string) $message),
+1715:       ENT_QUOTES | ENT_HTML5,
+1716:       'UTF-8'
+1717:     );
+1718: 
+1719:     if (
+1720:       stripos(
+1721:         $plain,
+1722:         'Unrecognized username or password'
+1723:       ) !== FALSE
+1724:     ) {
+1725:       $errors[$name] = t(
+1726:         'Paddles sent you around. Watch the ball next time around! We couldn\'t sign you in with those credentials. Check the creds or use <a href=":url">Reset your password</a> below.',
+1727:         [
+1728:           ':url' => \Drupal\Core\Url::fromRoute('user.pass')->toString(),
+1729:         ]
+1730:       );
+1731: 
+1732:       $changed = TRUE;
+1733:     }
+1734:   }
+1735: 
+1736:   if (!$changed) {
+1737:     return;
+1738:   }
+1739: 
+1740:   $form_state->clearErrors();
+1741: 
+1742:   foreach ($errors as $name => $message) {
+1743:     $form_state->setErrorByName($name, $message);
+1744:   }
+1745: }
+----
+== copy strings present
+1726:Paddles sent you around. Watch the ball next time around! We couldn\
+1726:Reset your password</a> below.
+1805:Reset your password</a>
+1822:couldn't sign you in with those credentials, 
+===== END =====
