@@ -42,6 +42,8 @@ If that line is absent, the block is procedurally invalid and should not be run.
 
 - After every result, determine whether current truth actually changed. Update the Rules or project reference only when needed.
 
+- A2 diagnostic output discipline: for nontrivial diagnostics, capture detailed output to an immutable diagnostic report and use a qualified evidence transport for AI consumption. Do not dump long diagnostic payloads to Gene's terminal. The terminal should normally show only a concise completion/failure marker, report ID/location, and concrete next state.
+
 - A2 Windows/Envy reconnect rule: when a reconnect is actually required, use `ssh -o ConnectTimeout=20 -a A2` because A2 currently has intermittent connection-delay/failure behavior. Do not prepend SSH when the operator is already at the A2 prompt.
 
 ### Authorization Establishment and Exercise
