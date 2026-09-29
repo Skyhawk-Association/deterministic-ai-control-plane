@@ -72,6 +72,8 @@
 
 - Normal command-line work occurs interactively at the A2 prompt. Pixel-to-A2 non-interactive SSH is not the normal Drupal/Drush execution method.
 
+- Drush absolute-URL context: any CLI action that generates absolute public URLs for email or user-facing links must run with `--uri=https://skyhawk.org`. Without an explicit URI, Drush uses its default request host, which produced unusable account-created one-time-login links during Worker Bee acceptance on 2026-09-29. This requirement applies to URL-generating CLI tests and notifications, not ordinary browser requests.
+
 - Backup-download exception and Pixel operational details are maintained in Termux Notes. Database backup policy remains governed by the Rules.
 
 ## AI Evidence Transport - Current State
