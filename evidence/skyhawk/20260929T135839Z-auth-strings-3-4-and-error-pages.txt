@@ -1,0 +1,119 @@
+SKYHAWK AI REPORT
+Task: auth strings 3-4 and error pages
+Generated: 2026-09-29T13:58:39Z
+Report-ID: 20260929T135839Z-auth-strings-3-4-and-error-pages
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+L+1745      1	
+L+1745      2	/**
+L+1745      3	 * Implements hook_form_FORM_ID_alter() for user_pass.
+L+1745      4	 */
+L+1745      5	function skyhawk_site_fixes_form_user_pass_alter(
+L+1745      6	  array &$form,
+L+1745      7	  \Drupal\Core\Form\FormStateInterface $form_state,
+L+1745      8	  $form_id
+L+1745      9	): void {
+L+1745     10	  $form['skyhawk_auth_help'] = [
+L+1745     11	    '#type' => 'item',
+L+1745     12	    '#weight' => -100,
+L+1745     13	    '#markup' => '<p>' .
+L+1745     14	      t(
+L+1745     15	        'Need new credentials? Enter your username or email address below. If it is on the roster, recovery instructions will be inbound. Check the spam folder before declaring the mail plane missing.'
+L+1745     16	      ) .
+L+1745     17	      '</p>',
+L+1745     18	  ];
+L+1745     19	}
+L+1745     20	
+L+1745     21	/**
+L+1745     22	 * Implements hook_form_FORM_ID_alter() for user_pass_reset.
+L+1745     23	 */
+L+1745     24	function skyhawk_site_fixes_form_user_pass_reset_alter(
+L+1745     25	  array &$form,
+L+1745     26	  \Drupal\Core\Form\FormStateInterface $form_state,
+L+1745     27	  $form_id
+L+1745     28	): void {
+L+1745     29	  $form['skyhawk_auth_help'] = [
+L+1745     30	    '#type' => 'item',
+L+1745     31	    '#weight' => -100,
+L+1745     32	    '#markup' => '<p>' .
+L+1745     33	      t(
+L+1745     34	        'First time aboard? This one-time link gets you checked in so you can set your password. Use it once; after that, normal credentials get you through the hatch.'
+L+1745     35	      ) .
+L+1745     36	      '</p>',
+L+1745     37	  ];
+L+1745     38	
+L+1745     39	  if (isset($form['actions']['submit'])) {
+L+1745     40	    $form['actions']['submit']['#value'] = t('Check in');
+L+1745     41	  }
+L+1745     42	}
+L+1745     43	
+L+1745     44	/**
+L+1745     45	 * Implements hook_preprocess_status_messages().
+L+1745     46	 *
+L+1745     47	 * Rewords only known Drupal authentication presentation messages.
+L+1745     48	 * Authentication decisions and security behavior remain Drupal core's.
+L+1745     49	 */
+L+1745     50	function skyhawk_site_fixes_preprocess_status_messages(
+L+1745     51	  array &$variables
+L+1745     52	): void {
+L+1745     53	  if (empty($variables['message_list'])) {
+L+1745     54	    return;
+L+1745     55	  }
+L+1745     56	
+L+1745     57	  $reset_url = \Drupal\Core\Url::fromRoute('user.pass')->toString();
+L+1745     58	  $reset_link = '<a href="' .
+L+1745     59	    \Drupal\Component\Utility\Html::escape($reset_url) .
+L+1745     60	    '">Reset your password</a>';
+L+1745     61	
+L+1745     62	  foreach ($variables['message_list'] as $type => &$messages) {
+L+1745     63	    foreach ($messages as &$message) {
+L+1745     64	      $plain = html_entity_decode(
+L+1745     65	        strip_tags((string) $message),
+L+1745     66	        ENT_QUOTES | ENT_HTML5,
+L+1745     67	        'UTF-8'
+L+1745     68	      );
+L+1745     69	
+L+1745     70	      if (
+L+1745     71	        stripos(
+L+1745     72	          $plain,
+L+1745     73	          'Unrecognized username or password'
+L+1745     74	        ) !== FALSE
+L+1745     75	      ) {
+L+1745     76	        $message = \Drupal\Core\Render\Markup::create(
+L+1745     77	          "We couldn't sign you in with those credentials, " .
+L+1745     78	          "but we did sign you up for the midnight watch. " .
+L+1745     79	          "Check the creds or use " .
+L+1745     80	          $reset_link .
+L+1745     81	          " below."
+L+1745     82	        );
+L+1745     83	        continue;
+L+1745     84	      }
+L+1745     85	
+L+1745     86	      if (
+L+1745     87	        stripos($plain, 'password reset link') !== FALSE &&
+L+1745     88	        (
+L+1745     89	          stripos($plain, 'expired') !== FALSE ||
+L+1745     90	          stripos($plain, 'invalid') !== FALSE ||
+L+1745     91	          stripos($plain, 'already') !== FALSE
+L+1745     92	        )
+L+1745     93	      ) {
+L+1745     94	        $message = \Drupal\Core\Render\Markup::create(
+L+1745     95	          "That launch window has closed. " .
+L+1745     96	          "Request a fresh password link below and we'll get you " .
+L+1745     97	          "another shot at the catapult."
+L+1745     98	        );
+L+1745     99	        continue;
+L+1745    100	      }
+L+1745    101	
+L+1745    102	      if (
+L+1745    103	        (
+L+1745    104	          stripos($plain, 'instructions') !== FALSE ||
+L+1745    105	          stripos($plain, 'email') !== FALSE
+'system.site:page':
+  403: ''
+  404: ''
+  front: /node/48562
+
+===== END =====
