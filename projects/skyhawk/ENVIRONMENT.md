@@ -66,7 +66,7 @@
 
 - Host: [server address removed; use the A2 alias in the SSH config on Gene’s machines]; user: darwus; SSH port: 22.
 
-- Windows canonical connection: ssh -a A2. Windows file transfers use the configured host alias, for example scp SOURCE A2:DESTINATION.
+- Windows canonical connection when a reconnect is required: `ssh -o ConnectTimeout=20 -a A2` (20-second connection timeout added because A2 currently has intermittent connection-delay/failure behavior). Do not reconnect when already at the A2 prompt. Windows file transfers use the configured host alias, for example `scp SOURCE A2:DESTINATION`.
 
 - Pixel connection: ssh -p 22 darwus@[server address removed; use the A2 alias in the SSH config on Gene’s machines].
 
