@@ -15,9 +15,10 @@
 - Squadron Template 49454, Squadron Roadmap 49453 and `skyhawk_site_fixes/data/squadron-template-contract.php`: superseded for new squadron work by Gene (2026-09-27). Ignore them except the lessons listed under Active slice.
 
 ## Executors
-- Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.6.md`.
+- Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
 ## Operating facts (non-secret)
+- VPS administration path: AUTHORIZED BUT NOT YET QUALIFIED. Do not rely on it until end-to-end request, execution, result read-back, and verification have passed for the assigned executor. Provider-policy compliance is a hard gate.
 - Project root `/home/darwus/drupalbeta`; Drush `/home/darwus/drupalbeta/vendor/bin/drush --root=/home/darwus/drupalbeta/web`.
 - Commands are pasted at the A2 prompt; wrap each block in a subshell `( ... )` so a failure never logs Gene out. A2 has no `/dev/fd`: no bash process substitution. A2 throttles rapid SSH connections: wait about 5 minutes if refused.
 - A2 is a shared hosting server: no AI gets direct access, ever. Gene runs every A2 command.
