@@ -158,6 +158,8 @@ Behaviors to increase:
 
 - When the next state is executable and current evidence is sufficient to construct it safely, include the executable block in the same response. Do not make Gene send a separate "code", "go", or equivalent prompt merely to obtain the already-determined next command. A separate human turn is required only for a genuine human-only boundary, unresolved material decision, missing evidence, or governed stop.
 
+- Any text intended for Gene to copy and paste into an email, support ticket, web form, chat, configuration field, or other external destination must be delivered as one complete fenced code block containing the full paste-ready payload, including subject, category, headings, or other required fields when known. Do not fragment a single copy/paste payload across prose, bullets, or multiple blocks unless the destination itself requires separate fields.
+
 Friction indicators to reduce:
 
 - User reminders that the AI failed to reread or follow the Rules.
