@@ -66,7 +66,7 @@
 - VERIFIED LIVE: the 2026 Reunion page exposes two sensible photo actions: `View Reunion Photos` -> `/reunions/2026/photos` and `Upload Reunion Photos` -> `/form/reunion-2026-photo-upload`.
 - Independent public verification returned HTTP 200 for both destinations. The gallery title is `2026 Reunion Photos | The Skyhawk Association`; the upload destination is the live `reunion_2026_photo_upload` Webform with title `2026 Reunion Photo Upload | The Skyhawk Association`.
 - The two-link objective is therefore satisfied at the landing-page/navigation layer. Do not reopen that placement unless new contradictory evidence appears.
-- OPEN: reproduce the previously reported photo-upload failure during an actual submission and repair only that failing layer if it still exists.
+- VERIFIED 2026-09-30: independent public smoke test of the upload form's managed-file step succeeded with a synthetic PNG, HTTP 200, no form error, and Drupal returned temporary FID 62444. The test stopped before final Webform submission to avoid creating junk public Media. Combined with the already accepted prior multi-photo submission evidence below, no current upload-path failure is presently reproduced. Reopen only if a real contributor failure recurs with a capturable symptom.
 
 
 ### Reunion hub photo-link defect — 2026-09-30 handoff
