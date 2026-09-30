@@ -1153,3 +1153,4 @@ Preserve the one-submission / many-FIDs / one-Media-per-FID contract.
 - A2 shell: no `/dev/fd` (no bash process substitution); wrap pasted blocks in a subshell `( ... )`; rapid SSH connections are throttled for a few minutes.
 - Evidence: AI reports go to /home/darwus/ai-reports (not web-served). The former web-served diagnostics and web/info.php were moved to ~/quarantine on 2026-09-27.
 - Public raw GitHub URLs can lag a few minutes behind a push. Right after a push, verify with git (clone or ls-remote), not the raw URL.
+- HOSTS (Gene 2026-09-30): production skyhawk.org is served by s19522.use2.stableserver.net (the Envy ssh alias A2). mi3-ts4.a2hosting.com is a SEPARATE A2 Hosting account holding an older copy of drupalbeta (max node 49356; no ai-report); the Mac reached it with darwus_backup_key on a non-standard port. NEVER target mi3-ts4 for Skyhawk work. First line of every A2 block should confirm the host (hostname must start s19522).

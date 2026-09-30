@@ -22,6 +22,7 @@
 - Project root `/home/darwus/drupalbeta`; Drush `/home/darwus/drupalbeta/vendor/bin/drush --root=/home/darwus/drupalbeta/web`.
 - Commands are pasted at the A2 prompt; wrap each block in a subshell `( ... )` so a failure never logs Gene out. A2 has no `/dev/fd`: no bash process substitution. A2 throttles rapid SSH connections: wait about 5 minutes if refused.
 - A2 is a shared hosting server: no AI gets direct access, ever. Gene runs every A2 command.
+- HOSTS (Gene 2026-09-30): production skyhawk.org is served by s19522.use2.stableserver.net (the Envy ssh alias A2). mi3-ts4.a2hosting.com is a SEPARATE A2 Hosting account holding an older copy of drupalbeta (max node 49356; no ai-report); the Mac reached it with darwus_backup_key on a non-standard port. NEVER target mi3-ts4 for Skyhawk work. First line of every A2 block should confirm the host (hostname must start s19522).
 - Files move by `scp` from Windows (host alias `A2`); Gene's working folder is `C:\Users\genea\dacp-work\vma131`.
 - A2 transport (Gene 2026-09-28): never chain scp and ssh on one line; copy and connect are separate commands, each with -o ConnectTimeout=20; keep A2 connections per step to a minimum (backups: A2 writes the checksum beside the dump, one scp brings both down, compare on Windows, delete in the next A2 block). A2 is fragile until the hosting move.
 - Large outputs: `( commands ) 2>&1 | ~/bin/ai-report "task"` pushes a secret-scanned report to evidence/skyhawk/ in this repository; paste only its one-line result.
@@ -67,7 +68,7 @@
 - Public `/reunions` HTML identifies the page as node 49769 and still lacks the intended strings `2026 REUNION PHOTOS`, `Photos from Arlington`, `View Reunion Photos`, and `Upload Reunion Photos` even after cache-busting requests and Drupal cache rebuild.
 - First mutation attempt falsely appeared successful because PHP was invoked on the shell-wrapper `vendor/bin/drush`; the launcher script was printed instead of Drush running. Do not treat that marker as evidence of a Drupal mutation.
 - Correct direct Drush read-only inspection from `/home/darwus/drupalbeta` returned `FAIL: node 49769 not found`. This is the current blocking contradiction: the public page claims node 49769 while the A2 Drupal instance reached by the canonical project root does not load that node.
-- Next step: Claude should resolve the execution-context/site-ownership mismatch before any further mutation. Determine which Drupal/database actually serves public `/reunions`, then modify the true owner and independently verify the public outcome.
+- RESOLVED 2026-09-30: the contradiction was the wrong host. The inspection ran on mi3-ts4 (older copy, max node 49356), not production s19522. Node 49769 is the live /reunions hub on production. Former next step: resolve the execution-context/site-ownership mismatch before any further mutation. Determine which Drupal/database actually serves public `/reunions`, then modify the true owner and independently verify the public outcome.
 
 
 **Source continuity:** Gene authorized project-chat reconstruction on 2026-09-28. Relevant prior project chat: `Reunion Page Setup`. The durable statements below are cross-checked against current `skyhawk.org` source/config on `origin/main`; chat history is continuity evidence, not authority.
