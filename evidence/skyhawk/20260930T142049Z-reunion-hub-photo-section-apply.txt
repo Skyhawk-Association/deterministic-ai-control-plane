@@ -1,0 +1,18 @@
+SKYHAWK AI REPORT
+Task: reunion hub photo section apply
+Generated: 2026-09-30T14:20:49Z
+Report-ID: 20260930T142049Z-reunion-hub-photo-section-apply
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+anchor matches=1
+SAVED rev=68259
+  VERIFY public page has "2026 Reunion Photos" PASS
+  VERIFY public page has "Photos from Arlington" PASS
+  VERIFY public page has "View Reunion Photos" PASS
+  VERIFY public page has "Upload Reunion Photos" PASS
+  VERIFY public page has "/reunions/2026/photos" PASS
+  VERIFY public page has "/form/reunion-2026-photo-upload" PASS
+LOST-D PASS 55340c9
+===== END =====
