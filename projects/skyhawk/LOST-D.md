@@ -17,6 +17,13 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## VPS migration continuity - 2026-09-30
+- VERIFIED: Mac SSH alias `Inmotion` now resolves to the VPS migration account `n790725` using the existing Mac Ed25519 key.
+- VERIFIED: passwordless key authentication succeeds from the Mac with `ssh -a Inmotion`; remote identity returned host `vps142898.inmotionhosting.com`, user `n790725`, uid 1001.
+- Root public-key login was not the working path because `/root/.ssh/authorized_keys` does not exist. The same Mac key is already authorized for `n790725`, as confirmed by the VPS auth log and independent Mac login test.
+- Preserve Gene's already-open root session until elevated migration work no longer needs it. Routine migration access should use `ssh -a Inmotion`; escalate only when required.
+- NEXT: inspect current staged migration tree and runtime parity from the working `Inmotion` alias, then continue VPS reconstruction without repeating discovery or bulk transfer.
+
 ## Operating facts (non-secret)
 - VPS administration path: AUTHORIZED BUT NOT YET QUALIFIED. Do not rely on it until end-to-end request, execution, result read-back, and verification have passed for the assigned executor. Provider-policy compliance is a hard gate.
 - Project root `/home/darwus/drupalbeta`; Drush `/home/darwus/drupalbeta/vendor/bin/drush --root=/home/darwus/drupalbeta/web`.
