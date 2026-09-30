@@ -1,0 +1,16 @@
+SKYHAWK AI REPORT
+Task: reunion photos self-contained
+Generated: 2026-09-30T14:31:28Z
+Report-ID: 20260930T143128Z-reunion-photos-self-contained
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+HUB restored to rev 68246 body, new rev 68260
+EVENT already has photo section (body)
+  VERIFY 2026 Reunion page has "View Reunion Photos" FAIL
+  VERIFY hub no longer has "View Reunion Photos" PASS
+  VERIFY 2026 Reunion page has "Upload Reunion Photos" FAIL
+  VERIFY hub no longer has "Upload Reunion Photos" PASS
+LOST-D PASS 8ba4089
+===== END =====
