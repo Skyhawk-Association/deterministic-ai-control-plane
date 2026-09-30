@@ -34,7 +34,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** Reunions are self-contained (Gene 2026-09-30): the 2026 photo section (View/Upload Reunion Photos) lives on the 2026 Reunion page (node 49466), not on the /reunions hub; hub body restored to rev 68246 content. Photo upload failure report still OPEN: server evidence shows form open, 12 MB/photo, 20/submission, last good submission 2026-09-28 11:55; symptom not yet captured.
+**Last verified step:** Reunion landing build (Gene 2026-09-30): link fields field_reunion_photos_link and field_reunion_upload_link on reunion_event; node 49466 has Announcement & Registration (PDF), View Reunion Photos, Upload Reunion Photos in a hub-style panel; hub card titles link to the Reunion page; menu items 2026 Reunion, Reunion Photos, Upload Photos disabled (reversible). See the matching ai-report for VERIFY results. OPEN: download and verify backup pre_reunion_landing.sql.gz (+ .sha256) to the Envy, then delete from A2; browser acceptance by Gene; photo upload failure symptom still not captured.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
