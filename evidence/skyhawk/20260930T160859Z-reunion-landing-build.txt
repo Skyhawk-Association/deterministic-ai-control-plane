@@ -1,0 +1,29 @@
+SKYHAWK AI REPORT
+Task: reunion landing build
+Generated: 2026-09-30T16:08:59Z
+Report-ID: 20260930T160859Z-reunion-landing-build
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+ [success] Database dump saved to /home/darwus/skyhawk_backups/pre_reunion_landing.sql.gz
+No syntax errors detected in /tmp/rl.php
+EVENT bundle=reunion_event url=/reunion/usmc-4-skyhawk-reunion-2026
+REGISTRATION field=field_registration_link
+DISPLAY node.reunion_event.full panel=field_registration_link,field_reunion_photos_link,field_reunion_upload_link
+VIEW reunion_index:default title now links to the Reunion page
+MENU disabled: 2026 Reunion
+MENU disabled: Reunion Photos
+MENU disabled: Upload Photos
+PHP_RESULT DONE
+  VERIFY Reunion page has "View Reunion Photos" PASS
+  VERIFY Reunion page has "Upload Reunion Photos" PASS
+  VERIFY Reunion page has "Announcement &amp; Registration (PDF)" FAIL
+  VERIFY hub title links to /reunion/usmc-4-skyhawk-reunion-2026 PASS
+  VERIFY menu item "2026 Reunion" gone PASS
+  VERIFY menu item "Reunion Photos" gone PASS
+  VERIFY menu item "Upload Photos" gone PASS
+sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync
+SKYHAWK_COMMIT 5770b2e
+LOST-D PASS caf9898
+===== END =====
