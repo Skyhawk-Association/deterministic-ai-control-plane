@@ -2,6 +2,7 @@
 
 ## Change Synopsis
 
+- 2026-09-30 (Gene decision; authoritative/DACP_Decision_Record_2026-09-30_VPS_Executor_Authorization.md): controlled VPS administration path authorized for Skyhawk migration and ongoing administration; provider-policy compliance, least privilege, auditability, and complete pipe qualification are mandatory. Application Implementation Authorization 0.7 supersedes 0.6.
 - 2026-09-27 (Gene decision; authoritative/DACP_Decision_Record_2026-09-27_Required_Pipe_Qualification.md): required persistence/evidence/state/handoff pipes must prove write -> persist -> consumer read-back -> verify -> continue for the intended executor; adapter failure requires authorized alternate-route resolution before capability failure or human transport.
 - 2026-09-27 (Gene decision; authoritative/DACP_Decision_Record_2026-09-27_Dual_Executors.md): Claude and ChatGPT are both authorized executors, one at a time; Application Implementation Authorization 0.6; Skyhawk LOST-D, Rules and Environment Reference now live under projects/skyhawk/.
 - 2026-09-23 credential scope correction (authoritative/DACP_Decision_Record_2026-09-23_Credential_Scope_Correction.md): Application Implementation Authorization 0.5 replaces the repo-scoped-token claim with the actual credential model.
@@ -47,7 +48,7 @@ Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.g
 10. authoritative/DACP_Path_Viability_Revalidation_Control_0.1.md when path-viability provenance/detail is germane.
 11. authoritative/DACP_Continuous_Execution_and_Human_Boundary_Control_0.1.md when continuation/human-boundary provenance/detail is germane.
 12. authoritative/DACP_Endpoint_Stack_0.3.md
-13. authoritative/DACP_Application_Implementation_Authorization_0.6.md when application implementation is germane.
+13. authoritative/DACP_Application_Implementation_Authorization_0.7.md when application implementation or VPS administration is germane.
 14. tests/DACP_0.1.7_DELTA_Regression_Matrix.md when action-gating/regression evidence is germane.
 15. authoritative/DACP_Governance_Supersession_Notice_0.4.md when smoke-test history matters.
 16. predecessor specifications only for provenance/comparison.
@@ -76,9 +77,9 @@ A required persistence, evidence, state, or handoff pipe is operational only aft
 
 ## Application implementation status
 
-Application implementation remains authorized through authoritative/DACP_Application_Implementation_Authorization_0.6.md.
+Application implementation remains authorized through authoritative/DACP_Application_Implementation_Authorization_0.7.md.
 
-Claude and ChatGPT are both authorized implementation executors, used one at a time as Gene chooses (Authorization 0.6). Shared working state: projects/skyhawk/LOST-D.md.
+Claude and ChatGPT are both authorized implementation executors, used one at a time as Gene chooses (Authorization 0.7). A controlled Skyhawk VPS administration path is also authorized within the 2026-09-30 decision boundaries. Shared working state: projects/skyhawk/LOST-D.md.
 
 Delta corpus activation does not itself prove that existing application code enforces CAR/ECR/SRR. That migration must be implemented and regression-tested separately.
 
