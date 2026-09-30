@@ -1,0 +1,192 @@
+SKYHAWK AI REPORT
+Task: reunion-photo-css-owner
+Generated: 2026-09-30T16:38:52Z
+Report-ID: 20260930T163852Z-reunion-photo-css-owner
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+=== LIBRARY REFERENCES ===
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.libraries.yml:4:      css/skyhawk-global.css: {  }
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:8:function skyhawk_site_fixes_page_attachments(array &$attachments) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:9:  $attachments['#attached']['library'][] = 'skyhawk_site_fixes/global';
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:12:function skyhawk_site_fixes_preprocess_menu(array &$variables) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:30:function skyhawk_site_fixes_preprocess_menu__main(&$variables) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:44:function skyhawk_site_fixes_file_download($uri) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:66:function skyhawk_site_fixes_node_insert(\Drupal\node\NodeInterface $node) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:112:    $result = $mailer->mail('skyhawk_site_fixes', 'journal_blast', $email, $langcode,
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:127:function skyhawk_site_fixes_mail($key, &$message, $params) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:255:function skyhawk_site_fixes_theme($existing, $type, $theme, $path) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:269:function skyhawk_site_fixes_preprocess_views_view_field(&$variables) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:284:function skyhawk_site_fixes_cron() {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:296:      \Drupal::logger('skyhawk_site_fixes')->notice(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:323:function skyhawk_site_fixes_page_attachments_alter(array &$attachments): void {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:380:        'skyhawk_site_fixes/squadron';
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:425:      'skyhawk_site_fixes/legacy';
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:437:function skyhawk_site_fixes_gabby_unit_key(string $value): string {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:463:function skyhawk_site_fixes_gabby_unit_map(): array {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:578:function skyhawk_site_fixes_form_views_exposed_form_alter(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:650:    skyhawk_site_fixes_gabby_unit_map();
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:653:    'skyhawk_site_fixes/gabby_unit_autocomplete';
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:669:function skyhawk_site_fixes_views_query_alter(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:696:    skyhawk_site_fixes_gabby_unit_map();
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:699:    skyhawk_site_fixes_gabby_unit_key(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:707:      skyhawk_site_fixes_gabby_unit_key(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:791:function skyhawk_site_fixes_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:793:    $build["#attached"]["library"][] = "skyhawk_site_fixes/model_build";
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:944:function skyhawk_site_fixes_preprocess_views_view(array &$variables) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:946:    $variables["#attached"]["library"][] = "skyhawk_site_fixes/modeling_review";
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:950:function skyhawk_site_fixes_entity_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:952:    $build["#attached"]["library"][] = "skyhawk_site_fixes/modeling_review";
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:967:function skyhawk_site_fixes_preprocess_node(array &$variables): void {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1010:function skyhawk_site_fixes_form_alter(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1017:  if (!$object instanceof \Drupal\skyhawk_site_fixes\Form\UploadTokenAdminForm) {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1043:    \Drupal\skyhawk_site_fixes\IntakePurpose::options();
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1084:function skyhawk_site_fixes_mail_alter(array &$message): void {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1085:  if (($message['module'] ?? '') !== 'skyhawk_site_fixes') {
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1135:      \Drupal\skyhawk_site_fixes\IntakePurpose::instructions(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1157:function skyhawk_site_fixes_form_node_reunion_event_edit_form_alter(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1164:      'skyhawk_site_fixes.reunion_ready_room_manage'
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1296:          'skyhawk_site_fixes.reunion_worker',
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1465:function skyhawk_site_fixes_form_skyhawk_upload_token_admin_form_alter(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1679:function skyhawk_site_fixes_form_user_login_form_alter(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1694:    'skyhawk_site_fixes_user_login_message_validate';
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1700:function skyhawk_site_fixes_user_login_message_validate(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1760:function skyhawk_site_fixes_form_user_pass_alter(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1779:function skyhawk_site_fixes_form_user_pass_reset_alter(
+web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:1805:function skyhawk_site_fixes_preprocess_status_messages(
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:8:function skyhawk_site_fixes_page_attachments(array &$attachments) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:9:  $attachments['#attached']['library'][] = 'skyhawk_site_fixes/global';
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:12:function skyhawk_site_fixes_preprocess_menu(array &$variables) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:30:function skyhawk_site_fixes_preprocess_menu__main(&$variables) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:44:function skyhawk_site_fixes_file_download($uri) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:66:function skyhawk_site_fixes_node_insert(\Drupal\node\NodeInterface $node) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:112:    $result = $mailer->mail('skyhawk_site_fixes', 'journal_blast', $email, $langcode,
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:127:function skyhawk_site_fixes_mail($key, &$message, $params) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:223:function skyhawk_site_fixes_theme($existing, $type, $theme, $path) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:237:function skyhawk_site_fixes_preprocess_views_view_field(&$variables) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:252:function skyhawk_site_fixes_cron() {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:264:      \Drupal::logger('skyhawk_site_fixes')->notice(
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:291:function skyhawk_site_fixes_page_attachments_alter(array &$attachments): void {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:348:        'skyhawk_site_fixes/squadron';
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:393:      'skyhawk_site_fixes/legacy';
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:405:function skyhawk_site_fixes_gabby_unit_key(string $value): string {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:431:function skyhawk_site_fixes_gabby_unit_map(): array {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:546:function skyhawk_site_fixes_form_views_exposed_form_alter(
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:618:    skyhawk_site_fixes_gabby_unit_map();
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:621:    'skyhawk_site_fixes/gabby_unit_autocomplete';
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:637:function skyhawk_site_fixes_views_query_alter(
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:664:    skyhawk_site_fixes_gabby_unit_map();
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:667:    skyhawk_site_fixes_gabby_unit_key(
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:675:      skyhawk_site_fixes_gabby_unit_key(
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:759:function skyhawk_site_fixes_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:761:    $build["#attached"]["library"][] = "skyhawk_site_fixes/model_build";
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:765:function skyhawk_site_fixes_preprocess_views_view(array &$variables) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:767:    $variables["#attached"]["library"][] = "skyhawk_site_fixes/modeling_review";
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:771:function skyhawk_site_fixes_entity_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:773:    $build["#attached"]["library"][] = "skyhawk_site_fixes/modeling_review";
+web/modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:788:function skyhawk_site_fixes_preprocess_node(array &$variables): void {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:8:function skyhawk_site_fixes_page_attachments(array &$attachments) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:9:  $attachments['#attached']['library'][] = 'skyhawk_site_fixes/global';
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:12:function skyhawk_site_fixes_preprocess_menu(array &$variables) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:30:function skyhawk_site_fixes_preprocess_menu__main(&$variables) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:44:function skyhawk_site_fixes_file_download($uri) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:66:function skyhawk_site_fixes_node_insert(\Drupal\node\NodeInterface $node) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:112:    $result = $mailer->mail('skyhawk_site_fixes', 'journal_blast', $email, $langcode,
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:127:function skyhawk_site_fixes_mail($key, &$message, $params) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:223:function skyhawk_site_fixes_theme($existing, $type, $theme, $path) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:237:function skyhawk_site_fixes_preprocess_views_view_field(&$variables) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:252:function skyhawk_site_fixes_cron() {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:264:      \Drupal::logger('skyhawk_site_fixes')->notice(
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:291:function skyhawk_site_fixes_page_attachments_alter(array &$attachments): void {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:348:        'skyhawk_site_fixes/squadron';
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:393:      'skyhawk_site_fixes/legacy';
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:405:function skyhawk_site_fixes_gabby_unit_key(string $value): string {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:431:function skyhawk_site_fixes_gabby_unit_map(): array {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:546:function skyhawk_site_fixes_form_views_exposed_form_alter(
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:618:    skyhawk_site_fixes_gabby_unit_map();
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:621:    'skyhawk_site_fixes/gabby_unit_autocomplete';
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:637:function skyhawk_site_fixes_views_query_alter(
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:664:    skyhawk_site_fixes_gabby_unit_map();
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:667:    skyhawk_site_fixes_gabby_unit_key(
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:675:      skyhawk_site_fixes_gabby_unit_key(
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:759:function skyhawk_site_fixes_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:761:    $build["#attached"]["library"][] = "skyhawk_site_fixes/model_build";
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:765:function skyhawk_site_fixes_preprocess_views_view(array &$variables) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:767:    $variables["#attached"]["library"][] = "skyhawk_site_fixes/modeling_review";
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:771:function skyhawk_site_fixes_entity_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:773:    $build["#attached"]["library"][] = "skyhawk_site_fixes/modeling_review";
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:788:function skyhawk_site_fixes_preprocess_node(array &$variables): void {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:830:function skyhawk_site_fixes_form_alter(
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:837:  if (!$object instanceof \Drupal\skyhawk_site_fixes\Form\UploadTokenAdminForm) {
+web/modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:844:    '#options' => \Drupal\skyhawk_site_fixes\IntakePurpose::options(),
+
+=== SOURCE CSS ===
+  File: web/modules/custom/skyhawk_site_fixes/css/skyhawk-global.css
+  Size: 65692     	Blocks: 144        IO Block: 4096   regular file
+Device: 804h/2052d	Inode: 104916066   Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1475/  darwus)   Gid: ( 1480/  darwus)
+Access: 2026-09-30 16:36:17.022742004 +0000
+Modify: 2026-09-30 16:36:12.967707748 +0000
+Change: 2026-09-30 16:36:12.967707748 +0000
+ Birth: 2026-09-28 17:16:35.535326006 +0000
+2530:/* REUNION PHOTO ACTIONS */
+
+=== CSS PERFORMANCE CONFIG ===
+'system.performance:css':
+  preprocess: true
+  compress: true
+
+
+=== LIBRARIES FILE ===
+global:
+  css:
+    theme:
+      css/skyhawk-global.css: {  }
+legacy:
+  css:
+    theme:
+      css/legacy.css: {  }
+squadron:
+  css:
+    theme:
+      css/squadron.css: {  }
+  js:
+    js/squadron.js: {  }
+  dependencies:
+    - core/drupal
+    - core/once
+gabby_unit_autocomplete:
+  js:
+    js/gabby-unit-autocomplete.js: {  }
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/drupalSettings
+model_build:
+  version: 1.x
+  css:
+    theme:
+      css/model-build.css: {  }
+modeling_review:
+  version: 1.x
+  css:
+    theme:
+      css/modeling-review.css: {  }
+upload_transition_observer:
+  version: 20260825T152347Z-2795997
+  js:
+    js/upload_transition_observer.js: {  }
+upload_token_public:
+  version: 20260825T205540Z-3404996
+  css:
+    theme:
+      css/upload_token_public.css: {  }
+
+upload_token_auto_upload:
+  js:
+    js/upload-token-auto-upload.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+===== END =====
