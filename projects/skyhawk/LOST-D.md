@@ -22,7 +22,10 @@
 - VERIFIED: passwordless key authentication succeeds from the Mac with `ssh -a Inmotion`; remote identity returned host `vps142898.inmotionhosting.com`, user `n790725`, uid 1001.
 - Root public-key login was not the working path because `/root/.ssh/authorized_keys` does not exist. The same Mac key is already authorized for `n790725`, as confirmed by the VPS auth log and independent Mac login test.
 - Preserve Gene's already-open root session until elevated migration work no longer needs it. Routine migration access should use `ssh -a Inmotion`; escalate only when required.
-- NEXT: inspect current staged migration tree and runtime parity from the working `Inmotion` alias, then continue VPS reconstruction without repeating discovery or bulk transfer.
+- VERIFIED 2026-09-30: PHP 8.4.24 itself is healthy when it loads the system PCRE2 from `/lib64`; the failure was caused by PHP 8.4 resolving an incompatible manually installed PCRE2 from `/usr/local/lib`. A scoped systemd drop-in for `php-fpm84.service` now sets `LD_LIBRARY_PATH=/lib64`. Root-side FPM config test passed and `php-fpm84.service` is active. This repair does not alter PHP 8.2, the global PCRE installation, Drupal, or production.
+- VERIFIED: the migrated public-files tree is present under the VPS migration workspace at about 22 GB. The account web root remains essentially empty apart from the CWP placeholder page.
+- VERIFIED: the current CWP-generated temporary vhost for account `n790725` points to `/home/n790725/public_html` and still routes PHP through the PHP 8.2 FPM socket. HTTPS is not yet listening on the VPS test IP, and `a4skyhawk.us` still resolves to the old host, so no DNS or public cutover has occurred.
+- NEXT: identify and use the CWP-owned PHP-version/vhost mechanism to move the test account from PHP 8.2 to the now-working PHP 8.4 FPM, then reconstruct the Drupal application into the account web root from Git + database + already-transferred files. Do not hand-edit generated vhost files unless CWP ownership is proven unsuitable.
 
 ## Operating facts (non-secret)
 - VPS administration path: AUTHORIZED BUT NOT YET QUALIFIED. Do not rely on it until end-to-end request, execution, result read-back, and verification have passed for the assigned executor. Provider-policy compliance is a hard gate.
