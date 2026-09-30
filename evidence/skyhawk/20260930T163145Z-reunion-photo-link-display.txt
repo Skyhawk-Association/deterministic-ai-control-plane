@@ -1,0 +1,20 @@
+SKYHAWK AI REPORT
+Task: reunion-photo-link-display
+Generated: 2026-09-30T16:31:45Z
+Report-ID: 20260930T163145Z-reunion-photo-link-display
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+=== REUNION LINKS FIELD GROUP ===
+'core.entity_view_display.node.reunion_event.default:third_party_settings.field_group.group_reunion_links': null
+
+
+=== PHOTO FIELD DISPLAY ===
+'core.entity_view_display.node.reunion_event.default:content.field_reunion_photos_link': null
+
+
+=== UPLOAD FIELD DISPLAY ===
+'core.entity_view_display.node.reunion_event.default:content.field_reunion_upload_link': null
+
+===== END =====
