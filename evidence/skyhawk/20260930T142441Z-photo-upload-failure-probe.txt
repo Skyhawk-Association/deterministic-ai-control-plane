@@ -1,0 +1,74 @@
+SKYHAWK AI REPORT
+Task: photo upload failure probe
+Generated: 2026-09-30T14:24:41Z
+Report-ID: 20260930T142441Z-photo-upload-failure-probe
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+== form page (anonymous)
+HTTP 200
+      1 Allowed types: jpg jpeg png webp avif heic heif.
+      2 file-upload
+      1 type="file"
+status=open open= close=
+  limit_total=null
+  limit_user=null
+  form_login=null
+  form_close_message=""
+  submission_login=null
+FILE ELEMENT photos type=webform_image_file max_filesize=12 MB exts=jpg jpeg png webp avif heic heif multiple=20 uri_scheme=public
+submissions=30
+last submission 2026-09-28 11:55 completed=1
+webform default max upload=(php limit)
+private path=/home/darwus/drupalbeta/web/private
+== php limits
+upload_max_filesize=512M post_max_size=512M max_file_uploads=20
+(site up: 200)
+== private files dir
+drwxr-xr-x 10 darwus darwus 4096 Aug 30 23:59 /home/darwus/drupalbeta/web/private
+drwxrwxr-x  4 darwus darwus 4096 Sep 13 22:07 /home/darwus/drupalbeta/web/private/webform
+/dev/sda4       3.5T  2.5T  904G  74% /home/darwus
+/dev/sda4       3.5T  2.5T  904G  74% /home/darwus
+== recent upload-related log entries (last 40, emails scrubbed)
+909254	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909253	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909252	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909251	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909250	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909249	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909248	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909247	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909246	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909245	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909243	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	http://www.sky
+909242	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	http://www.sky
+909241	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://www.sk
+909240	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://www.sk
+909239	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909238	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909237	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909236	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909235	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	http://www.sky
+909234	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	http://www.sky
+909233	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909232	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909231	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909230	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909229	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909228	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909227	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909226	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909225	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909224	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909223	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://www.sk
+909222	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://www.sk
+909221	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://www.sk
+909220	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://www.sk
+909219	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909218	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909217	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909216	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+909214	php	Deprecated function: ini_set(): session.sid_bits_per_character INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of	Debug	https://skyhaw
+909213	php	Deprecated function: ini_set(): session.sid_length INI setting is deprecated in Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage->setOptions() (line 341 of /home/darwu	Debug	https://skyhaw
+===== END =====
