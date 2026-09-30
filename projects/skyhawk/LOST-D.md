@@ -62,6 +62,13 @@
 
 ## Active slice: Reunion system
 
+### 2026-09-30 photo links and destinations
+- VERIFIED LIVE: the 2026 Reunion page exposes two sensible photo actions: `View Reunion Photos` -> `/reunions/2026/photos` and `Upload Reunion Photos` -> `/form/reunion-2026-photo-upload`.
+- Independent public verification returned HTTP 200 for both destinations. The gallery title is `2026 Reunion Photos | The Skyhawk Association`; the upload destination is the live `reunion_2026_photo_upload` Webform with title `2026 Reunion Photo Upload | The Skyhawk Association`.
+- The two-link objective is therefore satisfied at the landing-page/navigation layer. Do not reopen that placement unless new contradictory evidence appears.
+- OPEN: reproduce the previously reported photo-upload failure during an actual submission and repair only that failing layer if it still exists.
+
+
 ### Reunion hub photo-link defect — 2026-09-30 handoff
 - Public `/reunions` currently renders the redesigned Reunion hub but does not show links to the working 2026 photo gallery or upload form.
 - Public endpoints independently verified reachable: `/reunions/2026/photos` and `/form/reunion-2026-photo-upload`.
