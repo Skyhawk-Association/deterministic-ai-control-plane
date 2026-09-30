@@ -34,7 +34,7 @@
 - Styling: one global stylesheet `skyhawk_site_fixes/css/skyhawk-global.css` and its semantic vocabulary (skyhawk-focus, -feature, -context, -note, -reference; modifiers -navy, -marine, -joint, -heritage; skyhawk-focus-label).
 
 ## Active slice: Squadron CMS, VMA-131 test build
-**Last verified step:** Squadron identity tint DONE (skyhawk.org e844788, verified visually by Gene 2026-09-28): invisible unit marker from the hidden unit taxonomy (View squadron_actions, eva_identity) + SQUADRON IDENTITY TINT section in skyhawk-global.css. DECIDED: U.S. Marine Corps = scarlet and gold; every other affiliation (Navy, Foreign, Civilian, Joint, Reference) = blue and gold. Lesson: do not verify served CSS through the anonymous home page (page-cached); verify on the target page after Ctrl+F5.
+**Last verified step:** Reunion hub /reunions (node 49769, production s19522) now shows the 2026 photo section (Photos from Arlington; View and Upload Reunion Photos), inserted before Planning a Reunion?, new revision; public page verified. The defect was a missing section, not an ownership problem.
 
 **State**
 - Content type `squadron`: identity, snapshot, story, people, featured story, aircraft, remember and research fields, plus the 14 detailed-record sections. Legacy body kept but hidden. Tabbed edit form (Field Group).
