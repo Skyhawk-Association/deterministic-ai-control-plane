@@ -156,6 +156,8 @@ Behaviors to increase:
 
 - Automatic forward progression and next-step continuity from the AI.
 
+- When the next state is executable and current evidence is sufficient to construct it safely, include the executable block in the same response. Do not make Gene send a separate "code", "go", or equivalent prompt merely to obtain the already-determined next command. A separate human turn is required only for a genuine human-only boundary, unresolved material decision, missing evidence, or governed stop.
+
 Friction indicators to reduce:
 
 - User reminders that the AI failed to reread or follow the Rules.
