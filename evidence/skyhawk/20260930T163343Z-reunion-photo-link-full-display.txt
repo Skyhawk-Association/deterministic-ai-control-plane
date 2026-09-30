@@ -1,0 +1,63 @@
+SKYHAWK AI REPORT
+Task: reunion-photo-link-full-display
+Generated: 2026-09-30T16:33:43Z
+Report-ID: 20260930T163343Z-reunion-photo-link-full-display
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+=== FULL DISPLAY FIELD GROUP ===
+'core.entity_view_display.node.reunion_event.full:third_party_settings.field_group.group_reunion_links':
+  children:
+    - field_registration_link
+    - field_reunion_photos_link
+    - field_reunion_upload_link
+  label: 'Reunion links'
+  parent_name: ''
+  region: content
+  weight: 49
+  format_type: html_element
+  format_settings:
+    classes: 'skyhawk-feature skyhawk-reunion-links'
+    show_empty_fields: false
+    id: reunion-links
+    label_as_html: false
+    element: div
+    show_label: false
+    label_element: h3
+    label_element_classes: ''
+    attributes: ''
+    effect: none
+    speed: fast
+
+
+=== FULL DISPLAY PHOTO FIELD ===
+'core.entity_view_display.node.reunion_event.full:content.field_reunion_photos_link':
+  type: link
+  label: hidden
+  settings:
+    trim_length: 0
+    url_only: false
+    url_plain: false
+    rel: ''
+    target: ''
+  third_party_settings: {  }
+  weight: 51
+  region: content
+
+
+=== FULL DISPLAY UPLOAD FIELD ===
+'core.entity_view_display.node.reunion_event.full:content.field_reunion_upload_link':
+  type: link
+  label: hidden
+  settings:
+    trim_length: 0
+    url_only: false
+    url_plain: false
+    rel: ''
+    target: ''
+  third_party_settings: {  }
+  weight: 52
+  region: content
+
+===== END =====
