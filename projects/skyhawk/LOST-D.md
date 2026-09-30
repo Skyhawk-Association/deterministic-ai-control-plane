@@ -61,6 +61,15 @@
 
 ## Active slice: Reunion system
 
+### Reunion hub photo-link defect — 2026-09-30 handoff
+- Public `/reunions` currently renders the redesigned Reunion hub but does not show links to the working 2026 photo gallery or upload form.
+- Public endpoints independently verified reachable: `/reunions/2026/photos` and `/form/reunion-2026-photo-upload`.
+- Public `/reunions` HTML identifies the page as node 49769 and still lacks the intended strings `2026 REUNION PHOTOS`, `Photos from Arlington`, `View Reunion Photos`, and `Upload Reunion Photos` even after cache-busting requests and Drupal cache rebuild.
+- First mutation attempt falsely appeared successful because PHP was invoked on the shell-wrapper `vendor/bin/drush`; the launcher script was printed instead of Drush running. Do not treat that marker as evidence of a Drupal mutation.
+- Correct direct Drush read-only inspection from `/home/darwus/drupalbeta` returned `FAIL: node 49769 not found`. This is the current blocking contradiction: the public page claims node 49769 while the A2 Drupal instance reached by the canonical project root does not load that node.
+- Next step: Claude should resolve the execution-context/site-ownership mismatch before any further mutation. Determine which Drupal/database actually serves public `/reunions`, then modify the true owner and independently verify the public outcome.
+
+
 **Source continuity:** Gene authorized project-chat reconstruction on 2026-09-28. Relevant prior project chat: `Reunion Page Setup`. The durable statements below are cross-checked against current `skyhawk.org` source/config on `origin/main`; chat history is continuity evidence, not authority.
 
 **Verified working 2026 photo path**
