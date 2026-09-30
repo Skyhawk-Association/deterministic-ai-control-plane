@@ -1,0 +1,24 @@
+SKYHAWK AI REPORT
+Task: reunion hub 49769 structure
+Generated: 2026-09-30T14:17:35Z
+Report-ID: 20260930T141735Z-reunion-hub-49769-structure
+Host: s19522
+Working directory: /home/darwus
+Drupal root: /home/darwus/drupalbeta/web
+===== OUTPUT =====
+HOST s19522.use2.stableserver.net
+type=page published=1 rev=68246
+FIELD body (text_with_summary) has value
+body_len=974 format=full_html
+  body mentions "2026": 0
+  body mentions "Arlington": 0
+  body mentions "Photo": 0
+  body mentions "photo": 0
+  body mentions "Upload": 0
+  body mentions "upload": 0
+--- body headings/links ---
+  <h2> Reconnect. Remember. Keep the story moving.
+  <h2> Planning a Reunion?
+  link /ready-room/reunions/request
+  link /ready-room/reunions
+===== END =====
