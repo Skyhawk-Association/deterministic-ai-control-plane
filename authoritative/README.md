@@ -18,6 +18,7 @@ ACTIVE:
 - DACP_Decision_Record_2026-09-27_Required_Pipe_Qualification.md
 - DACP_Decision_Record_2026-09-30_VPS_Executor_Authorization.md
 - DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md
+- DACP_Governance_Status_Audit_2026-10-02.md
 - DACP_Heuristics_Specification_0.1.4.md
 - DACP_Governance_Supersession_Notice_0.4.md
 - DACP_Decision_Record_2026-09-23_Executor_Transfer.md (decision 2 corrected by the next record)
