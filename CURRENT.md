@@ -2,6 +2,7 @@
 
 ## Change Synopsis
 
+- 2026-10-02 (Gene decision; authoritative/DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md): activates the reality-conformance heuristic, "The world doesn't adjust to me, I adjust to the world." Verified external reality outranks model confidence and contradicted plans must be revised before adding assumption-preserving machinery.
 - 2026-09-30 (Gene decision; authoritative/DACP_Decision_Record_2026-09-30_VPS_Executor_Authorization.md): controlled VPS administration path authorized for Skyhawk migration and ongoing administration; provider-policy compliance, least privilege, auditability, and complete pipe qualification are mandatory. Application Implementation Authorization 0.7 supersedes 0.6.
 - 2026-09-27 (Gene decision; authoritative/DACP_Decision_Record_2026-09-27_Required_Pipe_Qualification.md): required persistence/evidence/state/handoff pipes must prove write -> persist -> consumer read-back -> verify -> continue for the intended executor; adapter failure requires authorized alternate-route resolution before capability failure or human transport.
 - 2026-09-27 (Gene decision; authoritative/DACP_Decision_Record_2026-09-27_Dual_Executors.md): Claude and ChatGPT are both authorized executors, one at a time; Application Implementation Authorization 0.6; Skyhawk LOST-D, Rules and Environment Reference now live under projects/skyhawk/.
@@ -25,7 +26,7 @@
 **Specification version:** 0.1.7-DELTA
 **Specification status:** AUTHORITATIVE / ACTIVE / GENE DECISION
 **Activation decision:** authoritative/DACP_0.1.7_DELTA_Activation_2026-09-18.md
-**Verified specification Git blob:** 69eee83df64bd0a36e394ea38176348de2834938
+**Verified specification Git blob:** 3d1f9b2552cbbfd5857cdbf22fe2e0e3e685d7c6
 
 **Predecessor specification:** docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md
 **Predecessor status:** SUPERSEDED AS ACTIVE / PRESERVED AS PROVENANCE
@@ -51,7 +52,8 @@ Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.g
 13. authoritative/DACP_Application_Implementation_Authorization_0.7.md when application implementation or VPS administration is germane.
 14. tests/DACP_0.1.7_DELTA_Regression_Matrix.md when action-gating/regression evidence is germane.
 15. authoritative/DACP_Governance_Supersession_Notice_0.4.md when smoke-test history matters.
-16. predecessor specifications only for provenance/comparison.
+16. authoritative/DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md when contradiction/reorientation is germane.
+17. predecessor specifications only for provenance/comparison.
 
 ## Operational state
 
@@ -61,9 +63,11 @@ For nontrivial or consequential work, resolve current private state when authori
 
 ## Active runtime
 
-Delta's governing distinction is:
+Delta's governing distinctions are:
 
 **retrieved control != applied control**
+
+**verified reality > model confidence**
 
 For every material executable action, external mutation, destructive action, or material readiness/success claim, bind a Control Application Receipt. Resolve exact authority, source identity, current state, execution context/operator position, target owner, consequence/reversibility, human boundary, success evidence, verifier, and stop behavior before action.
 
