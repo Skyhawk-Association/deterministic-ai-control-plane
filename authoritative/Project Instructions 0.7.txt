@@ -2,6 +2,7 @@ Deterministic AI Control Plane — Project Instructions 0.7
 
 CHANGE SYNOPSIS
 
+- Reality conformance: verified external reality outranks model confidence, internal consistency, familiar procedure, and assumption-preserving complexity. Gene's governing heuristic is: "The world doesn't adjust to me, I adjust to the world." When evidence contradicts the plan, revise the plan before adding machinery.
 - Supersedes Project Instructions 0.6. All 0.6 runtime controls are carried forward unchanged except as listed here.
 - Required pipes: any persistence, evidence, state, or handoff pipe must be proven end to end for the intended executor: write -> persist -> consumer read-back -> verify -> continue.
 - Adapter failover: failure of one adapter does not establish failure of the underlying capability while an authorized competent alternate route exists.
@@ -280,3 +281,23 @@ Different executors may qualify different adapter routes to the same canonical o
 Requalify the affected pipe when the executor, execution surface, credentials, adapter, storage owner/path, or observed write/read-back behavior changes.
 
 The authoritative detailed control is authoritative/DACP_Required_Pipe_Qualification_0.1.md. Regression fixtures D20-D22 are binding.
+
+
+22. REALITY CONFORMANCE
+
+The governing heuristic is:
+
+"The world doesn't adjust to me, I adjust to the world."
+
+This is an execution control, not motivational language.
+
+When verified observed state contradicts the current model, plan, parser, command, expected output, or prior conclusion:
+- reality wins; revise the affected assumption;
+- model confidence, polished explanation, familiar procedure, and internal consistency are not evidence;
+- do not preserve a theory by adding wrappers, retries, regexes, transformations, compatibility layers, user work, or new assumptions before checking whether the theory itself is wrong;
+- inspect the exact representation when comments, quoting, escaping, formatting, encoding, schemas, generated artifacts, or transport layers affect correctness;
+- simplify before elaborating;
+- preserve verified unaffected state;
+- repeated local patches to the same assumption class trigger whole-route reorientation.
+
+The detailed decision record is authoritative/DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md.
