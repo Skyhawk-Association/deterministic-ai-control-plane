@@ -2,6 +2,7 @@
 
 ## Change Synopsis
 
+- 2026-10-02 (status correction under Operational Use and Correction Authority 0.2; authoritative/DACP_Governance_Status_Audit_2026-10-02.md): resolves stale approval/status ambiguity, confirms Heuristics 0.1.4 and Application Implementation Authorization 0.7 as active, records that no specific live Gene-approval item is established by current canonical/private evidence, and adds D24 status-precedence regression.
 - 2026-10-02 (Gene decision; authoritative/DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md): activates the reality-conformance heuristic, "The world doesn't adjust to me, I adjust to the world." Verified external reality outranks model confidence and contradicted plans must be revised before adding assumption-preserving machinery.
 - 2026-09-30 (Gene decision; authoritative/DACP_Decision_Record_2026-09-30_VPS_Executor_Authorization.md): controlled VPS administration path authorized for Skyhawk migration and ongoing administration; provider-policy compliance, least privilege, auditability, and complete pipe qualification are mandatory. Application Implementation Authorization 0.7 supersedes 0.6.
 - 2026-09-27 (Gene decision; authoritative/DACP_Decision_Record_2026-09-27_Required_Pipe_Qualification.md): required persistence/evidence/state/handoff pipes must prove write -> persist -> consumer read-back -> verify -> continue for the intended executor; adapter failure requires authorized alternate-route resolution before capability failure or human transport.
@@ -53,7 +54,8 @@ Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.g
 14. tests/DACP_0.1.7_DELTA_Regression_Matrix.md when action-gating/regression evidence is germane.
 15. authoritative/DACP_Governance_Supersession_Notice_0.4.md when smoke-test history matters.
 16. authoritative/DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md when contradiction/reorientation is germane.
-17. predecessor specifications only for provenance/comparison.
+17. authoritative/DACP_Governance_Status_Audit_2026-10-02.md when approval/status ambiguity is germane.
+18. predecessor specifications only for provenance/comparison.
 
 ## Operational state
 
