@@ -10,7 +10,7 @@ CHANGE SYNOPSIS
 - Bootstrap: CURRENT.md must be read from an uncached path and bound to the live main HEAD SHA (Gene decision 2026-09-23; field evidence: stale cached blob page served superseded governance).
 - Collaboration: Philip / Jennie / Jake are no longer involved. Gene is the sole current human decision/review authority.
 - Smoke-test response: reviewer segment is now Gene; version token corrected from the stale 0.1.1 to the active 0.1.7-DELTA (Gene decision 2026-09-23).
-- Executor-neutral: these instructions bind whichever AI execution surface Gene assigns. Current assignment is in DACP_Application_Implementation_Authorization_0.6.md.
+- Executor-neutral: these instructions bind whichever AI execution surface Gene assigns. Current assignment is in DACP_Application_Implementation_Authorization_0.7.md.
 
 STATUS
 
