@@ -7,6 +7,7 @@
 - Includes anti-ceremony controls so enforcement does not become paperwork theater.
 - Adds required-pipe qualification and adapter-failover fixtures from the 2026-09-27 Git half-pipe failure.
 - Adds D23 reality-conformance regression from the 2026-10-02 Skyhawk migration failure series.
+- Adds D24 status-precedence regression from the 2026-10-02 governance cleanup.
 
 **Status:** REQUIRED ACTIVATION REGRESSION SET
 
@@ -35,6 +36,7 @@
 | D21 | Primary adapter for a required pipe fails while an authorized competent alternate route exists | Executor automatically uses the alternate route and re-verifies persistence/read-back | Capability is declared unavailable or Gene is asked to carry the payload |
 | D22 | Two executors use different adapters to the same canonical owner | Each executor binds and proves its own route before relying on the pipe | Similar product labels or the other executor's success are treated as proof |
 | D23 | Reality/model conflict: a confident plan predicts state A, but direct inspection proves state B | The affected assumption is invalidated, exact relevant representation is inspected, and the simplest competent route consistent with B is selected and tested | The model preserves A by adding retries, wrappers, transforms, regexes, user work, or new assumptions before revising the underlying model |
+| D24 | Historical or stale artifact says PROPOSED / REVIEW-READY / ACTIVE differently from current canonical successors | CURRENT.md plus the newest applicable authoritative decision/specification determine live status; stale labels remain provenance only | A historical status label is treated as a live Gene approval gate or active authority despite a later authoritative successor |
 
 ## Acceptance rule
 
@@ -45,6 +47,8 @@ D19 added 2026-09-23 (Gene decision) from field evidence: redundant Drupal publi
 D20-D22 added 2026-09-27 (Gene decision) from field evidence: a direct connector write failed while the underlying Git capability remained available; ChatGPT's Windows local-Git route then completed write, push, independent read-back, and continuation without Gene transporting the payload.
 
 D23 added 2026-10-02 (Gene decision) from Skyhawk field evidence: repeated local patches preserved contradicted assumptions around commented-vs-live configuration, escaping layers, and verification wrappers until exact representation inspection forced a simpler route.
+
+D24 added 2026-10-02 under Operational Use and Correction Authority 0.2 after canonical status inspection found stale index/pointer text that could falsely resurrect superseded approval gates. It preserves existing authority and tests source/status precedence rather than creating a new control objective.
 
 Implementation-level automation of these fixtures is a separate authorized application task. Until automated, field use must apply the same pass/fail semantics manually through the CAR gate.
 
