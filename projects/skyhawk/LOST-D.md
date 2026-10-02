@@ -345,3 +345,5 @@ Mutating Composer maintenance is not complete until functional acceptance, zero 
 
 This infrastructure workstream is closed. Reopen only if new evidence proves a defect or a future maintenance requirement changes.
 ```
+
+- SUPPORT CHECK 2026-10-02: Gmail search found no substantive InMotion support response newer than Ryan's 2026-09-30 message offering to create a deeper-investigation ticket. No supported per-account CWP PHP-FPM/vhost assignment method has been supplied by the provider. Controlled local ownership is therefore proceeding from verified server state with backups, config tests, reload verification, and rollback capability.
