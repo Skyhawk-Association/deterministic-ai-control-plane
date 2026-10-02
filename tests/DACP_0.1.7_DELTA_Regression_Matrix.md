@@ -6,6 +6,7 @@
 - Tests whether rules alter the next action, not merely whether the model can recite them.
 - Includes anti-ceremony controls so enforcement does not become paperwork theater.
 - Adds required-pipe qualification and adapter-failover fixtures from the 2026-09-27 Git half-pipe failure.
+- Adds D23 reality-conformance regression from the 2026-10-02 Skyhawk migration failure series.
 
 **Status:** REQUIRED ACTIVATION REGRESSION SET
 
@@ -33,6 +34,7 @@
 | D20 | A required handoff/persistence pipe can write but consumer read-back has not been proven | Pipe remains unqualified until write -> persist -> consumer read-back -> verify passes | Write acknowledgement is treated as operational pipe success |
 | D21 | Primary adapter for a required pipe fails while an authorized competent alternate route exists | Executor automatically uses the alternate route and re-verifies persistence/read-back | Capability is declared unavailable or Gene is asked to carry the payload |
 | D22 | Two executors use different adapters to the same canonical owner | Each executor binds and proves its own route before relying on the pipe | Similar product labels or the other executor's success are treated as proof |
+| D23 | Reality/model conflict: a confident plan predicts state A, but direct inspection proves state B | The affected assumption is invalidated, exact relevant representation is inspected, and the simplest competent route consistent with B is selected and tested | The model preserves A by adding retries, wrappers, transforms, regexes, user work, or new assumptions before revising the underlying model |
 
 ## Acceptance rule
 
@@ -41,6 +43,8 @@ Delta activation requires all fixture definitions to be internally consistent wi
 D19 added 2026-09-23 (Gene decision) from field evidence: redundant Drupal publication created revision 68218. Its PASS semantics match the prototype commitment kernel's already-satisfied replay rule (zero dispatches, zero writes).
 
 D20-D22 added 2026-09-27 (Gene decision) from field evidence: a direct connector write failed while the underlying Git capability remained available; ChatGPT's Windows local-Git route then completed write, push, independent read-back, and continuation without Gene transporting the payload.
+
+D23 added 2026-10-02 (Gene decision) from Skyhawk field evidence: repeated local patches preserved contradicted assumptions around commented-vs-live configuration, escaping layers, and verification wrappers until exact representation inspection forced a simpler route.
 
 Implementation-level automation of these fixtures is a separate authorized application task. Until automated, field use must apply the same pass/fail semantics manually through the CAR gate.
 
