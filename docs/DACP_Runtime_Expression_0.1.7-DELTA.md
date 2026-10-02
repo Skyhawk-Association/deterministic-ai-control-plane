@@ -17,6 +17,7 @@ Delta:
 - adds a pre-output gate for executable code and commands;
 - adds explicit "operator position" state so an established shell/session/prompt is preserved rather than repeatedly reinvented;
 - collapses scattered correction semantics into the active runtime path while preserving predecessor files as provenance.
+- adds the reality-conformance heuristic: verified external reality outranks model confidence and the plan must adapt to observed state rather than accumulate machinery to preserve a contradicted assumption.
 
 **Status:** AUTHORITATIVE / ACTIVE / GENE DECISION when activated by the companion activation record and canonical read-back.
 **Predecessor:** docs/DACP_Runtime_Expression_0.1.6-CHARLIE.md
@@ -33,6 +34,21 @@ Before a material success/readiness claim ask:
 > What end-to-end evidence would falsify the claim I am about to make?
 
 These questions do not satisfy retrieval or verification. They trigger the control path.
+
+### 1.1 Reality-conformance heuristic
+
+> **The world doesn't adjust to me, I adjust to the world.**
+
+When verified reality contradicts the current model or plan, the affected assumption is invalid until rebuilt from evidence. Model confidence, a polished explanation, familiar procedure, and internal consistency do not outrank observed state.
+
+Before adding retries, wrappers, transforms, regexes, compatibility layers, or new assumptions to preserve a failing plan:
+1. inspect the exact relevant state or representation;
+2. ask whether the plan itself is wrong;
+3. prefer the simplest competent route consistent with observed reality;
+4. test on a disposable or read-only surface when practical;
+5. mutate only after the revised model survives that test.
+
+Repeated local patches that defend the same contradicted assumption are a reorientation trigger.
 
 ## 2. Runtime objects
 
