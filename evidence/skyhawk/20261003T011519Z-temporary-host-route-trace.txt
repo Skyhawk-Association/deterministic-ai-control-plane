@@ -1,0 +1,29 @@
+=== PUBLIC DNS ===
+
+=== VPS ADDRESS ===
+lo               UNKNOWN        127.0.0.1/8 
+venet0           UNKNOWN        127.0.0.1/32 173.231.242.84/32 
+
+=== PUBLIC HTTP UNIQUE REQUEST ===
+curl: (6) Could not resolve host: \System.Management.Automation.Internal.Host.InternalHost
+
+=== PUBLIC HTTPS UNIQUE REQUEST ===
+curl: (6) Could not resolve host: \System.Management.Automation.Internal.Host.InternalHost
+
+=== SEARCH LOCAL NGINX/APACHE LOGS FOR MARKER ===
+MARKER_NOT_FOUND_LOCALLY
+
+=== DIRECT VPS HTTP CONTROL ===
+HTTP/1.1 400 Bad Request
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:15:22 GMT
+Content-Type: text/html; charset=iso-8859-1
+Content-Length: 266
+Connection: keep-alive
+Keep-Alive: timeout=60
+
+
+=== SEARCH DIRECT CONTROL MARKER ===
+/usr/local/apache/logs/access_log:2276:173.231.242.84 - - [02/Oct/2026:21:15:22 -0400] "GET /?\\skyhawk-route-20261003T011519Z-direct HTTP/1.0" 400 266
+
+TEMP_HOST_ROUTE_TRACE_COMPLETE
