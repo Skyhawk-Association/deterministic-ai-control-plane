@@ -1,0 +1,171 @@
+=== HOST RESOLUTION ===
+173.247.245.156 STREAM 1790723478a62e50832643ebc3.temporary.link
+173.247.245.156 DGRAM  
+173.247.245.156 RAW    
+
+=== SERVER ADDRESSES ===
+lo               UNKNOWN        127.0.0.1/8 
+venet0           UNKNOWN        127.0.0.1/32 173.231.242.84/32 
+
+=== APACHE TEMP VHOST EXACT CONTENT ===
+<VirtualHost 173.231.242.84:8181>
+	ServerName 1790723478a62e50832643ebc3.temporary.link
+	ServerAlias www.1790723478a62e50832643ebc3.temporary.link
+	ServerAdmin webmaster@1790723478a62e50832643ebc3.temporary.link
+	DocumentRoot /home/n790725/drupalbeta/web
+	UseCanonicalName Off
+	ScriptAlias /cgi-bin/ /home/n790725/drupalbeta/web/cgi-bin/
+
+	#CustomLog /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.bytes bytes
+	#CustomLog /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.log combined
+	ErrorLog /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.error.log
+
+	# Custom settings are loaded below this line (if any exist)
+	# IncludeOptional "/usr/local/apache/conf/userdata/n790725/1790723478a62e50832643ebc3.temporary.link/*.conf"
+	
+	<IfModule mod_setenvif.c>
+		SetEnvIf X-Forwarded-Proto "^https$" HTTPS=on
+	</IfModule>
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+		UserDir enabled n790725
+	</IfModule>
+
+	<IfModule mod_suexec.c>
+		SuexecUserGroup n790725 n790725
+	</IfModule>
+
+	<IfModule mod_suphp.c>
+		suPHP_UserGroup n790725 n790725
+		suPHP_ConfigPath /home/n790725
+	</IfModule>
+
+	<IfModule mod_ruid2.c>
+		RMode config
+		RUidGid n790725 n790725
+	</IfModule>
+
+	<IfModule itk.c>
+		AssignUserID n790725 n790725
+	</IfModule>
+
+	<Directory "/home/n790725/drupalbeta/web">
+		AllowOverride All
+		Require all granted
+	</Directory>
+
+	<IfModule proxy_fcgi_module>
+		<FilesMatch \.php$>
+			SetHandler "proxy:unix:/opt/alt/php-fpm84/usr/var/sockets/n790725.sock|fcgi://localhost"
+		</FilesMatch>
+	</IfModule>
+
+
+</VirtualHost>
+
+
+=== APACHE CORRECT-IP HOST TEST ===
+HTTP/1.1 200 OK
+Date: Fri, 02 Oct 2026 19:23:22 GMT
+Server: Apache/2.4.68 (Unix) OpenSSL/1.1.1k
+X-Powered-By: PHP/8.4.24
+Cache-Control: max-age=3600, public
+X-Drupal-Dynamic-Cache: MISS
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+Vary: Cookie,Accept-Encoding,User-Agent
+X-Generator: Drupal 11 (https://www.drupal.org)
+X-Drupal-Cache: HIT
+Last-Modified: Fri, 02 Oct 2026 19:23:22 GMT
+ETag: "1790969002"
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=utf-8
+
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'html' -->
+<!-- FILE NAME SUGGESTIONS:
+   Γû¬∩╕Å html--front.html.twig
+   Γû¬∩╕Å html--node--48562.html.twig
+   Γû¬∩╕Å html--node--%.html.twig
+   Γû¬∩╕Å html--node.html.twig
+   Γ£à html.html.twig
+-->
+<!-- ≡ƒÆí BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/html.html.twig' -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+<meta name="Generator" content="Drupal 11 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<link rel="canonical" href="http://1790723478a62e50832643ebc3.temporary.link/article/home" />
+<link rel="shortlink" href="http://1790723478a62e50832643ebc3.temporary.link/node/48562" />
+
+    <title>Home Page | The Skyhawk Association</title>
+    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_C4XMeVrGVSRIcC2FOFiDtBBBUaAOmkJSd0qg0qj3GqI.css?delta=0&amp;language=en&amp;theme=bootstrap_barrio&amp;include=eJyNjkEOwyAMBD8EzZOQoS5YATvCjii_bw7tJcmh152RdqKIqXXYQoTeSZb4GzwlYXXxVhhgqYSJRlchV4lQvdqsxPnKG6pCRg2jkOGVszzRJem4JGmbMLLp42x535D3kKTu7aj8U29A7HSdBcYa9HgPL3qjfpPvSMUMaTqdatiWCIofsdN6Ng" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_wZpz70MHx2x7gGf9Q9PDSlpsHcmML-w084qtdJP7I-U.css?delta=1&amp;language=en&amp;theme=bootstrap_barrio&amp;include=eJyNjkEOwyAMBD8EzZOQoS5YATvCjii_bw7tJcmh152RdqKIqXXYQoTeSZb4GzwlYXXxVhhgqYSJRlchV4lQvdqsxPnKG6pCRg2jkOGVszzRJem4JGmbMLLp42x535D3kKTu7aj8U29A7HSdBcYa9HgPL3qjfpPvSMUMaTqdatiWCIofsdN6Ng" />
+<link rel="stylesheet" media="all" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.0/yeti/bootstrap.min.css" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_MHJI-C_yvoEFAkcHMST1HxPwXtByUHnzN7w1ySZzVxg.css?delta=3&amp;language=en&amp;theme=bootstrap_barrio&amp;include=eJyNjkEOwyAMBD8EzZOQoS5YATvCjii_bw7tJcmh152RdqKIqXXYQoTeSZb4GzwlYXXxVhhgqYSJRlchV4lQvdqsxPnKG6pCRg2jkOGVszzRJem4JGmbMLLp42x535D3kKTu7aj8U29A7HSdBcYa9HgPL3qjfpPvSMUMaTqdatiWCIofsdN6Ng" />
+<link rel="stylesheet" media="print" href="/sites/default/files/css/css_pqb0UKbrtgXK61OYZpqMxo8SNG2QFfmGXuXFdycOjK0.css?delta=4&amp;language=en&amp;theme=bootstrap_barrio&amp;include=eJyNjkEOwyAMBD8EzZOQoS5YATvCjii_bw7tJcmh152RdqKIqXXYQoTeSZb4GzwlYXXxVhhgqYSJRlchV4lQvdqsxPnKG6pCRg2jkOGVszzRJem4JGmbMLLp42x535D3kKTu7aj8U29A7HSdBcYa9HgPL3qjfpPvSMUMaTqdatiWCIofsdN6Ng" />
+
+=== APACHE CORRECT-IP LOGIN TEST ===
+HTTP/1.1 200 OK
+Date: Wed, 30 Sep 2026 17:11:19 GMT
+Server: Apache/2.4.68 (Unix) OpenSSL/1.1.1k
+X-Powered-By: PHP/8.4.24
+Cache-Control: max-age=3600, public
+X-Drupal-Dynamic-Cache: HIT
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+Vary: Cookie,Accept-Encoding,User-Agent
+X-Generator: Drupal 11 (https://www.drupal.org)
+X-Drupal-Cache: HIT
+Last-Modified: Fri, 02 Oct 2026 19:23:22 GMT
+ETag: "1790969002"
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=utf-8
+
+<meta name="Generator" content="Drupal 11 (https://www.drupal.org)" />
+    <title>Log in | The Skyhawk Association</title>
+  <body class="layout-no-sidebars page-user-login path-user">
+                <a href="/user/login" class="nav-link nav-link--user-login is-active" data-drupal-link-system-path="user/login" aria-current="page">Log in</a>
+<form class="search-block-form search-form form-row" data-drupal-selector="search-block-form" action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8">
+<input title="Enter the terms you wish to search for." data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" class="form-search form-control" />
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper mb-3" id="edit-actions">
+<button data-drupal-selector="edit-submit" type="submit" id="edit-submit" value="Search" class="button js-form-submit form-submit btn btn-primary">Search</button>
+                          <a href="/" class="nav-link dropdown-toggle nav-link--" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" data-drupal-link-system-path="&lt;front&gt;">Association</a>
+                          <a href="/" class="nav-link--" data-drupal-link-system-path="&lt;front&gt;">Home</a>
+                          <a href="/reunions" class="nav-link--reunions" data-drupal-link-system-path="node/49769">Reunions</a>
+                          <a href="/page/faq-research-contact" class="nav-link--page-faq-research-contact" data-drupal-link-system-path="node/14">FAQ-Research-Contact</a>
+                          <a href="/article/notices" class="nav-link--article-notices" data-drupal-link-system-path="node/17">P.O.D./Notices / Requests</a>
+                          <a href="/page/skyhawk-association-leadership" class="nav-link--page-skyhawk-association-leadership" data-drupal-link-system-path="node/730">Association Leadership</a>
+                          <a href="/article/association-membership" class="nav-link--article-association-membership" data-drupal-link-system-path="node/18">Join Us</a>
+                          <a href="/page/scooter-ships-store-and-px" class="nav-link--page-scooter-ships-store-and-px" data-drupal-link-system-path="node/20">Ship&#039;s Store</a>
+                          <a href="/page/links" class="nav-link--page-links" data-drupal-link-system-path="node/21">Pertinent Links</a>
+                          <a href="/article/aviation-humor" class="nav-link--article-aviation-humor" data-drupal-link-system-path="node/33">Aviation Humor</a>
+                          <a href="/page/terms-use" class="nav-link--page-terms-use" data-drupal-link-system-path="node/71">Terms of Use</a>
+                          <a href="/page/navair-speak" class="nav-link--page-navair-speak" data-drupal-link-system-path="node/631">NavAir Speak</a>
+
+=== LOCAL PORT 443 CHECK ===
+NO_LOCAL_443_LISTENER
+
+=== PUBLIC HTTPS PEER ===
+subject=CN = www.1790723478a62e50832643ebc3.temporary.link
+issuer=C = US, O = Let's Encrypt, CN = YE1
+notBefore=Oct  2 06:09:55 2026 GMT
+notAfter=Dec 31 06:09:54 2026 GMT
+
+=== ROUTE TO PUBLIC HOST ===
+173.247.245.156 dev venet0 src 173.231.242.84 
+    cache 
+
+HTTPS_UPSTREAM_OWNER_DIAGNOSTIC_COMPLETE
