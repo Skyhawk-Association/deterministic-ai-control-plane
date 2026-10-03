@@ -1,0 +1,33 @@
+=== VPS IDENTITY ===
+vps142898.inmotionhosting.com
+
+=== DRUPAL REVERSE-PROXY SETTINGS ===
+353: * specified in $settings['reverse_proxy_addresses'] to work correctly.
+361: * reverse proxy IP address in $settings['reverse_proxy_addresses'].
+368:# $settings['reverse_proxy'] = TRUE;
+372: * This setting is required if $settings['reverse_proxy'] is TRUE.
+374:# $settings['reverse_proxy_addresses'] = ['a.b.c.d', ...];
+404:# $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED;
+694: * in $settings['trusted_host_patterns']. This should be an array of regular
+700: * $settings['trusted_host_patterns'] = [
+713: * $settings['trusted_host_patterns'] = [
+724:$settings['trusted_host_patterns'] = [
+
+=== HTTP BASELINE THROUGH APACHE ===
+<link rel="canonical" href="http://skyhawk.org/article/home" />
+<link rel="shortlink" href="http://skyhawk.org/node/48562" />
+
+=== SIMULATED HTTPS THROUGH REVERSE PROXY HEADERS ===
+<link rel="canonical" href="https://skyhawk.org/article/home" />
+<link rel="shortlink" href="https://skyhawk.org/node/48562" />
+
+=== SCHEME CLASSIFICATION ===
+HTTP_CANONICAL=rel="canonical" href="http://skyhawk.org/article/home"
+FORWARDED_HTTPS_CANONICAL=rel="canonical" href="https://skyhawk.org/article/home"
+FORWARDED_HTTPS_RECOGNIZED=YES
+
+=== LOGIN FORM HTTPS ACTION CHECK ===
+<form class="search-block-form search-form form-row" data-drupal-selector="search-block-form" action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8">
+<form class="user-login-form" data-drupal-selector="user-login-form" action="/user/login" method="post" id="user-login-form" accept-charset="UTF-8">
+
+RESULT=PRODUCTION_HTTPS_SCHEME_READINESS_CAPTURED
