@@ -1,0 +1,290 @@
+=== SOURCE HOST ===
+s19522.use2.stableserver.net
+
+=== CPANEL ACCOUNT IDENTITY ===
+uid=1475(darwus) gid=1480(darwus) groups=1480(darwus)
+darwus
+CPUSER=
+=== CPANEL PRIMARY / ADDON DOMAINS ===
+[2026-10-03 01:38:49 +0000] warn [uapi] Failed to execute /usr/local/cpanel/cpanel: No such file or directory
+Failed to execute /usr/local/cpanel/cpanel: No such file or directory at bin/apitool.pl line 278.
+
+=== CPANEL MAIL DOMAINS ===
+[2026-10-03 01:38:49 +0000] warn [uapi] Failed to execute /usr/local/cpanel/cpanel: No such file or directory
+Failed to execute /usr/local/cpanel/cpanel: No such file or directory at bin/apitool.pl line 278.
+
+=== MAILING LIST COUNT ===
+[2026-10-03 01:38:49 +0000] warn [uapi] Failed to execute /usr/local/cpanel/cpanel: No such file or directory
+Failed to execute /usr/local/cpanel/cpanel: No such file or directory at bin/apitool.pl line 278.
+
+=== ALL MAILING LISTS, NO DOMAIN FILTER ===
+[2026-10-03 01:38:49 +0000] warn [uapi] Failed to execute /usr/local/cpanel/cpanel: No such file or directory
+Failed to execute /usr/local/cpanel/cpanel: No such file or directory at bin/apitool.pl line 278.
+
+=== FORWARDER COUNT ===
+[2026-10-03 01:38:49 +0000] warn [uapi] Failed to execute /usr/local/cpanel/cpanel: No such file or directory
+Failed to execute /usr/local/cpanel/cpanel: No such file or directory at bin/apitool.pl line 278.
+
+=== ALL FORWARDERS, NO DOMAIN FILTER ===
+[2026-10-03 01:38:49 +0000] warn [uapi] Failed to execute /usr/local/cpanel/cpanel: No such file or directory
+Failed to execute /usr/local/cpanel/cpanel: No such file or directory at bin/apitool.pl line 278.
+
+=== DOMAIN FORWARDERS ===
+[2026-10-03 01:38:49 +0000] warn [uapi] Failed to execute /usr/local/cpanel/cpanel: No such file or directory
+Failed to execute /usr/local/cpanel/cpanel: No such file or directory at bin/apitool.pl line 278.
+
+=== MAIL ACCOUNTS ===
+[2026-10-03 01:38:49 +0000] warn [uapi] Failed to execute /usr/local/cpanel/cpanel: No such file or directory
+Failed to execute /usr/local/cpanel/cpanel: No such file or directory at bin/apitool.pl line 278.
+
+=== MX CONFIGURATION ===
+[2026-10-03 01:38:49 +0000] warn [uapi] Failed to execute /usr/local/cpanel/cpanel: No such file or directory
+Failed to execute /usr/local/cpanel/cpanel: No such file or directory at bin/apitool.pl line 278.
+
+=== CPANEL MAILMAN STORAGE DISCOVERY ===
+/usr/local/cpanel/3rdparty/share/ace-editor/optimized/src-min-noconflict/ext-modelist.js
+/usr/local/cpanel/3rdparty/share/ace-editor/optimized/src-min-noconflict/ext-themelist.js
+/usr/local/cpanel/3rdparty/share/bootstrap5/optimized/scss/_list-group.scss
+/usr/local/cpanel/3rdparty/share/fontawesome/svgs/brands/angellist.svg
+/usr/local/cpanel/3rdparty/share/fontawesome/svgs/solid/list-ul.svg
+/usr/local/cpanel/3rdparty/share/fontawesome/svgs/solid/th-list.svg
+/usr/local/cpanel/3rdparty/share/fontawesome/svgs/solid/list-alt.svg
+/usr/local/cpanel/3rdparty/share/fontawesome/svgs/solid/list.svg
+/usr/local/cpanel/3rdparty/share/fontawesome/svgs/solid/clipboard-list.svg
+/usr/local/cpanel/3rdparty/share/fontawesome/svgs/solid/assistive-listening-systems.svg
+/usr/local/cpanel/3rdparty/share/fontawesome/svgs/solid/list-ol.svg
+/usr/local/cpanel/3rdparty/share/fontawesome/svgs/regular/list-alt.svg
+/usr/local/cpanel/3rdparty/share/fontawesome/less/_list.less
+/usr/local/cpanel/3rdparty/share/fontawesome/scss/_list.scss
+/usr/local/cpanel/3rdparty/share/clamav/sigwhitelist.ign2
+/usr/local/cpanel/3rdparty/share/angular-ui-scroll/1.6.1/demo/multipleLists
+/usr/local/cpanel/3rdparty/share/angular-ui-scroll/1.6.1/demo/listScroller
+/usr/local/cpanel/3rdparty/share/angular-ui-scroll/1.6.1/demo/positionedList
+/usr/local/cpanel/3rdparty/share/man/man1/git-rev-list.1
+/usr/local/cpanel/3rdparty/share/man/man1/rrdlist.1
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Document/file-list-2-line.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Document/file-list-fill.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Document/file-list-2-fill.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Document/file-list-3-line.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Document/file-list-3-fill.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Document/file-list-line.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/System/list-settings-line.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/System/list-settings-fill.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Editor/list-unordered.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Editor/list-ordered.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Editor/list-check.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Editor/list-check-2.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Media/play-list-2-line.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Media/play-list-2-fill.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Media/play-list-line.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Media/play-list-add-line.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Media/play-list-fill.svg
+/usr/local/cpanel/3rdparty/share/remixicons/icons/Media/play-list-add-fill.svg
+/usr/local/cpanel/3rdparty/share/munin/plugins/mailman
+/usr/local/cpanel/3rdparty/share/bootstrap/optimized/js/respond.matchmedia.addListener.min.js
+/usr/local/cpanel/3rdparty/share/bootstrap/optimized/js/respond.matchmedia.addListener.src.js
+/usr/local/cpanel/3rdparty/share/bootstrap/source/less/list-group.less
+/usr/local/cpanel/3rdparty/libexec/git-core/git-rev-list
+/usr/local/cpanel/3rdparty/bin/lib/blacklist.txt
+/usr/local/cpanel/3rdparty/mailman
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/rmlist
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/listinfo
+/usr/local/cpanel/3rdparty/mailman/mail/mailman
+/usr/local/cpanel/3rdparty/perl/542/lib/x86_64-linux/List
+/usr/local/cpanel/3rdparty/perl/542/lib/Module/CoreList.pod
+/usr/local/cpanel/3rdparty/perl/542/lib/Module/CoreList
+/usr/local/cpanel/3rdparty/perl/542/lib/Module/CoreList.pm
+/usr/local/cpanel/3rdparty/perl/542/lib/ExtUtils/Liblist.pm
+/usr/local/cpanel/3rdparty/perl/542/lib/ExtUtils/Mksymlists.pm
+/usr/local/cpanel/3rdparty/perl/542/lib/ExtUtils/Packlist.pm
+/usr/local/cpanel/3rdparty/perl/542/lib/ExtUtils/Liblist
+/usr/local/cpanel/3rdparty/perl/542/bin/corelist
+/usr/local/cpanel/3rdparty/perl/542/bin/dmarc_update_public_suffix_list
+/usr/local/cpanel/3rdparty/perl/542/cpanel-lib/x86_64-linux/List
+/usr/local/cpanel/3rdparty/perl/542/cpanel-lib/List
+/usr/local/cpanel/3rdparty/perl/542/cpanel-lib/Pod/Wordlist.pm
+/usr/local/cpanel/3rdparty/perl/542/cpanel-lib/Data/OptList.pm
+/usr/local/cpanel/3rdparty/perl/542/cpanel-lib/File/Listing.pm
+/usr/local/cpanel/3rdparty/perl/536/lib/x86_64-linux/List
+/usr/local/cpanel/3rdparty/perl/536/lib/Module/CoreList
+/usr/local/cpanel/3rdparty/perl/536/lib/ExtUtils/Liblist
+
+=== USER-OWNED CPANEL MAIL DATA ===
+/home/darwus/skyhawk_backups/lostd-alias-20260830T155026Z-2211099
+/home/darwus/skyhawk_backups/lostd-alias-20260830T155026Z-2211099/alias-prestate.txt
+/home/darwus/[alias],
+/home/darwus/youtube-legacy-archive-20260815-235910/config-field.field.node.youtube.field_which_playlist_.txt
+/home/darwus/.cache/composer/files/consolidation/site-alias
+/home/darwus/.cache/composer/repo/https---repo.packagist.org/provider-consolidation~site-alias.json
+/home/darwus/.cache/composer/repo/https---repo.packagist.org/provider-consolidation~site-alias~dev.json
+/home/darwus/config_backup_20260524/views.view.mailing_lists.yml
+/home/darwus/config_backup_20260524/field.field.node.dir_listing.field_directory_uri.yml
+/home/darwus/config_backup_20260524/core.entity_form_display.node.dir_listing.default.yml
+/home/darwus/config_backup_20260524/core.base_field_override.node.dir_listing.promote.yml
+/home/darwus/config_backup_20260524/node.type.dir_listing.yml
+/home/darwus/config_backup_20260524/field.field.node.dir_listing.body.yml
+/home/darwus/config_backup_20260524/field.storage.node.field_which_playlist_.yml
+/home/darwus/config_backup_20260524/system.action.bulk_update_fields_on_path_alias.yml
+/home/darwus/config_backup_20260524/core.entity_view_display.node.dir_listing.search_result.yml
+/home/darwus/config_backup_20260524/core.entity_view_mode.path_alias.token.yml
+/home/darwus/config_backup_20260524/field.field.node.youtube.field_which_playlist_.yml
+/home/darwus/config_backup_20260524/core.entity_view_display.node.dir_listing.default.yml
+/home/darwus/drupaltest/web/core/misc/field-list-keyboard-navigation.js
+/home/darwus/drupaltest/web/core/modules/path_alias
+/home/darwus/drupaltest/list_missing_journals.php
+/home/darwus/drupaltest/vendor/symfony/dependency-injection/Alias.php
+/home/darwus/drupaltest/vendor/symfony/routing/Alias.php
+/home/darwus/drupaltest/vendor/symfony/psr-http-message-bridge/EventListener
+/home/darwus/drupaltest/vendor/symfony/validator/ConstraintViolationListInterface.php
+/home/darwus/drupaltest/vendor/symfony/validator/ConstraintViolationList.php
+/home/darwus/drupaltest/vendor/symfony/http-kernel/EventListener
+/home/darwus/drupaltest/vendor/symfony/mailer/EventListener
+/home/darwus/drupaltest/vendor/symfony/console/EventListener
+/home/darwus/drupaltest/vendor/consolidation/site-alias
+/home/darwus/drupaltest/vendor/twbs/bootstrap/.browserslistrc
+/home/darwus/drupaltest/vendor/phootwork/collection/AbstractList.php
+/home/darwus/drupaltest/vendor/phootwork/collection/ArrayList.php
+/home/darwus/drupaltest/build_songs_listing_and_menu.php
+/home/darwus/.cpanel/caches/mailmanconfig
+/home/darwus/.cpanel/datastore/ftp_LISTSTORE
+/home/darwus/.cpanel/datastore/all_iplist.db
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.226747
+/home/darwus/.spamassassin/auto-whitelist
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.163334
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.179450
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.169120
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.248250
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.101968
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.113002
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.73733
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.187564
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.187563
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.188960
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.130789
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.101081
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.241446
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.155504
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.4425
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.36432
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.16710
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.236457
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.25332
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.175455
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.175352
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.187522
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.169522
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.202170
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.159330
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.106134
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.209178
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.215592
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.105192
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.230259
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.67182
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.248943
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.52039
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.195072
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.28160
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.183926
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.212504
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.123700
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.206975
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.197493
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.212480
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.47867
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.4522
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.253270
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.83751
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.167809
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.70351
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.247669
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.106574
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.67266
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.197978
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.27862
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.205486
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.129810
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.136471
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.187565
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.145863
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.178519
+/home/darwus/.spamassassin/auto-whitelist.lock.mi3-ts4.a2hosting.com.220853
+/home/darwus/php/.channels/.alias
+/home/darwus/drupal9/web/core/modules/path_alias
+/home/darwus/drupal9/vendor/symfony/dependency-injection/Alias.php
+/home/darwus/drupal9/vendor/symfony/psr-http-message-bridge/EventListener
+/home/darwus/drupal9/vendor/symfony/validator/ConstraintViolationListInterface.php
+/home/darwus/drupal9/vendor/symfony/validator/ConstraintViolationList.php
+/home/darwus/drupal9/vendor/symfony/http-kernel/EventListener
+/home/darwus/drupal9/vendor/symfony/console/EventListener
+/home/darwus/drupal9/vendor/drupal/core-composer-scaffold/PostPackageEventListenerInterface.php
+/home/darwus/drupalbeta/web/core/misc/field-list-keyboard-navigation.js
+/home/darwus/drupalbeta/web/core/modules/path_alias
+/home/darwus/drupalbeta/list_missing_journals.php
+/home/darwus/drupalbeta/vendor/symfony/dependency-injection/Alias.php
+/home/darwus/drupalbeta/vendor/symfony/routing/Alias.php
+/home/darwus/drupalbeta/vendor/symfony/psr-http-message-bridge/EventListener
+/home/darwus/drupalbeta/vendor/symfony/validator/ConstraintViolationListInterface.php
+/home/darwus/drupalbeta/vendor/symfony/validator/ConstraintViolationList.php
+/home/darwus/drupalbeta/vendor/symfony/http-kernel/EventListener
+/home/darwus/drupalbeta/vendor/symfony/mailer/EventListener
+/home/darwus/drupalbeta/vendor/symfony/console/EventListener
+/home/darwus/drupalbeta/vendor/drupal/core-composer-scaffold/PostPackageEventListenerInterface.php
+/home/darwus/drupalbeta/vendor/consolidation/site-alias
+/home/darwus/drupalbeta/vendor/twbs/bootstrap/.browserslistrc
+/home/darwus/drupalbeta/vendor/phootwork/collection/AbstractList.php
+/home/darwus/drupalbeta/vendor/phootwork/collection/ArrayList.php
+/home/darwus/drupalbeta/vma131_preservation/reports/file-list.txt
+/home/darwus/drupalbeta/build_songs_listing_and_menu.php
+/home/darwus/drupaltest.emconalfa.net/themes/danland/images/task-list.png
+/home/darwus/drupaltest.emconalfa.net/core/assets/vendor/classList
+/home/darwus/drupaltest.emconalfa.net/core/modules/path_alias
+/home/darwus/drupaltest.emconalfa.net/core/modules/path_alias/path_alias.services.yml
+/home/darwus/drupaltest.emconalfa.net/core/modules/path_alias/path_alias.info.yml
+/home/darwus/drupaltest.emconalfa.net/modules/filebrowser/src/ServerFileList.php
+/home/darwus/drupaltest.emconalfa.net/modules/paragraphs/css/paragraphs.list-builder.css
+/home/darwus/drupaltest.emconalfa.net/modules/paragraphs/css/paragraphs.list-builder.scss
+/home/darwus/drupaltest.emconalfa.net/modules/imce/src/ImceProfileListBuilder.php
+/home/darwus/mail/.Junk/dovecot-uidlist
+/home/darwus/mail/.Drafts/dovecot-uidlist
+/home/darwus/mail/.mailbox_format.cpanel/dovecot-uidlist
+/home/darwus/mail/dovecot.list.index.log
+/home/darwus/mail/.Trash/dovecot-uidlist
+/home/darwus/mail/.Sent/dovecot-uidlist
+/home/darwus/mail/dovecot-uidlist
+/home/darwus/.drush/cache/factory/Drush.Commands.help.ListCommands.cache
+/home/darwus/drupaltest_config_after_bb/views.view.mailing_lists.yml
+/home/darwus/drupaltest_config_after_bb/core.entity_form_display.node.dir_listing.default.yml
+/home/darwus/drupaltest_config_after_bb/core.base_field_override.node.dir_listing.promote.yml
+/home/darwus/drupaltest_config_after_bb/node.type.dir_listing.yml
+/home/darwus/drupaltest_config_after_bb/field.field.node.dir_listing.body.yml
+/home/darwus/drupaltest_config_after_bb/field.storage.node.field_which_playlist_.yml
+/home/darwus/drupaltest_config_after_bb/system.action.bulk_update_fields_on_path_alias.yml
+/home/darwus/drupaltest_config_after_bb/core.entity_view_display.node.dir_listing.search_result.yml
+/home/darwus/drupaltest_config_after_bb/core.entity_view_mode.path_alias.token.yml
+/home/darwus/drupaltest_config_after_bb/field.field.node.youtube.field_which_playlist_.yml
+/home/darwus/drupaltest_config_after_bb/core.entity_view_display.node.dir_listing.default.yml
+/home/darwus/.cagefs/tmp/skyhawk-lostd-alias-gate.sh
+/home/darwus/.cagefs/tmp/skyhawk-update-a2-alias.sh
+/home/darwus/.cagefs/tmp/list_unmatched.php
+/home/darwus/.cagefs/tmp/lostd-alias-result-20260830T154825Z-2204983.txt
+/home/darwus/.cagefs/tmp/lostd-alias-20260830T155026Z-2211099
+/home/darwus/.cagefs/tmp/dir_listing_nodes.txt
+/home/darwus/.cagefs/tmp/skyhawk-a2-alias-update-20260902T211941Z-4003363
+/home/darwus/.cagefs/tmp/views_export/views.view.mailing_lists.yml
+/home/darwus/.cagefs/tmp/views_export/field.field.node.dir_listing.field_directory_uri.yml
+/home/darwus/.cagefs/tmp/views_export/core.entity_form_display.node.dir_listing.default.yml
+/home/darwus/.cagefs/tmp/views_export/core.base_field_override.node.dir_listing.promote.yml
+/home/darwus/.cagefs/tmp/views_export/node.type.dir_listing.yml
+/home/darwus/.cagefs/tmp/views_export/field.field.node.dir_listing.body.yml
+/home/darwus/.cagefs/tmp/views_export/field.storage.node.field_which_playlist_.yml
+/home/darwus/.cagefs/tmp/views_export/system.action.bulk_update_fields_on_path_alias.yml
+/home/darwus/.cagefs/tmp/views_export/core.entity_view_display.node.dir_listing.search_result.yml
+/home/darwus/.cagefs/tmp/views_export/core.entity_view_mode.path_alias.token.yml
+/home/darwus/.cagefs/tmp/views_export/field.field.node.youtube.field_which_playlist_.yml
+/home/darwus/.cagefs/tmp/views_export/core.entity_view_display.node.dir_listing.default.yml
+
+=== CPANEL USER FILE MAIL REFERENCES ===
+
+=== RESULT ===
+CPANEL_EMAIL_CONTROL_PLANE_TRUTH_COMPLETE
