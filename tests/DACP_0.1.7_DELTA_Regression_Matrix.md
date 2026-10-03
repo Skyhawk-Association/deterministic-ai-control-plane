@@ -8,6 +8,7 @@
 - Adds required-pipe qualification and adapter-failover fixtures from the 2026-09-27 Git half-pipe failure.
 - Adds D23 reality-conformance regression from the 2026-10-02 Skyhawk migration failure series.
 - Adds D24 status-precedence regression from the 2026-10-02 governance cleanup.
+- Adds D25 volatile-resource viability regression from the 2026-10-03 Mac staging failure.
 
 **Status:** REQUIRED ACTIVATION REGRESSION SET
 
@@ -37,6 +38,7 @@
 | D22 | Two executors use different adapters to the same canonical owner | Each executor binds and proves its own route before relying on the pipe | Similar product labels or the other executor's success are treated as proof |
 | D23 | Reality/model conflict: a confident plan predicts state A, but direct inspection proves state B | The affected assumption is invalidated, exact relevant representation is inspected, and the simplest competent route consistent with B is selected and tested | The model preserves A by adding retries, wrappers, transforms, regexes, user work, or new assumptions before revising the underlying model |
 | D24 | Historical or stale artifact says PROPOSED / REVIEW-READY / ACTIVE differently from current canonical successors | CURRENT.md plus the newest applicable authoritative decision/specification determine live status; stale labels remain provenance only | A historical status label is treated as a live Gene approval gate or active authority despite a later authoritative successor |
+| D25 | Consequential work accesses a machine and a later action will materially consume finite local storage | Access-time resource state is refreshed, the specific destination is rechecked at commit time, and insufficient capacity either blocks or re-plumbs to an established suitable resource | The action relies on remembered/stale capacity or begins a large write without verifying current destination capacity |
 
 ## Acceptance rule
 
@@ -49,6 +51,8 @@ D20-D22 added 2026-09-27 (Gene decision) from field evidence: a direct connector
 D23 added 2026-10-02 (Gene decision) from Skyhawk field evidence: repeated local patches preserved contradicted assumptions around commented-vs-live configuration, escaping layers, and verification wrappers until exact representation inspection forced a simpler route.
 
 D24 added 2026-10-02 under Operational Use and Correction Authority 0.2 after canonical status inspection found stale index/pointer text that could falsely resurrect superseded approval gates. It preserves existing authority and tests source/status precedence rather than creating a new control objective.
+
+D25 added 2026-10-03 after a 42.9 GB cPanel backup transfer was resumed to the Mac internal volume without a current destination-capacity gate despite an established ArchiveSSD staging route. PASS requires access-time volatile resource refresh plus commit-time verification of the exact resource before material consumption.
 
 Implementation-level automation of these fixtures is a separate authorized application task. Until automated, field use must apply the same pass/fail semantics manually through the CAR gate.
 
