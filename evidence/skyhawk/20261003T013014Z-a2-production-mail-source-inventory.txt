@@ -1,0 +1,72 @@
+=== SOURCE HOST IDENTITY ===
+s19522.use2.stableserver.net
+
+=== SOURCE IP ADDRESSES ===
+65.181.120.149 65.181.120.150 65.181.120.151 65.181.120.152 65.181.120.153 
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             UP             65.181.120.149/24 65.181.120.150/24 65.181.120.151/24 65.181.120.152/24 65.181.120.153/24 fe80::be24:11ff:fe3c:6ff9/64 
+
+=== CURRENT PUBLIC DNS ===
+--- skyhawk.org ---
+skyhawk.org.		14400	IN	TXT	"v=spf1 ip4:65.181.120.149 include:spf.mysecurecloudhost.com ip4:70.32.23.71 include:spf.a2hosting.com ip4:69.175.58.18 ip4:184.154.2.18 +a +mx ~all"
+--- mail.skyhawk.org ---
+mail.skyhawk.org.	14400	IN	CNAME	skyhawk.org.
+skyhawk.org.		14400	IN	TXT	"v=spf1 ip4:65.181.120.149 include:spf.mysecurecloudhost.com ip4:70.32.23.71 include:spf.a2hosting.com ip4:69.175.58.18 ip4:184.154.2.18 +a +mx ~all"
+--- a4skyhawk.us ---
+a4skyhawk.us.		14400	IN	TXT	"v=spf1 ip4:65.181.120.149 include:spf.mysecurecloudhost.com +a +mx +ip4:70.32.23.71 include:spf.a2hosting.com ~all"
+--- mail.a4skyhawk.us ---
+
+=== MAIL SERVICES ===
+--- exim ---
+--- postfix ---
+--- dovecot ---
+
+=== MAIL LISTENERS ===
+
+=== CPANEL DOMAIN ROUTING ===
+--- /etc/localdomains ---
+NOT_PRESENT
+--- /etc/remotedomains ---
+NOT_PRESENT
+--- /etc/secondarymx ---
+NOT_PRESENT
+
+=== CPANEL DOMAIN OWNERS ===
+--- skyhawk.org ---
+--- a4skyhawk.us ---
+
+=== MAIL DOMAIN DIRECTORIES ===
+ABSENT=/home/darwus/etc/skyhawk.org
+ABSENT=/home/darwus/mail/skyhawk.org
+ABSENT=/home/darwus/etc/a4skyhawk.us
+ABSENT=/home/darwus/mail/a4skyhawk.us
+
+=== MAILBOX CONFIG FILE NAMES ===
+
+=== EXIM ROUTING ===
+--- postmaster@skyhawk.org ---
+postmaster@skyhawk.org is undeliverable
+--- postmaster@a4skyhawk.us ---
+mail to postmaster@a4skyhawk.us is discarded
+
+=== MAIL TLS CERTIFICATES ===
+--- PORT 465 ---
+subject=CN=skyhawk.org
+issuer=C=US, O=Let's Encrypt, CN=YR2
+notBefore=Sep 24 09:02:05 2026 GMT
+notAfter=Dec 23 09:02:04 2026 GMT
+X509v3 Subject Alternative Name: 
+    DNS:*.skyhawk.org, DNS:skyhawk.emconalfa.net, DNS:skyhawk.org, DNS:www.skyhawk.emconalfa.net
+--- PORT 993 ---
+subject=CN=whgi.net
+issuer=C=GB, O=Sectigo Limited, CN=Sectigo Public Server Authentication CA DV R36
+notBefore=Jun 10 00:00:00 2026 GMT
+notAfter=Dec 25 23:59:59 2026 GMT
+X509v3 Subject Alternative Name: 
+    DNS:whgi.net, DNS:*.bom1.mysecurecloudhost.com, DNS:*.bom1.stableserver.net, DNS:*.bom1.whgi.net, DNS:*.can1.mysecurecloudhost.com, DNS:*.can1.stableserver.net, DNS:*.can1.whgi.net, DNS:*.col1.mysecurecloudhost.com, DNS:*.col1.stableserver.net, DNS:*.col1.whgi.net, DNS:*.dxb1.mysecurecloudhost.com, DNS:*.dxb1.stableserver.net, DNS:*.dxb1.whgi.net, DNS:*.fra1.mysecurecloudhost.com, DNS:*.fra1.stableserver.net, DNS:*.fra1.whgi.net, DNS:*.lon1.mysecurecloudhost.com, DNS:*.lon1.stableserver.net, DNS:*.lon1.whgi.net, DNS:*.lux1.mysecurecloudhost.com, DNS:*.lux1.stableserver.net, DNS:*.lux1.whgi.net, DNS:*.mex1.mysecurecloudhost.com, DNS:*.mex1.stableserver.net, DNS:*.mex1.whgi.net, DNS:*.mysecurecloudhost.com, DNS:*.sgp1.mysecurecloudhost.com, DNS:*.sgp1.stableserver.net, DNS:*.sgp1.whgi.net, DNS:*.stableserver.net, DNS:*.syd1.mysecurecloudhost.com, DNS:*.syd1.stableserver.net, DNS:*.syd1.whgi.net, DNS:*.usc1.mysecurecloudhost.com, DNS:*.usc1.stableserver.net, DNS:*.usc1.whgi.net, DNS:*.use1.mysecurecloudhost.com, DNS:*.use1.stableserver.net, DNS:*.use1.whgi.net, DNS:*.use2.mysecurecloudhost.com, DNS:*.use2.stableserver.net, DNS:*.use2.whgi.net, DNS:*.whgi.net
+
+=== SPF / DKIM / DMARC DNS ===
+skyhawk.org.		14400	IN	TXT	"v=spf1 ip4:65.181.120.149 include:spf.mysecurecloudhost.com ip4:70.32.23.71 include:spf.a2hosting.com ip4:69.175.58.18 ip4:184.154.2.18 +a +mx ~all"
+default._domainkey.skyhawk.org.	14400 IN TXT	"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvhjWbCYdh9gLz+0xphNHj7H/QLx4oMFVcoQ09XK5LFYM84dw7zV0dLmISMQcpxCTcAkPGanG4qGzCMfEm2t+0Nu8sZ0jc/Wg0weg3NGSoathuq6n5K7NlS6tkbgFfpAPoPGzlmfcoXJcemR+TRkGhSscm3XBP6b4WeicIDqBs4X69DM49ctCc46kFerS5nkz1" "sqk7PuE+T/YTuraqMfO32gQavuljZoUClnlOwGELQHdsTLN3Pa97kKCTCXHPqCu/BJ7wV8urjjC02QAxW92FljUmFO/JXGvFnUi/+Pw136LxcqqZMChmPUdUq/RV58Z1jMKX3Jk3WPQQ5c1I4fyMwIDAQAB;"
+
+A2_PRODUCTION_MAIL_SOURCE_INVENTORY_COMPLETE
