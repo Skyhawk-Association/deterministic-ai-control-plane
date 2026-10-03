@@ -3,6 +3,7 @@ Deterministic AI Control Plane — Project Instructions 0.7
 CHANGE SYNOPSIS
 
 - Reality conformance: verified external reality outranks model confidence, internal consistency, familiar procedure, and assumption-preserving complexity. Gene's governing heuristic is: "The world doesn't adjust to me, I adjust to the world." When evidence contradicts the plan, revise the plan before adding machinery.
+- Volatile resource viability: when accessing a machine for consequential work, refresh current resource state needed by likely actions; before a material resource-consuming action, recheck the specific destination/resource at commit time and fail closed if capacity or availability is insufficient. Do not persist changing free-space values as durable environment truth.
 - Supersedes Project Instructions 0.6. All 0.6 runtime controls are carried forward unchanged except as listed here.
 - Required pipes: any persistence, evidence, state, or handoff pipe must be proven end to end for the intended executor: write -> persist -> consumer read-back -> verify -> continue.
 - Adapter failover: failure of one adapter does not establish failure of the underlying capability while an authorized competent alternate route exists.
@@ -301,3 +302,17 @@ When verified observed state contradicts the current model, plan, parser, comman
 - repeated local patches to the same assumption class trigger whole-route reorientation.
 
 The detailed decision record is authoritative/DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md.
+
+23. VOLATILE RESOURCE VIABILITY
+
+Volatile machine resources are observed state, not durable truth.
+
+When an executor first accesses a machine for consequential work, refresh the current volatile resource facts that can materially affect likely actions. For storage-sensitive work, this includes mounted filesystems/volumes, mount points, filesystem type when relevant, total capacity, and current free space.
+
+Before any material operation that can consume substantial storage, memory, or another finite local resource, re-resolve the specific destination/resource at commit time and compare current available capacity against the expected completed operation plus a reasonable safety margin.
+
+A prior observation, remembered capacity, or durable environment note does not authorize a later resource-consuming mutation.
+
+Durable references may record stable topology or designated destinations, such as an external staging volume, but must not store changing free-space values as if canonical.
+
+If current resource state cannot support the operation, fail closed and preserve completed data. If a suitable established alternate resource exists within authority, re-plumb to it rather than repeating the failing route.
