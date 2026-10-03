@@ -1,0 +1,65 @@
+=== VPS IDENTITY ===
+vps142898.inmotionhosting.com
+lo               UNKNOWN        127.0.0.1/8 
+venet0           UNKNOWN        127.0.0.1/32 173.231.242.84/32 
+
+=== SKYHAWK DNS MAIL STATE ===
+;; Warning, extra type option
+;; Warning, extra type option
+skyhawk.org.		14283	IN	TXT	"v=spf1 ip4:65.181.120.149 include:spf.mysecurecloudhost.com ip4:70.32.23.71 include:spf.a2hosting.com ip4:69.175.58.18 ip4:184.154.2.18 +a +mx ~all"
+mail.skyhawk.org.	14400	IN	CNAME	skyhawk.org.
+skyhawk.org.		12976	IN	MX	0 skyhawk.org.
+
+=== MAIL LISTENERS ===
+LISTEN 0      100           0.0.0.0:25         0.0.0.0:*    users:(("master",pid=11598,fd=13))                                                                                                            
+LISTEN 0      128           0.0.0.0:993        0.0.0.0:*    users:(("dovecot",pid=11623,fd=44))                                                                                                           
+LISTEN 0      100           0.0.0.0:995        0.0.0.0:*    users:(("dovecot",pid=11623,fd=27))                                                                                                           
+LISTEN 0      100           0.0.0.0:587        0.0.0.0:*    users:(("master",pid=11598,fd=18))                                                                                                            
+LISTEN 0      100           0.0.0.0:110        0.0.0.0:*    users:(("dovecot",pid=11623,fd=26))                                                                                                           
+LISTEN 0      128           0.0.0.0:143        0.0.0.0:*    users:(("dovecot",pid=11623,fd=43))                                                                                                           
+LISTEN 0      100           0.0.0.0:465        0.0.0.0:*    users:(("master",pid=11598,fd=22))                                                                                                            
+LISTEN 0      100              [::]:25            [::]:*    users:(("master",pid=11598,fd=14))                                                                                                            
+LISTEN 0      100              [::]:587           [::]:*    users:(("master",pid=11598,fd=19))                                                                                                            
+LISTEN 0      100              [::]:465           [::]:*    users:(("master",pid=11598,fd=23))                                                                                                            
+
+=== MAIL SERVICES ===
+--- postfix ---
+enabled
+active
+--- exim ---
+inactive
+--- dovecot ---
+enabled
+active
+
+=== MAIL SOFTWARE ===
+/usr/sbin/postconf
+/usr/sbin/dovecot
+
+=== MAIL HOSTNAME CONFIG ===
+vps142898.inmotionhosting.com
+$myhostname, localhost.$mydomain, localhost
+proxy:mysql:/etc/postfix/mysql-virtual_domains_maps.cf
+
+=== CWP MAIL DOMAIN REFERENCES ===
+
+=== MAIL ACCOUNT DOMAIN DIRECTORIES ===
+
+=== SKYHAWK MAIL CERTIFICATE REFERENCES ===
+
+=== FIREWALL MAIL PORTS ===
+-A INPUT ! -i lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 25 -j ACCEPT
+-A INPUT ! -i lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 110 -j ACCEPT
+-A INPUT ! -i lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 143 -j ACCEPT
+-A INPUT ! -i lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 465 -j ACCEPT
+-A INPUT ! -i lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 587 -j ACCEPT
+-A INPUT ! -i lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 993 -j ACCEPT
+-A INPUT ! -i lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 995 -j ACCEPT
+-A OUTPUT ! -o lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 25 -j ACCEPT
+-A OUTPUT ! -o lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 110 -j ACCEPT
+-A OUTPUT ! -o lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 587 -j ACCEPT
+-A OUTPUT ! -o lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 993 -j ACCEPT
+-A OUTPUT ! -o lo -p tcp -m conntrack --ctstate NEW -m tcp --dport 995 -j ACCEPT
+
+=== RESULT ===
+PRODUCTION_MAIL_CUTOVER_READINESS_COMPLETE
