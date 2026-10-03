@@ -1,0 +1,71 @@
+=== SOURCE HOST ===
+s19522.use2.stableserver.net
+
+=== MAILMAN CACHE METADATA ===
+  File: /home/darwus/.cpanel/caches/mailmanconfig
+  Size: 4096      	Blocks: 8          IO Block: 4096   directory
+Device: 804h/2052d	Inode: 99162332    Links: 2
+Access: (0700/drwx------)  Uid: ( 1475/  darwus)   Gid: ( 1480/  darwus)
+Access: 2026-10-02 09:35:06.287163815 +0000
+Modify: 2018-09-19 21:38:59.000000000 +0000
+Change: 2026-08-11 20:50:59.051289830 +0000
+ Birth: 2026-08-11 20:50:59.051289830 +0000
+/home/darwus/.cpanel/caches/mailmanconfig: directory
+
+=== MAILMAN CACHE SAFE TEXT TOKENS ===
+
+=== CPANEL CACHE / DATASTORE MAIL REFERENCES ===
+/home/darwus/.cpanel/datastore/all_iplist.db
+/home/darwus/.cpanel/datastore/ftp_LISTSTORE
+/home/darwus/.cpanel/email_accounts.json
+/home/darwus/.cpanel/email_accounts_count
+/home/darwus/.cpanel/nvdata/CSSS_cpanel_email_accounts
+/home/darwus/.cpanel/nvdata/CSSS_cpanel_email_deliverability
+/home/darwus/.cpanel/nvdata/darwus_default_webmail_app
+/home/darwus/.cpanel/nvdata/davida@nomonitor.net_default_webmail_app
+/home/darwus/.cpanel/nvdata/temptest@nomonitor.net_default_webmail_app
+/home/darwus/.cpanel/nvdata/twidget55@nomonitor.net_default_webmail_app
+
+=== USER MAILMAN REFERENCES BY FILENAME ===
+/home/darwus/.cagefs/tmp/views_export/views.view.mailing_lists.yml
+/home/darwus/config_backup_20260524/views.view.mailing_lists.yml
+/home/darwus/drupaltest_config_after_bb/views.view.mailing_lists.yml
+
+=== SAFE CONTENT SEARCH FOR SKYHAWK LIST STRUCTURE ===
+/home/darwus/.cpanel/caches/dynamicui/jupiter_en_.cache
+/home/darwus/.cpanel/caches/dynamicui/paper_lantern_en_.cache
+/home/darwus/.cpanel/datastore/AVAILABLE_APPLICATIONS_CACHE_en_jupiter
+/home/darwus/.cpanel/datastore/AVAILABLE_APPLICATIONS_CACHE_en_paper_lantern
+/home/darwus/.cpanel/ducache
+
+=== CPANEL MAILMAN PROGRAM TREE ===
+d /usr/local/cpanel/3rdparty/mailman
+d /usr/local/cpanel/3rdparty/mailman/cgi-bin
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/admindb
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/create
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/private
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/confirm
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/rmlist
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/admin
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/listinfo
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/options
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/edithtml
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/subscribe
+f /usr/local/cpanel/3rdparty/mailman/cgi-bin/roster
+d /usr/local/cpanel/3rdparty/mailman/mail
+f /usr/local/cpanel/3rdparty/mailman/mail/mailman
+
+=== POSSIBLE MAILMAN EXECUTABLES ===
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/admin
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/admindb
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/confirm
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/edithtml
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/listinfo
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/options
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/private
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/roster
+/usr/local/cpanel/3rdparty/mailman/cgi-bin/subscribe
+/usr/local/cpanel/3rdparty/mailman/mail/mailman
+
+=== RESULT ===
+CPANEL_MAILMAN_USER_STATE_INVENTORY_COMPLETE
