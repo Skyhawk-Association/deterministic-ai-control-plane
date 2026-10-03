@@ -1,0 +1,76 @@
+=== PUBLIC DNS ===
+173.247.245.156 STREAM 1790723478a62e50832643ebc3.temporary.link
+173.247.245.156 DGRAM  
+173.247.245.156 RAW    
+
+=== VPS ADDRESS ===
+lo               UNKNOWN        127.0.0.1/8 
+venet0           UNKNOWN        127.0.0.1/32 173.231.242.84/32 
+
+=== PUBLIC HTTP UNIQUE REQUEST ===
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:16:15 GMT
+Content-Type: text/html
+Content-Length: 5048
+Connection: keep-alive
+Keep-Alive: timeout=60
+Vary: Accept-Encoding
+Last-Modified: Tue, 19 Jan 2021 21:35:13 GMT
+ETag: "13b8-5b9479d188640"
+Accept-Ranges: bytes
+X-Cache: HIT from Backend
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+
+
+=== PUBLIC HTTPS UNIQUE REQUEST ===
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:16:15 GMT
+Content-Type: text/html
+Content-Length: 5048
+Connection: keep-alive
+Keep-Alive: timeout=60
+Vary: Accept-Encoding
+Last-Modified: Tue, 19 Jan 2021 21:35:13 GMT
+ETag: "13b8-5b9479d188640"
+Accept-Ranges: bytes
+X-Cache: HIT from Backend
+Strict-Transport-Security: max-age=31536000
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+
+
+=== SEARCH LOCAL LOGS FOR PUBLIC MARKER ===
+PUBLIC_MARKER_NOT_FOUND_LOCALLY
+
+=== DIRECT VPS HTTP CONTROL ===
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:16:17 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Keep-Alive: timeout=60
+Vary: Accept-Encoding
+Cache-Control: max-age=3600, public
+X-Drupal-Dynamic-Cache: HIT
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+X-Generator: Drupal 11 (https://www.drupal.org)
+X-Drupal-Cache: MISS
+Last-Modified: Sat, 03 Oct 2026 01:16:17 GMT
+ETag: "1790990177"
+X-Cache: HIT from Backend
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+
+
+=== SEARCH LOCAL LOGS FOR DIRECT MARKER ===
+/usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.log:4:173.231.242.84 - - [02/Oct/2026:21:16:17 -0400] "GET /?skyhawk-route-20261003T011614Z-direct HTTP/1.1" 200 59674 "-" "curl/7.61.1"
+/usr/local/apache/logs/access_log:2277:173.231.242.84 - - [02/Oct/2026:21:16:17 -0400] "GET /?skyhawk-route-20261003T011614Z-direct HTTP/1.0" 200 59614
+
+TEMP_HOST_ROUTE_TRACE_V2_COMPLETE
