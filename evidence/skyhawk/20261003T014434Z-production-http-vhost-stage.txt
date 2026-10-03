@@ -1,0 +1,62 @@
+=== VPS IDENTITY ===
+vps142898.inmotionhosting.com
+
+=== PRE-MUTATION SKYHAWK VHOST CHECK ===
+NO_EXISTING_SKYHAWK_NGINX_VHOST=YES
+
+=== BACKEND PRODUCTION HOST VERIFY ===
+BACKEND_FRONT_HTTP=200
+BACKEND_LOGIN_HTTP=200
+
+=== STAGE PRODUCTION HTTP VHOST ===
+
+=== NGINX CONFIG TEST ===
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+=== RELOAD ===
+NGINX_ACTIVE=YES
+
+=== ACME ROUTE VERIFY ===
+ACME_BODY=SKYHAWK_ACME_ROUTE_OK
+
+=== PRODUCTION HOST FRONT VERIFY ===
+SKYHAWK_HTTP=200
+WWW_SKYHAWK_HTTP=200
+LOGIN_HTTP=200
+
+=== INSTALLED VHOST ===
+server {
+    listen 173.231.242.84:80;
+    server_name skyhawk.org www.skyhawk.org;
+
+    location ^~ /.well-known/acme-challenge/ {
+        alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge/;
+        default_type text/plain;
+        try_files $uri =404;
+    }
+
+    location ^~ /.well-known/pki-validation/ {
+        alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge/;
+        default_type text/plain;
+        try_files $uri =404;
+    }
+
+    location / {
+        proxy_pass http://173.231.242.84:8181;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto http;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+    }
+}
+
+=== DNS SAFETY CHECK ===
+65.181.120.151
+skyhawk.org.
+65.181.120.151
+PRODUCTION_DNS_UNCHANGED=YES
+
+RESULT=PRODUCTION_HTTP_VHOST_STAGED_AND_VERIFIED
