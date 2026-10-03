@@ -18,3 +18,7 @@ Do not make the NAS canonical merely because files were copied to it. Promotion 
 ## Desired result
 
 GitHub can remain the public dissemination/version surface while the NAS becomes the protected operational substrate. Mac, Windows, and Pixel continue to behave as replaceable clients/execution surfaces.
+## Active build package
+
+The current physical NAS build working package is maintained under [`projects/nas-build/`](../projects/nas-build/README.md). Use that package for current hardware state, reference links, evidence indexing, and cross-executor handoff. It does not alter the transition gate above.
+
