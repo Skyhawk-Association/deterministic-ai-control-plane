@@ -38,3 +38,13 @@ Use descriptive names rather than chat-upload IDs, for example:
 - `2026-10-03-seasonic-modular-panel.jpg`
 
 After each binary write, independently read back the Git object/path before treating the image as shared evidence.
+
+## HBA document intake
+
+Three HBA-related PDFs were supplied directly in the working session and hashed before canonical indexing:
+
+- `LSISAS9207-8i_UG_v2-2.pdf` — SHA-256 `61bb97fd099f10ce07d2489510acdd7f0ee3fefcb63db7c866071d4e05cc4df6`.
+- `LSI_SAS_9207-8i_QIG.pdf` — SHA-256 `e2b5402d3c3ae32420bec4e8331491d8e4b522550a5fa8b7c82a7d23f1749f04`.
+- `SAS2_Flash_Utility_Software_Ref_Guide.pdf` — SHA-256 `04708a22726274be2ea673940611b332993f367b94f8aaf782311f498182c978`.
+
+The exact binaries remain outside public Git under the project binary-document policy. Their identities, hashes, official source links, and build-relevant facts are persisted in `REFERENCES.md` and `references/HBA_LSI_SAS9207-8i.md`.
