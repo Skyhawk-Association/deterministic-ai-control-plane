@@ -1,0 +1,80 @@
+=== PREFLIGHT DIRECT DRUPAL HOST TEST ===
+DIRECT_HOST_STATUS=400
+DRUPAL_TRUSTS_VPS_HOST=NO
+TLS_TEST_UPSTREAM_HOST=1790723478a62e50832643ebc3.temporary.link
+
+=== PRE-MUTATION GATES ===
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+=== CREATE NARROW TLS VHOST ===
+CONF_CREATED=/etc/nginx/conf.d/vhosts/vps142898.inmotionhosting.com-ssl.conf
+
+=== CONFIG TEST ===
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+=== RELOAD ===
+
+=== LOCAL TLS LISTENER ===
+LISTEN 0      128    173.231.242.84:443        0.0.0.0:*    users:(("nginx",pid=487881,fd=28),("nginx",pid=487880,fd=28),("nginx",pid=487879,fd=28),("nginx",pid=487878,fd=28),("nginx",pid=11772,fd=28)) 
+
+=== LOCAL TLS CERTIFICATE ===
+subject=CN = vps142898.inmotionhosting.com
+issuer=C = US, O = Let's Encrypt, CN = YR2
+notBefore=Sep 30 01:49:19 2026 GMT
+notAfter=Dec 29 01:49:18 2026 GMT
+
+REMOTE_TLS_BIND_COMPLETE
+
+=== EXTERNAL WINDOWS HTTPS FRONT ===
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:21:54 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Keep-Alive: timeout=60
+Vary: Accept-Encoding
+X-Powered-By: PHP/8.4.24
+Cache-Control: max-age=3600, public
+X-Drupal-Dynamic-Cache: MISS
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+Vary: Cookie,Accept-Encoding,User-Agent
+X-Generator: Drupal 11 (https://www.drupal.org)
+X-Drupal-Cache: MISS
+Last-Modified: Sat, 03 Oct 2026 01:21:54 GMT
+ETag: "1790990514"
+
+
+=== EXTERNAL WINDOWS HTTPS LOGIN ===
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:21:54 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Keep-Alive: timeout=60
+Vary: Accept-Encoding
+X-Powered-By: PHP/8.4.24
+Cache-Control: max-age=3600, public
+X-Drupal-Dynamic-Cache: HIT
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+Vary: Cookie,Accept-Encoding,User-Agent
+X-Generator: Drupal 11 (https://www.drupal.org)
+X-Drupal-Cache: MISS
+Last-Modified: Sat, 03 Oct 2026 01:21:54 GMT
+ETag: "1790990514"
+
+
+EXTERNAL_FRONT_200=YES
+EXTERNAL_LOGIN_200=YES
+EXTERNAL_FRONT_DRUPAL=YES
+EXTERNAL_LOGIN_DRUPAL=YES
+RESULT=VPS_HTTPS_RUNTIME_VERIFIED
