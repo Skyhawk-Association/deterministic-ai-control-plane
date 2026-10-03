@@ -1,0 +1,173 @@
+=== VPS IDENTITY ===
+vps142898.inmotionhosting.com
+lo               UNKNOWN        127.0.0.1/8 
+venet0           UNKNOWN        127.0.0.1/32 173.231.242.84/32 
+
+=== KNOWN DOMAIN DNS ===
+--- skyhawk.org ---
+65.181.120.151  STREAM skyhawk.org
+65.181.120.151  DGRAM  
+65.181.120.151  RAW    
+--- www.skyhawk.org ---
+65.181.120.151  STREAM skyhawk.org
+65.181.120.151  DGRAM  
+65.181.120.151  RAW    
+--- a4skyhawk.us ---
+65.181.120.151  STREAM a4skyhawk.us
+65.181.120.151  DGRAM  
+65.181.120.151  RAW    
+--- www.a4skyhawk.us ---
+65.181.120.151  STREAM a4skyhawk.us
+65.181.120.151  DGRAM  
+65.181.120.151  RAW    
+--- 1790723478a62e50832643ebc3.temporary.link ---
+173.247.245.156 STREAM 1790723478a62e50832643ebc3.temporary.link
+173.247.245.156 DGRAM  
+173.247.245.156 RAW    
+
+=== CWP APACHE VHOST INVENTORY ===
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf
+
+=== NGINX VHOST INVENTORY ===
+/etc/nginx/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf
+
+=== SERVERNAME / SERVERALIAS INVENTORY ===
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf.pre-skyhawk-20261002T163652Z:2:	ServerName 1790723478a62e50832643ebc3.temporary.link
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf.pre-skyhawk-20261002T163652Z:3:	ServerAlias www.1790723478a62e50832643ebc3.temporary.link
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf.pre-skyhawk-20261002T163652Z:58:	ServerName webmail.1790723478a62e50832643ebc3.temporary.link
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf.pre-skyhawk-20261002T163652Z:79:	ServerName mail.1790723478a62e50832643ebc3.temporary.link
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf.pre-skyhawk-20261002T163652Z:100:	ServerName cpanel.1790723478a62e50832643ebc3.temporary.link
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:2:	ServerName 1790723478a62e50832643ebc3.temporary.link
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:3:	ServerAlias www.1790723478a62e50832643ebc3.temporary.link
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:58:	ServerName webmail.1790723478a62e50832643ebc3.temporary.link
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:79:	ServerName mail.1790723478a62e50832643ebc3.temporary.link
+/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:100:	ServerName cpanel.1790723478a62e50832643ebc3.temporary.link
+
+=== SSL CERTIFICATE REFERENCES ===
+/usr/local/apache/conf/original/extra/httpd-ssl.conf:135:#   Point SSLCertificateFile at a PEM encoded certificate.  If
+/usr/local/apache/conf/original/extra/httpd-ssl.conf:144:SSLCertificateFile "/usr/local/apache/conf/server.crt"
+/usr/local/apache/conf/original/extra/httpd-ssl.conf:145:#SSLCertificateFile "/usr/local/apache/conf/server-dsa.crt"
+/usr/local/apache/conf/original/extra/httpd-ssl.conf:146:#SSLCertificateFile "/usr/local/apache/conf/server-ecc.crt"
+/usr/local/apache/conf/original/extra/httpd-ssl.conf:154:SSLCertificateKeyFile "/usr/local/apache/conf/server.key"
+/usr/local/apache/conf/original/extra/httpd-ssl.conf:155:#SSLCertificateKeyFile "/usr/local/apache/conf/server-dsa.key"
+/usr/local/apache/conf/original/extra/httpd-ssl.conf:156:#SSLCertificateKeyFile "/usr/local/apache/conf/server-ecc.key"
+/usr/local/apache/conf/original/extra/httpd-ssl.conf:162:#   the referenced file can be the same as SSLCertificateFile
+/usr/local/apache/conf/extra/httpd-ssl.conf:135:#   Point SSLCertificateFile at a PEM encoded certificate.  If
+/usr/local/apache/conf/extra/httpd-ssl.conf:144:SSLCertificateFile "/usr/local/apache/conf/server.crt"
+/usr/local/apache/conf/extra/httpd-ssl.conf:145:#SSLCertificateFile "/usr/local/apache/conf/server-dsa.crt"
+/usr/local/apache/conf/extra/httpd-ssl.conf:146:#SSLCertificateFile "/usr/local/apache/conf/server-ecc.crt"
+/usr/local/apache/conf/extra/httpd-ssl.conf:154:SSLCertificateKeyFile "/usr/local/apache/conf/server.key"
+/usr/local/apache/conf/extra/httpd-ssl.conf:155:#SSLCertificateKeyFile "/usr/local/apache/conf/server-dsa.key"
+/usr/local/apache/conf/extra/httpd-ssl.conf:156:#SSLCertificateKeyFile "/usr/local/apache/conf/server-ecc.key"
+/usr/local/apache/conf/extra/httpd-ssl.conf:162:#   the referenced file can be the same as SSLCertificateFile
+/etc/nginx/nginx.conf.default:102:    #    ssl_certificate      cert.pem;
+/etc/nginx/nginx.conf.default:103:    #    ssl_certificate_key  cert.key;
+/etc/nginx/nginx.conf.rpmnew:63:#        ssl_certificate "/etc/pki/nginx/server.crt";
+/etc/nginx/nginx.conf.rpmnew:64:#        ssl_certificate_key "/etc/pki/nginx/private/server.key";
+
+=== CERTIFICATE FILE CANDIDATES ===
+/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+/etc/pki/ca-trust/extracted/pem/email-ca-bundle.pem
+/etc/pki/ca-trust/extracted/pem/objsign-ca-bundle.pem
+/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+/etc/pki/dovecot/certs/dovecot.pem
+/etc/pki/dovecot/private/dovecot.pem
+/etc/pki/pure-ftpd/ca.crt
+/etc/pki/pure-ftpd/pure-ftpd.pem
+/etc/pki/tls/certs/hostname.crt
+/etc/pki/tls/certs/postfix.pem
+/etc/pki/tls/certs/sendmail.pem
+/etc/pki/tls/private/hostname.pem
+/root/.acme.sh/cwp_certs/vps142898.inmotionhosting.com/backup/fullchain.bak
+/root/.acme.sh/cwp_certs/vps142898.inmotionhosting.com/fullchain.cer
+
+=== DIRECT VPS HTTP FOR KNOWN HOSTS ===
+--- Host: skyhawk.org ---
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:19:30 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Keep-Alive: timeout=60
+Vary: Accept-Encoding
+Cache-Control: max-age=3600, public
+X-Drupal-Dynamic-Cache: MISS
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+X-Generator: Drupal 11 (https://www.drupal.org)
+X-Drupal-Cache: HIT
+Last-Modified: Wed, 30 Sep 2026 16:59:31 GMT
+ETag: "1790787571"
+X-Cache: HIT from Backend
+
+--- Host: www.skyhawk.org ---
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:19:30 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Keep-Alive: timeout=60
+Vary: Accept-Encoding
+Cache-Control: max-age=3600, public
+X-Drupal-Dynamic-Cache: MISS
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+X-Generator: Drupal 11 (https://www.drupal.org)
+X-Drupal-Cache: HIT
+Last-Modified: Wed, 30 Sep 2026 17:11:19 GMT
+ETag: "1790788279"
+X-Cache: HIT from Backend
+
+--- Host: a4skyhawk.us ---
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:19:30 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Keep-Alive: timeout=60
+Vary: Accept-Encoding
+Cache-Control: max-age=3600, public
+X-Drupal-Dynamic-Cache: MISS
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+X-Generator: Drupal 11 (https://www.drupal.org)
+X-Drupal-Cache: MISS
+Last-Modified: Sat, 03 Oct 2026 01:19:30 GMT
+ETag: "1790990370"
+X-Cache: HIT from Backend
+
+--- Host: www.a4skyhawk.us ---
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Sat, 03 Oct 2026 01:19:30 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Keep-Alive: timeout=60
+Vary: Accept-Encoding
+Cache-Control: max-age=3600, public
+X-Drupal-Dynamic-Cache: MISS
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+X-Generator: Drupal 11 (https://www.drupal.org)
+X-Drupal-Cache: MISS
+Last-Modified: Sat, 03 Oct 2026 01:19:30 GMT
+ETag: "1790990370"
+X-Cache: HIT from Backend
+
+
+=== LOCAL TLS LISTENERS ===
+NO_LOCAL_TLS_LISTENER
+
+VPS_HTTPS_ENDPOINT_INVENTORY_COMPLETE
