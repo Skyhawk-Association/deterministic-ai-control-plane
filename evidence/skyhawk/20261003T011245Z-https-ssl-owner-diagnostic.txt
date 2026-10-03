@@ -1,0 +1,236 @@
+=== APACHE REAL BINARY VHOST MAP ===
+VirtualHost configuration:
+173.231.251.232:8181   173.231.251.232 (/usr/local/apache/conf/sharedip.conf:1)
+173.231.242.84:8181    is a NameVirtualHost
+         default server 1790723478a62e50832643ebc3.temporary.link (/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:1)
+         port 8181 namevhost 1790723478a62e50832643ebc3.temporary.link (/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:1)
+                 alias www.1790723478a62e50832643ebc3.temporary.link
+         port 8181 namevhost webmail.1790723478a62e50832643ebc3.temporary.link (/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:57)
+         port 8181 namevhost mail.1790723478a62e50832643ebc3.temporary.link (/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:78)
+         port 8181 namevhost cpanel.1790723478a62e50832643ebc3.temporary.link (/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:99)
+ServerRoot: "/usr/local/apache"
+Main DocumentRoot: "/usr/local/apache/htdocs"
+Main ErrorLog: "/usr/local/apache/logs/error_log"
+Mutex rewrite-map: using_defaults
+Mutex ssl-stapling-refresh: using_defaults
+Mutex ssl-stapling: using_defaults
+Mutex proxy: using_defaults
+Mutex ssl-cache: using_defaults
+Mutex default: dir="/usr/local/apache/logs/" mechanism=default 
+PidFile: "/usr/local/apache/logs/httpd.pid"
+Define: DUMP_VHOSTS
+Define: DUMP_RUN_CFG
+Define: MODSEC_2.5
+Define: MODSEC_2.9
+User: name="nobody" id=65534
+Group: name="nobody" id=65534
+
+=== NGINX FULL CONFIG: HOST + 443 + SSL ===
+320-proxy_set_header X-Forwarded-Host $host;
+321-proxy_set_header X-Forwarded-Server $host;
+322-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+323-proxy_set_header X-Forwarded-Proto $scheme;
+324-
+325-# configuration file /etc/nginx/conf.d/vhosts.conf:
+326-include /etc/nginx/conf.d/vhosts/*.conf;
+327-
+328:# configuration file /etc/nginx/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf:
+329-server {
+330-	listen 173.231.242.84:80;	
+331:	server_name 1790723478a62e50832643ebc3.temporary.link  www.1790723478a62e50832643ebc3.temporary.link;
+332-
+333:	access_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.bytes bytes;
+334:	access_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.log combined;
+335:	error_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.error.log error;
+336-
+337-	location / {
+338-		location ~.*\.(3gp|gif|jpg|jpeg|png|ico|wmv|avi|asf|asx|mpg|mpeg|mp4|pls|mp3|mid|wav|swf|flv|html|htm|txt|js|css|exe|zip|tar|rar|gz|tgz|bz2|uha|7z|doc|docx|xls|xlsx|pdf|iso|woff|ttf|svg|eot|sh|webp)$ {
+339-			root /home/n790725/drupalbeta/web;					
+340-			expires max;
+341-			try_files $uri $uri/ @backend;
+342-		}
+343-		
+344-		error_page 405 = @backend;
+345-		error_page 500 = @custom;
+346-		add_header X-Cache "HIT from Backend";
+347-		add_header X-XSS-Protection "1; mode=block" always;
+348-		add_header X-Content-Type-Options "nosniff" always;
+349-		proxy_pass http://173.231.242.84:8181;
+350-		include proxy.inc;
+351-	}
+352-
+353-	location @backend {
+354-		internal;
+355-		proxy_pass http://173.231.242.84:8181;
+356-		include proxy.inc;
+357-	}
+358-
+359-	location @custom {
+360-		internal;
+361-		proxy_pass http://173.231.242.84:8181;
+362-		include proxy.inc;
+363-	}
+364-
+365-	location ~ .*\.(php|jsp|cgi|pl|py)?$ {
+366-		proxy_pass http://173.231.242.84:8181;
+367-		include proxy.inc;
+368-	}
+369-
+370-	location ~ /\.ht    {deny all;}
+--
+383-	location /.well-known/pki-validation {
+384-		default_type "text/plain";
+385-		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+386-	}
+387-}
+388-
+389-server {
+390-	listen 173.231.242.84:80;	
+391:	server_name webmail.1790723478a62e50832643ebc3.temporary.link;
+392-
+393:	access_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.bytes bytes;
+394:	access_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.log combined;
+395:	error_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.error.log error;
+396-
+397-	location / {
+398-		proxy_pass  http://127.0.0.1:2095;
+399-		include proxy.inc;
+400-	}
+401-
+402-	location ~ /\.ht    {deny all;}
+403-	location ~ /\.svn/  {deny all;}
+404-	location ~ /\.git/  {deny all;}
+405-	location ~ /\.hg/   {deny all;}
+406-	location ~ /\.bzr/  {deny all;}
+407-
+408-	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+409-
+410-	location /.well-known/acme-challenge {
+411-		default_type "text/plain";
+412-		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+413-	}
+414-
+415-	location /.well-known/pki-validation {
+416-		default_type "text/plain";
+417-		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+418-	}
+419-}
+420-
+421-server {
+422-	listen 173.231.242.84:80;	
+423:	server_name mail.1790723478a62e50832643ebc3.temporary.link;
+424-
+425:	access_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.bytes bytes;
+426:	access_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.log combined;
+427:	error_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.error.log error;
+428-
+429-	location / {
+430-		proxy_pass  http://127.0.0.1:2095;
+431-		include proxy.inc;
+432-	}
+433-
+434-	location ~ /\.ht    {deny all;}
+435-	location ~ /\.svn/  {deny all;}
+436-	location ~ /\.git/  {deny all;}
+437-	location ~ /\.hg/   {deny all;}
+438-	location ~ /\.bzr/  {deny all;}
+439-
+440-	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+441-
+442-	location /.well-known/acme-challenge {
+443-		default_type "text/plain";
+444-		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+445-	}
+446-
+447-	location /.well-known/pki-validation {
+448-		default_type "text/plain";
+449-		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+450-	}
+451-}
+452-
+453-server {
+454-	listen 173.231.242.84:80;	
+455:	server_name cpanel.1790723478a62e50832643ebc3.temporary.link;
+456-
+457:	access_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.bytes bytes;
+458:	access_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.log combined;
+459:	error_log /usr/local/apache/domlogs/1790723478a62e50832643ebc3.temporary.link.error.log error;
+460-
+461-	location / {
+462-		proxy_pass  https://127.0.0.1:2083;
+463-		include proxy.inc;
+464-	}
+465-
+466-	location /pma {
+467-		proxy_pass  https://127.0.0.1:2031;
+468-		include proxy.inc;
+469-	}
+470-
+471-	location /roundcube {
+472-		proxy_pass  https://127.0.0.1:2031;
+473-		include proxy.inc;
+474-	}
+475-
+476-	location ~ /\.ht    {deny all;}
+477-	location ~ /\.svn/  {deny all;}
+478-	location ~ /\.git/  {deny all;}
+479-	location ~ /\.hg/   {deny all;}
+480-	location ~ /\.bzr/  {deny all;}
+481-
+482-	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+483-
+484-	location /.well-known/acme-challenge {
+485-		default_type "text/plain";
+486-		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+487-	}
+488-
+489-	location /.well-known/pki-validation {
+490-		default_type "text/plain";
+491-		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+492-	}
+493-}
+
+=== NGINX SSL/VHOST FILE INVENTORY ===
+/etc/nginx/conf.d/173.231.242.84.conf
+/etc/nginx/conf.d/vhosts.conf
+/etc/nginx/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf
+/etc/nginx/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf.pre-skyhawk-20261002T163652Z
+/etc/nginx/fastcgi.conf
+/etc/nginx/nginx.conf
+
+=== 443 LISTENER RAW ===
+
+=== LOCAL APACHE DRUPAL CHECK ===
+HTTP/1.1 200 OK
+Date: Sat, 03 Oct 2026 01:12:46 GMT
+Server: Apache/2.4.68 (Unix) OpenSSL/1.1.1k
+Last-Modified: Sun, 13 Sep 2026 07:22:19 GMT
+ETag: "13b8-65b582d81edc5"
+Accept-Ranges: bytes
+Content-Length: 5048
+Vary: Accept-Encoding,User-Agent
+Content-Type: text/html
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html><head>
+		<title>HTTP Server Test Page powered by CentOS-WebPanel.com</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<style type="text/css">
+			body {
+				background-color: #eceff1;
+				color: #000;
+				font-size: 0.9em;
+				font-family: sans-serif,helvetica;
+				margin: 0;
+				padding: 0;
+			}
+			:link {
+				color: #0000FF;
+				text-decoration:none;
+			}
+			:visited {
+				color: #0000FF;
+			}
+
+=== RESULT ===
+HTTPS_SSL_OWNER_DIAGNOSTIC_COMPLETE
