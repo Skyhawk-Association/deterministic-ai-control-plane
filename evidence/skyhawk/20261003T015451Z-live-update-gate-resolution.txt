@@ -1,0 +1,58 @@
+=== HOST ===
+s19522.use2.stableserver.net
+
+=== UNTRACKED MANIFEST METADATA ===
+--- web/downloads/full-tree-manifest-20261002.tsv ---
+-rw-r--r-- 1 darwus darwus 16M Oct  2 03:09 web/downloads/full-tree-manifest-20261002.tsv
+b55dadf8a2de1d1261354cba7a2429c4d9f0531f2eebe76d4f888a8314196666  web/downloads/full-tree-manifest-20261002.tsv
+106002 web/downloads/full-tree-manifest-20261002.tsv
+c33c5a53af1adcda475bfcb73dbf6fd6f84a5331e282a5fdf2701c8e250f34fc  ./.editorconfig
+8548acf4a903069419d294009e570ab0ccdd72672940307b230900d6bf5bcfb9  ./.gitattributes
+bf27ed6d2e3efd17455a6a4c67ebe0e8ef7b7a05593febc65ebf8b6014932661  ./.gitignore
+5e0e4464c36b34c53dc89c64def00090629ae2ecc44c029d8453e79595b7ac91  ./.gitignore.bak-20260829T003556Z-3327557
+1ff8ad5e587eb084cd57fde72f7abb07181e3ceb8b8dad223796d84cb363d8f9  ./add_drupalmedia_to_basic_html.php
+--- web/downloads/full-tree-manifest-20261002.tsv.sha256 ---
+-rw-r--r-- 1 darwus darwus 136 Oct  2 03:09 web/downloads/full-tree-manifest-20261002.tsv.sha256
+7f29b8ee624ef1bbaebf34fa70785130545bb3361d871f827f42f604d8b09112  web/downloads/full-tree-manifest-20261002.tsv.sha256
+1 web/downloads/full-tree-manifest-20261002.tsv.sha256
+b55dadf8a2de1d1261354cba7a2429c4d9f0531f2eebe76d4f888a8314196666  /home/darwus/drupalbeta/web/downloads/full-tree-manifest-20261002.tsv
+--- web/downloads/public-files-manifest-20261002.tsv ---
+-rw-r--r-- 1 darwus darwus 7.6M Oct  2 02:43 web/downloads/public-files-manifest-20261002.tsv
+c05e6f78f78efcd511be333e84a190b1a0ab0f8da3fe7d44edbe69d437999e6f  web/downloads/public-files-manifest-20261002.tsv
+58783 web/downloads/public-files-manifest-20261002.tsv
+baee0ee586a1706950c84e5ed7c91c114d9b63c2d6079450d23164843ec89f42  ./.htaccess
+dbe0254a71309f79c7905cc78cf47b7826a1be5e49f215acde3341674d1c1282  ./137820-edwards_banner.jpg
+83fc050b4b468b68f4719176b073ba38b1172311ca4d5baab51c3cc00e875b5a  ./154204-a4f-21jul12-flying-leatherneck-museum-todd-frommelt-1.jpg
+802f820bc2487e7b8ac4ad6c88d38ab08c3d9e149c6de398aa8e5a8eafb8ca59  ./2020-04/1995-1.1_2.pdf
+880777b2b729e19f0ca633cf375b56e6f56a304c5fe097ccab87b1cc94b4e76f  ./2020-04/1996-2.1.pdf.jpeg
+--- web/downloads/public-files-manifest-20261002.tsv.sha256 ---
+-rw-r--r-- 1 darwus darwus 139 Oct  2 02:43 web/downloads/public-files-manifest-20261002.tsv.sha256
+625e6008444ef426e405efb1bdedc7c6747fedcc4569b7d6a477e41fa4d21e9e  web/downloads/public-files-manifest-20261002.tsv.sha256
+1 web/downloads/public-files-manifest-20261002.tsv.sha256
+c05e6f78f78efcd511be333e84a190b1a0ab0f8da3fe7d44edbe69d437999e6f  /home/darwus/drupalbeta/web/downloads/public-files-manifest-20261002.tsv
+
+=== GIT IGNORE STATUS ===
+NOT_IGNORED=web/downloads/full-tree-manifest-20261002.tsv
+NOT_IGNORED=web/downloads/full-tree-manifest-20261002.tsv.sha256
+NOT_IGNORED=web/downloads/public-files-manifest-20261002.tsv
+NOT_IGNORED=web/downloads/public-files-manifest-20261002.tsv.sha256
+
+=== GIT HISTORY REFERENCES ===
+
+=== COMPOSER SECURITY AUDIT ===
+No security vulnerability advisories found.
+
+=== DRUSH SECURITY CHECK ===
+
+In Application.php line 271:
+                                                                               
+  pm:security has been removed. Please use `composer audit` command. See http  
+  s://www.drupal.org/project/project_composer/issues/3301876.                  
+                                                                               
+
+
+=== BACKUP STATUS ===
+-rw-r--r-- 1 darwus darwus 13 Oct  3 01:42 /home/darwus/backup-10.3.2026_01-42-37_darwus.tar.gz
+BACKUP_COMPLETE=NO
+
+RESULT=LIVE_UPDATE_GATE_RESOLUTION_CAPTURED
