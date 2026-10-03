@@ -35,12 +35,24 @@
 ### Broadcom / LSI SAS 9207-8i
 
 - Role: HBA authority for the eight data-drive path.
+- Detailed local reference summary: [`references/HBA_LSI_SAS9207-8i.md`](references/HBA_LSI_SAS9207-8i.md)
 - LSI SAS 9207-8i User Guide, version 2.2:
   https://docs.broadcom.com/doc/12353331
+  - uploaded working copy: `LSISAS9207-8i_UG_v2-2.pdf`
+  - SHA-256: `61bb97fd099f10ce07d2489510acdd7f0ee3fefcb63db7c866071d4e05cc4df6`
+  - size: 193741 bytes
 - LSI SAS 9207-8i Quick Installation Guide:
   https://docs.broadcom.com/doc/12352384
+  - uploaded working copy: `LSI_SAS_9207-8i_QIG.pdf`
+  - SHA-256: `e2b5402d3c3ae32420bec4e8331491d8e4b522550a5fa8b7c82a7d23f1749f04`
+  - size: 342608 bytes
 - SAS2Flash Utility Reference Guide:
   https://docs.broadcom.com/doc/12353205
+  - uploaded working copy: `SAS2_Flash_Utility_Software_Ref_Guide.pdf`
+  - SHA-256: `04708a22726274be2ea673940611b332993f367b94f8aaf782311f498182c978`
+  - size: 298520 bytes
+  - classification: historical SAS2Flash command reference, Preliminary v1.0 (November 2009); it predates the SAS2308-based 9207-8i and does not by itself authorize a firmware operation on this card.
+  - public-repo restriction: the uploaded document itself states that it is proprietary/confidential and not to be disclosed to third parties without permission, so the binary is intentionally not committed to this public repository.
 - Broadcom firmware-flashing knowledge base:
   https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas
 - Broadcom support downloads search:
