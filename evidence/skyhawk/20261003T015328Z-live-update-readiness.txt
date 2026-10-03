@@ -1,0 +1,77 @@
+=== HOST ===
+s19522.use2.stableserver.net
+
+=== GIT STATE ===
+?? web/downloads/full-tree-manifest-20261002.tsv
+?? web/downloads/full-tree-manifest-20261002.tsv.sha256
+?? web/downloads/public-files-manifest-20261002.tsv
+?? web/downloads/public-files-manifest-20261002.tsv.sha256
+HEAD=a642bea8282d5cddfcc64424a4fe353eae019078
+ORIGIN_MAIN=a642bea8282d5cddfcc64424a4fe353eae019078
+
+=== SKYHAWK COMPOSER CHECK ===
+ [notice] No differences between DB and sync directory.
+PROJECT=/home/darwus/drupalbeta
+DRUPAL_WEB=/home/darwus/drupalbeta/web
+BRANCH=main
+ORIGIN=git@github-skyhawk:Skyhawk-Association/skyhawk.org.git
+LOCAL_HEAD=a642bea8282d5cddfcc64424a4fe353eae019078
+REMOTE_MAIN=a642bea8282d5cddfcc64424a4fe353eae019078
+CONFIG_DIFF_COUNT=0
+COMPOSER_GIT_STATE=DIRTY
+?? web/downloads/full-tree-manifest-20261002.tsv
+?? web/downloads/full-tree-manifest-20261002.tsv.sha256
+?? web/downloads/public-files-manifest-20261002.tsv
+?? web/downloads/public-files-manifest-20261002.tsv.sha256
+
+=== DIRECT OUTDATED PACKAGES ===
+drupal/video_embed_field     3.1.0 ! 3.1.1 A pluggable field type for storin...
+Legend:
+! patch or minor release available - update recommended
+~ major release available - update possible
+drupal/views_bootstrap       5.5.2 ! 5.5.4 Allows for different styles to be...
+drupal/views_bulk_operations 4.4.8 ! 4.4.9 Adds an ability to perform bulk o...
+
+=== DRUPAL SECURITY STATUS ===
+
+# Support bash to support `source` with fallback on $0 if this does not run with bash
+# https://stackoverflow.com/a/35006505/6512
+selfArg="$BASH_SOURCE"
+if [ -z "$selfArg" ]; then
+    selfArg="$0"
+fi
+
+self=$(realpath "$selfArg" 2> /dev/null)
+if [ -z "$self" ]; then
+    self="$selfArg"
+fi
+
+dir=$(cd "${self%[/\\]*}" > /dev/null; cd '../drush/drush' && pwd)
+
+if [ -d /proc/cygdrive ]; then
+    case $(which php) in
+        $(readlink -n /proc/cygdrive)/*)
+            # We are in Cygwin using Windows php, so the path must be translated
+            dir=$(cygpath -m "$dir");
+            ;;
+    esac
+fi
+
+export COMPOSER_RUNTIME_BIN_DIR="$(cd "${self%[/\\]*}" > /dev/null; pwd)"
+
+# If bash is sourcing this file, we have to source the target as well
+bashSource="$BASH_SOURCE"
+if [ -n "$bashSource" ]; then
+    if [ "$bashSource" != "$0" ]; then
+        source "${dir}/drush" "$@"
+        return
+    fi
+fi
+
+exec "${dir}/drush" "$@"
+
+=== CPANEL BACKUP STATUS ===
+-rw-r--r-- 1 darwus darwus 13 Oct  3 01:42 /home/darwus/backup-10.3.2026_01-42-37_darwus.tar.gz
+BACKUP_COMPLETE=NO
+
+RESULT=LIVE_UPDATE_READINESS_CAPTURED
