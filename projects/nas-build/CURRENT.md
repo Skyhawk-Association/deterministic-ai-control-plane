@@ -35,7 +35,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Two CS383 drive-cage PWM fan leads moved to motherboard control: one on SYS_FAN1 and the other on SYS_FAN6.
 - Rear expansion-slot cover aligned with PCI_E1 removed in preparation for HBA installation.
 - HBA, boot SSDs, eight data drives, and PSU have not yet been installed into their final chassis positions.
-- HBA installation is currently blocked: the metal bracket attached to the LSI 9207-8i interfered with proper seating in the CS383 slot opening. Gene removed that bracket. The HBA is therefore not yet verified as securely retained and must not be treated as installation-complete or powered in an unsecured state.
+- LSI 9207-8i is now fully seated in PCI_E1 with its incompatible silver metal bracket removed. Full seating is based on Gene's direct physical report. Chassis retention remains unresolved, so the HBA is not yet installation-complete and the system must not be powered with the HBA unsecured.
 - Boot SSD SATA data connections completed: Crucial MX500 connected to SATA_S1 and Patriot Burst Elite connected to SATA_S2.
 
 ## Software / installer state
