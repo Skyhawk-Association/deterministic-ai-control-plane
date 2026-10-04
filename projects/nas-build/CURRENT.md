@@ -29,6 +29,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - CS383 rear cable bundle observed on the cable-management side of the motherboard tray, not trapped under the motherboard footprint.
 - Motherboard installed in the CS383 on nine matched standoffs; all nine motherboard screws were started by hand and then snugged evenly without over-tightening.
 - HBA, boot SSDs, eight data drives, and PSU have not yet been installed into their final chassis positions.
+- HBA installation is currently blocked: the metal bracket attached to the LSI 9207-8i interfered with proper seating in the CS383 slot opening. Gene removed that bracket. The HBA is therefore not yet verified as securely retained and must not be treated as installation-complete or powered in an unsecured state.
 
 ## Software / installer state
 
