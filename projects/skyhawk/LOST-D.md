@@ -17,6 +17,20 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## HANDOVER 2026-10-04 ~19:10Z (Claude -> next executor) - FULL CUTOVER PREPARED, NOT EXECUTED
+- TTLs: apex A records of skyhawk.org, a4skyhawk.org/.com/.info/.net/.biz, usmcskyhawkers.org set to 300 at 17:35Z via A2 uapi (DNS mass_edit_zone, verified). Cutover window opens 21:36Z. www records are CNAMEs to apex (leave). a4skyhawk.us already on VPS. emconalfa.net zone exists on A2: unknown, untouched.
+- Target behavior (from live A2): skyhawk.org and www serve the site (http and https). The other 6 domains plus www 301 to skyhawk.org; VPS will redirect to https://skyhawk.org$request_uri once cert exists.
+- Cert decision (Gene, option A): InMotion Let's Encrypt only. After DNS flip run acme.sh HTTP-01 for all 14 names via webroot /usr/local/apache/autossl_tmp (same pattern as a4skyhawk.us), install, add :443 vhosts, sleep before verify (reload race). Accept ~5-10 min https gap.
+- VPS nginx today: skyhawk.org-precutover.conf (:80) staged; no redirect vhosts; no certs for cutover names. Drupal trusted hosts already include skyhawk.org/www.
+- Mail gate CLOSED: VPS added to skyhawk.org SPF (ip4) via uapi; Drupal test mail delivered to Gene inbox. DKIM: OpenDKIM key selector skyhawk2026 installed on VPS; TXT record skyhawk2026._domainkey exists in A2 zone but A2 nameservers did not serve it (suspected negative caching). Deferred, not a gate.
+- DO NOT sync from the Mac nightly backup (~/ServerBackups/drupalbeta): it is the mi3-ts4 copy (darwus_test, schema 10600, max nid 49356). ArchiveSSD Skyhawk-A2-Backup (~40 GB) source/date unverified.
+- A2<->VPS SSH is blocked both ways. Proposed final-sync route (not yet run): from the Mac, ssh -A -R 22022:s19522.use2.stableserver.net:22 Inmotion, then on the VPS rsync from darwus@127.0.0.1 port 22022 into /home/n790725/drupalbeta, excluding .git, web/error_log, web/sites/default/settings*.php, files/css, files/js, files/php. Dry-run first.
+- OPEN GENE DECISION: final sync from current A2 (dump plus rsync) versus accept the VPS Oct 2 content as final.
+- Cutover sequence: A2 maintenance mode; fresh darwus_beta dump, import into n790725_skyhawk, updb plus cache rebuild with the PHP shim; rsync; compare 100 most recent nodes A2 vs VPS; flip 7 apex A records via uapi; LE cert plus :443; verify.
+- Evidence pipes: ~/bin/ai-report on the Mac and VPS (Git evidence/skyhawk). If the Mac reports PULL_FAIL, reset ~/dacp-repo to origin/main. Mac zsh: do not use variables as word lists; blocks must check their host.
+- Post-cutover backlog: DKIM DNS serving; VPS root alert mail bounces (DMARC); move DNS hosting off A2 before cancelling A2; external uptime monitor; new nightly backup from the VPS; drupalbeta_nightly_backup LaunchAgent stays disabled.
+- Drive checkpoint: DACP_CLAUDE_SESSION_20261004T191000Z_skyhawk-cutover-handover.md
+
 ## VPS migration continuity - 2026-10-04
 - CONTAMINATION FOUND AND REVERSED: the Oct 4 handoff imported the Mac nightly dump, which came from the old mi3-ts4 copy (database darwus_test, MariaDB 10.5, schema 10600, max nid 49356), and rsynced its files over the verified Oct 2 mirror. The Mac nightly backup reaches the wrong host via darwus_backup_key; its LaunchAgent is disabled (com.m4.drupalbeta.backup.plist.disabled). Do not re-enable it unchanged.
 - VERIFIED RESTORE: InMotion n790725_skyhawk restored from the pre-import backup (Oct 2 A2 lineage): max nid 49781, system schema 11401, 0 pending updates, cache rebuild OK, HTTP 200. Report /home/n790725/ai-reports/20261004T153409Z-inmotion-restore-pre-import.txt.
