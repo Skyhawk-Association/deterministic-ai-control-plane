@@ -1,0 +1,12 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T175005Z-vps142898-dkim-apply
+Task: dkim-apply
+Generated (UTC): 2026-10-04T17:50:05Z
+Host: vps142898
+---
+TABLES_BACKED_UP suffix=.bak-20261004T175000Z
+KEYTABLE_LINE: skyhawk2026._domainkey.skyhawk.org skyhawk.org:skyhawk2026:<keypath>
+SIGNINGTABLE_LINE: *@skyhawk.org skyhawk2026._domainkey.skyhawk.org
+PUBLIC_DNS_RECORD_READY: /home/n790725/ai-reports/dkim-skyhawk.org-skyhawk2026.txt (410 chars, starts: v=DKIM1; k=rsa; p=MIIBIjANBgkq)
+OPENDKIM=active
+RESULT=PASS_DKIM_KEY_INSTALLED (signing active once DNS TXT is published)
