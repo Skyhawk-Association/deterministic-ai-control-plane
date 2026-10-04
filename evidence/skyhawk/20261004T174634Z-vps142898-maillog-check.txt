@@ -1,0 +1,33 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T174634Z-vps142898-maillog-check
+Task: maillog-check
+Generated (UTC): 2026-10-04T17:46:34Z
+Host: vps142898
+---
+== maillog entries 17:38-17:45Z test window (server log time may be local) ==
+Oct  4 13:39:36 vps142898 postfix/bounce[611509]: 4CD8021CF4: sender non-delivery notification: 94E1821CF5
+Oct  4 13:39:36 vps142898 postfix/local[611514]: 94E1821CF5: to=<[email]>, relay=local, delay=0.01, delays=0/0.01/0/0, dsn=2.0.0, status=sent (delivered to mailbox)
+Oct  4 13:42:16 vps142898 postfix/pickup[609618]: 5D25B21CF5: uid=0 from=<root>
+Oct  4 13:42:16 vps142898 postfix/qmgr[11600]: 5D25B21CF5: from=<[email]>, size=860, nrcpt=1 (queue active)
+Oct  4 13:42:16 vps142898 postfix/smtp[611713]: 5D25B21CF5: to=<[email]>, relay=gmail-smtp-in.l.google.com[[ip]]:25, delay=0.47, delays=0.03/0.01/0.17/0.25, dsn=5.7.26, status=bounced (host gmail-smtp-in.l.google.com[[ip]] said: 550-5.7.26 Unauthenticated email from inmotionhosting.com is not accepted due to 550-5.7.26 domain's DMARC policy. Please contact the administrator of 550-5.7.26 inmotionhosting.com domain if this was a legitimate mail. To learn 550-5.7.26 about the DMARC initiative, go to 550 5.7.26  https://support.google.com/mail/?p=DmarcRejection 6a1803df08f44-917e0b7aa47si80819446d6.66 - gsmtp (in reply to end of DATA command))
+Oct  4 13:42:16 vps142898 postfix/qmgr[11600]: CDCC121CF6: from=<>, size=3739, nrcpt=1 (queue active)
+Oct  4 13:42:16 vps142898 postfix/bounce[611714]: 5D25B21CF5: sender non-delivery notification: CDCC121CF6
+Oct  4 13:42:16 vps142898 postfix/local[611715]: CDCC121CF6: to=<[email]>, relay=local, delay=0.02, delays=0/0.01/0/0, dsn=2.0.0, status=sent (delivered to mailbox)
+Oct  4 13:44:46 vps142898 postfix/pickup[609618]: 6728321CF6: uid=0 from=<root>
+Oct  4 13:44:46 vps142898 postfix/qmgr[11600]: 6728321CF6: from=<[email]>, size=860, nrcpt=1 (queue active)
+Oct  4 13:44:46 vps142898 postfix/smtp[611884]: 6728321CF6: to=<[email]>, relay=gmail-smtp-in.l.google.com[[ip]]:25, delay=0.38, delays=0.04/0.02/0.08/0.25, dsn=5.7.26, status=bounced (host gmail-smtp-in.l.google.com[[ip]] said: 550-5.7.26 Unauthenticated email from inmotionhosting.com is not accepted due to 550-5.7.26 domain's DMARC policy. Please contact the administrator of 550-5.7.26 inmotionhosting.com domain if this was a legitimate mail. To learn 550-5.7.26 about the DMARC initiative, go to 550 5.7.26  https://support.google.com/mail/?p=DmarcRejection 6a1803df08f44-917e0c57508si80447896d6.374 - gsmtp (in reply to end of DATA command))
+Oct  4 13:44:46 vps142898 postfix/bounce[611885]: 6728321CF6: sender non-delivery notification: C318221CF7
+Oct  4 13:44:46 vps142898 postfix/qmgr[11600]: C318221CF7: from=<>, size=3741, nrcpt=1 (queue active)
+Oct  4 13:44:46 vps142898 postfix/local[611886]: C318221CF7: to=<[email]>, relay=local, delay=0.02, delays=0.01/0.01/0/0, dsn=2.0.0, status=sent (delivered to mailbox)
+Oct  4 13:45:51 vps142898 postfix/pickup[609618]: 6894021CF7: uid=0 from=<root>
+Oct  4 13:45:51 vps142898 postfix/qmgr[11600]: 6894021CF7: from=<[email]>, size=860, nrcpt=1 (queue active)
+Oct  4 13:45:51 vps142898 postfix/smtp[611884]: 6894021CF7: to=<[email]>, relay=gmail-smtp-in.l.google.com[[ip]]:25, delay=0.25, delays=0.01/0/0.06/0.18, dsn=5.7.26, status=bounced (host gmail-smtp-in.l.google.com[[ip]] said: 550-5.7.26 Unauthenticated email from inmotionhosting.com is not accepted due to 550-5.7.26 domain's DMARC policy. Please contact the administrator of 550-5.7.26 inmotionhosting.com domain if this was a legitimate mail. To learn 550-5.7.26 about the DMARC initiative, go to 550 5.7.26  https://support.google.com/mail/?p=DmarcRejection d75a77b69052e-535143c1f60si35195411cf.230 - gsmtp (in reply to end of DATA command))
+Oct  4 13:45:51 vps142898 postfix/qmgr[11600]: A6EC621CF8: from=<>, size=3741, nrcpt=1 (queue active)
+Oct  4 13:45:51 vps142898 postfix/bounce[611885]: 6894021CF7: sender non-delivery notification: A6EC621CF8
+Oct  4 13:45:51 vps142898 postfix/local[611886]: A6EC621CF8: to=<[email]>, relay=local, delay=0.01, delays=0/0/0/0, dsn=2.0.0, status=sent (delivered to mailbox)
+== any bounce notices returned to the VPS ==
+Oct  4 13:44:46 vps142898 postfix/bounce[611885]: 6728321CF6: sender non-delivery notification: C318221CF7
+Oct  4 13:45:51 vps142898 postfix/smtp[611884]: 6894021CF7: to=<[email]>, relay=gmail-smtp-in.l.google.com[[ip]]:25, delay=0.25, delays=0.01/0/0.06/0.18, dsn=5.7.26, status=bounced (host gmail-smtp-in.l.google.com[[ip]] said: 550-5.7.26 Unauthenticated email from inmotionhosting.com is not accepted due to 550-5.7.26 domain's DMARC policy. Please contact the administrator of 550-5.7.26 inmotionhosting.com domain if this was a legitimate mail. To learn 550-5.7.26 about the DMARC initiative, go to 550 5.7.26  https://support.google.com/mail/?p=DmarcRejection d75a77b69052e-535143c1f60si35195411cf.230 - gsmtp (in reply to end of DATA command))
+Oct  4 13:45:51 vps142898 postfix/bounce[611885]: 6894021CF7: sender non-delivery notification: A6EC621CF8
+Oct  4 13:46:26 vps142898 postfix/smtp[611884]: 6A0A621CF7: to=<[email]>, relay=gmail-smtp-in.l.google.com[[ip]]:25, delay=0.27, delays=0.01/0/0.06/0.19, dsn=5.7.26, status=bounced (host gmail-smtp-in.l.google.com[[ip]] said: 550-5.7.26 Unauthenticated email from inmotionhosting.com is not accepted due to 550-5.7.26 domain's DMARC policy. Please contact the administrator of 550-5.7.26 inmotionhosting.com domain if this was a legitimate mail. To learn 550-5.7.26 about the DMARC initiative, go to 550 5.7.26  https://support.google.com/mail/?p=DmarcRejection af79cd13be357-93cca2a36d4si484416585a.140 - gsmtp (in reply to end of DATA command))
+Oct  4 13:46:26 vps142898 postfix/bounce[611885]: 6A0A621CF7: sender non-delivery notification: AB16C21CF8
