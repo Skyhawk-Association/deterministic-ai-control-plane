@@ -17,6 +17,20 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## VPS migration continuity - 2026-10-04
+- CONTAMINATION FOUND AND REVERSED: the Oct 4 handoff imported the Mac nightly dump, which came from the old mi3-ts4 copy (database darwus_test, MariaDB 10.5, schema 10600, max nid 49356), and rsynced its files over the verified Oct 2 mirror. The Mac nightly backup reaches the wrong host via darwus_backup_key; its LaunchAgent is disabled (com.m4.drupalbeta.backup.plist.disabled). Do not re-enable it unchanged.
+- VERIFIED RESTORE: InMotion n790725_skyhawk restored from the pre-import backup (Oct 2 A2 lineage): max nid 49781, system schema 11401, 0 pending updates, cache rebuild OK, HTTP 200. Report /home/n790725/ai-reports/20261004T153409Z-inmotion-restore-pre-import.txt.
+- OPEN FILES CONTAMINATION: versus the Oct 2 A2 public-files manifest, 101 config-sync YAML files (files/config_*/sync, web-denied 403 by design) are wrong-source versions and 66 non-generated extras exist. The VPS mirror has no .git. Resolve in the final A2 sync.
+- DRUSH ON VPS: Drush child processes resolve php through PATH (8.2.33). Run Drush with a temporary PATH shim where php links to /usr/local/bin/php84-skyhawk (pattern: /home/n790725/skyhawk-migration/run_updb.sh).
+- a4skyhawk.us LIVE ON VPS: A record moved to the VPS in A2 cPanel Zone Editor (zone nameservers are A2 mysecurecloudhost; mail and MX left on A2). nginx vhosts conf.d/vhosts/a4skyhawk.us.conf and a4skyhawk.us-ssl.conf; Let's Encrypt via /root/.acme.sh, expires 2027-01-02, renewal reloads nginx. HTTPS 200 verified; Gene visually accepted the site.
+- EVIDENCE PIPE QUALIFIED 2026-10-04: ~/bin/ai-report on the Mac (personal GitHub key, alias github-dacp) and on the VPS (repository deploy key, alias github-dacp via ssh.github.com port 443 because the VPS blocks outbound port 22). Both qualified by fresh-clone read-back and SHA-256 match. Usage: ( commands ) 2>&1 | ~/bin/ai-report "task"; Gene pastes only the AI_REPORT line. Organization deploy keys were enabled by Gene for this.
+- VPS reports directory: /home/n790725/ai-reports (skyhawk-migration/diagnostics is root-owned).
+- EXECUTION LOCATION: every block must verify its own host/user and refuse with a plain message if run in the wrong place. The Mac is on a wired home connection.
+- CUTOVER DECISIONS (Gene 2026-10-04): move the whole site, all seven domains; email is NOT migrated (existing aliases compromised; new secure email later, self-hosted mail not recommended); lower A and www TTLs to 300 before cutover; backups to be managed from the new server.
+- CUTOVER PREREQUISITES OPEN: Drupal outbound mail relay (SMTP with SPF/DKIM) needed before cutover; DNS hosting must leave A2 before A2 cancellation; A2 to VPS SSH times out and VPS to A2 is refused (VPS blocks outbound 22 locally), so the final sync route is currently via the Mac.
+- AVAILABILITY: one unexplained SSH hang from the Mac on 2026-10-04 while the site loaded over cellular; cause not identified. External uptime monitor recommended before production cutover.
+- NEXT: final sync from A2 s19522 (freeze, darwus_beta dump, delta files including config sync), 100-most-recent-node A2 versus VPS comparison, then DNS cutover.
+
 ## VPS migration continuity - 2026-09-30
 - VERIFIED: Mac SSH alias `Inmotion` now resolves to the VPS migration account `n790725` using the existing Mac Ed25519 key.
 - VERIFIED: passwordless key authentication succeeds from the Mac with `ssh -a Inmotion`; remote identity returned host `vps142898.inmotionhosting.com`, user `n790725`, uid 1001.
