@@ -1,0 +1,29 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T175802Z-Genes-Mac-mini-cutover-domain-inventory
+Task: cutover-domain-inventory
+Generated (UTC): 2026-10-04T17:58:07Z
+Host: Genes-Mac-mini
+---
+== CURRENT LIVE BEHAVIOR (target to reproduce; a4skyhawk.us is already on the VPS) ==
+skyhawk.org a4skyhawk.org a4skyhawk.com a4skyhawk.info a4skyhawk.net a4skyhawk.biz usmcskyhawkers.org a4skyhawk.us https=000 ->  http=000 -> 
+www.skyhawk.org a4skyhawk.org a4skyhawk.com a4skyhawk.info a4skyhawk.net a4skyhawk.biz usmcskyhawkers.org a4skyhawk.us https=000 ->  http=000 -> 
+== VPS INVENTORY ==
+skyhawk.org nginx=[skyhawk.org-precutover.conf,] apache=[none] backend_http=200 cert=none
+a4skyhawk.org nginx=[none] apache=[none] backend_http=200 cert=none
+a4skyhawk.com nginx=[none] apache=[none] backend_http=400 cert=none
+a4skyhawk.info nginx=[none] apache=[none] backend_http=400 cert=none
+a4skyhawk.net nginx=[none] apache=[none] backend_http=400 cert=none
+a4skyhawk.biz nginx=[none] apache=[none] backend_http=400 cert=none
+usmcskyhawkers.org nginx=[none] apache=[none] backend_http=400 cert=none
+a4skyhawk.us nginx=[a4skyhawk.us.conf,a4skyhawk.us-ssl.conf,] apache=[none] backend_http=200 cert=COVERED
+== Drupal trusted_host_patterns ==
+$settings['trusted_host_patterns'] = [
+  '^1790723478a62e50832643ebc3\.temporary\.link$',
+ '^www\.a4skyhawk\.org$',
+  '^www\.a4skyhawk\.us$',
+  '^a4skyhawk\.us$',
+  '^a4skyhawk\.org$',
+
+  '^www\.skyhawk\.org$',
+  '^skyhawk\.org$',
+];
