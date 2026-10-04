@@ -1,0 +1,7 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T171107Z-Genes-Mac-mini-vps-pipe-diag
+Task: vps-pipe-diag
+Generated (UTC): 2026-10-04T17:11:27Z
+Host: Genes-Mac-mini
+---
+ssh: connect to host [ip] port 22: Operation timed out
