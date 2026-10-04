@@ -1,0 +1,17 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T175129Z-Genes-Mac-mini-mail-dkim-dns-and-test
+Task: mail-dkim-dns-and-test
+Generated (UTC): 2026-10-04T17:55:03Z
+Host: Genes-Mac-mini
+---
+DKIM_PUB_FETCHED 410 chars
+A2_HOST_OK
+UAPI=OK
+VERIFY dkim_records=0 spf_has_vps=YES spf_count=1
+== waiting for A2 nameservers to serve DKIM (max 3 min) ==
+DKIM_PUBLIC_MATCHES_VPS_KEY=NO
+== Drupal test send ==
+DRUPAL_MAIL_RESULT=ACCEPTED_BY_LOCAL_MTA
+QUEUE: Mail queue is empty
+bash: line 10: 0
+0: syntax error in expression (error token is "0")
