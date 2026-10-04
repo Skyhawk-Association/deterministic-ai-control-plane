@@ -1,0 +1,19 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T171858Z-Genes-Mac-mini-inmotion-availability
+Task: inmotion-availability
+Generated (UTC): 2026-10-04T17:20:05Z
+Host: Genes-Mac-mini
+---
+== web (5 samples, 10s apart) ==
+17:18:58 root=200/0.129470s login=200
+17:19:08 root=200/0.128106s login=200
+17:19:19 root=200/0.129062s login=200
+17:19:29 root=200/0.125007s login=200
+17:19:39 root=200/0.125788s login=200
+== ssh port only, no login (3 samples) ==
+17:19:49 port22=Connection to vps142898.inmotionhosting.com port 22 [tcp/ssh] succeeded!
+OPEN
+17:19:54 port22=Connection to vps142898.inmotionhosting.com port 22 [tcp/ssh] succeeded!
+OPEN
+17:19:59 port22=Connection to vps142898.inmotionhosting.com port 22 [tcp/ssh] succeeded!
+OPEN
