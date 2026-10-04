@@ -1,0 +1,32 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T191236Z-Genes-Mac-mini-final-sync-dryrun
+Task: final-sync-dryrun
+Generated (UTC): 2026-10-04T19:13:00Z
+Host: Genes-Mac-mini
+---
+TUNNEL_A2_HOST: s19522.use2.stableserver.net
+WOULD_UPDATE_FILES=943 WOULD_DELETE=75
+Number of files: 118,287 (reg: 105,477, dir: 12,810)
+Number of created files: 235 (reg: 230, dir: 5)
+Number of deleted files: 75 (reg: 74, dir: 1)
+Number of regular files transferred: 943
+Total transferred file size: 32,929,620 bytes
+== updates by area ==
+    710 web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A
+    226 web/sites/default/files/styles
+      3 web/sites/default/files/darwsafolders
+      1 web/downloads/public-files-manifest-20261002.tsv.sha256//
+      1 web/downloads/public-files-manifest-20261002.tsv//
+      1 web/downloads/full-tree-manifest-20261002.tsv.sha256//
+      1 web/downloads/full-tree-manifest-20261002.tsv//
+== deletions sample ==
+*deleting   web/sites/default/settings.php.pre-trusted-host-live-20261002T191156Z
+*deleting   web/sites/default/settings.php.pre-trusted-host-20261002T190638Z
+*deleting   web/sites/default/settings.php.pre-proven-trusted-host-20261002T191545Z
+*deleting   web/sites/default/settings.php.pre-live-db-20261002T154542Z
+*deleting   web/sites/default/settings.php.pre-line-repair-20261002T192322Z
+*deleting   web/sites/default/settings.php.pre-finalize-20261002T160144Z
+*deleting   web/sites/default/settings.php.pre-db-20261002T032730Z
+*deleting   web/sites/default/settings.php.pre-adopt-20261002T154124Z
+*deleting   web/sites/default/files/wofam-demo/
+*deleting   web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/youtube.settings.yml
