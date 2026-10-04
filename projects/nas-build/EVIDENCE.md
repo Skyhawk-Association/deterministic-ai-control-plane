@@ -39,6 +39,19 @@ Use descriptive names rather than chat-upload IDs, for example:
 
 After each binary write, independently read back the Git object/path before treating the image as shared evidence.
 
+## HBA purchase provenance
+
+Gene supplied the original shopping-cart text on 2026-10-04. It identifies the HBA purchase listing as:
+
+- Newegg Marketplace.
+- Seller: Fastparts.
+- Product description: `DELL / LSI 6GB/S HOST BUS ADAPTER HBA PCI-E 3.0 X8 LSI00301 -US SAS9207-8i`.
+- Listed price: $57.49.
+- The supplied cart text does not list any SFF-8087-to-SATA breakout cables as separate purchased items or included accessories.
+- Current physical inventory likewise has no two SFF-8087-to-4x-SATA forward-breakout cables.
+
+This establishes purchase-source provenance and a current missing-cable condition; it does not by itself prove what accessories the seller's product page promised at checkout.
+
 ## HBA document intake
 
 Three HBA-related PDFs were supplied directly in the working session and hashed before canonical indexing:
