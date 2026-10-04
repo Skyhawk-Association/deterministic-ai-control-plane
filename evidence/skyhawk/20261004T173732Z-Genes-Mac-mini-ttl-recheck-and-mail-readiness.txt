@@ -1,0 +1,24 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T173732Z-Genes-Mac-mini-ttl-recheck-and-mail-readiness
+Task: ttl-recheck-and-mail-readiness
+Generated (UTC): 2026-10-04T17:37:36Z
+Host: Genes-Mac-mini
+---
+== TTL per nameserver ==
+skyhawk.org ns1=3475 ns2=3475 ns3=3475 ns4=3475
+a4skyhawk.org ns1=175 ns2=175 ns3=175 ns4=175
+a4skyhawk.com ns1=175 ns2=175 ns3=175 ns4=175
+a4skyhawk.info ns1=3475 ns2=3475 ns3=3475 ns4=3475
+a4skyhawk.net ns1=175 ns2=175 ns3=175 ns4=175
+a4skyhawk.biz ns1=3476 ns2=3476 ns3=3476 ns4=3476
+usmcskyhawkers.org ns1=3476 ns2=3476 ns3=3476 ns4=3476
+CHECK_UTC=2026-10-04T17:37:32Z
+== VPS outbound mail readiness (read-only, nothing sent) ==
+DRUPAL_MAIL_INTERFACE: {"system.mail:interface":{"default":"php_mail","webform":"webform_php_mail"}}
+SITE_MAIL_DOMAIN: @skyhawk.org
+MAIL_MODULES: 
+PHP84_SENDMAIL_PATH: /usr/sbin/sendmail -t -i
+LOCAL_MTA: postfix=active exim=inactive sendmail_bin=/usr/sbin/sendmail
+OUTBOUND gmail-smtp-in.l.google.com:25 OPEN
+OUTBOUND smtp.gmail.com:587 OPEN
+OUTBOUND smtp.gmail.com:465 BLOCKED_OR_TIMEOUT
