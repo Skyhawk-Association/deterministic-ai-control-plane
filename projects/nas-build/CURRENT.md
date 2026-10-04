@@ -27,7 +27,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Two RAM modules installed in MSI-recommended A2 and B2 slots; latch seating was visually confirmed.
 - PSU bench test passed using the Seasonic-supported 24-pin paper-clip method.
 - CS383 rear cable bundle observed on the cable-management side of the motherboard tray, not trapped under the motherboard footprint.
-- Motherboard has not yet been installed into the chassis.
+- Motherboard installed in the CS383 on nine matched standoffs; all nine motherboard screws were started by hand and then snugged evenly without over-tightening.
 - HBA, boot SSDs, eight data drives, and PSU have not yet been installed into their final chassis positions.
 
 ## Software / installer state
