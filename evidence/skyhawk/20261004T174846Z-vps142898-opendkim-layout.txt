@@ -1,0 +1,47 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T174846Z-vps142898-opendkim-layout
+Task: opendkim-layout
+Generated (UTC): 2026-10-04T17:48:46Z
+Host: vps142898
+---
+== service ==
+active
+opendkim: OpenDKIM Filter v2.11.0
+== config (non-comment) ==
+AutoRestart             Yes
+AutoRestartRate         10/1h
+LogWhy                  Yes
+Syslog                  Yes
+SyslogSuccess           Yes
+Mode                    sv
+Canonicalization        relaxed/simple
+ExternalIgnoreList      refile:/etc/opendkim/TrustedHosts
+InternalHosts           refile:/etc/opendkim/TrustedHosts
+KeyTable                refile:/etc/opendkim/KeyTable
+SigningTable            refile:/etc/opendkim/SigningTable
+SignatureAlgorithm      rsa-sha256
+Socket                  inet:8891@localhost
+PidFile                 /var/run/opendkim/opendkim.pid
+UMask                   022
+UserID                  opendkim:opendkim
+TemporaryDirectory      /var/tmp
+== /etc/opendkim/TrustedHosts ==
+[ip]
+::1
+1790723478a62e50832643ebc3.temporary.link
+== /etc/opendkim/TrustedHosts ==
+[ip]
+::1
+1790723478a62e50832643ebc3.temporary.link
+== /etc/opendkim/KeyTable ==
+default._domainkey.1790723478a62e50832643ebc3.temporary.link 1790723478a62e50832643ebc3.temporary.link:default:/etc/opendkim/userkeys/1790723478a62e50832643ebc3.temporary.link/default.private
+== /etc/opendkim/SigningTable ==
+*@1790723478a62e50832643ebc3.temporary.link default._domainkey.1790723478a62e50832643ebc3.temporary.link
+== key dirs ==
+total 8
+drwxr-x--- 2 root opendkim 4096 Apr 16  2023 .
+drwxr-xr-x 4 root opendkim 4096 Sep 29 22:47 ..
+== postfix milter ==
+inet:[ip]:8891
+$smtpd_milters
+accept
