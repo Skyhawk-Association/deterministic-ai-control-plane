@@ -1,0 +1,12 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T173931Z-Genes-Mac-mini-mail-test
+Task: mail-test
+Generated (UTC): 2026-10-04T17:39:52Z
+Host: Genes-Mac-mini
+---
+DMARC_skyhawk.org: 
+SPF_skyhawk.org: "v=spf1 ip4:[ip] include:spf.mysecurecloudhost.com ip4:[ip] include:spf.a2hosting.com ip4:[ip] ip4:[ip] +a +mx ~all" 
+POSTFIX: vps142898.inmotionhosting.com origin=$myhostname
+VPS_RDNS: vps142898.inmotionhosting.com.
+DRUPAL_MAIL_RESULT=ACCEPTED_BY_LOCAL_MTA
+MAILLOG_LAST: 
