@@ -43,8 +43,8 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 
 - TrueNAS Community Edition target: 25.10.7.
 - Windows PowerShell reported `RESULT=TRUENAS_ISO_VERIFIED`.
-- Installer USB has not yet been written from the verified ISO.
-- The intended installer USB must be re-identified by physical device identity immediately before writing; do not target a drive letter alone.
+- TrueNAS installer USB has already been created and is standing by for installation.
+- Monitor and keyboard are standing by for first POST/BIOS and TrueNAS installation.
 
 ## Known corrections to older planning material
 
@@ -67,7 +67,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 11. Install and map the eight IronWolf drives by bay.
 12. Perform a no-AC pre-power inspection.
 13. First POST with monitor/keyboard; verify CPU, 64 GB RAM, sane CPU temperature/fan behavior, boot devices, and HBA visibility before TrueNAS installation.
-14. Flash and verify the TrueNAS installer USB, then install only after destination boot devices are unambiguously identified.
+14. Use the already-created TrueNAS installer USB only after destination boot devices are unambiguously identified.
 
 ## Hard stop conditions
 
