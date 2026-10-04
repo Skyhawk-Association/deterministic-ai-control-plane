@@ -1,0 +1,16 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T185826Z-Genes-Mac-mini-dkim-record-state
+Task: dkim-record-state
+Generated (UTC): 2026-10-04T18:58:29Z
+Host: Genes-Mac-mini
+---
+DKIM_DNS_NOW:  (empty = not served)
+TXT_NAME=skyhawk.org. chunks=1 starts=v=spf1 ip4:1
+TXT_NAME=default._domainkey chunks=2 starts=v=DKIM1; k=r
+TXT_NAME=_acme-challenge chunks=1 starts=jKY8xFZFr3MR
+TXT_NAME=_cpanel-dcv-test-record chunks=1 starts=_cpanel-dcv-
+TXT_NAME=_carddav._tcp chunks=1 starts=path=/
+TXT_NAME=_caldav._tcp chunks=1 starts=path=/
+TXT_NAME=_carddavs._tcp chunks=1 starts=path=/
+TXT_NAME=_caldavs._tcp chunks=1 starts=path=/
+TXT_NAME=skyhawk2026._domainkey chunks=2 starts=v=DKIM1; k=r
