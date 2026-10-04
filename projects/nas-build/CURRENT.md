@@ -37,6 +37,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - HBA, boot SSDs, eight data drives, and PSU have not yet been installed into their final chassis positions.
 - LSI 9207-8i is now fully seated in PCI_E1 with its incompatible silver metal bracket removed. Full seating is based on Gene's direct physical report. Chassis retention remains unresolved, so the HBA is not yet installation-complete and the system must not be powered with the HBA unsecured.
 - Boot SSD SATA data connections completed: Crucial MX500 connected to SATA_S1 and Patriot Burst Elite connected to SATA_S2.
+- Two Cable Matters 0.5 m / 1.6 ft SFF-8087-to-4x-SATA forward-breakout cables were ordered from Amazon on 2026-10-04, with estimated delivery 2026-10-05; these are intended to connect the LSI 9207-8i's J5/J6 ports to the eight CS383 backplane SATA data inputs.
 
 ## Software / installer state
 
