@@ -1,0 +1,23 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T173520Z-Genes-Mac-mini-ttl-300-apply
+Task: ttl-300-apply
+Generated (UTC): 2026-10-04T17:35:27Z
+Host: Genes-Mac-mini
+---
+A2_HOST_OK s19522.use2.stableserver.net
+skyhawk.org before_ttl=14400 after_ttl=300 address_unchanged=YES api=OK
+a4skyhawk.org before_ttl=14400 after_ttl=300 address_unchanged=YES api=OK
+a4skyhawk.com before_ttl=14400 after_ttl=300 address_unchanged=YES api=OK
+a4skyhawk.info before_ttl=14400 after_ttl=300 address_unchanged=YES api=OK
+a4skyhawk.net before_ttl=14400 after_ttl=300 address_unchanged=YES api=OK
+a4skyhawk.biz before_ttl=14400 after_ttl=300 address_unchanged=YES api=OK
+usmcskyhawkers.org before_ttl=14400 after_ttl=300 address_unchanged=YES api=OK
+== public check from A2 nameserver ==
+skyhawk.org ttl=3600 NOT_YET
+a4skyhawk.org ttl=300 OK
+a4skyhawk.com ttl=300 OK
+a4skyhawk.info ttl=3600 NOT_YET
+a4skyhawk.net ttl=300 OK
+a4skyhawk.biz ttl=3600 NOT_YET
+usmcskyhawkers.org ttl=3600 NOT_YET
+CLOCK_START_UTC=2026-10-04T17:35:27Z
