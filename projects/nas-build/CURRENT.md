@@ -28,6 +28,12 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - PSU bench test passed using the Seasonic-supported 24-pin paper-clip method.
 - CS383 rear cable bundle observed on the cable-management side of the motherboard tray, not trapped under the motherboard footprint.
 - Motherboard installed in the CS383 on nine matched standoffs; all nine motherboard screws were started by hand and then snugged evenly without over-tightening.
+- Front-panel JFP1 wiring completed: HDD LED on pins 1/3, Power LED on 2/4, Reset SW on 5/7, Power SW on 6/8; NIC1/NIC2 LED leads are unused on this motherboard.
+- Front HD AUDIO connected to JAUD1.
+- Front USB 5 Gbps Type-A cable connected to JUSB3.
+- Front USB-C cable connected to JUSBC1.
+- Two CS383 drive-cage PWM fan leads moved to motherboard control: one on SYS_FAN1 and the other on SYS_FAN6.
+- Rear expansion-slot cover aligned with PCI_E1 removed in preparation for HBA installation.
 - HBA, boot SSDs, eight data drives, and PSU have not yet been installed into their final chassis positions.
 - HBA installation is currently blocked: the metal bracket attached to the LSI 9207-8i interfered with proper seating in the CS383 slot opening. Gene removed that bracket. The HBA is therefore not yet verified as securely retained and must not be treated as installation-complete or powered in an unsecured state.
 
@@ -50,10 +56,9 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 1. Lay the CS383 for motherboard installation and inspect the motherboard tray.
 2. Match chassis standoffs to actual MSI motherboard mounting holes. Remove or relocate any standoff that would sit under solid PCB.
 3. Lower the assembled motherboard onto only the matched standoffs, align integrated rear I/O, start all board screws loosely, then secure evenly without over-tightening.
-4. Before access becomes restricted, connect case front-panel, front USB, front audio, required fan headers, and motherboard-side SATA/data connections.
-5. Install the LSI SAS 9207-8i in the motherboard slot selected from the MSI slot topology; verify full seating and bracket retention.
-6. Route the two internal mini-SAS data paths from the HBA toward the CS383 backplane without sharp bends or fan interference.
-7. Install the two boot SSDs in the CS383-supported 2.5-inch locations and connect their SATA data paths.
+4. Case front-panel, front USB, front audio, and the two drive-cage PWM fan leads are connected to the motherboard as recorded above.
+5. Resolve the LSI SAS 9207-8i bracket/chassis mismatch. Do not power the system with the HBA unsecured. After the correct retention method is established, install the HBA in PCI_E1, verify full seating and chassis retention, then route the two internal SFF-8087 paths without sharp bends or fan interference.
+6. Install the two boot SSDs in the CS383-supported 2.5-inch locations and connect their SATA data paths.
 8. Outside the case, attach the exact required Seasonic modular cables: motherboard 24-pin pair at the PSU, required CPU/EPS cable(s), and required SATA/peripheral power leads.
 9. Install the PSU in the chassis only after required modular cables are attached and PSU orientation is verified against both the CS383 airflow geometry and Seasonic guidance.
 10. Complete motherboard, boot-SSD, and backplane power connections.
