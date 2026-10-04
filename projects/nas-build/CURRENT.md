@@ -36,6 +36,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Rear expansion-slot cover aligned with PCI_E1 removed in preparation for HBA installation.
 - HBA, boot SSDs, eight data drives, and PSU have not yet been installed into their final chassis positions.
 - HBA installation is currently blocked: the metal bracket attached to the LSI 9207-8i interfered with proper seating in the CS383 slot opening. Gene removed that bracket. The HBA is therefore not yet verified as securely retained and must not be treated as installation-complete or powered in an unsecured state.
+- Boot SSD SATA data connections completed: Crucial MX500 connected to SATA_S1 and Patriot Burst Elite connected to SATA_S2.
 
 ## Software / installer state
 
@@ -58,7 +59,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 3. Lower the assembled motherboard onto only the matched standoffs, align integrated rear I/O, start all board screws loosely, then secure evenly without over-tightening.
 4. Case front-panel, front USB, front audio, and the two drive-cage PWM fan leads are connected to the motherboard as recorded above.
 5. Resolve the LSI SAS 9207-8i bracket/chassis mismatch. Do not power the system with the HBA unsecured. After the correct retention method is established, install the HBA in PCI_E1, verify full seating and chassis retention, then route the two internal SFF-8087 paths without sharp bends or fan interference.
-6. Install the two boot SSDs in the CS383-supported 2.5-inch locations and connect their SATA data paths.
+6. Boot SSD SATA data connections are complete; SSD power remains pending.
 8. Outside the case, attach the exact required Seasonic modular cables: motherboard 24-pin pair at the PSU, required CPU/EPS cable(s), and required SATA/peripheral power leads.
 9. Install the PSU in the chassis only after required modular cables are attached and PSU orientation is verified against both the CS383 airflow geometry and Seasonic guidance.
 10. Complete motherboard, boot-SSD, and backplane power connections.
