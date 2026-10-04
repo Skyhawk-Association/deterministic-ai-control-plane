@@ -1,0 +1,27 @@
+SKYHAWK AI REPORT
+Report-ID: 20261004T174736Z-vps142898-maillog-drupal-test
+Task: maillog-drupal-test
+Generated (UTC): 2026-10-04T17:47:36Z
+Host: vps142898
+---
+== Drupal test message 4CD8021CF4 ==
+Oct  4 13:39:32 vps142898 postfix/pickup[609618]: 4CD8021CF4: uid=1001 from=<[email]>
+Oct  4 13:39:32 vps142898 postfix/cleanup[611500]: 4CD8021CF4: message-id=<[email]>
+Oct  4 13:39:32 vps142898 opendkim[8561]: 4CD8021CF4: no signing table match for '[email]'
+Oct  4 13:39:32 vps142898 opendkim[8561]: 4CD8021CF4: no signature data
+Oct  4 13:39:32 vps142898 postfix/qmgr[11600]: 4CD8021CF4: from=<[email]>, size=735, nrcpt=1 (queue active)
+Oct  4 13:39:32 vps142898 postfix/smtp[611506]: 4CD8021CF4: to=<[email]>, relay=gmail-smtp-in.l.google.com[[ip]]:25, delay=0.56, delays=0.04/0.01/0.07/0.44, dsn=5.7.26, status=bounced (host gmail-smtp-in.l.google.com[[ip]] said: 550-5.7.26 Your email has been blocked because the sender is unauthenticated. 550-5.7.26 Gmail requires all senders to authenticate with either SPF or DKIM. 550-5.7.26  550-5.7.26  Authentication results: 550-5.7.26  DKIM = did not pass 550-5.7.26  SPF [skyhawk.org] with ip: [[ip]] = did not pass 550-5.7.26  550-5.7.26  For instructions on setting up authentication, go to 550 5.7.26  https://support.google.com/mail/answer/81126#authentication d75a77b69052e-53529501a6asi11112721cf.132 - gsmtp (in reply to end of DATA command))
+Oct  4 13:39:32 vps142898 postfix/bounce[611509]: 4CD8021CF4: sender non-delivery notification: D345F21CF5
+Oct  4 13:39:32 vps142898 postfix/qmgr[11600]: 4CD8021CF4: removed
+Oct  4 13:39:36 vps142898 postfix/pickup[609618]: 4CD8021CF4: uid=0 from=<root>
+Oct  4 13:39:36 vps142898 postfix/cleanup[611500]: 4CD8021CF4: message-id=<[email]>
+Oct  4 13:39:36 vps142898 opendkim[8561]: 4CD8021CF4: no signing table match for '[email]'
+Oct  4 13:39:36 vps142898 opendkim[8561]: 4CD8021CF4: no signature data
+Oct  4 13:39:36 vps142898 postfix/qmgr[11600]: 4CD8021CF4: from=<[email]>, size=860, nrcpt=1 (queue active)
+Oct  4 13:39:36 vps142898 postfix/smtp[611506]: 4CD8021CF4: to=<[email]>, relay=gmail-smtp-in.l.google.com[[ip]]:25, delay=0.3, delays=0.01/0/0.08/0.2, dsn=5.7.26, status=bounced (host gmail-smtp-in.l.google.com[[ip]] said: 550-5.7.26 Unauthenticated email from inmotionhosting.com is not accepted due to 550-5.7.26 domain's DMARC policy. Please contact the administrator of 550-5.7.26 inmotionhosting.com domain if this was a legitimate mail. To learn 550-5.7.26 about the DMARC initiative, go to 550 5.7.26  https://support.google.com/mail/?p=DmarcRejection d75a77b69052e-535309230ecsi4549651cf.164 - gsmtp (in reply to end of DATA command))
+Oct  4 13:39:36 vps142898 postfix/bounce[611509]: 4CD8021CF4: sender non-delivery notification: 94E1821CF5
+Oct  4 13:39:36 vps142898 postfix/qmgr[11600]: 4CD8021CF4: removed
+== header From of the bounced test (from the local bounce copy) ==
+== what sends root mail every minute ==
+root_msgs_13:40-49=5
+cron.d_entries=13
