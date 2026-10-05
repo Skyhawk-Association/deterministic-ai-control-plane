@@ -18,13 +18,13 @@
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
 ## VERIFIED CUTOVER 2026-10-05 ~03:52Z
-- DNS: hosting is on Register4Less (Gene correction, 2026-10-05). All seven production apex A records now resolve to the InMotion VPS; www remains CNAME to apex.
+- DNS ownership clarification: Register4Less is the registrar/control account, but the current registry delegation for skyhawk.org points to ns1-ns4.mysecurecloudhost.com, so the active authoritative zone is external to Register4Less's dormant custom zone. All seven production apex A records now resolve to the InMotion VPS; www remains CNAME to apex.
 - Drupal/InMotion: maintenance mode cleared; Apache backend, nginx front, and /user/login verified HTTP 200 before DNS cutover.
 - TLS: Let's Encrypt SAN certificate successfully issued and installed for all 14 production names (seven apex + www), valid through 2027-01-03.
 - HTTPS: skyhawk.org and www.skyhawk.org verified 200 externally; the six alternate domains and their www names verified 301 to https://skyhawk.org$request_uri.
 - Certificate SAN independently verified from the Mac against the live endpoint.
 - Current cutover status: production DNS and HTTPS are live on InMotion.
-- NEXT: post-cutover verification, new VPS backup/nightly backup setup, verify Register4Less DNS/registrar continuity, then retire A2 only after drain/acceptance. No DNS-hosting migration away from A2 is required because DNS hosting is already on Register4Less.
+- NEXT: before retiring A2, migrate the authoritative DNS zone off ns1-ns4.mysecurecloudhost.com to a durable DNS owner (Register4Less is available), but only after cloning the complete live zone into the destination and verifying it. The existing Register4Less custom zone is stale/dormant and must not be activated as-is. Then complete post-cutover verification and new VPS backup/nightly backup setup.
 
 ## HANDOVER 2026-10-04 ~19:10Z (Claude -> next executor) - FULL CUTOVER PREPARED, NOT EXECUTED
 - TTLs: apex A records of skyhawk.org, a4skyhawk.org/.com/.info/.net/.biz, usmcskyhawkers.org set to 300 at 17:35Z via A2 uapi (DNS mass_edit_zone, verified). Cutover window opens 21:36Z. www records are CNAMEs to apex (leave). a4skyhawk.us already on VPS. emconalfa.net zone exists on A2: unknown, untouched.
