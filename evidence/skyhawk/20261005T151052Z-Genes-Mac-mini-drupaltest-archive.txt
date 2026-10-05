@@ -1,0 +1,23 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T151052Z-Genes-Mac-mini-drupaltest-archive
+Task: drupaltest-archive
+Generated (UTC): 2026-10-05T15:10:53Z
+Host: Genes-Mac-mini
+---
+START_UTC=20261005T151052Z
+ARCHIVESSD_FREE_GB=6759
+== 1. two unique pages + remote file count ==
+command-line line 0: keyword connecttimeout extra arguments at end of line
+PAGES_FILE=~/Desktop/emconalfa-unique-pages.html pages_found=0 REMOTE_FILE_COUNT=
+== 2a. database dump (started 15:10:52Z) ==
+command-line line 0: keyword connecttimeout extra arguments at end of line
+gzip: /Volumes/ArchiveSSD/skyhawk-archive/drupaltest-emconalfa-20261005T151052Z/db.sql.gz: unexpected end of file
+DB_GZIP_FAIL
+== 2b. files tar (started 15:10:52Z) ==
+command-line line 0: keyword connecttimeout extra arguments at end of line
+TAR_SIZE=0B TAR_FILE_COUNT=0 REMOTE_FILE_COUNT=
+FILES_COUNT_MATCH=NO
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  db.sql.gz
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  files.tar
+ARCHIVE_DIR=/Volumes/ArchiveSSD/skyhawk-archive/drupaltest-emconalfa-20261005T151052Z
+END_UTC=20261005T151053Z
