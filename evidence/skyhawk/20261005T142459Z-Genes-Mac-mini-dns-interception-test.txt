@@ -1,0 +1,17 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T142459Z-Genes-Mac-mini-dns-interception-test
+Task: dns-interception-test
+Generated (UTC): 2026-10-05T14:25:03Z
+Host: Genes-Mac-mini
+---
+== interception test from Mac: [ip] has no DNS server; any answer = intercepted ==
+MAC_TO_NOWHERE: [ip] -> PARKING
+MAC_SYSTEM_RESOLVER (what browsers use): VPS
+== authoritative check from the VPS (outside home network) ==
+VPS_TO_NOWHERE: ;; connection timed out; no servers could be reached
+skyhawk.org r4l1=VPS r4l2=VPS a2ns1=VPS www=skyhawk.org. public=PARKING
+a4skyhawk.com r4l1=VPS r4l2=VPS a2ns1=VPS www=a4skyhawk.com. public=VPS
+a4skyhawk.info r4l1=VPS r4l2=VPS a2ns1=VPS www=a4skyhawk.info. public=VPS
+a4skyhawk.net r4l1=VPS r4l2=VPS a2ns1=VPS www=a4skyhawk.net. public=VPS
+a4skyhawk.biz r4l1=VPS r4l2=VPS a2ns1=VPS www=a4skyhawk.biz. public=PARKING
+usmcskyhawkers.org r4l1=VPS r4l2=VPS a2ns1=VPS www=usmcskyhawkers.org. public=VPS
