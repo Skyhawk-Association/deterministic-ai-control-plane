@@ -1,0 +1,7 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T150415Z-Genes-Mac-mini-emconalfa-email-usage
+Task: emconalfa-email-usage
+Generated (UTC): 2026-10-05T15:04:17Z
+Host: Genes-Mac-mini
+---
+MAILDIR mail: unread=2 read=0 oldest=2026-05-23 newest=2026-08-16 size=260K
