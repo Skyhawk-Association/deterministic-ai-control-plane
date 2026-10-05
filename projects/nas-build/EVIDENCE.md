@@ -48,7 +48,7 @@ Gene supplied the original shopping-cart text on 2026-10-04. It identifies the H
 - Product description: `DELL / LSI 6GB/S HOST BUS ADAPTER HBA PCI-E 3.0 X8 LSI00301 -US SAS9207-8i`.
 - Listed price: $57.49.
 - The supplied cart text does not list any SFF-8087-to-SATA breakout cables as separate purchased items or included accessories.
-- Current physical inventory likewise has no two SFF-8087-to-4x-SATA forward-breakout cables.
+- On 2026-10-05, Gene supplied photographic evidence of two Cable Matters boxes labeled `Internal Mini-SAS to SATA Forward Breakout Cable - 1.6ft / 0.5m [SFF-8087 to 4x SATA]`, model `104016-0.5m`. The required pair is therefore physically in hand.
 
 This establishes purchase-source provenance and a current missing-cable condition; it does not by itself prove what accessories the seller's product page promised at checkout.
 
