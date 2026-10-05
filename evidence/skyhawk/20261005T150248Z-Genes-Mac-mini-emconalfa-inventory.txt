@@ -1,0 +1,22 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T150248Z-Genes-Mac-mini-emconalfa-inventory
+Task: emconalfa-inventory
+Generated (UTC): 2026-10-05T15:03:07Z
+Host: Genes-Mac-mini
+---
+== A2: what the account hosts ==
+MAIN_DOMAIN=emconalfa.net
+ADDON_DOMAINS: a4skyhawk.biz a4skyhawk.com a4skyhawk.info a4skyhawk.net a4skyhawk.org a4skyhawk.us skyhawk.org usmcskyhawkers.org
+SUB_DOMAINS: drupaltest.emconalfa.net
+PARKED_DOMAINS: 
+== emconalfa.net email accounts / forwarders ==
+MAILBOXES=1
+FORWARDERS=0
+== docroots under the account mentioning emconalfa ==
+/home/darwus/drupaltest.emconalfa.net
+/home/darwus/drupaltest.emconalfa.net: 21G, last change 2026-10-05
+== skyhawk.org database references to emconalfa (VPS) ==
+node_body=0
+menu_links=0
+config=0
+
