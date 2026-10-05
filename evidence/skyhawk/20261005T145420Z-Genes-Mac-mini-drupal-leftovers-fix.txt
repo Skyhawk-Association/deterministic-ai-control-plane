@@ -1,0 +1,22 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T145420Z-Genes-Mac-mini-drupal-leftovers-fix
+Task: drupal-leftovers-fix
+Generated (UTC): 2026-10-05T14:54:33Z
+Host: Genes-Mac-mini
+---
+=== PRE-FLIGHT ===
+PRIVATE_FILES_BEFORE=192
+IM_BEFORE path=/opt/alt/alt-ImageMagick/usr/bin/ version=v7
+=== ACTION 1: private files ===
+PRIVATE_FILES_AFTER=192 LINK=../private
+=== ACTION 2: settings.php ===
+SETTINGS_PERMS=444/555 BACKUP=settings.php.pre-private-path-20261005T145420Z
+=== ACTION 3: ImageMagick ===
+CR_OK
+=== VERIFICATION ===
+DRUPAL_PRIVATE=/home/n790725/drupalbeta/private
+PRIVATE_HTACCESS=PRESENT
+IMAGEMAGICK_TEST=RESIZE_OK toolkit=imagemagick
+STATUS_REPORT_ERRORS=1
+HTTPS_SKYHAWK=200
+RESULT=PASS_LEFTOVERS_FIXED (status errors now: 1)
