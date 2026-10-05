@@ -28,6 +28,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - PSU bench test passed using the Seasonic-supported 24-pin paper-clip method.
 - Seasonic modular cable identification verified against Seasonic's compatibility guide: E81-family cables are CPU/EPS 12 V cables; G92-family cables are 6+2-pin PCIe/GPU cables. This NAS has no discrete GPU power requirement, so the two RG92/G92 PCIe cables are not used; the two RE81/E81 CPU cables are the required pair for motherboard CPU power.
 - Both RE81/E81 CPU/EPS cables are now connected to adjacent PSU CPU/PCIe modular sockets; both RG92/G92 PCIe/GPU cables remain unused.
+- PSU-side modular cabling is now complete for the planned build: motherboard 24-pin cable connected; both RE81/E81 CPU/EPS cables connected; both SATA/peripheral harnesses connected. The only modular cables intentionally left disconnected are the 12V-2x6 / 600 W GPU cable and the two RG92/G92 PCIe/GPU cables.
 - CS383 rear cable bundle observed on the cable-management side of the motherboard tray, not trapped under the motherboard footprint.
 - Motherboard installed in the CS383 on nine matched standoffs; all nine motherboard screws were started by hand and then snugged evenly without over-tightening.
 - Front-panel JFP1 wiring completed: HDD LED on pins 1/3, Power LED on 2/4, Reset SW on 5/7, Power SW on 6/8; NIC1/NIC2 LED leads are unused on this motherboard.
@@ -73,7 +74,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 4. Case front-panel, front USB, front audio, and the two drive-cage PWM fan leads are connected to the motherboard as recorded above.
 5. Resolve the LSI SAS 9207-8i bracket/chassis mismatch. Do not power the system with the HBA unsecured. After the correct retention method is established, install the HBA in PCI_E1, verify full seating and chassis retention, then route the two internal SFF-8087 paths without sharp bends or fan interference.
 6. Boot SSD SATA data and power connections are complete.
-8. Outside the case, attach the exact required Seasonic modular cables: motherboard 24-pin pair at the PSU, required CPU/EPS cable(s), and required SATA/peripheral power leads.
+8. PSU-side modular cabling is complete: 24-pin motherboard, two RE81/E81 CPU/EPS, and two SATA/peripheral harnesses are connected; 12V-2x6/600 W and both RG92/G92 PCIe cables remain intentionally unused.
 9. Install the PSU in the chassis only after required modular cables are attached and PSU orientation is verified against both the CS383 airflow geometry and Seasonic guidance.
 10. Complete motherboard, boot-SSD, and backplane power connections.
 11. Eight IronWolf drives are installed; verify physical bay numbering against the recorded tray serial inventory before first power.
