@@ -1,0 +1,13 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T142358Z-Genes-Mac-mini-r4l-fix-verify
+Task: r4l-fix-verify
+Generated (UTC): 2026-10-05T14:24:00Z
+Host: Genes-Mac-mini
+---
+CHECK_UTC=2026-10-05T14:23:58Z
+skyhawk.org | r4l[[ip]]=PARKING r4l[[ip]]=PARKING google=PARKING mac=PARKING | https_via_VPS apex=200-> www=200-> | https_normal apex=200
+a4skyhawk.com | r4l[[ip]]=PARKING r4l[[ip]]=PARKING google=PARKING mac=PARKING | https_via_VPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/ | https_normal apex=301
+a4skyhawk.info | r4l[[ip]]=PARKING r4l[[ip]]=PARKING google=PARKING mac=PARKING | https_via_VPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/ | https_normal apex=301
+a4skyhawk.net | r4l[[ip]]=PARKING r4l[[ip]]=PARKING google=PARKING mac=PARKING | https_via_VPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/ | https_normal apex=301
+a4skyhawk.biz | r4l[[ip]]=PARKING r4l[[ip]]=PARKING google=PARKING mac=PARKING | https_via_VPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/ | https_normal apex=301
+usmcskyhawkers.org | r4l[[ip]]=PARKING r4l[[ip]]=PARKING google=PARKING mac=PARKING | https_via_VPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/ | https_normal apex=301
