@@ -1,0 +1,15 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T150736Z-Genes-Mac-mini-drupaltest-db-scan
+Task: drupaltest-db-scan
+Generated (UTC): 2026-10-05T15:07:36Z
+Host: Genes-Mac-mini
+---
+META drupal_version=8.9.20
+META recent_writes(2d)=1 sample: error_log 
+META db_name=darwus_drup360
+META nodes=46895 oldest_change=2016-10-11 newest_change=2022-02-19
+META types=gabby_s_histories:45807 skyhawk_association_journal_inde:534 article_unit:259 youtube:80 dir_listing:74 article:70 page:42 article_readyroom:21 pdf:4 article_modeling:2 article_journal_private:1 155242_155289:1
+META users=780 files=49050
+LIVE_SITE_TITLES=47356
+TEST_SITE_TITLES=252
+TITLES_ONLY_IN_TEST_SITE=2
