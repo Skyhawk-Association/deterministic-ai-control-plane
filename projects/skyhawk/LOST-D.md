@@ -17,6 +17,12 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## DRUPAL MIGRATION LEFTOVERS FIXED 2026-10-05 ~14:54Z
+- Private files moved (same-filesystem rename, 192 files / 2.7 GB, count verified) from /home/n790725/drupalbeta/web/private to /home/n790725/drupalbeta/private (outside web root); symlink web/private -> ../private kept for compatibility; .htaccess present. Previous near-empty target set aside as /home/n790725/drupalbeta/private.pre-move-20261005T145420Z (removable on Gene's approval).
+- settings.php file_private_path changed from the old A2 path to /home/n790725/drupalbeta/private; backup settings.php.pre-private-path-20261005T145420Z; perms restored 444 (file) / 555 (sites/default).
+- ImageMagick: path_to_binaries /opt/alt/alt-ImageMagick/usr/bin/ (A2) -> /usr/bin/; imagemagick_version v7 -> v6 (VPS has ImageMagick 6.9.13). Real image resize test passed (toolkit imagemagick). skyhawk.org HTTPS 200 after change.
+- Remaining status-report error: see evidence report status-report-remaining-error (2026-10-05). Deprecated-module warnings (Ban, Layout Builder Expose All Field Blocks) are housekeeping, not migration leftovers.
+
 ## DNS RECOVERY VERIFIED 2026-10-05 ~14:45Z (supersedes the 09:34 EDT section below)
 - ROOT CAUSE OF CONFUSION: Gene's home network intercepts DNS. A query from the Mac to a non-existent server (192.0.2.53) returns a cached answer; from the VPS it times out. Every Mac-side dig "authoritative" result on Oct 4-5 was a cached recursive answer. RULE: run authoritative DNS checks from the VPS (ssh Inmotion), never from the Mac.
 - VERIFIED FROM THE VPS: ns1.r4l.com and ns2.r4l.com (both addresses) and ns1.mysecurecloudhost.com serve the VPS address for skyhawk.org, a4skyhawk.com, a4skyhawk.info, a4skyhawk.net, a4skyhawk.biz and usmcskyhawkers.org, with www CNAME to each domain's own apex. Register4Less support confirmed the same. Public caches (3H TTL) were expiring; skyhawk.org returns 200 and the alternates 301 to https://skyhawk.org/ via the VPS.
