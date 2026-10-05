@@ -18,13 +18,13 @@
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
 ## VERIFIED CUTOVER 2026-10-05 ~03:52Z
-- DNS: all seven production apex A records now resolve to the InMotion VPS; www remains CNAME to apex.
+- DNS: hosting is on Register4Less (Gene correction, 2026-10-05). All seven production apex A records now resolve to the InMotion VPS; www remains CNAME to apex.
 - Drupal/InMotion: maintenance mode cleared; Apache backend, nginx front, and /user/login verified HTTP 200 before DNS cutover.
 - TLS: Let's Encrypt SAN certificate successfully issued and installed for all 14 production names (seven apex + www), valid through 2027-01-03.
 - HTTPS: skyhawk.org and www.skyhawk.org verified 200 externally; the six alternate domains and their www names verified 301 to https://skyhawk.org$request_uri.
 - Certificate SAN independently verified from the Mac against the live endpoint.
 - Current cutover status: production DNS and HTTPS are live on InMotion.
-- NEXT: post-cutover verification, new VPS backup/nightly backup setup, DNS hosting migration away from A2 before cancellation, then retire A2 only after drain/acceptance.
+- NEXT: post-cutover verification, new VPS backup/nightly backup setup, verify Register4Less DNS/registrar continuity, then retire A2 only after drain/acceptance. No DNS-hosting migration away from A2 is required because DNS hosting is already on Register4Less.
 
 ## HANDOVER 2026-10-04 ~19:10Z (Claude -> next executor) - FULL CUTOVER PREPARED, NOT EXECUTED
 - TTLs: apex A records of skyhawk.org, a4skyhawk.org/.com/.info/.net/.biz, usmcskyhawkers.org set to 300 at 17:35Z via A2 uapi (DNS mass_edit_zone, verified). Cutover window opens 21:36Z. www records are CNAMEs to apex (leave). a4skyhawk.us already on VPS. emconalfa.net zone exists on A2: unknown, untouched.
@@ -37,7 +37,7 @@
 - OPEN GENE DECISION: final sync from current A2 (dump plus rsync) versus accept the VPS Oct 2 content as final.
 - Cutover sequence: A2 maintenance mode; fresh darwus_beta dump, import into n790725_skyhawk, updb plus cache rebuild with the PHP shim; rsync; compare 100 most recent nodes A2 vs VPS; flip 7 apex A records via uapi; LE cert plus :443; verify.
 - Evidence pipes: ~/bin/ai-report on the Mac and VPS (Git evidence/skyhawk). If the Mac reports PULL_FAIL, reset ~/dacp-repo to origin/main. Mac zsh: do not use variables as word lists; blocks must check their host.
-- Post-cutover backlog: DKIM DNS serving; VPS root alert mail bounces (DMARC); move DNS hosting off A2 before cancelling A2; external uptime monitor; new nightly backup from the VPS; drupalbeta_nightly_backup LaunchAgent stays disabled.
+- Post-cutover backlog: DKIM DNS serving; VPS root alert mail bounces (DMARC); verify Register4Less DNS/registrar continuity before cancelling A2; external uptime monitor; new nightly backup from the VPS; drupalbeta_nightly_backup LaunchAgent stays disabled.
 - Drive checkpoint: DACP_CLAUDE_SESSION_20261004T191000Z_skyhawk-cutover-handover.md
 
 ## VPS migration continuity - 2026-10-04
@@ -50,7 +50,7 @@
 - VPS reports directory: /home/n790725/ai-reports (skyhawk-migration/diagnostics is root-owned).
 - EXECUTION LOCATION: every block must verify its own host/user and refuse with a plain message if run in the wrong place. The Mac is on a wired home connection.
 - CUTOVER DECISIONS (Gene 2026-10-04): move the whole site, all seven domains; email is NOT migrated (existing aliases compromised; new secure email later, self-hosted mail not recommended); lower A and www TTLs to 300 before cutover; backups to be managed from the new server.
-- CUTOVER PREREQUISITES OPEN: Drupal outbound mail relay (SMTP with SPF/DKIM) needed before cutover; DNS hosting must leave A2 before A2 cancellation; A2 to VPS SSH times out and VPS to A2 is refused (VPS blocks outbound 22 locally), so the final sync route is currently via the Mac.
+- CUTOVER PREREQUISITES OPEN: Drupal outbound mail relay (SMTP with SPF/DKIM) needed before cutover; DNS hosting is on Register4Less and does not need migration from A2; A2 to VPS SSH times out and VPS to A2 is refused (VPS blocks outbound 22 locally), so the final sync route is currently via the Mac.
 - AVAILABILITY: one unexplained SSH hang from the Mac on 2026-10-04 while the site loaded over cellular; cause not identified. External uptime monitor recommended before production cutover.
 - NEXT: final sync from A2 s19522 (freeze, darwus_beta dump, delta files including config sync), 100-most-recent-node A2 versus VPS comparison, then DNS cutover.
 
