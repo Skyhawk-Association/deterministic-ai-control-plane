@@ -33,7 +33,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Front USB 5 Gbps Type-A cable connected to JUSB3.
 - Front USB-C cable connected to JUSBC1.
 - Two CS383 drive-cage PWM fan leads moved to motherboard control: one on SYS_FAN1 and the other on SYS_FAN6.
-- Rear case fan adjacent to the rear I/O is connected to motherboard SYS_FAN2.
+- Rear case fan adjacent to the rear I/O remains loose and still needs a motherboard fan header. SYS_FAN2 is the preferred next header if the lead reaches cleanly; SYS_FAN3~5 are equivalent available system-fan headers.
 - Rear expansion-slot cover aligned with PCI_E1 removed in preparation for HBA installation.
 - Both boot SSDs are physically secured in their final CS383 mounting positions. The HBA, eight data drives, and PSU are not yet complete in their final build state.
 - LSI 9207-8i is now fully seated in PCI_E1 with its incompatible silver metal bracket removed. Full seating is based on Gene's direct physical report. Chassis retention remains unresolved, so the HBA is not yet installation-complete and the system must not be powered with the HBA unsecured.
