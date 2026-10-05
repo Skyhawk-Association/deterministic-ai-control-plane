@@ -1,0 +1,13 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T144124Z-Genes-Mac-mini-spf-fix-and-mail-test
+Task: spf-fix-and-mail-test
+Generated (UTC): 2026-10-05T14:42:11Z
+Host: Genes-Mac-mini
+---
+r4l[[ip]] SPF: "v=spf1 a mx a:ns2.r4l.com ~all"
+r4l[[ip]] SPF: "v=spf1 a mx a:ns2.r4l.com ~all"
+GOOGLE_VIEW SPF: "v=spf1 a mx a:ns2.r4l.com ~all"
+DRUPAL_MAIL_RESULT=ACCEPTED_BY_LOCAL_MTA
+QUEUE: Mail queue is empty
+NEW_BOUNCES=0
+RESULT=NO_BOUNCE (check inbox)
