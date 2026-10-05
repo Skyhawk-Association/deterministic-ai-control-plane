@@ -1,0 +1,85 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T145020Z-Genes-Mac-mini-drupal-leftovers-inventory
+Task: drupal-leftovers-inventory
+Generated (UTC): 2026-10-05T14:50:24Z
+Host: Genes-Mac-mini
+---
+== settings.php perms: 444 n790725:n790725; sites/default perms: 555 n790725:n790725
+== private-path lines in settings.php ==
+537:$settings['file_private_path'] = '/home/darwus/drupalbeta/web/private';
+550:# $settings['file_temp_path'] = '/tmp';
+DIR /home/darwus/drupalbeta/web/private: MISSING
+DIR /home/n790725/drupalbeta/private: files=1 size=12K owner=n790725:n790725 755
+DIR /home/n790725/drupalbeta/web/private: files=192 size=2.7G owner=n790725:n790725 755
+== top-level of each existing private dir ==
+-- /home/n790725/drupalbeta/private
+total 16
+drwxr-xr-x  3 n790725 n790725 4096 Sep  4  2025 .
+drwxr-x--- 15 n790725 nobody  4096 Sep 27 16:53 ..
+-r--r--r--  1 n790725 n790725  741 Dec 23  2022 .htaccess
+drwxrwxr-x  2 n790725 n790725 4096 Sep  4  2025 views_data_export
+-- /home/n790725/drupalbeta/web/private
+total 13636
+drwxr-xr-x 10 n790725 n790725     4096 Aug 30 19:59 .
+drwxr-x--- 16 n790725 nobody      4096 Sep 26 22:26 ..
+-rw-r--r--  1 n790725 n790725 13916430 Dec 23  2022 current-public-journal.pdf
+-r--r--r--  1 n790725 n790725      741 Sep  4  2025 .htaccess
+drwxrwxr-x  3 n790725 n790725     4096 Aug 30 19:59 reunion-updates
+drwxr-xr-x  3 n790725 n790725     4096 Jul 25 19:41 sajournals
+drwxr-xr-x  2 n790725 n790725     4096 Aug 12 19:41 skyhawk_contribution_originals
+drwxrwxr-x  2 n790725 n790725     4096 Aug 26 11:15 skyhawk_contributions
+drwxrwxr-x  2 n790725 n790725     4096 Sep 13 19:18 styles
+drwxrwxr-x 13 n790725 n790725     4096 Aug 30 13:00 uploads
+drwxrwxr-x  6 n790725 n790725     4096 Sep  4  2025 views_data_export
+== Drupal view of paths ==
+private=/home/darwus/drupalbeta/web/private
+== ImageMagick config ==
+binaries: imagemagick
+path_to_binaries: /opt/alt/alt-ImageMagick/usr/bin/
+
+== binaries on VPS ==
+magick: none
+convert: /usr/bin/convert
+identify: /usr/bin/identify
+Version: ImageMagick 6.9.13-56 Q16 x86_64 19692 https://legacy.imagemagick.org
+== status report errors/warnings ==
+ [error]  Security warning: Couldn't write .htaccess file. Create a .htaccess file in your private:// directory which contains the following lines: <pre><code># Deny all requests from Apache 2.4+.
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+
+# Deny all requests from Apache 2.0-2.2.
+<IfModule !mod_authz_core.c>
+  Deny from all
+</IfModule>
+
+# Turn off all options we don't need.
+Options -Indexes -ExecCGI -Includes -MultiViews
+
+# Set the catch-all handler to prevent scripts from being executed.
+SetHandler Drupal_Security_Do_Not_Remove_See_SA_2006_006
+<Files *>
+  # Override the handler again if we're run later in the evaluation list.
+  SetHandler Drupal_Security_Do_Not_Remove_See_SA_2013_003
+</Files>
+
+# If we know how to do it safely, disable the PHP engine entirely.
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule></code></pre> 
+ ---------- ---------- --------------------------------------------- 
+  Title      Severity   Summary                                      
+ ---------- ---------- --------------------------------------------- 
+  <comment   Warning    Deprecated modules found: /Ban               
+  >Depreca              [1], Layout Builder Expose All Field Blocks  
+  ted                                                                
+  modules               [2]/.                                        
+  installe                                                           
+  d                     [1]                                          
+                        https://www.drupal.org/node/3223395#s-ban    
+                        [2]                                          
+                        https://www.drupal.org/node/3223395#s-layou  
+                        t-builder-expose-all-field-blocks            
+                                                                     
+  <comment   Warning    Enabled                                      
+  >HTML5                                                             
