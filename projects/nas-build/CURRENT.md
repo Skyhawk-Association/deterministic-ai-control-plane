@@ -27,6 +27,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Two RAM modules installed in MSI-recommended A2 and B2 slots; latch seating was visually confirmed.
 - PSU bench test passed using the Seasonic-supported 24-pin paper-clip method.
 - Seasonic modular cable identification verified against Seasonic's compatibility guide: E81-family cables are CPU/EPS 12 V cables; G92-family cables are 6+2-pin PCIe/GPU cables. This NAS has no discrete GPU power requirement, so the two RG92/G92 PCIe cables are not used; the two RE81/E81 CPU cables are the required pair for motherboard CPU power.
+- Both RE81/E81 CPU/EPS cables are now connected to adjacent PSU CPU/PCIe modular sockets; both RG92/G92 PCIe/GPU cables remain unused.
 - CS383 rear cable bundle observed on the cable-management side of the motherboard tray, not trapped under the motherboard footprint.
 - Motherboard installed in the CS383 on nine matched standoffs; all nine motherboard screws were started by hand and then snugged evenly without over-tightening.
 - Front-panel JFP1 wiring completed: HDD LED on pins 1/3, Power LED on 2/4, Reset SW on 5/7, Power SW on 6/8; NIC1/NIC2 LED leads are unused on this motherboard.
