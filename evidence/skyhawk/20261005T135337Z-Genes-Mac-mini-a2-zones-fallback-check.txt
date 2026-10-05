@@ -1,0 +1,31 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T135337Z-Genes-Mac-mini-a2-zones-fallback-check
+Task: a2-zones-fallback-check
+Generated (UTC): 2026-10-05T13:53:37Z
+Host: Genes-Mac-mini
+---
+skyhawk.org @ns1 A=PARKING www=vhost.r4l.com.
+skyhawk.org @ns2 A=PARKING www=vhost.r4l.com.
+skyhawk.org @ns3 A=PARKING www=vhost.r4l.com.
+skyhawk.org @ns4 A=PARKING www=vhost.r4l.com.
+a4skyhawk.com @ns1 A=PARKING www=vhost.r4l.com.
+a4skyhawk.com @ns2 A=PARKING www=vhost.r4l.com.
+a4skyhawk.com @ns3 A=PARKING www=vhost.r4l.com.
+a4skyhawk.com @ns4 A=PARKING www=vhost.r4l.com.
+a4skyhawk.info @ns1 A=PARKING www=vhost.r4l.com.
+a4skyhawk.info @ns2 A=PARKING www=vhost.r4l.com.
+a4skyhawk.info @ns3 A=PARKING www=vhost.r4l.com.
+a4skyhawk.info @ns4 A=PARKING www=vhost.r4l.com.
+a4skyhawk.net @ns1 A=PARKING www=vhost.r4l.com.
+a4skyhawk.net @ns2 A=PARKING www=vhost.r4l.com.
+a4skyhawk.net @ns3 A=PARKING www=vhost.r4l.com.
+a4skyhawk.net @ns4 A=PARKING www=vhost.r4l.com.
+a4skyhawk.biz @ns1 A=PARKING www=vhost.r4l.com.
+a4skyhawk.biz @ns2 A=PARKING www=vhost.r4l.com.
+a4skyhawk.biz @ns3 A=PARKING www=vhost.r4l.com.
+a4skyhawk.biz @ns4 A=PARKING www=vhost.r4l.com.
+usmcskyhawkers.org @ns1 A=PARKING www=vhost.r4l.com.
+usmcskyhawkers.org @ns2 A=PARKING www=vhost.r4l.com.
+usmcskyhawkers.org @ns3 A=PARKING www=vhost.r4l.com.
+usmcskyhawkers.org @ns4 A=PARKING www=vhost.r4l.com.
+skyhawk.org SPF_has_VPS=NO DKIM=ABSENT
