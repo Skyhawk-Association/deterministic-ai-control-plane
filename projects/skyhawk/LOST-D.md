@@ -17,6 +17,13 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## DNS RECOVERY STATE 2026-10-05 ~09:34 EDT
+- Register4Less reset-to-defaults replaced production web records with parking defaults on the R4L zones. Manual zone edits were then made.
+- Independent command-line verification at ~09:34 EDT: a4skyhawk.org is correct (A=173.231.242.84; www CNAME=a4skyhawk.org.) but is still delegated to ns1-ns4.mysecurecloudhost.com.
+- The other six changed production domains (skyhawk.org, a4skyhawk.com/.info/.net/.biz, usmcskyhawkers.org) are delegated to ns1/ns2.r4l.com but both public DNS and direct queries to ns1.r4l.com still return R4L parking defaults (A=142.4.204.181; www CNAME=vhost.r4l.com.). DNS recovery is therefore NOT yet verified complete.
+- The two intentionally untouched domains remain unchanged: a4skyhawk.us A=173.231.242.84 with www CNAME to apex on mysecurecloudhost; emconalfa.net A=65.181.120.151 with www CNAME to apex on mysecurecloudhost.
+- NEXT: wait only for evidence of R4L publication if the saved custom-zone values have not yet reached ns1/ns2.r4l.com; otherwise reopen the affected R4L zones and correct/publish them. Do not claim site recovery until direct authoritative R4L queries show the intended A/CNAME values and HTTPS passes.
+
 ## VERIFIED CUTOVER 2026-10-05 ~03:52Z
 - DNS ownership clarification: Register4Less is the registrar/control account, but the current registry delegation for skyhawk.org points to ns1-ns4.mysecurecloudhost.com, so the active authoritative zone is external to Register4Less's dormant custom zone. All seven production apex A records now resolve to the InMotion VPS; www remains CNAME to apex.
 - Drupal/InMotion: maintenance mode cleared; Apache backend, nginx front, and /user/login verified HTTP 200 before DNS cutover.
