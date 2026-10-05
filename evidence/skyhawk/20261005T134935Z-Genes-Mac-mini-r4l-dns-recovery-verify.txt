@@ -1,0 +1,22 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T134935Z-Genes-Mac-mini-r4l-dns-recovery-verify
+Task: r4l-dns-recovery-verify
+Generated (UTC): 2026-10-05T13:49:39Z
+Host: Genes-Mac-mini
+---
+CHECK_UTC=2026-10-05T13:49:35Z
+MAC_HOSTS_OVERRIDES: 1 (a4skyhawk.us is pinned locally if 1)
+== skyhawk.org | REGISTRY_NS: a0.org.afilias-nst.info. a2.org.afilias-nst.info. b0.org.afilias-nst.org. b2.org.afilias-nst.org. c0.org.afilias-nst.info. d0.org.afilias-nst.org.  | ns1.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791206337] | ns2.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791206337] | GOOGLE: A=[ip]  www=vhost.r4l.com.  | HTTPS apex=000-> www=200->
+== a4skyhawk.org | REGISTRY_NS: ns1.a2hosting.com. ns2.a2hosting.com. ns3.a2hosting.com. ns4.a2hosting.com.  | ns1.r4l.com: A=[ip]  www=a4skyhawk.org.  soa=[ns1.mysecurecloudhost.com. serial=2026100500] | ns2.r4l.com: A=[ip]  www=a4skyhawk.org.  soa=[ns1.mysecurecloudhost.com. serial=2026100500] | GOOGLE: A=[ip]  www=a4skyhawk.org.  | HTTPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/
+== a4skyhawk.com | REGISTRY_NS: ns1.r4l.com. ns2.r4l.com.  | ns1.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.mysecurecloudhost.com. serial=2026100500] | ns2.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.mysecurecloudhost.com. serial=2026100500] | GOOGLE: A=[ip]  www=vhost.r4l.com.  | HTTPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/
+== a4skyhawk.info | REGISTRY_NS: a0.info.afilias-nst.info. a2.info.afilias-nst.info. b0.info.afilias-nst.org. b2.info.afilias-nst.org. c0.info.afilias-nst.info. d0.info.afilias-nst.org.  | ns1.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791206847] | ns2.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791206847] | GOOGLE: A=[ip]  www=vhost.r4l.com.  | HTTPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/
+== a4skyhawk.net | REGISTRY_NS: ns1.r4l.com. ns2.r4l.com.  | ns1.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791207010] | ns2.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791207010] | GOOGLE: A=[ip]  www=vhost.r4l.com.  | HTTPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/
+== a4skyhawk.biz | REGISTRY_NS: a.gtld.biz. b.gtld.biz. c.gtld.biz. m.gtld.biz. n.gtld.biz. w.gtld.biz. x.gtld.biz. y.gtld.biz.  | ns1.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791206954] | ns2.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791206954] | GOOGLE: A=[ip]  www=vhost.r4l.com.  | HTTPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/
+== usmcskyhawkers.org | REGISTRY_NS: a0.org.afilias-nst.info. a2.org.afilias-nst.info. b0.org.afilias-nst.org. b2.org.afilias-nst.org. c0.org.afilias-nst.info. d0.org.afilias-nst.org.  | ns1.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791207119] | ns2.r4l.com: A=[ip]  www=vhost.r4l.com.  soa=[ns1.r4l.com. serial=1791207119] | GOOGLE: A=[ip]  www=vhost.r4l.com.  | HTTPS apex=301->https://skyhawk.org/ www=301->https://skyhawk.org/
+== a4skyhawk.us | REGISTRY_NS: ns1.mysecurecloudhost.com. ns2.mysecurecloudhost.com. ns3.mysecurecloudhost.com. ns4.mysecurecloudhost.com.  | ns1.r4l.com: A=[ip]  www=a4skyhawk.us.  soa=[ns1.mysecurecloudhost.com. serial=2026100400] | ns2.r4l.com: A=[ip]  www=a4skyhawk.us.  soa=[ns1.mysecurecloudhost.com. serial=2026100400] | GOOGLE: A=[ip]  www=a4skyhawk.us.  | HTTPS apex=200-> www=200->
+== emconalfa.net | REGISTRY_NS: ns1.mysecurecloudhost.com. ns2.mysecurecloudhost.com. ns3.mysecurecloudhost.com. ns4.mysecurecloudhost.com.  | ns1.r4l.com: A=[ip]  www=emconalfa.net.  soa=[ns1.mysecurecloudhost.com. serial=2026081400] | ns2.r4l.com: A=[ip]  www=emconalfa.net.  soa=[ns1.mysecurecloudhost.com. serial=2026081400] | GOOGLE: A=[ip]  www=emconalfa.net.  | HTTPS apex=200-> www=200->
+== skyhawk.org mail records at ns1.r4l.com ==
+MX: 10 mx2.r4l.com. 10 mx1.r4l.com. 
+SPF: "v=spf1 mx a:ns2.r4l.com ~all"
+DKIM skyhawk2026: 
+DMARC: 
