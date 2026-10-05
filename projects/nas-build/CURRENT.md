@@ -37,10 +37,10 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Front USB-C cable connected to JUSBC1.
 - Final fan header map: rear case fan on SYS_FAN1; right front drive-cage fan on SYS_FAN5; left front drive-cage fan on SYS_FAN6.
 - Rear expansion-slot cover aligned with PCI_E1 removed in preparation for HBA installation.
-- Both boot SSDs are physically secured in their final CS383 mounting positions. All eight IronWolf 12 TB drives are installed in the CS383 hot-swap bays and seated without force. The HBA retention and PSU installation remain incomplete.
+- Both boot SSDs are physically secured in their final CS383 mounting positions. All eight IronWolf 12 TB drives are installed in the CS383 hot-swap bays and seated without force. The PSU is installed in the CS383 and its mounting screws are snug. HBA retention remains unresolved.
 - LSI 9207-8i is now fully seated in PCI_E1 with its incompatible silver metal bracket removed. Full seating is based on Gene's direct physical report. Chassis retention remains unresolved, so the HBA is not yet installation-complete and the system must not be powered with the HBA unsecured.
 - Boot SSD connections completed: Crucial MX500 and Patriot Burst Elite are both physically secured, have SATA data connected to SATA_S1/SATA_S2 respectively, and have SATA power connected.
-- Two Cable Matters 0.5 m / 1.6 ft SFF-8087-to-4x-SATA forward-breakout cables were ordered from Amazon on 2026-10-04, with estimated delivery 2026-10-05; these are intended to connect the LSI 9207-8i's J5/J6 ports to the eight CS383 backplane SATA data inputs.
+- Two Cable Matters 0.5 m / 1.6 ft Internal Mini-SAS SFF-8087-to-4x-SATA forward-breakout cables, model 104016-0.5m, are now physically in hand. They are intended to connect the LSI 9207-8i's J5/J6 ports to the eight CS383 backplane SATA data inputs.
 - IronWolf tray numbering and serial inventory from photographed labels:
   - 1: ZZ30N1YX
   - 2: ZZ30PAWE
@@ -75,7 +75,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 5. Resolve the LSI SAS 9207-8i bracket/chassis mismatch. Do not power the system with the HBA unsecured. After the correct retention method is established, install the HBA in PCI_E1, verify full seating and chassis retention, then route the two internal SFF-8087 paths without sharp bends or fan interference.
 6. Boot SSD SATA data and power connections are complete.
 8. PSU-side modular cabling is complete: 24-pin motherboard, two RE81/E81 CPU/EPS, and two SATA/peripheral harnesses are connected; 12V-2x6/600 W and both RG92/G92 PCIe cables remain intentionally unused.
-9. Install the PSU in the chassis only after required modular cables are attached and PSU orientation is verified against both the CS383 airflow geometry and Seasonic guidance.
+9. PSU is installed in the CS383 with required modular cables attached and mounting screws snug.
 10. Complete motherboard, boot-SSD, and backplane power connections.
 11. Eight IronWolf drives are installed; verify physical bay numbering against the recorded tray serial inventory before first power.
 12. Perform a no-AC pre-power inspection.
