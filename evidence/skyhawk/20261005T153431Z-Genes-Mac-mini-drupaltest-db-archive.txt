@@ -1,0 +1,12 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T153431Z-Genes-Mac-mini-drupaltest-db-archive
+Task: drupaltest-db-archive
+Generated (UTC): 2026-10-05T15:34:52Z
+Host: Genes-Mac-mini
+---
+ARCHIVE_DIR=/Volumes/ArchiveSSD/skyhawk-archive/drupaltest-emconalfa-20261005T151228Z
+PARTIAL_TAR_AND_EMPTY_DUMP_REMOVED
+PAGES_FILE: pages_found=4
+DUMP_STDERR: dumping db=darwus_drup360 host=localhost mysqldump: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb-dump' instead 
+DB_SIZE=48M CREATE_TABLES=190 INSERT_STATEMENTS=420 HEADER=Database: darwus_drup360
+RESULT=PASS_DB_ARCHIVED
