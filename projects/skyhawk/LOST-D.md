@@ -17,6 +17,15 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## VERIFIED CUTOVER 2026-10-05 ~03:52Z
+- DNS: all seven production apex A records now resolve to the InMotion VPS; www remains CNAME to apex.
+- Drupal/InMotion: maintenance mode cleared; Apache backend, nginx front, and /user/login verified HTTP 200 before DNS cutover.
+- TLS: Let's Encrypt SAN certificate successfully issued and installed for all 14 production names (seven apex + www), valid through 2027-01-03.
+- HTTPS: skyhawk.org and www.skyhawk.org verified 200 externally; the six alternate domains and their www names verified 301 to https://skyhawk.org$request_uri.
+- Certificate SAN independently verified from the Mac against the live endpoint.
+- Current cutover status: production DNS and HTTPS are live on InMotion.
+- NEXT: post-cutover verification, new VPS backup/nightly backup setup, DNS hosting migration away from A2 before cancellation, then retire A2 only after drain/acceptance.
+
 ## HANDOVER 2026-10-04 ~19:10Z (Claude -> next executor) - FULL CUTOVER PREPARED, NOT EXECUTED
 - TTLs: apex A records of skyhawk.org, a4skyhawk.org/.com/.info/.net/.biz, usmcskyhawkers.org set to 300 at 17:35Z via A2 uapi (DNS mass_edit_zone, verified). Cutover window opens 21:36Z. www records are CNAMEs to apex (leave). a4skyhawk.us already on VPS. emconalfa.net zone exists on A2: unknown, untouched.
 - Target behavior (from live A2): skyhawk.org and www serve the site (http and https). The other 6 domains plus www 301 to skyhawk.org; VPS will redirect to https://skyhawk.org$request_uri once cert exists.
