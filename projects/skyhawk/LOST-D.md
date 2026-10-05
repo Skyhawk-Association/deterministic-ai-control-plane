@@ -17,6 +17,13 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## DNS RECOVERY VERIFIED 2026-10-05 ~14:45Z (supersedes the 09:34 EDT section below)
+- ROOT CAUSE OF CONFUSION: Gene's home network intercepts DNS. A query from the Mac to a non-existent server (192.0.2.53) returns a cached answer; from the VPS it times out. Every Mac-side dig "authoritative" result on Oct 4-5 was a cached recursive answer. RULE: run authoritative DNS checks from the VPS (ssh Inmotion), never from the Mac.
+- VERIFIED FROM THE VPS: ns1.r4l.com and ns2.r4l.com (both addresses) and ns1.mysecurecloudhost.com serve the VPS address for skyhawk.org, a4skyhawk.com, a4skyhawk.info, a4skyhawk.net, a4skyhawk.biz and usmcskyhawkers.org, with www CNAME to each domain's own apex. Register4Less support confirmed the same. Public caches (3H TTL) were expiring; skyhawk.org returns 200 and the alternates 301 to https://skyhawk.org/ via the VPS.
+- A2 cPanel zone files for the same six domains also hold the VPS address and www to own apex (serials 2026100500/01).
+- MAIL: the R4L reset had replaced skyhawk.org SPF. Repaired in the R4L skyhawk.org zone only (serial 1791211153): "v=spf1 a mx a:ns2.r4l.com ~all". Served by both R4L servers and visible at Google. Drupal test mail from the VPS delivered to Gene's inbox with no bounce. MX remains R4L defaults (email not migrated, by decision).
+- OPEN: DKIM selector skyhawk2026 TXT not published in the R4L zone (optional). a4skyhawk.org is still delegated to ns1-4.a2hosting.com; a4skyhawk.us and emconalfa.net to mysecurecloudhost: resolve before cancelling A2. Drupal private-file path and ImageMagick path still point at old A2 locations. Remove the Mac /etc/hosts SKYHAWK-INMOTION-TEST line. External uptime monitor and nightly backup from the VPS still to do.
+
 ## DNS RECOVERY STATE 2026-10-05 ~09:34 EDT
 - Register4Less reset-to-defaults replaced production web records with parking defaults on the R4L zones. Manual zone edits were then made.
 - Independent command-line verification at ~09:34 EDT: a4skyhawk.org is correct (A=173.231.242.84; www CNAME=a4skyhawk.org.) but is still delegated to ns1-ns4.mysecurecloudhost.com.
