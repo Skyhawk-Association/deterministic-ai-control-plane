@@ -36,7 +36,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Rear expansion-slot cover aligned with PCI_E1 removed in preparation for HBA installation.
 - Both boot SSDs are physically secured in their final CS383 mounting positions. All eight IronWolf 12 TB drives are installed in the CS383 hot-swap bays and seated without force. The HBA retention and PSU installation remain incomplete.
 - LSI 9207-8i is now fully seated in PCI_E1 with its incompatible silver metal bracket removed. Full seating is based on Gene's direct physical report. Chassis retention remains unresolved, so the HBA is not yet installation-complete and the system must not be powered with the HBA unsecured.
-- Boot SSD SATA data connections completed: Crucial MX500 connected to SATA_S1 and Patriot Burst Elite connected to SATA_S2.
+- Boot SSD connections completed: Crucial MX500 and Patriot Burst Elite are both physically secured, have SATA data connected to SATA_S1/SATA_S2 respectively, and have SATA power connected.
 - Two Cable Matters 0.5 m / 1.6 ft SFF-8087-to-4x-SATA forward-breakout cables were ordered from Amazon on 2026-10-04, with estimated delivery 2026-10-05; these are intended to connect the LSI 9207-8i's J5/J6 ports to the eight CS383 backplane SATA data inputs.
 - IronWolf tray numbering and serial inventory from photographed labels:
   - 1: ZZ30N1YX
@@ -70,7 +70,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 3. Lower the assembled motherboard onto only the matched standoffs, align integrated rear I/O, start all board screws loosely, then secure evenly without over-tightening.
 4. Case front-panel, front USB, front audio, and the two drive-cage PWM fan leads are connected to the motherboard as recorded above.
 5. Resolve the LSI SAS 9207-8i bracket/chassis mismatch. Do not power the system with the HBA unsecured. After the correct retention method is established, install the HBA in PCI_E1, verify full seating and chassis retention, then route the two internal SFF-8087 paths without sharp bends or fan interference.
-6. Boot SSD SATA data connections are complete; SSD power remains pending.
+6. Boot SSD SATA data and power connections are complete.
 8. Outside the case, attach the exact required Seasonic modular cables: motherboard 24-pin pair at the PSU, required CPU/EPS cable(s), and required SATA/peripheral power leads.
 9. Install the PSU in the chassis only after required modular cables are attached and PSU orientation is verified against both the CS383 airflow geometry and Seasonic guidance.
 10. Complete motherboard, boot-SSD, and backplane power connections.
