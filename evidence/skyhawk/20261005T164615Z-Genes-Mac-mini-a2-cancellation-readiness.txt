@@ -1,0 +1,34 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T164615Z-Genes-Mac-mini-a2-cancellation-readiness
+Task: a2-cancellation-readiness
+Generated (UTC): 2026-10-05T16:46:18Z
+Host: Genes-Mac-mini
+---
+== A2 crontab ==
+MAILTO=""
+SHELL="/bin/bash"
+44 16 * * * wget -O - -q -t 1 https://emconalfa.net/drupaltest/cron/FqftP8ZjjbX8XfpBLKjVOPOYX6XgqnWDj4ZI1wW3hNPkOXp22XHmDUsoFgJECWf5Bj3rMLpESQ > /dev/null
+43 10 * * * wget -O - -q -t 1 https://emconalfa.net/cron/5WBrsru1N5f0a3B_o7XrJIUoPqZwsuFaP_1LfGA2Gqt4DGKwQ0H34-F0EWL_dI5s7LXbq3ww3Q > /dev/null
+43 10 * * * wget -O - -q -t 1 https://emconalfa.net/drupaltest/cron/Cf5Cvzv0qgvGQ2lHfWG5g7t9SoTvsclXY-iunA2fWx86AvPudIYCxjWDGDfODvs7urNPHp8wug > /dev/null
+10 4 * * * wget -O - -q -t 1 http://drupaltest.emconalfa.net/cron/zpPPWhDvvR0usyKf3paMnkebX9ENbbyNOdkZGMGhN22vbL1jxVMpIoxIAr2-U1HNSQJ1TFo8zA > /dev/null
+47 4 * * * wget -O - -q -t 1 http://drupaltest.emconalfa.net/cron/PmDofN05zpTlJND7bcGWxmko0M-153P2VZH80NIChx9jOgSlLJ0q9fvZXtAAUBUfyw1bEwBXVQ > /dev/null
+47 4 * * * wget -O - -q -t 1 http://drupaltest.emconalfa.net/cron/Z0mVz_X-qFd8btkSLAmUEdwpb7C8sPAYSApAosMQbCa25Nbo48DgLUcAqUkc_vTA73P8CtxDVA > /dev/null
+17 10 * * * wget -O - -q -t 1 http://drupaltest.emconalfa.net/cron/ZWsc6eIvT8MsZ3MnksjMFgIFG3f4P03-zYVlikIKpM5ek7W27MEo0g9UB8yGIKx5upoRAfYV4g > /dev/null
+17 10 * * * wget -O - -q -t 1 https://drupaltest.emconalfa.net/cron/31kzxdSV45I2fvAnvs4E1rRMOHB7YZkMVbSVSZF_KBUPiXILvtvBseg8vxSufGAE3Dj45zi7cw > /dev/null
+49 6 * * * wget -O - -q -t 1 http://drupaltest.emconalfa.net/cron/Gclc4Qz4O7h56iouw3Wdx7Jq1_A4GSDkrQDuh3PLcuoGgpY4HESeHmzNS3Zftnw-sJozER17SA > /dev/null
+58 15 * * * wget -O - -q -t 1 http://drupaltest.emconalfa.net/cron/dSqnJUcXEU32ZQ7BF8z3bsyEMfHx29ZfQlYb9Kk_vqPABPEmoXVtkieuMg3vxwTwmI8oFL0ilw > /dev/null
+
+== VPS crontab ==
+30 1 * * * $HOME/bin/skyhawk-db-backup.sh >/dev/null 2>&1
+VPS_DRUPAL_CRON_LAST=2026-10-05T12:17:39-04:00
+VPS_GIT=ABSENT
+== SOA primary per zone at R4L (from VPS) ==
+skyhawk.org soa=ns1.r4l.com. deleg=ns1.r4l.com.
+a4skyhawk.org soa=ns1.r4l.com. deleg=ns1.mysecurecloudhost.com.
+a4skyhawk.com soa=ns1.r4l.com. deleg=ns1.r4l.com.
+a4skyhawk.info soa=ns1.r4l.com. deleg=ns1.r4l.com.
+a4skyhawk.net soa=ns1.r4l.com. deleg=ns1.r4l.com.
+a4skyhawk.biz soa=ns1.r4l.com. deleg=ns1.r4l.com.
+usmcskyhawkers.org soa=ns1.r4l.com. deleg=ns1.r4l.com.
+a4skyhawk.us soa=ns1.r4l.com. deleg=ns1.mysecurecloudhost.com.
+emconalfa.net soa=ns1.r4l.com. deleg=ns1.mysecurecloudhost.com.
