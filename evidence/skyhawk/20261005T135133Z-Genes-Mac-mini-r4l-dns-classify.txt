@@ -1,0 +1,16 @@
+SKYHAWK AI REPORT
+Report-ID: 20261005T135133Z-Genes-Mac-mini-r4l-dns-classify
+Task: r4l-dns-classify
+Generated (UTC): 2026-10-05T13:51:35Z
+Host: Genes-Mac-mini
+---
+CHECK_UTC=2026-10-05T13:51:33Z
+== skyhawk.org | DELEG: ? | ns1.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791206337 | ns2.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791206337 | GOOGLE A=PARKING | SERVED_TO_THIS_MAC A=PARKING
+== a4skyhawk.org | DELEG: ns1.a2hosting.com. ns2.a2hosting.com. ns3.a2hosting.com. ns4.a2hosting.com.  | ns1.r4l.com: A=VPS www=a4skyhawk.org. serial=2026100500 | ns2.r4l.com: A=VPS www=a4skyhawk.org. serial=2026100500 | GOOGLE A=VPS | SERVED_TO_THIS_MAC A=VPS
+== a4skyhawk.com | DELEG: ns1.r4l.com. ns2.r4l.com.  | ns1.r4l.com: A=PARKING www=vhost.r4l.com. serial=2026100500 | ns2.r4l.com: A=PARKING www=vhost.r4l.com. serial=2026100500 | GOOGLE A=PARKING | SERVED_TO_THIS_MAC A=PARKING
+== a4skyhawk.info | DELEG: ? | ns1.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791206847 | ns2.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791206847 | GOOGLE A=PARKING | SERVED_TO_THIS_MAC A=PARKING
+== a4skyhawk.net | DELEG: ns1.r4l.com. ns2.r4l.com.  | ns1.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791207010 | ns2.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791207010 | GOOGLE A=PARKING | SERVED_TO_THIS_MAC A=PARKING
+== a4skyhawk.biz | DELEG: ? | ns1.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791206954 | ns2.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791206954 | GOOGLE A=PARKING | SERVED_TO_THIS_MAC A=PARKING
+== usmcskyhawkers.org | DELEG: ? | ns1.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791207119 | ns2.r4l.com: A=PARKING www=vhost.r4l.com. serial=1791207119 | GOOGLE A=PARKING | SERVED_TO_THIS_MAC A=PARKING
+== a4skyhawk.us | DELEG: ns1.mysecurecloudhost.com. ns2.mysecurecloudhost.com. ns3.mysecurecloudhost.com. ns4.mysecurecloudhost.com.  | ns1.r4l.com: A=VPS www=a4skyhawk.us. serial=2026100400 | ns2.r4l.com: A=VPS www=a4skyhawk.us. serial=2026100400 | GOOGLE A=VPS | SERVED_TO_THIS_MAC A=VPS
+== emconalfa.net | DELEG: ns1.mysecurecloudhost.com. ns2.mysecurecloudhost.com. ns3.mysecurecloudhost.com. ns4.mysecurecloudhost.com.  | ns1.r4l.com: A=A2 www=emconalfa.net. serial=2026081400 | ns2.r4l.com: A=A2 www=emconalfa.net. serial=2026081400 | GOOGLE A=A2 | SERVED_TO_THIS_MAC A=A2
