@@ -32,13 +32,22 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Front HD AUDIO connected to JAUD1.
 - Front USB 5 Gbps Type-A cable connected to JUSB3.
 - Front USB-C cable connected to JUSBC1.
-- Two CS383 drive-cage PWM fan leads moved to motherboard control: one on SYS_FAN1 and the other on SYS_FAN6.
-- Rear case fan adjacent to the rear I/O remains loose and still needs a motherboard fan header. SYS_FAN2 is the preferred next header if the lead reaches cleanly; SYS_FAN3~5 are equivalent available system-fan headers.
+- Final fan header map: rear case fan on SYS_FAN1; right front drive-cage fan on SYS_FAN5; left front drive-cage fan on SYS_FAN6.
 - Rear expansion-slot cover aligned with PCI_E1 removed in preparation for HBA installation.
-- Both boot SSDs are physically secured in their final CS383 mounting positions. The HBA, eight data drives, and PSU are not yet complete in their final build state.
+- Both boot SSDs are physically secured in their final CS383 mounting positions. All eight IronWolf 12 TB drives are installed in the CS383 hot-swap bays and seated without force. The HBA retention and PSU installation remain incomplete.
 - LSI 9207-8i is now fully seated in PCI_E1 with its incompatible silver metal bracket removed. Full seating is based on Gene's direct physical report. Chassis retention remains unresolved, so the HBA is not yet installation-complete and the system must not be powered with the HBA unsecured.
 - Boot SSD SATA data connections completed: Crucial MX500 connected to SATA_S1 and Patriot Burst Elite connected to SATA_S2.
 - Two Cable Matters 0.5 m / 1.6 ft SFF-8087-to-4x-SATA forward-breakout cables were ordered from Amazon on 2026-10-04, with estimated delivery 2026-10-05; these are intended to connect the LSI 9207-8i's J5/J6 ports to the eight CS383 backplane SATA data inputs.
+- IronWolf tray numbering and serial inventory from photographed labels:
+  - 1: ZZ30N1YX
+  - 2: ZZ30PAWE
+  - 3: ZZ30PC78
+  - 4: ZZ30PBLQ
+  - 5: ZZ30N2BG
+  - 6: ZZ30N4AC
+  - 7: ZZ30N4DB
+  - 8: ZZ30PBPL
+  - All eight are Seagate IronWolf 12 TB ST12000VN0008, firmware SC60.
 
 ## Software / installer state
 
@@ -65,7 +74,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 8. Outside the case, attach the exact required Seasonic modular cables: motherboard 24-pin pair at the PSU, required CPU/EPS cable(s), and required SATA/peripheral power leads.
 9. Install the PSU in the chassis only after required modular cables are attached and PSU orientation is verified against both the CS383 airflow geometry and Seasonic guidance.
 10. Complete motherboard, boot-SSD, and backplane power connections.
-11. Install and map the eight IronWolf drives by bay.
+11. Eight IronWolf drives are installed; verify physical bay numbering against the recorded tray serial inventory before first power.
 12. Perform a no-AC pre-power inspection.
 13. First POST with monitor/keyboard; verify CPU, 64 GB RAM, sane CPU temperature/fan behavior, boot devices, and HBA visibility before TrueNAS installation.
 14. Use the already-created TrueNAS installer USB only after destination boot devices are unambiguously identified.
