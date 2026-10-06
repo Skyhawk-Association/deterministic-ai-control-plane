@@ -57,6 +57,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
   - All eight are Seagate IronWolf 12 TB ST12000VN0008, firmware SC60.
 
 - First power-on attempt produced no response despite two verified-working AC cords/outlets and PSU rocker at I. Direct JFP1 power-switch bypass test across pins 6/8 also produced no response, eliminating the chassis power switch as the immediate cause. The motherboard 24-pin ATX cable was then fully reseated at both PSU and motherboard ends; a repeat direct JFP1 pins 6/8 start attempt still produced no fans, LEDs, click, or other response.
+- PSU standalone retest initially appeared dead because Seasonic Hybrid/Fanless mode kept the fan stopped. After switching the PSU fan control to Normal mode, the paper-clip test succeeded, confirming the PSU can power on standalone. Do not classify the PSU as failed from fan non-rotation while Hybrid mode is enabled.
 
 ## Software / installer state
 
