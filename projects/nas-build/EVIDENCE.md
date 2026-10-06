@@ -49,8 +49,9 @@ Gene supplied the original shopping-cart text on 2026-10-04. It identifies the H
 - Listed price: $57.49.
 - The supplied cart text does not list any SFF-8087-to-SATA breakout cables as separate purchased items or included accessories.
 - On 2026-10-05, Gene supplied photographic evidence of two Cable Matters boxes labeled `Internal Mini-SAS to SATA Forward Breakout Cable - 1.6ft / 0.5m [SFF-8087 to 4x SATA]`, model `104016-0.5m`. The required pair is therefore physically in hand.
+- Both breakout cables were then connected to the LSI 9207-8i, and all eight breakout SATA branch connectors were reported securely attached to the CS383 numbered backplane ports.
 
-This establishes purchase-source provenance and a current missing-cable condition; it does not by itself prove what accessories the seller's product page promised at checkout.
+This establishes purchase-source provenance and documents that the required breakout-cable pair was later received; it does not by itself prove what accessories the seller's product page promised at checkout.
 
 ## HBA document intake
 
