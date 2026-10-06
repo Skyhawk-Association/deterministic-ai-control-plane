@@ -56,6 +56,8 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
   - 8: ZZ30PBPL
   - All eight are Seagate IronWolf 12 TB ST12000VN0008, firmware SC60.
 
+- First power-on attempt produced no response despite two verified-working AC cords/outlets and PSU rocker at I. Direct JFP1 power-switch bypass test across pins 6/8 also produced no response, eliminating the chassis power switch as the immediate cause.
+
 ## Software / installer state
 
 - TrueNAS Community Edition target: 25.10.7.
