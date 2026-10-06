@@ -41,6 +41,9 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Both boot SSDs are physically secured in their final CS383 mounting positions. All eight IronWolf 12 TB drives are installed in the CS383 hot-swap bays and seated without force. The PSU is installed in the CS383 and its mounting screws are snug. HBA retention is now resolved: Gene modified the chassis holder for clearance and reports the LSI 9207-8i is firmly anchored to the frame.
 - LSI 9207-8i is fully seated in PCI_E1 and firmly retained by the modified chassis holder. The incompatible silver metal bracket remains removed. Both Cable Matters SFF-8087 forward-breakout cables are connected to the HBA internal ports. The upper HBA cable maps to CS383 SATA 1-4, and the lower HBA cable maps to CS383 SATA 5-8. All eight SATA branch connectors are securely attached to the numbered CS383 backplane data ports.
 - Boot SSD connections completed: Crucial MX500 and Patriot Burst Elite are both physically secured, have SATA data connected to SATA_S1/SATA_S2 respectively, and have SATA power connected.
+- Motherboard-side PSU power is complete: the 24-pin ATX connector and both CPU/EPS connectors are attached and reported fully seated.
+- CS383 backplane power is complete: both backplane PSU power connections are attached.
+- Gene performed a final physical check of all wired/LSI connections completed to this point and secured the wire bundles.
 - Two Cable Matters 0.5 m / 1.6 ft Internal Mini-SAS SFF-8087-to-4x-SATA forward-breakout cables, model 104016-0.5m, are now physically in hand. They are intended to connect the LSI 9207-8i's J5/J6 ports to the eight CS383 backplane SATA data inputs.
 - IronWolf tray numbering and serial inventory from photographed labels:
   - 1: ZZ30N1YX
@@ -77,7 +80,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 6. Boot SSD SATA data and power connections are complete.
 8. PSU-side modular cabling is complete: 24-pin motherboard, two RE81/E81 CPU/EPS, and two SATA/peripheral harnesses are connected; 12V-2x6/600 W and both RG92/G92 PCIe cables remain intentionally unused.
 9. PSU is installed in the CS383 with required modular cables attached and mounting screws snug.
-10. Complete remaining motherboard-side 24-pin and CPU/EPS power connections, then complete CS383 backplane power.
+10. Motherboard-side 24-pin and both CPU/EPS power connections are complete; both CS383 backplane PSU power connections are complete.
 11. Eight IronWolf drives are installed; verify physical bay numbering against the recorded tray serial inventory before first power.
 12. Perform a no-AC pre-power inspection.
 13. First POST with monitor/keyboard; verify CPU, 64 GB RAM, sane CPU temperature/fan behavior, boot devices, and HBA visibility before TrueNAS installation.
