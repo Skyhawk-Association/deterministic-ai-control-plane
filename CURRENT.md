@@ -2,6 +2,8 @@
 
 ## Change Synopsis
 
+- 2026-10-06 (operational correction under Operational Use and Correction Authority 0.2; authoritative/DACP_Handoff_Claim_Integrity_Control_0.1.md): adds handoff claim-evidence classes and blocks promotion of ambiguous user wording or model inference into verified/user-confirmed fact; adds D26 regression.
+
 - 2026-10-02 (status correction under Operational Use and Correction Authority 0.2; authoritative/DACP_Governance_Status_Audit_2026-10-02.md): resolves stale approval/status ambiguity, confirms Heuristics 0.1.4 and Application Implementation Authorization 0.7 as active, records that no specific live Gene-approval item is established by current canonical/private evidence, and adds D24 status-precedence regression.
 - 2026-10-02 (Gene decision; authoritative/DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md): activates the reality-conformance heuristic, "The world doesn't adjust to me, I adjust to the world." Verified external reality outranks model confidence and contradicted plans must be revised before adding assumption-preserving machinery.
 - 2026-09-30 (Gene decision; authoritative/DACP_Decision_Record_2026-09-30_VPS_Executor_Authorization.md): controlled VPS administration path authorized for Skyhawk migration and ongoing administration; provider-policy compliance, least privilege, auditability, and complete pipe qualification are mandatory. Application Implementation Authorization 0.7 supersedes 0.6.
@@ -55,7 +57,8 @@ Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.g
 15. authoritative/DACP_Governance_Supersession_Notice_0.4.md when smoke-test history matters.
 16. authoritative/DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md when contradiction/reorientation is germane.
 17. authoritative/DACP_Governance_Status_Audit_2026-10-02.md when approval/status ambiguity is germane.
-18. predecessor specifications only for provenance/comparison.
+18. authoritative/DACP_Handoff_Claim_Integrity_Control_0.1.md when summaries, handoffs, troubleshooting baselines, or executor transfers are germane.
+19. predecessor specifications only for provenance/comparison.
 
 ## Operational state
 
