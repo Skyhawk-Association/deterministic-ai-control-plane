@@ -1,0 +1,841 @@
+SKYHAWK AI REPORT
+Report-ID: 20261008T200103Z-vps142898-skyhawk-outage-20261007-timeline
+Task: skyhawk-outage-20261007-timeline
+Generated (UTC): 2026-10-08T20:01:03Z
+Host: vps142898
+---
+SKYHAWK OUTAGE ROOT TIMELINE
+Generated: 2026-10-08T15:56:00-04:00
+
+=== EXECUTION CONTEXT ===
+vps142898.inmotionhosting.com
+uid=0(root) gid=0(root) groups=0(root)
+Thu Oct  8 15:56:00 EDT 2026
+               Local time: Thu 2026-10-08 15:56:00 EDT
+           Universal time: Thu 2026-10-08 19:56:00 UTC
+                 RTC time: n/a
+                Time zone: Host (EDT, -0400)
+System clock synchronized: yes
+              NTP service: n/a
+          RTC in local TZ: no
+
+=== SERVICE STATUS NOW ===
+● nginx.service - The nginx HTTP and reverse proxy server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)
+   Active: active (running) since Thu 2026-10-08 08:59:20 EDT; 6h ago
+  Process: 1131120 ExecReload=/usr/sbin/nginx -s reload (code=exited, status=0/SUCCESS)
+  Process: 1126827 ExecStart=/usr/sbin/nginx (code=exited, status=0/SUCCESS)
+  Process: 1126825 ExecStartPre=/usr/sbin/nginx -t (code=exited, status=0/SUCCESS)
+  Process: 1126823 ExecStartPre=/usr/bin/rm -f /run/nginx.pid (code=exited, status=0/SUCCESS)
+ Main PID: 1126828 (nginx)
+   CGroup: /system.slice/nginx.service
+           ├─1126828 nginx: master process /usr/sbin/nginx
+           ├─1131126 nginx: worker process
+           ├─1131127 nginx: worker process
+           ├─1131128 nginx: worker process
+           ├─1131129 nginx: worker process
+           └─1131130 nginx: cache manager process
+
+Oct 08 08:59:20 vps142898.inmotionhosting.com systemd[1]: Starting The nginx HTTP and reverse proxy server...
+Oct 08 08:59:20 vps142898.inmotionhosting.com nginx[1126825]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+Oct 08 08:59:20 vps142898.inmotionhosting.com nginx[1126825]: nginx: configuration file /etc/nginx/nginx.conf test is successful
+Oct 08 08:59:20 vps142898.inmotionhosting.com systemd[1]: Started The nginx HTTP and reverse proxy server.
+Oct 08 09:02:10 vps142898.inmotionhosting.com systemd[1]: Reloading The nginx HTTP and reverse proxy server.
+Oct 08 09:02:10 vps142898.inmotionhosting.com systemd[1]: Reloaded The nginx HTTP and reverse proxy server.
+Oct 08 09:02:43 vps142898.inmotionhosting.com systemd[1]: Reloading The nginx HTTP and reverse proxy server.
+Oct 08 09:02:43 vps142898.inmotionhosting.com systemd[1]: Reloaded The nginx HTTP and reverse proxy server.
+Oct 08 09:08:21 vps142898.inmotionhosting.com systemd[1]: Reloading The nginx HTTP and reverse proxy server.
+Oct 08 09:08:21 vps142898.inmotionhosting.com systemd[1]: Reloaded The nginx HTTP and reverse proxy server.
+● httpd.service - Web server Apache
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Thu 2026-10-08 08:59:20 EDT; 6h ago
+  Process: 1126798 ExecStop=/usr/local/apache/bin/apachectl graceful-stop (code=exited, status=0/SUCCESS)
+  Process: 1131125 ExecReload=/usr/local/apache/bin/apachectl graceful (code=exited, status=0/SUCCESS)
+  Process: 1126814 ExecStart=/usr/local/apache/bin/apachectl start (code=exited, status=0/SUCCESS)
+ Main PID: 1126818 (httpd)
+   CGroup: /system.slice/httpd.service
+           ├─1126818 /usr/local/apache/bin/httpd -k start
+           ├─1131137 /usr/local/apache/bin/httpd -k start
+           ├─1131138 /usr/local/apache/bin/httpd -k start
+           ├─1131166 /usr/local/apache/bin/httpd -k start
+           └─1131257 /usr/local/apache/bin/httpd -k start
+
+Oct 08 08:59:20 vps142898.inmotionhosting.com systemd[1]: Starting Web server Apache...
+Oct 08 08:59:20 vps142898.inmotionhosting.com systemd[1]: Started Web server Apache.
+Oct 08 09:02:10 vps142898.inmotionhosting.com systemd[1]: Reloading Web server Apache.
+Oct 08 09:02:10 vps142898.inmotionhosting.com systemd[1]: Reloaded Web server Apache.
+Oct 08 09:02:43 vps142898.inmotionhosting.com systemd[1]: Reloading Web server Apache.
+Oct 08 09:02:43 vps142898.inmotionhosting.com systemd[1]: Reloaded Web server Apache.
+Oct 08 09:08:21 vps142898.inmotionhosting.com systemd[1]: Reloading Web server Apache.
+Oct 08 09:08:21 vps142898.inmotionhosting.com systemd[1]: Reloaded Web server Apache.
+● php-fpm84.service - The PHP FastCGI Process Manager
+   Loaded: loaded (/usr/lib/systemd/system/php-fpm84.service; enabled; vendor preset: disabled)
+  Drop-In: /etc/systemd/system/php-fpm84.service.d
+           └─override.conf
+   Active: active (running) since Thu 2026-10-08 08:59:23 EDT; 6h ago
+  Process: 1128491 ExecReload=/bin/kill -USR2 $MAINPID (code=exited, status=0/SUCCESS)
+ Main PID: 1126970 (php-fpm)
+   CGroup: /system.slice/php-fpm84.service
+           ├─1126970 php-fpm: master process (/opt/alt/php-fpm84/usr/etc/php-fpm.conf)
+           └─1158965 php-fpm: pool n790725
+
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #14 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/StackMiddleware/ReverseProxyMiddleware.php(48): Drupal\ban\BanMiddleware->handle()
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #15 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/StackMiddleware/NegotiationMiddleware.php(51): Drupal\Core\StackMiddleware\ReverseProxyMiddleware->handle()
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #16 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/StackMiddleware/AjaxPageState.php(71): Drupal\Core\StackMiddleware\NegotiationMiddleware->handle()
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #17 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/StackMiddleware/StackedHttpKernel.php(54): Drupal\Core\StackMiddleware\AjaxPageState->handle()
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #18 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/DrupalKernel.php(753): Drupal\Core\StackMiddleware\StackedHttpKernel->handle()
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #19 /home/n790725/drupalbeta/vendor/symfony/runtime/Runner/Symfony/HttpKernelRunner.php(34): Drupal\Core\DrupalKernel->handle()
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #20 /home/n790725/drupalbeta/vendor/autoload_runtime.php(32): Symfony\Component\Runtime\Runner\Symfony\HttpKernelRunner->run()
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #21 /home/n790725/drupalbeta/web/autoload_runtime.php(22): require('...')
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #22 /home/n790725/drupalbeta/web/index.php(13): require_once('...')
+Oct 08 15:55:59 vps142898.inmotionhosting.com drupal[1158965]: #23 {main}.
+
+=== SYSTEM JOURNAL 2026-10-07 15:00-17:30 UTC ===
+Oct 07 19:00:01 vps142898.inmotionhosting.com CROND[1058763]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 19:00:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:00:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:00:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:00:05 vps142898.inmotionhosting.com CROND[1058772]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:00:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:01:59 vps142898.inmotionhosting.com postfix/smtpd[1058880]: NOQUEUE: reject: RCPT from unknown[[ip]]: 450 4.7.25 Client host rejected: cannot find your hostname, [[ip]]; from=<[email]> to=<[email]> proto=ESMTP helo=<thhnzAN>
+Oct 07 19:01:59 vps142898.inmotionhosting.com postfix/smtpd[1058880]: disconnect from unknown[[ip]] ehlo=2 starttls=1 mail=1 rcpt=0/1 quit=1 commands=5/6
+Oct 07 19:02:09 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:02:09 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:02:09 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:02:13 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:04:00 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:04:00 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:04:00 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:04:00 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:05:01 vps142898.inmotionhosting.com CROND[1059031]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:06:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:06:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:06:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:06:06 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:08:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:08:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:08:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:08:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:10:01 vps142898.inmotionhosting.com CROND[1059306]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:10:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:10:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:10:06 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:10:06 vps142898.inmotionhosting.com CROND[1059311]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 19:10:06 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:12:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:12:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:12:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:12:07 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:14:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:14:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:14:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:14:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:15:01 vps142898.inmotionhosting.com CROND[1059573]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:16:08 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:16:08 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:16:08 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:16:08 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: Starting User runtime directory /run/user/1001...
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: Started User runtime directory /run/user/1001.
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: Starting User Manager for UID 1001...
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1059685]: pam_unix(systemd-user:session): session opened for user n790725 by (uid=0)
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1059685]: Starting D-Bus User Message Bus Socket.
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1059685]: Listening on D-Bus User Message Bus Socket.
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1059685]: Reached target Sockets.
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: Started User Manager for UID 1001.
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1059685]: Startup finished in 20ms.
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: Started Session 27679471 of user n790725.
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:17:01 vps142898.inmotionhosting.com CROND[1059693]: (n790725) CMD (/home/n790725/bin/skyhawk-drupal-cron.sh >/dev/null 2>&1)
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1]: Stopping User Manager for UID 1001...
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1059685]: Stopped target Default.
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1059685]: Stopped target Basic System.
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1059685]: Stopped target Paths.
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1059685]: Stopped target Timers.
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1059685]: Stopped target Sockets.
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1059685]: Closed D-Bus User Message Bus Socket.
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1059685]: Started Exit the Session.
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1059687]: pam_unix(systemd-user:session): session closed for user n790725
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1]: Stopped User Manager for UID 1001.
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1]: Stopping User runtime directory /run/user/1001...
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:17:12 vps142898.inmotionhosting.com systemd[1]: Stopped User runtime directory /run/user/1001.
+Oct 07 19:17:49 vps142898.inmotionhosting.com postfix/smtpd[1059738]: lost connection after STARTTLS from [ip].censys-scanner.com[[ip]]
+Oct 07 19:17:49 vps142898.inmotionhosting.com postfix/smtpd[1059738]: disconnect from [ip].censys-scanner.com[[ip]] ehlo=1 starttls=1 commands=2
+Oct 07 19:18:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:18:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:18:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:18:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:20:01 vps142898.inmotionhosting.com CROND[1059863]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:20:03 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:20:03 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:20:03 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:20:03 vps142898.inmotionhosting.com CROND[1059867]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 19:20:03 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:22:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:22:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:22:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:22:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:24:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:24:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:24:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:24:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:25:01 vps142898.inmotionhosting.com CROND[1060133]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:26:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:26:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:26:06 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:26:06 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:28:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:28:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:28:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:28:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:30:01 vps142898.inmotionhosting.com CROND[1060391]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 19:30:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:30:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:30:02 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:30:02 vps142898.inmotionhosting.com CROND[1060398]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:30:02 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:32:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:32:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:32:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:32:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:34:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:34:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:34:06 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:34:06 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:35:01 vps142898.inmotionhosting.com CROND[1060670]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:36:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:36:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:36:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:36:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:37:46 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:37:46 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:37:46 vps142898.inmotionhosting.com systemd[1]: Starting dnf makecache...
+Oct 07 19:37:47 vps142898.inmotionhosting.com systemd[1]: Started dnf makecache.
+Oct 07 19:38:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:38:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:38:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:38:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:40:01 vps142898.inmotionhosting.com CROND[1060955]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:40:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:40:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:40:02 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:40:02 vps142898.inmotionhosting.com CROND[1060958]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 19:40:07 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:42:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:42:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:42:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:42:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:44:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:44:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:44:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:44:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:45:01 vps142898.inmotionhosting.com CROND[1061235]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:46:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:46:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:46:06 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:46:06 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:48:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:48:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:48:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:48:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:50:01 vps142898.inmotionhosting.com CROND[1061496]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 19:50:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:50:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:50:01 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:50:01 vps142898.inmotionhosting.com CROND[1061502]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:50:01 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:52:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:52:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:52:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:52:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:54:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:54:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:54:06 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:54:06 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:55:01 vps142898.inmotionhosting.com CROND[1061770]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 19:56:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:56:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:56:06 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:56:06 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 19:58:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 19:58:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 19:58:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 19:58:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:00:01 vps142898.inmotionhosting.com CROND[1062043]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:00:01 vps142898.inmotionhosting.com CROND[1062044]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 20:00:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:00:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:00:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:00:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:02:10 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:02:10 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:02:10 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:02:10 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:04:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:04:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:04:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:04:06 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:05:01 vps142898.inmotionhosting.com CROND[1062331]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:06:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:06:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:06:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:06:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:08:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:08:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:08:08 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:08:08 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:10:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:10:01 vps142898.inmotionhosting.com CROND[1062589]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:10:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:10:01 vps142898.inmotionhosting.com CROND[1062588]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 20:10:01 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:10:01 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:12:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:12:06 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:12:06 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:12:07 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:14:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:14:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:14:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:14:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:15:01 vps142898.inmotionhosting.com CROND[1062858]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:16:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:16:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:16:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:16:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: Starting User runtime directory /run/user/1001...
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: Started User runtime directory /run/user/1001.
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: Starting User Manager for UID 1001...
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1062967]: pam_unix(systemd-user:session): session opened for user n790725 by (uid=0)
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1062967]: Starting D-Bus User Message Bus Socket.
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1062967]: Listening on D-Bus User Message Bus Socket.
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1062967]: Reached target Sockets.
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1062967]: Startup finished in 19ms.
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: Started User Manager for UID 1001.
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: Started Session 27685791 of user n790725.
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:17:01 vps142898.inmotionhosting.com CROND[1062975]: (n790725) CMD (/home/n790725/bin/skyhawk-drupal-cron.sh >/dev/null 2>&1)
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1]: Stopping User Manager for UID 1001...
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1062967]: Stopped target Default.
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1062967]: Stopped target Basic System.
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1062967]: Stopped target Paths.
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1062967]: Stopped target Timers.
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1062967]: Stopped target Sockets.
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1062967]: Closed D-Bus User Message Bus Socket.
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1062967]: Started Exit the Session.
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1]: Stopped User Manager for UID 1001.
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1]: Stopping User runtime directory /run/user/1001...
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:17:11 vps142898.inmotionhosting.com systemd[1]: Stopped User runtime directory /run/user/1001.
+Oct 07 20:18:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:18:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:18:02 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:18:02 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:20:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:20:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:20:01 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:20:01 vps142898.inmotionhosting.com CROND[1063148]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:20:01 vps142898.inmotionhosting.com CROND[1063149]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 20:20:01 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:22:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:22:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:22:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:22:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:24:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:24:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:24:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:24:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:25:01 vps142898.inmotionhosting.com CROND[1063416]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:26:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:26:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:26:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:26:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:28:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:28:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:28:02 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:28:02 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:30:01 vps142898.inmotionhosting.com CROND[1063684]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:30:01 vps142898.inmotionhosting.com CROND[1063685]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 20:30:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:30:02 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:30:02 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:30:02 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:32:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:32:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:32:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:32:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:34:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:34:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:34:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:34:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:35:01 vps142898.inmotionhosting.com CROND[1063988]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:36:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:36:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:36:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:36:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:38:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:38:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:38:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:38:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:40:01 vps142898.inmotionhosting.com CROND[1064266]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 20:40:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:40:01 vps142898.inmotionhosting.com CROND[1064267]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:40:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:40:01 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:40:01 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:40:11 vps142898.inmotionhosting.com pure-ftpd[1064280]: (?@[ip]) [INFO] SNI: [testsslsh.com]
+Oct 07 20:42:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:42:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:42:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:42:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:44:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:44:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:44:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:44:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:45:01 vps142898.inmotionhosting.com CROND[1064551]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:46:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:46:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:46:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:46:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:48:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:48:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:48:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:48:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:50:01 vps142898.inmotionhosting.com CROND[1064822]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:50:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:50:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:50:01 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:50:01 vps142898.inmotionhosting.com CROND[1064825]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 20:50:01 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:52:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:52:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:52:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:52:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:54:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:54:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:54:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:54:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:55:01 vps142898.inmotionhosting.com CROND[1065090]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 20:55:19 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:55:19 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:55:19 vps142898.inmotionhosting.com systemd[1]: Starting dnf makecache...
+Oct 07 20:55:21 vps142898.inmotionhosting.com dnf[1065106]: nginx repo                                       72 kB/s | 3.0 kB     00:00
+Oct 07 20:55:22 vps142898.inmotionhosting.com systemd[1]: Started dnf makecache.
+Oct 07 20:56:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:56:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:56:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:56:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 20:58:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 20:58:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 20:58:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 20:58:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:00:01 vps142898.inmotionhosting.com CROND[1065376]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 21:00:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:00:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:00:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:00:05 vps142898.inmotionhosting.com CROND[1065380]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 21:00:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:02:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:02:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:02:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:02:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:04:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:04:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:04:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:04:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:05:01 vps142898.inmotionhosting.com CROND[1065660]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 21:06:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:06:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:06:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:06:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:08:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:08:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:08:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:08:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:10:01 vps142898.inmotionhosting.com CROND[1065915]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 21:10:01 vps142898.inmotionhosting.com CROND[1065916]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 21:10:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:10:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:10:01 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:10:03 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:12:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:12:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:12:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:12:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:14:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:14:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:14:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:14:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:15:01 vps142898.inmotionhosting.com CROND[1066184]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 21:16:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:16:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:16:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:16:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: Starting User runtime directory /run/user/1001...
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: Started User runtime directory /run/user/1001.
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: Starting User Manager for UID 1001...
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1066297]: pam_unix(systemd-user:session): session opened for user n790725 by (uid=0)
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1066297]: Starting D-Bus User Message Bus Socket.
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1066297]: Listening on D-Bus User Message Bus Socket.
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1066297]: Reached target Sockets.
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1066297]: Startup finished in 16ms.
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: Started User Manager for UID 1001.
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: Started Session 27692029 of user n790725.
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:17:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:17:01 vps142898.inmotionhosting.com CROND[1066305]: (n790725) CMD (/home/n790725/bin/skyhawk-drupal-cron.sh >/dev/null 2>&1)
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1]: Stopping User Manager for UID 1001...
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1066297]: Stopped target Default.
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1066297]: Stopped target Basic System.
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1066297]: Stopped target Paths.
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1066297]: Stopped target Sockets.
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1066297]: Stopped target Timers.
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1066297]: Closed D-Bus User Message Bus Socket.
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1066297]: Started Exit the Session.
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1]: Stopped User Manager for UID 1001.
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1]: Stopping User runtime directory /run/user/1001...
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:17:11 vps142898.inmotionhosting.com systemd[1]: Stopped User runtime directory /run/user/1001.
+Oct 07 21:17:15 vps142898.inmotionhosting.com postfix/smtpd[1066310]: lost connection after STARTTLS from [ip].censys-scanner.com[[ip]]
+Oct 07 21:17:15 vps142898.inmotionhosting.com postfix/smtpd[1066310]: disconnect from [ip].censys-scanner.com[[ip]] ehlo=1 starttls=1 commands=2
+Oct 07 21:18:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:18:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:18:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:18:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:20:01 vps142898.inmotionhosting.com CROND[1066485]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 21:20:01 vps142898.inmotionhosting.com CROND[1066486]: (root) CMD (/opt/cwprads/check_service_ssl >>/var/log/check_service_ssl.log 2>&1)
+Oct 07 21:20:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:20:01 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:20:01 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:20:01 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:22:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:22:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:22:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:22:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:24:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:24:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:24:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:24:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:25:01 vps142898.inmotionhosting.com CROND[1066743]: (root) CMD (/usr/local/cwp/php/bin/php -d disable_functions="" /usr/local/softaculous/do_backups.php >> /dev/null 2>&1)
+Oct 07 21:26:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:26:05 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:26:05 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:26:05 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+Oct 07 21:28:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to reset devices.list: Operation not permitted
+Oct 07 21:28:04 vps142898.inmotionhosting.com systemd[1]: -.slice: Failed to set pids.max: Operation not permitted
+Oct 07 21:28:04 vps142898.inmotionhosting.com systemd[1]: Starting system activity accounting tool...
+Oct 07 21:28:04 vps142898.inmotionhosting.com systemd[1]: Started system activity accounting tool.
+
+=== PHP-FPM JOURNAL ===
+-- Logs begin at Mon 2026-10-05 16:00:22 UTC, end at Thu 2026-10-08 19:56:00 UTC. --
+
+=== NGINX JOURNAL ===
+-- Logs begin at Mon 2026-10-05 16:00:22 UTC, end at Thu 2026-10-08 19:56:00 UTC. --
+
+=== APACHE/HTTPD JOURNAL ===
+-- Logs begin at Mon 2026-10-05 16:00:22 UTC, end at Thu 2026-10-08 19:56:00 UTC. --
+
+=== KERNEL / OOM / PROCESS DEATH ===
+
+=== CWP LOG MATCHES ===
+
+=== NGINX ERROR LOG MATCHES ===
+
+=== FILES MODIFIED NEAR OUTAGE ===
+2026-10-07 10:33:46.0878800280 /usr/local/cwp/.conf/php-fpm_conf/php84.conf
+2026-10-07 10:33:46.0878800280 /usr/local/cwp/.conf/php-fpm_conf/php84_external.conf
+2026-10-07 10:33:46.0878800280 /usr/local/cwp/.conf/php-fpm_conf/php84_pre.conf
+2026-10-07 10:40:48.9247271360 /opt/alt/php-fpm84/usr/etc/php-fpm.conf.default
+2026-10-07 10:40:48.9677278320 /opt/alt/php-fpm84/usr/etc/php-fpm.d/www.conf.default
+2026-10-07 10:41:00.8909207970 /opt/alt/php-fpm84/usr/etc/php-fpm.conf
+2026-10-07 10:41:00.8909207970 /opt/alt/php-fpm84/usr/etc/php-fpm.d/users.conf
+2026-10-07 10:41:00.8919208130 /opt/alt/php-fpm84/usr/etc/php-fpm.d/cwpsvc.conf
+
+=== ROOT COMMAND HISTORY RELEVANT TO EVENT ===
+php -v
+httpd -v
+nginx -v
+cwp --version
+echo "=== PHP BINARIES ==="
+command -v php
+ls -1 /usr/local/bin/php* /usr/bin/php* 2>/dev/null
+echo "=== PHP PACKAGES ==="
+rpm -qa | grep -Ei '^php|php84|ea-php|alt-php' | sort
+echo "=== PHP MODULES ==="
+php -m | sort
+echo "=== PHP CONFIG ==="
+php --ini
+echo "=== CWP DIRECTORIES ==="
+ls -ld /usr/local/cwpsrv /usr/local/cwp /etc/cwp /home/* 2>/dev/null
+echo "=== CWP VERSION CLUES ==="
+grep -RhsE 'version|VERSION' /usr/local/cwpsrv/htdocs/resources/admin/include 2>/dev/null | head -20
+echo "=== PHP INSTALLATIONS ==="
+find /usr/local /opt -maxdepth 4 -type f -name php -perm -111 2>/dev/null | sort
+echo "=== PHP VERSION DIRECTORIES ==="
+find /usr/local /opt -maxdepth 3 -type d \( -iname '*php*' -o -iname '*php-fpm*' \) 2>/dev/null | sort
+echo "=== CWP ACCOUNT ==="
+id n790725
+find /home/n790725 -maxdepth 2 -type d -printf '%M %u:%g %p\n' 2>/dev/null | sort
+echo "=== DOMAIN / VHOST REFERENCES ==="
+grep -RIl "n790725"   /usr/local/apache/conf   /etc/httpd   /etc/nginx   /usr/local/cwpsrv/conf   2>/dev/null | head -50
+echo "=== PHP-FPM SERVICES ==="
+systemctl list-unit-files 2>/dev/null | grep -Ei 'php.*fpm|fpm.*php' || true
+ps aux | grep -E '[p]hp-fpm' || true
+echo "=== CWP PHP BUILD MECHANISM ==="
+find /usr/local/cwp /scripts -maxdepth 4 -type f   \( -iname '*php*' -o -iname '*build*' \)   2>/dev/null | sort | head -100
+echo "=== PHP VERSION REFERENCES ==="
+grep -RhsE '8\.4|php84|PHP84'   /usr/local/cwp   /scripts   2>/dev/null | head -100
+echo "=== ALT PHP CONTENTS ==="
+for d in /opt/alt/php74 /opt/alt/php80 /opt/alt/php81 /opt/alt/php82; do   echo "--- $d ---";   find "$d" -maxdepth 3 -type f -name php -o -name php-config 2>/dev/null; done
+echo "=== AVAILABLE PHP 8.4 PACKAGES ==="
+dnf list available '*php84*' '*php8.4*' 2>/dev/null | head -100
+echo "=== OWNER OF EXISTING PHP 8.2 ==="
+rpm -qf /opt/alt/php82/usr/bin/php
+rpm -qf /opt/alt/php-fpm82/usr/sbin/php-fpm 2>/dev/null || true
+echo "=== ALL INSTALLED ALT/EA PHP PACKAGES ==="
+rpm -qa | grep -Ei '(^|-)php(74|80|81|82)|alt-php|ea-php' | sort
+echo "=== ALL PHP 8.4 PACKAGES IN ENABLED REPOS ==="
+dnf repoquery --available --qf '%{repoid} %{name} %{version}-%{release}' '*php84*' 2>/dev/null | sort
+echo "=== EA PHP 8.4 FAMILY ==="
+dnf repoquery --available --qf '%{repoid} %{name}' 'ea-php84*' 2>/dev/null | sort
+echo "=== ALT PHP PACKAGE FAMILY ==="
+dnf repoquery --available --qf '%{repoid} %{name}' 'php82*' '*alt-php82*' 2>/dev/null | sort | head -100
+echo "=== CWP VERSION ==="
+grep -RhsE 'CWP.*Version|CWP_VERSION|version.*1\.'   /usr/local/cwp /usr/local/cwpsrv 2>/dev/null | head -30
+echo "=== PHP BUILDER FILES ==="
+find /usr/local/cwp /usr/local/cwpsrv   -type f   \( -iname '*php*fpm*' -o -iname '*php*selector*' -o -iname '*php*switch*' -o -iname '*php*build*' \)   2>/dev/null | sort | head -100
+echo "=== AVAILABLE PHP BUILD DEFINITIONS ==="
+find /usr/local/cwp   -type f   \( -name 'php*.conf' -o -name '*php*.ini' \)   2>/dev/null | sort
+grep -RIlE 'PHP.?8\.4|php84|8\.4\.[0-9]+'   /usr/local/cwp /usr/local/cwpsrv   2>/dev/null | head -100
+echo "=== PHP-FPM SELECTOR VERSIONS ==="
+cat /usr/local/cwpsrv/htdocs/resources/conf/el8/php-fpm_selector/versions.ini
+echo "=== PHP 8.4 FPM DEFINITION ==="
+cat /usr/local/cwpsrv/htdocs/resources/conf/el8/php-fpm_selector/8.4.ini
+echo "=== PHP SELECTOR 8.4 DEFINITION ==="
+cat /usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/8.4.ini
+echo "=== PHP SWITCHER 8.4 DEFINITION ==="
+cat /usr/local/cwpsrv/htdocs/resources/conf/el8/php_switcher/8.4.ini
+REPORT="/root/skyhawk-vps-$(date -u +%Y%m%dT%H%M%SZ).txt"
+echo "=== PHP 8.4 BINARY ==="
+/opt/alt/php-fpm84/usr/bin/php -v
+echo "=== PHP 8.4 SERVICE ==="
+systemctl status php-fpm84 --no-pager -l | grep -E 'Loaded:|Active:'
+REPORT="/root/php84-failure-$(date -u +%Y%m%dT%H%M%SZ).txt"
+(   echo "=== SERVICE STATUS ===";   systemctl status php-fpm84 --no-pager -l;    echo;   echo "=== JOURNAL ===";   journalctl -u php-fpm84 --no-pager -n 100;    echo;   echo "=== PHP LINKAGE ===";   ldd /opt/alt/php-fpm84/usr/bin/php;    echo;   echo "=== PCRE LIBRARIES ===";   ldconfig -p | grep -i pcre;    echo;   echo "=== BUILD LOG CANDIDATES ===";   find /usr/local/cwp /usr/local/cwpsrv /var/log /tmp     -type f     \( -iname '*php*84*log*' -o -iname '*php*fpm*log*' -o -iname '*build*log*' \)     -mmin -60 2>/dev/null | sort; ) >"$REPORT" 2>&1
+REPORT="/root/php84-pcre-compare-$(date -u +%Y%m%dT%H%M%SZ).txt"
+(   echo "=== PHP82 PCRE LINK ===";   ldd /opt/alt/php82/usr/bin/php | grep -i pcre;    echo;   echo "=== PHP84 PCRE LINK ===";   ldd /opt/alt/php-fpm84/usr/bin/php | grep -i pcre;    echo;   echo "=== LOCAL PCRE FILES ===";   ls -l /usr/local/lib/libpcre2* 2>/dev/null;   file /usr/local/lib/libpcre2-8.so.0 2>/dev/null;   rpm -qf /usr/local/lib/libpcre2-8.so.0 2>&1 || true;    echo;   echo "=== SYSTEM PCRE FILES ===";   ls -l /lib64/libpcre2-8.so* 2>/dev/null;   file /lib64/libpcre2-8.so.0 2>/dev/null;   rpm -qf /lib64/libpcre2-8.so.0 2>&1 || true;    echo;   echo "=== PCRE CONFIG ===";   command -v pcre2-config || true;   pcre2-config --version 2>&1 || true;   /usr/local/bin/pcre2-config --version 2>&1 || true;    echo;   echo "=== PHP82 VERSION ===";   /opt/alt/php82/usr/bin/php -v 2>&1;    echo;   echo "=== PHP84 VERSION ===";   /opt/alt/php-fpm84/usr/bin/php -v 2>&1; ) >"$REPORT" 2>&1
+grep -E '===|libpcre|pcre2-config|PHP [0-9]|Fatal|not owned|^10\.|^8\.|^9\.' "$REPORT"
+REPORT="/root/php84-pcre-build-$(date -u +%Y%m%dT%H%M%SZ).txt"
+(   echo "=== PHP84 CONFIGURE ===";   /opt/alt/php-fpm84/usr/bin/php-config --configure-options 2>&1;    echo;   echo "=== LOCAL PCRE HEADER VERSION ===";   grep -E '^#define PCRE2_(MAJOR|MINOR|PRERELEASE)' /usr/local/include/pcre2.h 2>/dev/null;    echo;   echo "=== SYSTEM PCRE HEADER VERSION ===";   grep -E '^#define PCRE2_(MAJOR|MINOR|PRERELEASE)' /usr/include/pcre2.h 2>/dev/null;    echo;   echo "=== PCRE CONFIG VERSION ===";   /usr/local/bin/pcre2-config --version 2>&1;    echo;   echo "=== PHP84 REQUIRED PCRE SYMBOLS ===";   nm -D /opt/alt/php-fpm84/usr/bin/php 2>/dev/null |     grep ' U pcre2_' | sort;    echo;   echo "=== LOCAL PCRE EXPORTED SYMBOLS ===";   nm -D /usr/local/lib/libpcre2-8.so.0 2>/dev/null |     grep ' T pcre2_' | sort; ) >"$REPORT" 2>&1
+mkdir -p /home/n790725/skyhawk-migration/files
+rsync -a --info=progress2 --partial   -e "ssh -p 7822 -o ServerAliveInterval=60 -o ServerAliveCountMax=10 -o ConnectTimeout=20"   darwus@[ip]:~/drupalbeta/web/sites/default/files/   /home/n790725/skyhawk-migration/files/
+rsync -a --info=progress2 --partial   -e "ssh -p 22 -o ServerAliveInterval=60 -o ServerAliveCountMax=10 -o ConnectTimeout=20"   darwus@[ip]:~/drupalbeta/web/sites/default/files/   /home/n790725/skyhawk-migration/files/
+install -d -m 700 -o n790725 -g n790725 /home/n790725/.ssh
+cat >> /home/n790725/.ssh/authorized_keys <<'EOF'
+sort -u /home/n790725/.ssh/authorized_keys -o /home/n790725/.ssh/authorized_keys
+chown n790725:n790725 /home/n790725/.ssh/authorized_keys
+chmod 600 /home/n790725/.ssh/authorized_keys
+mkdir -p /home/n790725/skyhawk-migration/files
+chown -R n790725:n790725 /home/n790725/skyhawk-migration
+while true; do   date;   du -sh /home/n790725/skyhawk-migration/files;   find /home/n790725/skyhawk-migration/files -type f | wc -l;   echo;   sleep 30; done
+df -hT /home/n790725
+quota -vs n790725 2>&1 || true
+du -sh /home/n790725 2>/dev/null
+echo "=== CWP USER ==="
+grep '^n790725:' /etc/passwd
+setquota -u n790725 102400M 102400M 0 0 /
+quota -vs n790725
+df -hT /home/n790725
+quota -vs n790725 2>&1 || true
+du -sh /home/n790725 2>/dev/null
+echo "=== CWP USER ==="
+grep '^n790725:' /etc/passwd
+(   REPORT=/home/n790725/skyhawk-migration/vps-report-php84-pcre-test.txt;    {     echo "=== DATE ===";     date -Is;      echo;     echo "=== HOST ===";     hostname;     id;      echo;     echo "=== PHP84 NORMAL ===";     /opt/alt/php-fpm84/usr/bin/php -v 2>&1 || true;      echo;     echo "=== PHP84 WITH SYSTEM LIBRARY FIRST ===";     LD_LIBRARY_PATH=/lib64 /opt/alt/php-fpm84/usr/bin/php -v 2>&1 || true;      echo;     echo "=== PHP82 WITH SYSTEM LIBRARY FIRST ===";     LD_LIBRARY_PATH=/lib64 /opt/alt/php-fpm82/usr/bin/php -v 2>&1 || true;      echo;     echo "=== PHP84 LINKAGE NORMAL ===";     ldd /opt/alt/php-fpm84/usr/bin/php 2>&1 | grep -E 'pcre|not found' || true;      echo;     echo "=== PHP84 LINKAGE WITH SYSTEM LIBRARY FIRST ===";     LD_LIBRARY_PATH=/lib64 ldd /opt/alt/php-fpm84/usr/bin/php 2>&1 | grep -E 'pcre|not found' || true;      echo;     echo "=== PCRE FILES ===";     ls -l /usr/local/lib/libpcre2-8.so* /lib64/libpcre2-8.so* 2>&1 || true;      echo;     echo "=== PACKAGE OWNERS ===";     rpm -qf /usr/local/lib/libpcre2-8.so.0 2>&1 || true;     rpm -qf /lib64/libpcre2-8.so.0 2>&1 || true;   } > "$REPORT";    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "PHP84_PCRE_REPORT_READY $REPORT"; )
+(   set -e;    REPORT=/home/n790725/skyhawk-migration/vps-report-php84-fpm-repair.txt;   DROPIN=/etc/systemd/system/php-fpm84.service.d;   OVERRIDE="$DROPIN/override.conf";    {     echo "=== BEFORE ===";     date -Is;     hostname;     systemctl is-active php-fpm84.service 2>&1 || true;     systemctl show php-fpm84.service -p Environment 2>&1 || true;      echo;     echo "=== CREATE SCOPED PHP84 FPM OVERRIDE ===";     mkdir -p "$DROPIN"; 
+      chmod 644 "$OVERRIDE";      echo;     echo "=== SYSTEMD RELOAD ===";     systemctl daemon-reload;      echo;     echo "=== VERIFY EFFECTIVE ENVIRONMENT ===";     systemctl show php-fpm84.service -p Environment;      echo;     echo "=== PHP84 CLI CONTROL TEST ===";     LD_LIBRARY_PATH=/lib64 /opt/alt/php-fpm84/usr/bin/php -v;      echo;     echo "=== PHP84 FPM CONFIG TEST AS ROOT ===";     LD_LIBRARY_PATH=/lib64 /opt/alt/php-fpm84/usr/sbin/php-fpm       -tt       --fpm-config /opt/alt/php-fpm84/usr/etc/php-fpm.conf;      echo;     echo "=== START PHP84 FPM ===";     systemctl start php-fpm84.service;      echo;     echo "=== SERVICE RESULT ===";     systemctl is-active php-fpm84.service;     systemctl --no-pager --full status php-fpm84.service | head -40;      echo;     echo "=== PROCESS LINKAGE ===";     PID="$(systemctl show php-fpm84.service -p MainPID --value)";     echo "MainPID=$PID";     if [ "$PID" -gt 0 ]; then       grep -z '^LD_LIBRARY_PATH=' "/proc/$PID/environ" 2>/dev/null | tr '\0' '\n' || true;       ldd /opt/alt/php-fpm84/usr/sbin/php-fpm 2>&1 | grep libpcre2-8 || true;     fi;      echo;     echo "=== OVERRIDE CONTENT ===";     cat "$OVERRIDE";    } > "$REPORT" 2>&1;    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "PHP84_FPM_REPAIR_REPORT_READY $REPORT"; )
+USER_HOME=/home/n790725
+install -d -m 700 -o n790725 -g n790725 "$SSH_DIR"
+chown n790725:n790725 "$AUTH_KEYS"
+chown n790725:n790725 "$AUTH_KEYS"
+if grep -Fqx "$ENVY_KEY" "$AUTH_KEYS"; then     echo "ENVY_KEY_INSTALLED_OK user=n790725"; else     echo "ENVY_KEY_INSTALL_FAILED"; fi
+(   REPORT=/home/n790725/skyhawk-migration/vps-report-cwp-selector-root3.txt;    if [ "$(id -u)" -ne 0 ]; then     echo "STOP_NOT_ROOT uid=$(id -u) user=$(id -un)";     exit 1;   fi;    {     echo "=== ROOT VERIFIED ===";     date -Is;     hostname;     id;      echo;     echo "=== CWP SELECTOR MODULE FILES ===";     find /usr/local/cwpsrv/htdocs /usr/local/cwp       -type f 2>/dev/null       | grep -Ei 'php.*selector|selector.*php|php.*fpm|fpm.*selector'       | sort | head -300;      echo;     echo "=== PHP_SELECTOR3 REFERENCES ===";     grep -RIl 'php_selector3'       /usr/local/cwpsrv/htdocs       /usr/local/cwp 2>/dev/null       | sort | head -200;      echo;     echo "=== REBUILD TOOL ===";     ls -l /scripts/phpfpm_rebuild_user_conf 2>&1 || true;     file /scripts/phpfpm_rebuild_user_conf 2>&1 || true;     sed -n '1,360p' /scripts/phpfpm_rebuild_user_conf 2>/dev/null || true;      echo;     echo "=== RELATED CWP CONTROL SCRIPTS ===";     find /scripts /usr/local/cwp       -maxdepth 4 -type f 2>/dev/null       | grep -Ei 'php.*fpm|fpm.*php|php.*selector|selector.*php'       | sort | head -300;      echo;     echo "=== CURRENT PHP 8.2 / 8.4 ACCOUNT STATE ===";     for f in       /opt/alt/php-fpm82/usr/etc/php-fpm.d/users/n790725.conf       /opt/alt/php-fpm84/usr/etc/php-fpm.d/users/n790725.conf;     do       echo "--- $f";       if [ -f "$f" ]; then         sed -n '1,180p' "$f";       else         echo MISSING;       fi;     done;      echo;     echo "=== CURRENT VHOST HANDLER ===";     grep -R 'n790725.sock'       /usr/local/apache/conf.d/vhosts       /etc/nginx/conf.d/vhosts       2>/dev/null || true;    } > "$REPORT" 2>&1;    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "CWP_SELECTOR_ROOT3_READY $REPORT"; )
+(   REPORT=/home/n790725/skyhawk-migration/vps-report-cwp-selector-logic.txt;    if [ "$(id -u)" -ne 0 ]; then     echo "STOP_NOT_ROOT uid=$(id -u) user=$(id -un)";     exit 1;   fi;    {     echo "=== ROOT VERIFIED ===";     date -Is;     hostname;     id;      for f in       /usr/local/cwpsrv/htdocs/resources/admin/modules/php_selector3.php       /usr/local/cwpsrv/htdocs/resources/admin/addons/ajax/ajax_phpfpm_selector.php       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/phpfpm_selector/PHPFPMManager.php       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/phpfpm_selector/traits/PHPFPMVersionsHandler.php;     do       echo;       echo "=== FILE: $f ===";       if [ -r "$f" ]; then         grep -nEi           'n790725|version|php.?fpm|socket|user|domain|update|save|mysql|select|insert|replace|delete|ajax|conf|vhost'           "$f" | head -400;       else         echo "UNREADABLE_OR_MISSING";       fi;     done;      echo;     echo "=== ROOT_CWP DB TABLES RELATED TO PHP / USERS / DOMAINS ===";     mysql --defaults-extra-file=/root/.my.cnf root_cwp -N -B -e       "SHOW TABLES" 2>/dev/null       | grep -Ei 'php|fpm|user|domain|web'       | sort;      echo;     echo "=== USER ROW CANDIDATES ===";     mysql --defaults-extra-file=/root/.my.cnf root_cwp -N -B -e       "SHOW COLUMNS FROM user" 2>/dev/null || true;      mysql --defaults-extra-file=/root/.my.cnf root_cwp -N -B -e       "SELECT * FROM user WHERE username='n790725'\\G" 2>/dev/null || true;    } > "$REPORT" 2>&1;    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "CWP_SELECTOR_LOGIC_READY $REPORT"; )
+(   REPORT=/home/n790725/skyhawk-migration/vps-report-cwp-php-owner.txt;    if [ "$(id -u)" -ne 0 ]; then     echo "STOP_NOT_ROOT uid=$(id -u) user=$(id -un)";     exit 1;   fi;    {     echo "=== ROOT VERIFIED ===";     date -Is;     hostname;     id;      echo;     echo "=== ROOT_CWP DOMAIN TABLE STRUCTURE ===";     mysql --defaults-extra-file=/root/.my.cnf root_cwp -N -B -e       "SHOW COLUMNS FROM domains" 2>/dev/null || true;      echo;     echo "=== ROOT_CWP DOMAIN ROWS ===";     mysql --defaults-extra-file=/root/.my.cnf root_cwp -N -B -e       "SELECT * FROM domains" 2>/dev/null       | grep -Ei 'n790725|temporary\.link' || true;      echo;     echo "=== ACCOUNT METADATA FILES ===";     find /usr/local/cwp/users /var/cwp /home/n790725       -maxdepth 4 -type f 2>/dev/null       | grep -Ei 'n790725|domain|php|fpm|webserver|vhost'       | sort | head -400;      echo;     echo "=== PHP82 REFERENCES IN CWP ACCOUNT STATE ===";     grep -RIlE       'php-fpm82|php82|/opt/alt/php-fpm82|n790725.sock'       /usr/local/cwp/users /var/cwp /usr/local/cwp/.conf       2>/dev/null | sort | head -300;      echo;     echo "=== PHP84 REFERENCES IN CWP ACCOUNT STATE ===";     grep -RIlE       'php-fpm84|php84|/opt/alt/php-fpm84'       /usr/local/cwp/users /var/cwp /usr/local/cwp/.conf       2>/dev/null | sort | head -300;      echo;     echo "=== CONTENT OF SMALL PHP82 MATCH FILES ===";     grep -RIlE       'php-fpm82|php82|/opt/alt/php-fpm82|n790725.sock'       /usr/local/cwp/users /var/cwp /usr/local/cwp/.conf       2>/dev/null | head -80 | while read -r f;     do       size=$(stat -c %s "$f" 2>/dev/null || echo 999999);       if [ "$size" -le 65536 ]; then         echo;         echo "--- $f";         sed -n '1,240p' "$f" 2>/dev/null || true;       fi;     done;      echo;     echo "=== RECENT CWP / PHP FILE CHANGES ===";     find /usr/local/cwp /var/cwp /opt/alt       -type f -mmin -180       -printf '%TY-%Tm-%Td %TH:%TM:%TS %p\n' 2>/dev/null       | grep -Ei 'php|fpm|n790725|domain|vhost|webserver'       | sort | tail -300;    } > "$REPORT" 2>&1;    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "CWP_PHP_OWNER_READY $REPORT"; )
+(   REPORT=/home/n790725/skyhawk-migration/vps-report-cwp-rebuild-owner.txt;    if [ "$(id -u)" -ne 0 ]; then     echo "STOP_NOT_ROOT uid=$(id -u) user=$(id -un)";     exit 1;   fi;    {     echo "=== ROOT VERIFIED ===";     date -Is;     hostname;     id;      echo;     echo "=== CWP REBUILD / VHOST / PHP-FPM SCRIPTS ===";     find /scripts /usr/local/cwp       -maxdepth 4 -type f 2>/dev/null       | grep -Ei         'rebuild|vhost|webserver|domain|php.*fpm|fpm.*php|apache|nginx'       | sort | head -500;      echo;     echo "=== EXECUTABLE CANDIDATES ===";     find /scripts /usr/local/cwp       -maxdepth 4 -type f -perm /111 2>/dev/null       | grep -Ei         'rebuild|vhost|webserver|domain|php.*fpm|fpm.*php|apache|nginx'       | sort | head -300;      echo;     echo "=== SCRIPT HEADERS / USAGE ===";     for f in       /scripts/*webserver*       /scripts/*vhost*       /scripts/*domain*       /scripts/*php*fpm*       /scripts/*fpm*php*;     do       [ -f "$f" ] || continue;       echo;       echo "--- $f";       file "$f" 2>/dev/null || true;       sed -n '1,220p' "$f" 2>/dev/null         | grep -Ei           'usage|user|domain|php|fpm|version|apache|nginx|vhost|case|\\$1|\\$2|mysql'         | head -120 || true;     done;      echo;     echo "=== CURRENT VHOST FILE ===";     VHOST=/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf;     ls -l "$VHOST" 2>&1 || true;     sed -n '1,260p' "$VHOST" 2>/dev/null || true;      echo;     echo "=== CURRENT PHP POOLS ===";     ls -l       /opt/alt/php-fpm82/usr/etc/php-fpm.d/users/n790725.conf       /opt/alt/php-fpm84/usr/etc/php-fpm.d/users/n790725.conf       2>&1 || true;    } > "$REPORT" 2>&1;    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "CWP_REBUILD_OWNER_READY $REPORT"; )
+(   REPORT=/home/n790725/skyhawk-migration/vps-report-cwp-vhost-generator.txt;    if [ "$(id -u)" -ne 0 ]; then     echo "STOP_NOT_ROOT uid=$(id -u) user=$(id -un)";     exit 1;   fi;    {     echo "=== ROOT VERIFIED ===";     date -Is;     hostname;     id;      echo;     echo "=== LITERAL FPM SETHANDLER REFERENCES ===";     grep -RIl       'SetHandler "proxy:unix:/opt/alt/php-fpm'       /usr/local/cwpsrv/htdocs       /usr/local/cwp       /usr/local/apache       /etc/nginx       2>/dev/null | sort | head -300;      echo;     echo "=== PHP-FPM SOCKET TEMPLATE REFERENCES ===";     grep -RIlE       '/opt/alt/php-fpm[^/]+/usr/var/sockets|php-fpm\\$|php-fpm[0-9]+/usr/var/sockets'       /usr/local/cwpsrv/htdocs       /usr/local/cwp       2>/dev/null | sort | head -400;      echo;     echo "=== TEMPORARY.LINK TEMPLATE / GENERATOR REFERENCES ===";     grep -RIlE       'temporary\\.link|conf\\.d/vhosts|SetHandler|proxy_fcgi_module'       /usr/local/cwpsrv/htdocs/resources/admin       /usr/local/cwp       2>/dev/null | sort | head -400;      echo;     echo "=== SMALL MATCHING TEMPLATE CONTENT ===";     grep -RIlE       'SetHandler "proxy:unix:/opt/alt/php-fpm|/usr/var/sockets/.*\\.sock'       /usr/local/cwpsrv/htdocs/resources       /usr/local/cwp       2>/dev/null | head -120 | while read -r f;     do       size=$(stat -c %s "$f" 2>/dev/null || echo 9999999);       if [ "$size" -le 131072 ]; then         echo;         echo "--- $f";         sed -n '1,320p' "$f" 2>/dev/null           | grep -nEi             'SetHandler|php-fpm|socket|version|user|domain|vhost|template|apache|nginx'           | head -240 || true;       fi;     done;      echo;     echo "=== CWP USER / DOMAIN PHP-LIKE STATE ===";     find /usr/local/cwp/users /var/cwp /home/n790725       -maxdepth 5 -type f 2>/dev/null       | while read -r f;     do       if grep -qiE 'php.?fpm|php.?version|php82|php84|socket' "$f" 2>/dev/null; then         echo "$f";       fi;     done | sort | head -300;      echo;     echo "=== CURRENT VHOST FINGERPRINT ===";     sha256sum       /usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf       2>/dev/null || true;    } > "$REPORT" 2>&1;    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "CWP_VHOST_GENERATOR_READY $REPORT"; )
+(   REPORT=/home/n790725/skyhawk-migration/vps-report-cwp-selector-js.txt;    if [ "$(id -u)" -ne 0 ]; then     echo "STOP_NOT_ROOT uid=$(id -u) user=$(id -un)";     exit 1;   fi;    {     echo "=== ROOT VERIFIED ===";     date -Is;     hostname;     id;      echo;     echo "=== PHP SELECTOR3 PAGE JS REFERENCES ===";     grep -nEi       'script|ajax|phpfpm|selector|update|save|domain|version'       /usr/local/cwpsrv/htdocs/resources/admin/modules/php_selector3.php       2>/dev/null | head -240 || true;      echo;     echo "=== PHP-FPM SELECTOR JAVASCRIPT FILES ===";     find       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/phpfpm_selector       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/php_selector       -type f -name '*.js' -print 2>/dev/null | sort;      echo;     echo "=== AJAX / ACTION / PARAMETER REFERENCES ===";     grep -RniE       'ajax_phpfpm_selector|ajax_php_selector|\\.ajax|fetch\\(|XMLHttpRequest|POST|GET|action|method|version|domain|username|phpfpm|php-fpm|update|save'       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/phpfpm_selector       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/php_selector       2>/dev/null | head -700;      echo;     echo "=== AJAX ENDPOINT FILE METADATA ===";     for f in       /usr/local/cwpsrv/htdocs/resources/admin/addons/ajax/ajax_phpfpm_selector.php       /usr/local/cwpsrv/htdocs/resources/admin/addons/ajax/ajax_php_selector.php;     do       echo "--- $f";       ls -l "$f" 2>&1 || true;       file "$f" 2>&1 || true;     done;      echo;     echo "=== RECENT SELECTOR ACCESS LOG REQUESTS ===";     grep -Ei       'php_selector3|phpfpm_selector|ajax_phpfpm_selector|ajax_php_selector'       /usr/local/cwpsrv/logs/access_log 2>/dev/null       | tail -240 || true;    } > "$REPORT" 2>&1;    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "CWP_SELECTOR_JS_READY $REPORT"; )
+(   REPORT=/home/n790725/skyhawk-migration/vps-report-cwp-selector-wire.txt;    if [ "$(id -u)" -ne 0 ]; then     echo "STOP_NOT_ROOT uid=$(id -u) user=$(id -un)";     exit 1;   fi;    {     echo "=== ROOT VERIFIED ===";     date -Is;     hostname;     id;      echo;     echo "=== PHPFPM SELECTOR MAIN JS ===";     for f in       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/phpfpm_selector/js/phpfpm_selector.js       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/phpfpm_selector/js/phpfpm_options_handler.js       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/phpfpm_selector/js/phpfpm_installer.js       /usr/local/cwpsrv/htdocs/resources/admin/include/modules/phpfpm_selector/js/php_fpm_services.js;     do       echo;       echo "--- $f";       if [ -r "$f" ]; then         sed -n '1,500p' "$f";       else         echo UNREADABLE;       fi;     done;      echo;     echo "=== ALL CWP ADMIN POST REQUESTS AROUND SELECTOR ===";     grep 'POST ' /usr/local/cwpsrv/logs/access_log 2>/dev/null       | grep -Ei         'php_selector3|phpfpm|php_fpm|ajax|loader|index.php'       | tail -300 || true;      echo;     echo "=== ALL RECENT POST REQUESTS ===";     grep 'POST ' /usr/local/cwpsrv/logs/access_log 2>/dev/null       | tail -300 || true;      echo;     echo "=== SELECTOR AJAX FILE STRING REFERENCES ===";     strings       /usr/local/cwpsrv/htdocs/resources/admin/addons/ajax/ajax_phpfpm_selector.php       2>/dev/null       | grep -Ei         'action|method|version|php|fpm|domain|user|username|install|update|save|service|status'       | head -400 || true;    } > "$REPORT" 2>&1;    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "CWP_SELECTOR_WIRE_READY $REPORT"; )
+(   REPORT=/home/n790725/skyhawk-migration/vps-report-cwp-domain-php-owner.txt;    if [ "$(id -u)" -ne 0 ]; then     echo "STOP_NOT_ROOT uid=$(id -u) user=$(id -un)";     exit 1;   fi;    {     echo "=== ROOT VERIFIED ===";     date -Is;     hostname;     id;      echo;     echo "=== WEBSERVERS / DOMAIN MODULE FILES ===";     find /usr/local/cwpsrv/htdocs/resources/admin       -type f 2>/dev/null       | grep -Ei         'WebServers|webserver|domain|vhost|account'       | sort | head -400;      echo;     echo "=== WEBSERVERS / DOMAIN AJAX REFERENCES ===";     grep -RniE       'loader_ajax|ajax=|acc=|php.?fpm|php.?version|socket|SetHandler|vhost|domain|username|webserver'       /usr/local/cwpsrv/htdocs/resources/admin/include       /usr/local/cwpsrv/htdocs/resources/admin/modules       /usr/local/cwpsrv/htdocs/resources/admin/addons/ajax       2>/dev/null       | grep -Ei         'WebServers|webserver|domain|vhost|php|fpm'       | head -900;      echo;     echo "=== RECENT WEBSERVERS POST REQUESTS ===";     grep 'POST ' /usr/local/cwpsrv/logs/access_log 2>/dev/null       | grep -Ei         'WebServers_manage|WebServers_conf|domain|vhost|webserver|php|fpm'       | tail -400 || true;      echo;     echo "=== LIVE VHOST AGAIN ===";     VHOST=/usr/local/apache/conf.d/vhosts/1790723478a62e50832643ebc3.temporary.link.conf;     sed -n '1,220p' "$VHOST" 2>/dev/null || true;      echo;     echo "=== DOMAIN / USER STATE TABLES ===";     mysql --defaults-extra-file=/root/.my.cnf root_cwp -N -B -e       "SHOW TABLES" 2>/dev/null | sort;      echo;     echo "=== DOMAIN TABLE STRUCTURES ===";     for t in domains subdomains user;     do       echo "--- $t";       mysql --defaults-extra-file=/root/.my.cnf root_cwp -N -B -e         "SHOW COLUMNS FROM $t" 2>/dev/null || true;     done;    } > "$REPORT" 2>&1;    chown n790725:n790725 "$REPORT";   chmod 640 "$REPORT";    echo "CWP_DOMAIN_PHP_OWNER_READY $REPORT"; )
+REPORT="/home/n790725/skyhawk-migration/vps-report-provision-base-$(date -u +%Y%m%dT%H%M%SZ).txt"
+(     set -e;      echo "=== IDENTITY ===";     hostname;     id;      if [ "$(id -u)" -ne 0 ]; then         echo "ERROR: THIS BLOCK REQUIRES ROOT";         exit 1;     fi;      STAMP="$(date -u +%Y%m%dT%H%M%SZ)";      echo;     echo "=== BACKUP EXISTING SKYHAWK WRAPPERS ===";     [ -e /usr/local/bin/php84-skyhawk ] &&         cp -a /usr/local/bin/php84-skyhawk "/usr/local/bin/php84-skyhawk.pre-$STAMP";      [ -e /usr/local/bin/composer84-skyhawk ] &&         cp -a /usr/local/bin/composer84-skyhawk "/usr/local/bin/composer84-skyhawk.pre-$STAMP";      echo;     echo "=== CREATE PHP 8.4 SKYHAWK WRAPPER ==="
+    cat > /usr/local/bin/php84-skyhawk <<'EOF'
+exec /opt/alt/php-fpm84/usr/bin/php "$@"
+      chmod 755 /usr/local/bin/php84-skyhawk;      echo;     echo "=== VERIFY PHP 8.4 WRAPPER ===";     /usr/local/bin/php84-skyhawk -v;      echo;     echo "=== INSTALL COMPOSER IF ABSENT ===";     if [ ! -x /usr/local/bin/composer ]; then         cd /tmp;          EXPECTED_SIG="$(curl -fsSL https://composer.github.io/installer.sig)";         curl -fsSL https://getcomposer.org/installer -o composer-setup.php;          ACTUAL_SIG="$(
+            /usr/local/bin/php84-skyhawk -r \
+            "echo hash_file('sha384', '/tmp/composer-setup.php');"
+        )";          if [ "$EXPECTED_SIG" != "$ACTUAL_SIG" ]; then             echo "ERROR: COMPOSER INSTALLER SIGNATURE MISMATCH";             rm -f /tmp/composer-setup.php;             exit 1;         fi;          /usr/local/bin/php84-skyhawk /tmp/composer-setup.php             --install-dir=/usr/local/bin             --filename=composer;          rm -f /tmp/composer-setup.php;     fi;      echo;     echo "=== CREATE COMPOSER PHP 8.4 WRAPPER ==="
+    cat > /usr/local/bin/composer84-skyhawk <<'EOF'
+exec /usr/local/bin/php84-skyhawk /usr/local/bin/composer "$@"
+      chmod 755 /usr/local/bin/composer84-skyhawk;      echo;     echo "=== VERIFY COMPOSER ===";     /usr/local/bin/composer84-skyhawk --version;      echo;     echo "=== PHP 8.4 MODULES ===";     /usr/local/bin/php84-skyhawk -m | sort;      echo;     echo "=== REQUIRED COMMANDS ===";     for c in git rsync unzip zip tar curl wget mysql mysqldump mariadb mariadb-dump python3; do         printf "%-16s " "$c";         command -v "$c" 2>/dev/null || echo MISSING;     done;      echo;     echo "=== STORAGE ===";     du -sh /home/n790725/skyhawk-migration/files 2>/dev/null || true;     du -sh /home/n790725/public_html 2>/dev/null || true;      echo;     echo "PROVISION_BASE_READY";  ) >"$REPORT" 2>&1
+chown n790725:n790725 "$REPORT"
+cd /home/n790725/skyhawk-migration/drupal-staged-clean
+BASE="/home/n790725/skyhawk-migration"
+chown n790725:n790725 "$MANIFEST" "$REPORT"
+BASE="/home/n790725/skyhawk-migration"
+chown n790725:n790725 "$MANIFEST" "$REPORT"
+BASE="/home/n790725/skyhawk-migration"
+REPORT="$DIAG/php84-live-$STAMP.txt"
+(     echo "=== IDENTITY ===";     hostname;     id;      echo;     echo "=== PHP 8.4 DEFAULT ===";     /opt/alt/php-fpm84/usr/bin/php -v 2>&1 || true;      echo;     echo "=== PHP 8.4 WITH SYSTEM LIB64 ===";     LD_LIBRARY_PATH=/lib64         /opt/alt/php-fpm84/usr/bin/php -v 2>&1 || true;      echo;     echo "=== PCRE FUNCTION TEST ===";     LD_LIBRARY_PATH=/lib64         /opt/alt/php-fpm84/usr/bin/php         -r 'var_dump(preg_match("/a/", "a"));' 2>&1 || true;      echo;     echo "=== PHP BINARY PCRE LINKAGE ===";     ldd /opt/alt/php-fpm84/usr/bin/php 2>&1         | grep -i -E 'pcre|not found' || true;      echo;     echo "=== INSTALLED PCRE PACKAGES ===";     rpm -qa 2>/dev/null         | grep -i '^pcre'         | sort || true;      echo;     echo "=== PCRE LIBRARIES ===";     find /lib64 /usr/lib64 /usr/local/lib /usr/local/lib64         -maxdepth 1         -name 'libpcre2-8.so*'         -ls 2>/dev/null || true;      echo;     echo "=== PHP CONFIGURATION ===";     LD_LIBRARY_PATH=/lib64         /opt/alt/php-fpm84/usr/bin/php --ini 2>&1 || true;      echo;     echo "=== RESULT MARKER ===";     echo "PHP84_DIAGNOSTIC_COMPLETE"; ) >"$REPORT" 2>&1
+chown n790725:n790725 "$REPORT"
+printf 'PHP84_DIAGNOSTIC_COMPLETE | REPORT=%s\n' "$REPORT"
+BASE="/home/n790725/skyhawk-migration"
+(     echo "=== IDENTITY ===";     hostname;     id;      echo;     echo "=== PCRE2-CONFIG LOCATIONS ===";     command -v pcre2-config || true;     type -a pcre2-config 2>/dev/null || true;      echo;     echo "=== PCRE2-CONFIG VERSIONS ===";     for p in         /usr/local/bin/pcre2-config         /usr/bin/pcre2-config         /bin/pcre2-config;     do         if [ -x "$p" ]; then             printf '%s = ' "$p";             "$p" --version 2>&1 || true;         fi;     done;      echo;     echo "=== LOCAL PCRE2 LIBRARY ===";     ls -l /usr/local/lib/libpcre2-8.so* 2>/dev/null || true;     file /usr/local/lib/libpcre2-8.so.0.10.4 2>/dev/null || true;     rpm -qf /usr/local/lib/libpcre2-8.so.0.10.4 2>&1 || true;      echo;     echo "=== SYSTEM PCRE2 LIBRARY ===";     ls -l /usr/lib64/libpcre2-8.so* 2>/dev/null || true;     file /usr/lib64/libpcre2-8.so.0.7.1 2>/dev/null || true;     rpm -qf /usr/lib64/libpcre2-8.so.0.7.1 2>&1 || true;      echo;     echo "=== LIBRARY EMBEDDED VERSION STRINGS ===";     echo "--- /usr/local ---";     strings /usr/local/lib/libpcre2-8.so.0.10.4 2>/dev/null         | grep -E '^[0-9]+\.[0-9]+([.-][0-9A-Za-z]+)*$'         | sort -u         | head -20 || true;      echo "--- /usr/lib64 ---";     strings /usr/lib64/libpcre2-8.so.0.7.1 2>/dev/null         | grep -E '^[0-9]+\.[0-9]+([.-][0-9A-Za-z]+)*$'         | sort -u         | head -20 || true;      echo;     echo "=== PHP DYNAMIC SECTION ===";     readelf -d /opt/alt/php-fpm84/usr/bin/php 2>/dev/null         | grep -E 'NEEDED|RPATH|RUNPATH' || true;      echo;     echo "=== PHP DEFAULT PCRE RESOLUTION ===";     ldd /opt/alt/php-fpm84/usr/bin/php 2>/dev/null         | grep -i pcre || true;      echo;     echo "=== PHP LIB64 PCRE RESOLUTION ===";     LD_LIBRARY_PATH=/lib64         ldd /opt/alt/php-fpm84/usr/bin/php 2>/dev/null         | grep -i pcre || true;      echo;     echo "=== LD CONFIG PCRE2 ORDER ===";     ldconfig -p 2>/dev/null         | grep 'libpcre2-8.so' || true;      echo;     echo "RESULT=PCRE2_BUILD_RESOLUTION_COMPLETE";  ) >"$REPORT" 2>&1
+chown n790725:n790725 "$REPORT"
+BASE="/home/n790725/skyhawk-migration"
+REPORT="$DIAG/php84-pcre-build-provenance-$STAMP.txt"
+(     echo "=== IDENTITY ===";     hostname;     id;      echo;     echo "=== PHP PACKAGE OWNERSHIP ===";     rpm -qf /opt/alt/php-fpm84/usr/bin/php 2>&1 || true;      echo;     echo "=== PHP PACKAGE INFO ===";     PKG="$(rpm -qf /opt/alt/php-fpm84/usr/bin/php 2>/dev/null || true)";     if [ -n "$PKG" ]; then         rpm -qi "$PKG" 2>&1 || true;     fi;      echo;     echo "=== PHP BUILD INFO ===";     LD_LIBRARY_PATH=/lib64         /opt/alt/php-fpm84/usr/bin/php -i 2>&1         | grep -i -E 'PHP Version|Configure Command|PCRE|Build Date' || true;      echo;     echo "=== ALT PHP PCRE FILES ===";     find /opt/alt/php-fpm84         \( -iname '*pcre*' -o -name 'libpcre2-8.so*' \)         -ls 2>/dev/null || true;      echo;     echo "=== ALT PHP RELATED RPM CONTENT ===";     if [ -n "$PKG" ]; then         rpm -ql "$PKG" 2>/dev/null             | grep -i pcre || true;     fi;      echo;     echo "=== INSTALLED ALT PHP 8.4 PACKAGES ===";     rpm -qa         | grep -E '^alt-php.*84|php-fpm84'         | sort || true;      echo;     echo "=== RPM REQUIREMENTS FOR PHP BINARY PACKAGE ===";     if [ -n "$PKG" ]; then         rpm -qR "$PKG" 2>/dev/null             | grep -i -E 'pcre|libpcre' || true;     fi;      echo;     echo "=== POSSIBLE PCRE2 LIBRARIES OUTSIDE STANDARD PATHS ===";     find /opt /usr/local /usr/lib64 /lib64         -type f         -name 'libpcre2-8.so*'         -print 2>/dev/null         | sort || true;      echo;     echo "=== PCRE2 HEADERS ===";     find /usr /opt         -type f         \( -name 'pcre2.h' -o -name 'pcre2posix.h' \)         -print 2>/dev/null         | sort || true;      echo;     echo "=== HEADER VERSION MACROS ===";     for h in $(find /usr /opt -type f -name 'pcre2.h' -print 2>/dev/null | sort); do         echo "--- $h ---";         grep -E '^#define PCRE2_(MAJOR|MINOR|PRERELEASE|DATE)' "$h" 2>/dev/null || true;     done;      echo;     echo "RESULT=PHP84_PCRE_BUILD_PROVENANCE_COMPLETE";  ) >"$REPORT" 2>&1
+chown n790725:n790725 "$REPORT"
+printf 'PHP84_PCRE_BUILD_PROVENANCE_COMPLETE | REPORT=%s\n' "$REPORT"
+BASE="/home/n790725/skyhawk-migration"
+REPORT="$DIAG/php84-private-pcre2-jit-$STAMP.txt"
+BUILD="/opt/skyhawk-build/pcre2-10.39-jit-$STAMP"
+PREFIX="/opt/skyhawk/pcre2-10.39-jit"
+mkdir -p /opt/skyhawk-build
+mkdir -p /opt/skyhawk
+(     echo "=== IDENTITY ===";     hostname;     id;      echo;     echo "=== PRECONDITIONS ===";      test -d "$SOURCE" || {         echo "ERROR=PCRE2_SOURCE_MISSING";         exit 10;     };      for c in gcc make; do         command -v "$c" >/dev/null || {             echo "ERROR=MISSING_COMMAND:$c";             exit 11;         };     done;      if [ -e "$PREFIX" ]; then         echo "ERROR=PRIVATE_PREFIX_ALREADY_EXISTS:$PREFIX";         exit 12;     fi;      echo "SOURCE=$SOURCE";     echo "BUILD=$BUILD";     echo "PREFIX=$PREFIX";      echo;     echo "=== COPY SOURCE TO ISOLATED BUILD TREE ===";     mkdir -p "$BUILD";     cp -a "$SOURCE"/. "$BUILD"/;      cd "$BUILD";      if [ -f Makefile ]; then         make distclean >/dev/null 2>&1 || true;     fi;      echo;     echo "=== CONFIGURE PRIVATE PCRE2 10.39 WITH JIT ===";     ./configure         --prefix="$PREFIX"         --enable-shared         --disable-static         --enable-jit;      echo;     echo "=== BUILD ===";     make -j"$(nproc)";      echo;     echo "=== INSTALL PRIVATE BUILD ===";     make install;      echo;     echo "=== VERIFY PRIVATE PCRE2 ===";     "$PREFIX/bin/pcre2test" -C;      echo;     echo "=== VERIFY PRIVATE LIBRARY RESOLUTION ===";     LD_LIBRARY_PATH="$PREFIX/lib"         ldd /opt/alt/php-fpm84/usr/bin/php         | grep -i pcre;      echo;     echo "=== PHP STARTUP TEST ===";     LD_LIBRARY_PATH="$PREFIX/lib"         /opt/alt/php-fpm84/usr/bin/php -v;      echo;     echo "=== PHP PREG_MATCH TEST ===";     LD_LIBRARY_PATH="$PREFIX/lib"         /opt/alt/php-fpm84/usr/bin/php         -r 'var_dump(preg_match("/a/", "a"));';      echo;     echo "=== PHP PCRE STATE ===";     LD_LIBRARY_PATH="$PREFIX/lib"         /opt/alt/php-fpm84/usr/bin/php -i         | grep -i -E           'PCRE Library Version|PCRE Unicode Version|PCRE JIT Support|PCRE JIT Target';      echo;     echo "RESULT=PRIVATE_PCRE2_JIT_TEST_PASS";  ) >"$REPORT" 2>&1
+chown n790725:n790725 "$REPORT"
+( set -u; RID="$(date -u +%Y%m%dT%H%M%SZ)-a4skyhawk-tls"; REP="/home/n790725/ai-reports/$RID.txt"; IP=[ip]; ACMEROOT=/usr/local/apache/autossl_tmp; CERTDIR=/etc/pki/tls/skyhawk; ACME=/root/.acme.sh/acme.sh; run() { echo "SKYHAWK AI REPORT | Task: a4skyhawk.us TLS on InMotion | Report-ID: $RID | Executor: Claude | Host: $(hostname)"; echo "=== PRE-FLIGHT ==="; [ "$(id -u)" = 0 ] || { echo "RESULT=ABORT_NOT_ROOT (run su root first)"; return 1; }; case "$(hostname)" in vps142898*) echo "HOST_OK";; *) echo "RESULT=ABORT_WRONG_HOST"; return 1;; esac; command -v dig >/dev/null || { echo "RESULT=ABORT_NO_DIG"; return 1; }; [ -x "$ACME" ] || { echo "RESULT=ABORT_NO_ACMESH"; return 1; }; for h in a4skyhawk.us www.a4skyhawk.us; do r=$(dig +short "$h" @ns1.mysecurecloudhost.com | tail -1); echo "DNS $h=$r"; [ "$r" = "$IP" ] || { echo "RESULT=ABORT_DNS_NOT_SWITCHED"; return 1; }; done; EXIST=$(grep -rl "a4skyhawk" /etc/nginx 2>/dev/null); if [ -n "$EXIST" ]; then echo "EXISTING_A4_NGINX:"; grep -rn "a4skyhawk" /etc/nginx; echo "RESULT=ABORT_EXISTING_A4_CONFIG (no changes)"; return 1; fi; SKY=$(grep -rl "server_name skyhawk.org www.skyhawk.org" /etc/nginx 2>/dev/null | head -1); [ -n "$SKY" ] || { echo "RESULT=ABORT_NO_SKYHAWK_TEMPLATE_VHOST"; return 1; }; VD=$(dirname "$SKY"); C80="$VD/a4skyhawk.us.conf"; C443="$VD/a4skyhawk.us-ssl.conf"; echo "VHOST_DIR=$VD"; nginx -t 2>&1 | tail -1; nginx -t >/dev/null 2>&1 || { echo "RESULT=ABORT_NGINX_ALREADY_BROKEN"; return 1; }; echo "=== ACTION: port 80 vhost + ACME route ==="
+    server_name a4skyhawk.us www.a4skyhawk.us;
+    location ^~ /.well-known/acme-challenge/ {
+        alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge/;
+ nginx -t >/dev/null 2>&1 || { rm -f "$C80"; echo "RESULT=FAIL_NGINX80_TEST (rolled back)"; return 1; }; systemctl reload nginx || { rm -f "$C80"; systemctl reload nginx; echo "RESULT=FAIL_RELOAD80 (rolled back)"; return 1; }; mkdir -p "$ACMEROOT/.well-known/acme-challenge"; echo SKYHAWK_A4_ACME_OK > "$ACMEROOT/.well-known/acme-challenge/a4probe"; B=$(curl -s -m 30 --resolve "a4skyhawk.us:80:$IP" http://a4skyhawk.us/.well-known/acme-challenge/a4probe); rm -f "$ACMEROOT/.well-known/acme-challenge/a4probe"; echo "ACME_ROUTE=$B"; [ "$B" = SKYHAWK_A4_ACME_OK ] || { rm -f "$C80"; systemctl reload nginx; echo "RESULT=FAIL_ACME_ROUTE (rolled back)"; return 1; }; echo "=== ACTION: issue certificate ==="; "$ACME" --issue -d a4skyhawk.us -d www.a4skyhawk.us -w "$ACMEROOT" --server letsencrypt --keylength 2048 || { echo "RESULT=FAIL_ISSUE (port-80 vhost left in place, harmless)"; return 1; }; mkdir -p "$CERTDIR"; chmod 700 "$CERTDIR"; "$ACME" --install-cert -d a4skyhawk.us --key-file "$CERTDIR/a4skyhawk.us.key" --fullchain-file "$CERTDIR/a4skyhawk.us.fullchain.cer" --reloadcmd "systemctl reload nginx" || { echo "RESULT=FAIL_INSTALL_CERT"; return 1; }; echo "=== ACTION: port 443 vhost ==="
+    listen [ip]:443 ssl;
+    server_name a4skyhawk.us www.a4skyhawk.us;
+    ssl_certificate     /etc/pki/tls/skyhawk/a4skyhawk.us.fullchain.cer;
+    ssl_certificate_key /etc/pki/tls/skyhawk/a4skyhawk.us.key;
+    location ^~ /.well-known/acme-challenge/ {
+        alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge/;
+ nginx -t >/dev/null 2>&1 || { rm -f "$C443"; echo "RESULT=FAIL_NGINX443_TEST (443 rolled back)"; return 1; }; systemctl reload nginx || { rm -f "$C443"; systemctl reload nginx; echo "RESULT=FAIL_RELOAD443 (rolled back)"; return 1; }; echo "=== VERIFICATION ==="; H1=$(curl -s -o /dev/null -m 60 -w '%{http_code}' --resolve "a4skyhawk.us:443:$IP" https://a4skyhawk.us/); H2=$(curl -s -o /dev/null -m 60 -w '%{http_code}' --resolve "a4skyhawk.us:443:$IP" https://a4skyhawk.us/user/login); H3=$(curl -s -o /dev/null -m 60 -w '%{http_code}' --resolve "www.a4skyhawk.us:443:$IP" https://www.a4skyhawk.us/); echo "HTTPS_ROOT=$H1 HTTPS_LOGIN=$H2 HTTPS_WWW=$H3"; echo | openssl s_client -connect "$IP:443" -servername a4skyhawk.us 2>/dev/null | openssl x509 -noout -subject -enddate | tr '\n' ' '; echo; if [ "$H1" = 200 ] && [ "$H2" = 200 ]; then echo "RESULT=PASS_A4SKYHAWK_HTTPS"; else echo "RESULT=FAIL_HTTPS_VERIFY"; fi; echo "=== END ==="; }; run > "$REP" 2>&1; chown n790725:n790725 "$REP" 2>/dev/null; echo "$(grep -E '^(RESULT|HTTPS_ROOT|ACME_ROUTE)=' "$REP" | tr '\n' ' ')| $(grep -m1 'notAfter' "$REP" | sed 's/.*notAfter=/EXPIRES=/') | REPORT=$REP"; )
+( IP=[ip]; echo "SERVED_CERT: $(echo | openssl s_client -connect $IP:443 -servername a4skyhawk.us 2>/dev/null | openssl x509 -noout -subject -issuer -enddate | tr '\n' ' ')"; echo "INSTALLED_CERT: $(openssl x509 -in /etc/pki/tls/skyhawk/a4skyhawk.us.fullchain.cer -noout -subject -enddate 2>&1 | tr '\n' ' ')"; echo "LOADED_A4_BLOCKS: $(nginx -T 2>/dev/null | grep -n 'server_name a4skyhawk.us' | tr '\n' ' ')"; echo "LISTEN_443: $(nginx -T 2>/dev/null | grep -E 'listen .*443' | sort | uniq -c | tr '\n' ' ')"; echo "INCLUDES: $(nginx -T 2>/dev/null | grep -E '^\s*include ' | grep -v mime | sort -u | tr '\n' ' ')"; echo "A4_FILES: $(ls -l /etc/nginx/conf.d/vhosts/a4skyhawk* 2>&1 | awk '{print $NF}' | tr '\n' ' ')"; echo "NGINX: $(systemctl is-active nginx) master=$(pgrep -o nginx) cfgtest=$(nginx -t 2>&1 | tail -1)"; echo "CURL_ERR: $(curl -sS -o /dev/null -m 30 --resolve a4skyhawk.us:443:$IP https://a4skyhawk.us/ 2>&1 | head -1)"; )
+( IP=[ip]; for u in https://a4skyhawk.us/ https://a4skyhawk.us/user/login https://www.a4skyhawk.us/ http://a4skyhawk.us/; do h=${u#*//}; h=${h%%/*}; p=443; case $u in http:*) p=80;; esac; printf '%s=%s ' "$u" "$(curl -s -o /dev/null -m 60 -w '%{http_code}' --resolve "$h:$p:$IP" "$u")"; done; echo )
+( case "$(hostname)" in vps142898*) ;; *) echo "WRONG PLACE: run this at the InMotion root prompt"; exit 1;; esac; [ "$(id -u)" = 0 ] || { echo "WRONG USER: run su root first"; exit 1; }; command -v csf >/dev/null || { echo "NO_CSF: firewall is not CSF; stop and tell Claude"; exit 1; }; HOME_IP=[ip]; echo "BEFORE: $(csf -g $HOME_IP 2>&1 | grep -E 'DENY|ALLOW|Temporary|IGNORE|No matches' | head -3 | tr '\n' ' ')"; csf -tr $HOME_IP >/dev/null 2>&1; csf -dr $HOME_IP >/dev/null 2>&1; csf -a $HOME_IP "Gene home - Skyhawk admin $(date -u +%F)" >/dev/null 2>&1; grep -q "^$HOME_IP" /etc/csf/csf.ignore || echo "$HOME_IP # Gene home - LFD ignore" >> /etc/csf/csf.ignore; csf -r >/dev/null 2>&1; echo "AFTER: $(csf -g $HOME_IP 2>&1 | grep -E 'DENY|ALLOW|Temporary|IGNORE|No matches' | head -3 | tr '\n' ' ')"; )
+( case "$(hostname)" in vps142898*) ;; *) echo "WRONG PLACE: run at the InMotion root prompt"; exit 1;; esac; [ "$(id -u)" = 0 ] || { echo "WRONG USER: run su root first"; exit 1; }; T=/tmp/maillog-check.txt; { echo "== maillog entries 17:38-17:45Z test window (server log time may be local) =="; grep -E "Oct  4 (13|17):(3[89]|4[0-5])" /var/log/maillog | grep -E "status=|reject|bounce|warning|error|from=<" | tail -20; echo "== any bounce notices returned to the VPS =="; grep -E "Oct  4 (13|17):(3[89]|4[0-9])" /var/log/maillog | grep -iE "bounce|non-delivery|sender non-delivery" | tail -5; } > "$T" 2>&1; chmod 644 "$T"; su - n790725 -c "~/bin/ai-report maillog-check < $T"; rm -f "$T"; )
+( case "$(hostname)" in vps142898*) ;; *) echo "WRONG PLACE"; exit 1;; esac; [ "$(id -u)" = 0 ] || { echo "WRONG USER: su root first"; exit 1; }; T=/tmp/maillog-drupal.txt; { echo "== Drupal test message 4CD8021CF4 =="; grep '4CD8021CF4' /var/log/maillog;   echo "== header From of the bounced test (from the local bounce copy) =="; grep -h -m3 -E '^(From|Return-Path):' /var/spool/mail/n790725 2>/dev/null | tail -3;   echo "== what sends root mail every minute =="; grep -E "Oct  4 13:4" /var/log/maillog | grep 'uid=0 from=<root>' | wc -l | sed 's/^/root_msgs_13:40-49=/'; ls -la /etc/cron.d 2>/dev/null | wc -l | sed 's/^/cron.d_entries=/'; } > "$T" 2>&1; chmod 644 "$T"; su - n790725 -c "~/bin/ai-report maillog-drupal-test < $T"; rm -f "$T"; )
+( case "$(hostname)" in vps142898*) ;; *) echo "WRONG PLACE"; exit 1;; esac; [ "$(id -u)" = 0 ] || { echo "WRONG USER: su root first"; exit 1; }; T=/tmp/opendkim-layout.txt; { echo "== service =="; systemctl is-active opendkim; opendkim -V 2>&1 | head -1;   echo "== config (non-comment) =="; grep -vE '^\s*(#|$)' /etc/opendkim.conf;   for f in $(grep -E '^\s*(KeyTable|SigningTable|ExternalIgnoreList|InternalHosts)' /etc/opendkim.conf | awk '{print $2}' | sed 's/^refile://'); do echo "== $f =="; [ -f "$f" ] && grep -vE '^\s*(#|$)' "$f" | sed -E 's#(/[^ ]*\.private)#\1#' | head -15 || echo missing; done;   echo "== key dirs =="; ls -la /etc/opendkim/keys 2>/dev/null | head -15;   echo "== postfix milter =="; postconf -h smtpd_milters non_smtpd_milters milter_default_action; } > "$T" 2>&1; chmod 644 "$T"; su - n790725 -c "~/bin/ai-report opendkim-layout < $T"; rm -f "$T"; )
+( case "$(hostname)" in vps142898*) ;; *) echo "WRONG PLACE"; exit 1;; esac; [ "$(id -u)" = 0 ] || { echo "WRONG USER: su root first"; exit 1; }; T=/tmp/dkim-apply.txt; run() { D=skyhawk.org; SEL=skyhawk2026; K=/etc/opendkim/userkeys/$D; TS=$(date -u +%Y%m%dT%H%M%SZ); KT=/etc/opendkim/KeyTable; ST=/etc/opendkim/SigningTable; PUB=/home/n790725/ai-reports/dkim-$D-$SEL.txt; command -v opendkim-genkey >/dev/null || { echo "RESULT=ABORT_NO_GENKEY"; return 1; }; [ -e "$K/$SEL.private" ] && { echo "RESULT=ABORT_KEY_EXISTS (no change)"; return 1; }; cp -p "$KT" "$KT.bak-$TS" && cp -p "$ST" "$ST.bak-$TS" && echo "TABLES_BACKED_UP suffix=.bak-$TS"; mkdir -p "$K" && opendkim-genkey -b 2048 -d "$D" -s "$SEL" -D "$K" || { echo "RESULT=FAIL_GENKEY"; return 1; }; chown -R opendkim:opendkim "$K"; chmod 750 "$K"; chmod 600 "$K/$SEL.private"; grep -q "^$SEL._domainkey.$D " "$KT" || echo "$SEL._domainkey.$D $D:$SEL:$K/$SEL.private" >> "$KT"; grep -q "^\*@$D " "$ST" || echo "*@$D $SEL._domainkey.$D" >> "$ST"; systemctl restart opendkim; sleep 3; if [ "$(systemctl is-active opendkim)" != active ]; then cp -p "$KT.bak-$TS" "$KT"; cp -p "$ST.bak-$TS" "$ST"; systemctl restart opendkim; echo "RESULT=FAIL_OPENDKIM_RESTART (tables restored, now $(systemctl is-active opendkim))"; return 1; fi; grep -o '"[^"]*"' "$K/$SEL.txt" | tr -d '"' | tr -d '\n' > "$PUB"; chown n790725:n790725 "$PUB"; chmod 644 "$PUB"; echo "KEYTABLE_LINE: $(grep "^$SEL._domainkey.$D " "$KT" | sed 's#:/.*#:<keypath>#')"; echo "SIGNINGTABLE_LINE: $(grep "^\*@$D " "$ST")"; echo "PUBLIC_DNS_RECORD_READY: $PUB ($(wc -c < "$PUB") chars, starts: $(cut -c1-30 "$PUB"))"; echo "OPENDKIM=$(systemctl is-active opendkim)"; echo "RESULT=PASS_DKIM_KEY_INSTALLED (signing active once DNS TXT is published)"; }; run > "$T" 2>&1; chmod 644 "$T"; su - n790725 -c "~/bin/ai-report dkim-apply < $T"; rm -f "$T"; )
+/opt/cwprads/cwp_autologin_root
+less /opt/alt/php-fpm84/usr/etc/php-fpm.d/users/n790725.conf
+history | grep -i skyhawk
+/opt/alt/php-fpm84/usr/bin/php -v
+sudo ps aux | grep -Ei 'php.*build|php.*configure|make.*php' | grep -v grep
+sudo ls -ld /usr/local/php84
+echo "=== CWP / SKYHAWK VHOST TEMPLATE INSPECTION ==="
+echo "=== ACTIVE SKYHAWK NGINX VHOSTS ==="
+for f in   /etc/nginx/conf.d/vhosts/skyhawk.org.conf   /etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf; do   if [ -f "$f" ]; then     echo "--- $f";     stat -c 'owner=%U group=%G mode=%a modified=%y' "$f";     grep -nE 'server_name|root |proxy_pass|error_page|include |location @|disable_symlinks' "$f" | head -80;   else     echo "MISSING: $f";   fi; done
+echo "=== CWP WEB-SERVER CONFIG DIRECTORIES ==="
+for d in   /usr/local/cwpsrv/htdocs/resources/conf   /usr/local/cwpsrv/htdocs/resources/conf/web_servers   /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts   /usr/local/cwp; do   if [ -d "$d" ]; then     echo "--- FOUND $d";     find "$d" -maxdepth 3 -type d 2>/dev/null | head -120;   fi; done
+find   /usr/local/cwpsrv/htdocs/resources/conf   /usr/local/cwp   -maxdepth 7   -type f   \( -name '*.tpl' -o -name '*.stpl' -o -name '*.conf' \)   2>/dev/null | grep -Ei 'nginx|vhost|template|web_server' | head -200
+echo "=== FILES CONTAINING THE SKYHAWK NGINX PATTERN ==="
+grep -Rsl   -e 'error_page 500 = @custom'   -e 'location @backend'   -e 'disable_symlinks if_not_owner'   /usr/local/cwpsrv/htdocs/resources/conf   /usr/local/cwp   2>/dev/null | head -100
+echo "=== SKYHAWK DOMAIN REFERENCES IN CWP CONFIGURATION ==="
+grep -Rnil 'skyhawk.org'   /usr/local/cwpsrv/htdocs/resources/conf   /usr/local/cwp   /etc/nginx   /usr/local/apache/conf   2>/dev/null | head -120
+REPORT_DIR="/home/n790725/skyhawk_root_reports"
+REPORT="$REPORT_DIR/cwp-template-inspection-$TS.txt"
+LATEST="$REPORT_DIR/cwp-template-inspection-latest.txt"
+install -d -m 750 -o n790725 -g n790725 "$REPORT_DIR"
+{   echo "SKYHAWK ROOT DIAGNOSTIC";   echo "Report-ID: cwp-template-inspection-$TS";   echo "Generated-UTC: $TS";   echo "Host: $(hostname)";   echo "Producer: $(id -un)";   echo;    echo "=== ACTIVE SKYHAWK NGINX VHOSTS ===";   for f in     /etc/nginx/conf.d/vhosts/skyhawk.org.conf     /etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf;   do     echo;     echo "--- $f";     if [ -f "$f" ]; then       stat -c 'owner=%U group=%G mode=%a modified=%y' "$f";       sed -n '1,260p' "$f";     else       echo "MISSING";     fi;   done;    echo;   echo "=== CWP CONFIG / TEMPLATE DIRECTORIES ===";   find     /usr/local/cwpsrv/htdocs/resources/conf     /usr/local/cwp     -maxdepth 7     -type d     2>/dev/null |   grep -Ei 'web|nginx|vhost|template' |   sort -u |   head -300 || true;    echo;   echo "=== CWP TEMPLATE-LIKE FILES ===";   find     /usr/local/cwpsrv/htdocs/resources/conf     /usr/local/cwp     -maxdepth 8     -type f     \( -name '*.tpl' -o -name '*.stpl' -o -name '*.conf' \)     2>/dev/null |   grep -Ei 'nginx|vhost|template|web_server' |   sort -u |   head -400 || true;    echo;   echo "=== FILES CONTAINING SKYHAWK VHOST PATTERNS ===";   grep -Rsl     -e 'error_page 500 = @custom'     -e 'location @backend'     -e 'disable_symlinks if_not_owner'     /usr/local/cwpsrv/htdocs/resources/conf     /usr/local/cwp     2>/dev/null |   sort -u |   head -200 || true;    echo;   echo "=== SKYHAWK REFERENCES IN CWP / WEB CONFIG ===";   grep -Rnil 'skyhawk.org'     /usr/local/cwpsrv/htdocs/resources/conf     /usr/local/cwp     /etc/nginx     /usr/local/apache/conf     2>/dev/null |   sort -u |   head -250 || true;    echo;   echo "=== CWP VHOST GENERATION / REBUILD COMMAND HINTS ===";   grep -RniE     'rebuild.*vhost|build.*vhost|vhost.*template|template.*vhost|nginx.*template|web_servers'     /usr/local/cwp     /usr/local/cwpsrv/htdocs     2>/dev/null |   head -350 || true;    echo;   echo "=== END REPORT ==="; } >"$REPORT" 2>&1
+chown n790725:n790725 "$REPORT"
+chown n790725:n790725 "$REPORT.sha256"
+chown -h n790725:n790725 "$LATEST"
+su -s /bin/bash n790725 -c "test -r '$REPORT' && sha256sum '$REPORT' >/dev/null"
+echo "CONSUMER=n790725 READABLE"
+REPORT_DIR="/home/n790725/skyhawk_root_reports"
+REPORT="$REPORT_DIR/cwp-skyhawk-template-binding-$TS.txt"
+LATEST="$REPORT_DIR/cwp-skyhawk-template-binding-latest.txt"
+install -d -m 750 -o n790725 -g n790725 "$REPORT_DIR"
+{   echo "SKYHAWK ROOT DIAGNOSTIC";   echo "Report-ID: cwp-skyhawk-template-binding-$TS";   echo "Generated-UTC: $TS";   echo "Host: $(hostname)";   echo;    echo "=== CWP GLOBAL WEB SERVER CONFIG ===";   cat /usr/local/cwp/.conf/web_servers.conf 2>/dev/null || true;    echo;   echo "=== SKYHAWK SSL/VHOST STATE REFERENCES ===";   grep -n -B5 -A15 'skyhawk.org'     /usr/local/cwp/.conf/vhosts-ssl.json     /usr/local/cwp/.conf/*.json     2>/dev/null || true;    echo;   echo "=== SKYHAWK TEMPLATE ASSIGNMENT REFERENCES ===";   grep -Rni -B4 -A12     -e 'skyhawk.org'     -e 'n790725'     /usr/local/cwp/.conf     /usr/local/cwpsrv/htdocs/resources/admin     2>/dev/null |   grep -Ei 'skyhawk|template|nginx|vhost|n790725' |   head -500 || true;    echo;   echo "=== DEFAULT NGINX TEMPLATE ===";   sed -n '1,320p'     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl     2>/dev/null || true;    echo;   echo "=== DEFAULT NGINX SSL TEMPLATE ===";   sed -n '1,360p'     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl     2>/dev/null || true;    echo;   echo "=== PHP-FPM NGINX DEFAULT TEMPLATE ===";   sed -n '1,320p'     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default.tpl     2>/dev/null || true;    echo;   echo "=== PHP-FPM NGINX DEFAULT SSL TEMPLATE ===";   sed -n '1,360p'     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default.stpl     2>/dev/null || true;    echo;   echo "=== VHOST REBUILD IMPLEMENTATION ===";   grep -Rni -B5 -A20     -E 'Rebuild Vhosts|rebuild.*vhost|vhost.*rebuild|template-name|template-type'     /usr/local/cwpsrv/htdocs/resources/scripts     /usr/local/cwpsrv/htdocs/resources/admin     /usr/local/cwp     2>/dev/null |   head -700 || true;    echo;   echo "=== TEMPLATE CHECKSUMS ===";   sha256sum     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default.tpl     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default.stpl     2>/dev/null || true;    echo;   echo "=== END REPORT ==="; } >"$REPORT" 2>&1
+chown n790725:n790725 "$REPORT"
+chown n790725:n790725 "$REPORT.sha256"
+chown -h n790725:n790725 "$LATEST"
+su -s /bin/bash n790725 -c "test -r '$REPORT' && sha256sum '$REPORT' >/dev/null"
+REPORT_DIR="/home/n790725/skyhawk_root_reports"
+REPORT="$REPORT_DIR/cwp-domain-template-owner-$TS.txt"
+LATEST="$REPORT_DIR/cwp-domain-template-owner-latest.txt"
+install -d -m 750 -o n790725 -g n790725 "$REPORT_DIR"
+{   echo "SKYHAWK ROOT DIAGNOSTIC";   echo "Report-ID: cwp-domain-template-owner-$TS";   echo "Generated-UTC: $TS";   echo "Host: $(hostname)";   echo;    echo "=== CWP API HELP / WEBSERVER COMMANDS ===";   /scripts/cwp_api 2>&1 | head -200 || true;   echo;   /scripts/cwp_api webservers 2>&1 | head -200 || true;    echo;   echo "=== DOMAIN CONFIG FILE CANDIDATES ===";   find     /usr/local/cwp     /usr/local/cwpsrv/htdocs/resources     /etc     -maxdepth 7     -type f     2>/dev/null |   grep -Ei 'domain|vhost|webserver|web_server' |   head -500 || true;    echo;   echo "=== FILES CONTAINING SKYHAWK PLUS TEMPLATE FIELDS ===";   grep -Rli 'skyhawk.org'     /usr/local/cwp     /usr/local/cwpsrv/htdocs/resources/admin     2>/dev/null |   while read -r f;   do     if grep -qiE 'template|nginx_template|apache_template|webserver' "$f" 2>/dev/null; then       echo "--- $f";       grep -niE -B8 -A20         'skyhawk\.org|template|nginx_template|apache_template|webserver'         "$f" 2>/dev/null |       head -220 || true;     fi;   done;    echo;   echo "=== CWP DOMAIN MODULE SOURCE REFERENCES ===";   grep -RniE     'nginx_template|apache_template|template_name|template-name|template_type|template-type'     /usr/local/cwpsrv/htdocs/resources/admin/modules     /usr/local/cwpsrv/htdocs/resources/admin/include     2>/dev/null |   head -500 || true;    echo;   echo "=== CWP DATABASE / STORAGE REFERENCES ===";   grep -RniE     'CREATE TABLE|FROM .*domains|JOIN .*domains|INSERT INTO .*domains|UPDATE .*domains|nginx_template'     /usr/local/cwpsrv/htdocs/resources/admin     /usr/local/cwp     2>/dev/null |   head -500 || true;    echo;   echo "=== ACTIVE VHOST VS DEFAULT TEMPLATE FINGERPRINT ===";   grep -nE     'error_page|location @backend|location @custom|proxy_pass|disable_symlinks'     /etc/nginx/conf.d/vhosts/skyhawk.org.conf     /etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf     2>/dev/null || true;    echo;   echo "=== END REPORT ==="; } >"$REPORT" 2>&1
+REPORT_DIR="/home/n790725/skyhawk_root_reports"
+REPORT="$REPORT_DIR/cwp-domain-template-owner-$TS.txt"
+LATEST="$REPORT_DIR/cwp-domain-template-owner-latest.txt"
+install -d -m 750 -o n790725 -g n790725 "$REPORT_DIR"
+{   echo "SKYHAWK ROOT DIAGNOSTIC";   echo "Report-ID: cwp-domain-template-owner-$TS";   echo "Generated-UTC: $TS";   echo "Host: $(hostname)";   echo;    echo "=== CWP API HELP / WEBSERVER COMMANDS ===";   /scripts/cwp_api 2>&1 | head -200 || true;   echo;   /scripts/cwp_api webservers 2>&1 | head -200 || true;    echo;   echo "=== DOMAIN CONFIG FILE CANDIDATES ===";   find     /usr/local/cwp     /usr/local/cwpsrv/htdocs/resources     /etc     -maxdepth 7     -type f     2>/dev/null |   grep -Ei 'domain|vhost|webserver|web_server' |   head -500 || true;    echo;   echo "=== FILES CONTAINING SKYHAWK PLUS TEMPLATE FIELDS ===";   grep -Rli 'skyhawk.org'     /usr/local/cwp     /usr/local/cwpsrv/htdocs/resources/admin     2>/dev/null |   while read -r f;   do     if grep -qiE 'template|nginx_template|apache_template|webserver' "$f" 2>/dev/null; then       echo "--- $f";       grep -niE -B8 -A20         'skyhawk\.org|template|nginx_template|apache_template|webserver'         "$f" 2>/dev/null |       head -220 || true;     fi;   done;    echo;   echo "=== CWP DOMAIN MODULE SOURCE REFERENCES ===";   grep -RniE     'nginx_template|apache_template|template_name|template-name|template_type|template-type'     /usr/local/cwpsrv/htdocs/resources/admin/modules     /usr/local/cwpsrv/htdocs/resources/admin/include     2>/dev/null |   head -500 || true;    echo;   echo "=== CWP DATABASE / STORAGE REFERENCES ===";   grep -RniE     'CREATE TABLE|FROM .*domains|JOIN .*domains|INSERT INTO .*domains|UPDATE .*domains|nginx_template'     /usr/local/cwpsrv/htdocs/resources/admin     /usr/local/cwp     2>/dev/null |   head -500 || true;    echo;   echo "=== ACTIVE VHOST VS DEFAULT TEMPLATE FINGERPRINT ===";   grep -nE     'error_page|location @backend|location @custom|proxy_pass|disable_symlinks'     /etc/nginx/conf.d/vhosts/skyhawk.org.conf     /etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf     2>/dev/null || true;    echo;   echo "=== END REPORT ==="; } >"$REPORT" 2>&1
+REPORT_DIR="/home/n790725/skyhawk_root_reports"
+REPORT="$REPORT_DIR/cwp-domain-template-owner-$TS.txt"
+LATEST="$REPORT_DIR/cwp-domain-template-owner-latest.txt"
+install -d -m 750 -o n790725 -g n790725 "$REPORT_DIR"
+{   echo "SKYHAWK ROOT DIAGNOSTIC";   echo "Report-ID: cwp-domain-template-owner-$TS";   echo "Generated-UTC: $TS";   echo;    echo "=== CWP GLOBAL WEB SERVER CONFIG ===";   cat /usr/local/cwp/.conf/web_servers.conf 2>/dev/null || true;    echo;   echo "=== SKYHAWK CWP REFERENCES ===";   grep -Rni -B6 -A18     -e 'skyhawk.org'     -e 'nginx_template'     -e 'apache_template'     /usr/local/cwp/.conf     /usr/local/cwpsrv/htdocs/resources/admin     2>/dev/null | head -700 || true;    echo;   echo "=== CWP VHOST REBUILD REFERENCES ===";   grep -Rni -B5 -A20     -E 'rebuild_all|rebuild.*vhost|vhost.*rebuild|template-name|template-type'     /usr/local/cwpsrv/htdocs/resources/scripts     /usr/local/cwpsrv/htdocs/resources/admin     /usr/local/cwp     2>/dev/null | head -700 || true;    echo;   echo "=== NGINX TEMPLATE FILES ===";   find /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx     -maxdepth 2 -type f     \( -name '*.tpl' -o -name '*.stpl' \)     -print | sort;    echo;   echo "=== ACTIVE SKYHAWK VHOST FINGERPRINT ===";   grep -nE     'server_name|error_page|location @backend|location @custom|proxy_pass|disable_symlinks'     /etc/nginx/conf.d/vhosts/skyhawk.org.conf     /etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf     2>/dev/null || true;    echo;   echo "=== DEFAULT TEMPLATE FINGERPRINT ===";   grep -nE     'server_name|error_page|location @backend|location @custom|proxy_pass|disable_symlinks'     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl     /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl     2>/dev/null || true;    echo;   echo "=== END REPORT ==="; } >"$REPORT" 2>&1
+chown n790725:n790725 "$REPORT"
+chown -h n790725:n790725 "$LATEST"
+su -s /bin/bash n790725 -c "test -r '$REPORT' && sha256sum '$REPORT' >/dev/null"
+echo "ROOT_DOMAIN_TEMPLATE_OWNER_READY"
+REPORT_DIR="/home/n790725/skyhawk_root_reports"
+REPORT="$REPORT_DIR/cwp-domain-storage-$TS.txt"
+LATEST="$REPORT_DIR/cwp-domain-storage-latest.txt"
+{   echo "SKYHAWK CWP DOMAIN STORAGE INSPECTION";   echo "Report-ID: cwp-domain-storage-$TS";   echo;    echo "=== CWP API HELP ===";   /scripts/cwp_api 2>&1 | head -250 || true;   echo;   /scripts/cwp_api webservers 2>&1 | head -250 || true;    echo;   echo "=== TEMPLATE FIELD SOURCE CODE ===";   grep -RniE     'nginx_template(_name|_type)?|apache_template(_name|_type)?|template-name|template-type'     /usr/local/cwpsrv/htdocs/resources/admin     /usr/local/cwp     2>/dev/null | head -800 || true;    echo;   echo "=== DOMAIN DATABASE / MODEL REFERENCES ===";   grep -RniE     'domains.*template|template.*domains|FROM[[:space:]].*domains|UPDATE[[:space:]].*domains|INSERT[[:space:]].*domains'     /usr/local/cwpsrv/htdocs/resources/admin     /usr/local/cwp     2>/dev/null | head -800 || true;    echo;   echo "=== CWP CONFIG FILES CONTAINING DOMAIN STORAGE SETTINGS ===";   grep -RliE     'database|mysql|mariadb|domains'     /usr/local/cwp/.conf     /usr/local/cwpsrv/htdocs/resources/admin/include     2>/dev/null | head -250 || true;    echo;   echo "=== END REPORT ==="; } >"$REPORT" 2>&1
+chown n790725:n790725 "$REPORT"
+chown -h n790725:n790725 "$LATEST"
+su -s /bin/bash n790725 -c "test -r '$REPORT' && sha256sum '$REPORT' >/dev/null"
+echo "ROOT_DOMAIN_STORAGE_READY"
+BASE="/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx"
+DST_TPL="$BASE/skyhawk-errors.tpl"
+DST_STPL="$BASE/skyhawk-errors.stpl"
+ERRROOT="/var/www/skyhawk-errors"
+REPORT_DIR="/home/n790725/skyhawk_root_reports"
+BACKUP="/root/skyhawk-error-build-$TS"
+REPORT="$REPORT_DIR/skyhawk-error-build-$TS.txt"
+LATEST="$REPORT_DIR/skyhawk-error-build-latest.txt"
+HTTP_CODE="$(curl -ksS -o /dev/null -w '%{http_code}' https://skyhawk.org/ || true)"
+[ "$HTTP_CODE" = "200" ] || {   echo "STOP: skyhawk.org preflight returned HTTP $HTTP_CODE";   exit 1; }
+<title>$title | The Skyhawk Association</title>
+<h1>The Skyhawk Association</h1>
+<p><a href="/">Return to the Skyhawk Association home page</a></p>
+make_page 500 "Site Problem"   "The Skyhawk Association site encountered a problem. Please try again shortly."
+make_page 503 "Site Temporarily Unavailable"   "The Skyhawk Association site is temporarily unavailable. Please try again shortly."
+    logline = "\terror_log /usr/local/apache/domlogs/%domain%.error.log error;\n"
+error_page 500 /_skyhawk_errors/500.html;
+error_page 502 /_skyhawk_errors/502.html;
+error_page 503 /_skyhawk_errors/503.html;
+error_page 504 /_skyhawk_errors/504.html;
+location ^~ /_skyhawk_errors/ {
+alias /var/www/skyhawk-errors/;
+    php = (
+        "\tlocation ~ .*\\.(php|jsp|cgi|pl|py)?$ {\n"
+    php_new = (
+        "\tlocation ~ .*\\.(php|jsp|cgi|pl|py)?$ {\n"
+        php,
+        php_new,
+        "PHP/backend proxy location"
+            "{ error_page 403 /_skyhawk_errors/403.html; deny all; }"
