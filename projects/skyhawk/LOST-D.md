@@ -17,6 +17,12 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## INMOTION SUPPORT ESCALATION 2026-10-08
+
+- Formal AMP ticket #143036800, "Production outage, CWP configuration loss, SSL reset, and unresolved native PHP 8.4 PCRE failure," is SUBMITTED and its stored title/body were read back in AMP. This is distinct from older PHP ticket #140210988.
+- The new ticket requests senior systems/CWP investigation of the production 503, the unexplained disappearance/re-addition of skyhawk.org in CWP, PHP-FPM pool/socket recreation, nginx regeneration, SSL certificate reset, and the still-reproducible native PHP 8.4 PCRE failure.
+- CURRENT SUPPORT STATE: skyhawk.org and HTTPS are reported recovered in the submitted ticket; the outage/configuration root cause remains unresolved; native /opt/alt/php-fpm84/usr/bin/php -v remains reported failing with "Unable to start pcre module" rc 254. Await InMotion response. Do not treat site reachability alone as closure of the PHP or configuration investigation.
+
 ## VERIFIED CONTINUITY CHECK 2026-10-07 ~13:00Z (ChatGPT)
 
 - DACP bootstrap bound to live canonical main before this work; active runtime remains 0.1.7-DELTA.
