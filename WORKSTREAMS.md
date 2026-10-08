@@ -46,7 +46,7 @@ INFERRED is useful for navigation but is not operational fact. Before consequent
 - **Source chats represented:** Migration Handoff Summary; Skyhawk migration final update; A2 Backup Cleanup; SSH Setup for Backup; Drupal Login Error Troubleshooting; System Update Summary; related migration/support chats.
 - **Resume rule:** Read projects/skyhawk/RULES.md and LOST-D.md, then independently verify any provider claim or server change.
 - **Next:** Await InMotion response. Site reachability alone does not close the native PHP or configuration investigation.
-- **Queued next task (USER-STATED-EXPLICIT, 2026-10-08):** After the Mac backup review, inspect the live production stack for existing 503 handling and determine whether a graceful site-specific 503 response/template already exists. Identify the actual owner before any implementation.
+- **503 handling inspection (VERIFIED, 2026-10-08):** No active Skyhawk-specific 503 handler/template exists. Drupal maintenance mode cannot cover PHP-FPM/backend loss. The graceful-failure owner is the front web-server layer. Next is a CWP-compatible, regeneration-safe static 503 design and non-disruptive test; no implementation has yet been made.
 
 ### NAS - NAS, archive, and backup architecture
 

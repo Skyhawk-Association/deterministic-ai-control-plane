@@ -23,6 +23,16 @@
 - The new ticket requests senior systems/CWP investigation of the production 503, the unexplained disappearance/re-addition of skyhawk.org in CWP, PHP-FPM pool/socket recreation, nginx regeneration, SSL certificate reset, and the still-reproducible native PHP 8.4 PCRE failure.
 - CURRENT SUPPORT STATE: skyhawk.org and HTTPS are reported recovered in the submitted ticket; the outage/configuration root cause remains unresolved; native /opt/alt/php-fpm84/usr/bin/php -v remains reported failing with "Unable to start pcre module" rc 254. Await InMotion response. Do not treat site reachability alone as closure of the PHP or configuration investigation.
 
+## VERIFIED 503 HANDLING INSPECTION 2026-10-08
+
+- CURRENT PUBLIC STATE: https://skyhawk.org/ returns HTTP 200 through nginx -> Apache -> PHP-FPM/Drupal.
+- ACTIVE SKYHAWK NGINX VHOSTS have no site-specific 503 handler or graceful static 503 page. They define error_page 500 = @custom and proxy that location back to the Apache backend, but no error_page 503 rule was found.
+- ACTIVE SKYHAWK APACHE VHOSTS have no site-specific ErrorDocument 503 directive.
+- Apache ships a generic multilingual HTTP_SERVICE_UNAVAILABLE.html.var and an ErrorDocument 503 mapping exists in httpd-multilang-errordoc.conf, but that include is commented out in the active httpd.conf. It is therefore not an active Skyhawk 503 response.
+- Drupal has maintenance-mode configuration/message support, but that depends on Drupal/PHP being reachable and therefore cannot cover an upstream/backend failure such as a missing PHP-FPM socket.
+- OWNERSHIP RESULT: for the failure class seen during the 2026-10-08 outage, graceful 503 handling belongs at the front web-server layer, before Drupal. No implementation has been made yet.
+- NEXT: design the smallest CWP-compatible, regeneration-safe static 503 mechanism and test it without intentionally taking production down.
+
 ## MAC BACKUP VERIFICATION 2026-10-08
 
 - ENVY / Windows FileHistory scheduled mirror VERIFIED on the Mac for the 2026-10-08 run: launch began at 01:00 EDT, preflight found bytes_to_copy=0, rsync verification found no source items missing from the destination, destination_files=144467, and the LaunchAgent last exit code is 0. This supersedes the prior note that the LaunchAgent had not yet reached its first scheduled trigger.
