@@ -1,0 +1,25 @@
+# Skyhawk outage forensic summary — 2026-10-07
+
+Sanitized evidence summary. No credentials, password hashes, server IP addresses, personal data, or token values are included.
+
+## Verified chronology (EDT)
+
+- 10:18:23 — systemd recorded a CWP privileged temporary-root reset operation. Its credential-bearing arguments are intentionally omitted.
+- 10:32:11 — systemd recorded another CWP privileged temporary-root reset operation. Its credential-bearing arguments are intentionally omitted.
+- 10:32:36 — php-fpm84 was stopped cleanly.
+- 10:33:46 — CWP PHP 8.4 configuration files were modified.
+- 10:40:48 — PHP-FPM 8.4 default configuration files were modified.
+- 10:41:00 — active PHP-FPM 8.4 configuration files were rewritten and systemd reloaded.
+- 10:41:29 — php-fpm84 started.
+- 10:41:29 — php-fpm84 immediately warned that nothing matched /opt/alt/php-fpm84/usr/etc/php-fpm.d/users/*.conf.
+- 10:41:29–10:41:30 — Apache was stopped and restarted.
+
+## Finding
+
+The strongest verified causal chain is CWP/PHP maintenance -> php-fpm84 stop -> PHP-FPM configuration rewrite -> php-fpm84 restart with no per-user pool configuration present -> Apache restart. The missing per-user pool state directly explains why the account PHP-FPM socket could be absent and strongly supports the later 503 failure path.
+
+This evidence does not by itself identify the human/provider actor who initiated the CWP operation, nor does it establish the precise first 503 timestamp. Those remain support-side investigation items.
+
+## Evidence hygiene
+
+A prior raw service-event evidence commit contained CWP credential hashes embedded in a systemd command line. Gene authorized history cleanup on 2026-10-08. The public main branch was rebuilt from the clean parent and this sanitized summary was preserved instead. Credential-bearing arguments are not retained here.

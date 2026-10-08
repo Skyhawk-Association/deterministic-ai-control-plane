@@ -17,6 +17,13 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## OUTAGE FORENSIC UPDATE 2026-10-08
+
+- VERIFIED JOURNAL CHAIN: CWP privileged temporary-root reset activity occurred at 10:18:23 and 10:32:11 EDT; credential-bearing arguments are intentionally excluded from public evidence. php-fpm84 then stopped at 10:32:36, CWP/PHP 8.4 configuration was rewritten, php-fpm84 restarted at 10:41:29, and immediately warned that no per-user pool files matched the configured users/*.conf include. Apache restarted at 10:41:29-10:41:30.
+- CAUSAL ASSESSMENT: the strongest verified chain is CWP/PHP maintenance -> PHP-FPM stop/config rewrite -> restart without the account user-pool configuration -> missing account socket -> later 503 failure path. This strongly supports a CWP/PHP maintenance-induced outage, while the exact initiating human/provider actor and precise first-503 timestamp remain unresolved support-side questions.
+- SANITIZED EVIDENCE: evidence/skyhawk/20261008-outage-forensic-summary.txt. A raw evidence commit that exposed CWP credential hashes in a systemd command line was removed from main history under Gene's explicit authorization; those credential-bearing arguments are not preserved publicly.
+- SUPPORT NEXT: provide this chronology to InMotion ticket #143036800 and request correlation against staff/CWP audit records for the 10:18-10:41 EDT maintenance window.
+
 ## INMOTION SUPPORT ESCALATION 2026-10-08
 
 - Formal AMP ticket #143036800, "Production outage, CWP configuration loss, SSL reset, and unresolved native PHP 8.4 PCRE failure," is SUBMITTED and its stored title/body were read back in AMP. This is distinct from older PHP ticket #140210988.
