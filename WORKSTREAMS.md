@@ -46,6 +46,7 @@ INFERRED is useful for navigation but is not operational fact. Before consequent
 - **Source chats represented:** Migration Handoff Summary; Skyhawk migration final update; A2 Backup Cleanup; SSH Setup for Backup; Drupal Login Error Troubleshooting; System Update Summary; related migration/support chats.
 - **Resume rule:** Read projects/skyhawk/RULES.md and LOST-D.md, then independently verify any provider claim or server change.
 - **Next:** Await InMotion response. Site reachability alone does not close the native PHP or configuration investigation.
+- **Queued next task (USER-STATED-EXPLICIT, 2026-10-08):** After the Mac backup review, inspect the live production stack for existing 503 handling and determine whether a graceful site-specific 503 response/template already exists. Identify the actual owner before any implementation.
 
 ### NAS - NAS, archive, and backup architecture
 
@@ -83,6 +84,7 @@ INFERRED is useful for navigation but is not operational fact. Before consequent
 - **Scope:** Photo import, organization, transfer, device-to-computer pipeline, and related scripts/workflows.
 - **Resume rule:** Reinspect actual current scripts, devices, paths, and last verified transfer result rather than reconstructing commands from chat memory.
 - **Next verification:** Identify the latest accepted pipeline state and unfinished step.
+- **Queued photo status check (USER-STATED-EXPLICIT, 2026-10-08):** Perform the photo pipeline status check referenced here. Until that check is completed, the underlying PIPE workstream remains **PARKED / INFERRED** rather than being silently promoted to current fact.
 
 ### TOOL - Computer, network, and ChatGPT tooling reference
 

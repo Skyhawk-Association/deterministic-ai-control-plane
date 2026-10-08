@@ -23,6 +23,13 @@
 - The new ticket requests senior systems/CWP investigation of the production 503, the unexplained disappearance/re-addition of skyhawk.org in CWP, PHP-FPM pool/socket recreation, nginx regeneration, SSL certificate reset, and the still-reproducible native PHP 8.4 PCRE failure.
 - CURRENT SUPPORT STATE: skyhawk.org and HTTPS are reported recovered in the submitted ticket; the outage/configuration root cause remains unresolved; native /opt/alt/php-fpm84/usr/bin/php -v remains reported failing with "Unable to start pcre module" rc 254. Await InMotion response. Do not treat site reachability alone as closure of the PHP or configuration investigation.
 
+## MAC BACKUP VERIFICATION 2026-10-08
+
+- ENVY / Windows FileHistory scheduled mirror VERIFIED on the Mac for the 2026-10-08 run: launch began at 01:00 EDT, preflight found bytes_to_copy=0, rsync verification found no source items missing from the destination, destination_files=144467, and the LaunchAgent last exit code is 0. This supersedes the prior note that the LaunchAgent had not yet reached its first scheduled trigger.
+- INMOTION scheduled backup VERIFIED on the Mac for the 2026-10-08 run: server DB log reports skyhawk-20261008T053007Z.sql.gz OK, 125M, 473 tables; the Mac pull at 20261008T071500Z reports SHA match with 4 retained copies; independent gzip test passed and the sidecar SHA-256 exactly matched the downloaded dump. The VPS file mirror reports FILES OK with 112801 files and 28733820928 bytes; current local count is 112801 files / about 27G; the LaunchAgent last exit code is 0.
+- TODAY'S SCHEDULED INMOTION BACKUP DID NOT FAIL: the verified DB pull and file mirror completed successfully. This statement does not establish anything about site availability outside the backup run itself.
+- NEXT AFTER THIS REVIEW (Gene decision 2026-10-08): inspect current production 503 handling and determine whether a graceful site-specific 503 response already exists. Identify the live owner first; if absent, design the smallest maintainable solution before changing production.
+
 ## VERIFIED CONTINUITY CHECK 2026-10-07 ~13:00Z (ChatGPT)
 
 - DACP bootstrap bound to live canonical main before this work; active runtime remains 0.1.7-DELTA.
