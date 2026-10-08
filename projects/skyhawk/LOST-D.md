@@ -23,6 +23,14 @@
 - The new ticket requests senior systems/CWP investigation of the production 503, the unexplained disappearance/re-addition of skyhawk.org in CWP, PHP-FPM pool/socket recreation, nginx regeneration, SSL certificate reset, and the still-reproducible native PHP 8.4 PCRE failure.
 - CURRENT SUPPORT STATE: skyhawk.org and HTTPS are reported recovered in the submitted ticket; the outage/configuration root cause remains unresolved; native /opt/alt/php-fpm84/usr/bin/php -v remains reported failing with "Unable to start pcre module" rc 254. Await InMotion response. Do not treat site reachability alone as closure of the PHP or configuration investigation.
 
+## HTTP ERROR HANDLING DESIGN APPROVED 2026-10-08
+
+- Gene approved design of a unified Skyhawk HTTP error and alerting system. Canonical design: projects/skyhawk/HTTP_ERROR_HANDLING.md.
+- DESIGN: keep normal 404 in Drupal (current branded Bolter! page); keep application-owned 403 in Drupal when healthy; use nginx/front-layer static fallbacks for infrastructure/security-owned 400/403/429 and hard 500/502/503/504 failures.
+- ALERTING: external uptime monitoring is primary for public availability/TLS/5xx; local log monitoring supplies diagnostics. 403/404 are threshold/digest classes, not per-hit email. 5xx availability failures use rapid thresholded alerting with duplicate suppression and recovery notification.
+- IMPLEMENTATION BOUNDARY: not started. Exact CWP regeneration-safe Skyhawk nginx template path/owner is UNRESOLVED because the current SSH identity lacks non-interactive root access. Do not edit generated nginx vhosts as the durable solution.
+- NEXT: obtain root-capable inspection of the CWP per-domain template mechanism, then implement and prove survival through a CWP regeneration before declaring the path durable.
+
 ## HTTP ERROR HANDLING / ALERTING DISCUSSION 2026-10-08
 
 - VERIFIED: a test nonexistent URL returned HTTP 404 and the branded Drupal page title 'Bolter! | The Skyhawk Association'; normal application-level 404 handling therefore already lives in Drupal.
