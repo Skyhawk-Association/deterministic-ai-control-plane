@@ -23,6 +23,14 @@
 - The new ticket requests senior systems/CWP investigation of the production 503, the unexplained disappearance/re-addition of skyhawk.org in CWP, PHP-FPM pool/socket recreation, nginx regeneration, SSL certificate reset, and the still-reproducible native PHP 8.4 PCRE failure.
 - CURRENT SUPPORT STATE: skyhawk.org and HTTPS are reported recovered in the submitted ticket; the outage/configuration root cause remains unresolved; native /opt/alt/php-fpm84/usr/bin/php -v remains reported failing with "Unable to start pcre module" rc 254. Await InMotion response. Do not treat site reachability alone as closure of the PHP or configuration investigation.
 
+## HTTP ERROR HANDLING / ALERTING DISCUSSION 2026-10-08
+
+- VERIFIED: a test nonexistent URL returned HTTP 404 and the branded Drupal page title 'Bolter! | The Skyhawk Association'; normal application-level 404 handling therefore already lives in Drupal.
+- VERIFIED: a protected /.git/config probe returned HTTP 403 from nginx with the stock 153-byte '403 Forbidden' page; nginx and ModSecurity can deny requests before Drupal, so infrastructure/security-layer 403 handling belongs at the front web/security layer.
+- VERIFIED: the latest 5,000 Skyhawk access-log lines contained 143 HTTP 404 responses and 139 HTTP 403 responses. Per-hit email for these classes would create noise from scanners/bots and is not recommended.
+- DESIGN DIRECTION (not implemented): static front-layer fallbacks should cover hard 500/502/503/504 failures that may occur when Drupal/PHP cannot render a response. Application-level 403/404 may remain Drupal-owned when Drupal is healthy.
+- ALERTING DIRECTION (not implemented): external uptime monitoring should be primary for whole-site/5xx availability failures because an internal notifier cannot report a dead VPS. Local log/event monitoring can provide diagnostic detail. Use immediate/rapid alerting for repeated 502/503/504 or sustained 5xx; use thresholds/digests rather than per-hit email for 403/404; optionally alert on failures of known high-value URLs.
+
 ## VERIFIED 503 HANDLING INSPECTION 2026-10-08
 
 - CURRENT PUBLIC STATE: https://skyhawk.org/ returns HTTP 200 through nginx -> Apache -> PHP-FPM/Drupal.
