@@ -1,0 +1,13 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T030041Z-vps142898-dkim-publish-check
+Task: dkim-publish-check
+Generated (UTC): 2026-10-09T03:00:41Z
+Host: vps142898
+---
+SKYHAWK DKIM PUBLISH CHECK 2026-10-09T03:00:41Z
+@ns1.r4l.com skyhawk2026 NO_MATCH got=[]
+@ns1.r4l.com typo-check skyhawk2020: ["v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BA]
+@ns1.r4l.com serial: 1791514706 spf: 1
+@ns2.r4l.com skyhawk2026 NO_MATCH got=[]
+@ns2.r4l.com typo-check skyhawk2020: ["v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BA]
+@ns2.r4l.com serial: 1791514706 spf: 1
