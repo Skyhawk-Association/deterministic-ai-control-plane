@@ -1,0 +1,19 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T145524Z-vps142898-quarantine-delete
+Task: quarantine-delete
+Generated (UTC): 2026-10-09T14:55:24Z
+Host: vps142898
+---
+SKYHAWK QUARANTINE DELETE 20261009T145524Z
+BEFORE /root/skyhawk-quarantine-20261009T023008Z files=2 size=48K
+BEFORE /home/n790725/quarantine-20261009T142341Z files=404 size=37M
+GONE /root/skyhawk-quarantine-20261009T023008Z
+GONE /home/n790725/quarantine-20261009T142341Z
+KEPT rollback backups:
+/root/skyhawk-403-build-20261009T020150Z
+/root/skyhawk-activation-backup-20261009T005157Z
+/root/skyhawk-activation-backup-20261009T010031Z
+/root/skyhawk-error-build-20261008T181627Z
+/root/skyhawk-errors-build-20261009T004920Z
+home before=200 after=200
+RESULT=PASS_QUARANTINE_DELETED
