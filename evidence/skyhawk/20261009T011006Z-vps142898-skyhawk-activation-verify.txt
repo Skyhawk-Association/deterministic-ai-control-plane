@@ -1,0 +1,42 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T011006Z-vps142898-skyhawk-activation-verify
+Task: skyhawk-activation-verify
+Generated (UTC): 2026-10-09T01:10:06Z
+Host: vps142898
+---
+SKYHAWK ROOT REPORT skyhawk-activation-verify 20261009T011006Z host=vps142898.inmotionhosting.com uid=0
+=== JSON ===
+2026-10-08 21:09:17.000698037 -0400
+{
+    "nginx_template-type": "default",
+    "nginx_template-name": "skyhawk-errors",
+    "apache_template-type": "php-fpm",
+    "apache_template-name": "default",
+    "php-fpm_ver": "84",
+    "nginx": true,
+    "php-fpm": true,
+    "apache-additional": true
+}
+=== FILE STATE ===
+2026-10-08 21:09:17.016698289 -0400 /etc/nginx/conf.d/vhosts/skyhawk.org.conf
+2026-10-08 21:09:17.016698289 -0400 /etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf
+2026-10-08 21:09:17.020698352 -0400 /usr/local/apache/conf.d/vhosts/skyhawk.org.conf
+2026-10-08 21:09:17.020698352 -0400 /usr/local/apache/conf.d/vhosts/skyhawk.org.ssl.conf
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf begin=1 map503=2 custom500=0 intercept=1
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf begin=1 map503=2 custom500=0 intercept=1
+/usr/local/apache/conf.d/vhosts/skyhawk.org.conf: php-fpm84/usr/var/sockets/n790725.sock 
+/usr/local/apache/conf.d/vhosts/skyhawk.org.ssl.conf: php-fpm84/usr/var/sockets/n790725.sock 
+=== nginx -t ===
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+=== RUNTIME BEFORE ===
+nginx master start: Thu Oct  8 08:59:20 2026
+worker newest start: Thu Oct  8 21:09:16 2026
+home=200
+/zz-claude-404-20261009T011006Z => <title>Bolter! | The Skyhawk Association</title> code=404 
+/admin => <title>Wave-off | The Skyhawk Association</title> code=403 
+/_skyhawk_errors/503.html => <title>404 Not Found</title> <h1>404 Not Found</h1> code=404 
+/.git/config => <title>403 Forbidden</title> <h1>403 Forbidden</h1> code=403 
+FILES_OK=1 PHP84_OK=1 NGINX_T_RC=0 LOADED=1
+RESULT=PASS_ACTIVATED_VIA_CWP_DOMAIN_CONF
+=== END ===
