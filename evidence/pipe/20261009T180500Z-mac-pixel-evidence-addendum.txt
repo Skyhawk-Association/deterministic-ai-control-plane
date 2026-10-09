@@ -1,0 +1,53 @@
+DACP EVIDENCE ADDENDUM - Mac Pixel archive (supports d8e820c PIPE wording; added after a ChatGPT claim-integrity review)
+Recorded: 2026-10-09T18:05Z by Claude. Extracts are copied verbatim from the Mac ~/ai-reports files named below,
+which were read directly over the device bridge.
+
+1. Monitor cadence (~15 s): sms_prune_log.txt (copy of ~/Library/Logs/PixelArchive/sms_prune.log)
+   2026-10-09T13:23:16-04:00 SKIP archive run holds the lock
+   2026-10-09T13:23:31-04:00 SKIP archive run holds the lock
+   2026-10-09T13:23:46-04:00 SKIP archive run holds the lock
+   2026-10-09T13:24:01-04:00 SKIP archive run holds the lock
+   (subsequent passes at :16 :31 :46 :01 through 13:29:16)
+   monitor-check.txt: LaunchAgent com.genes.pixel-archive-monitor runs `/usr/bin/open -g "/Users/m4/Applications/Pixel Archive Monitor.app"` (RunAtLoad);
+   the 15 s polling interval lives inside the app and is observed, not read from its source.
+   State Snapshots before the fix: 724 files; newest names pixel_archive_state_20261009_130746 / _130801 / _130816 / _130831 ... (15 s apart).
+
+2. Oct 3 failure sequence (pixel_archive_20261003_092625.log, lines 5148-5151):
+   09:48:50 FAILED sms-20261002005756.xml [Errno 2] No such file or directory: '/Volumes/ArchiveSSD/.pixel_archive_staging/be7b92...xml.part.chunk'
+   09:48:50 FAILED calls-20261003022334.xml [Errno 13] Permission denied: '/Volumes/ArchiveSSD/.pixel_archive_staging'
+   10:00:03 FAILED sms-20261003022334.xml ADB chunk transfer interrupted ... at byte 7516192768
+   10:00:03 PAUSED device-disconnected next=20260223_124602.jpg
+   Interpretation: consistent with ArchiveSSD becoming unavailable at 09:48:50. The dock as the cause is INFERRED.
+
+3. Screen-locked transfer: staging partial for the sms-20261009 token grew from 3,489,660,928 to 3,758,096,384 bytes within 20 s
+   (two directory listings by Claude at about 12:45 EDT) after Gene reported locking the phone screen.
+
+4. Cache-rule matches (pixel-live3-20261009_123836/latest_preflight_items.tsv, reason "reproducible Android app cache (2026-10-09 rule)"):
+   2444 Android/data/com.spotify.music :: spotifycache
+      3 Android/data/com.midea.ai.overseas :: MinixCache
+      1 Android/media/com.whatsapp :: WhatsApp AI Editor Cache
+      1 Android/media/com.whatsapp :: .wamocache
+   total 2449 files, 7.276 GB
+
+5. Engine changes as installed (diff of ~/Scripts/Archive/pixel_archive_sync.py.pre-20261009-20261009_121640 vs installed engine):
+   + SMS_FULL = re.compile(r"^SMS Backup/(sms|calls)-(\d{14})\.xml$")
+   + should_exclude: Android/ path with any non-final part containing "cache" -> excluded
+   + preflight: only the newest sms/calls per kind kept; older ones excluded "superseded SMS/calls full backup (newer one archived)"
+   + synchronize: before each item, before final os.replace, and in the error handler: if ArchiveSSD is not mounted -> log PAUSED archive-unmounted and raise SyncError
+   + self-test asserts for the spotifycache exclusion, DCIM not excluded, the WhatsApp msgstore not excluded, and the SMS_FULL regex
+   Orphan staging deletion is in pixel-apply-20261009_121640/APPLY_REPORT.txt (4 files matched by exact name and size).
+
+6. SMS prune v2 (pixel-prune-upgrade-20261009_135600.txt):
+   backup pixel_sms_prune.py.pre-v2-20261009_135600; installed prune sha=696fc5d4d090484b verified=True
+   calls-20261009005805.xml: closing </calls> present=True count=2070
+   sms-20261009005805.xml: closing </smses> present=True count=48988
+
+7. Mac power (mac-power-20261009_125220.txt): sleep 0 (sleep prevented by ...), standby 0, displaysleep 10, ttyskeepawake 1, womp 1, tcpkeepalive 1, autorestart 1.
+
+Corrections to d8e820c wording made in this commit:
+ - "polls about every 15 s" is now "observed ... about every 15 s"
+ - the overwrite, chunk-resume and phone-deletion invariants are narrowed to what was demonstrated
+ - the Oct 3 dock cause is marked INFERRED
+ - the ~6.9 GB already-archived Spotify figure is marked UNVERIFIED and replaced by the measured phone-side 2,449 files / 7.28 GB
+ - "unattended runs are safe" is narrowed to "idle sleep should not interrupt a run"
+ - the claim of backups for "every replaced script" is narrowed to the scripts replaced on 2026-10-09
