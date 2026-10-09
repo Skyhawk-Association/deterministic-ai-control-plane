@@ -1,0 +1,122 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T004920Z-vps142898-skyhawk-template-build
+Task: skyhawk-template-build
+Generated (UTC): 2026-10-09T00:49:20Z
+Host: vps142898
+---
+SKYHAWK ROOT REPORT skyhawk-template-build 20261009T004920Z host=vps142898.inmotionhosting.com uid=0
+=== STATIC ASSETS ===
+755 root /var/www
+755 root /var/www/skyhawk-errors
+644 root /var/www/skyhawk-errors/400.html
+644 root /var/www/skyhawk-errors/403.html
+644 root /var/www/skyhawk-errors/429.html
+644 root /var/www/skyhawk-errors/500.html
+644 root /var/www/skyhawk-errors/502.html
+644 root /var/www/skyhawk-errors/503.html
+644 root /var/www/skyhawk-errors/504.html
+remote/script refs: 
+=== PRECONDITION ===
+custom pair == default pair: OK
+BACKUP=/root/skyhawk-errors-build-20261009T004920Z
+CHECK /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/skyhawk-errors.tpl begin=1 map503=2 custom500=0 intercept=1
+CHECK /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/skyhawk-errors.stpl begin=1 map503=2 custom500=0 intercept=1
+=== TEMPLATE DIFF tpl ===
+8a9,20
+> 	# SKYHAWK-ERRORS BEGIN: static front-layer 5xx fallback; Drupal keeps 403/404
+> 	error_page 500 /_skyhawk_errors/500.html;
+> 	error_page 502 /_skyhawk_errors/502.html;
+> 	error_page 503 /_skyhawk_errors/503.html;
+> 	error_page 504 /_skyhawk_errors/504.html;
+> 	proxy_intercept_errors on;
+> 	location ^~ /_skyhawk_errors/ {
+> 		internal;
+> 		alias /var/www/skyhawk-errors/;
+> 	}
+> 	# SKYHAWK-ERRORS END
+> 
+17c29,32
+< 		error_page 500 = @custom;
+---
+> 		error_page 500 /_skyhawk_errors/500.html;
+> 		error_page 502 /_skyhawk_errors/502.html;
+> 		error_page 503 /_skyhawk_errors/503.html;
+> 		error_page 504 /_skyhawk_errors/504.html;
+=== TEMPLATE DIFF stpl ===
+8a9,20
+> 	# SKYHAWK-ERRORS BEGIN: static front-layer 5xx fallback; Drupal keeps 403/404
+> 	error_page 500 /_skyhawk_errors/500.html;
+> 	error_page 502 /_skyhawk_errors/502.html;
+> 	error_page 503 /_skyhawk_errors/503.html;
+> 	error_page 504 /_skyhawk_errors/504.html;
+> 	proxy_intercept_errors on;
+> 	location ^~ /_skyhawk_errors/ {
+> 		internal;
+> 		alias /var/www/skyhawk-errors/;
+> 	}
+> 	# SKYHAWK-ERRORS END
+> 
+26c38,41
+< 		error_page 500 = @custom;
+---
+> 		error_page 500 /_skyhawk_errors/500.html;
+> 		error_page 502 /_skyhawk_errors/502.html;
+> 		error_page 503 /_skyhawk_errors/503.html;
+> 		error_page 504 /_skyhawk_errors/504.html;
+=== CANDIDATE RENDER + ISOLATED nginx -t ===
+CHECK /root/skyhawk-nginx-test-20261009T004920Z/conf.d/vhosts/skyhawk.org.conf begin=1 map503=2 custom500=0 intercept=1
+--- diff live vs candidate skyhawk.org.conf
+8a9,20
+> 	# SKYHAWK-ERRORS BEGIN: static front-layer 5xx fallback; Drupal keeps 403/404
+> 	error_page 500 /_skyhawk_errors/500.html;
+> 	error_page 502 /_skyhawk_errors/502.html;
+> 	error_page 503 /_skyhawk_errors/503.html;
+> 	error_page 504 /_skyhawk_errors/504.html;
+> 	proxy_intercept_errors on;
+> 	location ^~ /_skyhawk_errors/ {
+> 		internal;
+> 		alias /var/www/skyhawk-errors/;
+> 	}
+> 	# SKYHAWK-ERRORS END
+> 
+17c29,32
+< 		error_page 500 = @custom;
+---
+> 		error_page 500 /_skyhawk_errors/500.html;
+> 		error_page 502 /_skyhawk_errors/502.html;
+> 		error_page 503 /_skyhawk_errors/503.html;
+> 		error_page 504 /_skyhawk_errors/504.html;
+CHECK /root/skyhawk-nginx-test-20261009T004920Z/conf.d/vhosts/skyhawk.org.ssl.conf begin=1 map503=2 custom500=0 intercept=1
+--- diff live vs candidate skyhawk.org.ssl.conf
+8a9,20
+> 	# SKYHAWK-ERRORS BEGIN: static front-layer 5xx fallback; Drupal keeps 403/404
+> 	error_page 500 /_skyhawk_errors/500.html;
+> 	error_page 502 /_skyhawk_errors/502.html;
+> 	error_page 503 /_skyhawk_errors/503.html;
+> 	error_page 504 /_skyhawk_errors/504.html;
+> 	proxy_intercept_errors on;
+> 	location ^~ /_skyhawk_errors/ {
+> 		internal;
+> 		alias /var/www/skyhawk-errors/;
+> 	}
+> 	# SKYHAWK-ERRORS END
+> 
+26c38,41
+< 		error_page 500 = @custom;
+---
+> 		error_page 500 /_skyhawk_errors/500.html;
+> 		error_page 502 /_skyhawk_errors/502.html;
+> 		error_page 503 /_skyhawk_errors/503.html;
+> 		error_page 504 /_skyhawk_errors/504.html;
+nginx: the configuration file /root/skyhawk-nginx-test-20261009T004920Z/nginx.conf syntax is ok
+nginx: configuration file /root/skyhawk-nginx-test-20261009T004920Z/nginx.conf test is successful
+CANDIDATE_NGINX_T_RC=0
+=== LIVE nginx -t (unchanged) ===
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+=== LIVE HTTP ===
+home=200
+=== cwp_api SOURCE MAP ===
+2658 /scripts/cwp_api
+RESULT=PASS_TEMPLATES_BUILT_CANDIDATE_VALID (inert: not assigned, no reload)
+=== END ===
