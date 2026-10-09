@@ -1,0 +1,24 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T023008Z-vps142898-leftover-quarantine
+Task: leftover-quarantine
+Generated (UTC): 2026-10-09T02:30:08Z
+Host: vps142898
+---
+SKYHAWK ROOT REPORT leftover-quarantine 20261009T023008Z
+FOUND private_premove=[/home/n790725/drupalbeta/private.pre-move-20261005T145420Z] settings_backup=[/home/n790725/drupalbeta/web/sites/default/settings.php.pre-private-path-20261005T145420Z]
+12K	/home/n790725/drupalbeta/private.pre-move-20261005T145420Z
+-rw-r--r-- 1 n790725 n790725 32455 Oct  2 15:23 /home/n790725/drupalbeta/web/sites/default/settings.php.pre-private-path-20261005T145420Z
+web/private -> ../private
+live file_private_path: $settings['file_private_path'] = '/home/n790725/drupalbeta/private';
+REFS_IN_SETTINGS=0 SYMLINKS_TO_PREMOVE=0
+EXPOSURE settings.php.pre-private-path-20261005T145420Z => http=403
+ACCESS-LOG HITS: [Thu 22:30:08.290878 [pid 1191639]
+[ip] [08/Oct/2026:22:30:08 /sites/default/settings.php.pre-private-path-20261005T145420Z 403
+total 44
+drwxr-xr-x  3 root    root     4096 Oct  8 22:30 .
+dr-xr-x--- 23 root    root     4096 Oct  8 22:30 ..
+drwxr-xr-x  3 n790725 n790725  4096 Sep  4  2025 private.pre-move-20261005T145420Z
+-rw-r--r--  1 n790725 n790725 32455 Oct  2 15:23 settings.php.pre-private-path-20261005T145420Z
+home before=200 after=200 drupal404_ok=3
+RESULT=PASS_QUARANTINED to /root/skyhawk-quarantine-20261009T023008Z (restore: mv /root/skyhawk-quarantine-20261009T023008Z/* back)
+=== END ===
