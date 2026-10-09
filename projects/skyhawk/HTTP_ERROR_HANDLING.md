@@ -1,6 +1,6 @@
 # Skyhawk HTTP Error Handling and Alerting Design
 
-**Status:** APPROVED DESIGN / 5xx FRONT-LAYER FALLBACK IMPLEMENTED 2026-10-09 / EXTERNAL UPTIME WATCH PARTIAL (HOURLY, BELOW DESIGN CADENCE) / 400-403-429 STATIC PAGES AND LOCAL MONITORING NOT YET IMPLEMENTED
+**Status:** APPROVED DESIGN / 5xx FALLBACK AND SCOPED FRONT-LAYER 403 IMPLEMENTED 2026-10-09 / UPTIMEROBOT PRIMARY EXTERNAL MONITOR VERIFIED (REAL INCIDENT TEST) / 400-429 NOT APPLICABLE / LOCAL DIAGNOSTIC MONITORING OPTIONAL, NOT IMPLEMENTED
 **Decision date:** 2026-10-08
 **Owner:** Skyhawk front web/security layer for infrastructure errors; Drupal for application-level errors when Drupal is healthy.
 
@@ -205,7 +205,9 @@ IMPLEMENTED AND VERIFIED (2026-10-09, see projects/skyhawk/LOST-D.md "HTTP ERROR
 
 Accepted side effect: a Drupal application 500 or maintenance-mode 503 also shows the static page, with the correct status.
 
+ADDED 2026-10-09: static 403 page for nginx deny-all locations (.ht, .svn, .git, .hg, .bzr) in the main skyhawk.org server only; Drupal and Apache/ModSecurity 403s are not intercepted. UptimeRobot verified as primary external monitor (5-minute checks, real DOWN/UP alert test passed 2026-10-08). Details: LOST-D "HTTP ERROR HANDLING FOLLOW-UP 2026-10-09".
+
 NOT IMPLEMENTED:
 
-- Static front-layer 400/403/429. A 403 mapping combined with proxy_intercept_errors would replace Drupal-owned 403 pages, so it needs a scoped design (for example, mappings only inside the deny locations) before adding.
-- External uptime monitoring: UptimeRobot primary monitor exists with test alert delivery verified; interval and real-incident detection unverified. The hourly ChatGPT watch is secondary. Local threshold/digest monitoring and end-to-end outage/recovery notification verification also remain open.
+- Static 400/429: not applicable now (no nginx rate limiting; 400 mapping would intercept backend 400s). Assets remain inert.
+- Local threshold/digest diagnostic monitoring (optional). The hourly ChatGPT watch is a secondary backup.
