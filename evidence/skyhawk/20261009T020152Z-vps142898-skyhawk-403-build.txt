@@ -1,0 +1,34 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T020152Z-vps142898-skyhawk-403-build
+Task: skyhawk-403-build
+Generated (UTC): 2026-10-09T02:01:52Z
+Host: vps142898
+---
+SKYHAWK ROOT REPORT skyhawk-403-build 20261009T020150Z host=vps142898.inmotionhosting.com uid=0
+403 asset title: <title>Request Not Permitted | The Skyhawk Association</title>
+BACKUP=/root/skyhawk-403-build-20261009T020150Z
+CHECK /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/skyhawk-errors.tpl deny403=5 deny_total=20 begin=1
+CHECK /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/skyhawk-errors.stpl deny403=5 deny_total=20 begin=1
+=== DIFF stpl (backup vs new) ===
+67,71c67,71
+< 	location ~ /\.ht    {deny all;}
+< 	location ~ /\.svn/  {deny all;}
+< 	location ~ /\.git/  {deny all;}
+< 	location ~ /\.hg/   {deny all;}
+< 	location ~ /\.bzr/  {deny all;}
+---
+> 	location ~ /\.ht    {deny all; error_page 403 /_skyhawk_errors/403.html;}
+> 	location ~ /\.svn/  {deny all; error_page 403 /_skyhawk_errors/403.html;}
+> 	location ~ /\.git/  {deny all; error_page 403 /_skyhawk_errors/403.html;}
+> 	location ~ /\.hg/   {deny all; error_page 403 /_skyhawk_errors/403.html;}
+> 	location ~ /\.bzr/  {deny all; error_page 403 /_skyhawk_errors/403.html;}
+CHECK /root/skyhawk-403-test-20261009T020150Z/conf.d/vhosts/skyhawk.org.conf deny403=5 deny_total=20 begin=1
+CHECK /root/skyhawk-403-test-20261009T020150Z/conf.d/vhosts/skyhawk.org.ssl.conf deny403=5 deny_total=20 begin=1
+nginx: the configuration file /root/skyhawk-403-test-20261009T020150Z/nginx.conf syntax is ok
+nginx: configuration file /root/skyhawk-403-test-20261009T020150Z/nginx.conf test is successful
+CANDIDATE_NGINX_T_RC=0
+scratch /.git/config => <title>Request Not Permitted | The Skyhawk Association</title> code=403 
+scratch /u403 => <title>403 Forbidden</title> code=403 
+RESULT=PASS_403_TEMPLATES_BUILT (live only after CWP domain rebuild)
+production home=200
+=== END ===
