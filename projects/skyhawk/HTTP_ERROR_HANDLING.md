@@ -1,6 +1,6 @@
 # Skyhawk HTTP Error Handling and Alerting Design
 
-**Status:** APPROVED DESIGN / NOT YET IMPLEMENTED
+**Status:** APPROVED DESIGN / 5xx FRONT-LAYER FALLBACK IMPLEMENTED 2026-10-09 / 400-403-429 STATIC PAGES AND MONITORING NOT YET IMPLEMENTED
 **Decision date:** 2026-10-08
 **Owner:** Skyhawk front web/security layer for infrastructure errors; Drupal for application-level errors when Drupal is healthy.
 
@@ -75,7 +75,7 @@ The intended behavior is equivalent to:
 
 Do not edit generated skyhawk.org.conf / skyhawk.org.ssl.conf directly as the durable solution. CWP is known to rebuild vhost files. CWP documentation/community guidance indicates custom vhost templates should be created and assigned per domain rather than editing generated vhosts in place.
 
-Before implementation, root-level inspection must identify the exact active CWP template paths on this VPS and establish the smallest regeneration-safe mechanism. Current unprivileged inspection could read the generated vhosts but could not enumerate the root-owned CWP template directory, so exact template filenames remain UNRESOLVED.
+Resolved 2026-10-09: templates live in /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/ (custom pair skyhawk-errors.tpl / skyhawk-errors.stpl). The per-domain owner is /home/n790725/.conf/webservers/skyhawk.org.conf, set through CWP admin WebServer Settings -> WebServers Domain Conf with "Rebuild WebServers conf for domain on save". Do not use /scripts/cwp_api webservers rebuild_all for Skyhawk changes.
 
 ### Apache
 
@@ -193,6 +193,15 @@ Static error files may remain harmlessly on disk after rollback because they are
 
 ## Current implementation boundary
 
-DESIGN COMPLETE. IMPLEMENTATION NOT STARTED.
+IMPLEMENTED AND VERIFIED (2026-10-09, see projects/skyhawk/LOST-D.md "HTTP ERROR HANDLING ACTIVATED 2026-10-09"):
 
-The exact CWP template owner/path on the live VPS remains unresolved because the current SSH identity does not have non-interactive root access. Do not mutate generated nginx vhosts as a shortcut.
+- nginx static fallback for 500/502/503/504 on skyhawk.org via the CWP-assigned skyhawk-errors template pair, with proxy_intercept_errors on and an internal /_skyhawk_errors/ location aliased to /var/www/skyhawk-errors/.
+- Drupal-owned 403/404 verified unchanged in production; 5xx status preservation verified on an isolated nginx instance with identical directives.
+- Configuration produced by a CWP domain rebuild from template + per-domain JSON (PHP-FPM 8.4 preserved).
+
+Accepted side effect: a Drupal application 500 or maintenance-mode 503 also shows the static page, with the correct status.
+
+NOT IMPLEMENTED:
+
+- Static front-layer 400/403/429. A 403 mapping combined with proxy_intercept_errors would replace Drupal-owned 403 pages, so it needs a scoped design (for example, mappings only inside the deny locations) before adding.
+- External uptime monitoring, local threshold/digest monitoring and alert/recovery notification (success-evidence items 6-8 above remain open).
