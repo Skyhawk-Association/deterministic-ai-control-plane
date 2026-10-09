@@ -1,0 +1,20 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T143425Z-vps142898-menu-audit
+Task: menu-audit
+Generated (UTC): 2026-10-09T14:34:26Z
+Host: vps142898
+---
+MENU AUDIT 2026-10-09T14:34:25Z
+main	views_view:views.skyhawk_journal_index.page_1	s:13:"Journal Index";	menu_link_content:02e3e476-019c-44c1-9fb2-043731091652	view.skyhawk_journal_index.page_1			1	2	-46
+main	menu_link_content:258493ba-3ef0-4edc-985a-f35e0f808508	s:16:"Journal Listings";	menu_link_content:02e3e476-019c-44c1-9fb2-043731091652	view.sa_journal_grid.page_1	display_id=page_1&view_id=sa_journal_grid		1	2	-20
+main	menu_link_content:51388e1e-4bba-48ec-b9cd-640669e84a12	s:14:"Upload Journal";	menu_link_content:02e3e476-019c-44c1-9fb2-043731091652	skyhawk_site_fixes.journal_upload			1	2	-10
+main	menu_link_content:9466b120-b353-480e-b531-015582cba94b	s:13:"Upload Tokens";	menu_link_content:2d057b5a-dff5-4973-9d9c-b3e6fea4e2b8	skyhawk_site_fixes.upload_token_admin			1	2	0
+main	views_view:views.public_skyhawk_journal_index.page_1	s:20:"Public Journal Index";	menu_link_content:8a593c16-bc92-49c5-a223-e86c606bcaa7	view.public_skyhawk_journal_index.page_1			1	2	0
+main	views_view:views.journal_grid.page_1	s:8:"Journals";	menu_link_content:2d057b5a-dff5-4973-9d9c-b3e6fea4e2b8	view.journal_grid.page_1			1	2	10
+main	menu_link_content:76a13188-8383-4810-ab3f-b51c3199d68a	s:23:"Winter Journal Download";	menu_link_content:2d057b5a-dff5-4973-9d9c-b3e6fea4e2b8	entity.node.canonical	node=49225		1	2	20
+main	menu_link_content:db897134-18ed-4cae-8279-f969eb53ee9a	s:13:"Upload Photos";	menu_link_content:e76d4501-ad9a-426a-9f38-86148afc3cb7	entity.webform.canonical	webform=reunion_2026_photo_upload		0	4	1
+ready-room	menu_link_content:e32d6a3e-bade-429b-9e15-110f23542408	s:14:"Upload Journal";		skyhawk_site_fixes.journal_upload			1	1	10
+
+== body/block links to winter journal
+block	5	
+
