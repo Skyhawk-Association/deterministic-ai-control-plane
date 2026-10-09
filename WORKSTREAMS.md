@@ -82,13 +82,12 @@ INFERRED is useful for navigation but is not operational fact. Before consequent
 
 ### PIPE - Photo and file-transfer pipeline
 
-- **Status:** PARKED
-- **Evidence:** INFERRED
+- **Status:** OPEN
+- **Evidence:** VERIFIED
 - **Source chats represented:** Pipeline File Transfer Issues and related photo-organization/file-transfer work.
 - **Scope:** Photo import, organization, transfer, device-to-computer pipeline, and related scripts/workflows.
-- **Resume rule:** Reinspect actual current scripts, devices, paths, and last verified transfer result rather than reconstructing commands from chat memory.
-- **Next verification:** Identify the latest accepted pipeline state and unfinished step.
-- **Queued photo status check (USER-STATED-EXPLICIT, 2026-10-08):** Perform the photo pipeline status check referenced here. Until that check is completed, the underlying PIPE workstream remains **PARKED / INFERRED** rather than being silently promoted to current fact.
+- **Status check 2026-10-09:** Live Envy inspection verified the existing Pixel 10 MTP pipeline at `C:\Users\genea\Downloads\Website\Run_Full_Pixel10_Pipeline.ps1`. The latest clearly verified successful full pipeline log found is `Run_Full_Pixel10_Pipeline_20260110_133628.log`, which completed MTP import, normalization, hash dedupe, cleanup, removed its staging directory, and ended `Pipeline complete` at 14:06:58. A newer local organizer, `PhotoMagic.ps1`, ran Full on 2026-01-12 and finished cleanly after scanning 5,220 local Pictures files, while recording numerous handled `MISSING source` warnings. Current `_staging` and `Pixel10_Import_Auto` are empty. The local Pictures tree contains Pixel-named recovered files through at least early April 2026, but no current phone-side census has been performed, so the unsynced delta and present authoritative import path are not yet proven.
+- **Next verification:** With the Pixel 10 physically connected to the Envy, unlocked, and USB set to File Transfer/MTP, perform a read-only phone-vs-PC census before any live import. Do not assume the January 2026 pipeline remains safe against the current library structure; do not run the live pipeline until the delta and intended destination owner are verified.
 
 ### TOOL - Computer, network, and ChatGPT tooling reference
 
