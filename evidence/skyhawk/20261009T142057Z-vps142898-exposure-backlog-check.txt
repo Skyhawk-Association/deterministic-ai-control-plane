@@ -1,0 +1,202 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T142057Z-vps142898-exposure-backlog-check
+Task: exposure-backlog-check
+Generated (UTC): 2026-10-09T14:21:08Z
+Host: vps142898
+---
+SKYHAWK PUBLIC-EXPOSURE + BACKLOG CHECK 2026-10-09T14:20:57Z
+== 5a loose files in public files root (name / size / date / http)
+137820-edwards_banner.jpg | 213214 | 2020-12-27 | http=200
+154204-a4f-21jul12-flying-leatherneck-museum-todd-frommelt-1.jpg | 1043904 | 2020-03-15 | http=200
+a4a3v_trans_2.png | 8168 | 2020-03-15 | http=200
+add_blade_menu.php | 1045 | 2026-07-26 | http=403
+add_journal_fields.php | 1651 | 2026-05-26 | http=403
+add_journal_menu.php | 603 | 2026-05-26 | http=403
+add_latest_to_upload.php | 1024 | 2026-07-21 | http=403
+add_reunion_alias.php | 500 | 2026-07-26 | http=403
+add_reunion_fields.php | 1672 | 2026-07-26 | http=403
+add_reunion_pdf.php | 938 | 2026-07-26 | http=403
+add_upload_menu.php | 996 | 2026-07-21 | http=403
+approachingthunder_1.jpg | 42787 | 2020-04-20 | http=200
+approachingthunder.jpg | 42787 | 2020-04-20 | http=200
+Association_logo_100_cropped_0.jpg | 8893 | 2021-01-28 | http=200
+Association_logo_100_cropped.jpg | 8893 | 2021-01-28 | http=200
+chatgpt-debug.txt | 13604 | 2026-08-23 | http=200
+check_and_fix_view.php | 715 | 2026-07-21 | http=403
+check_gaps.php | 1047 | 2026-07-23 | http=403
+check_journal_role.php | 239 | 2026-07-21 | http=403
+check_pdfs.php | 667 | 2026-07-21 | http=403
+check_pdf_text.php | 503 | 2026-07-21 | http=403
+check_pdf_text.py | 1023 | 2026-07-21 | http=200
+check_pdf_uri.php | 509 | 2026-05-26 | http=403
+check_reunion.php | 79 | 2026-07-26 | http=403
+check_styles.php | 375 | 2026-05-26 | http=403
+check_uri.php | 449 | 2026-07-23 | http=403
+Correct Hook 23 magazine - program ad (1).jpg | 583819 | 2023-05-20 | http=400
+create_journal_thumb.php | 504 | 2026-07-21 | http=403
+create_journal_view.php | 4592 | 2026-05-26 | http=403
+create_print_field.php | 918 | 2026-07-21 | http=403
+create_reunion_instructions.php | 4162 | 2026-07-26 | http=403
+create_reunion_view.php | 3210 | 2026-07-26 | http=403
+create_style.php | 800 | 2026-05-26 | http=403
+create_view.php | 5883 | 2026-05-26 | http=403
+current-public-journal-pg1_0.png | 1701250 | 2025-01-18 | http=200
+current-public-journal-pg1_1.png | 1701250 | 2025-01-18 | http=200
+current-public-journal-pg1_2.png | 1810318 | 2025-01-18 | http=200
+current-public-journal-pg1.png | 1448489 | 2024-01-17 | http=200
+d10_body_format_check.txt | 1775 | 2026-07-20 | http=200
+default-avatar.png | 6192 | 2020-04-23 | http=200
+DFC-Society-2023-Reunion.jpg | 177630 | 2023-08-17 | http=200
+diagnose.php | 1709 | 2026-05-26 | http=403
+edited-current-public-journal-pg1.png | 1102569 | 2024-01-17 | http=200
+enable_inline_errors.php | 337 | 2026-07-21 | http=403
+existing_30_2.json | 2 | 2026-07-27 | http=200
+fix_ajax_validate.php | 926 | 2026-07-21 | http=403
+fix_body_dup.php | 531 | 2026-07-26 | http=403
+fix_display2.php | 1093 | 2026-05-26 | http=403
+fix_display3.php | 475 | 2026-05-26 | http=403
+fix_display4.php | 0 | 2026-05-26 | http=403
+fix_display.php | 2040 | 2026-05-26 | http=403
+fix_download_header.php | 698 | 2026-05-26 | http=403
+fix_error_text.php | 348 | 2026-07-21 | http=403
+fix_filename_example.php | 2027 | 2026-07-21 | http=403
+fix_iframe_params.php | 508 | 2026-07-26 | http=403
+fix_issue1_pdfs.php | 1176 | 2026-07-22 | http=403
+fix_journals_menu.php | 778 | 2026-07-22 | http=403
+fix_landing_error.php | 394 | 2026-07-21 | http=403
+fix_menu_and_display.php | 2223 | 2026-05-26 | http=403
+fix_menu.php | 1033 | 2026-07-22 | http=403
+fix_regex2.php | 1280 | 2026-07-21 | http=403
+fix_regex.php | 592 | 2026-07-21 | http=403
+fix_required.php | 3449 | 2026-07-21 | http=403
+fix_reunion_form.php | 998 | 2026-07-26 | http=403
+fix_reunion_iframe.php | 769 | 2026-07-26 | http=403
+fix_reunion_menu.php | 1089 | 2026-07-26 | http=403
+fix_reunion_python.php | 3283 | 2026-07-26 | http=403
+fix_spreads.php | 625 | 2026-07-21 | http=403
+fix_thumb_49341.php | 1415 | 2026-07-25 | http=403
+fix_thumb_cache.php | 716 | 2026-07-25 | http=403
+fix_title.php | 761 | 2026-05-26 | http=403
+fix_view_label2.php | 1154 | 2026-07-21 | http=403
+fix_view_label.php | 1079 | 2026-07-21 | http=403
+format_weights.txt | 992 | 2026-07-20 | http=200
+.htaccess | 487 | 2020-10-26 | http=403
+image001.jpg | 3500114 | 2023-05-20 | http=200
+ingest_journals.php | 3622 | 2026-05-26 | http=403
+journal_toc_all.csv | 108883 | 2026-07-27 | http=200
+journal_toc_final.csv | 105019 | 2026-07-27 | http=200
+Letterhead Graphic w Notice 2021.jpg | 239219 | 2020-12-16 | http=400
+link_spreads.php | 1870 | 2026-07-22 | http=403
+menu-diag-live.tar.gz | 31253 | 2026-05-20 | http=200
+menu-diag.tar.gz | 4841 | 2026-05-20 | http=200
+menu-live-only.tar.gz | 25263 | 2026-05-20 | http=200
+node-49418-backup-20260824-001556.html | 53506 | 2026-08-24 | http=200
+node-49418-backup-20260825-095037.html | 21551 | 2026-08-25 | http=200
+node-49418-backup-20260825-101647.html | 23328 | 2026-08-25 | http=200
+node-49455-backup-20260824-213600.html | 2872 | 2026-08-24 | http=200
+node-49455-backup-20260825-095037.html | 3358 | 2026-08-25 | http=200
+scan_view.php | 436 | 2026-07-21 | http=403
+star.png | 7873 | 2020-04-23 | http=200
+sysinfo.txt | 4259 | 2026-07-27 | http=200
+test_cover.jpg | 882003 | 2026-05-24 | http=200
+test_view.php | 1561 | 2026-05-26 | http=403
+toc_29_1.csv | 1757 | 2026-07-27 | http=200
+toc_30_2.csv | 444 | 2026-07-27 | http=200
+twig_debug.php | 632 | 2026-05-26 | http=403
+unknown A-4C 1964-65 VA-195 NM-5xx USS BHR.jpg | 842966 | 2025-01-06 | http=400
+update_blast.php | 834 | 2026-07-21 | http=403
+update_file_uris.php | 669 | 2026-07-23 | http=403
+update_form_labels.php | 985 | 2026-07-21 | http=403
+update_index_links.php | 1378 | 2026-07-23 | http=403
+update_instructions.php | 786 | 2026-07-26 | http=403
+USMC Skyhawkers 100x77.jpg | 1789 | 2023-09-29 | http=400
+USMC Skyhawkers 200x155.jpg | 3869 | 2023-09-29 | http=400
+USMC Skyhawkers.jpg | 21137 | 2023-09-29 | http=400
+== 5b suspicious names deeper in public files
+108883 journal_toc_all.csv
+632 twig_debug.php
+4259 sysinfo.txt
+10532 downloads/chatgpt-debug-20260902T015206Z-1504142.txt
+209789 downloads/chatgpt-debug-reunion-multiupload-preflight-20260920T135811Z.txt
+202578 downloads/chatgpt-debug-latest-20260918T025449Z.txt
+202578 downloads/chatgpt-debug-20260918T025315Z-896743.txt
+40806 downloads/chatgpt-debug-reunion-photo-multiupload-20260920T143051Z.txt
+40806 downloads/chatgpt-debug-latest.txt
+1023 check_pdf_text.py
+13604 chatgpt-debug.txt
+444 toc_30_2.csv
+73591 vma131-preview/images/manifest.tsv
+1757 toc_29_1.csv
+105019 journal_toc_final.csv
+== 5c web root loose files + downloads dir
+ 
+268 autoload.php
+696 autoload_runtime.php
+1025 .csslintrc
+55816 error_log
+151 .eslintignore
+41 .eslintrc.json
+1629 example.gitignore
+8779 .htaccess
+8517 .htaccess.before-home-bypass-fix-1779369466
+8575 .htaccess.before-referrer-home-fix-1779369723
+8189 .htaccess.before-remove-all-yp-1779371353
+8811 .htaccess.before-remove-splash-loop-1779370308
+8132 .htaccess.before-yp-cookie-fix-1779368893
+7686 .htaccess.before-yp-force-1779316268
+7686 .htaccess.before-yp-memorial-1779315475
+8228 .htaccess.before-yp-shortlink-1779382139
+2466 .ht.router.php
+396 index.php
+87 INSTALL.txt
+10 private
+3205 README.md
+5924 README.txt
+2141 robots.txt
+651 update.php
+4016 web.config
+total 31688
+drwxrwxr-x  2 n790725 n790725    24576 Oct  1 23:09 .
+drwxr-x--- 15 n790725 nobody      4096 Oct  5 10:54 ..
+-rw-r--r--  1 n790725 n790725     1191 Aug 24 12:41 chatgpt-debug-20260824T164135Z-698130.txt
+-rw-r--r--  1 n790725 n790725     1170 Aug 24 12:49 chatgpt-debug-20260824T164900Z-721770.txt
+-rw-r--r--  1 n790725 n790725     1212 Aug 24 12:52 chatgpt-debug-20260824T165238Z-721770.txt
+-rw-r--r--  1 n790725 n790725     1209 Aug 24 13:26 chatgpt-debug-20260824T172623Z-870771.txt
+-rw-r--r--  1 n790725 n790725     1575 Aug 24 13:48 chatgpt-debug-20260824T174805Z-956837.txt
+-rw-r--r--  1 n790725 n790725     3353 Aug 24 15:57 chatgpt-debug-20260824T195658Z-1420949.txt
+-rw-r--r--  1 n790725 n790725     2078 Aug 24 16:53 chatgpt-debug-20260824T205358Z-1860331.txt
+-rw-r--r--  1 n790725 n790725     6830 Aug 24 17:08 chatgpt-debug-20260824T210826Z-1971880.txt
+-rw-r--r--  1 n790725 n790725    80768 Aug 24 20:09 chatgpt-debug-20260825T000938Z-2471164.txt
+-rw-r--r--  1 n790725 n790725    79649 Aug 24 20:25 chatgpt-debug-20260825T002514Z-2471164.txt
+-rw-r--r--  1 n790725 n790725   668866 Aug 24 20:49 chatgpt-debug-20260825T004858Z-2471164.txt
+-rw-r--r--  1 n790725 n790725     3707 Aug 24 20:59 chatgpt-debug-20260825T005953Z-2471164.txt
+-rw-r--r--  1 n790725 n790725   311989 Aug 24 21:20 chatgpt-debug-20260825T012038Z-2471164.txt
+-rw-r--r--  1 n790725 n790725     4790 Aug 24 21:36 chatgpt-debug-20260825T013552Z-2471164.txt
+-rw-r--r--  1 n790725 n790725     2047 Aug 25 09:50 chatgpt-debug-20260825T135036Z-2676184.txt
+-rw-r--r--  1 n790725 n790725    63084 Aug 25 09:54 chatgpt-debug-20260825T135409Z-2676184.txt
+-rw-r--r--  1 n790725 n790725      869 Aug 25 10:09 chatgpt-debug-20260825T140951Z-2676184.txt
+info.php http=404
+phpinfo.php http=404
+downloads/ http=403
+sysinfo.txt http=404
+== 9a watchdog top types + watermark count
+php	87768
+page not found	10343
+access denied	1207
+cron	835
+image	66
+user	15
+content	5
+webform	3
+client error	1
+
+watermark rows: 0
+== 9b journal/winter menu links
+88	Winter Journal Download	main	1
+91	Journal Listings	main	1
+95	Upload Journal	ready-room	1
+96	Upload Journal	main	1
+
+== 9c ckeditor modules enabled
+ckeditor5
+ckeditor5_table_fix
