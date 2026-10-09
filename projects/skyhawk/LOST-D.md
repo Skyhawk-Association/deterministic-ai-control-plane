@@ -17,6 +17,17 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## BACKLOG TRIAGE AND PUBLIC-EXPOSURE CLEANUP 2026-10-09 ~14:25Z (Claude, Gene decisions)
+
+- SOURCE: Gene asked Claude to scan past chats for unfinished work missing from bookkeeping. Chat items are leads, verified against live state where checkable.
+- PARKED (Gene: revisit with better tooling now on InMotion): (1) journal TOC index import - 769-entry CSV from 68 journals never imported; 2009-2011 extracted 0; authors often Staff/Editors; categories blank; (2) journal email blast still in UID-1 test mode; (3) missing journal issues awaiting digital copies (Mat Garretson); (4) 2026 Reunion gallery may still show early test photos (09-18 cleanup failed: wrong entity type).
+- Squadron rollout to the VMA-131 standard: already tracked (Gene).
+- Verver ~4,800-photo delta (two upload pages + local dedupe/resize): WAITING on Gary.
+- Tailhook platform-neutral export: DROPPED (Gene).
+- July backlog check (evidence 20261009T142057Z-vps142898-exposure-backlog-check): field_watermark cron spam RESOLVED (0 watchdog rows); ckeditor5_table_fix enabled, table-collapse bug unverified (needs a browser edit test); menu link 88 "Winter Journal Download" (main) still ENABLED - removal pending Gene; possible duplicate "Upload Journal" links 95 (ready-room) and 96 (main) - Gene decision; member-spreadsheet import - open question; watchdog holds ~88k "php" rows (deprecation noise, housekeeping).
+- PUBLIC EXPOSURE FOUND AND CLOSED: the A2-era diagnostic channel "retired and quarantined" on 2026-09-27 had been re-copied to InMotion by the files migration. Publicly downloadable (HTTP 200) were chatgpt-debug dumps in web/downloads and sites/default/files/downloads, sysinfo.txt, chatgpt-debug.txt, menu-diag*.tar.gz config dumps, journal TOC CSVs, node backup HTML, A2 tree/file manifests, and web/error_log. 403 unmanaged files moved (not deleted) to /home/n790725/quarantine-20261009T142341Z (MANIFEST.txt inside): web/downloads 298, sites/default/files 82, sites/default/files/downloads 14, web root 9 (error_log + .htaccess.before-*). Files tracked in file_managed were skipped (0 matched); images, PDFs, .htaccess and vma131-preview untouched. Verified: all sampled paths now 404; home 200; Drupal 404 intact (evidence 20261009T142341Z-vps142898-diag-quarantine, 20261009T142504Z-vps142898-diag-quarantine-recheck). Note: nginx open-file caching served moved static files for ~60s after the move; recheck after a minute before concluding.
+- RULE CANDIDATE: diagnostic output must never be written under the web root; use ~/ai-reports + ai-report. Any future mirror/migration must exclude web/downloads and loose diagnostics in sites/default/files.
+
 ## OPEN-ITEM RECONCILIATION 2026-10-09 ~02:35Z (Claude, Gene-confirmed)
 
 Several older sections below are stale; this section supersedes their open/next items.
