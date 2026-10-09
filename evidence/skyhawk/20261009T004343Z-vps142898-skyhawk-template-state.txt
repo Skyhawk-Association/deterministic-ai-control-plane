@@ -1,0 +1,1658 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T004343Z-vps142898-skyhawk-template-state
+Task: skyhawk-template-state
+Generated (UTC): 2026-10-09T00:43:43Z
+Host: vps142898
+---
+SKYHAWK ROOT REPORT skyhawk-template-state 20261009T004342Z host=vps142898.inmotionhosting.com uid=0
+=== TEMPLATE HASHES ===
+e0b2e14b83ec084180f7e4993bcbf22264bb7270e02b23d9758e1ea595300d1b  /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl
+ce1799c01740493d97998e941cb671041cda8018c43eecd8e74a132786644ad5  /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl
+e0b2e14b83ec084180f7e4993bcbf22264bb7270e02b23d9758e1ea595300d1b  /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/skyhawk-errors.tpl
+ce1799c01740493d97998e941cb671041cda8018c43eecd8e74a132786644ad5  /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/skyhawk-errors.stpl
+=== TEMPLATE DIR ===
+-rw-r----- 1 root root 6632 2024-06-11 13:15:47.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/block_malicious_requests.stpl
+-rw-r----- 1 root root 4824 2024-06-11 13:15:41.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/block_malicious_requests.tpl
+-rw-r----- 1 root root 7411 2023-03-22 12:05:51.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default_cors.stpl
+-rw-r----- 1 root root 5593 2023-03-22 12:05:39.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default_cors.tpl
+-rw-r----- 1 root root 6157 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl
+-rw-r----- 1 root root 4339 2021-09-07 17:00:13.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl
+-rw-r----- 1 root root 6147 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/force-https-http2.stpl
+-rw-r----- 1 root root 4621 2021-09-07 17:00:13.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/force-https-http2.tpl
+-rw-r----- 1 root root 6155 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/force-https.stpl
+-rw-r----- 1 root root 4622 2021-09-07 17:00:13.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/force-https.tpl
+-rw-r----- 1 root root 6147 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/http2.stpl
+-rw-r----- 1 root root 4339 2021-09-07 17:00:13.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/http2.tpl
+-rw-r----- 1 root root 6298 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/nodejs-ssl.stpl
+-rw-r----- 1 root root 4722 2021-09-07 17:00:13.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/nodejs-ssl.tpl
+-rw-r----- 1 root root 6157 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/skyhawk-errors.stpl
+-rw-r----- 1 root root 4339 2021-09-07 17:00:13.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/skyhawk-errors.tpl
+-rw-r----- 1 root root 1210 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/suspend.stpl
+-rw-r----- 1 root root  768 2021-06-17 04:42:08.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/suspend.tpl
+-rw-r----- 1 root root 6188 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-force-https-http2.stpl
+-rw-r----- 1 root root 4617 2021-08-12 17:39:00.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-force-https-http2.tpl
+-rw-r----- 1 root root 6196 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-force-https.stpl
+-rw-r----- 1 root root 4618 2021-08-12 17:39:43.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-force-https.tpl
+-rw-r----- 1 root root 6188 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-http2.stpl
+-rw-r----- 1 root root 4335 2021-08-12 17:40:16.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-http2.tpl
+-rw-r----- 1 root root 6198 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes.stpl
+-rw-r----- 1 root root 4335 2021-08-12 17:40:51.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes.tpl
+-rw-r----- 1 root root 6184 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-force-https-http2.stpl
+-rw-r----- 1 root root 4614 2021-08-12 17:41:22.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-force-https-http2.tpl
+-rw-r----- 1 root root 6192 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-force-https.stpl
+-rw-r----- 1 root root 4615 2021-08-12 17:41:53.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-force-https.tpl
+-rw-r----- 1 root root 6184 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-http2.stpl
+-rw-r----- 1 root root 4332 2021-08-12 17:42:19.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-http2.tpl
+-rw-r----- 1 root root 6194 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes.stpl
+-rw-r----- 1 root root 4332 2021-08-12 17:42:45.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes.tpl
+-rw-r----- 1 root root 6188 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-force-https-http2.stpl
+-rw-r----- 1 root root 4617 2021-08-12 17:43:12.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-force-https-http2.tpl
+-rw-r----- 1 root root 6196 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-force-https.stpl
+-rw-r----- 1 root root 4618 2021-08-12 17:43:41.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-force-https.tpl
+-rw-r----- 1 root root 6188 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-http2.stpl
+-rw-r----- 1 root root 4335 2021-08-12 17:44:09.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-http2.tpl
+-rw-r----- 1 root root 6198 2021-09-07 17:01:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes.stpl
+-rw-r----- 1 root root 4335 2021-08-12 17:44:36.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes.tpl
+-rw-r----- 1 root root 6172 2022-04-13 01:08:32.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/wildcard.stpl
+-rw-r----- 1 root root 4354 2022-04-12 15:18:28.000000000 -0400 /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/wildcard.tpl
+
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx:
+total 356
+drwxr-x--- 3 root root 4096 2026-10-08 14:16:27.950422839 -0400 .
+drwxr-x--- 6 root root 4096 2026-09-08 07:40:41.000000000 -0400 ..
+-rw-r----- 1 root root 6632 2024-06-11 13:15:47.000000000 -0400 block_malicious_requests.stpl
+-rw-r----- 1 root root 4824 2024-06-11 13:15:41.000000000 -0400 block_malicious_requests.tpl
+-rw-r----- 1 root root 7411 2023-03-22 12:05:51.000000000 -0400 default_cors.stpl
+-rw-r----- 1 root root 5593 2023-03-22 12:05:39.000000000 -0400 default_cors.tpl
+-rw-r----- 1 root root 6157 2021-09-07 17:01:32.000000000 -0400 default.stpl
+-rw-r----- 1 root root 4339 2021-09-07 17:00:13.000000000 -0400 default.tpl
+-rw-r----- 1 root root 6147 2021-09-07 17:01:32.000000000 -0400 force-https-http2.stpl
+-rw-r----- 1 root root 4621 2021-09-07 17:00:13.000000000 -0400 force-https-http2.tpl
+-rw-r----- 1 root root 6155 2021-09-07 17:01:32.000000000 -0400 force-https.stpl
+-rw-r----- 1 root root 4622 2021-09-07 17:00:13.000000000 -0400 force-https.tpl
+-rw-r----- 1 root root 6147 2021-09-07 17:01:32.000000000 -0400 http2.stpl
+-rw-r----- 1 root root 4339 2021-09-07 17:00:13.000000000 -0400 http2.tpl
+-rw-r----- 1 root root 6298 2021-09-07 17:01:32.000000000 -0400 nodejs-ssl.stpl
+-rw-r----- 1 root root 4722 2021-09-07 17:00:13.000000000 -0400 nodejs-ssl.tpl
+drwxr-x--- 2 root root 4096 2026-10-07 01:12:11.722736697 -0400 php-fpm
+-rw-r----- 1 root root 6157 2021-09-07 17:01:32.000000000 -0400 skyhawk-errors.stpl
+-rw-r----- 1 root root 4339 2021-09-07 17:00:13.000000000 -0400 skyhawk-errors.tpl
+-rw-r----- 1 root root 1210 2021-09-07 17:01:32.000000000 -0400 suspend.stpl
+-rw-r----- 1 root root  768 2021-06-17 04:42:08.000000000 -0400 suspend.tpl
+-rw-r----- 1 root root 6188 2021-09-07 17:01:32.000000000 -0400 timeout_30-minutes-force-https-http2.stpl
+-rw-r----- 1 root root 4617 2021-08-12 17:39:00.000000000 -0400 timeout_30-minutes-force-https-http2.tpl
+-rw-r----- 1 root root 6196 2021-09-07 17:01:32.000000000 -0400 timeout_30-minutes-force-https.stpl
+-rw-r----- 1 root root 4618 2021-08-12 17:39:43.000000000 -0400 timeout_30-minutes-force-https.tpl
+-rw-r----- 1 root root 6188 2021-09-07 17:01:32.000000000 -0400 timeout_30-minutes-http2.stpl
+-rw-r----- 1 root root 4335 2021-08-12 17:40:16.000000000 -0400 timeout_30-minutes-http2.tpl
+-rw-r----- 1 root root 6198 2021-09-07 17:01:32.000000000 -0400 timeout_30-minutes.stpl
+-rw-r----- 1 root root 4335 2021-08-12 17:40:51.000000000 -0400 timeout_30-minutes.tpl
+-rw-r----- 1 root root 6184 2021-09-07 17:01:32.000000000 -0400 timeout_5-minutes-force-https-http2.stpl
+-rw-r----- 1 root root 4614 2021-08-12 17:41:22.000000000 -0400 timeout_5-minutes-force-https-http2.tpl
+-rw-r----- 1 root root 6192 2021-09-07 17:01:32.000000000 -0400 timeout_5-minutes-force-https.stpl
+-rw-r----- 1 root root 4615 2021-08-12 17:41:53.000000000 -0400 timeout_5-minutes-force-https.tpl
+-rw-r----- 1 root root 6184 2021-09-07 17:01:32.000000000 -0400 timeout_5-minutes-http2.stpl
+-rw-r----- 1 root root 4332 2021-08-12 17:42:19.000000000 -0400 timeout_5-minutes-http2.tpl
+-rw-r----- 1 root root 6194 2021-09-07 17:01:32.000000000 -0400 timeout_5-minutes.stpl
+-rw-r----- 1 root root 4332 2021-08-12 17:42:45.000000000 -0400 timeout_5-minutes.tpl
+-rw-r----- 1 root root 6188 2021-09-07 17:01:32.000000000 -0400 timeout_60-minutes-force-https-http2.stpl
+-rw-r----- 1 root root 4617 2021-08-12 17:43:12.000000000 -0400 timeout_60-minutes-force-https-http2.tpl
+-rw-r----- 1 root root 6196 2021-09-07 17:01:32.000000000 -0400 timeout_60-minutes-force-https.stpl
+-rw-r----- 1 root root 4618 2021-08-12 17:43:41.000000000 -0400 timeout_60-minutes-force-https.tpl
+-rw-r----- 1 root root 6188 2021-09-07 17:01:32.000000000 -0400 timeout_60-minutes-http2.stpl
+-rw-r----- 1 root root 4335 2021-08-12 17:44:09.000000000 -0400 timeout_60-minutes-http2.tpl
+-rw-r----- 1 root root 6198 2021-09-07 17:01:32.000000000 -0400 timeout_60-minutes.stpl
+-rw-r----- 1 root root 4335 2021-08-12 17:44:36.000000000 -0400 timeout_60-minutes.tpl
+-rw-r----- 1 root root 6172 2022-04-13 01:08:32.000000000 -0400 wildcard.stpl
+-rw-r----- 1 root root 4354 2022-04-12 15:18:28.000000000 -0400 wildcard.tpl
+
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm:
+total 384
+drwxr-x--- 2 root root 4096 2026-10-07 01:12:11.722736697 -0400 .
+drwxr-x--- 3 root root 4096 2026-10-08 14:16:27.950422839 -0400 ..
+-rw-r----- 1 root root 6632 2024-06-11 13:15:25.000000000 -0400 block_malicious_requests.stpl
+-rw-r----- 1 root root 4210 2024-06-11 13:15:18.000000000 -0400 block_malicious_requests.tpl
+-rw-r----- 1 root root 6909 2022-02-26 03:12:54.000000000 -0500 default_cors.stpl
+-rw-r----- 1 root root 5072 2022-02-26 03:35:42.000000000 -0500 default_cors.tpl
+-rw-r----- 1 root root 5656 2021-09-07 16:55:46.000000000 -0400 default.stpl
+-rw-r----- 1 root root 3725 2021-06-17 04:43:04.000000000 -0400 default.tpl
+-rw-r----- 1 root root 5648 2021-09-07 16:56:04.000000000 -0400 force-https-http2.stpl
+-rw-r----- 1 root root 4013 2021-06-17 04:43:34.000000000 -0400 force-https-http2.tpl
+-rw-r----- 1 root root 5656 2021-09-07 16:56:11.000000000 -0400 force-https.stpl
+-rw-r----- 1 root root 4013 2021-06-17 04:44:19.000000000 -0400 force-https.tpl
+-rw-r----- 1 root root 5648 2021-09-07 16:56:21.000000000 -0400 http2.stpl
+-rw-r----- 1 root root 3725 2021-06-17 04:44:48.000000000 -0400 http2.tpl
+-rw-r----- 1 root root 5754 2021-09-18 22:07:42.000000000 -0400 joomla_ssl.stpl
+-rw-r----- 1 root root 4067 2021-09-18 22:14:26.000000000 -0400 joomla_ssl.tpl
+-rw-r----- 1 root root 5808 2021-09-07 16:56:30.000000000 -0400 laravel_ssl.stpl
+-rw-r----- 1 root root 4174 2021-07-24 09:13:08.000000000 -0400 laravel_ssl.tpl
+-rw-r----- 1 root root 8389 2021-09-18 17:45:12.000000000 -0400 magento_ssl.stpl
+-rw-r----- 1 root root 4067 2021-09-18 17:45:44.000000000 -0400 magento_ssl.tpl
+-rw-r----- 1 root root 8652 2021-09-18 21:52:45.000000000 -0400 prestashop_ssl.stpl
+-rw-r----- 1 root root 4059 2021-09-18 18:32:33.000000000 -0400 prestashop_ssl.tpl
+-rw-r----- 1 root root 1210 2021-09-07 16:56:38.000000000 -0400 suspend.stpl
+=== DIFF TPL default vs skyhawk-errors ===
+=== DIFF STPL default vs skyhawk-errors ===
+=== FULL skyhawk-errors.stpl ===
+server {
+	listen %ip%:%nginx_port% ssl %http2%;
+	server_name %domain_idn% %alias_idn%;
+	
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		location ~.*\.(3gp|gif|jpg|jpeg|png|ico|wmv|avi|asf|asx|mpg|mpeg|mp4|pls|mp3|mid|wav|swf|flv|html|htm|txt|js|css|exe|zip|tar|rar|gz|tgz|bz2|uha|7z|doc|docx|xls|xlsx|pdf|iso|woff|ttf|svg|eot|sh|webp)$ {
+			root %docroot%;
+			expires max;
+			try_files $uri $uri/ @backend;
+		}
+		
+		error_page 405 = @backend;
+		error_page 500 = @custom;
+		add_header X-Cache "HIT from Backend";
+		add_header Strict-Transport-Security "max-age=31536000";
+		add_header X-XSS-Protection "1; mode=block" always;
+		add_header X-Content-Type-Options "nosniff" always;
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location @backend {
+		internal;
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location @custom {
+		internal;
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location ~ .*\.(php|jsp|cgi|pl|py)?$ {
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port% ssl %http2%;	
+	server_name webmail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port% ssl %http2%;	
+	server_name mail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port% ssl %http2%;	
+	server_name cpanel.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		proxy_pass  https://[ip]:2083;
+		include proxy.inc;
+	}
+
+	location /pma {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location /roundcube {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}=== LIVE VHOSTS ===
+--- /etc/nginx/conf.d/vhosts/skyhawk.org.conf
+2026-10-08 09:08:21.311594549 -0400 root 644
+16:		error_page 405 = @backend;
+17:		error_page 500 = @custom;
+31:	location @custom {
+--- /etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf
+2026-10-08 09:08:21.311594549 -0400 root 644
+25:		error_page 405 = @backend;
+26:		error_page 500 = @custom;
+41:	location @custom {
+=== NGINX SYNTAX TEST ONLY ===
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+=== HTTP ===
+home=200
+<title>Bolter! | The Skyhawk Association</title>
+missing=404
+=== CWP .conf TREE ===
+2026-10-08 02:22 /usr/local/cwp/.conf
+2026-09-29 22:47 /usr/local/cwp/.conf/api_key.conf
+2026-09-29 22:52 /usr/local/cwp/.conf/.api_keys
+2026-10-08 01:12 /usr/local/cwp/.conf/bandwidth
+2026-10-08 01:12 /usr/local/cwp/.conf/bandwidth/n790725.db
+2026-09-13 03:25 /usr/local/cwp/.conf/conf_dashboard.conf
+2026-09-30 02:22 /usr/local/cwp/.conf/config_ssl.json
+2026-09-29 22:48 /usr/local/cwp/.conf/cwp.ini
+2026-09-29 22:46 /usr/local/cwp/.conf/.cwp_pro.conf
+2026-09-13 04:03 /usr/local/cwp/.conf/feature.db
+2026-09-13 03:25 /usr/local/cwp/.conf/.imh-hotfix-T3O2-10607-cwprads
+2026-09-13 03:26 /usr/local/cwp/.conf/.loginsegurity.json
+2026-09-13 03:25 /usr/local/cwp/.conf/mod_security.conf
+2026-10-05 07:17 /usr/local/cwp/.conf/mysql_user_prefix.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php74.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php74_external.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php74_pre.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php80.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php80_external.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php80_pre.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php81.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php81_external.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php81_pre.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php82.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php82_external.conf
+2026-09-13 03:30 /usr/local/cwp/.conf/php_conf/php82_pre.conf
+2026-10-07 10:33 /usr/local/cwp/.conf/php-fpm_conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php74.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php74_external.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php74_pre.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php80.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php80_external.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php80_pre.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php81.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php81_external.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php81_pre.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php82.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php82_external.conf
+2026-09-13 03:46 /usr/local/cwp/.conf/php-fpm_conf/php82_pre.conf
+2026-10-07 10:33 /usr/local/cwp/.conf/php-fpm_conf/php84.conf
+2026-10-07 10:33 /usr/local/cwp/.conf/php-fpm_conf/php84_external.conf
+2026-10-07 10:33 /usr/local/cwp/.conf/php-fpm_conf/php84_pre.conf
+2026-09-29 22:46 /usr/local/cwp/.conf/postfix.conf
+2026-09-13 03:24 /usr/local/cwp/.conf/quota_part.conf
+2026-10-01 01:12 /usr/local/cwp/.conf/.security_advisor.conf
+2026-10-04 23:16 /usr/local/cwp/.conf/ssl
+2026-10-04 23:16 /usr/local/cwp/.conf/ssl/singles_renewal
+2026-10-04 23:21 /usr/local/cwp/.conf/terminaltoken.conf
+2026-10-08 09:08 /usr/local/cwp/.conf/vhosts-ssl.json
+2026-10-08 08:59 /usr/local/cwp/.conf/web_servers.conf
+=== web_servers.conf ===
+{
+    "nginx-php-fpm_ver-template": "default",
+    "apache-php-fpm_ver-template": "all_methods",
+    "php-fpm_template-name-default": "processes-10",
+    "apache_template-backend-fcgi": "socket",
+    "webserver_setup": "nginx-apache",
+    "apache-php-fpm_ver-default": "82",
+    "nginx-php-fpm_ver-default": "82",
+    "apache_template-type-default": "php-fpm",
+    "nginx": true,
+    "apache-additional": true,
+    "php-fpm": true,
+    "apache_template-name-default": "default",
+    "nginx_template-type-default": "default",
+    "nginx_template-name-default": "default"
+}=== skyhawk/template refs in CWP .conf ===
+/usr/local/cwp/.conf/vhosts-ssl.json:9:    "skyhawk.org": {
+/usr/local/cwp/.conf/web_servers.conf:2:    "nginx-php-fpm_ver-template": "default",
+/usr/local/cwp/.conf/web_servers.conf:3:    "apache-php-fpm_ver-template": "all_methods",
+/usr/local/cwp/.conf/web_servers.conf:4:    "php-fpm_template-name-default": "processes-10",
+/usr/local/cwp/.conf/web_servers.conf:5:    "apache_template-backend-fcgi": "socket",
+/usr/local/cwp/.conf/web_servers.conf:9:    "apache_template-type-default": "php-fpm",
+/usr/local/cwp/.conf/web_servers.conf:13:    "apache_template-name-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:14:    "nginx_template-type-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:15:    "nginx_template-name-default": "default"
+=== ROOT REPORT DIR ===
+total 460
+drwxr-x---  2 n790725 n790725   4096 2026-10-08 20:43:42.892500313 -0400 .
+drwx--x--x 16 n790725 n790725   4096 2026-10-08 14:00:00.174772908 -0400 ..
+-rw-r-----  1 n790725 n790725  89960 2026-10-08 14:06:28.942934916 -0400 cwp-domain-storage-20261008T180625Z.txt
+lrwxrwxrwx  1 n790725 n790725     39 2026-10-08 14:06:28.950935042 -0400 cwp-domain-storage-latest.txt -> cwp-domain-storage-20261008T180625Z.txt
+-rw-r--r--  1 root    root     54089 2026-10-08 13:58:29.546336551 -0400 cwp-domain-template-owner-20261008T175828Z.txt
+-rw-r--r--  1 root    root     54089 2026-10-08 14:00:00.164772749 -0400 cwp-domain-template-owner-20261008T175959Z.txt
+-rw-r-----  1 n790725 n790725  23605 2026-10-08 14:04:33.661107610 -0400 cwp-domain-template-owner-20261008T180431Z.txt
+lrwxrwxrwx  1 n790725 n790725     46 2026-10-08 14:04:33.669107737 -0400 cwp-domain-template-owner-latest.txt -> cwp-domain-template-owner-20261008T180431Z.txt
+-rw-r-----  1 n790725 n790725  26984 2026-10-08 13:55:36.869599945 -0400 cwp-skyhawk-template-binding-20261008T175535Z.txt
+-rw-r-----  1 n790725 n790725    116 2026-10-08 13:55:36.877600072 -0400 cwp-skyhawk-template-binding-20261008T175535Z.txt.sha256
+lrwxrwxrwx  1 n790725 n790725     49 2026-10-08 13:55:36.881600135 -0400 cwp-skyhawk-template-binding-latest.txt -> cwp-skyhawk-template-binding-20261008T175535Z.txt
+-rw-r-----  1 n790725 n790725 140762 2026-10-08 13:52:33.545694785 -0400 cwp-template-inspection-20261008T175228Z.txt
+-rw-r-----  1 n790725 n790725    111 2026-10-08 13:52:33.552694895 -0400 cwp-template-inspection-20261008T175228Z.txt.sha256
+lrwxrwxrwx  1 n790725 n790725     44 2026-10-08 13:52:33.557694975 -0400 cwp-template-inspection-latest.txt -> cwp-template-inspection-20261008T175228Z.txt
+-rw-rw-r--  1 n790725 n790725    272 2026-10-08 14:19:07.900956504 -0400 skyhawk-error-activation-ready.txt
+-rw-r-----  1 n790725 n790725  15920 2026-10-08 20:28:28.157086280 -0400 skyhawk-root-final-preactivation.txt
+-rw-rw-r--  1 n790725 n790725    459 2026-10-08 20:33:45.762077458 -0400 skyhawk-template-build-readback.txt
+-rw-r--r--  1 root    root     25030 2026-10-08 20:43:43.061502979 -0400 skyhawk-template-state-20261009T004342Z.txt
+##### PRIOR REPORT: /home/n790725/skyhawk_root_reports/cwp-domain-template-owner-20261008T180431Z.txt
+SKYHAWK ROOT DIAGNOSTIC
+Report-ID: cwp-domain-template-owner-20261008T180431Z
+Generated-UTC: 20261008T180431Z
+
+=== CWP GLOBAL WEB SERVER CONFIG ===
+{
+    "nginx-php-fpm_ver-template": "default",
+    "apache-php-fpm_ver-template": "all_methods",
+    "php-fpm_template-name-default": "processes-10",
+    "apache_template-backend-fcgi": "socket",
+    "webserver_setup": "nginx-apache",
+    "apache-php-fpm_ver-default": "82",
+    "nginx-php-fpm_ver-default": "82",
+    "apache_template-type-default": "php-fpm",
+    "nginx": true,
+    "apache-additional": true,
+    "php-fpm": true,
+    "apache_template-name-default": "default",
+    "nginx_template-type-default": "default",
+    "nginx_template-name-default": "default"
+}
+=== SKYHAWK CWP REFERENCES ===
+/usr/local/cwp/.conf/vhosts-ssl.json-3-        "user": "n790725",
+/usr/local/cwp/.conf/vhosts-ssl.json-4-        "install_date": "2026-09-30 06:28:08",
+/usr/local/cwp/.conf/vhosts-ssl.json-5-        "expiry_date": "2026-12-29 06:28:08",
+/usr/local/cwp/.conf/vhosts-ssl.json-6-        "san": [],
+/usr/local/cwp/.conf/vhosts-ssl.json-7-        "autossl": "on"
+/usr/local/cwp/.conf/vhosts-ssl.json-8-    },
+/usr/local/cwp/.conf/vhosts-ssl.json:9:    "skyhawk.org": {
+/usr/local/cwp/.conf/vhosts-ssl.json-10-        "install_date": "2026-10-08 13:08:21",
+/usr/local/cwp/.conf/vhosts-ssl.json-11-        "expiry_date": "2027-01-06 13:08:21",
+/usr/local/cwp/.conf/vhosts-ssl.json-12-        "san": [],
+/usr/local/cwp/.conf/vhosts-ssl.json-13-        "autossl": "on",
+/usr/local/cwp/.conf/vhosts-ssl.json-14-        "user": "n790725"
+/usr/local/cwp/.conf/vhosts-ssl.json-15-    }
+/usr/local/cwp/.conf/vhosts-ssl.json-16-}
+--
+/usr/local/cwp/.conf/web_servers.conf-1-{
+/usr/local/cwp/.conf/web_servers.conf-2-    "nginx-php-fpm_ver-template": "default",
+/usr/local/cwp/.conf/web_servers.conf-3-    "apache-php-fpm_ver-template": "all_methods",
+/usr/local/cwp/.conf/web_servers.conf-4-    "php-fpm_template-name-default": "processes-10",
+/usr/local/cwp/.conf/web_servers.conf:5:    "apache_template-backend-fcgi": "socket",
+/usr/local/cwp/.conf/web_servers.conf-6-    "webserver_setup": "nginx-apache",
+/usr/local/cwp/.conf/web_servers.conf-7-    "apache-php-fpm_ver-default": "82",
+/usr/local/cwp/.conf/web_servers.conf-8-    "nginx-php-fpm_ver-default": "82",
+/usr/local/cwp/.conf/web_servers.conf:9:    "apache_template-type-default": "php-fpm",
+/usr/local/cwp/.conf/web_servers.conf-10-    "nginx": true,
+/usr/local/cwp/.conf/web_servers.conf-11-    "apache-additional": true,
+/usr/local/cwp/.conf/web_servers.conf-12-    "php-fpm": true,
+/usr/local/cwp/.conf/web_servers.conf:13:    "apache_template-name-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:14:    "nginx_template-type-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:15:    "nginx_template-name-default": "default"
+/usr/local/cwp/.conf/web_servers.conf-16-}
+
+=== CWP VHOST REBUILD REFERENCES ===
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-270-rm -f cwp-services.zip
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-271-wget static.cdn-cwp.com/files/cwp/el7/cwp-services.zip
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-272-unzip -o cwp-services.zip
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-273-rm -f cwp-services.zip
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-274-
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config:275:# Rebuild Vhosts configuration
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config:276:/scripts/cwp_api webservers rebuild_all
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-277-
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-278-# Restart server if defined
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-279-if [ "$restart" = "yes" ]; then
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-280-    echo "restarting server...."
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-281-    shutdown -r now
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-282-fi
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-283-
+Binary file /usr/local/cwpsrv/htdocs/resources/admin/include/ai_robot/db/ai_services matches
+--
+/usr/local/cwp/.conf/web_servers.conf-1-{
+/usr/local/cwp/.conf/web_servers.conf-2-    "nginx-php-fpm_ver-template": "default",
+/usr/local/cwp/.conf/web_servers.conf-3-    "apache-php-fpm_ver-template": "all_methods",
+/usr/local/cwp/.conf/web_servers.conf:4:    "php-fpm_template-name-default": "processes-10",
+/usr/local/cwp/.conf/web_servers.conf-5-    "apache_template-backend-fcgi": "socket",
+/usr/local/cwp/.conf/web_servers.conf-6-    "webserver_setup": "nginx-apache",
+/usr/local/cwp/.conf/web_servers.conf-7-    "apache-php-fpm_ver-default": "82",
+/usr/local/cwp/.conf/web_servers.conf-8-    "nginx-php-fpm_ver-default": "82",
+/usr/local/cwp/.conf/web_servers.conf:9:    "apache_template-type-default": "php-fpm",
+/usr/local/cwp/.conf/web_servers.conf-10-    "nginx": true,
+/usr/local/cwp/.conf/web_servers.conf-11-    "apache-additional": true,
+/usr/local/cwp/.conf/web_servers.conf-12-    "php-fpm": true,
+/usr/local/cwp/.conf/web_servers.conf:13:    "apache_template-name-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:14:    "nginx_template-type-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:15:    "nginx_template-name-default": "default"
+/usr/local/cwp/.conf/web_servers.conf-16-}
+
+=== NGINX TEMPLATE FILES ===
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/block_malicious_requests.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/block_malicious_requests.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default_cors.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default_cors.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/force-https-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/force-https-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/force-https.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/force-https.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/nodejs-ssl.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/nodejs-ssl.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/block_malicious_requests.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/block_malicious_requests.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default_cors.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default_cors.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/force-https-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/force-https-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/force-https.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/force-https.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/joomla_ssl.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/joomla_ssl.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/laravel_ssl.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/laravel_ssl.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/magento_ssl.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/magento_ssl.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/prestashop_ssl.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/prestashop_ssl.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/suspend.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/suspend.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_30-minutes-force-https-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_30-minutes-force-https-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_30-minutes-force-https.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_30-minutes-force-https.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_30-minutes-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_30-minutes-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_30-minutes.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_30-minutes.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_5-minutes-force-https-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_5-minutes-force-https-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_5-minutes-force-https.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_5-minutes-force-https.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_5-minutes-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_5-minutes-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_5-minutes.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_5-minutes.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_60-minutes-force-https-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_60-minutes-force-https-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_60-minutes-force-https.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_60-minutes-force-https.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_60-minutes-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_60-minutes-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_60-minutes.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/timeout_60-minutes.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/wildcard.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/wildcard.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/wordpress_ssl.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/wordpress_ssl.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/wp_ssl_multisite_subdirectory.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/wp_ssl_multisite_subdirectory.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/wp_ssl_multisite_subdomain.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/wp_ssl_multisite_subdomain.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/suspend.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/suspend.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-force-https-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-force-https-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-force-https.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-force-https.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_30-minutes.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-force-https-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-force-https-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-force-https.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-force-https.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_5-minutes.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-force-https-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-force-https-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-force-https.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-force-https.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-http2.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes-http2.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/timeout_60-minutes.tpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/wildcard.stpl
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/wildcard.tpl
+
+=== ACTIVE SKYHAWK VHOST FINGERPRINT ===
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:3:	server_name skyhawk.org  www.skyhawk.org;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:16:		error_page 405 = @backend;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:17:		error_page 500 = @custom;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:21:		proxy_pass http://[ip]:8181;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:25:	location @backend {
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:27:		proxy_pass http://[ip]:8181;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:31:	location @custom {
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:33:		proxy_pass http://[ip]:8181;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:38:		proxy_pass http://[ip]:8181;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:48:	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:63:	server_name webmail.skyhawk.org;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:70:		proxy_pass  http://[ip]:2095;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:80:	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:95:	server_name mail.skyhawk.org;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:102:		proxy_pass  http://[ip]:2095;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:112:	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:127:	server_name cpanel.skyhawk.org;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:134:		proxy_pass  https://[ip]:2083;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:139:		proxy_pass  https://[ip]:2031;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:144:		proxy_pass  https://[ip]:2031;
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf:154:	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:3:	server_name skyhawk.org  www.skyhawk.org;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:25:		error_page 405 = @backend;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:26:		error_page 500 = @custom;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:31:		proxy_pass http://[ip]:8181;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:35:	location @backend {
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:37:		proxy_pass http://[ip]:8181;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:41:	location @custom {
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:43:		proxy_pass http://[ip]:8181;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:48:		proxy_pass http://[ip]:8181;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:58:	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:73:	server_name webmail.skyhawk.org;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:89:		proxy_pass  http://[ip]:2095;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:99:	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:114:	server_name mail.skyhawk.org;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:130:		proxy_pass  http://[ip]:2095;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:140:	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:155:	server_name cpanel.skyhawk.org;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:171:		proxy_pass  https://[ip]:2083;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:176:		proxy_pass  https://[ip]:2031;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:181:		proxy_pass  https://[ip]:2031;
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf:191:	disable_symlinks if_not_owner from=/home/n790725/drupalbeta/web;
+
+=== DEFAULT TEMPLATE FINGERPRINT ===
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:3:	server_name %domain_idn% %alias_idn%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:16:		error_page 405 = @backend;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:17:		error_page 500 = @custom;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:21:		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:25:	location @backend {
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:27:		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:31:	location @custom {
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:33:		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:38:		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:48:	disable_symlinks if_not_owner from=%docroot%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:63:	server_name webmail.%domain_idn%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:70:		proxy_pass  http://[ip]:2095;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:80:	disable_symlinks if_not_owner from=%docroot%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:95:	server_name mail.%domain_idn%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:102:		proxy_pass  http://[ip]:2095;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:112:	disable_symlinks if_not_owner from=%docroot%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:127:	server_name cpanel.%domain_idn%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:134:		proxy_pass  https://[ip]:2083;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:139:		proxy_pass  https://[ip]:2031;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:144:		proxy_pass  https://[ip]:2031;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl:154:	disable_symlinks if_not_owner from=%docroot%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:3:	server_name %domain_idn% %alias_idn%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:25:		error_page 405 = @backend;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:26:		error_page 500 = @custom;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:31:		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:35:	location @backend {
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:37:		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:41:	location @custom {
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:43:		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:48:		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:58:	disable_symlinks if_not_owner from=%docroot%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:73:	server_name webmail.%domain_idn%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:89:		proxy_pass  http://[ip]:2095;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:99:	disable_symlinks if_not_owner from=%docroot%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:114:	server_name mail.%domain_idn%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:130:		proxy_pass  http://[ip]:2095;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:140:	disable_symlinks if_not_owner from=%docroot%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:155:	server_name cpanel.%domain_idn%;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:171:		proxy_pass  https://[ip]:2083;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:176:		proxy_pass  https://[ip]:2031;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:181:		proxy_pass  https://[ip]:2031;
+/usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl:191:	disable_symlinks if_not_owner from=%docroot%;
+
+=== END REPORT ===
+
+##### PRIOR REPORT: /home/n790725/skyhawk_root_reports/cwp-domain-storage-20261008T180625Z.txt
+SKYHAWK CWP DOMAIN STORAGE INSPECTION
+Report-ID: cwp-domain-storage-20261008T180625Z
+
+=== CWP API HELP ===
+Argument missing
+Argument missing
+=== TEMPLATE FIELD SOURCE CODE ===
+/usr/local/cwp/.conf/web_servers.conf:4:    "php-fpm_template-name-default": "processes-10",
+/usr/local/cwp/.conf/web_servers.conf:5:    "apache_template-backend-fcgi": "socket",
+/usr/local/cwp/.conf/web_servers.conf:9:    "apache_template-type-default": "php-fpm",
+/usr/local/cwp/.conf/web_servers.conf:13:    "apache_template-name-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:14:    "nginx_template-type-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:15:    "nginx_template-name-default": "default"
+
+=== DOMAIN DATABASE / MODEL REFERENCES ===
+Binary file /usr/local/cwp/.conf/feature.db matches
+/usr/local/cwp/softaculous/themes/default/cache/cache.js:1:var allcatwise = {"php":{"blogs":{"s_26":{"name":"WordPress","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_11":{"name":"Pubvana","desc":"Kick-ass Blog application built using the CodeIgniter PHP Framework","type":"php"},"s_4":{"name":"SitePad","desc":"With SitePad you can build professional websites using an easy to use editor, 400+ themes, 500+ ready made sections, etc.","type":"php"},"s_3":{"name":"Serendipity","desc":"PHP-powered, flexible Blogging\/CMS application","type":"php"},"s_34":{"name":"Dotclear","desc":"Dotclear is an open-source web publishing software","type":"php"},"s_35":{"name":"Textpattern","desc":"Textpattern is a flexible, elegant and easy-to-use content management system.","type":"php"},"s_14":{"name":"b2evolution","desc":"b2evolution is a powerful blog tool","type":"php"},"s_556":{"name":"HTMLy","desc":"Databaseless Blogging Platform, Flat-File Blog and Flat-File CMS.","type":"php"},"s_411":{"name":"Nibbleblog","desc":"Nibbleblog Easy, fast and free CMS Blog","type":"php"},"s_33":{"name":"Nucleus","desc":"Nucleus CMS is a flexible and easy to install content management system, aka blog software.","type":"php"},"s_359":{"name":"Chyrp","desc":"Chyrp is a blogging engine designed to be very lightweight while retaining functionality.","type":"php"},"s_509":{"name":"FlatPress","desc":"FlatPress is a blogging engine that saves your posts as simple text files. Forget about SQL! You just need some PHP.","type":"php"},"s_306":{"name":"PivotX","desc":"PivotX is free software to help you maintain dynamic sites such as weblogs, online journals and other frequently updated websites in general.","type":"php"},"s_648":{"parent":"26","name":"WordPress 5.0","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_646":{"parent":"26","name":"WordPress 4.9","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_635":{"name":"Leafpub","desc":"Leafpub is an open source blogging platform with inline editing, handlebar templates, and a beautiful user interface.","type":"php"},"s_660":{"parent":"26","name":"WordPress 5.3","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_650":{"parent":"26","name":"WordPress 5.1","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_656":{"parent":"26","name":"WordPress 5.2","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_666":{"parent":"26","name":"WordPress 5.4","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_672":{"parent":"26","name":"WordPress 5.5","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_678":{"parent":"26","name":"WordPress 5.6","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_746":{"parent":"26","name":"WordPress 6.8","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_694":{"parent":"26","name":"WordPress 5.8","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_702":{"parent":"26","name":"WordPress 5.9","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_684":{"parent":"26","name":"WordPress 5.7","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_704":{"parent":"26","name":"WordPress 6.0","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_711":{"parent":"26","name":"WordPress 6.1","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_731":{"parent":"26","name":"WordPress 6.5","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_722":{"parent":"26","name":"WordPress 6.3","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_718":{"parent":"26","name":"WordPress 6.2","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_734":{"parent":"26","name":"WordPress 6.6","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_726":{"parent":"26","name":"WordPress 6.4","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_739":{"parent":"26","name":"WordPress 6.7","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_748":{"parent":"26","name":"WordPress 6.9","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_750":{"parent":"26","name":"WordPress 7.0","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_324":{"name":"Movable Type","desc":"Powerful enough for building websites, blogs, and communities on a single platform.","type":"perl"}},"cms":{"s_18":{"parent":"413","name":"Joomla 2.5","desc":"Joomla is an award-winning CMS, which enables you to build Web sites and powerful online applications","type":"php"},"s_413":{"name":"Joomla","desc":"Joomla is an award-winning CMS, which enables you to build Web sites and powerful online applications.","type":"php"},"s_30":{"parent":"543","name":"Drupal Core 7","desc":"Drupal is an open source content management platform","type":"php"},"s_445":{"name":"Open Real Estate","desc":"Open Real Estate s a free software for building websites of real estate agencies and realtors.","type":"php"},"s_593":{"name":"Concrete CMS","desc":"Concrete CMS makes running a website easy.","type":"php"},"s_109":{"name":"MODX","desc":"MODX helps you take control of your online content.","type":"php"},"s_145":{"name":"e107","desc":"e107 is a content management system written in PHP and MySQL","type":"php"},"s_543":{"name":"Drupal Core","desc":"Drupal is an open source content management platform","type":"php"},"s_5":{"name":"Xoops","desc":"Xoops is an easy to use dynamic web content management system written in PHP","type":"php"},"s_247":{"name":"CMS Made Simple","desc":"CMS Made Simple provides a fast and easy way to create a professional web site","type":"php"},"s_308":{"name":"PHP-Fusion","desc":"PHP-Fusion is a light-weight open-source content management system (CMS) written in PHP 5.","type":"php"},"s_24":{"name":"Geeklog","desc":"Geeklog is a PHP\/MySQL based application for managing dynamic web content.","type":"php"},"s_6":{"name":"Composr","desc":"ocPortal is the website Content Management System (a CMS) for building and maintaining a dynamic website.","type":"php"},"s_1":{"name":"Zikula","desc":"Zikula is a Web Application Toolkit, which allows you to run impressive websites and build powerful online applications.","type":"php"},"s_21":{"name":"WebsiteBaker","desc":"Website Baker is a PHP-based Content Management System","type":"php"},"s_12":{"parent":"543","name":"Drupal Core 6","desc":"Drupal is an open source content management platform","type":"php"},"s_476":{"name":"ProcessWire","desc":"ProcessWire is a free PHP5 content management system and framework (open source CMS\/CMF) built to save you time and work the way you do.","type":"php"},"s_287":{"name":"SilverStripe","desc":"SilverStripe CMS is an open source web content management system used by governments, businesses, and non-profit organisations around the world.","type":"php"},"s_289":{"name":"PyroCMS","desc":"PyroCMS is an open source, object oriented content management system built using PHP5 and CodeIgniter.","type":"php"},"s_408":{"name":"Subrion","desc":"Subrion CMS is a stand-alone PHP content management system that is very easy to use.","type":"php"},"s_44":{"parent":"720","name":"Tiki Wiki CMS Groupware 18","desc":"Tiki is your Groupware\/CMS (Content Management System) solution","type":"php"},"s_382":{"parent":"603","name":"TYPO3 6","desc":"TYPO3 is a free Open Source content management system for enterprise purposes","type":"php"},"s_737":{"name":"Drupal CMS","desc":"Drupal CMS puts the power of Drupal into the hands of marketers, designers and content creators.","type":"php"},"s_92":{"parent":"603","name":"TYPO3 45","desc":"TYPO3 is a free Open Source content management system for enterprise purposes","type":"php"},"s_267":{"name":"Contao","desc":"Contao is an open source content management system (CMS) for people who want a professional internet presence that is easy to maintain.","type":"php"},"s_557":{"name":"GRAV","desc":"Grav is a modern open source flat-file CMS.","type":"php"},"s_474":{"name":"Sitemagic CMS","desc":"Sitemagic CMS is a lightweight yet very capable Content Management System.","type":"php"},"s_390":{"name":"ImpressPages","desc":"ImpressPages is user friendly software. Its tools enable user to manage the content of website in a convenient way.","type":"php"},"s_386":{"name":"Quick.CMS","desc":"Easy to customize and use content management system. CMS gives possiblity to add unique design to every page.","type":"php"},"s_293":{"name":"Redaxscript","desc":"Redaxscript is a free, PHP and MySQL driven content management system for small business and private websites. Its extremely lightweight, simple and customizable.","type":"php"},"s_563":{"name":"PopojiCMS","desc":"PopojiCMS is one of the content management system created with a simple concept allows each individual to manage the website.","type":"php"},"s_605":{"name":"OctoberCMS","desc":"OctoberCMS is a free, open-source, self-hosted CMS platform based on the Laravel PHP Framework.","type":"php"},"s_518":{"name":"Microweber","desc":"Microweber is an open source drag and drop CMS.","type":"php"},"s_381":{"name":"ImpressCMS","desc":"ImpressCMS is a community developed Content Management System for easily building and maintaining a dynamic web site.","type":"php"},"s_600":{"name":"WonderCMS","desc":"WonderCMS is a completely free open source Content Management System, or in other words, a free website builder.","type":"php"},"s_430":{"name":"Monstra","desc":"Monstra is a fast and small content management system written in PHP!","type":"php"},"s_603":{"name":"TYPO3","desc":"TYPO3 is a free Open Source content management system for enterprise purposes","type":"php"},"s_175":{"name":"phpwcms","desc":"phpwcms is a robust and simple but yet powerful web based content management system","type":"php"},"s_564":{"name":"Open Business Card","desc":"Open Business Card CMS is an easy free script (engine, CMS) that enables to build a buiness card website.","type":"php"},"s_549":{"name":"Bludit","desc":"Bludit is a fast, simple, extensible and Flat file CMS. Create your own Blog in seconds","type":"php"},"s_572":{"name":"Kopage","desc":"Kopage is a Website Builder for Webhosts and Webhosting Industry.","type":"php"},"s_480":{"name":"SiteCake","desc":"Simple, drag and drop CMS for fast editing","type":"php"},"s_496":{"name":"PluXml","desc":"PluXml Blog or CMS to Xml","type":"php"},"s_255":{"name":"liveSite","desc":"liveSite is collaobrative community for free & open source software projects in Health IT.","type":"php"},"s_653":{"name":"ExpressionEngine","desc":"ExpressionEngine is a flexible, feature-rich, free open-source content management platform.","type":"php"},"s_420":{"name":"Pimcore","desc":"Pimcore is an open source CMS that will rock your world.","type":"php"},"s_643":{"name":"WBCE CMS","desc":"WBCE is a very user friendly content management system (CMS).","type":"php"},"s_438":{"name":"Bolt","desc":"Bolt Sophisticated, lightweight and simple CMS.","type":"php"},"s_367":{"name":"Mahara","desc":"Mahara is an open source e-portfolio system with a flexible display framework.","type":"php"},"s_481":{"name":"Jamroom","desc":"Jamroom is a community content management system. It enables you to bring your entire community online to participate in your websites content creation.","type":"php"},"s_673":{"name":"Backdrop CMS","desc":"The free and Open Source CMS that helps you build websites for businesses and non-profits.","type":"php"},"s_690":{"name":"WinterCMS","desc":"WinterCMS is a free, open-source content management system based on the Laravel PHP framework","type":"php"},"s_520":{"name":"Kirby","desc":"Kirby is a file-based CMS.","type":"php"},"s_354":{"name":"Fork","desc":"Fork is an open source CMS that will rock your world.","type":"php"},"s_582":{"name":"Pagekit","desc":"Pagekit is a modular and lightweight CMS built with modern technologies","type":"php"},"s_659":{"name":"ClassicPress","desc":"ClassicPress is a community-led open source content management system and a fork of WordPress that preserves the classic TinyMCE editor as the default option.","type":"php"},"s_433":{"parent":"720","name":"Tiki Wiki CMS Groupware 24","desc":"TikiWiki (Tiki) is your Groupware\/CMS (Content Management System) solution","type":"php"},"s_534":{"name":"Typesetter","desc":"Typesetter is an easy to use,lightweight and fully functional content management system (cms).","type":"php"},"s_631":{"name":"CSZ CMS","desc":"CSZ CMS is an open source web application that allows to manage all content and settings on the websites.","type":"php"},"s_521":{"name":"Fiyo CMS","desc":"Fiyo CMS is one of hundreds Content Management System available on the internet.","type":"php"},"s_655":{"name":"NukeViet CMS","desc":"NukeViet CMS is multi Content Management System","type":"php"},"s_638":{"name":"Directus","desc":"A headless CMS that manages your content, not your workflow.","type":"php"},"s_399":{"name":"razorCMS","desc":"razorCMS is File Based Content Management System (FBCMS)","type":"php"},"s_561":{"name":"Koken","desc":"Content management and web site publishing for photographers","type":"php"},"s_637":{"name":"Atlantis CMS","desc":"Atlantis CMS A free CMS built for agencies, loved by marketers and developers","type":"php"},"s_544":{"parent":"603","name":"TYPO3 13","desc":"TYPO3 is a free Open Source content management system for enterprise purposes","type":"php"},"s_391":{"name":"Pluck","desc":"Pluck is your small and simple content management system, written in php. With pluck, you can easily manage your own website without knowledge of programming languages.","type":"php"},"s_641":{"name":"Plikli CMS","desc":"Plikli CMS is the Phoenix that rose from the ashes of Pligg and Kliqqi, hence the name PliKli!","type":"php"},"s_443":{"name":"Croogo","desc":"Croogo is a free, open source, content management system for PHP, released under The MIT License.","type":"php"},"s_523":{"name":"Cotonti","desc":"Cotonti is a powerful web management framework","type":"php"},"s_633":{"name":"LEPTON","desc":"LEPTON is an easy-to-use but full customizable Content Management System (CMS).","type":"php"},"s_519":{"name":"Zenario","desc":"Zenario CMS is a browser-based, multilingual content management system.","type":"php"},"s_502":{"name":"CMSimple","desc":"CMSimple is a php based Content Managemant System (CMS), which requires no database.","type":"php"},"s_738":{"name":"InstantCMS","desc":"InstantCMS provides the webmaster with a ready-made set of tools to manage your site.","type":"php"},"s_365":{"name":"Hotaru CMS","desc":"Hotaru CMS is an open source, PHP platform for building your own websites.","type":"php"},"s_472":{"name":"Anchor","desc":"Anchor is a super-simple, lightweight blog system, made to let you just write.","type":"php"},"s_174":{"parent":"593","name":"Concrete CMS 5.7","desc":"Concrete5 makes running a website easy.","type":"php"},"s_569":{"parent":"720","name":"Tiki Wiki CMS Groupware 15","desc":"TikiWiki (Tiki) is your Groupware\/CMS (Content Management System) solution","type":"php"},"s_597":{"name":"SCHLIX CMS","desc":"SCHLIX CMS is a lightweight, extensible content management system for publishing websites and blogs.","type":"php"},"s_617":{"name":"GeniXCMS","desc":"GeniXCMS is a PHP Based Content Management System and Framework (CMSF).","type":"php"},"s_720":{"name":"Tiki Wiki CMS Groupware","desc":"TikiWiki (Tiki) is your Groupware\/CMS (Content Management System) solution","type":"php"},"s_735":{"name":"ZwiiCMS","desc":"ZwiiCMS is a database-less (flat-file) CMS that allows you to easily create and manage a web site without any programming knowledge.","type":"php"},"s_498":{"parent":"593","name":"Concrete CMS 5.6","desc":"Concrete5 makes running a website easy.","type":"php"},"s_530":{"name":"appRain","desc":"appRain is one of the first officially released Opensource Content Management Framework.","type":"php"},"s_531":{"name":"ClipperCMS","desc":"ClipperCMS is a flexible and powerful open source content management system.","type":"php"},"s_721":{"parent":"413","name":"Joomla 4","desc":"Joomla is an award-winning CMS, which enables you to build Web sites and powerful online applications.","type":"php"},"s_336":{"name":"Saurus","desc":"Saurus is Free, Open Source Software for Building and Managing Websites.","type":"php"},"s_554":{"name":"Precurio","desc":"An Intranet solution that is affordable, easy to deploy, and just works.","type":"php"},"s_567":{"name":"Wolf CMS","desc":"Wolf CMS It simplifies content management by offering an elegant user interface","type":"php"},"s_664":{"name":"SofaWiki","desc":"SofaWiki is a filebased CMS built on PHP.","type":"php"},"s_662":{"parent":"543","name":"Drupal Core 8","desc":"Drupal is an open source content management platform","type":"php"},"s_707":{"parent":"543","name":"Drupal Core 9","desc":"Drupal is an open source content management platform","type":"php"},"s_693":{"parent":"593","name":"Concrete CMS 8.5","desc":"Concrete CMS makes running a website easy.","type":"php"},"s_676":{"parent":"720","name":"Tiki Wiki CMS Groupware 30","desc":"TikiWiki (Tiki) is your Groupware\/CMS (Content Management System) solution","type":"php"},"s_689":{"parent":"413","name":"Joomla 3.10","desc":"Joomla is an award-winning CMS, which enables you to build Web sites and powerful online applications.","type":"php"},"s_613":{"parent":"1","name":"Zikula 1.5","desc":"Zikula is a Web Application Toolkit, which allows you to run impressive websites and build powerful online applications.","type":"php"},"s_717":{"parent":"543","name":"Drupal Core 10","desc":"Drupal is an open source content management platform","type":"php"},"s_744":{"parent":"413","name":"Joomla 5.4","desc":"Joomla is an award-winning CMS, which enables you to build Web sites and powerful online applications.","type":"php"}},"forums":{"s_2":{"name":"phpBB","desc":"The most widely used Open Source forum solution","type":"php"},"s_79":{"name":"SMF","desc":"SMF is a free, professional grade software package that allows you to set up your own online community","type":"php"},"s_36":{"name":"MyBB","desc":"Its the easy to use, multilingual, powerful, feature packed, free forum software","type":"php"},"s_8":{"name":"AEF","desc":"AEF - Advanced Electron Forum is a free bulletin board software written in PHP and MySQL with loads of features","type":"php"},"s_214":{"name":"Vanilla","desc":"Vanilla Forums are open-source, standards-compliant, customizable discussion forums.","type":"php"},"s_38":{"name":"PunBB","desc":"PunBB is a fast and lightweight PHP-powered discussion board.","type":"php"},"s_177":{"name":"bbPress","desc":"bbPress is forum software with a twist from the creators of WordPress.","type":"php"},"s_120":{"name":"FluxBB","desc":"FluxBB is a free open source forum application designed to be fast, light and user friendly","type":"php"},"s_9":{"name":"XMB","desc":"XMB is a lightweight PHP forum software with all the features you need to support a growing community","type":"php"},"s_37":{"name":"Phorum","desc":"The Original PHP and MySQL Forum Software","type":"php"},"s_686":{"name":"Flarum","desc":"Flarum is a delightfully simple discussion platform for your website","type":"php"},"s_560":{"name":"ElkArte","desc":"ElkArte is a modern, powerful community building forum software.","type":"php"},"s_273":{"name":"FUDforum","desc":"FUDforum (Fast Uncompromising Discussion Forum) is a free and open source web discussion forum released under the GPL (version 2) license that is written in PHP and can be used on virtually any operating system.","type":"php"},"s_370":{"name":"miniBB","desc":"miniBB is a standalone, open source program for building your own Internet forum.","type":"php"},"s_610":{"name":"Carbon Forum","desc":"Carbon Forum is a free, open source, content management system for PHP.","type":"php"},"s_524":{"name":"my little forum","desc":"my little forum is a simple PHP and MySQL based internet forum that displays the messages in classical threaded view (tree structure).","type":"php"},"s_630":{"name":"TidyBB","desc":"TidyBB is a small yet feature rich community software which enables you to quickly and easily start your own community.","type":"php"},"s_685":{"name":"Flatboard","desc":"Flatboard is a Simple, Lightweight, Modern and fast Flat-File Forum, using Json and Markdown or BBcode.","type":"php"},"s_590":{"name":"TangoBB","desc":"TangoBB is a project for a new and simple bulletin board.","type":"php"},"s_513":{"name":"Beehive","desc":"Beehive is an online forum\/message board system with several powerful features","type":"php"},"s_576":{"name":"Unclassified NewsBoard","desc":"The Unclassified NewsBoard (short UNB) is an open-source, PHP-based internet bulletin board system","type":"php"},"s_698":{"parent":"79","name":"SMF 2.0","desc":"SMF is a free, professional grade software package that allows you to set up your own online community","type":"php"}},"galleries":{"s_13":{"name":"Gallery","desc":"Gallery is an open source web based photo album organizer","type":"php"},"s_39":{"name":"Piwigo","desc":"Piwigo is a photo gallery software for the web","type":"php"},"s_27":{"name":"Coppermine","desc":"Coppermine is a multi-purpose fully-featured and integrated web picture gallery script written in PHP.","type":"php"},"s_41":{"name":"Zenphoto","desc":"a simpler web photo gallery","type":"php"},"s_28":{"name":"TinyWebGallery","desc":"TinyWebGallery is a free php based photo album \/ gallery","type":"php"},"s_541":{"name":"Lychee","desc":"Lychee is a free photo-management tool, which runs on your server or web-space.","type":"php"},"s_573":{"name":"Chevereto","desc":"Chevereto is a powerful and fast image upload script that allows you to create your own full featured image hosting website in just minutes","type":"php"},"s_133":{"name":"4images","desc":"4images is as a web based PHP and MySQL for displaying images on the Internet","type":"php"},"s_451":{"name":"iGalerie","desc":"iGalerie represents a paradigm shift in how the personal academic and research web sites are created and maintained.","type":"php"},"s_383":{"parent":"13","name":"Gallery 2","desc":"Gallery is an open source web based photo album organizer","type":"php"}},"wikis":{"s_25":{"parent":"716","name":"MediaWiki 1.27","desc":"MediaWiki is a free software wiki package written in PHP, originally for use on Wikipedia","type":"php"},"s_20":{"name":"DokuWiki","desc":"DokuWiki is a standards compliant, simple to use Wiki, mainly aimed at creating documentation of any kind.","type":"php"},"s_421":{"parent":"716","name":"MediaWiki 1.43","desc":"MediaWiki is a free software wiki package written in PHP, originally for use on Wikipedia.","type":"php"},"s_43":{"name":"PmWiki","desc":"PmWiki is a wiki-based system for collaborative creation and maintenance of websites","type":"php"},"s_176":{"name":"WikkaWiki","desc":"Wikkawiki is a flexible, standards-compliant and lightweight wiki engine.","type":"php"},"s_716":{"name":"MediaWiki","desc":"MediaWiki is a free software wiki package written in PHP, originally for use on Wikipedia","type":"php"},"s_592":{"parent":"716","name":"MediaWiki 1.31","desc":"MediaWiki is a free software wiki package written in PHP, originally for use on Wikipedia","type":"php"},"s_682":{"parent":"716","name":"MediaWiki 1.35","desc":"MediaWiki is a free software wiki package written in PHP, originally for use on Wikipedia","type":"php"}},"socialnetworking":{"s_462":{"name":"pH7Builder","desc":"pH7CMS The First and Best Social Dating Open Source Site.","type":"php"},"s_121":{"name":"Dolphin","desc":"The worlds most advanced community software","type":"php"},"s_258":{"name":"Oxwall","desc":"Oxwall is unbelievably flexible and easy to use PHP\/MySQL community software platform.","type":"php"},"s_182":{"name":"Jcow","desc":"Jcow is a flexible Social Networking software written in PHP.","type":"php"},"s_507":{"name":"Open Source Social Network","desc":"Open Source Social Network allows you to make a social networking website, helps your members build social relationships with people who share similar professional or personal interests.","type":"php"},"s_571":{"parent":"714","name":"Elgg 2","desc":"Elgg empowers individuals, groups and institutions to create their own fully-featured social environment","type":"php"},"s_570":{"name":"HumHub","desc":"HumHub is a free social network software and framework built to give you the tools to make communication and collaboration easy and successful.","type":"php"},"s_264":{"name":"Etano","desc":"Etano can be used to start up a dating site, a social networking site, a classifieds site.","type":"php"},"s_607":{"name":"UNA","desc":"UNA is a Community Management System for building and running modern social websites.","type":"php"},"s_511":{"name":"Family Connections","desc":"Share pictures and videos. Have discussions. Start a family tree.","type":"php"},"s_642":{"name":"Hubzilla","desc":"Hubzilla Connecting free and independent communities across the web","type":"php"},"s_579":{"name":"GNU social","desc":"GNU social is a continuation of the StatusNet project. It is social communication software for both public and private communications.","type":"php"},"s_691":{"parent":"714","name":"Elgg 3","desc":"Elgg empowers individuals, groups and institutions to create their own fully-featured social environment","type":"php"},"s_138":{"parent":"714","name":"Elgg 1","desc":"Elgg empowers individuals, groups and institutions to create their own fully-featured social environment","type":"php"},"s_714":{"name":"Elgg","desc":"Elgg empowers individuals, groups and institutions to create their own fully-featured social environment","type":"php"},"s_649":{"parent":"714","name":"Elgg 7","desc":"Elgg empowers individuals, groups and institutions to create their own fully-featured social environment","type":"php"}},"admanager":{"s_719":{"name":"OsClass Classifieds","desc":"It's a free and open script to create your advertisement or listings site.","type":"php"}},"calendars":{"s_19":{"name":"WebCalendar","desc":"WebCalendar is a PHP-based calendar application","type":"php"},"s_49":{"name":"Booked","desc":"Booked (formerly phpScheduleIt) is a simple but powerful reserve-anything scheduler.","type":"php"},"s_550":{"name":"LuxCal","desc":"LuxCal is an innovative web based event calendar for home use and small businesses.","type":"php"},"s_742":{"name":"Event Schedule","desc":"Event Schedule is an open-source platform to create calendars, sell tickets and streamline event check-ins with QR codes.","type":"php"},"s_583":{"name":"SuperCali","desc":"SuperCali PHP Event Calendar","type":"php"}},"games":{"s_614":{"name":"Nuked Klan","desc":"Nuked-Klan is CMS leader used to create a gamer website as simple as possible !","type":"php"}},"mail":{"s_118":{"name":"Roundcube","desc":"Roundcube - Free webmail for the masses.","type":"php"},"s_55":{"name":"phpList","desc":"phplist is an open-source newsletter manager","type":"php"},"s_376":{"name":"WebMail Lite","desc":"WebMail Lite is Fast and easy-to-use webmail front-end for your existing IMAP mail server.","type":"php"},"s_58":{"name":"SquirrelMail","desc":"SquirrelMail is a standards-based webmail package written in PHP","type":"php"},"s_497":{"name":"RainLoop Webmail","desc":"RainLoop Webmail Simple, modern & fast web-based email client.","type":"php"},"s_249":{"name":"OpenNewsletter","desc":"OpenNewsletter is a web-based newsletter system","type":"php"},"s_539":{"name":"Postfix Admin","desc":"Postfix Admin is a web based interface used to manage mailboxes, virtual domains and aliases.","type":"php"},"s_440":{"name":"Dada Mail","desc":"Dada Mail is a Contemporary Mailing List Manager.","type":"perl"}},"polls":{"s_60":{"name":"LimeSurvey","desc":"The open source survey application","type":"php"},"s_171":{"name":"Matomo","desc":"Piwik is a open source web analytics software program","type":"php"},"s_64":{"name":"LittlePoll","desc":"The Amazing Little Poll is a very simple php polling script","type":"php"},"s_65":{"name":"Simple PHP Poll","desc":"Small and lightweight","type":"php"},"s_373":{"name":"Open Web Analytics","desc":"Open Web Analytics is a software that you can use to track and analyze how people use your web sites and applications.","type":"php"},"s_116":{"name":"Advanced Poll","desc":"Advanced Poll is a polling system with powerful administration tool","type":"php"},"s_63":{"name":"EasyPoll","desc":"Easy Poll is a PHP script to create your own poll","type":"php"},"s_393":{"name":"Logaholic","desc":"Logaholic is is designed to give you the easiest, quickest, most intuitive view of any set of information.","type":"php"},"s_62":{"name":"CJ Dynamic Poll","desc":"It is a poll that changes dynamically","type":"php"},"s_444":{"name":"Little Software Stats","desc":"Little Software Stats is a web application that allows users to monitor their software.","type":"php"},"s_639":{"name":"Framadate","desc":"Framadate is an online service for planning an appointment or making a decision quickly and easily.","type":"php"},"s_701":{"parent":"60","name":"LimeSurvey 3","desc":"The open source survey application","type":"php"},"s_712":{"parent":"60","name":"LimeSurvey 6","desc":"The open source survey application","type":"php"}},"projectman":{"s_188":{"name":"Feng Office","desc":"Feng Office is a Collaboration Platform that enables you to manage your projects and business services","type":"php"},"s_565":{"name":"Rukovoditel","desc":"Free web-based open-source project management tool suitable for a small team","type":"php"},"s_428":{"name":"qdPM","desc":"qdPM is a free web-based project management tool suitable for a small team working on multiple projects.","type":"php"},"s_303":{"name":"Collabtive","desc":"Collabtive is web-based project management software.","type":"php"},"s_29":{"name":"dotProject","desc":"dotProject is a volunteer supported Project Management application","type":"php"},"s_115":{"name":"Mantis Bug Tracker","desc":"MantisBT is a free popular web-based bugtracking system","type":"php"},"s_595":{"name":"Snipe-IT","desc":"Snipe-IT is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.","type":"php"},"s_54":{"name":"ProjectPier","desc":"ProjectPier is a Free, Open-Source, self-hosted PHP application for managing tasks, projects and teams through an intuitive web interface","type":"php"},"s_581":{"name":"Kanboard","desc":"Kanboard is a project management software that uses the Kanban methodology","type":"php"},"s_231":{"name":"The Bug Genie","desc":"The Bug Genie is a bug tracking tool","type":"php"},"s_52":{"name":"PHProjekt","desc":"PHProjekt is a modular application for the coordination of group activities and to share informations and document via the web","type":"php"},"s_234":{"name":"TaskFreak","desc":"TaskFreak! Original is a simple web based task manager","type":"php"},"s_578":{"name":"SOPlanning","desc":"SOPlanning is a open source and free online planning, designed for easily create\/assign projects and tasks from any browser.","type":"php"},"s_629":{"name":"ProjeQtOr","desc":"ProjeQtOr Quality Based Open Source Project Organizer","type":"php"},"s_559":{"name":"ZenTao","desc":"ZenTaoPMS is an open source project management system with product management, project management, bug management, testcase management, doc management, todo management and many other features in one application.","type":"php"},"s_449":{"name":"Admidio","desc":"Admidio is a free online membership management, optimized for clubs, groups and organizations.","type":"php"},"s_51":{"name":"phpCollab","desc":"phpCollab is an open source internet-enabled system for use in projects that require collaboration over the internet.","type":"php"},"s_551":{"name":"WebCollab","desc":"WebCollab is a collaborative web-based system for projects and project management.","type":"php"},"s_284":{"name":"Traq","desc":"Traq is a PHP and MySQL powered Project Tracker, you can easily track Milestones, Versions, Bugs, Feature Requests and see how far your project has come.","type":"php"},"s_394":{"name":"Eventum","desc":"Eventum is a user-friendly and flexible issue tracking system.","type":"php"},"s_555":{"name":"Bugs","desc":"Simple Issue Tracking for Teams","type":"php"},"s_535":{"name":"Manage Your Team","desc":"MyT  (Manage Your Team) is an extremely powerful project management tool","type":"php"},"s_548":{"name":"TestLink","desc":"TestLink is a web based test management and test execution system.","type":"php"},"s_533":{"name":"Burden","desc":"Burden is a full featured task management app written in PHP. The script provides an easy way to add, edit or delete tasks.","type":"php"}},"ecommerce":{"s_72":{"parent":"591","name":"PrestaShop 1.6","desc":"PrestaShop is professional e-Commerce shopping cart software","type":"php"},"s_389":{"name":"AbanteCart","desc":"AbanteCart is a free PHP based eCommerce solution for merchants to provide ability creating online business and sell products online quick and efficient.","type":"php"},"s_70":{"parent":"703","name":"OpenCart 1.5","desc":"The Super Cool Ecommerce Solution","type":"php"},"s_144":{"name":"WHMCS","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_67":{"parent":"665","name":"Magento 1.9","desc":"Ecommerce platform for growth","type":"php"},"s_499":{"parent":"703","name":"OpenCart 3","desc":"The Super Cool Ecommerce Solution","type":"php"},"s_658":{"name":"ClicShopping AI","desc":"ClicShopping AI is a free Open Source e-commerce store online B2B\/B2C application in PHP\/MYSQL, built with some practical experience in e-commerce since 2001.","type":"php"},"s_661":{"name":"CE Phoenix","desc":"CE Phoenix is a powerful ecommerce shop ready to use out of the box, putting you online and in full control of your business right from the start.","type":"php"},"s_69":{"name":"osCommerce","desc":"osCommerce is an online shop e-commerce solution","type":"php"},"s_66":{"name":"Zen Cart","desc":"Putting the dream of online business ownership within reach of anyone!","type":"php"},"s_545":{"parent":"665","name":"Magento 2.3","desc":"Ecommerce platform for growth","type":"php"},"s_591":{"name":"PrestaShop","desc":"PrestaShop is professional e-Commerce shopping cart software","type":"php"},"s_469":{"name":"Loaded Commerce","desc":"Loaded 7 is a responsive ecommerce web application.","type":"php"},"s_468":{"name":"LiteCart","desc":"LiteCart is a new innovative free shopping cart platform developed in PHP.","type":"php"},"s_491":{"name":"Invoice Ninja","desc":"Invoice Ninja THE SIMPLE & FREE WAY TO INVOICE CLIENTS","type":"php"},"s_601":{"name":"thirty bees","desc":"thirty bees is a state of the art e-commerce platform that empowers users to easily start and maintain an e-commerce.","type":"php"},"s_450":{"name":"Open Source Point of Sale","desc":"Open Source Point of Sale is a point of sale system built on top of a CodeIgniter base.","type":"php"},"s_122":{"name":"CubeCart","desc":"CubeCart is a fully featured ecommerce shopping cart solution used by over a million store owners around the world","type":"php"},"s_319":{"name":"Quick.Cart","desc":"Simple and functional shopping cart for you and your customers.","type":"php"},"s_463":{"name":"Blesta","desc":"Blesta Automatically Invoice &amp; Manage Clients With Ease.","type":"php"},"s_525":{"name":"InvoicePlane","desc":"InvoicePlane is a self-hosted open source application for managing your quotes, invoices, clients and payments.","type":"php"},"s_703":{"name":"OpenCart","desc":"The Super Cool Ecommerce Solution","type":"php"},"s_488":{"name":"Shopware","desc":"Shopware is a highly flexible, powerful and customizable software solution that allows you to quickly and easily create an online shop, regardless of your store requirements.","type":"php"},"s_532":{"name":"Arastta","desc":"Arastta is a Free and Open Source project with contributors from all over the world.","type":"php"},"s_344":{"name":"AlegroCart","desc":"Alegro Cart is a free open source e-commerce shopping cart solution based on MVC Framework.","type":"php"},"s_490":{"name":"SeoToaster","desc":"SeoToaster E-commerce is the most advanced SEO CMS & Ecommerce web site builder.","type":"php"},"s_475":{"name":"Open eShop","desc":"Open eShop allows you to start selling any digital good, like MP3, eBooks, Movies, Software.. or any Service you offer.","type":"php"},"s_299":{"name":"Avactis","desc":"Avactis offers an extremely convenient set of tools to quickly launch an online business.","type":"php"},"s_489":{"name":"Thelia 2","desc":"Thelia E-commerce solution based on Symfony 2.","type":"php"},"s_334":{"name":"Zeuscart","desc":"Zeuscart is an incredibly stable & richly-interfaced, open source shopping cart.","type":"php"},"s_654":{"name":"Bagisto","desc":"An Opensource eCommerce ecosystem for all to build and scale your business.","type":"php"},"s_478":{"name":"ClientExec","desc":"ClientExec offers online help desk software intended to enhance the ability of small and mid-sized hosting businesses to manage help and support issues.","type":"php"},"s_417":{"parent":"591","name":"PrestaShop 1.4","desc":"PrestaShop is professional e-Commerce shopping cart software.","type":"php"},"s_566":{"name":"Logic Invoice","desc":"Logic Invoice is an accounting & invoicing solution, which you can use to build websites and online applications.","type":"php"},"s_677":{"parent":"491","name":"Invoice Ninja 4","desc":"Invoice Ninja THE SIMPLE & FREE WAY TO INVOICE CLIENTS","type":"php"},"s_665":{"name":"Magento","desc":"Ecommerce platform for growth","type":"php"},"s_645":{"name":"WhatACart","desc":"WhatACart the most customizable eCommerce platform for building your online business.","type":"php"},"s_465":{"parent":"665","name":"Magento 1.7","desc":"Ecommerce platform for growth","type":"php"},"s_687":{"name":"QloApps","desc":"QloApps is Free hotel reservation system and booking engine","type":"php"},"s_486":{"parent":"665","name":"Magento 2.2","desc":"Ecommerce platform for growth","type":"php"},"s_529":{"name":"PEEL SHOPPING","desc":"PEEL SHOPPING is a free open source e-commerce CMS in PHP \/ MySQL \/ HTML 5.","type":"php"},"s_461":{"name":"Maian Cart","desc":"Maian Cart a FREE php e-commerce system for personal or business use.","type":"php"},"s_710":{"parent":"591","name":"PrestaShop 1.7","desc":"PrestaShop is professional e-Commerce shopping cart software.","type":"php"},"s_611":{"parent":"703","name":"OpenCart 2","desc":"The Super Cool Ecommerce Solution","type":"php"},"s_743":{"parent":"591","name":"PrestaShop 8","desc":"PrestaShop is professional e-Commerce shopping cart software","type":"php"},"s_680":{"parent":"144","name":"WHMCS 8.1","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_675":{"parent":"463","name":"Blesta 4","desc":"Blesta Automatically Invoice &amp; Manage Clients With Ease.","type":"php"},"s_692":{"parent":"144","name":"WHMCS 8.2","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_688":{"parent":"665","name":"Magento 2.4.2","desc":"Ecommerce platform for growth","type":"php"},"s_696":{"parent":"144","name":"WHMCS 8.3","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_709":{"parent":"665","name":"Magento 2.4.1","desc":"Ecommerce platform for growth","type":"php"},"s_732":{"parent":"665","name":"Magento 2.4.6","desc":"Ecommerce platform for growth","type":"php"},"s_727":{"parent":"144","name":"WHMCS 8.9","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_747":{"parent":"144","name":"WHMCS 8.13","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_741":{"parent":"665","name":"Magento 2.4.7","desc":"Ecommerce platform for growth","type":"php"},"s_410":{"name":"ShopSite","desc":"ShopSite is the easiest-to-use shopping cart software for small to medium-sized businesses.","type":"perl"}},"erp":{"s_202":{"name":"Dolibarr","desc":"Dolibarr is a software built by modules addition, to manage small or medium companies, freelancers or foundations.","type":"php"},"s_227":{"name":"Vtiger","desc":"Vtiger CRM is a free CRM software ideal for small and medium businesses, with low-cost product support available to production users that need reliable support.","type":"php"},"s_620":{"name":"Akaunting","desc":"Akaunting is a free, online and open source accounting software designed for small businesses and freelancers.","type":"php"},"s_553":{"name":"YetiForce","desc":"An open and innovative CRM system","type":"php"},"s_117":{"name":"SugarCRM","desc":"Sugar CRM is the worlds leading provider of commercial open source customer relationship management (CRM) software.","type":"php"},"s_492":{"name":"SuiteCRM","desc":"SuiteCRM is a free and open source alternative to SugarCRM Professional Edition","type":"php"},"s_201":{"name":"FrontAccounting","desc":"FrontAccounting is an accounting system for small companies.","type":"php"},"s_407":{"name":"EPESI","desc":"EPESI is a web application for managing business information.","type":"php"},"s_501":{"name":"EspoCRM","desc":"A web application that allows you to see, enter and evaluate all your company relationships regardless of the type.","type":"php"},"s_192":{"name":"OrangeHRM","desc":"OrangeHRM aims to be the worlds leading open source HRM solution for small and medium sized enterprises","type":"php"},"s_323":{"name":"EGroupware","desc":"EGroupware is the leading Online Collaboration Tool.","type":"php"},"s_448":{"name":"X2CRM","desc":"X2CRM is an open source based Sales, Marketing Automation and Service application designed exclusively for companies that require a tightly focused customer information system.","type":"php"},"s_596":{"name":"Group Office","desc":"Group Office is complete online groupware.","type":"php"},"s_621":{"name":"ChurchCRM","desc":"ChurchCRM is an OpenSource Church CRM & Management Software.","type":"php"},"s_436":{"name":"Zurmo","desc":"Zurmo is an Open Source Customer Relationship Management (CRM) application that is mobile, social, and gamified.","type":"php"},"s_452":{"name":"webERP","desc":"webERP is a complete web based accounting\/ERP system that requires only a web-browser and pdf reader to use.","type":"php"},"s_320":{"name":"Tine 2.0","desc":"Tine 2.0 is an open source project which combines groupware and CRM in one consistent interface.","type":"php"},"s_584":{"name":"Sentrifugo","desc":"Sentrifugo is a Free and Powerful new-age Human Resource Management System that can be easily","type":"php"},"s_510":{"parent":"596","name":"Group Office 6.1","desc":"Group Office is complete online groupware.","type":"php"},"s_568":{"name":"Zenbership","desc":"Zenbership is a 100% free, open source membership CRM platform, designed to provide a central hub from which online businesses and organizations can manage and automate tasks","type":"php"},"s_644":{"name":"IceHrm","desc":"IceHrm is a Human resource management system for small and medium sized organizations","type":"php"},"s_736":{"name":"Krayin CRM","desc":"Krayin CRM is a hand tailored CRM framework built on some of the hottest opensource technologies such as Laravel(a PHP framework), Tailwind Css and Vue.js, a progressive Javascript framework.","type":"php"},"s_585":{"name":"Jorani","desc":"Jorani is a Leave Management System developed in PHP\/MySQL under an AGPL v3 licence. ","type":"php"},"s_724":{"parent":"596","name":"Group Office 6.8","desc":"Group Office is complete online groupware.","type":"php"},"s_674":{"parent":"227","name":"Vtiger 7.3","desc":"Vtiger CRM is a free CRM software ideal for small and medium businesses, with low-cost product support available to production users that need reliable support.","type":"php"},"s_723":{"parent":"492","name":"SuiteCRM 7","desc":"SuiteCRM is a free and open source alternative to SugarCRM Professional Edition","type":"php"}},"guestbooks":{"s_75":{"name":"VX Guestbook","desc":"Allows you to add free guestbook to your site","type":"php"},"s_77":{"name":"RicarGBooK","desc":"RicarGBooK is a guestbook system written in PHP","type":"php"},"s_528":{"name":"PHP Address Book","desc":"PHP Address Book is a Simple, web-based address & phone book.","type":"php"}},"customersupport":{"s_82":{"name":"HESK","desc":"Hesk is Free PHP Help Desk Software that runs with a MySQL database","type":"php"},"s_83":{"name":"osTicket","desc":"osTicket is a widely-used open source support ticket system","type":"php"},"s_86":{"name":"Mibew Messenger","desc":"Mibew Messenger is an open-source live support application written in PHP and MySQL","type":"php"},"s_483":{"name":"Live helper chat","desc":"Live helper chat is Free & Flexible & Open source - Live Support chat for your website.","type":"php"},"s_434":{"name":"Vision Helpdesk","desc":"Vision Helpdesk is a Web-Based True Satellite Helpdesk Software that allows you to manage support for Multiple Companies at one place.","type":"php"},"s_80":{"name":"Crafty Syntax","desc":"Crafty Syntax Live Help (CSLH) is an open source live support solution","type":"php"},"s_516":{"name":"HelpDeskZ","desc":"HelpDeskZ is a free PHP based software which allows you to manage your site's support with a web-based support ticket system.","type":"php"},"s_552":{"name":"Faveo Helpdesk","desc":"Faveo Helpdesk is an open source ticketing system build on Laravel framework. ","type":"php"},"s_129":{"name":"phpMyFAQ","desc":"phpMyFAQ is an open source FAQ system using PHP","type":"php"},"s_612":{"name":"OpenSupports","desc":"Simple Open Source Ticket System.","type":"php"},"s_392":{"name":"Maian Support","desc":"Maian Support is a FREE support ticket system written in PHP\/MySQL.","type":"php"},"s_652":{"name":"FreeScout","desc":"FreeScout Free Open Source Helpdesk & Shared Mailbox","type":"php"},"s_663":{"name":"UVdesk","desc":"UVdesk community helpdesk project skeleton packaged along with the bare essential utilities and tools to build and customize your own helpdesk solutions.","type":"php"},"s_457":{"name":"HelpDEZk","desc":"HelpDEZk is a powerfull software that manages requests\/incidents.","type":"php"},"s_651":{"name":"Attendize","desc":"Attendize is an Open-source ticket selling and event management platform and is everything you need for a successful event.","type":"php"},"s_625":{"name":"Handesk","desc":"Easy & Powerful Ticketing and Lead management.","type":"php"},"s_671":{"parent":"83","name":"osTicket 1.14","desc":"osTicket is a widely-used open source support ticket system","type":"php"},"s_715":{"parent":"83","name":"osTicket 1.17","desc":"osTicket is a widely-used open source support ticket system","type":"php"},"s_657":{"parent":"83","name":"osTicket 1.12","desc":"osTicket is a widely-used open source support ticket system","type":"php"}},"frameworks":{"s_419":{"name":"Laravel","desc":"Laravel is a PHP framework committed to elegance and simplicity.","type":"php"},"s_123":{"name":"CodeIgniter","desc":"CodeIgniter is a powerful PHP framework with a very small footprint","type":"php"},"s_224":{"name":"yii","desc":"YiiFramework helps Web developers build complex applications and deliver them on-time","type":"php"},"s_426":{"name":"Bootstrap","desc":"Bootstrap Sleek, intuitive, and powerful front-end framework for faster and easier web development.","type":"php"},"s_377":{"name":"CakePHP","desc":"CakePHP makes building web applications simpler, faster and require less code.","type":"php"},"s_473":{"name":"Symfony","desc":"Symfony is aimed at building robust applications in an enterprise context","type":"php"},"s_225":{"name":"Zend","desc":"Zend Framework is based on simplicity, object-oriented best practices","type":"php"},"s_345":{"parent":"473","name":"Symfony2","desc":"Symfony is aimed at building robust applications in an enterprise context.","type":"php"},"s_253":{"name":"Kohana","desc":"Kohana is an elegant HMVC PHP5 framework","type":"php"},"s_471":{"name":"UIkit","desc":"UIkit A lightweight and modular front-end framework for developing fast and powerful web interfaces.","type":"php"},"s_574":{"name":"UserSpice","desc":"UserSpice is a PHP User Management Framework. It is designed from the ground up to be the perfect starting point for any web development project that requires users to login.","type":"php"},"s_300":{"name":"Smarty","desc":"Smarty is a template engine for PHP, facilitating the separation of presentation (HTML\/CSS) from application logic.","type":"php"},"s_361":{"name":"HTML Purifier","desc":"HTML Purifier is a standards-compliant HTML filter library written in PHP.","type":"php"},"s_432":{"name":"FuelPHP","desc":"FuelPHP is a simple, flexible, community driven PHP 5.3+ framework, based on the best ideas of other frameworks, with a fresh start!","type":"php"},"s_467":{"name":"Webasyst","desc":"Webasyst is a suite of web apps that helps people work together in teams, collaborate, build websites and online stores - all in one place.","type":"php"},"s_546":{"parent":"473","name":"Symfony3","desc":"Symfony is aimed at building robust applications in an enterprise context","type":"php"},"s_221":{"name":"PRADO","desc":"PRADO stands for PHP Rapid Application Development Object-oriented.","type":"php"},"s_700":{"parent":"419","name":"Laravel 10","desc":"Laravel is a PHP framework committed to elegance and simplicity.","type":"php"}},"educational":{"s_503":{"parent":"542","name":"Moodle 3.5","desc":"Moodle is a Course Management System","type":"php"},"s_542":{"name":"Moodle","desc":"Moodle is a Course Management System","type":"php"},"s_312":{"name":"Chamilo","desc":"Chamilo is a fully-fledged e-learning system.","type":"php"},"s_705":{"name":"RosarioSIS","desc":"RosarioSIS is a Free & open source Student Information System (SIS), also known as School Management System (SMS) or even School ERP.","type":"php"},"s_113":{"name":"Claroline","desc":"Claroline is an Open Source eLearning and eWorking platform","type":"php"},"s_98":{"parent":"542","name":"Moodle 2.6","desc":"Moodle is a Course Management System","type":"php"},"s_343":{"parent":"542","name":"Moodle 2.0","desc":"Moodle is a Course Management System","type":"php"},"s_236":{"name":"TCExam","desc":"TCExam is a FLOSS system for electronic exams","type":"php"},"s_517":{"parent":"542","name":"Moodle 3.7","desc":"Moodle is a Course Management System","type":"php"},"s_505":{"name":"Gibbon","desc":"Gibbon is free, open source software: its flexible design gives schools complete control and freedom.","type":"php"},"s_276":{"name":"Omeka","desc":"Omeka is a free, flexible, and open source web-publishing platform for the display of library, museum, archives, and scholarly collections and exhibitions.","type":"php"},"s_210":{"name":"ATutor","desc":"ATutor is an Open Source Web-based Learning Management System (LMS)","type":"php"},"s_628":{"name":"Forma LMS","desc":"Forma LMS is an open-source, web-based elearning platform.","type":"php"},"s_619":{"name":"ILIAS","desc":"ILIAS is a powerful Open Source Learning Management System for developing and realising web-based e-learning.","type":"php"},"s_632":{"name":"Savsoft Quiz","desc":"Savsoft Quiz is a web application to manage online quiz or examination.","type":"php"},"s_396":{"name":"openSIS","desc":"OpenSis is the only Global Student Information System\/School management software that is open source and freely available.","type":"php"},"s_485":{"parent":"542","name":"Moodle 3.6","desc":"Moodle is a Course Management System","type":"php"},"s_670":{"parent":"542","name":"Moodle 3.9","desc":"Moodle is a Course Management System","type":"php"},"s_668":{"parent":"542","name":"Moodle 3.8","desc":"Moodle is a Course Management System","type":"php"},"s_699":{"parent":"542","name":"Moodle 3.11","desc":"Moodle is a Course Management System","type":"php"},"s_681":{"parent":"542","name":"Moodle 3.10","desc":"Moodle is a Course Management System","type":"php"},"s_706":{"parent":"542","name":"Moodle 4.0","desc":"Moodle is a Course Management System","type":"php"},"s_713":{"parent":"542","name":"Moodle 4.1","desc":"Moodle is a Course Management System","type":"php"},"s_745":{"parent":"542","name":"Moodle 5.0","desc":"Moodle is a Course Management System","type":"php"},"s_729":{"parent":"542","name":"Moodle 4.2","desc":"Moodle is a Course Management System","type":"php"},"s_733":{"parent":"542","name":"Moodle 4.4","desc":"Moodle is a Course Management System","type":"php"},"s_728":{"parent":"542","name":"Moodle 4.3","desc":"Moodle is a Course Management System","type":"php"},"s_749":{"parent":"542","name":"Moodle 5.1","desc":"Moodle is a Course Management System","type":"php"},"s_740":{"parent":"542","name":"Moodle 4.5","desc":"Moodle is a Course Management System","type":"php"}},"dbtools":{"s_279":{"name":"phpMyAdmin","desc":"phpMyAdmin is a free software tool written in PHP intended to handle the administration of MySQL over the World Wide Web.","type":"php"},"s_341":{"name":"MyWebSQL","desc":"Manage your MySQL databases over the web using a secure and intuitive interface with blazing fast performance.","type":"php"},"s_397":{"name":"SIDU","desc":"SIDU is a FREE database client working via web browser. SIDU stands for SQL Select Insert Delete Update.","type":"php"},"s_280":{"name":"Adminer","desc":"Adminer is a full-featured database management tool written in PHP.","type":"php"},"s_282":{"name":"SQLiteManager","desc":"SQLiteManager is a database manager for SQLite databases. You can manage any SQLite database created on any platform with SQLiteManager.","type":"php"},"s_431":{"name":"phpLiteAdmin","desc":"phpLiteAdmin is a web-based SQLite database admin tool written in PHP with support for SQLite2 and SQLite3.","type":"php"},"s_327":{"name":"Vty","desc":"Vty is a web-based database manager script written with Php. It's for Mysql.","type":"php"},"s_683":{"parent":"279","name":"phpMyAdmin 4.9","desc":"phpMyAdmin is a free software tool written in PHP intended to handle the administration of MySQL over the World Wide Web.","type":"php"}},"music":{"s_101":{"name":"Podcast Generator","desc":"Podcast Generator is a free web based podcast publishing script","type":"php"},"s_102":{"name":"Impleo","desc":"Impleo is a simple PHP-script for managing your record collection","type":"php"},"s_538":{"name":"Ampache","desc":"A web based audio\/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device.","type":"php"},"s_725":{"name":"Castopod","desc":"Castopod is a Free & open source hosting platform made for podcasters who want engage and interact with their audience","type":"php"}},"video":{"s_131":{"name":"ClipBucket","desc":"ClipBucket is free and opensource video sharing script , you can create your own youtube like website in matter of minutes!","type":"php"},"s_437":{"name":"CumulusClips","desc":"CumulusClips Free Video Sharing CMS, Video Sharing Script, Video Sharing Software, YouTube Clone.","type":"php"}},"rss":{"s_441":{"name":"Tiny Tiny RSS","desc":"Tiny Tiny RSS is an open source web-based news feed (RSS\/Atom) reader and aggregator.","type":"php"},"s_589":{"name":"FreshRSS","desc":"FreshRSS A free, self-hostable aggregator","type":"php"},"s_362":{"name":"selfoss","desc":"selfoss is a multipurpose rss reader, live stream, mashup, aggregation web application.","type":"php"},"s_259":{"name":"SimplePie","desc":"SimplePie is a very fast and easy-to-use class, written in PHP, that puts the simple back into really simple syndication.","type":"php"},"s_608":{"name":"Miniflux","desc":"Miniflux is a minimalist and web-based RSS reader.","type":"php"},"s_577":{"name":"Reader Self","desc":"Self-hosted rss reader (php\/mysql) - Google Reader alternative","type":"php"}},"files":{"s_368":{"name":"ownCloud","desc":"ownCloud gives you universal access to your files through a web interface or WebDAV.","type":"php"},"s_586":{"name":"Nextcloud","desc":"A safe home for all your data, Access & share your files, calendars, contacts, mail & more from any device, on your terms","type":"php"},"s_195":{"name":"ProjectSend","desc":"ProjectSend is a file sharing utility","type":"php"},"s_338":{"name":"Pydio","desc":"Pydio: Put Your Data In Orbit!","type":"php"},"s_406":{"name":"eXtplorer","desc":"eXtplorer is a php-based file manager for your own web space. It's cross-browser compliant and offers everything you need.","type":"php"},"s_295":{"name":"Arfooo","desc":"Arfooo is the most powerful free and open source directory script in the world.","type":"php"},"s_594":{"name":"SeedDMS","desc":"SeedDMS is an easy to use but powerful Open Source Document Management System based on PHP and MySQL or sqlite3.","type":"php"},"s_238":{"name":"LetoDMS","desc":"LetoDMS is an open-source document-management-system based on PHP and MySQL.","type":"php"},"s_482":{"name":"Monsta FTP","desc":"Monsta FTP Open source PHP\/Ajax cloudware that puts FTP file management right in your browser, anywhere, any time.","type":"php"},"s_136":{"name":"OpenDocMan","desc":"OpenDocMan is an opensource document management for the masses","type":"php"},"s_634":{"name":"net2ftp","desc":"net2ftp a web based FTP client","type":"php"}},"others":{"s_326":{"name":"Seo Panel","desc":"Seo Panel is a complete open source seo control panel for managing search engine optimization of your websites.","type":"php"},"s_508":{"name":"SLiMS","desc":"(Senayan Library Management System) is a free and open source Library Management System. It is build on free and open source technology like PHP and MySQL.","type":"php"},"s_314":{"name":"Open Journal Systems","desc":"Open Journal Systems (OJS) is a journal management and publishing system.","type":"php"},"s_514":{"name":"Mautic","desc":"Mautic gives you the power to track leads, personalize your engagement, offer value to your prospects and effectively guide your customers towards conversion.","type":"php"},"s_172":{"name":"YOURLS","desc":"YOURLS is a small set of PHP scripts that will allow you to run your own URL shortening service","type":"php"},"s_332":{"name":"Question2Answer","desc":"Question2Answer site helps your online community to share knowledge. People with questions quickly get the answers they need.","type":"php"},"s_99":{"name":"WeBid","desc":"WeBid is an open-source auction script","type":"php"},"s_263":{"name":"Form Tools","desc":"Form Tools is a PHP \/ MySQL script that manages the form submission data.","type":"php"},"s_384":{"name":"SPIP","desc":"SPIP is a publishing system for the Internet.","type":"php"},"s_375":{"name":"GLPI","desc":"GLPI is the Information Resource-Manager with an additional Administration- Interface.","type":"php"},"s_304":{"name":"PASTE","desc":"PASTE is an open source pastebin forked from the original pastebin.com script.","type":"php"},"s_442":{"name":"webtrees","desc":"webtrees is the web's leading on-line collaborative genealogy application.","type":"php"},"s_477":{"name":"wallabag","desc":"wallabag is a read-it later application. You can use it to save a link (including all content : text, images, videos).","type":"php"},"s_622":{"name":"Firefly III","desc":"A free and open source personal finance manager.","type":"php"},"s_108":{"name":"PhpGedView","desc":"PhpGedView is a revolutionary genealogy program which allows you to view and edit your genealogy on your website","type":"php"},"s_494":{"name":"InfiniteWP","desc":"InfiniteWP is a free, self-hosted multiple WordPress management platform that simplifies your WordPress management tasks into a simple click of a button.","type":"php"},"s_547":{"name":"Agora-Project","desc":"Create your own private space to share with your team.","type":"php"},"s_537":{"name":"BlaB! AX","desc":"BlaB! AX is a free AJAX\/PHP group chat system.","type":"php"},"s_627":{"name":"EasyAppointments","desc":"Easy!Appointments Open Source Appointment Scheduler","type":"php"},"s_526":{"name":"AJAX Chat","desc":"AJAX Chat is a free and fully customizable open source web chat implemented in JavaScript, PHP and MySQL which integrates nicely with common forum systems like phpBB, MyBB, PunBB, SMF and vBulletin.","type":"php"},"s_575":{"name":"Kimai","desc":"Kimai is a free open source timetracker.","type":"php"},"s_599":{"name":"DomainMOD","desc":"DomainMOD is an open source application used to manage your domains and other internet assets in a central location","type":"php"},"s_512":{"name":"u-Auctions","desc":"Your u-Auction website will be displayed in all the major search","type":"php"},"s_446":{"name":"Commentics","desc":"Commentics is a free, advanced PHP comment script with many features.","type":"php"},"s_598":{"name":"Fusio","desc":"Fusio is an open source API management platform which helps to build and manage REST APIs.","type":"php"},"s_606":{"name":"TastyIgniter","desc":"TastyIgniter is a free open source restaurant ordering and management system. TastyIgniter provides a professional and reliable platform for restaurants wanting to offer online ordering to their customers.","type":"php"},"s_458":{"name":"XCloner","desc":"XCloner is a professinal backup and restore application designed for PHP\/Mysql websites","type":"php"},"s_667":{"name":"Omeka S","desc":"For institutions managing a sharable resource pool across multiple sites.","type":"php"},"s_602":{"name":"LibreHealth EHR","desc":"LibreHealth is collaobrative community for free & open source software projects in Health IT.","type":"php"},"s_283":{"name":"Hablator","desc":"The Hablator is an advanced GPLed chat script written in PHP and Javascript.","type":"php"},"s_615":{"name":"HuMo-genealogy","desc":"HuMo-genealogy Software.","type":"php"},"s_270":{"name":"phpDocumentor","desc":"phpDocumentor tool is a standalone auto-documentor similar to JavaDoc written in PHP.","type":"php"},"s_540":{"name":"Open Monograph Press","desc":"Open Monograph Press is an open source software platform for managing the editorial workflow required to see monographs.","type":"php"},"s_506":{"name":"XMS","desc":"XMS is an online visual web development enviroment and framework, providing a web application base, with multi language support, based on XML.","type":"php"},"s_609":{"name":"Unmark","desc":"Unmark is designed to help you actually do something with your bookmarks, rather than just hoard them.","type":"php"},"s_669":{"name":"Open Preprint Systems","desc":"Open Preprint Systems (OPS) is a preprint server for managing the posting of research papers.","type":"php"},"s_730":{"parent":"314","name":"Open Journal Systems 3.3","desc":"Open Journal Systems (OJS) is a journal management and publishing system.","type":"php"}}},"js":{"libraries":{"s_154":{"name":"jQuery","desc":"jQuery is a new kind of JavaScript Library","type":"js"},"s_464":{"name":"AngularJS","desc":"AngularJS HTML enhanced for web apps!","type":"js"},"s_580":{"name":"Vue.js","desc":"Vue.js is a library for building interactive web interfaces. It provides data-reactive components with a simple and flexible API.","type":"js"},"s_162":{"name":"Dojo","desc":"Ajax, events, packaging, CSS-based querying, animations, JSON, language utilities, and a lot more","type":"js"},"s_164":{"name":"Raphael","desc":"Raphael is a small JavaScript library that should simplify your work with vector graphics on the web","type":"js"},"s_453":{"name":"DHTMLX","desc":"DHTMLX Suite JavaScript Component Library for Building Rich Web Apps.","type":"js"},"s_158":{"name":"MooTools","desc":"MooTools is a compact, modular, Object-Oriented JavaScript framework designed for the intermediate to advanced JavaScript developer","type":"js"},"s_353":{"name":"Modernizr","desc":"Modernizr is a small JavaScript library that detects the availability of native implementations for next-generation web technologies","type":"js"},"s_352":{"name":"php.JS","desc":"php.JS helps to use PHP functions in JavaScript.","type":"js"},"s_165":{"name":"Sizzle","desc":"A pure-JavaScript CSS selector engine designed to be easily dropped in to a host library","type":"js"},"s_160":{"name":"Prototype","desc":"Prototype is a JavaScript Framework that aims to ease development of dynamic web applications","type":"js"},"s_346":{"name":"jqPlot","desc":"jqplot is a plotting and charting plugin for the jQuery Javascript framework.","type":"js"},"s_350":{"name":"jsMorph","desc":"jsMorph is a morphing - motion - tweening framework that knows what you need to do.","type":"js"},"s_347":{"name":"PHPlot","desc":"PHPlot is a graph library for dynamic scientific, business, and stock-market charts.","type":"js"},"s_248":{"name":"PaintbrushJS","desc":"PaintbrushJS is a lightweight browser-based image processing library","type":"js"},"s_159":{"name":"YUI","desc":"YUI 3 is Yahoos next-generation JavaScript and CSS library","type":"js"},"s_558":{"name":"DropzoneJs","desc":"DropzoneJS is an open source library that provides drag\\'n\\'drop file uploads with image previews.","type":"js"},"s_427":{"name":"LESS","desc":"LESS extends CSS with dynamic behavior such as variables, mixins, operations and functions.","type":"js"},"s_349":{"name":"Elycharts","desc":"ElyCharts is a pure javascript charting library, easy to use and completely customizable.","type":"js"},"s_348":{"name":"JSZip","desc":"JSZip creates .zip files with Javascript.","type":"js"}}},"perl":{"blogs":{"s_324":{"name":"Movable Type","desc":"Powerful enough for building websites, blogs, and communities on a single platform.","type":"perl"},"s_26":{"name":"WordPress","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_11":{"name":"Pubvana","desc":"Kick-ass Blog application built using the CodeIgniter PHP Framework","type":"php"},"s_4":{"name":"SitePad","desc":"With SitePad you can build professional websites using an easy to use editor, 400+ themes, 500+ ready made sections, etc.","type":"php"},"s_3":{"name":"Serendipity","desc":"PHP-powered, flexible Blogging\/CMS application","type":"php"},"s_34":{"name":"Dotclear","desc":"Dotclear is an open-source web publishing software","type":"php"},"s_35":{"name":"Textpattern","desc":"Textpattern is a flexible, elegant and easy-to-use content management system.","type":"php"},"s_14":{"name":"b2evolution","desc":"b2evolution is a powerful blog tool","type":"php"},"s_556":{"name":"HTMLy","desc":"Databaseless Blogging Platform, Flat-File Blog and Flat-File CMS.","type":"php"},"s_411":{"name":"Nibbleblog","desc":"Nibbleblog Easy, fast and free CMS Blog","type":"php"},"s_33":{"name":"Nucleus","desc":"Nucleus CMS is a flexible and easy to install content management system, aka blog software.","type":"php"},"s_359":{"name":"Chyrp","desc":"Chyrp is a blogging engine designed to be very lightweight while retaining functionality.","type":"php"},"s_509":{"name":"FlatPress","desc":"FlatPress is a blogging engine that saves your posts as simple text files. Forget about SQL! You just need some PHP.","type":"php"},"s_306":{"name":"PivotX","desc":"PivotX is free software to help you maintain dynamic sites such as weblogs, online journals and other frequently updated websites in general.","type":"php"},"s_648":{"parent":"26","name":"WordPress 5.0","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_646":{"parent":"26","name":"WordPress 4.9","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_635":{"name":"Leafpub","desc":"Leafpub is an open source blogging platform with inline editing, handlebar templates, and a beautiful user interface.","type":"php"},"s_660":{"parent":"26","name":"WordPress 5.3","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_650":{"parent":"26","name":"WordPress 5.1","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_656":{"parent":"26","name":"WordPress 5.2","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_666":{"parent":"26","name":"WordPress 5.4","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_672":{"parent":"26","name":"WordPress 5.5","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_678":{"parent":"26","name":"WordPress 5.6","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_746":{"parent":"26","name":"WordPress 6.8","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_694":{"parent":"26","name":"WordPress 5.8","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_702":{"parent":"26","name":"WordPress 5.9","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_684":{"parent":"26","name":"WordPress 5.7","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_704":{"parent":"26","name":"WordPress 6.0","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_711":{"parent":"26","name":"WordPress 6.1","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_731":{"parent":"26","name":"WordPress 6.5","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_722":{"parent":"26","name":"WordPress 6.3","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_718":{"parent":"26","name":"WordPress 6.2","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_734":{"parent":"26","name":"WordPress 6.6","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_726":{"parent":"26","name":"WordPress 6.4","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_739":{"parent":"26","name":"WordPress 6.7","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_748":{"parent":"26","name":"WordPress 6.9","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"},"s_750":{"parent":"26","name":"WordPress 7.0","desc":"WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.","type":"php"}},"ecommerce":{"s_410":{"name":"ShopSite","desc":"ShopSite is the easiest-to-use shopping cart software for small to medium-sized businesses.","type":"perl"},"s_72":{"parent":"591","name":"PrestaShop 1.6","desc":"PrestaShop is professional e-Commerce shopping cart software","type":"php"},"s_389":{"name":"AbanteCart","desc":"AbanteCart is a free PHP based eCommerce solution for merchants to provide ability creating online business and sell products online quick and efficient.","type":"php"},"s_70":{"parent":"703","name":"OpenCart 1.5","desc":"The Super Cool Ecommerce Solution","type":"php"},"s_144":{"name":"WHMCS","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_67":{"parent":"665","name":"Magento 1.9","desc":"Ecommerce platform for growth","type":"php"},"s_499":{"parent":"703","name":"OpenCart 3","desc":"The Super Cool Ecommerce Solution","type":"php"},"s_658":{"name":"ClicShopping AI","desc":"ClicShopping AI is a free Open Source e-commerce store online B2B\/B2C application in PHP\/MYSQL, built with some practical experience in e-commerce since 2001.","type":"php"},"s_661":{"name":"CE Phoenix","desc":"CE Phoenix is a powerful ecommerce shop ready to use out of the box, putting you online and in full control of your business right from the start.","type":"php"},"s_69":{"name":"osCommerce","desc":"osCommerce is an online shop e-commerce solution","type":"php"},"s_66":{"name":"Zen Cart","desc":"Putting the dream of online business ownership within reach of anyone!","type":"php"},"s_545":{"parent":"665","name":"Magento 2.3","desc":"Ecommerce platform for growth","type":"php"},"s_591":{"name":"PrestaShop","desc":"PrestaShop is professional e-Commerce shopping cart software","type":"php"},"s_469":{"name":"Loaded Commerce","desc":"Loaded 7 is a responsive ecommerce web application.","type":"php"},"s_468":{"name":"LiteCart","desc":"LiteCart is a new innovative free shopping cart platform developed in PHP.","type":"php"},"s_491":{"name":"Invoice Ninja","desc":"Invoice Ninja THE SIMPLE & FREE WAY TO INVOICE CLIENTS","type":"php"},"s_601":{"name":"thirty bees","desc":"thirty bees is a state of the art e-commerce platform that empowers users to easily start and maintain an e-commerce.","type":"php"},"s_450":{"name":"Open Source Point of Sale","desc":"Open Source Point of Sale is a point of sale system built on top of a CodeIgniter base.","type":"php"},"s_122":{"name":"CubeCart","desc":"CubeCart is a fully featured ecommerce shopping cart solution used by over a million store owners around the world","type":"php"},"s_319":{"name":"Quick.Cart","desc":"Simple and functional shopping cart for you and your customers.","type":"php"},"s_463":{"name":"Blesta","desc":"Blesta Automatically Invoice &amp; Manage Clients With Ease.","type":"php"},"s_525":{"name":"InvoicePlane","desc":"InvoicePlane is a self-hosted open source application for managing your quotes, invoices, clients and payments.","type":"php"},"s_703":{"name":"OpenCart","desc":"The Super Cool Ecommerce Solution","type":"php"},"s_488":{"name":"Shopware","desc":"Shopware is a highly flexible, powerful and customizable software solution that allows you to quickly and easily create an online shop, regardless of your store requirements.","type":"php"},"s_532":{"name":"Arastta","desc":"Arastta is a Free and Open Source project with contributors from all over the world.","type":"php"},"s_344":{"name":"AlegroCart","desc":"Alegro Cart is a free open source e-commerce shopping cart solution based on MVC Framework.","type":"php"},"s_490":{"name":"SeoToaster","desc":"SeoToaster E-commerce is the most advanced SEO CMS & Ecommerce web site builder.","type":"php"},"s_475":{"name":"Open eShop","desc":"Open eShop allows you to start selling any digital good, like MP3, eBooks, Movies, Software.. or any Service you offer.","type":"php"},"s_299":{"name":"Avactis","desc":"Avactis offers an extremely convenient set of tools to quickly launch an online business.","type":"php"},"s_489":{"name":"Thelia 2","desc":"Thelia E-commerce solution based on Symfony 2.","type":"php"},"s_334":{"name":"Zeuscart","desc":"Zeuscart is an incredibly stable & richly-interfaced, open source shopping cart.","type":"php"},"s_654":{"name":"Bagisto","desc":"An Opensource eCommerce ecosystem for all to build and scale your business.","type":"php"},"s_478":{"name":"ClientExec","desc":"ClientExec offers online help desk software intended to enhance the ability of small and mid-sized hosting businesses to manage help and support issues.","type":"php"},"s_417":{"parent":"591","name":"PrestaShop 1.4","desc":"PrestaShop is professional e-Commerce shopping cart software.","type":"php"},"s_566":{"name":"Logic Invoice","desc":"Logic Invoice is an accounting & invoicing solution, which you can use to build websites and online applications.","type":"php"},"s_677":{"parent":"491","name":"Invoice Ninja 4","desc":"Invoice Ninja THE SIMPLE & FREE WAY TO INVOICE CLIENTS","type":"php"},"s_665":{"name":"Magento","desc":"Ecommerce platform for growth","type":"php"},"s_645":{"name":"WhatACart","desc":"WhatACart the most customizable eCommerce platform for building your online business.","type":"php"},"s_465":{"parent":"665","name":"Magento 1.7","desc":"Ecommerce platform for growth","type":"php"},"s_687":{"name":"QloApps","desc":"QloApps is Free hotel reservation system and booking engine","type":"php"},"s_486":{"parent":"665","name":"Magento 2.2","desc":"Ecommerce platform for growth","type":"php"},"s_529":{"name":"PEEL SHOPPING","desc":"PEEL SHOPPING is a free open source e-commerce CMS in PHP \/ MySQL \/ HTML 5.","type":"php"},"s_461":{"name":"Maian Cart","desc":"Maian Cart a FREE php e-commerce system for personal or business use.","type":"php"},"s_710":{"parent":"591","name":"PrestaShop 1.7","desc":"PrestaShop is professional e-Commerce shopping cart software.","type":"php"},"s_611":{"parent":"703","name":"OpenCart 2","desc":"The Super Cool Ecommerce Solution","type":"php"},"s_743":{"parent":"591","name":"PrestaShop 8","desc":"PrestaShop is professional e-Commerce shopping cart software","type":"php"},"s_680":{"parent":"144","name":"WHMCS 8.1","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_675":{"parent":"463","name":"Blesta 4","desc":"Blesta Automatically Invoice &amp; Manage Clients With Ease.","type":"php"},"s_692":{"parent":"144","name":"WHMCS 8.2","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_688":{"parent":"665","name":"Magento 2.4.2","desc":"Ecommerce platform for growth","type":"php"},"s_696":{"parent":"144","name":"WHMCS 8.3","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_709":{"parent":"665","name":"Magento 2.4.1","desc":"Ecommerce platform for growth","type":"php"},"s_732":{"parent":"665","name":"Magento 2.4.6","desc":"Ecommerce platform for growth","type":"php"},"s_727":{"parent":"144","name":"WHMCS 8.9","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_747":{"parent":"144","name":"WHMCS 8.13","desc":"WHMCS is an all-in-one client management, billing & support solution for online businesses.","type":"php"},"s_741":{"parent":"665","name":"Magento 2.4.7","desc":"Ecommerce platform for growth","type":"php"}},"mail":{"s_440":{"name":"Dada Mail","desc":"Dada Mail is a Contemporary Mailing List Manager.","type":"perl"},"s_118":{"name":"Roundcube","desc":"Roundcube - Free webmail for the masses.","type":"php"},"s_55":{"name":"phpList","desc":"phplist is an open-source newsletter manager","type":"php"},"s_376":{"name":"WebMail Lite","desc":"WebMail Lite is Fast and easy-to-use webmail front-end for your existing IMAP mail server.","type":"php"},"s_58":{"name":"SquirrelMail","desc":"SquirrelMail is a standards-based webmail package written in PHP","type":"php"},"s_497":{"name":"RainLoop Webmail","desc":"RainLoop Webmail Simple, modern & fast web-based email client.","type":"php"},"s_249":{"name":"OpenNewsletter","desc":"OpenNewsletter is a web-based newsletter system","type":"php"},"s_539":{"name":"Postfix Admin","desc":"Postfix Admin is a web based interface used to manage mailboxes, virtual domains and aliases.","type":"php"}}}}
+
+=== CWP CONFIG FILES CONTAINING DOMAIN STORAGE SETTINGS ===
+/usr/local/cwp/.conf/php_conf/php80.conf
+/usr/local/cwp/.conf/php_conf/php81.conf
+/usr/local/cwp/.conf/php_conf/php82.conf
+/usr/local/cwp/.conf/php_conf/php74.conf
+/usr/local/cwp/.conf/feature.db
+/usr/local/cwp/.conf/php-fpm_conf/php80.conf
+/usr/local/cwp/.conf/php-fpm_conf/php81.conf
+/usr/local/cwp/.conf/php-fpm_conf/php82.conf
+/usr/local/cwp/.conf/php-fpm_conf/php74.conf
+/usr/local/cwp/.conf/php-fpm_conf/php84.conf
+/usr/local/cwpsrv/htdocs/resources/admin/include/postfix.php
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/servercast/views/styles.css
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mod_security/views/style.css
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/change_hostname/views/styles.css
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/wizard_post_install/views/dashboard.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/cwp_messenger/views/dashboard.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/cwp_messenger/views/composer_modal.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/js/mongodb_status.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/js/mongo_settings_tab.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/js/users_list.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/js/mogodbd_manager.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/js/mongo_database_list.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/views/not_installed.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/views/modals.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/views/dashboard_main.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/views/mongo_settings.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mongodb_manager/views/styles.css
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/nodejs/js/file_explorer.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/nodejs/js/nodejs_apps.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postfix_list_manager/views/loader.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/cgtop_monitor/js/cgtop_monitor.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/cgtop_monitor/views/dashboard.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/admin_apis/js/admin_apis.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/admin_apis/views/dashboard.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/security_center/defender_rules/cwp_php_defender_interm.rules
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/security_center/defender_rules/cwp_php_defender_extreme.rules
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/security_center/defender_rules/cwp_php_defender_basic.rules
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/js/mysql_process_manager.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/js/mysql_status.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/js/mysql_manager.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/js/mysql_database_list.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/js/mysql_settings.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/js/users_list.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/process_manager.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/manage_user_modal.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/dashboard.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/mysql_list_permissions.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/user_privilegies_wrapper.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/modals.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/loader.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/mysql_settings.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/database_list.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/mysql_user_form.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/dashboard_main.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/styles.css
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/mysql_manager/views/users_list.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/custom_sender/js/customSender.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/custom_sender/views/dashboard.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/custom_sender/views/modal.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/yum_manager/views/installed_list.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/yum_manager/views/log_viewer.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/yum_manager/views/dashboard_main.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/yum_manager/views/repos_list.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/yum_manager/views/yum_history.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/yum_manager/views/styles.css
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/yum_manager/views/cron_settings.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/yum_manager/views/updates_list.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/webserver_tpl_editor/views/dashboard.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/webserver_tpl_editor/views/style.css
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/tomcat_manager/js/tomcat_manager.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/tomcat_manager/js/tomcat_apps.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postgresql_manager/js/pgresql_manager.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postgresql_manager/js/pgre_database_list.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postgresql_manager/js/users_list.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postgresql_manager/js/pgresql_status.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postgresql_manager/views/not_installed.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postgresql_manager/views/modals.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postgresql_manager/views/dashboard_main.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postgresql_manager/views/styles.css
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/postgresql_manager/views/pgre_user_form.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/git_manager/views/module_info.html
+/usr/local/cwpsrv/htdocs/resources/admin/include/modules/firewall/js/firewall.js
+/usr/local/cwpsrv/htdocs/resources/admin/include/functions/func_system.php
+/usr/local/cwpsrv/htdocs/resources/admin/include/.passwords
+/usr/local/cwpsrv/htdocs/resources/admin/include/db_conn.php
+
+=== END REPORT ===
+
+##### PRIOR REPORT: /home/n790725/skyhawk_root_reports/cwp-skyhawk-template-binding-20261008T175535Z.txt
+SKYHAWK ROOT DIAGNOSTIC
+Report-ID: cwp-skyhawk-template-binding-20261008T175535Z
+Generated-UTC: 20261008T175535Z
+Host: vps142898.inmotionhosting.com
+
+=== CWP GLOBAL WEB SERVER CONFIG ===
+{
+    "nginx-php-fpm_ver-template": "default",
+    "apache-php-fpm_ver-template": "all_methods",
+    "php-fpm_template-name-default": "processes-10",
+    "apache_template-backend-fcgi": "socket",
+    "webserver_setup": "nginx-apache",
+    "apache-php-fpm_ver-default": "82",
+    "nginx-php-fpm_ver-default": "82",
+    "apache_template-type-default": "php-fpm",
+    "nginx": true,
+    "apache-additional": true,
+    "php-fpm": true,
+    "apache_template-name-default": "default",
+    "nginx_template-type-default": "default",
+    "nginx_template-name-default": "default"
+}
+=== SKYHAWK SSL/VHOST STATE REFERENCES ===
+/usr/local/cwp/.conf/vhosts-ssl.json-4-        "install_date": "2026-09-30 06:28:08",
+/usr/local/cwp/.conf/vhosts-ssl.json-5-        "expiry_date": "2026-12-29 06:28:08",
+/usr/local/cwp/.conf/vhosts-ssl.json-6-        "san": [],
+/usr/local/cwp/.conf/vhosts-ssl.json-7-        "autossl": "on"
+/usr/local/cwp/.conf/vhosts-ssl.json-8-    },
+/usr/local/cwp/.conf/vhosts-ssl.json:9:    "skyhawk.org": {
+/usr/local/cwp/.conf/vhosts-ssl.json-10-        "install_date": "2026-10-08 13:08:21",
+/usr/local/cwp/.conf/vhosts-ssl.json-11-        "expiry_date": "2027-01-06 13:08:21",
+/usr/local/cwp/.conf/vhosts-ssl.json-12-        "san": [],
+/usr/local/cwp/.conf/vhosts-ssl.json-13-        "autossl": "on",
+/usr/local/cwp/.conf/vhosts-ssl.json-14-        "user": "n790725"
+/usr/local/cwp/.conf/vhosts-ssl.json-15-    }
+/usr/local/cwp/.conf/vhosts-ssl.json-16-}
+--
+/usr/local/cwp/.conf/vhosts-ssl.json-4-        "install_date": "2026-09-30 06:28:08",
+/usr/local/cwp/.conf/vhosts-ssl.json-5-        "expiry_date": "2026-12-29 06:28:08",
+/usr/local/cwp/.conf/vhosts-ssl.json-6-        "san": [],
+/usr/local/cwp/.conf/vhosts-ssl.json-7-        "autossl": "on"
+/usr/local/cwp/.conf/vhosts-ssl.json-8-    },
+/usr/local/cwp/.conf/vhosts-ssl.json:9:    "skyhawk.org": {
+/usr/local/cwp/.conf/vhosts-ssl.json-10-        "install_date": "2026-10-08 13:08:21",
+/usr/local/cwp/.conf/vhosts-ssl.json-11-        "expiry_date": "2027-01-06 13:08:21",
+/usr/local/cwp/.conf/vhosts-ssl.json-12-        "san": [],
+/usr/local/cwp/.conf/vhosts-ssl.json-13-        "autossl": "on",
+/usr/local/cwp/.conf/vhosts-ssl.json-14-        "user": "n790725"
+/usr/local/cwp/.conf/vhosts-ssl.json-15-    }
+/usr/local/cwp/.conf/vhosts-ssl.json-16-}
+
+=== SKYHAWK TEMPLATE ASSIGNMENT REFERENCES ===
+/usr/local/cwp/.conf/vhosts-ssl.json-1-{
+/usr/local/cwp/.conf/vhosts-ssl.json-2-    "1790723478a62e50832643ebc3.temporary.link": {
+/usr/local/cwp/.conf/vhosts-ssl.json:3:        "user": "n790725",
+/usr/local/cwp/.conf/vhosts-ssl.json-4-        "install_date": "2026-09-30 06:28:08",
+/usr/local/cwp/.conf/vhosts-ssl.json-5-        "expiry_date": "2026-12-29 06:28:08",
+/usr/local/cwp/.conf/vhosts-ssl.json-6-        "san": [],
+/usr/local/cwp/.conf/vhosts-ssl.json-7-        "autossl": "on"
+/usr/local/cwp/.conf/vhosts-ssl.json-8-    },
+/usr/local/cwp/.conf/vhosts-ssl.json:9:    "skyhawk.org": {
+/usr/local/cwp/.conf/vhosts-ssl.json-10-        "install_date": "2026-10-08 13:08:21",
+/usr/local/cwp/.conf/vhosts-ssl.json-11-        "expiry_date": "2027-01-06 13:08:21",
+/usr/local/cwp/.conf/vhosts-ssl.json-12-        "san": [],
+/usr/local/cwp/.conf/vhosts-ssl.json-13-        "autossl": "on",
+/usr/local/cwp/.conf/vhosts-ssl.json:14:        "user": "n790725"
+/usr/local/cwp/.conf/vhosts-ssl.json-15-    }
+/usr/local/cwp/.conf/vhosts-ssl.json-16-}
+
+=== DEFAULT NGINX TEMPLATE ===
+server {
+	listen %ip%:%nginx_port%;	
+	server_name %domain_idn% %alias_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	location / {
+		location ~.*\.(3gp|gif|jpg|jpeg|png|ico|wmv|avi|asf|asx|mpg|mpeg|mp4|pls|mp3|mid|wav|swf|flv|html|htm|txt|js|css|exe|zip|tar|rar|gz|tgz|bz2|uha|7z|doc|docx|xls|xlsx|pdf|iso|woff|ttf|svg|eot|sh|webp)$ {
+			root %docroot%;					
+			expires max;
+			try_files $uri $uri/ @backend;
+		}
+		
+		error_page 405 = @backend;
+		error_page 500 = @custom;
+		add_header X-Cache "HIT from Backend";
+		add_header X-XSS-Protection "1; mode=block" always;
+		add_header X-Content-Type-Options "nosniff" always;
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location @backend {
+		internal;
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location @custom {
+		internal;
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location ~ .*\.(php|jsp|cgi|pl|py)?$ {
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port%;	
+	server_name webmail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port%;	
+	server_name mail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port%;	
+	server_name cpanel.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	location / {
+		proxy_pass  https://[ip]:2083;
+		include proxy.inc;
+	}
+
+	location /pma {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location /roundcube {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+=== DEFAULT NGINX SSL TEMPLATE ===
+server {
+	listen %ip%:%nginx_port% ssl %http2%;
+	server_name %domain_idn% %alias_idn%;
+	
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		location ~.*\.(3gp|gif|jpg|jpeg|png|ico|wmv|avi|asf|asx|mpg|mpeg|mp4|pls|mp3|mid|wav|swf|flv|html|htm|txt|js|css|exe|zip|tar|rar|gz|tgz|bz2|uha|7z|doc|docx|xls|xlsx|pdf|iso|woff|ttf|svg|eot|sh|webp)$ {
+			root %docroot%;
+			expires max;
+			try_files $uri $uri/ @backend;
+		}
+		
+		error_page 405 = @backend;
+		error_page 500 = @custom;
+		add_header X-Cache "HIT from Backend";
+		add_header Strict-Transport-Security "max-age=31536000";
+		add_header X-XSS-Protection "1; mode=block" always;
+		add_header X-Content-Type-Options "nosniff" always;
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location @backend {
+		internal;
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location @custom {
+		internal;
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location ~ .*\.(php|jsp|cgi|pl|py)?$ {
+		proxy_pass %proxy_protocol%://%proxy_ip%:%proxy_port%;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port% ssl %http2%;	
+	server_name webmail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port% ssl %http2%;	
+	server_name mail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port% ssl %http2%;	
+	server_name cpanel.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		proxy_pass  https://[ip]:2083;
+		include proxy.inc;
+	}
+
+	location /pma {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location /roundcube {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+=== PHP-FPM NGINX DEFAULT TEMPLATE ===
+server {
+	listen %ip%:%nginx_port%;	
+	server_name %domain_idn% %alias_idn%;
+	root %docroot%;
+	index index.php index.html index.htm;
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	location / {
+
+		location ~.*\.(%proxy_extensions%)$ {			
+			expires max;
+		}
+		
+		location ~ [^/]\.php(/|$) {
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			if (!-f $document_root$fastcgi_script_name) {
+				return  404;
+			}
+
+			fastcgi_pass    %backend_fcgi%;
+			fastcgi_index   index.php;
+			include         /etc/nginx/fastcgi_params;
+		}
+
+	}
+
+	location ~* "/\.(htaccess|htpasswd)$" {deny all;return 404;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port%;	
+	server_name webmail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port%;	
+	server_name mail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port%;	
+	server_name cpanel.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	location / {
+		proxy_pass  https://[ip]:2083;
+		include proxy.inc;
+	}
+
+	location /pma {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location /roundcube {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+=== PHP-FPM NGINX DEFAULT SSL TEMPLATE ===
+server {
+	listen %ip%:%nginx_port% ssl %http2%;
+	server_name %domain_idn% %alias_idn%;
+	root %docroot%;
+	index index.php index.html index.htm;
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+
+		add_header Strict-Transport-Security "max-age=31536000";
+		add_header X-XSS-Protection "1; mode=block" always;
+		add_header X-Content-Type-Options "nosniff" always;
+
+		location ~.*\.(%proxy_extensions%)$ {			
+			expires max;
+		}
+		
+		location ~ [^/]\.php(/|$) {
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			if (!-f $document_root$fastcgi_script_name) {
+				return  404;
+			}
+
+			fastcgi_pass    %backend_fcgi%;
+			fastcgi_index   index.php;
+			include         /etc/nginx/fastcgi_params;
+		}
+
+	}
+
+	location ~* "/\.(htaccess|htpasswd)$" {deny all;return 404;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port% ssl %http2%;	
+	server_name webmail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port% ssl %http2%;	
+	server_name mail.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		proxy_pass  http://[ip]:2095;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+
+server {
+	listen %ip%:%nginx_port% ssl %http2%;	
+	server_name cpanel.%domain_idn%;
+
+	access_log /usr/local/apache/domlogs/%domain%.bytes bytes;
+	access_log /usr/local/apache/domlogs/%domain%.log combined;
+	error_log /usr/local/apache/domlogs/%domain%.error.log error;
+
+	ssl_certificate      %ssl_cert_path%/%domain%.bundle;
+	ssl_certificate_key  %ssl_key_path%/%domain%.key;
+	ssl_protocols TLSv1.2;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA!RC4:EECDH:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_prefer_server_ciphers   on;
+
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 60m;
+
+	location / {
+		proxy_pass  https://[ip]:2083;
+		include proxy.inc;
+	}
+
+	location /pma {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location /roundcube {
+		proxy_pass  https://[ip]:2031;
+		include proxy.inc;
+	}
+
+	location ~ /\.ht    {deny all;}
+	location ~ /\.svn/  {deny all;}
+	location ~ /\.git/  {deny all;}
+	location ~ /\.hg/   {deny all;}
+	location ~ /\.bzr/  {deny all;}
+
+	disable_symlinks if_not_owner from=%docroot%;
+
+	location /.well-known/acme-challenge {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+
+	location /.well-known/pki-validation {
+		default_type "text/plain";
+		alias /usr/local/apache/autossl_tmp/.well-known/acme-challenge;
+	}
+}
+=== VHOST REBUILD IMPLEMENTATION ===
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-270-rm -f cwp-services.zip
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-271-wget static.cdn-cwp.com/files/cwp/el7/cwp-services.zip
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-272-unzip -o cwp-services.zip
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-273-rm -f cwp-services.zip
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-274-
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config:275:# Rebuild Vhosts configuration
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-276-/scripts/cwp_api webservers rebuild_all
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-277-
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-278-# Restart server if defined
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-279-if [ "$restart" = "yes" ]; then
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-280-    echo "restarting server...."
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-281-    shutdown -r now
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-282-fi
+/usr/local/cwpsrv/htdocs/resources/scripts/image_rebuild_server_config-283-
+Binary file /usr/local/cwpsrv/htdocs/resources/admin/include/ai_robot/db/ai_services matches
+--
+/usr/local/cwp/.conf/web_servers.conf-1-{
+/usr/local/cwp/.conf/web_servers.conf-2-    "nginx-php-fpm_ver-template": "default",
+/usr/local/cwp/.conf/web_servers.conf-3-    "apache-php-fpm_ver-template": "all_methods",
+/usr/local/cwp/.conf/web_servers.conf:4:    "php-fpm_template-name-default": "processes-10",
+/usr/local/cwp/.conf/web_servers.conf-5-    "apache_template-backend-fcgi": "socket",
+/usr/local/cwp/.conf/web_servers.conf-6-    "webserver_setup": "nginx-apache",
+/usr/local/cwp/.conf/web_servers.conf-7-    "apache-php-fpm_ver-default": "82",
+/usr/local/cwp/.conf/web_servers.conf-8-    "nginx-php-fpm_ver-default": "82",
+/usr/local/cwp/.conf/web_servers.conf:9:    "apache_template-type-default": "php-fpm",
+/usr/local/cwp/.conf/web_servers.conf-10-    "nginx": true,
+/usr/local/cwp/.conf/web_servers.conf-11-    "apache-additional": true,
+/usr/local/cwp/.conf/web_servers.conf-12-    "php-fpm": true,
+/usr/local/cwp/.conf/web_servers.conf:13:    "apache_template-name-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:14:    "nginx_template-type-default": "default",
+/usr/local/cwp/.conf/web_servers.conf:15:    "nginx_template-name-default": "default"
+/usr/local/cwp/.conf/web_servers.conf-16-}
+
+=== TEMPLATE CHECKSUMS ===
+e0b2e14b83ec084180f7e4993bcbf22264bb7270e02b23d9758e1ea595300d1b  /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.tpl
+ce1799c01740493d97998e941cb671041cda8018c43eecd8e74a132786644ad5  /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/default.stpl
+33fe2ae99e87adfd9aa38f9589f89ff50c3d1bd3ffce8ba0340d09061cae1d99  /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default.tpl
+7217b274a9acb66cdd915a8cc93554aca6dbc21cb517b03275d0c10abda6fdfb  /usr/local/cwpsrv/htdocs/resources/conf/web_servers/vhosts/nginx/php-fpm/default.stpl
+
+=== END REPORT ===
+
+=== END ===
