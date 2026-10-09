@@ -17,6 +17,13 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## CLOSEOUT 2026-10-09 ~14:55Z (Claude, Gene decisions)
+
+- QUARANTINES PERMANENTLY DELETED (Gene decision): /root/skyhawk-quarantine-20261009T023008Z (2 files: settings.php backup containing DB credentials, empty private.pre-move dir) and /home/n790725/quarantine-20261009T142341Z (404 files incl. manifest, 37M diagnostic leftovers). Home 200 before/after. Evidence 20261009T145524Z-vps142898-quarantine-delete. Note: the Mac nightly files mirror rotates removed files into _changed/<ts> on ArchiveSSD for 90 days, so local (non-public) copies may persist there until expiry.
+- KEPT rollback backups in /root: skyhawk-403-build-20261009T020150Z, skyhawk-activation-backup-20261009T010031Z (verified complete) and -20261009T005157Z (partial, from the hung cp -i run), skyhawk-errors-build-20261009T004920Z, skyhawk-error-build-20261008T181627Z (ChatGPT era).
+- MENU: orphan menu_link_content e32d6a3e-bade-429b-9e15-110f23542408 ("Upload Journal" in nonexistent menu "ready-room", invisible in UI, likely created by a July one-off script) DELETED by Gene via guarded drush php:eval. The visible Ready Room "Upload Journal" (main navigation, route skyhawk_site_fixes.journal_upload) is unchanged. Evidence of menu state: 20261009T143425Z-vps142898-menu-audit.
+- WINTER JOURNAL: menu link 88 "Winter Journal Download" (main, Blade, -> node 49225) is DELIBERATE (Gene): the annual issue stays up all year. ANNUAL REMINDER: when the new winter issue is published, update BOTH the menu link target AND custom block 5 (its body also links the Winter Journal), or one will point at last year's issue.
+
 ## BACKLOG TRIAGE AND PUBLIC-EXPOSURE CLEANUP 2026-10-09 ~14:25Z (Claude, Gene decisions)
 
 - SOURCE: Gene asked Claude to scan past chats for unfinished work missing from bookkeeping. Chat items are leads, verified against live state where checkable.
