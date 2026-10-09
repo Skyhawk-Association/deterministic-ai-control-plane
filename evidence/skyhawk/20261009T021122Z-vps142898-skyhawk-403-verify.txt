@@ -1,0 +1,27 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T021122Z-vps142898-skyhawk-403-verify
+Task: skyhawk-403-verify
+Generated (UTC): 2026-10-09T02:11:22Z
+Host: vps142898
+---
+SKYHAWK ROOT REPORT skyhawk-403-verify 20261009T021122Z host=vps142898.inmotionhosting.com uid=0
+2026-10-08 22:09:30.829759080 -0400 /etc/nginx/conf.d/vhosts/skyhawk.org.conf
+2026-10-08 22:09:30.830759096 -0400 /etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf
+2026-10-08 22:09:30.835759175 -0400 /usr/local/apache/conf.d/vhosts/skyhawk.org.conf
+2026-10-08 22:09:30.835759175 -0400 /usr/local/apache/conf.d/vhosts/skyhawk.org.ssl.conf
+2026-10-08 22:09:30.812758811 -0400 /home/n790725/.conf/webservers/skyhawk.org.conf
+/etc/nginx/conf.d/vhosts/skyhawk.org.conf deny403=5 begin=1
+/etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf deny403=5 begin=1
+/usr/local/apache/conf.d/vhosts/skyhawk.org.conf: php-fpm84/usr/var/sockets/n790725.sock 
+/usr/local/apache/conf.d/vhosts/skyhawk.org.ssl.conf: php-fpm84/usr/var/sockets/n790725.sock 
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+home=200
+/.git/config => <title>Request Not Permitted | The Skyhawk Association</title> code=403 
+/.htaccess => <title>Request Not Permitted | The Skyhawk Association</title> code=403 
+/admin => <title>Wave-off | The Skyhawk Association</title> code=403 
+/zz-claude-404-20261009T021122Z => <title>Bolter! | The Skyhawk Association</title> code=404 
+/_skyhawk_errors/403.html => <title>404 Not Found</title> code=404 
+FILES=1 LOADED=1 PHP84=1 NGINX_T=0 HOME=200 DRUPAL403=1
+RESULT=PASS_403_LIVE
+=== END ===
