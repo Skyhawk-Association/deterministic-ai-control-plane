@@ -1,0 +1,39 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T010031Z-vps142898-skyhawk-activation-backup
+Task: skyhawk-activation-backup
+Generated (UTC): 2026-10-09T01:00:31Z
+Host: vps142898
+---
+SKYHAWK ROOT REPORT skyhawk-activation-backup 20261009T010031Z host=vps142898.inmotionhosting.com uid=0
+BACKUP=/root/skyhawk-activation-backup-20261009T010031Z
+total 40
+drwxr-xr-x  2 root root 4096 Oct  8 21:00 .
+dr-xr-x--- 21 root root 4096 Oct  8 21:00 ..
+-rw-r--r--  1 root root 3106 Oct  8 09:08 apache-skyhawk.org.conf
+-rw-r--r--  1 root root 3984 Oct  8 09:08 apache-skyhawk.org.ssl.conf
+-rw-r--r--  1 root root 4407 Oct  8 09:08 nginx-skyhawk.org.conf
+-rw-r--r--  1 root root 6261 Oct  8 09:08 nginx-skyhawk.org.ssl.conf
+-rw-r--r--  1 root root 3396 Oct  8 09:15 user_cache.cache
+-rw-r--r--  1 root root  252 Oct  8 09:02 webservers-skyhawk.org.json
+d0640644ab2fb60bbbb77caa90686b315fbf90826a0c7d74c740aedf9e6886e6  /root/skyhawk-activation-backup-20261009T010031Z/apache-skyhawk.org.conf
+47fcefea1d6027ba1df5e22b662424874535c8722077aa479c3872067ea1d4cd  /root/skyhawk-activation-backup-20261009T010031Z/apache-skyhawk.org.ssl.conf
+65b81c7a7c1f9737ccf5dc8a8bc0bd345256a1455b543f662c75ee24cbc93624  /root/skyhawk-activation-backup-20261009T010031Z/nginx-skyhawk.org.conf
+b4066a99b5fc24bdf021bf00274cd6be969b6697f16ee6becc82f2fa32e69343  /root/skyhawk-activation-backup-20261009T010031Z/nginx-skyhawk.org.ssl.conf
+862f6b2c0591f6a23e70d0cf60a6ea62770bb5078c70aa9166830511979e4aae  /root/skyhawk-activation-backup-20261009T010031Z/user_cache.cache
+987f1c8cfcd904a5536ba6a6bdff9d5625a619dee540b5729a4503ff9e5f65eb  /root/skyhawk-activation-backup-20261009T010031Z/webservers-skyhawk.org.json
+=== LIVE SOURCE HASHES ===
+65b81c7a7c1f9737ccf5dc8a8bc0bd345256a1455b543f662c75ee24cbc93624  /etc/nginx/conf.d/vhosts/skyhawk.org.conf
+b4066a99b5fc24bdf021bf00274cd6be969b6697f16ee6becc82f2fa32e69343  /etc/nginx/conf.d/vhosts/skyhawk.org.ssl.conf
+d0640644ab2fb60bbbb77caa90686b315fbf90826a0c7d74c740aedf9e6886e6  /usr/local/apache/conf.d/vhosts/skyhawk.org.conf
+47fcefea1d6027ba1df5e22b662424874535c8722077aa479c3872067ea1d4cd  /usr/local/apache/conf.d/vhosts/skyhawk.org.ssl.conf
+987f1c8cfcd904a5536ba6a6bdff9d5625a619dee540b5729a4503ff9e5f65eb  /home/n790725/.conf/webservers/skyhawk.org.conf
+=== CACHE FILE ===
+2026-10-08 09:15:04.390998045 -0400 root 644 3396
+      1 "apache_template-name-default\": \"default\"
+      1 "apache_template-type-default\": \"php-fpm\"
+      1 "nginx_template-name-default\": \"default\"\n
+      1 "nginx_template-type-default\": \"default\"
+=== HTTP ===
+home=200
+RESULT=BACKUP_DONE
+=== END ===
