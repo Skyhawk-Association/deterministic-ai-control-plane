@@ -91,7 +91,9 @@ Do not enable the global Apache multilingual error-doc config merely to solve Sk
 
 Whole-site availability must be checked from outside the VPS. An internal script cannot reliably report that its own server, network path, or public TLS endpoint is dead.
 
-**Verified implementation state 2026-10-08:** an enabled ChatGPT condition-watch automation named `Skyhawk Uptime Watch` runs hourly and checks `https://skyhawk.org` externally. Its configured action is to diagnose a detected outage, notify in ChatGPT, and send outage/recovery email through connected Gmail. This is PARTIAL relative to the approved design: the automation platform cadence is hourly, so it cannot perform the required second check about one minute later or require two good checks on recovery. The prompt also does not measure response time or explicitly check certificate expiry. Automation configuration and latest-run timestamp are verified; the available automation interface does not expose a multi-run result history. Actual outage-triggered Gmail delivery and recovery delivery remain unverified.
+**Primary external monitor 2026-10-08:** UptimeRobot monitor "skyhawk.org" checks https://skyhawk.org from North America; test DOWN and UP email notifications were delivered to saweba4master1 on 2026-10-08. Check interval, real-incident detection and account timezone remain to be verified. See LOST-D.
+
+**Secondary watch 2026-10-08:** an enabled ChatGPT condition-watch automation named `Skyhawk Uptime Watch` runs hourly and checks `https://skyhawk.org` externally. Its configured action is to diagnose a detected outage, notify in ChatGPT, and send outage/recovery email through connected Gmail. This is PARTIAL relative to the approved design: the automation platform cadence is hourly, so it cannot perform the required second check about one minute later or require two good checks on recovery. The prompt also does not measure response time or explicitly check certificate expiry. Automation configuration and latest-run timestamp are verified; the available automation interface does not expose a multi-run result history. Actual outage-triggered Gmail delivery and recovery delivery remain unverified.
 
 External checks should cover:
 
@@ -163,7 +165,7 @@ If email transport from the VPS itself is impaired, the external monitor remains
 10. Test each static error page through a non-disruptive dedicated test location or temporary test hostname/path that intentionally returns the status without breaking production.
 11. Regenerate the Skyhawk vhost through CWP once more and verify the custom behavior survives regeneration.
 12. Only then classify the error-page path as regeneration-safe.
-13. External monitoring: PARTIAL. The active ChatGPT `Skyhawk Uptime Watch` is hourly and therefore below the approved confirmation/recovery cadence; add or replace it with a design-conformant mechanism and verify end-to-end delivery.
+13. External monitoring: UptimeRobot is primary (monitor exists, test alert delivery verified); verify interval and a real or controlled incident. The hourly ChatGPT `Skyhawk Uptime Watch` is a secondary backup below design cadence.
 14. Add local threshold/digest monitoring.
 15. Test alert opening, duplicate suppression, and recovery notification end to end.
 
@@ -206,4 +208,4 @@ Accepted side effect: a Drupal application 500 or maintenance-mode 503 also show
 NOT IMPLEMENTED:
 
 - Static front-layer 400/403/429. A 403 mapping combined with proxy_intercept_errors would replace Drupal-owned 403 pages, so it needs a scoped design (for example, mappings only inside the deny locations) before adding.
-- External uptime monitoring is PARTIAL because the active hourly watch does not meet the approved one-minute confirmation/recovery cadence or all check requirements. Local threshold/digest monitoring and end-to-end outage/recovery notification verification also remain open.
+- External uptime monitoring: UptimeRobot primary monitor exists with test alert delivery verified; interval and real-incident detection unverified. The hourly ChatGPT watch is secondary. Local threshold/digest monitoring and end-to-end outage/recovery notification verification also remain open.
