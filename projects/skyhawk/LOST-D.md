@@ -17,6 +17,21 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## OPEN-ITEM RECONCILIATION 2026-10-09 ~02:35Z (Claude, Gene-confirmed)
+
+Several older sections below are stale; this section supersedes their open/next items.
+
+- emconalfa.net: DONE per Gene (redirected to InMotion; Register4Less updated). External fetch of https://emconalfa.net/ now completes TLS (2026-10-09). The 2026-10-07 "web gate OPEN" item is CLOSED.
+- A2 Hosting: being cancelled (Gene). Remaining former blocker (native PHP 8.4 rebuild) is InMotion-side and no longer gates the A2 decision.
+- InMotion ticket #143036800: still awaiting InMotion's response (outage root cause, CWP config loss, native PHP 8.4 "Unable to start pcre module"). Keep the /opt/skyhawk/pcre2-10.39-jit workaround until a provider fix is independently verified.
+- Mac backups: VERIFIED by Claude reading /Volumes/ArchiveSSD/skyhawk-vps-backups/backup.log via the device bridge. After 2026-10-05 connection drops, FILES OK achieved 17:01Z; nightly DB sha_match and FILES OK on 10-06, 10-07, 10-08 (latest 112,801 files, ~28.7 GB, /Volumes/SkyhawkBackup/skyhawk-vps-files/current).
+- "NAS Floyd Bennett Field" page from drupaltest.emconalfa.net: NOT to be recreated (Gene).
+- Leftovers QUARANTINED (not deleted) 2026-10-09: private.pre-move-20261005T145420Z (12K) and web/sites/default/settings.php.pre-private-path-20261005T145420Z moved to /root/skyhawk-quarantine-20261009T023008Z after verifying no references (web/private -> ../private; live file_private_path unchanged). The settings backup was not web-exposed (HTTP 403; only access-log hit was the verification probe). Home 200 and Drupal 404 unchanged. Evidence: 20261009T023008Z-vps142898-leftover-quarantine.txt. Restore: mv the quarantine contents back.
+- UptimeRobot temporary "skyhawk TEST - delete me" monitor: DELETED (Gene).
+- Squadron CMS VMA-131 build and reunion system: COMPLETE and approved by Brian (Gene). The "Active slice" sections below are historical.
+- Login pre-submit guidance wording (AUTH UX, 2026-09-29 not accepted): PARKED / likely superseded by the completed approved build; revisit only if Gene raises it.
+- DKIM selector skyhawk2026: mail delivery and SPF verified 2026-10-05 (test 3 delivered to inbox); DKIM publication/pass not yet confirmed (check Gmail "Show original" on a VPS-sent message).
+
 ## HTTP ERROR HANDLING FOLLOW-UP 2026-10-09 ~02:11Z (Claude)
 
 - UPTIMEROBOT VERIFIED (Gene-supplied screenshots/emails): account timezone Eastern Time (GMT-04:00); skyhawk.org monitor is HTTP(s), https://skyhawk.org, 5-minute interval (free plan), default location North America, email to saweba4master1 only, no delay/no repeat (geneatwell not a recipient). CONTROLLED REAL-INCIDENT TEST 2026-10-08: temporary monitor "skyhawk TEST - delete me" on https://skyhawk.org/zz-uptime-test produced a non-TEST "Monitor is DOWN" email at 21:46 EDT; after its URL was changed to https://skyhawk.org/ a non-TEST "Monitor is UP" email arrived 21:47 EDT. Real detection, delivery and recovery are VERIFIED. Test monitor is to be deleted by Gene.
