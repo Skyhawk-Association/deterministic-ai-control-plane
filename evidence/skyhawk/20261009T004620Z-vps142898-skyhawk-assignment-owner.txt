@@ -1,0 +1,107 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T004620Z-vps142898-skyhawk-assignment-owner
+Task: skyhawk-assignment-owner
+Generated (UTC): 2026-10-09T00:46:20Z
+Host: vps142898
+---
+SKYHAWK ROOT REPORT skyhawk-assignment-owner 20261009T004616Z host=vps142898.inmotionhosting.com uid=0
+=== USER-LEVEL CWP CONF (n790725) ===
+/home/n790725/.conf:
+total 32
+drwxr-xr-x  3 n790725 n790725 4096 2026-10-08 02:23:48.633300402 -0400 .
+drwx--x--x 16 n790725 n790725 4096 2026-10-08 14:00:00.174772908 -0400 ..
+-rw-r--r--  1 n790725 n790725  160 2026-10-08 08:49:27.809589354 -0400 .cachespaces.json
+-rw-r--r--  1 n790725 n790725   74 2026-10-07 01:12:19.139854145 -0400 cwp.ini
+-rw-r--r--  1 n790725 n790725    0 2026-09-29 22:48:14.030362831 -0400 .last_access.json
+-rw-r--r--  1 n790725 n790725   25 2026-09-29 22:48:14.024362735 -0400 tmp33
+drwxr-xr-x  2 root    root    4096 2026-10-08 09:02:43.255224371 -0400 webservers
+-rw-r--r--  1 root    root    8192 2026-09-29 22:48:14.049363136 -0400 .wellknown_devices.sqlite
+
+/home/n790725/.conf/webservers:
+total 12
+drwxr-xr-x 2 root    root    4096 2026-10-08 09:02:43.255224371 -0400 .
+drwxr-xr-x 3 n790725 n790725 4096 2026-10-08 02:23:48.633300402 -0400 ..
+-rw-r--r-- 1 root    root     252 2026-10-08 09:02:43.255224371 -0400 skyhawk.org.conf
+--- /home/n790725/.conf/webservers/skyhawk.org.conf
+{
+    "nginx_template-type": "default",
+    "nginx_template-name": "default",
+    "apache_template-type": "php-fpm",
+    "apache_template-name": "default",
+    "php-fpm_ver": "84",
+    "nginx": true,
+    "php-fpm": true,
+    "apache-additional": true
+}
+=== FILES ANYWHERE NAMING nginx_template / webservers per-domain ===
+/usr/local/cwp/.conf/web_servers.conf
+/home/n790725/.conf/webservers/skyhawk.org.conf
+/usr/local/cwpsrv/var/services/user_cache/f6ca0c533616a7960b3ec65b293ec879.cache
+=== APACHE SKYHAWK VHOSTS ===
+--- /usr/local/apache/conf.d/vhosts/skyhawk.org.conf
+2026-10-08 09:08:21.316594628 -0400 root 644
+2:	ServerName skyhawk.org
+5:	DocumentRoot /home/n790725/drupalbeta/web
+50:			SetHandler "proxy:unix:/opt/alt/php-fpm84/usr/var/sockets/n790725.sock|fcgi://localhost"
+57:	ServerName webmail.skyhawk.org
+78:	ServerName mail.skyhawk.org
+99:	ServerName cpanel.skyhawk.org
+--- /usr/local/apache/conf.d/vhosts/skyhawk.org.ssl.conf
+2026-10-08 09:08:21.316594628 -0400 root 644
+2:	ServerName skyhawk.org
+5:	DocumentRoot /home/n790725/drupalbeta/web
+53:			SetHandler "proxy:unix:/opt/alt/php-fpm84/usr/var/sockets/n790725.sock|fcgi://localhost"
+60:	ServerName webmail.skyhawk.org
+87:	ServerName mail.skyhawk.org
+114:	ServerName cpanel.skyhawk.org
+=== PHP-FPM POOLS / SOCKETS for n790725 ===
+-rw-r--r-- 1 root root   684 2026-10-08 08:59:18.798976651 -0400 /opt/alt/php-fpm74/usr/etc/php-fpm.d/users/n790725.conf
+srw-rw---- 1 root nobody   0 2026-10-08 08:59:21.040012249 -0400 /opt/alt/php-fpm74/usr/var/sockets/n790725.sock
+-rw-r--r-- 1 root root   684 2026-10-08 08:59:18.821977016 -0400 /opt/alt/php-fpm80/usr/etc/php-fpm.d/users/n790725.conf
+srw-rw---- 1 root nobody   0 2026-10-08 08:59:21.774023908 -0400 /opt/alt/php-fpm80/usr/var/sockets/n790725.sock
+-rw-r--r-- 1 root root   684 2026-10-08 08:59:18.841977334 -0400 /opt/alt/php-fpm81/usr/etc/php-fpm.d/users/n790725.conf
+srw-rw---- 1 root nobody   0 2026-10-08 08:59:22.775039809 -0400 /opt/alt/php-fpm81/usr/var/sockets/n790725.sock
+-rw-r--r-- 1 root root   684 2026-10-08 08:59:18.861977652 -0400 /opt/alt/php-fpm82/usr/etc/php-fpm.d/users/n790725.conf
+srw-rw---- 1 root nobody   0 2026-10-08 08:59:23.825056487 -0400 /opt/alt/php-fpm82/usr/var/sockets/n790725.sock
+-rw-r--r-- 1 root root   684 2026-10-08 08:59:18.881977969 -0400 /opt/alt/php-fpm84/usr/etc/php-fpm.d/users/n790725.conf
+srw-rw---- 1 root nobody   0 2026-10-08 08:59:23.803056138 -0400 /opt/alt/php-fpm84/usr/var/sockets/n790725.sock
+php-fpm82: active
+php-fpm84: active
+=== root_cwp TEMPLATE/PHP COLUMNS ===
+nameserver backups settings notifications packages domains subdomains user 
+=== cwp_api SUBCOMMANDS ===
+/scripts/cwp_api: a /usr/local/cwp/php71/bin/php script, ASCII text executable, with very long lines
+=== /scripts webserver-ish ===
+apache_mpm_calculator
+apache_server-status
+autossl_generate_apache_conf
+cwpsrv_rebuild_user_conf
+image_rebuild_server_config
+mail_rebuild_sni_certs
+phpfpm_rebuild_user_conf
+=== CWP admin modules webserver-ish ===
+add_domain.php
+add_subdomain.php
+list_domains.php
+list_subdomains.php
+nginxProxy.php
+ssl_vhosts.php
+vhost_rebuild.php
+vhost_tpl.php
+webpanel_addons.php
+webpanel_update.php
+WebServers_conf_editor.php
+WebServers_conf.php
+WebServers_domain.php
+WebServers_manage.php
+WebServers.php
+WebServers_tpl_editor.php
+wizard_webservers_1.php
+--- WebServers_conf_editor.php: <?php //0042b// Copyright CentOS WebPanel, Decoding is FORBIDDEN// All Rights Reserved. www.centos-webpanel.comif(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='
+--- WebServers_conf.php: <?php //0042b// Copyright CentOS WebPanel, Decoding is FORBIDDEN// All Rights Reserved. www.centos-webpanel.comif(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='
+--- WebServers_domain.php: <?php //0042b// Copyright CentOS WebPanel, Decoding is FORBIDDEN// All Rights Reserved. www.centos-webpanel.comif(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='
+--- WebServers_manage.php: <?php //0042b// Copyright CentOS WebPanel, Decoding is FORBIDDEN// All Rights Reserved. www.centos-webpanel.comif(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='
+--- WebServers.php: <?php //0042b// Copyright CentOS WebPanel, Decoding is FORBIDDEN// All Rights Reserved. www.centos-webpanel.comif(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='
+--- WebServers_tpl_editor.php: <?php //0042b// Copyright CentOS WebPanel, Decoding is FORBIDDEN// All Rights Reserved. www.centos-webpanel.comif(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='
+--- wizard_webservers_1.php: <?php //0042b// Copyright CentOS WebPanel, Decoding is FORBIDDEN// All Rights Reserved. www.centos-webpanel.comif(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='
+=== END ===
