@@ -1,0 +1,31 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T142504Z-vps142898-diag-quarantine-recheck
+Task: diag-quarantine-recheck
+Generated (UTC): 2026-10-09T14:25:05Z
+Host: vps142898
+---
+RECHECK 2026-10-09T14:25:04Z
+sites/default/files/chatgpt-debug.txt http=404
+sites/default/files/sysinfo.txt http=404
+sites/default/files/menu-diag.tar.gz http=404
+sites/default/files/journal_toc_final.csv http=404
+sites/default/files/downloads/chatgpt-debug-latest.txt http=404
+downloads/chatgpt-debug-20260825T004858Z-2471164.txt http=404
+== manifest by folder
+      1 
+      9 /web
+    298 /web/downloads
+     82 /web/sites/default/files
+     14 /web/sites/default/files/downloads
+== manifest by extension
+    306 txt
+     64 php
+      8 gz
+      5 html
+      4 csv
+      2 tsv
+      2 sha256
+      1 /web/error_log
+      1 tmp
+      1 py
+home=200
