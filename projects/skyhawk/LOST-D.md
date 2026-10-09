@@ -17,6 +17,18 @@
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
+## HTTP ERROR HANDLING IMPLEMENTATION HANDOFF 2026-10-08
+
+- STATUS: PARTIAL BUILD / NOT ACTIVATED. Do not claim the new Skyhawk static error handling is live.
+- VERIFIED LIVE STATE after the failed implementation attempts: https://skyhawk.org/ returns HTTP 200; a nonexistent route returns HTTP 404; the active generated nginx vhosts still contain the original error_page 500 = @custom behavior and do not contain the new _skyhawk_errors routing.
+- VERIFIED STATIC ASSETS: /var/www/skyhawk-errors/ contains root-owned 0644 pages for 400, 403, 429, 500, 502, 503 and 504. These files are inert until nginx is durably configured to use them.
+- VERIFIED PRE-ACTIVATION REPORT: /home/n790725/skyhawk_root_reports/skyhawk-root-final-preactivation.txt was produced as root and read back through the qualified Mac -> InMotion n790725 route. At that point skyhawk-errors.tpl and skyhawk-errors.stpl were byte-identical to CWP default.tpl / default.stpl; therefore the first template build had not actually modified them.
+- UNRESOLVED AFTER LATER ATTEMPT: a later corrective template-build command printed SKYHAWK_TEMPLATE_BUILD_VERIFIED, but its expected report skyhawk-template-build-final.txt was not created. A subsequent readback report was generated after the root shell had exited and therefore only records permission-denied errors under n790725. The actual final contents of the root-owned custom template pair after that attempt are UNRESOLVED and must be verified again as root before any activation.
+- EXECUTION DEFECT TO AVOID: ChatGPT placed set -euo pipefail directly in Gene's interactive root SSH shell. Any command error could therefore terminate the parent shell and drop the SSH connection. Future root work must isolate strict mode in a subshell or child shell, for example ( set -euo pipefail; ... ); never alter strict-mode options in Gene's parent interactive shell.
+- CWP DURABILITY: built-in default.tpl / default.stpl must not be edited. The intended durable path remains a custom Skyhawk nginx template pair plus CWP-supported per-domain assignment. Exact per-domain assignment storage/API remains unresolved and must be proven before mutation.
+- NEXT EXECUTOR ACTION: from an already-established root prompt, use one safe subshell to (1) verify current custom template hashes/content against defaults, (2) inspect the exact per-domain CWP assignment owner/API only as narrowly as needed, (3) write a report chowned to n790725 for AI read-back, and only then (4) activate, run nginx -t, reload, verify homepage 200 + existing Drupal 404 + static hard-failure handling, and prove CWP regeneration survival.
+- HUMAN BURDEN RULE: Gene must not be asked to paste diagnostic reports or SHAs that are retrievable through the established Mac -> InMotion evidence path.
+
 ## OUTAGE FORENSIC UPDATE 2026-10-08
 
 - VERIFIED JOURNAL CHAIN: CWP privileged temporary-root reset activity occurred at 10:18:23 and 10:32:11 EDT; credential-bearing arguments are intentionally excluded from public evidence. php-fpm84 then stopped at 10:32:36, CWP/PHP 8.4 configuration was rewritten, php-fpm84 restarted at 10:41:29, and immediately warned that no per-user pool files matched the configured users/*.conf include. Apache restarted at 10:41:29-10:41:30.
