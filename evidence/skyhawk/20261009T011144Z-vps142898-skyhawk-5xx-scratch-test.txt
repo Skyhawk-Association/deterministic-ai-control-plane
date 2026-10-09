@@ -1,0 +1,19 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T011144Z-vps142898-skyhawk-5xx-scratch-test
+Task: skyhawk-5xx-scratch-test
+Generated (UTC): 2026-10-09T01:11:44Z
+Host: vps142898
+---
+SKYHAWK ROOT REPORT skyhawk-5xx-scratch-test 20261009T011142Z host=vps142898.inmotionhosting.com uid=0
+nginx: the configuration file /root/skyhawk-5xx-test-20261009T011142Z/nginx.conf syntax is ok
+nginx: configuration file /root/skyhawk-5xx-test-20261009T011142Z/nginx.conf test is successful
+/u500 => <title>Site Problem | The Skyhawk Association</title> code=500 type=text/html 
+/dead => <title>Service Temporarily Unavailable | The Skyhawk Association</title> code=502 type=text/html 
+/u503 => <title>Site Temporarily Unavailable | The Skyhawk Association</title> code=503 type=text/html 
+/u504 => <title>Response Timeout | The Skyhawk Association</title> code=504 type=text/html 
+/u403 => <title>403 Forbidden</title> code=403 type=text/html 
+/u404-none => <title>404 Not Found</title> code=404 type=text/html 
+/_skyhawk_errors/503.html => <title>404 Not Found</title> code=404 type=text/html 
+scratch listeners after stop: 0
+production home=200
+=== END ===
