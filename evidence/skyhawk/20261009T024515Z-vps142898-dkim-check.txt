@@ -1,0 +1,24 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T024515Z-vps142898-dkim-check
+Task: dkim-check
+Generated (UTC): 2026-10-09T02:45:16Z
+Host: vps142898
+---
+SKYHAWK DKIM CHECK 2026-10-09T02:45:15Z user=n790725
+== @ns1.r4l.com
+DKIM: 
+SPF:  "v=spf1 a mx a:ns2.r4l.com ~all"
+DMARC: 
+== @ns2.r4l.com
+DKIM: 
+SPF:  "v=spf1 a mx a:ns2.r4l.com ~all"
+DMARC: 
+== @[ip]
+DKIM: 
+SPF:  "v=spf1 a mx a:ns2.r4l.com ~all"
+DMARC: 
+== opendkim: active
+KeyTable: grep: /etc/opendkim/KeyTable: Permission denied
+SigningTable: grep: /etc/opendkim/SigningTable: Permission denied
+== signing evidence: grep: /var/log/maillog: Permission denied
+== key on VPS: v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQ
