@@ -1,0 +1,25 @@
+SKYHAWK AI REPORT
+Report-ID: 20261009T142341Z-vps142898-diag-quarantine
+Task: diag-quarantine
+Generated (UTC): 2026-10-09T14:23:48Z
+Host: vps142898
+---
+SKYHAWK DIAGNOSTIC QUARANTINE 20261009T142341Z
+== BEFORE (sample http)
+sites/default/files/chatgpt-debug.txt http=200
+sites/default/files/sysinfo.txt http=200
+sites/default/files/menu-diag.tar.gz http=200
+sites/default/files/downloads/chatgpt-debug-latest.txt http=200
+downloads/chatgpt-debug-20260825T004858Z-2471164.txt http=200
+error_log http=200
+.htaccess.before-yp-force-1779316268 http=403
+MOVED=403 SKIPPED_MANAGED=0
+== AFTER (sample http)
+sites/default/files/chatgpt-debug.txt http=200
+sites/default/files/sysinfo.txt http=200
+sites/default/files/menu-diag.tar.gz http=200
+sites/default/files/downloads/chatgpt-debug-latest.txt http=200
+downloads/chatgpt-debug-20260825T004858Z-2471164.txt http=200
+error_log http=404
+home before=200 after=200 drupal404=3
+RESULT=PASS_QUARANTINED 403 files to /home/n790725/quarantine-20261009T142341Z (manifest /home/n790725/quarantine-20261009T142341Z/MANIFEST.txt)
