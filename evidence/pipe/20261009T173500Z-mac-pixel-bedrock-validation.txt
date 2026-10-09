@@ -1,0 +1,38 @@
+DACP EVIDENCE - Mac Pixel archive bedrock validation
+Recorded: 2026-10-09T17:35Z by Claude (session https://claude.ai/code/session_01TjMiVgE5uMx4WsMginJ2zM)
+Sources: Mac ~/ai-reports reports read directly over the Claude device bridge (not transcribed).
+
+DELTA ANALYSIS (pixel-analysis-20261009_120938)
+  plan rows 17,815 = 6,483 verified-present + 10,794 duplicate-present + 5 trivial missing dup targets (.nomedia/.DS_Store) + 532 new/changed (37.7 GB)
+  after approved rules: 185 new/changed (18.6 GB); coherence re-hash sample 200 files, 0 mismatches
+  4 failed rows (sms Aug17/Oct2/Oct3, calls Oct3): absent from phone, superseded by newer full backups
+
+APPLY (pixel-apply-20261009_121640/APPLY_REPORT.txt): RESULT=PASS_APPLIED_PREFLIGHT_OK
+  engine backup ~/Scripts/Archive/pixel_archive_sync.py.pre-20261009-20261009_121640 (sha 44c40af259ef4754)
+  engine installed sha b268e6f6684aafff; self-test PASS; 4 orphan staging partials removed (15.36 GiB)
+
+RUNNER DEFECT (pixel-probe-20261009_123643.txt)
+  time.monotonic()=0.032 at process start; raw adb get-state rc=0 'device'; engine adb_state 'device';
+  runner-style cached check 'missing-or-unauthorized' x2, 'device' after 1.1 s
+  fix: pixel-runner-fix-20261009_123836.txt  backup ...pre-cachefix-20261009_123836 (sha 8e97cd6b8d015a62) installed 223ec168336d1aae
+
+LIVE RUN (pixel-live3-20261009_123836): runner rc=0 elapsed 1750 s
+  log pixel_archive_20261009_123854.log: COMPLETE verified=4668 duplicate=10665 excluded=0 failed=0
+  this run: 146 VERIFIED + 14 DUPLICATE; sms-20261009005805.xml sha c8807b408cd9c4f5..., calls-20261009005805.xml sha b79de8ed107dbe3c...
+  5 changed WhatsApp backups stored as __pixel_<sha8> (no overwrite)
+
+INDEPENDENT VERIFY (pixel-verify-20261009_131616.txt): RESULT=PASS
+  archive re-hash 160/160 match (18.59 GiB); phone-side sha256sum 146/146 match; staging empty
+  state totals: duplicate 11332, excluded_volatile 11, failed 4, verified 12344
+  automatic_transfer_approved restored (paused marker renamed)
+
+SMS PRUNE (pixel-prune-install-20261009_132311.txt; sms_prune_log.txt; sms_backup_listing.txt)
+  installed runner 7b2ef7b42077e2a3, engine 1ae6465c61f52af0, prune aec6db57eed20f75; self-test PASS; dry run listed only the Oct 8 pair
+  13:25:01 DELETED sms-20261008022456.xml (19,832,926,033 B) and calls-20261008022456.xml (650,607 B)
+  phone SMS Backup now: calls-20261009005805.xml 653,025 B; sms-20261009005805.xml 19,832,965,478 B
+
+SNAPSHOT DEFECT (monitor-check.txt; pixel-snapshot-fix-20261009_133256.txt): RESULT=PASS
+  724 snapshots 11.20 GiB; 717 byte-identical duplicates removed (11.10 GiB); 7 distinct kept + first_upload_complete milestone
+  runner backup ...pre-snapfix-20261009_133256; installed sha c51ece46163a8664 (did_work gates = 3)
+
+MAC POWER (mac-power-20261009_125220.txt): sleep 0, standby 0, displaysleep 10, ttyskeepawake 1, womp 1, tcpkeepalive 1, autorestart 1
