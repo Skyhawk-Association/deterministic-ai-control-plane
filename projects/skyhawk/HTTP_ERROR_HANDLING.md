@@ -1,6 +1,6 @@
 # Skyhawk HTTP Error Handling and Alerting Design
 
-**Status:** APPROVED DESIGN / 5xx FRONT-LAYER FALLBACK IMPLEMENTED 2026-10-09 / 400-403-429 STATIC PAGES AND MONITORING NOT YET IMPLEMENTED
+**Status:** APPROVED DESIGN / 5xx FRONT-LAYER FALLBACK IMPLEMENTED 2026-10-09 / EXTERNAL UPTIME WATCH ACTIVE / 400-403-429 STATIC PAGES AND LOCAL MONITORING NOT YET IMPLEMENTED
 **Decision date:** 2026-10-08
 **Owner:** Skyhawk front web/security layer for infrastructure errors; Drupal for application-level errors when Drupal is healthy.
 
@@ -91,6 +91,8 @@ Do not enable the global Apache multilingual error-doc config merely to solve Sk
 
 Whole-site availability must be checked from outside the VPS. An internal script cannot reliably report that its own server, network path, or public TLS endpoint is dead.
 
+**Verified implementation state 2026-10-08:** an enabled ChatGPT condition-watch automation named `Skyhawk Uptime Watch` runs hourly and checks `https://skyhawk.org` externally. Its configured action is to diagnose a detected outage, notify in ChatGPT, and send outage/recovery email through connected Gmail. Automation existence, enabled state, cadence and execution history are verified. Actual outage-triggered Gmail delivery and recovery delivery remain unverified until exercised by a real or controlled incident.
+
 External checks should cover:
 
 - HTTPS reachability;
@@ -161,7 +163,7 @@ If email transport from the VPS itself is impaired, the external monitor remains
 10. Test each static error page through a non-disruptive dedicated test location or temporary test hostname/path that intentionally returns the status without breaking production.
 11. Regenerate the Skyhawk vhost through CWP once more and verify the custom behavior survives regeneration.
 12. Only then classify the error-page path as regeneration-safe.
-13. Configure external monitoring.
+13. External monitoring: IMPLEMENTED as the active hourly ChatGPT `Skyhawk Uptime Watch`; verify end-to-end outage/recovery delivery when safely testable.
 14. Add local threshold/digest monitoring.
 15. Test alert opening, duplicate suppression, and recovery notification end to end.
 
@@ -204,4 +206,4 @@ Accepted side effect: a Drupal application 500 or maintenance-mode 503 also show
 NOT IMPLEMENTED:
 
 - Static front-layer 400/403/429. A 403 mapping combined with proxy_intercept_errors would replace Drupal-owned 403 pages, so it needs a scoped design (for example, mappings only inside the deny locations) before adding.
-- External uptime monitoring, local threshold/digest monitoring and alert/recovery notification (success-evidence items 6-8 above remain open).
+- Local threshold/digest monitoring remains open. External uptime monitoring exists and is active; outage/recovery notification delivery remains open for end-to-end verification.
