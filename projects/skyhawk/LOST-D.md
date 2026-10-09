@@ -30,7 +30,8 @@ Several older sections below are stale; this section supersedes their open/next 
 - UptimeRobot temporary "skyhawk TEST - delete me" monitor: DELETED (Gene).
 - Squadron CMS VMA-131 build and reunion system: COMPLETE and approved by Brian (Gene). The "Active slice" sections below are historical.
 - Login pre-submit guidance wording (AUTH UX, 2026-09-29 not accepted): PARKED / likely superseded by the completed approved build; revisit only if Gene raises it.
-- DKIM selector skyhawk2026: mail delivery and SPF verified 2026-10-05 (test 3 delivered to inbox); DKIM publication/pass not yet confirmed (check Gmail "Show original" on a VPS-sent message).
+- MAIL AUTHENTICATION CLOSED 2026-10-09: R4L skyhawk.org zone now publishes TXT skyhawk2026._domainkey (exact match to the VPS key at ns1/ns2.r4l.com; an initial "skyhawk2020" name typo was corrected; evidence 20261009T030420Z-vps142898-dkim-publish-check) and TXT _dmarc "v=DMARC1; p=none" (monitor-only, no rua). VPS test mail to Gmail 2026-10-09 10:02 EDT: dkim=pass (header.s=skyhawk2026, d=skyhawk.org), spf=pass (173.231.242.84), dmarc=pass (p=NONE) header.from=skyhawk.org. The earlier Gmail "DMARC FAIL" display was the absence of a DMARC record/negative cache, not a failure. R4L's form rejects pasted non-ASCII ("Wide character" error); paste via pbcopy from a clean file. Optional later: tighten DMARC to p=quarantine after a period of clean results.
+- Mac backups re-verified 2026-10-09 07:15Z: DB sha_match (copies=5) and FILES OK (113,227 files).
 
 ## HTTP ERROR HANDLING FOLLOW-UP 2026-10-09 ~02:11Z (Claude)
 
