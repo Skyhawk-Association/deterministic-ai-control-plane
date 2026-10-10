@@ -14,13 +14,9 @@
 - Environment Reference: `projects/skyhawk/ENVIRONMENT.md` in this repository (Drupal node 49461 points here). GitHub / Source Reconstruction Reference: `projects/skyhawk/GITHUB.md`. Termux SSH Notes: `projects/skyhawk/TERMUX.md`. Site Menu Reference: `projects/skyhawk/SITE_MENU.md`. (Their Drupal pages 49463, 49458 and 49457 point here.)
 - Squadron Template 49454, Squadron Roadmap 49453 and `skyhawk_site_fixes/data/squadron-template-contract.php`: superseded for new squadron work by Gene (2026-09-27). Ignore them except the lessons listed under Active slice.
 
-## 501(c)(3) filing allocation (Gene decision, 2026-10-10)
+## 501(c)(3) filing current state (Gene, 2026-10-10)
 
-Mark is **the sole human helper bee on the C filing**, collaborating with the **AI Gene chooses**. This filing task is not assigned to the entire board or to the future portal team. Gene retains material decisions and signatures. The existing email to Mark remains unresolved and is not verified sent. Authoritative project workstream: `projects/skyhawk/501C3_FILING.md`. The preceding Claude handoff omitted Mark's exclusive helper role and is superseded on that point.
-
-## C-filing collaboration correction (Gene, 2026-10-10)
-
-**CURRENT:** Gene and Mark are the only human filing collaborators, **each with an independent AI assistant**. Gene chooses his AI; Mark has his own AI. Both humans participate in preparation, review and cross-checking; Mark is not limited to gathering documents for Gene's AI. Gene retains material decision/signature authority. The earlier single-AI wording in this file is SUPERSEDED by this section and `projects/skyhawk/501C3_FILING.md`. Gene has supplied an email draft; its AI allocation must be corrected before sending. No sending is verified.
+**Gene and Mark are the only human filing collaborators, EACH with their own independent AI.** Mark is the only other human helper and an active substantive collaborator, not just a supplier of paperwork. Gene retains material decisions and required signatures. Gene supplied a specific email draft titled `501(c)(3) filing - you and me, plus an AI assistant`; the draft is not verified sent and requires correction to include Mark's own AI. Full current record: `projects/skyhawk/501C3_FILING.md`. Earlier single-AI statements and claims that no draft was provided are superseded. This concerns 501(c)(7)-to-501(c)(3) conversion, distinct from the separate communications portal.
 
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
