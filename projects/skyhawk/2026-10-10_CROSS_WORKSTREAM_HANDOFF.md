@@ -24,4 +24,4 @@ The earlier email draft (Claude-written, Gene-relayed) is available within THIS 
 
 **Update (Claude, 2026-10-10):** integrated draft v2 covering (1)-(3) was prepared for Gene's review; NOT SENT. Checked requirements are in `501C3_FILING.md`.
 
-**Status ledger:** Filing email: INTEGRATED DRAFT v2 PREPARED, NOT SENT. Filing: OPEN, no filed/accepted status evidenced. Drupal portal: PROPOSED, NOT DEPLOYED. Skyhawk existing Drupal: independently observed alive after cleanup. Historical staging cleanup: VERIFIED COMPLETE for the three named targets. Other migration data: PRESERVED. Mark portal staffing: NOT ASSIGNED.
+**Status ledger:** Filing email: SENT per Gene 2026-10-10 16:44 ET (v3, Gene-reported). Filing: OPEN, no filed/accepted status evidenced. Drupal portal: PROPOSED, NOT DEPLOYED. Skyhawk existing Drupal: independently observed alive after cleanup. Historical staging cleanup: VERIFIED COMPLETE for the three named targets. Other migration data: PRESERVED. Mark portal staffing: NOT ASSIGNED.

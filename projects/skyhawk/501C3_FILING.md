@@ -1,6 +1,6 @@
 # Skyhawk 501(c)(3) Conversion Filing Workstream
 
-**Status:** Integrated email draft v3 (filing + portal notice) prepared by Claude for Gene's approval, NOT SENT; filing not started/submitted. **Stage: EXPLORATORY/DISCUSSION** (Gene, 2026-10-10).
+**Status:** Email to Mark SENT per Gene (2026-10-10 16:44 ET; Gene-reported, not independently verified; presumed integrated v3 as presented). Awaiting Mark's reply and documents. Filing not started/submitted. **Stage: EXPLORATORY/DISCUSSION** (Gene, 2026-10-10).
 **Current instruction:** Gene's explicit corrections, 2026-10-10.
 **Evidence:** The earlier draft titled "501(c)(3) filing - you and me, plus an AI assistant" exists in the 2026-10-10 conversation. (PROVENANCE: this draft and subject were written by Claude in the 2026-10-10 conversation and relayed by Gene; a ChatGPT revision followed. No pre-existing Gene-authored draft or Gmail copy was ever found.) It is not a retrieved email or a legal verification.
 

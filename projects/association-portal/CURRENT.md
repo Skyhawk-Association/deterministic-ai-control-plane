@@ -1,6 +1,6 @@
 # Association Portal
 
-Status: PLANNING. Existing Skyhawk Drupal website remains separate. Proposed second Drupal installation: emconalfa.net. WordPress excluded. Public blogs, private board discussions, protected documents, officer workspaces, and email notifications are proposed. No portal has been deployed. Email to Mark: integrated draft v2 prepared, NOT SENT (see 501C3_FILING.md). Design/staging plan: DESIGN_STAGING_PLAN_0.1.md (planning only). Mailbox policy (Gene, 2026-10-10): no user mailboxes on the VPS; the portal sends notification mail only. See platforms/inmotion/OPERATING_REFERENCE_0.1.md for verified hosting facts.
+Status: PLANNING. Existing Skyhawk Drupal website remains separate. Proposed second Drupal installation: emconalfa.net. WordPress excluded. Public blogs, private board discussions, protected documents, officer workspaces, and email notifications are proposed. No portal has been deployed. Email to Mark: SENT per Gene 2026-10-10 (v3; see 501C3_FILING.md). Design/staging plan: DESIGN_STAGING_PLAN_0.1.md (planning only). Mailbox policy (Gene, 2026-10-10): no user mailboxes on the VPS; the portal sends notification mail only. See platforms/inmotion/OPERATING_REFERENCE_0.1.md for verified hosting facts.
 
 ## Direction and product requirements
 

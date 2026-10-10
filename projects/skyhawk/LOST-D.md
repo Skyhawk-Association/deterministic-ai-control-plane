@@ -16,7 +16,7 @@
 
 ## 501(c)(3) filing current state (Gene, 2026-10-10)
 
-**Gene and Mark are the only human filing collaborators, EACH with their own independent AI.** Mark is the only other human helper and an active substantive collaborator, not just a supplier of paperwork. Gene retains material decisions and required signatures. A draft titled `501(c)(3) filing - you and me, plus an AI assistant` (Claude-written, Gene-relayed) was superseded by Claude's integrated draft v2 (filing + portal notice, both independent AIs); NOT SENT. Full current record: `projects/skyhawk/501C3_FILING.md`. Earlier single-AI statements and claims that no draft was provided are superseded. This concerns 501(c)(7)-to-501(c)(3) conversion, distinct from the separate communications portal.
+**Gene and Mark are the only human filing collaborators, EACH with their own independent AI.** Mark is the only other human helper and an active substantive collaborator, not just a supplier of paperwork. Gene retains material decisions and required signatures. A draft titled `501(c)(3) filing - you and me, plus an AI assistant` (Claude-written, Gene-relayed) was superseded by Claude's integrated draft v3 (filing + portal notice, both independent AIs); SENT per Gene 2026-10-10 16:44 ET. Next: Mark's documents into the shared folder Gene sets up. Full current record: `projects/skyhawk/501C3_FILING.md`. Earlier single-AI statements and claims that no draft was provided are superseded. This concerns 501(c)(7)-to-501(c)(3) conversion, distinct from the separate communications portal.
 
 ## Cross-workstream continuity correction (2026-10-10)
 
