@@ -1,6 +1,6 @@
 # Skyhawk 501(c)(3) Conversion Filing Workstream
 
-**Status:** Integrated email draft v2 (filing + portal notice) prepared by Claude for Gene's approval, NOT SENT; filing not started/submitted.
+**Status:** Integrated email draft v3 (filing + portal notice) prepared by Claude for Gene's approval, NOT SENT; filing not started/submitted. **Stage: EXPLORATORY/DISCUSSION** (Gene, 2026-10-10).
 **Current instruction:** Gene's explicit corrections, 2026-10-10.
 **Evidence:** The earlier draft titled "501(c)(3) filing - you and me, plus an AI assistant" exists in the 2026-10-10 conversation. (PROVENANCE: this draft and subject were written by Claude in the 2026-10-10 conversation and relayed by Gene; a ChatGPT revision followed. No pre-existing Gene-authored draft or Gmail copy was ever found.) It is not a retrieved email or a legal verification.
 
@@ -61,3 +61,7 @@ The proposed **emconalfa.net** Drupal portal is separate from the filing. Its po
 ## Next action and evidence limits
 
 Gene reviews integrated draft v2 (both independent AIs, the document requests, legal/tax points labeled for verification, a separate portal notice). **Do not send without authorization**. Do not claim the original email/draft was inaccessible, since Gene supplied it. Use the project's applicable DACP and Skyhawk rules for subsequent consequential work; do not modify DACP heuristics or runtime specifications for this filing project.
+
+## Framing (Gene, 2026-10-10)
+
+Conversion is in the discussion stage. The primary rationale is **mission fit** (the Association's actual activity is educational preservation of A-4 history) and archive protection through a (c)(3) dissolution clause. Deductible gifts and grants are a **possible side benefit**, NOT a years-long fundraising campaign; do not frame correspondence or plans as a fundraising push. Email v3: the first task for both AIs is to assess **whether** conversion makes sense; the document requests support that decision; the email notes Gene will set up a shared folder and asks that bank account numbers be redacted before anything goes to an AI.
