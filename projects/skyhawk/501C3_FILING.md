@@ -28,3 +28,9 @@
 Use the active DACP `CURRENT.md`, `projects/skyhawk/RULES.md`, `projects/skyhawk/LOST-D.md` and relevant filing records. Do not treat this document as proof of IRS filing status, legal eligibility, accepted legal positions, or a completed submission. Human-only legal decisions/signatures remain with a properly authorized human. The AI should carry out routine research/drafting/checking rather than assign mechanical work back to Gene.
 
 **Handoff integrity:** The prior Claude transfer omitted Mark's exclusive C-filing helper role and is **superseded on that point** by this direct Gene instruction. No DACP runtime specification or heuristic changes are requested.
+
+## CORRECTION: independent AI assistant for each collaborator (Gene, 2026-10-10)
+
+**Binding project decision:** Gene and Mark are the only two human participants in preparation of the Association's C filing. **Gene works with an AI of his choosing; Mark works with his own separate AI.** Both are active collaborators, each supported by that person's own assistant. Mark is not merely supplying paperwork or checking arithmetic for Gene's AI. Gene retains final material decisions and signatures. Gene does not select Mark's AI. No other filing helper is assigned.
+
+The earlier description of a single AI chosen by Gene working alongside Mark is **SUPERSEDED**. The supplied email draft headed "501(c)(3) filing - you and me, plus an AI assistant" now exists; the draft does not reflect Mark's own AI and must be corrected before it is sent. Its assertions about IRS forms, financial periods and Nevada approval are draft claims, not independently verified legal conclusions. No sending is verified.
