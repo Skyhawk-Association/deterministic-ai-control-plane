@@ -1,7 +1,7 @@
 # Complete discussion scope and handoff, 2026-10-10
 
 **Record type:** project execution/context handoff, not DACP heuristics or runtime governance.
-**Sources:** the visible current conversation and Gene's user-supplied 397-line pasted document describing protected documents, public/private blogs and Drupal/WordPress discussion. These are two sources: do not replace the current conversation with the pasted excerpt. The full current chat is not automatically archived verbatim in public Git; the user-supplied email is summarized here, not published as a private outgoing message.
+**Sources:** the visible current conversation and Gene's user-supplied 397-line pasted document describing protected documents, public/private blogs and Drupal/WordPress discussion. These are two sources: do not replace the current conversation with the pasted excerpt. The full current chat is not automatically archived verbatim in public Git; the email draft (Claude-written, Gene-relayed) is summarized here, not published as a private outgoing message.
 
 ## Confirmed site direction
 
