@@ -19,3 +19,7 @@ The second portal remains NOT DEPLOYED. The email to Mark is OPEN and Gene suppl
 ## Distinct filing responsibility (Gene decision, 2026-10-10)
 
 The Skyhawk 501(c)(3) C-filing is a separate workstream, documented in `projects/skyhawk/501C3_FILING.md`. **Gene and Mark are the only human filing collaborators, each with their own independent AI**. Gene selects his AI; Mark has his own AI. Gene retains material decisions. The future multi-organization portal is not a prerequisite for filing preparation and its board-wide access features do not imply extra filing helpers. The previous email-to-Mark handoff omitted this critical fact and is superseded accordingly.
+
+## Reconciled user-conversation handoff
+
+The complete cross-workstream summary of filing, two independent AIs, InMotion, public/private blogs, site locations and verified cleanup is `projects/skyhawk/2026-10-10_CROSS_WORKSTREAM_HANDOFF.md`. Read it before producing any combined email or project status. Mark is NOT assigned to build the portal. The filing is not blocked by the portal. Earlier single-topic email drafts omitted this website context and are incomplete for Gene's current request.
