@@ -71,4 +71,4 @@ Conversion is in the discussion stage. The primary rationale is **mission fit** 
 - The Association mailbox is now readable by Claude. Mark's address is in the "AI discount" thread there (not recorded in public Git).
 - **IRS determination letter already in hand:** Mark's 2026-09-02 reply in that thread attaches `Ltr Designating Tax Exempt.pdf` (identifies the Association as 501(c)(7), EIN 33-0678616). Request item 5 is partly satisfied; Nevada good standing remains.
 - **Context:** on 2026-10-01 Mark reported that the OpenAI nonprofit-discount verification could not find "The Skyhawk Association, Inc." or "SKYHAWK ASSOCIATION". This is a concrete instance of (c)(7) status blocking nonprofit programs. The eligibility cause is inferred, not confirmed.
-- **The 2026-10-10 email to Mark does NOT appear in this mailbox's Sent folder** (checked 16:5x ET). Gene reports it was sent, so it likely went from another account; Mark's reply will go there unless redirected.
+- The 2026-10-10 email to Mark was sent from **Gene's personal email account** (Gene, 16:52 ET), not the Association mailbox; Gene will relay updates as Mark replies.
