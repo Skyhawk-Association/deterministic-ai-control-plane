@@ -2,6 +2,8 @@
 
 ## Change Synopsis
 
+- 2026-10-10 (Gene direction; platforms/inmotion/OPERATING_REFERENCE_0.1.md): establishes a standalone InMotion VPS operating reference, separate from Skyhawk site records; reuse stable verified facts and recheck only task-relevant mutable conditions instead of repeating full hosting reviews.
+
 - 2026-10-06 (operational correction under Operational Use and Correction Authority 0.2; authoritative/DACP_Handoff_Claim_Integrity_Control_0.1.md): adds handoff claim-evidence classes and blocks promotion of ambiguous user wording or model inference into verified/user-confirmed fact; adds D26 regression.
 
 - 2026-10-02 (status correction under Operational Use and Correction Authority 0.2; authoritative/DACP_Governance_Status_Audit_2026-10-02.md): resolves stale approval/status ambiguity, confirms Heuristics 0.1.4 and Application Implementation Authorization 0.7 as active, records that no specific live Gene-approval item is established by current canonical/private evidence, and adds D24 status-precedence regression.
@@ -37,6 +39,10 @@
 ## Bootstrap source resolution
 
 Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.githubusercontent.com). Record the main HEAD commit SHA and verify the active specification blob (`git rev-parse HEAD:docs/DACP_Runtime_Expression_0.1.7-DELTA.md` must equal the blob below). A rendered github.com /blob/ page is not bootstrap evidence. No uncached path = GOVERNED STOP or Gene-supplied HEAD SHA. See docs/BOOTSTRAP_CONTRACT.md.
+
+## Provider-level reference
+
+For InMotion Hosting/VPS/CWP questions, read `platforms/inmotion/OPERATING_REFERENCE_0.1.md` in addition to applicable DACP controls. Its purpose is to eliminate repeated broad reviews while preserving narrow task-time checks, proper authority boundaries, and independent verification. Do not substitute it for site-specific authority when site internals are material.
 
 ## Load order before consequential DACP work
 
