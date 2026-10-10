@@ -18,6 +18,10 @@
 
 **Gene and Mark are the only human filing collaborators, EACH with their own independent AI.** Mark is the only other human helper and an active substantive collaborator, not just a supplier of paperwork. Gene retains material decisions and required signatures. Gene supplied a specific email draft titled `501(c)(3) filing - you and me, plus an AI assistant`; the draft is not verified sent and requires correction to include Mark's own AI. Full current record: `projects/skyhawk/501C3_FILING.md`. Earlier single-AI statements and claims that no draft was provided are superseded. This concerns 501(c)(7)-to-501(c)(3) conversion, distinct from the separate communications portal.
 
+## Cross-workstream continuity correction (2026-10-10)
+
+**Read before resuming Mark email, Drupal blog, or InMotion work:** `projects/skyhawk/2026-10-10_CROSS_WORKSTREAM_HANDOFF.md` reconciles this conversation's supplied draft, TWO independent AI assistants (Gene and Mark), the two Drupal sites (`skyhawk.org` and proposed `emconalfa.net`), public/private board blogs and documents, and completed VPS staging cleanup. The email draft exists but is not confirmed sent; the new portal is NOT deployed; Mark is NOT assigned to implement it. Earlier fragmented handoffs and claims that email context was unavailable are superseded. Filing specifics: `projects/skyhawk/501C3_FILING.md`; portal specifics: `projects/association-portal/CURRENT.md`.
+
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
