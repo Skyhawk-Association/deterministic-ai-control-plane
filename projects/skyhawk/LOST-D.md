@@ -14,6 +14,10 @@
 - Environment Reference: `projects/skyhawk/ENVIRONMENT.md` in this repository (Drupal node 49461 points here). GitHub / Source Reconstruction Reference: `projects/skyhawk/GITHUB.md`. Termux SSH Notes: `projects/skyhawk/TERMUX.md`. Site Menu Reference: `projects/skyhawk/SITE_MENU.md`. (Their Drupal pages 49463, 49458 and 49457 point here.)
 - Squadron Template 49454, Squadron Roadmap 49453 and `skyhawk_site_fixes/data/squadron-template-contract.php`: superseded for new squadron work by Gene (2026-09-27). Ignore them except the lessons listed under Active slice.
 
+## 501(c)(3) filing allocation (Gene decision, 2026-10-10)
+
+Mark is **the sole human helper bee on the C filing**, collaborating with the **AI Gene chooses**. This filing task is not assigned to the entire board or to the future portal team. Gene retains material decisions and signatures. The existing email to Mark remains unresolved and is not verified sent. Authoritative project workstream: `projects/skyhawk/501C3_FILING.md`. The preceding Claude handoff omitted Mark's exclusive helper role and is superseded on that point.
+
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
