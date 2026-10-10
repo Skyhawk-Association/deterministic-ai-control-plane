@@ -92,6 +92,18 @@ A failure in any mandatory gate yields **NOT READY**, with the specific failing 
 **Regression R8, capacity attribution:** when guest-visible disk and partition are both ~160 GiB, do not claim there is additional guest-unpartitioned space merely because the provider plan might be larger. Check provider-authoritative allocation separately.
 **Regression R9, reusable facts:** subsequent InMotion tasks reuse the 2026-10-10 OpenVZ/ploop structure unless contradicted; only recheck mutable free space at the material action boundary.
 
+
+## 9. Migration workspace reclaimability check (2026-10-10)
+
+**Status: PARTIAL / NO DELETION AUTHORIZED.** Read-only inspection via an established non-root SSH route on the InMotion VPS inspected the migration workspace under the hosting account. About 34,909 MiB is currently accounted for by this workspace: ~21,524 MiB in a historical files copy (34,547 files), ~4,316 MiB in an incoming directory (a ~4.1 GB Drupal tar and ~131 MB database dump), and ~4,309 and ~4,308 MiB in two separate staged Drupal project trees. Sizes are observation-time values, not permanent capacity facts.
+
+- The historical files copy is **not byte-identical by demonstrated evidence** to the live public files tree: a size-only rsync dry run found some migration-side paths absent from the live destination. No deletion eligibility established.
+- No direct references to the main migration directories were found in a narrow check of selected account scripts/configuration, but this does not prove absence of all dependencies.
+- A full checksum-only rsync dry run of the staged project was attempted but did **not** produce a completion report. A parallel SSH connection timed out. The comparison session's termination was initiated to avoid extended production I/O pressure. The result remains **UNVERIFIED**, not PASS or FAIL.
+- No workspace deletion, move, archive modification, or production configuration change occurred in this check.
+
+**Continuation gate:** verify that read-only checksum activity has stopped and SSH/service health recovered; then use previously recorded source/archive manifests and small, bounded comparisons to identify *specific* migration artifacts whose off-host recovery copies and absence of live dependencies are independently proven. Large recursive hash comparisons against a production VPS require resource/load bounding and should not be repeated blindly. Do not classify the entire 34 GiB workspace as disposable.
+
 ## 7. Provenance and change handling
 
 Source of this reference's scope/reuse requirement: Gene's explicit InMotion-specific DACP direction, 2026-10-10. Foundational controls: DACP Project Instructions 0.7, Runtime Expression 0.1.7-DELTA, Control Application Enforcement 0.1, Required Pipe Qualification 0.1, Operational Use and Correction Authority 0.2 and Reality-Conformance decision.
