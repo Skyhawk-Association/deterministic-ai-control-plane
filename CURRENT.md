@@ -40,6 +40,10 @@
 
 Retrieve this file uncached (git clone / git ls-remote, api.github.com, or raw.githubusercontent.com). Record the main HEAD commit SHA and verify the active specification blob (`git rev-parse HEAD:docs/DACP_Runtime_Expression_0.1.7-DELTA.md` must equal the blob below). A rendered github.com /blob/ page is not bootstrap evidence. No uncached path = GOVERNED STOP or Gene-supplied HEAD SHA. See docs/BOOTSTRAP_CONTRACT.md.
 
+## Association portal project
+
+For the proposed second Drupal site, public blogs, board discussion, restricted documents, officer workspaces and related correspondence, read `projects/association-portal/CURRENT.md`. This is an application project record, separate from DACP runtime and heuristics.
+
 ## Provider-level reference
 
 For InMotion Hosting/VPS/CWP questions, read `platforms/inmotion/OPERATING_REFERENCE_0.1.md` in addition to applicable DACP controls. Its purpose is to eliminate repeated broad reviews while preserving narrow task-time checks, proper authority boundaries, and independent verification. Do not substitute it for site-specific authority when site internals are material.
