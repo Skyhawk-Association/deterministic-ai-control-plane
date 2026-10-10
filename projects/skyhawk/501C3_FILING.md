@@ -65,3 +65,10 @@ Gene reviews integrated draft v2 (both independent AIs, the document requests, l
 ## Framing (Gene, 2026-10-10)
 
 Conversion is in the discussion stage. The primary rationale is **mission fit** (the Association's actual activity is educational preservation of A-4 history) and archive protection through a (c)(3) dissolution clause. Deductible gifts and grants are a **possible side benefit**, NOT a years-long fundraising campaign; do not frame correspondence or plans as a fundraising push. Email v3: the first task for both AIs is to assess **whether** conversion makes sense; the document requests support that decision; the email notes Gene will set up a shared folder and asks that bank account numbers be redacted before anything goes to an AI.
+
+## Gmail evidence (Claude, 2026-10-10, via the Association Gmail connector)
+
+- The Association mailbox is now readable by Claude. Mark's address is in the "AI discount" thread there (not recorded in public Git).
+- **IRS determination letter already in hand:** Mark's 2026-09-02 reply in that thread attaches `Ltr Designating Tax Exempt.pdf` (identifies the Association as 501(c)(7), EIN 33-0678616). Request item 5 is partly satisfied; Nevada good standing remains.
+- **Context:** on 2026-10-01 Mark reported that the OpenAI nonprofit-discount verification could not find "The Skyhawk Association, Inc." or "SKYHAWK ASSOCIATION". This is a concrete instance of (c)(7) status blocking nonprofit programs. The eligibility cause is inferred, not confirmed.
+- **The 2026-10-10 email to Mark does NOT appear in this mailbox's Sent folder** (checked 16:5x ET). Gene reports it was sent, so it likely went from another account; Mark's reply will go there unless redirected.
