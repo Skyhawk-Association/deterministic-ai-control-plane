@@ -71,6 +71,24 @@ A failure in any mandatory gate yields **NOT READY**, with the specific failing 
 - **R5 Verification:** A deployment is not accepted until the external URL, TLS and expected application/user path are independently verified.
 - **R6 Privacy:** No credentials, private user data, server IPs or raw diagnostic payloads enter the public provider reference.
 
+
+## 8. InMotion VPS capacity ownership and observed disk topology (2026-10-10)
+
+**Evidence source:** read-only SSH as the established unprivileged VPS account via the authorized Mac device. These readings are observations, not provider account entitlements or permanent free-space facts.
+
+- Virtualization: OpenVZ; root storage is an ext4 filesystem on a ploop virtual block device (`ploop49556p1`).
+- Guest-visible virtual disk: 171,798,691,840 bytes = **160 GiB**; partition 171,796,595,200 bytes, occupying effectively the whole presented block disk. The guest does not show an additional unpartitioned portion of that presented disk. This does **not** establish whether the InMotion provider control plane has purchased-but-unpresented capacity.
+- Example point-in-time `df -hT /` observation (2026-10-10): 158 GiB filesystem total, 142 GiB used, 9.3 GiB available (94% use). Volatile: recheck for consequential storage writes. Difference between disk size and filesystem totals reflects filesystem overhead, unit and reservation behavior; do not mistake it for unallocated disk without evidence.
+- The hosting account's `quota -s` shows approximately 63,219 MiB used against a 100 GiB **user quota** on the root filesystem. User quota is independent of the global filesystem free-space ceiling. Raising the account quota cannot itself create VPS disk blocks.
+- Inodes in the same check: about 8% used. Inodes are not the immediate demonstrated constraint.
+- The user states the storage allocation was previously upgraded once. **Upgrade event: USER-REPORTED, not independently verified against provider billing/provisioning in this check**. Do not infer the amount purchased or whether further capacity is pending.
+
+**Capacity resolution order:** (1) compare the actual InMotion VPS service specification/purchased storage to the 160 GiB guest-visible ploop disk; (2) if provider storage exceeds the guest disk, ask/perform the supported provider-side presentation/expansion route and independently recheck disk, partition, filesystem, backups and service health; (3) if purchased storage is 160 GiB, evaluate safe cleanup and/or authorized storage expansion; (4) only after enough free space and rollback margin are verified, proceed with another Drupal installation. On OpenVZ/ploop, do **not** issue speculative guest `growpart`, `resize2fs`, `lvextend` or destructive storage commands without proving the actual supported owner and allocated block size.
+
+**Regression R7, account-vs-disk:** a report of 100 GiB account quota must not be presented as 100 GiB free VPS space or as evidence of purchasable/unactivated capacity.
+**Regression R8, capacity attribution:** when guest-visible disk and partition are both ~160 GiB, do not claim there is additional guest-unpartitioned space merely because the provider plan might be larger. Check provider-authoritative allocation separately.
+**Regression R9, reusable facts:** subsequent InMotion tasks reuse the 2026-10-10 OpenVZ/ploop structure unless contradicted; only recheck mutable free space at the material action boundary.
+
 ## 7. Provenance and change handling
 
 Source of this reference's scope/reuse requirement: Gene's explicit InMotion-specific DACP direction, 2026-10-10. Foundational controls: DACP Project Instructions 0.7, Runtime Expression 0.1.7-DELTA, Control Application Enforcement 0.1, Required Pipe Qualification 0.1, Operational Use and Correction Authority 0.2 and Reality-Conformance decision.
