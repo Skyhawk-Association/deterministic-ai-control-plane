@@ -116,6 +116,10 @@ A failure in any mandatory gate yields **NOT READY**, with the specific failing 
 
 **DACP failure correction:** Previous replies wrongly treated repeated file verification as a reason to stall indefinitely, but proceeding with a deletion that could not be verified afterward is also not acceptable. Recovery must begin at the exact incomplete mutation, not broad review or speculative cleanup. This is not a success claim.
 
+## 11. Clean staging directory removal verified (2026-10-10)
+
+**VERIFIED:** After Gene completed the privileged cleanup from the existing root session, an independent Mac-to-InMotion SSH read-back as `n790725` confirmed `/home/n790725/skyhawk-migration/drupal-staged-clean` absent and production `/home/n790725/drupalbeta/web/index.php` present. Root filesystem `df -h /` changed from the earlier 158G total / 142G used / 9.3G available (94%) to **158G total / 138G used / 14G available (92%)**. These are rounded point-in-time readings and do not establish an exact byte count. Independent external `https://skyhawk.org/` HEAD returned HTTP **200**. No assertion that other migration directories (`drupal-staged`, `files`, `incoming`) have been removed or proven redundant. Do not repeat this completed cleanup or revive the prior partial-mutation blocker. Future work should examine only remaining artifacts and avoid live production changes without their own bounded preconditions and verification.
+
 ## 7. Provenance and change handling
 
 Source of this reference's scope/reuse requirement: Gene's explicit InMotion-specific DACP direction, 2026-10-10. Foundational controls: DACP Project Instructions 0.7, Runtime Expression 0.1.7-DELTA, Control Application Enforcement 0.1, Required Pipe Qualification 0.1, Operational Use and Correction Authority 0.2 and Reality-Conformance decision.
