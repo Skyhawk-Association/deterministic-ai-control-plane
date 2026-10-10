@@ -1,36 +1,44 @@
-# Skyhawk 501(c)(3) C-Filing Workstream
+# Skyhawk 501(c)(3) Conversion Filing Workstream
 
-**Status:** ACTIVE PLANNING / FILING NOT VERIFIED COMPLETE
-**Recorded:** 2026-10-10
-**Source:** Gene's explicit current correction, not an inference from past correspondence.
+**Status:** Email draft supplied, not verified sent; filing remains unverified/not established as submitted.
+**Current instruction:** Gene's explicit corrections, 2026-10-10.
+**Evidence:** Gene supplied the email draft in this conversation. It is direct source material, not a retrieved email or a legal verification.
 
-## Governing work allocation
+## Decision: filing collaborators and AIs
 
-- **Gene:** retains material decisions, approvals, authority over the Association, risk acceptance, and any legally required authorization or signature. Gene selects the AI executor.
-- **Mark:** **the sole human helper bee on the C filing**. Do not appoint, propose or imply additional board/volunteer helpers for filing preparation without Gene explicitly changing this assignment.
-- **AI selected by Gene:** works alongside Mark on the filing and owns the maximum competent, authorized preparation, research, drafting, organization, consistency checks, records, follow-up and verification. Do not silently select ChatGPT or Claude; the selection remains Gene's.
-- The wording **"C filing"** is Gene's. The workstream is grouped under the Skyhawk 501(c)(3) conversion topic, but the exact form, filing stage, jurisdiction, signatory and required attachments must be determined from actual authoritative filing/correspondence records, not assumed.
+**Two humans, each with their own independent AI assistant:**
 
-## Relationship to the separate Drupal portal
+- **Gene + Gene's chosen AI:** Gene directs the project, decides consequential matters, authorizes communications and signs when required. His AI handles competent authorized research, drafting, preparation, organization and checks.
+- **Mark + Mark's own AI:** Mark is the **only other human collaborator** on the conversion filing. His own AI helps him research, review, reconcile records, draft and independently challenge the work. Mark is an active partner, not merely a supplier of records or numbers for Gene's AI.
+- **Together:** share findings and reviewed work products securely. No third human filing helper is assigned. The two independent AIs are not interchangeable, and Gene does not select Mark's AI.
 
-- Filing collaboration with Mark and the chosen AI is a **separate workstream** from implementing the proposed emconalfa.net Association Communications Portal.
-- The proposed portal could eventually provide protected document collaboration, board communication, storage and notifications, but **its deployment is not a prerequisite to researching, preparing or drafting the filing** unless Gene explicitly makes it one.
-- Do not delegate Mark's filing-helper role to the entire board just because the proposed portal includes board discussions and document libraries.
+**Superseded errors:** References to one AI selected by Gene for both people, or describing Mark as having only a document-supplying role, were incorrect handoff claims. Ignore them.
 
-## Immediate open action: email to Mark
+## Exact objective and email state
 
-- Prepare a grounded email to Mark establishing the narrow working partnership: **Mark + the AI chosen by Gene** for C-filing work, with Gene retaining decisions. The exact original email/draft and Mark's identity were **not retrieved successfully** during the preceding ChatGPT attempt; no sent email is verified.
-- Recover relevant real correspondence or draft if available. Do not assert that the example Form 1023/budget discussion in the portal materials describes the actual filing or Mark's established responsibilities.
-- Present a concise draft for Gene's approval. Do not send without explicit authorization.
+The user-supplied email is titled **"501(c)(3) filing - you and me, plus an AI assistant"** and concerns conversion of the Association from its existing **501(c)(7)** exemption to proposed **501(c)(3)** status. The draft text exists in the current conversation; it is **NOT evidence the message has been sent**. The subject and opening need revision to explicitly communicate both Gene's AI and Mark's own AI.
 
-## Execution boundaries and references
+The draft's filing assumptions must be checked against current IRS, Nevada and Association-specific governing documents before any definitive legal or tax representation:
 
-Use the active DACP `CURRENT.md`, `projects/skyhawk/RULES.md`, `projects/skyhawk/LOST-D.md` and relevant filing records. Do not treat this document as proof of IRS filing status, legal eligibility, accepted legal positions, or a completed submission. Human-only legal decisions/signatures remain with a properly authorized human. The AI should carry out routine research/drafting/checking rather than assign mechanical work back to Gene.
+1. Full IRS **Form 1023**, not 1023-EZ, because the Association already claims exemption under 501(c)(7).
+2. Financial information covering tax years **2021 through 2025**, described as five most recent years.
+3. Nevada articles potentially needing **charitable/educational purpose** and **dissolution** clauses, with board approval and potentially a member vote depending on member rights, articles and bylaws.
 
-**Handoff integrity:** The prior Claude transfer omitted Mark's exclusive C-filing helper role and is **superseded on that point** by this direct Gene instruction. No DACP runtime specification or heuristic changes are requested.
+These are the user's **proposed working assumptions**, not independently validated filing instructions, current eligibility findings or a confirmed submission.
 
-## CORRECTION: independent AI assistant for each collaborator (Gene, 2026-10-10)
+## Mark's proposed initial document requests (from Gene's actual draft)
 
-**Binding project decision:** Gene and Mark are the only two human participants in preparation of the Association's C filing. **Gene works with an AI of his choosing; Mark works with his own separate AI.** Both are active collaborators, each supported by that person's own assistant. Mark is not merely supplying paperwork or checking arithmetic for Gene's AI. Gene retains final material decisions and signatures. Gene does not select Mark's AI. No other filing helper is assigned.
+1. Association **articles of incorporation, bylaws and amendments**.
+2. **Year-end revenues and expenses for 2021-2025**.
+3. **Pratt & Whitney grants** and **Ernie Laib Fund** award letters or conditions.
+4. List of filed IRS annual returns (**990-N or other**) and whether any **Form 990-T** was filed concerning interest income.
 
-The earlier description of a single AI chosen by Gene working alongside Mark is **SUPERSEDED**. The supplied email draft headed "501(c)(3) filing - you and me, plus an AI assistant" now exists; the draft does not reflect Mark's own AI and must be corrected before it is sent. Its assertions about IRS forms, financial periods and Nevada approval are draft claims, not independently verified legal conclusions. No sending is verified.
+Gene's draft explicitly says there is **no rush** and that **scans or photos are fine**. Preserve that practical, low-pressure tone. Mark and his AI should participate substantively in document review and decisions about questions for Gene, rather than being relegated to clerical work.
+
+## Relationship to Drupal communications portal
+
+The proposed **emconalfa.net** Drupal portal is separate from the filing. Its potential secure board discussions, document library and notifications do not create extra filing team members and are not automatic prerequisites for preparing an IRS filing. See `projects/association-portal/CURRENT.md`. The existing `skyhawk.org` site stays protected.
+
+## Next action and evidence limits
+
+Correct Gene's supplied email to explain **Gene + Gene's AI** working alongside **Mark + Mark's AI**, keep the specific document requests, label legal/tax points for verification rather than inventing conclusions, and present the draft for Gene's approval. **Do not send without authorization**. Do not claim the original email/draft was inaccessible, since Gene supplied it. Use the project's applicable DACP and Skyhawk rules for subsequent consequential work; do not modify DACP heuristics or runtime specifications for this filing project.
