@@ -104,6 +104,18 @@ A failure in any mandatory gate yields **NOT READY**, with the specific failing 
 
 **Continuation gate:** verify that read-only checksum activity has stopped and SSH/service health recovered; then use previously recorded source/archive manifests and small, bounded comparisons to identify *specific* migration artifacts whose off-host recovery copies and absence of live dependencies are independently proven. Large recursive hash comparisons against a production VPS require resource/load bounding and should not be repeated blindly. Do not classify the entire 34 GiB workspace as disposable.
 
+
+## 10. Cleanup execution and interrupted verification (2026-10-10)
+
+**Current state: PARTIAL MUTATION / RECOVERY VERIFICATION BLOCKED.** Gene explicitly directed completion of the previously reviewed migration-workspace cleanup. A targeted removal of **only** the verified historical staging duplicate `/home/n790725/skyhawk-migration/drupal-staged-clean` was attempted as `n790725`, after confirming matching staged/current `composer.json` and `composer.lock` hashes, a previously recorded 2026-10-02 checksum-identical staging-to-deployed mirror, Mac current-site backups marked DB SHA match / FILES OK on 2026-10-10, and the preserved October 6 A2 archive.
+
+- **Observed mutation:** recursive deletion removed some content of the staging directory. It returned exit code 1, reporting four permission-denied configuration files under the staging tree. Therefore **do not describe the directory as deleted**, and **do not report a verified reclaimed-space figure**. Do not repeat `rm -rf` without first refreshing precise residue and ownership.
+- A direct follow-up SSH check hung and timed out. Subsequent independent tests showed the public `https://skyhawk.org/` returned HTTP 200 while TCP/22 to the VPS timed out. No post-deletion filesystem read-back or space measurement has been obtained. Repeated SSH failures do not prove site outage or deletion failure; the state remains UNVERIFIED.
+- Other targets (`drupal-staged`, `files`, `incoming`, databases and production `/home/n790725/drupalbeta`) were **not targeted for deletion** in this execution.
+- **Stop condition:** no further deletion/mutation until SSH access and the post-action state can be verified. When access returns: inspect only the staged-clean residue, ownership/mode and `df`; do not run full content checksum scans; verify live public route and production project; finish the four-file residue only if authorized and ownership permits, then independently check actual space reclaimed. Keep historical files and other staging sources until their own disposition is proven.
+
+**DACP failure correction:** Previous replies wrongly treated repeated file verification as a reason to stall indefinitely, but proceeding with a deletion that could not be verified afterward is also not acceptable. Recovery must begin at the exact incomplete mutation, not broad review or speculative cleanup. This is not a success claim.
+
 ## 7. Provenance and change handling
 
 Source of this reference's scope/reuse requirement: Gene's explicit InMotion-specific DACP direction, 2026-10-10. Foundational controls: DACP Project Instructions 0.7, Runtime Expression 0.1.7-DELTA, Control Application Enforcement 0.1, Required Pipe Qualification 0.1, Operational Use and Correction Authority 0.2 and Reality-Conformance decision.
