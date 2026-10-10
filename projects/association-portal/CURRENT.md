@@ -1,6 +1,6 @@
 # Association Portal
 
-Status: PLANNING. Existing Skyhawk Drupal website remains separate. Proposed second Drupal installation: emconalfa.net. WordPress excluded. Public blogs, private board discussions, protected documents, officer workspaces, and email notifications are proposed. No portal has been deployed. Email to Mark is open and its contents unverified. See platforms/inmotion/OPERATING_REFERENCE_0.1.md for verified hosting facts.
+Status: PLANNING. Existing Skyhawk Drupal website remains separate. Proposed second Drupal installation: emconalfa.net. WordPress excluded. Public blogs, private board discussions, protected documents, officer workspaces, and email notifications are proposed. No portal has been deployed. Email to Mark has a user-supplied draft and is not verified sent. See platforms/inmotion/OPERATING_REFERENCE_0.1.md for verified hosting facts.
 
 ## Direction and product requirements
 
@@ -14,8 +14,8 @@ Use Drupal under CWP with proper isolation of the new database, application file
 
 InMotion migration cleanup was completed and independently verified on 2026-10-10. The production Drupal site remained accessible via HTTPS (HTTP 200), with 22G of free disk space measured after removal of the old staged copies and transfer archive. Free space is a point-in-time reading. Historical migration files that were not proven redundant were left in place. See the InMotion reference for complete evidence.
 
-The second portal remains NOT DEPLOYED. The email to Mark is OPEN. No original email or draft was successfully retrieved, and no sent message is established. The 501(c)(3) conversion budget and Form 1023 in the supplied discussion were examples, not verified email content. Next executor: locate the actual correspondence or draft, establish its purpose, prepare a grounded draft for review, and do not send without approval. Do not repeat completed hosting cleanup or replace the selected Drupal architecture with WordPress.
+The second portal remains NOT DEPLOYED. The email to Mark is OPEN and Gene supplied its draft text, headed '501(c)(3) filing - you and me, plus an AI assistant'. The draft has not been verified sent. It identifies conversion from 501(c)(7) to 501(c)(3), provisional Form 1023 and 2021-2025 reporting assumptions, Nevada articles questions, and four initial document requests. The draft must reflect two independent AIs and legal/tax assertions need verification. Full workstream: projects/skyhawk/501C3_FILING.md. Do not send without approval. Do not repeat completed hosting cleanup or replace the selected Drupal architecture with WordPress.
 
 ## Distinct filing responsibility (Gene decision, 2026-10-10)
 
-The Skyhawk 501(c)(3) C-filing is a separate workstream, documented in `projects/skyhawk/501C3_FILING.md`. **Mark is the sole human helper bee** for that filing, working with **the AI Gene selects**. Gene retains material decisions. The future multi-organization portal is not a prerequisite for filing preparation and its board-wide access features do not imply extra filing helpers. The previous email-to-Mark handoff omitted this critical fact and is superseded accordingly.
+The Skyhawk 501(c)(3) C-filing is a separate workstream, documented in `projects/skyhawk/501C3_FILING.md`. **Gene and Mark are the only human filing collaborators, each with their own independent AI**. Gene selects his AI; Mark has his own AI. Gene retains material decisions. The future multi-organization portal is not a prerequisite for filing preparation and its board-wide access features do not imply extra filing helpers. The previous email-to-Mark handoff omitted this critical fact and is superseded accordingly.
