@@ -18,6 +18,10 @@
 
 Mark is **the sole human helper bee on the C filing**, collaborating with the **AI Gene chooses**. This filing task is not assigned to the entire board or to the future portal team. Gene retains material decisions and signatures. The existing email to Mark remains unresolved and is not verified sent. Authoritative project workstream: `projects/skyhawk/501C3_FILING.md`. The preceding Claude handoff omitted Mark's exclusive helper role and is superseded on that point.
 
+## C-filing collaboration correction (Gene, 2026-10-10)
+
+**CURRENT:** Gene and Mark are the only human filing collaborators, **each with an independent AI assistant**. Gene chooses his AI; Mark has his own AI. Both humans participate in preparation, review and cross-checking; Mark is not limited to gathering documents for Gene's AI. Gene retains material decision/signature authority. The earlier single-AI wording in this file is SUPERSEDED by this section and `projects/skyhawk/501C3_FILING.md`. Gene has supplied an email draft; its AI allocation must be corrected before sending. No sending is verified.
+
 ## Executors
 - Claude and ChatGPT are both authorized executors, one at a time, as Gene chooses. The tunnel (one AI checking the other) happens only when Gene asks for it. Formal record: `authoritative/DACP_Application_Implementation_Authorization_0.7.md`. Gene authorized a controlled VPS administration path on 2026-09-30 for Skyhawk migration and ongoing administration, bounded by current DACP/Skyhawk authority, provider policy, least privilege, auditability, and full pipe qualification.
 
