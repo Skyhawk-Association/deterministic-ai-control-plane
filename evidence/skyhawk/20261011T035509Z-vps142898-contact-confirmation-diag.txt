@@ -1,0 +1,41 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T035509Z-vps142898-contact-confirmation-diag
+Task: contact-confirmation-diag
+Generated (UTC): 2026-10-11T03:55:11Z
+Host: vps142898
+---
+== handlers ==
+email_confirmation       status=on to=[webform_submission:values:email:raw] from=_default conditions=none
+email_notification       status=on to=SAWEB_ADDR from=_default conditions=none
+route_history            status=on to=[email], [email] from=_default conditions={"enabled":{":input[name=\"category\"]":{"value":"history"}}}
+route_journal            status=on to=[email] from=_default conditions={"enabled":{":input[name=\"category\"]":{"value":"journal"}}}
+route_membership_login   status=on to=[email] from=_default conditions={"enabled":{":input[name=\"category\"]":{"value":"membership_login"}}}
+route_membership_paypal  status=on to=[email], [email] from=_default conditions={"enabled":{":input[name=\"category\"]":{"value":"membership_paypal"}}}
+route_modeling           status=on to=[email] from=_default conditions={"enabled":{":input[name=\"category\"]":{"value":"modeling"}}}
+route_patch_orders       status=on to=[email] from=_default conditions={"enabled":{":input[name=\"category\"]":{"value":"patch_orders"}}}
+route_research           status=on to=[email], [email] from=_default conditions={"enabled":{":input[name=\"category\"]":{"value":"research"}}}
+last submission sid=58 category=other submitter_is_fsi=no (22 chars)
+== drupal mail log ==
+
+In WatchdogCommands.php line 299:
+                                                                                         
+  Unrecognized message type: mail.                                                       
+  Recognized types are: access denied, cron, image, page not found, php, user, webform.  
+                                                                                         
+
+ --------- -------------- --------- ---------- ------------------------------------------------ 
+  ID        Date           Type      Severity   Message                                         
+ --------- -------------- --------- ---------- ------------------------------------------------ 
+  1533039   10/Oct 23:53   webform   Notice     Contact webform sent Email notification email.  
+  1533038   10/Oct 23:53   webform   Notice     Contact webform sent Email confirmation email.  
+  1533037   10/Oct 23:53   webform   Notice     Contact: Submission #17 created.                
+  1513739   10/Oct 17:36   webform   Notice     Contact webform sent Email notification email.  
+  1513738   10/Oct 17:36   webform   Notice     Contact webform sent Email confirmation email.  
+  1513737   10/Oct 17:36   webform   Notice     Contact: Submission #16 created.                
+ --------- -------------- --------- ---------- ------------------------------------------------ 
+== mail server log (last 3h) ==
+-rw------- 1 root root 1108224 Oct 10 23:53 /var/log/maillog
+Oct 10 23:53:21 vps142898 postfix/smtp[1384154]: 942A322809: to=<[email]>, relay=gmail-smtp-in.l.google.com[[ip]]:25, delay=0.32, delays=0.08/0.02/0.19/0.04, dsn=5.1.1, status=bounced (host gmail-smtp-in.l.google.com[[ip]] said: 550-5.1.1 The email account that you tried to reach does not exist. Please try 550-5.1.1 double-checking the recipient's email address for typos or 550-5.1.1 unnecessary spaces. For more information, go to 550 5.1.1  https://support.google.com/mail/?p=NoSuchUser af79cd13be357-93eb98c2f2bsi546792685a.122 - gsmtp (in reply to RCPT TO command))
+Oct 10 23:53:21 vps142898 postfix/bounce[1384156]: 942A322809: sender non-delivery notification: E34EA228EE
+Oct 10 23:53:22 vps142898 postfix/smtp[1384155]: A2A0622804: to=<SAWEB_ADDR>, relay=gmail-smtp-in.l.google.com[[ip]]:25, delay=0.67, delays=0.1/0.01/0.09/0.46, dsn=2.0.0, status=sent (250 2.0.0 OK  1791690802 af79cd13be357-93eb9915d48si471007185a.195 - gsmtp)
+Oct 10 23:53:34 vps142898 postfix/smtp[1384154]: E34EA228EE: to=<[email]>, relay=mx2.r4l.com[[ip]]:25, delay=12, delays=0/0/7.1/5.1, dsn=5.7.1, status=bounced (host mx2.r4l.com[[ip]] said: 554 5.7.1 <[email]>: Relay access denied (in reply to RCPT TO command))
