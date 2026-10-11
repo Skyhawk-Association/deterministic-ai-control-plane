@@ -1,0 +1,34 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T160851Z-vps142898-a2-dump-format-diag
+Task: a2-dump-format-diag
+Generated (UTC): 2026-10-11T16:09:03Z
+Host: vps142898
+---
+== cutover-darwus_beta-20261004T211918Z.sql.gz.gz
+gzip compressed data, from Unix, original size 1286826831
+magic:  1f 8b 08 00
+layer2 type:  2f 2a 4d 21
+first table names:
+INSERT INTO `ban_ip`
+INSERT INTO `batch`
+INSERT INTO `block_content__body`
+INSERT INTO `block_content_field_data`
+INSERT INTO `block_content_field_revision`
+INSERT INTO `block_content_revision__body`
+INSERT INTO `block_content_revision`
+INSERT INTO `block_content`
+CREATE TABLE count: 473
+== pre-cutover-n790725_skyhawk-20261004T215602Z.sql.gz
+gzip compressed data, last modified: Sun Oct  4 21:56:02 2026, from Unix, original size 969030717
+magic:  1f 8b 08 00
+layer2 type:  2f 2a 4d 21
+first table names:
+INSERT INTO `ban_ip`
+INSERT INTO `batch`
+INSERT INTO `block_content__body`
+INSERT INTO `block_content_field_data`
+INSERT INTO `block_content_field_revision`
+INSERT INTO `block_content_revision__body`
+INSERT INTO `block_content_revision`
+INSERT INTO `block_content`
+CREATE TABLE count: 473
