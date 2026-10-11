@@ -1,0 +1,15 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T030603Z-vps142898-contact-webform-fix
+Task: contact-webform-fix
+Generated (UTC): 2026-10-11T03:06:04Z
+Host: vps142898
+---
+BEFORE subject=[Skyhawk TEST] [webform_submission:values:unit:raw] - [webform_submission:values:category:value] - [webform_submission:values:subject:raw]
+BEFORE to_set=yes
+AFTER subject=[webform_submission:values:unit:raw] - [webform_submission:values:category:value] - [webform_submission:values:subject:raw]
+AFTER to_is_saweba4master1=YES
+AFTER subject_has_TEST=NO
+=== FSI IN CUSTOM CODE/CONFIG
+web/modules/custom/skyhawk_site_fixes/src/Form/ReunionUploadForm.php.bak.20260823215617
+web/modules/custom/skyhawk_site_fixes/src/Form/ReunionUploadForm.php
+
