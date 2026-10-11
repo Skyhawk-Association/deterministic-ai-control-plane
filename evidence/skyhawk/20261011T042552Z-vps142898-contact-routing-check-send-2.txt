@@ -1,0 +1,30 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T042552Z-vps142898-contact-routing-check-send-2
+Task: contact-routing-check-send-2
+Generated (UTC): 2026-10-11T04:26:53Z
+Host: vps142898
+---
+ [notice] Contact: Submission #26 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Correction email.
+sid=67 category=correction routed_recipients=2
+ [notice] Contact: Submission #27 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Story / Memory email.
+sid=68 category=story routed_recipients=2
+ [notice] Contact: Submission #28 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Former Squadron Member email.
+sid=69 category=former_member routed_recipients=2
+SUBMITTED=3
+== waiting 60s for delivery ==
+== delivery results (recipient status) ==
+      1 STENDER sent
+      2 DAVE sent
+      2 GP sent
+      6 SAWEB sent
+      1 LINDER sent
+== any bounce detail ==
