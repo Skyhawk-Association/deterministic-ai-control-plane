@@ -1,0 +1,93 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T030916Z-vps142898-fsi-and-alias-scan
+Task: fsi-and-alias-scan
+Generated (UTC): 2026-10-11T03:09:17Z
+Host: vps142898
+---
+=== FSI LINES
+318-    \Drupal::service('plugin.manager.mail')->mail(
+319-      'skyhawk_site_fixes', 'reunion_admin_notify',
+320:      'fsigeneatwell -at- gmail.com', 'en',
+321-      ['title' => $title, 'email' => $email, 'nid' => $node->id(), 'verify_url' => $verify_url],
+322-      NULL, TRUE
+=== ALIAS SCAN
+ADDR a4join -at- a4skyhawk.org (1)
+   node__body:48561 "Association e-Mail IDs"
+ADDR a4modelers -at- a4skyhawk.net (2)
+   node__body:25 "Modelers Hangar Bay"
+   node__body:48561 "Association e-Mail IDs"
+ADDR historical-research -at- skyhawk.org (1)
+   node__body:48561 "Association e-Mail IDs"
+ADDR membership-paypal -at- a4skyhawk.org (1)
+   node__body:48561 "Association e-Mail IDs"
+ADDR rr-access -at- a4skyhawk.net (1)
+   node__body:323 "RR Access"
+ADDR rr-acess -at- a4skyhawk.net (1)
+   node__body:48561 "Association e-Mail IDs"
+ADDR sa-a4-research -at- darw.it (1)
+   node__body:4 "Civilian Skyhawks"
+ADDR sa-boa5rd -at- a4skyhawk.net (1)
+   node__body:48561 "Association e-Mail IDs"
+ADDR sa-contact-losses -at- a4skyhawk.net (39)
+   node__body:39 "People - Losses - Dedications"
+   node__body:72 "VA-12"
+   node__body:86 "VA-22"
+   node__body:88 "VA-34"
+   node__body:90 "VA-43"
+   node__body:91 "VA-44"
+   node__body:92 "VA-45 / VF-45"
+   node__body:98 "VA-72"
+   node__body:100 "VA-81"
+   node__body:101 "VA-83"
+   node__body:102 "VA-86"
+   node__body:110 "VA-126"
+   node__body:111 "VA-127"
+   node__body:121 "VA-172"
+   node__body:123 "VA-195"
+   node__body:124 "VA-212"
+   node__body:132 "MAG-14"
+   node__body:157 "VMA-224"
+   node__body:158 "VMA-225"
+   node__body:163 "VMA-322"
+   node__body:165 "VMA-331"
+   node__body:166 "VMA-332"
+   node__body:169 "VMAT-102"
+   node__body:204 "VT-7"
+   node__body:205 "VT-21"
+ADDR sa-diremeritus -at- a4skyhawk.net (1)
+   node__body:48561 "Association e-Mail IDs"
+ADDR sa-editorial-boa5rd -at- a4skyhawk.net (1)
+   node__body:48561 "Association e-Mail IDs"
+ADDR sa-journal-editor -at- a4skyhawk.net (2)
+   node__body:85 "Webmaster's Editors SOP"
+   node__body:48561 "Association e-Mail IDs"
+ADDR sa-journal-editor -at- a4skyhawk.org (1)
+   node__body:720 "Association Central Texas Mini-Reunion March 28 2009"
+ADDR sa-patch -at- a4skyhawk.net (1)
+   node__body:48561 "Association e-Mail IDs"
+ADDR sdo-coor -at- skyhawk.org (1)
+   node__body:48561 "Association e-Mail IDs"
+ADDR webmaster -at- a4skyhawk.net (1)
+   node__body:24 "Skyhawks Displays"
+ADDR webmaster -at- a4skyhawk.org (10)
+   node__body:4 "Civilian Skyhawks"
+   node__body:24 "Skyhawks Displays"
+   node__body:32 "TINS"
+   node__body:41 "Non-U.S.A. Skyhawks"
+   node__body:86 "VA-22"
+   node__body:97 "VA-66"
+   node__body:104 "VA-94"
+   node__body:136 "MAG-31"
+   node__body:478 "Ready Room"
+   node__body:714 "Skyhawk Restoration Information"
+ADDR webmaster -at- skyhawk.org (9)
+   node__body:24 "Skyhawks Displays"
+   node__body:340 "Skyhawk RADAR"
+   node__body:712 "General Photo Page."
+   config:contact.form.feedback
+   config:contact.form.sitewide
+   config:simplenews.newsletter.default
+   config:simplenews.settings
+   config:system.site
+   config:update.settings
+TOTAL distinct addresses: 18
