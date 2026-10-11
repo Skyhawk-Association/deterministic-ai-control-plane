@@ -1,0 +1,28 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T160744Z-vps142898-join-a2-dump-scan
+Task: join-a2-dump-scan
+Generated (UTC): 2026-10-11T16:08:02Z
+Host: vps142898
+---
+commit c08ba5f
+join_a2_dump_scan.sh: OK
+== candidate A2 dumps ==
+/home/n790725/skyhawk-migration/cutover-darwus_beta-20261004T211918Z.sql.gz.gz  146588898 bytes  2026-10-04
+/home/n790725/skyhawk-migration/incoming/darwus_beta-initial-20261002.sql.gz  136902527 bytes  2026-10-01
+/home/n790725/skyhawk-migration/pre-cutover-n790725_skyhawk-20261004T215602Z.sql.gz  98504944 bytes  2026-10-04
+================ cutover-darwus_beta-20261004T211918Z.sql.gz.gz
+webform/contact config objects: none
+webform submissions by form:
+contact messages by form: none
+join-like node titles: none
+================ darwus_beta-initial-20261002.sql.gz
+webform/contact config objects: none
+webform submissions by form:
+contact messages by form: none
+join-like node titles: none
+================ pre-cutover-n790725_skyhawk-20261004T215602Z.sql.gz
+webform/contact config objects: none
+webform submissions by form:
+contact messages by form: none
+join-like node titles: none
+SCAN ONLY - nothing written
