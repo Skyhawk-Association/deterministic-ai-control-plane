@@ -1,0 +1,22 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T042357Z-vps142898-contact-category-routing-2
+Task: contact-category-routing-2
+Generated (UTC): 2026-10-11T04:24:02Z
+Host: vps142898
+---
+backup webform.contact.pre-routing2-20261011T042357Z.yml 570 lines
+correction label: Correction (dates, names, facts)
+route_correction  enabled=yes when category=correction recipients=2 config_match=yes
+route_story       enabled=yes when category=story recipients=2 config_match=yes
+route_former      enabled=yes when category=former_member recipients=2 config_match=yes
+== condition test (unsaved samples, no email) ==
+  former_member  unit=VA-12    route_former      fires=yes expected=yes OK
+  former_member  unit=VMA-131  route_former      fires=yes expected=yes OK
+  former_member  unit=-        route_former      fires=yes expected=yes OK
+  correction     unit=-        route_correction  fires=yes expected=yes OK
+  story          unit=VA-55    route_story       fires=yes expected=yes OK
+  history        unit=VA-12    route_story       fires=no expected=no OK
+  photos         unit=-        route_correction  fires=no expected=no OK
+  photos         unit=-        route_former      fires=no expected=no OK
+RESULT=PASS
+ [success] Cache rebuild complete.
