@@ -1,0 +1,20 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T030300Z-vps142898-forms-recipient-inventory
+Task: forms-recipient-inventory
+Generated (UTC): 2026-10-11T03:03:01Z
+Host: vps142898
+---
+SITE_MAIL=[email] | SITE_NAME=The Skyhawk Association
+=== CONTACT FORMS
+CONTACT|feedback|Website feedback|to=[email]
+CONTACT|personal|Personal contact form|to=
+CONTACT|sitewide|Contact Form|to=[email]
+=== WEBFORMS
+WEBFORM|contact|Contact|open
+  HANDLER|email_confirmation|Email confirmation|enabled=1|to=[webform_submission:values:email:raw]|cc=|bcc=|from=_default|subject=Skyhawk Association message received: [webform_submission:values:unit:raw]
+  HANDLER|email_notification|Email notification|enabled=1|to=[email]|cc=|bcc=|from=_default|subject=[Skyhawk TEST] [webform_submission:values:unit:raw] - [webform_submission:values:category:value] - [webform_submission:values:subject:raw]
+WEBFORM|reunion_2026_photo_upload|2026 Reunion Photo Upload|open
+WEBFORM|trustee_feedback|Trustee Feedback|open
+WEBFORM|volunteer_submission|Volunteer Submission|open
+WEBFORM|yp_memories|Share a Memory or Photograph of YP|open
+=== CUSTOM CODE SUBJECTS WITH TEST
