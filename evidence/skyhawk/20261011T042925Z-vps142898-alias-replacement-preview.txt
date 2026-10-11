@@ -1,0 +1,38 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T042925Z-vps142898-alias-replacement-preview
+Task: alias-replacement-preview
+Generated (UTC): 2026-10-11T04:29:25Z
+Host: vps142898
+---
+ [error]  ParseError: syntax error, unexpected identifier "SELECT", expecting ")" in Drush\Commands\core\PhpCommands->script() (line 83 of /home/n790725/alias_preview.php) #0 [internal function]: Drush\Commands\core\PhpCommands->script()
+#1 /home/n790725/drupalbeta/vendor/consolidation/annotated-command/src/CommandProcessor.php(276): call_user_func_array()
+#2 /home/n790725/drupalbeta/vendor/consolidation/annotated-command/src/CommandProcessor.php(212): Consolidation\AnnotatedCommand\CommandProcessor->runCommandCallback()
+#3 /home/n790725/drupalbeta/vendor/consolidation/annotated-command/src/CommandProcessor.php(175): Consolidation\AnnotatedCommand\CommandProcessor->validateRunAndAlter()
+#4 /home/n790725/drupalbeta/vendor/consolidation/annotated-command/src/AnnotatedCommand.php(389): Consolidation\AnnotatedCommand\CommandProcessor->process()
+#5 /home/n790725/drupalbeta/vendor/symfony/console/Command/Command.php(341): Consolidation\AnnotatedCommand\AnnotatedCommand->execute()
+#6 /home/n790725/drupalbeta/vendor/symfony/console/Application.php(1117): Symfony\Component\Console\Command\Command->run()
+#7 /home/n790725/drupalbeta/vendor/drush/drush/src/Application.php(201): Symfony\Component\Console\Application->doRunCommand()
+#8 /home/n790725/drupalbeta/vendor/symfony/console/Application.php(356): Drush\Application->doRunCommand()
+#9 /home/n790725/drupalbeta/vendor/symfony/console/Application.php(195): Symfony\Component\Console\Application->doRun()
+#10 /home/n790725/drupalbeta/vendor/drush/drush/src/Runtime/Runtime.php(113): Symfony\Component\Console\Application->run()
+#11 /home/n790725/drupalbeta/vendor/drush/drush/src/Runtime/Runtime.php(40): Drush\Runtime\Runtime->doRun()
+#12 /home/n790725/drupalbeta/vendor/drush/drush/drush.php(140): Drush\Runtime\Runtime->run()
+#13 /home/n790725/drupalbeta/vendor/bin/drush.php(119): include('...')
+#14 {main}. 
+ParseError: syntax error, unexpected identifier "SELECT", expecting ")" in /home/n790725/alias_preview.php on line 83 #0 [internal function]: Drush\Commands\core\PhpCommands->script()
+#1 /home/n790725/drupalbeta/vendor/consolidation/annotated-command/src/CommandProcessor.php(276): call_user_func_array()
+#2 /home/n790725/drupalbeta/vendor/consolidation/annotated-command/src/CommandProcessor.php(212): Consolidation\AnnotatedCommand\CommandProcessor->runCommandCallback()
+#3 /home/n790725/drupalbeta/vendor/consolidation/annotated-command/src/CommandProcessor.php(175): Consolidation\AnnotatedCommand\CommandProcessor->validateRunAndAlter()
+#4 /home/n790725/drupalbeta/vendor/consolidation/annotated-command/src/AnnotatedCommand.php(389): Consolidation\AnnotatedCommand\CommandProcessor->process()
+#5 /home/n790725/drupalbeta/vendor/symfony/console/Command/Command.php(341): Consolidation\AnnotatedCommand\AnnotatedCommand->execute()
+#6 /home/n790725/drupalbeta/vendor/symfony/console/Application.php(1117): Symfony\Component\Console\Command\Command->run()
+#7 /home/n790725/drupalbeta/vendor/drush/drush/src/Application.php(201): Symfony\Component\Console\Application->doRunCommand()
+#8 /home/n790725/drupalbeta/vendor/symfony/console/Application.php(356): Drush\Application->doRunCommand()
+#9 /home/n790725/drupalbeta/vendor/symfony/console/Application.php(195): Symfony\Component\Console\Application->doRun()
+#10 /home/n790725/drupalbeta/vendor/drush/drush/src/Runtime/Runtime.php(113): Symfony\Component\Console\Application->run()
+#11 /home/n790725/drupalbeta/vendor/drush/drush/src/Runtime/Runtime.php(40): Drush\Runtime\Runtime->doRun()
+#12 /home/n790725/drupalbeta/vendor/drush/drush/drush.php(140): Drush\Runtime\Runtime->run()
+#13 /home/n790725/drupalbeta/vendor/bin/drush.php(119): include('...')
+#14 {main}
+ParseError: syntax error, unexpected identifier "SELECT", expecting ")" in Drush\Commands\core\PhpCommands->script() (line 83 of /home/n790725/alias_preview.php).
+ [warning] Drush command terminated abnormally.
