@@ -1,0 +1,70 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T043511Z-vps142898-alias-public-page-check
+Task: alias-public-page-check
+Generated (UTC): 2026-10-11T04:35:23Z
+Host: vps142898
+---
+commit 1b07a93
+alias_public_check.sh: OK
+4      http=200 old=0 contact_links=1 awkward=0 OK /page/civilian-skyhawks
+24     http=200 old=0 contact_links=3 awkward=0 OK /article/skyhawk-displays
+25     http=200 old=0 contact_links=1 awkward=0 OK /article-modeling/modelers-hangar-bay
+32     http=200 old=0 contact_links=1 awkward=0 OK /article/tins
+39     http=200 old=0 contact_links=1 awkward=0 OK /article/people-losses-dedications
+41     http=200 old=0 contact_links=1 awkward=0 OK /article/skyhawks-around-world
+72     http=200 old=0 contact_links=2 awkward=0 OK /article-unit/va12
+85     http=200 old=0 contact_links=1 awkward=0 OK /article-readyroom/site-sop
+86     http=200 old=0 contact_links=2 awkward=0 OK /article-unit/va22
+88     http=200 old=0 contact_links=2 awkward=0 OK /article-unit/va34
+90     http=200 old=0 contact_links=2 awkward=0 OK /article-unit/va43
+91     http=200 old=0 contact_links=6 awkward=0 OK /article-unit/va44
+92     http=200 old=0 contact_links=3 awkward=0 OK /article-unit/va45
+97     http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va66
+98     http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va72
+100    http=200 old=0 contact_links=2 awkward=0 OK /article-unit/va81
+101    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va83
+102    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va86
+104    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va94
+110    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va126
+111    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va127
+121    http=200 old=0 contact_links=2 awkward=0 OK /article-unit/va172
+123    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va195
+124    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va212
+132    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/mag14
+136    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/mag31
+157    http=200 old=0 contact_links=2 awkward=0 OK /article-unit/vma224
+158    http=200 old=0 contact_links=2 awkward=0 OK /article-unit/vma225
+163    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/vma322
+165    http=200 old=0 contact_links=5 awkward=0 OK /article-unit/vma331
+166    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/vma332
+169    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/vmat102
+204    http=200 old=0 contact_links=2 awkward=0 OK /article-unit/vt7
+205    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/vt21
+208    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/vt24
+214    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/vc2
+216    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/vc5
+218    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/vc8
+226    http=200 old=0 contact_links=6 awkward=0 OK /article-unit/narf-nas-alameda
+233    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/nads-warminster
+234    http=200 old=0 contact_links=1 awkward=0 OK /article-unit/naec-natf-lakehurst
+240    http=200 old=0 contact_links=2 awkward=0 OK /article-unit/natc-pax
+248    http=200 old=0 contact_links=2 awkward=0 OK /article-unit/nas-glenview
+253    http=200 old=0 contact_links=2 awkward=0 OK /article-unit/nas-jacksonville-reserves
+254    http=200 old=0 contact_links=3 awkward=0 OK /article-unit/nas-los-alamitos
+257    http=200 old=0 contact_links=2 awkward=0 OK /article-unit/nas-floyd-bennett-field
+323    http=200 old=0 contact_links=1 awkward=0 OK /page/rr-access
+340    http=200 old=0 contact_links=1 awkward=0 OK /article/skyhawk-radar
+478    http=200 old=0 contact_links=1 awkward=0 OK /article-ready-room/readyroom-homepage
+712    http=200 old=0 contact_links=1 awkward=0 OK /article/general-photo-page
+714    http=200 old=0 contact_links=1 awkward=0 OK /article/skyhawk-restoration-info
+715    http=200 old=0 contact_links=5 awkward=0 OK /article-unit/va125
+720    http=200 old=0 contact_links=1 awkward=0 OK /article/sa-central-tx-mini-reunion
+49221  http=200 old=0 contact_links=1 awkward=0 OK /article-unit/va55
+== footer/global check: plain [email] occurrences on node/72 (site-wide template text, not page body) ==
+0
+== prepopulate check ==
+http=200
+<option value="VA-12" selected="selected">
+<option value="history" selected="selected">
+PAGES=54 NEED_CHECK=0
+RESULT=PASS
