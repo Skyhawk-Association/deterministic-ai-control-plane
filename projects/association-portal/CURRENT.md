@@ -27,3 +27,7 @@ The Skyhawk 501(c)(3) C-filing is a separate workstream, documented in `projects
 ## Reconciled user-conversation handoff
 
 The complete cross-workstream summary of filing, two independent AIs, InMotion, public/private blogs, site locations and verified cleanup is `projects/skyhawk/2026-10-10_CROSS_WORKSTREAM_HANDOFF.md`. Read it before producing any combined email or project status. Mark is NOT assigned to build the portal. The filing is not blocked by the portal. Earlier single-topic email drafts omitted this website context and are incomplete for Gene's current request.
+
+## Requirement: replace Google Groups (Gene, 2026-10-11)
+
+Gene stated the new portal site must eliminate dependence on Google for board and member group communication. Context: the interim `skyhawk-bod` Google Group (2026-10-10) needs invitation acceptance for addresses that aren't Google accounts, and shows unexplained member warnings. The portal design must therefore provide group/list communication itself, with working outbound deliverability (SPF/DKIM alignment and bounce handling; see the R4L relay-denied bounce issue in `projects/skyhawk/LOST-D.md`). Planning only; implementation still requires Gene's explicit authorization.
