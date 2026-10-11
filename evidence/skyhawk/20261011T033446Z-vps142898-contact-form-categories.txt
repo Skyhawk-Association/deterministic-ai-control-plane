@@ -1,0 +1,29 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T033446Z-vps142898-contact-form-categories
+Task: contact-form-categories
+Generated (UTC): 2026-10-11T03:34:47Z
+Host: vps142898
+---
+ELEMENT|name|textfield|Your Name|prepopulate=no
+ELEMENT|email|email|Your Email|prepopulate=no
+ELEMENT|category|select|What would you like to share or ask about?|prepopulate=yes
+   OPTION|photos|Photos
+   OPTION|story|Story / Memory
+   OPTION|history|Historical Information
+   OPTION|correction|Correction
+   OPTION|research|Research
+   OPTION|journal|Journal
+   OPTION|modeling|Modeling
+   OPTION|membership_login|Membership / Login
+   OPTION|membership_paypal|Membership / PayPal
+   OPTION|patch_orders|Patch Orders
+   OPTION|website|Website / Contributions
+   OPTION|former_member|Former Squadron Member
+   OPTION|other|Other
+ELEMENT|unit|select|Squadron or Unit|prepopulate=yes
+   OPTION|United States Navy|{"RVAH-3":"RVAH-3","VA-12":"VA-12","VA-15":"VA-15","VA-22":"VA-22","VA-23":"VA-23","VA-34":"VA-34","VA-36":"VA-36","VA-43":"VA-43","VA-44":"VA-44","VA-45":"VA-45","VA-46":"VA-46","VA-55":"VA-55","VA-56":"VA-56","VA-64":"VA-64","VA-66":"VA-66","VA-72":"VA-72","VA-76":"VA-76","VA-81":"VA-81","VA-83":"VA-83","VA-86":"VA-86","VA-93":"VA-93","VA-94":"VA-94","VA-95":"VA-95","VA-106":"VA-106","VA-112":"VA-112","VA-113":"VA-113","VA-125":"VA-125","VA-126":"VA-126","VA-127":"VA-127","VA-133":"VA-133","VA-134":"VA-134","VA-144":"VA-144","VA-146":"VA-146","VA-152":"VA-152","VA-153":"VA-153","VA-155":"VA-155","VA-163":"VA-163","VA-164":"VA-164","VA-172":"VA-172","VA-192":"VA-192","VA-195":"VA-195","VA-202":"VA-202","VA-203":"VA-203","VA-204":"VA-204","VA-205":"VA-205","VA-209":"VA-209","VA-210":"VA-210","VA-212":"VA-212","VA-216":"VA-216","VA-303":"VA-303","VA-304":"VA-304","VA-305":"VA-305","VA-724":"VA-724","VA-725":"VA-725","VA-727":"VA-727","VA-741":"VA-741","VA-771":"VA-771","VA-776":"VA-776","VA-791":"VA-791","VA-792":"VA-792","VA-811":"VA-811","VA-813":"VA-813","VA-821":"VA-821","VA-831":"VA-831","VA-832":"VA-832","VA-861":"VA-861","VA-873":"VA-873","VA-876":"VA-876","VA-879":"VA-879","VA-881":"VA-881","VA-882":"VA-882","VA-892":"VA-892","VA-911":"VA-911","VA-912":"VA-912","VAQ-33":"VAQ-33","VC-1":"VC-1","VC-2":"VC-2","VC-4":"VC-4","VC-5":"VC-5","VC-7":"VC-7","VC-8":"VC-8","VC-10":"VC-10","VC-12":"VC-12","VC-13":"VC-13","VF-43":"VF-43","VF-44":"VF-44","VF-45":"VF-45","VF-101":"VF-101","VF-126":"VF-126","VF-127":"VF-127","VF-171":"VF-171","VF-741":"VF-741","VF-753":"VF-753","VFA-126":"VFA-126","VFA-127":"VFA-127","VFA-201":"VFA-201","VFA-203":"VFA-203","VFA-204":"VFA-204","VFC-12":"VFC-12","VFC-13":"VFC-13","VFC-111":"VFC-111","VT-1":"VT-1","VT-2":"VT-2","VT-3":"VT-3","VT-4":"VT-4","VT-5":"VT-5","VT-7":"VT-7","VT-9":"VT-9","VT-19":"VT-19","VT-21":"VT-21","VT-22":"VT-22","VT-23":"VT-23","VT-24":"VT-24","VT-25":"VT-25","VT-26":"VT-26","VT-27":"VT-27","VT-31":"VT-31","VT-35":"VT-35","VT-86":"VT-86","VX-4":"VX-4","VX-5":"VX-5"}
+   OPTION|United States Marine Corps|{"MAG-11":"MAG-11","MAG-12":"MAG-12","MAG-13":"MAG-13","MAG-14":"MAG-14","MAG-15":"MAG-15","MAG-17":"MAG-17","MAG-24":"MAG-24","MAG-31":"MAG-31","MAG-32":"MAG-32","MAG-33":"MAG-33","MAG-41":"MAG-41","MAG-42":"MAG-42","MAG-46":"MAG-46","MAG-49":"MAG-49","VMA-121":"VMA-121","VMA-123":"VMA-123","VMA-124":"VMA-124","VMA-131":"VMA-131","VMA-132":"VMA-132","VMA-133":"VMA-133","VMA-134":"VMA-134","VMA-142":"VMA-142","VMA-143":"VMA-143","VMA-144":"VMA-144","VMA-211":"VMA-211","VMA-212":"VMA-212","VMA-214":"VMA-214","VMA-217":"VMA-217","VMA-223":"VMA-223","VMA-224":"VMA-224","VMA-225":"VMA-225","VMA-233":"VMA-233","VMA-241":"VMA-241","VMA-242":"VMA-242","VMA-311":"VMA-311","VMA-322":"VMA-322","VMA-324":"VMA-324","VMA-331":"VMA-331","VMA-332":"VMA-332","VMA-533":"VMA-533","VMA-543":"VMA-543","VMAT-102":"VMAT-102","VMAT-203":"VMAT-203","VMF-233":"VMF-233","VMT-103":"VMT-103"}
+ELEMENT|subject|textfield|Subject|prepopulate=no
+ELEMENT|message|textarea|Message|prepopulate=no
+ELEMENT|actions|webform_actions|Submit button(s)|prepopulate=no
+FORM_PREPOPULATE=yes
