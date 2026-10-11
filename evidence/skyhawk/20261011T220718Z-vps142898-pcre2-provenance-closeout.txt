@@ -1,0 +1,91 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T220718Z-vps142898-pcre2-provenance-closeout
+Task: pcre2-provenance-closeout
+Generated (UTC): 2026-10-11T22:07:18Z
+Host: vps142898
+---
+=== CWP 8.4 SELECTOR RECIPE: PCRE LINES ===
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/8.4.ini | mtime=2026-08-05 17:10:01.000000000 -0400
+189:[pcre]
+191:option="--with-external-pcre"
+192:info-file=pcre.txt
+
+=== OTHER SELECTOR RECIPES / SCRIPTS NAMING PCRE2 10.39 ===
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_switcher/pre_run/8.1/php81.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_switcher/pre_run/8.5/php85.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_switcher/pre_run/8.4/php84.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_switcher/pre_run/8.3/php83.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_switcher/pre_run/7.4/php74.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_switcher/pre_run/8.0/php80.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_switcher/pre_run/8.2/php82.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/pre_run/8.1/php81.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/pre_run/8.5/php85.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/pre_run/8.4/php84.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/pre_run/8.3/php83.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/pre_run/7.4/php74.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/pre_run/8.0/php80.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/pre_run/8.2/php82.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php-fpm_selector/pre_run/8.1/php81.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php-fpm_selector/pre_run/8.5/php85.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php-fpm_selector/pre_run/8.4/php84.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php-fpm_selector/pre_run/8.3/php83.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php-fpm_selector/pre_run/7.4/php74.sh
+/usr/local/cwpsrv/htdocs/resources/conf/el8/php-fpm_selector/pre_run/8.0/php80.sh
+
+=== CWP ADMIN REQUESTS OCT 7 10:15-10:45 (selector/compile) ===
+<IP> - - [07/Oct/2026:10:18:24 -0400] "POST /login/index.php HTTP/1.1" 302 25 https://cpjump.inmotionhosting.com/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:18:24 -0400] "GET /cwp_REDACTED/admin/index.php?module=fast_login HTTP/1.1" 200 40685 https://cpjump.inmotionhosting.com/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:18:24 -0400] "GET /cwp_REDACTED/admin/design/img/js.php HTTP/1.1" 200 246361 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:18:30 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704539 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:18:35 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704540 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:18:40 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704541 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:18:45 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704542 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:18:50 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704543 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:18:55 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704544 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:00 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704545 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:05 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704546 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:10 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704547 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:15 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382704548 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:17 -0400] "GET /cwp_REDACTED/admin/design/img/js.php HTTP/1.1" 200 246369 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:17 -0400] "GET /cwp_REDACTED/admin/index.php?module=php_switch_v2 HTTP/1.1" 200 128123 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=fast_login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:23 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756923 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:28 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756924 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:33 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756925 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:35 -0400] "POST /cwp_REDACTED/admin/loader_ajax.php?ajax=php_switcher&acc=get_php_options HTTP/1.1" 200 13389 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:38 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756926 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:43 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756927 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:48 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756928 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:53 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756929 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:53 -0400] "POST /cwp_REDACTED/admin/loader_ajax.php?ajax=php_switcher&acc=reset_php_options HTTP/1.1" 200 13389 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:19:58 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756930 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:03 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756931 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:08 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756932 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:13 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756933 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:15 -0400] "POST /cwp_REDACTED/admin/loader_ajax.php?ajax=php_switcher&acc=reset_php_options HTTP/1.1" 200 13389 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:18 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756934 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:23 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756935 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:28 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756936 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:33 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756937 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:38 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756938 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:43 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756939 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:48 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756940 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:53 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756941 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:20:58 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756942 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:21:03 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756943 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+<IP> - - [07/Oct/2026:10:21:08 -0400] "GET /cwp_REDACTED/admin/loader.php?func=get_load&_=1791382756944 HTTP/1.1" 200 37 https://vps142898.inmotionhosting.com:2087/cwp_REDACTED/admin/index.php?module=php_switch_v2 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/<IP> Safari/537.36
+
+=== LOGS/FILES WRITTEN OCT 7 10:30-10:45 (build evidence) ===
+2026-10-07 10:33:46.0878800280  /usr/local/cwp/.conf/php-fpm_conf/php84.conf
+2026-10-07 10:33:46.0878800280  /usr/local/cwp/.conf/php-fpm_conf/php84_external.conf
+2026-10-07 10:33:46.0878800280  /usr/local/cwp/.conf/php-fpm_conf/php84_pre.conf
+2026-10-07 10:34:07.7722313600  /var/log/php-dependencies.log
+2026-10-07 10:41:30.4973999230  /var/log/php-selector-rebuild.log
+2026-10-07 10:41:43.5176106200  /tmp/php-selector-rebuild-real-time.log
+
+=== LINKER ORDER ===
+total 4
+-rw-r--r-- 1 root root 26 Oct  8 10:50 bind-export-x86_64.conf
+/etc/ld.so.conf:include ld.so.conf.d/*.conf
+/etc/ld.so.conf.d/bind-export-x86_64.conf:/usr/lib64//bind9-export/
+
+RESULT=PCRE2_PROVENANCE_CLOSEOUT_READONLY_COMPLETE
