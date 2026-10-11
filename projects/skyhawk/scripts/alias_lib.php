@@ -47,5 +47,21 @@ function alias_transform($html, $unit, &$st) {
       return $inA ? 'the Contact form' : '<a href="' . $url . '">the Contact form</a>';
     }, $p);
   }
-  return implode('', $parts);
+  return alias_polish(implode('', $parts));
+}
+
+// Readability pass on the links this library generated (anchor text exactly "the Contact form").
+function alias_polish($html) {
+  $sp = '(?:\s|&nbsp;|</?(?:strong|b|em|i)>)+';
+  $a = '(<a href="/form/contact[^"]*">)the Contact form(</a>)';
+  // "contact [the] X" -> "contact us"
+  $html = preg_replace_callback('#\b(contact)(' . $sp . ')(?:the' . $sp . ')?' . $a . '#i',
+    fn($m) => $m[1] . $m[2] . $m[3] . 'us' . $m[4], $html);
+  // "e-mail [me at] [the] X" -> "use the Contact form"
+  $html = preg_replace_callback('#\b(e-?mail)(' . $sp . ')(?:me' . $sp . 'at' . $sp . ')?(?:the' . $sp . ')?' . $a . '#i',
+    fn($m) => (preg_match('/[A-Z]/', $m[1]) ? 'Use' : 'use') . $m[2] . $m[3] . 'the Contact form' . $m[4], $html);
+  // "... at X" -> "... via X"; "the X" -> "X"
+  $html = preg_replace('#\bat(' . $sp . ')' . $a . '#', 'via$1$2the Contact form$3', $html);
+  $html = preg_replace('#\bthe(' . $sp . ')' . $a . '#i', '$1$2the Contact form$3', $html);
+  return $html;
 }
