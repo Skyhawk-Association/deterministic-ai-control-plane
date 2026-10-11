@@ -1,0 +1,53 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T040156Z-vps142898-contact-routing-check-send
+Task: contact-routing-check-send
+Generated (UTC): 2026-10-11T04:02:57Z
+Host: vps142898
+---
+notification reply_to=[webform_submission:values:email:raw] html=yes
+ [notice] Contact: Submission #19 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Membership / Login email.
+sid=60 category=membership_login routed_recipients=1
+ [notice] Contact: Submission #20 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Membership / PayPal email.
+sid=61 category=membership_paypal routed_recipients=2
+ [notice] Contact: Submission #21 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Patch Orders email.
+sid=62 category=patch_orders routed_recipients=1
+ [notice] Contact: Submission #22 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Modeling email.
+sid=63 category=modeling routed_recipients=1
+ [notice] Contact: Submission #23 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Journal email.
+sid=64 category=journal routed_recipients=1
+ [notice] Contact: Submission #24 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Research email.
+sid=65 category=research routed_recipients=2
+ [notice] Contact: Submission #25 created.
+ [notice] Contact webform sent Email confirmation email.
+ [notice] Contact webform sent Email notification email.
+ [notice] Contact webform sent Route: Historical Information email.
+sid=66 category=history routed_recipients=2
+SUBMITTED=7
+== waiting 60s for delivery ==
+== delivery results (recipient status) ==
+      2 DAVE sent
+      1 EDITOR sent
+      2 GP sent
+      1 JOE sent
+      1 MARK sent
+     14 SAWEB sent
+      3 TERRY sent
+== any bounce detail ==
