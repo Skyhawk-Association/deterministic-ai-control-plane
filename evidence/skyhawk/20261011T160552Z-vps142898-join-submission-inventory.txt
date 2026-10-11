@@ -1,0 +1,25 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T160552Z-vps142898-join-submission-inventory
+Task: join-submission-inventory
+Generated (UTC): 2026-10-11T16:05:53Z
+Host: vps142898
+---
+commit f5c8bae
+join_inventory.php: OK
+== webforms (all) ==
+contact                          status=open   subs=32 first=2026-08-15 last=2026-10-11 title="Contact" handlers=email_confirmation(to=[webform_submission:values:email:raw]),email_notification(to=[addr]),route_correction(to=[addr], [addr]),route_former(to=[addr], [addr]),route_history(to=[addr], [addr]),route_journal(to=[addr]),route_membership_login(to=[addr]),route_membership_paypal(to=[addr], [addr]),route_modeling(to=[addr]),route_patch_orders(to=[addr]),route_research(to=[addr], [addr]),route_story(to=[addr], [addr])
+reunion_2026_photo_upload        status=open   subs=30 first=2026-09-13 last=2026-09-28 title="2026 Reunion Photo Upload" handlers=none
+trustee_feedback                 status=open   subs=0 first=- last=- title="Trustee Feedback" handlers=none
+volunteer_submission             status=open   subs=0 first=- last=- title="Volunteer Submission" handlers=none
+yp_memories                      status=open   subs=10 first=2026-05-21 last=2026-07-19 title="Share a Memory or Photograph of YP" handlers=none
+== join-like webform element keys (field names only) ==
+== core contact forms / stored messages ==
+contact_form feedback             label="Website feedback" recipients=1
+contact_form personal             label="Personal contact form" recipients=0
+contact_form sitewide             label="Contact Form" recipients=1
+contact_message table: yes rows=20
+== nodes with join-like titles ==
+node 49355 type=page published=1 "WOFAM Demo - Join the Team"
+== watchdog mail-type history (counts only) ==
+webform  rows=65 first=2026-10-10 last=2026-10-11
+INVENTORY ONLY - nothing written
