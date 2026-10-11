@@ -1,0 +1,12 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T040525Z-vps142898-db-backup-pre-alias
+Task: db-backup-pre-alias
+Generated (UTC): 2026-10-11T04:05:48Z
+Host: vps142898
+---
+ [success] Database dump saved to /home/n790725/backups/manual/skyhawk-pre-alias-20261011T040525Z.sql.gz
+gzip_ok
+-rw-rw-r-- 1 n790725 n790725 69571036 Oct 11 00:05 /home/n790725/backups/manual/skyhawk-pre-alias-20261011T040525Z.sql.gz
+c5cde2b657842a329e493aca1ce2e97f5f15d3b6781a30a29b1a0bc516a7f7e2  /home/n790725/backups/manual/skyhawk-pre-alias-20261011T040525Z.sql.gz
+tables=473
+PATH_FOR_DOWNLOAD=/home/n790725/backups/manual/skyhawk-pre-alias-20261011T040525Z.sql.gz
