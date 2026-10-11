@@ -20,10 +20,16 @@ re_wf  = re.compile(r"\((\d+),\x27([a-z0-9_]+)\x27,\x27[0-9a-f-]{36}\x27")
 re_cm  = re.compile(r"\((\d+),\x27([a-z0-9_]+)\x27,\x27[0-9a-f-]{36}\x27,\x27[a-z]{2,3}\x27")
 re_cfg = re.compile(r"\x27(webform\.webform\.[a-z0-9_]+|contact\.form\.[a-z0-9_]+)\x27")
 re_ts  = re.compile(r"\((\d+),\x27([a-z0-9_]+)\x27,\x27[0-9a-f-]{36}\x27,[^)]*?,(1[0-9]{9}),")
+seen = collections.Counter(); tbl = None
 for line in sys.stdin.buffer:
-    if not line.startswith(b"INSERT INTO"): continue
-    s = line.decode("utf-8", "replace")
-    tbl = s[13:s.find("`", 13)]
+    if line.startswith(b"INSERT INTO"):
+        s = line.decode("utf-8", "replace"); tbl = s[13:s.find("`", 13)]
+    elif line[:1] in (b"(", b",", b" ") and tbl:
+        s = line.decode("utf-8", "replace")
+    else:
+        tbl = None; continue
+    if tbl not in ("webform_submission", "contact_message", "config", "node_field_data"): continue
+    seen[tbl] += 1
     if tbl == "webform_submission":
         for m in re_wf.finditer(s): wf[m.group(2)] += 1
         for m in re_ts.finditer(s):
@@ -36,6 +42,7 @@ for line in sys.stdin.buffer:
         for m in re.finditer(r"\x27([^\x27]*(?:[Jj]oin|[Mm]embership [Aa]pplic)[^\x27]*)\x27", s): nodes.append(m.group(1)[:80])
 import datetime as d
 fmt = lambda t: d.datetime.fromtimestamp(t, d.timezone.utc).strftime("%Y-%m-%d")
+print("dump lines read per table:", dict(seen) or "NONE (parser saw no relevant INSERT lines)")
 print("webform/contact config objects:", ", ".join(sorted(cfg)) or "none")
 print("webform submissions by form:")
 for k, v in wf.most_common():
