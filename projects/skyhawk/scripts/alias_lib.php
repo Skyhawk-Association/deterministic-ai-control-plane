@@ -60,6 +60,8 @@ function alias_polish($html) {
   // "e-mail [me at] [the] X" -> "use the Contact form"
   $html = preg_replace_callback('#\b(e-?mail)(' . $sp . ')(?:me' . $sp . 'at' . $sp . ')?(?:the' . $sp . ')?' . $a . '#i',
     fn($m) => (preg_match('/[A-Z]/', $m[1]) ? 'Use' : 'use') . $m[2] . $m[3] . 'the Contact form' . $m[4], $html);
+  // quoted e-mail headers (To:/From:/Cc: "address") are historical text: plain name, no link
+  $html = preg_replace('#\b((?:To|From|Cc):(?:\s|&nbsp;)*"?)<a href="/form/contact[^"]*">the Contact form</a>#', '$1Skyhawk Association', $html);
   // "... at X" -> "... via X"; "the X" -> "X"
   $html = preg_replace('#\bat(' . $sp . ')' . $a . '#', 'via$1$2the Contact form$3', $html);
   $html = preg_replace('#\bthe(' . $sp . ')' . $a . '#i', '$1$2the Contact form$3', $html);
