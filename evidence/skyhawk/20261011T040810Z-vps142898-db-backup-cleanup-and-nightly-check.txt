@@ -1,0 +1,21 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T040810Z-vps142898-db-backup-cleanup-and-nightly-check
+Task: db-backup-cleanup-and-nightly-check
+Generated (UTC): 2026-10-11T04:08:10Z
+Host: vps142898
+---
+manual dump removed
+== nightly cron ==
+30 1 * * * $HOME/bin/skyhawk-db-backup.sh >/dev/null 2>&1
+== newest nightly dumps ==
+total 827728
+-rw-rw-r-- 1 n790725 n790725       216 Oct 10 01:30 backup.log
+-rw-r--r-- 1 n790725 n790725        65 Oct 10 01:30 skyhawk-20261010T053003Z.sql.gz.sha256
+-rw-r--r-- 1 n790725 n790725 137878598 Oct 10 01:30 skyhawk-20261010T053003Z.sql.gz
+== backup log tail ==
+20261005T152503Z OK 171M tables=473
+20261006T053004Z OK 123M tables=473
+20261007T053005Z OK 126M tables=473
+20261008T053007Z OK 125M tables=473
+20261009T053001Z OK 133M tables=473
+20261010T053003Z OK 132M tables=473
