@@ -1,0 +1,22 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T043943Z-vps142898-retire-email-ids-page
+Task: retire-email-ids-page
+Generated (UTC): 2026-10-11T04:39:48Z
+Host: vps142898
+---
+commit 6c7928e
+retire_48561.php: OK
+retire_48561.sh: OK
+title="Association e-Mail IDs" published_before=1
+alias=/article-readyroom/association-email-ids
+inbound_body_links_from_nodes=478
+menu_links=none
+published_after=0 revision=68323
+redirect created article-readyroom/association-email-ids -> /form/contact (301) id=6
+redirect created node/48561 -> /form/contact (301) id=7
+RESULT=PASS
+PUBLIC_ALIAS=/article-readyroom/association-email-ids
+ [success] Cache rebuild complete.
+== public check (anonymous) ==
+/node/48561 -> 301 https://skyhawk.org/form/contact
+/article-readyroom/association-email-ids -> 301 https://skyhawk.org/form/contact
