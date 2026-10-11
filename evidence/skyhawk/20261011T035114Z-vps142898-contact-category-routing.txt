@@ -1,0 +1,17 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T035114Z-vps142898-contact-category-routing
+Task: contact-category-routing
+Generated (UTC): 2026-10-11T03:51:19Z
+Host: vps142898
+---
+backup webform.contact.pre-routing-20261011T035114Z.yml 283 lines
+route_membership_login   enabled=yes when category=membership_login recipients=1 to_match=yes
+route_membership_paypal  enabled=yes when category=membership_paypal recipients=2 to_match=yes
+route_patch_orders       enabled=yes when category=patch_orders recipients=1 to_match=yes
+route_modeling           enabled=yes when category=modeling recipients=1 to_match=yes
+route_journal            enabled=yes when category=journal recipients=1 to_match=yes
+route_research           enabled=yes when category=research recipients=2 to_match=yes
+route_history            enabled=yes when category=history recipients=2 to_match=yes
+email_notification (all categories) to_match=yes conditions=none
+RESULT=PASS
+ [success] Cache rebuild complete.
