@@ -1,0 +1,33 @@
+SKYHAWK AI REPORT
+Report-ID: 20261011T031700Z-vps142898-markup-and-exposure-check
+Task: markup-and-exposure-check
+Generated (UTC): 2026-10-11T03:17:01Z
+Host: vps142898
+---
+NODES_WITH_OLD_ADDRESSES=55
+MAILTO_LINKS=73
+TOTAL_ADDRESS_OCCURRENCES=176
+WEBFORM_CONTACT_PATH=/form/contact
+SITEWIDE_CONTACT_PATH=/contact
+=== EXTERNAL EXPOSURE CHECK (HTTP status; 200 = downloadable)
+403 sites/default/settings.php.pre-adopt-20261002T154124Z
+403 sites/default/settings.php.pre-db-20261002T032730Z
+403 sites/default/settings.php.pre-finalize-20261002T160144Z
+403 sites/default/settings.php.pre-line-repair-20261002T192322Z
+403 sites/default/settings.php.pre-live-db-20261002T154542Z
+403 sites/default/settings.php.pre-proven-trusted-host-20261002T191545Z
+403 sites/default/settings.php.pre-trusted-host-20261002T190638Z
+403 sites/default/settings.php.pre-trusted-host-live-20261002T191156Z
+403 /private/ (folder)
+lrwxrwxrwx 1 n790725 n790725 10 Oct  5 10:54 web/private -> ../private
+=== web/downloads/.htaccess was:
+<IfModule mod_expires.c>
+  <Files "chatgpt-debug-latest.txt">
+    ExpiresActive Off
+  </Files>
+</IfModule>
+
+<IfModule mod_headers.c>
+  <Files "chatgpt-debug-latest.txt">
+    Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header always set Pragma "no-cache"
