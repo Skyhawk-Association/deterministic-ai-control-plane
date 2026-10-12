@@ -1,0 +1,85 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T023419Z-vps142898-git-detail-2
+Task: git-detail-2
+Generated (UTC): 2026-10-12T02:34:19Z
+Host: vps142898
+---
+== web/downloads/.htaccess as committed ==
+<IfModule mod_expires.c>
+  <Files "chatgpt-debug-latest.txt">
+    ExpiresActive Off
+  </Files>
+</IfModule>
+
+<IfModule mod_headers.c>
+  <Files "chatgpt-debug-latest.txt">
+    Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header always set Pragma "no-cache"
+    Header always set Expires "0"
+  </Files>
+</IfModule>
+== web/downloads now ==
+total 28
+drwxrwxr-x  2 n790725 n790725 24576 Oct  9 10:23 .
+drwxr-x--- 15 n790725 nobody   4096 Oct 11 02:10 ..
+entries=0
+== ReunionUploadForm.php diff ==
+diff --git a/web/modules/custom/skyhawk_site_fixes/src/Form/ReunionUploadForm.php b/web/modules/custom/skyhawk_site_fixes/src/Form/ReunionUploadForm.php
+index 4e2501d..199fc0a 100644
+--- a/web/modules/custom/skyhawk_site_fixes/src/Form/ReunionUploadForm.php
++++ b/web/modules/custom/skyhawk_site_fixes/src/Form/ReunionUploadForm.php
+@@ -318,5 +318,5 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
+     \Drupal::service('plugin.manager.mail')->mail(
+       'skyhawk_site_fixes', 'reunion_admin_notify',
+-      '[email]', 'en',
++      '[email]', 'en',
+       ['title' => $title, 'email' => $email, 'nid' => $node->id(), 'verify_url' => $verify_url],
+       NULL, TRUE
+== web/private ==
+lrwxrwxrwx 1 n790725 n790725 10 Oct  5 10:54 web/private -> ../private
+.gitignore:5:# It does not replace database, public-file, private-file,
+.gitignore:29:/private/
+.gitignore:30:/web/private/
+.gitignore:32:# Historical mirrored private tree.
+.gitignore:40:/web/sites/default/settings.php
+== settings.php backups (mode/size only) ==
+-r--r--r-- 32364 web/sites/default/settings.php.pre-adopt-20261002T154124Z
+-r--r--r-- 32320 web/sites/default/settings.php.pre-db-20261002T032730Z
+-r--r--r-- 32364 web/sites/default/settings.php.pre-finalize-20261002T160144Z
+-rw-r--r-- 32455 web/sites/default/settings.php.pre-line-repair-20261002T192322Z
+-r--r--r-- 32364 web/sites/default/settings.php.pre-live-db-20261002T154542Z
+-r--r--r-- 32455 web/sites/default/settings.php.pre-proven-trusted-host-20261002T191545Z
+-r--r--r-- 32404 web/sites/default/settings.php.pre-trusted-host-20261002T190638Z
+-r--r--r-- 32455 web/sites/default/settings.php.pre-trusted-host-live-20261002T191156Z
+== tool paths ==
+/usr/bin/git
+git version 2.43.7
+-rwxr-xr-x 1 root root 3642137 Oct  1 22:19 /usr/local/bin/composer
+-rwxr-xr-x 1 root root     144 Oct  1 22:16 /usr/local/bin/php84-skyhawk
+Composer version 2.10.3 2026-08-27 13:34:23
+== remote head vs local ==
+a642bea8282d5cddfcc64424a4fe353eae019078
+a642bea8282d5cddfcc64424a4fe353eae019078	refs/heads/main
++refs/heads/*:refs/remotes/origin/*
+== wrapper uses of PHP/COMPOSER/GIT ==
+28:    "$GIT" ls-remote origin refs/heads/main |
+46:        "$PHP" -r '
+65:    [ -x "$PHP" ] ||
+66:        fail "PHP unavailable at $PHP."
+68:    [ -f "$COMPOSER" ] ||
+69:        fail "Composer unavailable at $COMPOSER."
+74:    [ -x "$GIT" ] ||
+75:        fail "Git unavailable at $GIT."
+77:    [ "$("$GIT" rev-parse --show-toplevel 2>/dev/null)" = "$PROJECT" ] ||
+80:    [ "$("$GIT" branch --show-current 2>/dev/null)" = "main" ] ||
+83:    [ "$("$GIT" remote get-url origin 2>/dev/null)" = "$EXPECTED_REMOTE" ] ||
+102:    [ -z "$("$GIT" status --porcelain)" ] ||
+105:    local_hash="$("$GIT" rev-parse HEAD)"
+120:        echo "START_HEAD=$("$GIT" rev-parse HEAD)"
+131:    "$GIT" status --short
+142:            "$PHP" "$COMPOSER" update "$@" ||
+148:            "$PHP" "$COMPOSER" require "$@" ||
+154:            "$PHP" "$COMPOSER" remove "$@" ||
+204:        LOCAL="$("$GIT" rev-parse HEAD)"
+210:        echo "BRANCH=$("$GIT" branch --show-current)"
+READ-ONLY - nothing written
