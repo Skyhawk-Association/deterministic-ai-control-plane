@@ -1,0 +1,40 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T131155Z-vps142898-native-php-verify-root
+Task: native-php-verify-root
+Generated (UTC): 2026-10-12T13:11:55Z
+Host: vps142898
+---
+== php-fpm -t (no LD_LIBRARY_PATH) ==
+[12-Oct-2026 09:11:55] NOTICE: configuration file /opt/alt/php-fpm84/usr/etc/php-fpm.conf test is successful
+== php-fpm -t (current override) ==
+[12-Oct-2026 09:11:55] NOTICE: configuration file /opt/alt/php-fpm84/usr/etc/php-fpm.conf test is successful
+== native fpm binary linkage ==
+	libpcre2-8.so.0 => /usr/local/lib/libpcre2-8.so.0 (0x00007f4f72a8e000)
+== override content ==
+[Service]
+Environment="LD_LIBRARY_PATH=/opt/skyhawk/pcre2-10.39-jit/lib"
+== CWP stock pre_run: pcre2 lines (all PHP versions, 8.4 first) ==
+--- /usr/local/cwpsrv/htdocs/resources/conf/el8/php-fpm_selector/pre_run/8.4/php84.sh (mtime 2026-05-21 10:54:52)
+3:rm -Rf /usr/local/src/pcre2.zip /usr/local/src/pcre2* 2> /dev/null
+5:wget http://static.cdn-cwp.com/files/php/addons/pcre2-10.39.zip -O pcre2.zip
+6:unzip pcre2.zip
+7:cd pcre2-*/
+8:./configure
+9:make && make install
+--- /usr/local/cwpsrv/htdocs/resources/conf/el8/php_switcher/pre_run/8.4/php84.sh (mtime 2026-05-21 10:54:52)
+3:rm -Rf /usr/local/src/pcre2.zip /usr/local/src/pcre2* 2> /dev/null
+5:wget http://static.cdn-cwp.com/files/php/addons/pcre2-10.39.zip -O pcre2.zip
+6:unzip pcre2.zip
+7:cd pcre2-*/
+8:./configure
+9:make && make install
+--- /usr/local/cwpsrv/htdocs/resources/conf/el8/php_selector/pre_run/8.4/php84.sh (mtime 2026-05-21 10:54:52)
+3:rm -Rf /usr/local/src/pcre2.zip /usr/local/src/pcre2* 2> /dev/null
+5:wget http://static.cdn-cwp.com/files/php/addons/pcre2-10.39.zip -O pcre2.zip
+6:unzip pcre2.zip
+7:cd pcre2-*/
+8:./configure
+9:make && make install
+== /usr/local/src/pcre2-10.39 configure as built this morning ==
+  $ ./configure --enable-unicode-properties --enable-jit
+READ-ONLY - nothing written
