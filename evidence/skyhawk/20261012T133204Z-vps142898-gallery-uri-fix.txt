@@ -1,0 +1,17 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T133204Z-vps142898-gallery-uri-fix
+Task: gallery-uri-fix
+Generated (UTC): 2026-10-12T13:32:19Z
+Host: vps142898
+---
+line 144 now:
+        '#url' => (preg_match('/^[A-Za-z][A-Za-z0-9+.-]*:/', $link_url) ? Url::fromUri($link_url) : Url::fromUserInput('/' . ltrim($link_url, '/'))),
+No syntax errors detected in web/modules/custom/skyhawk_gallery/skyhawk_gallery.module
+ [success] Cache rebuild complete.
+/directory-listing/sajournals -> 500
+pdf links on page: 0
+pdf 1995-1.1 -> 200
+new URI errors since start: 2
+LOCAL=da2560f9134d247dbb5792b421929b0f4618628e REMOTE=8b145feb196a6a1bdca8436a71ed7d0e86666318
+PARITY=FAIL
+ROLLBACK: git revert HEAD && drush cr
