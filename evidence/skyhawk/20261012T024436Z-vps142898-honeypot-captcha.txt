@@ -1,0 +1,124 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T024436Z-vps142898-honeypot-captcha
+Task: honeypot-captcha
+Generated (UTC): 2026-10-12T02:45:36Z
+Host: vps142898
+---
+== PRE-FLIGHT ==
+LOCAL_HEAD=ec04a5103a10544a182929bdefdf7ac1a0a2c61e
+REMOTE_MAIN=ec04a5103a10544a182929bdefdf7ac1a0a2c61e
+CONFIG_DIFF_COUNT=0
+COMPOSER_GIT_STATE=CLEAN
+/dev/ploop49556p1  158G  113G   39G  75% /
+== DB BACKUP ==
+86891731 /home/n790725/backups/db/manual/skyhawk-pre-honeypot-20261012T024440Z.sql.gz
+BACKUP_GZIP_OK
+== COMPOSER REQUIRE (wrapper) ==
+Generating autoload files
+104 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+phpstan/extension-installer: Extensions installed
+> composer/composer: installed
+> composer/pcre: installed
+> mglaman/phpstan-drupal: installed
+> phpstan/phpstan-deprecation-rules: installed
+> phpstan/phpstan-phpunit: installed
+No security vulnerability advisories found.
+Using version ^2.2 for drupal/honeypot
+Using version ^2.0 for drupal/captcha
+ [warning] Operations on Unicode strings are emulated on a best-effort basis. Install  
+the PHP mbstring extension [1] for improved Unicode support.
+
+[1] http://php.net/mbstring
+ (Currently using Unicode library Standard PHP
+)
+ [success] No pending updates.
+ [success] Cache rebuild complete.
+
+COMPOSER_GIT_STATE=PENDING
+Functional site verification is required before finish.
+ M composer.json
+ M composer.lock
+        "drupal/captcha": "^2.0",
+        "drupal/honeypot": "^2.2",
+== ENABLE ==
+ [success] Module honeypot has been installed. (Permissions - Configure)
+ [success] Module captcha has been installed. (Permissions - Configure)
+== CONFIGURE ==
+honeypot form_settings={"user_register_form":true,"user_pass":false,"feedback_contact_message_form":false,"_contact_message_form":false} time_limit=5
+captcha_point user_register_form type=captcha/Math status=1
+captcha_point contact_message_personal_form type=default status=0
+captcha_point node_155242_155289_form type=default status=0
+captcha_point node_article_board_form type=default status=0
+captcha_point node_article_form type=default status=0
+captcha_point node_article_journal_private_form type=default status=0
+captcha_point node_article_journal_public_form type=default status=0
+captcha_point node_article_modeling_form type=default status=0
+captcha_point node_article_readyroom_form type=default status=0
+captcha_point node_article_unit_form type=default status=0
+captcha_point node_attendee_memory_form type=default status=0
+captcha_point node_book_form type=default status=0
+captcha_point node_buno_batch_form type=default status=0
+captcha_point node_bureau_numbers_form type=default status=0
+captcha_point node_dir_listing_form type=default status=0
+captcha_point node_gabby_s_histories_form type=default status=0
+captcha_point node_journal_form type=default status=0
+captcha_point node_journal_index_form type=default status=0
+captcha_point node_model_build_form type=default status=0
+captcha_point node_modeling_review_page_form type=default status=0
+captcha_point node_newsletter_issue_form type=default status=0
+captcha_point node_page_form type=default status=0
+captcha_point node_pdf_form type=default status=0
+captcha_point node_reunion_attendance_form type=default status=0
+captcha_point node_reunion_event_form type=default status=0
+captcha_point node_reunion_person_form type=default status=0
+captcha_point node_reunion_series_form type=default status=0
+captcha_point node_simplenews_issue_form type=default status=0
+captcha_point node_skyhawk_association_journal_inde_form type=default status=0
+captcha_point node_song_form type=default status=0
+captcha_point node_squadron_form type=default status=0
+captcha_point node_state_abbreviations_form type=default status=0
+captcha_point user_login_form type=default status=0
+captcha_point user_pass type=default status=0
+captcha default_challenge=captcha/Math
+ [success] Cache rebuild complete.
+== EXPORT CONFIG ==
+ [success] Configuration successfully exported to sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync.
+sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync
+ [notice] No differences between DB and sync directory.
+== SMOKE ==
+/ -> 200
+/user/login -> 200
+/user/register -> 403
+/form/contact -> 200
+login_page_captcha_mentions=0
+captcha
+honeypot
+                                             '/sites/default/files/sajournals/  
+                                             1995-1.1.pdf' is invalid. You      
+                                             must use a valid URI scheme. in    
+                                             Drupal\Core\Url::fromUri() (line   
+                                             293 of /home/n790725/drupa         
+ --------- -------------- ------ ---------- ----------------------------------- 
+== GIT (pending, not committed) ==
+ M composer.json
+ M composer.lock
+ M web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/core.extension.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.contact_message_personal_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_155242_155289_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_article_board_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_article_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_article_journal_private_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_article_journal_public_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_article_modeling_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_article_readyroom_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_article_unit_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_attendee_memory_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_book_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_buno_batch_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_bureau_numbers_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_dir_listing_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_gabby_s_histories_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_journal_form.yml
+?? web/sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync/captcha.captcha_point.node_journal_index_form.yml
+RESULT=PENDING_FINISH
