@@ -1,0 +1,19 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T133347Z-vps142898-gallery-diag
+Task: gallery-diag
+Generated (UTC): 2026-10-12T13:33:48Z
+Host: vps142898
+---
+reload -> 200
+== errors from that load ==
+== fromUri / Url:: calls in module ==
+144:        '#url' => (preg_match('/^[A-Za-z][A-Za-z0-9+.-]*:/', $link_url) ? Url::fromUri($link_url) : Url::fromUserInput('/' . ltrim($link_url, '/'))),
+201:      '#url' => \Drupal\Core\Url::fromUri($large_url),
+== node view: which node is directory-listing/sajournals ==
+/node/472
+
+== git state ==
+da2560f skyhawk_gallery: accept schemeless directory paths (fromUserInput) instead of throwing in Url::fromUri
+8b145fe Member self-registration with officer approval: skyhawk_join module, register form display, visitors_admin_approval + verify_mail
+To github-skyhawk:Skyhawk-Association/skyhawk.org.git
+   8b145fe..da2560f  HEAD -> main
