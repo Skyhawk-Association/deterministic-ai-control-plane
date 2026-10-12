@@ -1,0 +1,52 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T133047Z-vps142898-gallery-read-and-scanner-fix
+Task: gallery-read-and-scanner-fix
+Generated (UTC): 2026-10-12T13:30:47Z
+Host: vps142898
+---
+######## A: skyhawk_gallery.module 120-160
+L120:       }
+L121:       else {
+L122:         $thumb_url = '';
+L123:       }
+L124:     }
+L125: 
+L126:     if ($ext === 'pdf' && !$thumb_url) {
+L127:       $thumb_render = ['#markup' => '<div class="skyhawk-gallery-pdf-icon">PDF</div>'];
+L128:     }
+L129:     else {
+L130:       $thumb_render = [
+L131:         '#theme' => 'image',
+L132:         '#uri' => $thumb_url,
+L133:         '#alt' => $filename,
+L134:         '#attributes' => ['loading' => 'lazy'],
+L135:       ];
+L136:     }
+L137: 
+L138:     $items[] = [
+L139:       '#type' => 'container',
+L140:       '#attributes' => ['class' => ['skyhawk-gallery-item']],
+L141:       'link' => [
+L142:         '#type' => 'link',
+L143:         '#title' => $thumb_render,
+L144:         '#url' => Url::fromUri($link_url),
+L145:         '#attributes' => ['target' => '_blank'],
+L146:       ],
+L147:       'caption' => [
+L148:         '#markup' => '<div class="skyhawk-gallery-caption">' . $caption . '</div>',
+L149:       ],
+L150:     ];
+L151:   }
+L152: 
+L153:   unset($build['body']);
+L154:   unset($build['field_directory_uri']);
+L155: 
+L156:   $build['skyhawk_gallery'] = [
+L157:     '#type' => 'container',
+L158:     '#attributes' => ['class' => ['skyhawk-gallery-grid']],
+L159:     'items' => $items,
+L160:     '#weight' => 20,
+######## B: ai-report CWP path redaction
+rule_present_lines=1
+SYNTAX_OK
+self-test out: GET /cwp_REDACTED/admin/x.php from [ip] by [email]
