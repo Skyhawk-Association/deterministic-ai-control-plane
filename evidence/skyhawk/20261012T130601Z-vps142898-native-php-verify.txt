@@ -1,0 +1,45 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T130601Z-vps142898-native-php-verify
+Task: native-php-verify
+Generated (UTC): 2026-10-12T13:06:03Z
+Host: vps142898
+---
+== native php (no LD_LIBRARY_PATH) ==
+PHP 8.4.24 (cli) (built: Oct  7 2026 10:39:09) (NTS)
+Copyright (c) The PHP Group
+rc=0
+int(1)
+int(1)
+int(1)
+PCRE_VERSION=10.39 2021-10-29 JIT=1
+PCRE Library Version => 10.39 2021-10-29
+PCRE Unicode Version => 14.0.0
+PCRE JIT Support => enabled
+PCRE JIT Target => x86 64bit (little endian + unaligned)
+== modules of interest ==
+curl gd imagick intl pcre pdo_mysql xml zip 
+== linkage ==
+	libpcre2-8.so.0 => /usr/local/lib/libpcre2-8.so.0 (0x00007ff1e1e89000)
+== /usr/local pcre2 now ==
+2026-10-12_07:22:22 /usr/local/lib/libpcre2-8.so -> libpcre2-8.so.0.10.4
+2026-10-12_07:22:22 /usr/local/lib/libpcre2-8.so.0 -> libpcre2-8.so.0.10.4
+2026-10-12_07:22:22 /usr/local/lib/libpcre2-8.so.0.10.4  
+10.39
+  UTF and UCP support (Unicode version 14.0.0)
+  Just-in-time compiler support: x86 64bit (little endian + unaligned)
+  \R matches all Unicode newlines
+== php-fpm84 config test without override ==
+[12-Oct-2026 09:06:02] ERROR: FPM initialization failed
+== current service + override ==
+active
+Environment=LD_LIBRARY_PATH=/opt/skyhawk/pcre2-10.39-jit/lib
+override.conf
+override.conf.pre-skyhawk-20261002T162308Z
+== Drupal via NATIVE php ==
+PHP version    : 8.4.24    
+Drupal version : 11.4.8    
+Database       : Connected 
+== will a future CWP rebuild regress? (pcre2 flags in stock pre_run) ==
+== site ==
+home 200
+READ-ONLY - nothing written
