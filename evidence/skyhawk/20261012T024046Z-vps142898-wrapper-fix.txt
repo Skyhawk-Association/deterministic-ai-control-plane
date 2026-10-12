@@ -1,0 +1,80 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T024046Z-vps142898-wrapper-fix
+Task: wrapper-fix
+Generated (UTC): 2026-10-12T02:40:50Z
+Host: vps142898
+---
+PHP 8.4.24 (cli) (built: Oct  7 2026 10:39:09) (NTS)
+#!/usr/bin/env bash
+
+PROJECT="$HOME/drupalbeta"
+WEB="$PROJECT/web"
+
+PHP="/usr/local/bin/php84-skyhawk"
+COMPOSER="/usr/local/bin/composer"
+DRUSH="$PROJECT/vendor/bin/drush"
+export PATH="$HOME/.local/php84-shim:$PATH"
+GIT="/usr/bin/git"
+
+PENDING="$PROJECT/.skyhawk-composer-git-pending"
+EXPECTED_REMOTE="git@github-skyhawk:Skyhawk-Association/skyhawk.org.git"
+
+== wrapper check ==
+ [notice] No differences between DB and sync directory.
+PROJECT=/home/n790725/drupalbeta
+DRUPAL_WEB=/home/n790725/drupalbeta/web
+BRANCH=main
+ORIGIN=git@github-skyhawk:Skyhawk-Association/skyhawk.org.git
+LOCAL_HEAD=ec04a5103a10544a182929bdefdf7ac1a0a2c61e
+REMOTE_MAIN=ec04a5103a10544a182929bdefdf7ac1a0a2c61e
+CONFIG_DIFF_COUNT=0
+COMPOSER_GIT_STATE=CLEAN
+== wrapper help ==
+Skyhawk Composer maintenance
+
+  skyhawk-composer check
+  skyhawk-composer config-status
+  skyhawk-composer update [package ...] [Composer options]
+  skyhawk-composer require <package ...>
+  skyhawk-composer remove <package ...>
+  skyhawk-composer install [Composer options]
+  skyhawk-composer finish "commit message"
+  skyhawk-composer abort
+  skyhawk-composer help
+
+Normal full update:
+  skyhawk-composer update
+
+Targeted update:
+  skyhawk-composer update package-name
+
+finish is the explicit human functional-acceptance and Git publication step.
+== wrapper source (require/finish sections) ==
+12:PENDING="$PROJECT/.skyhawk-composer-git-pending"
+101:        fail "Previous Composer maintenance remains pending."
+116:begin_pending() {
+146:        require)
+163:    "$DRUSH" --root="$WEB" updb -y ||
+166:    "$DRUSH" --root="$WEB" cr ||
+167:        fail "Drupal cache rebuild failed."
+169:    begin_pending "$operation" "$@"
+182:  skyhawk-composer finish "commit message"
+242:    require)
+252:    install)
+259:        "$DRUSH" --root="$WEB" updb -y ||
+262:        "$DRUSH" --root="$WEB" cr ||
+263:            fail "Drupal cache rebuild failed."
+271:    finish)
+276:            fail "No Composer/Git maintenance transaction is pending."
+279:            fail "Provide a concise Git commit message."
+295:                fail "Functional acceptance declined. Nothing staged, committed or pushed."
+315:        "$GIT" diff --cached --name-only |
+346:        "$GIT" diff --cached --stat
+357:        "$GIT" commit -m "$MESSAGE" ||
+358:            fail "Git commit failed."
+360:        "$GIT" push origin main ||
+361:            fail "Git push failed."
+370:            fail "Local/remote parity failed after push."
+382:            fail "No pending Composer transaction."
+384:        echo "This clears only the pending marker."
+RESULT=DONE
