@@ -1,0 +1,11 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T032049Z-vps142898-yp-404-fix
+Task: yp-404-fix
+Generated (UTC): 2026-10-12T03:20:52Z
+Host: vps142898
+---
+CREATED rid=8
+ [success] Cache rebuild complete.
+/yp-memorial-live.html -> 301 https://skyhawk.org/sites/default/files/memorial/yp-memorial-live.html
+followed -> 200 https://skyhawk.org/sites/default/files/memorial/yp-memorial-live.html
+ROLLBACK: delete the redirect id above (admin/config/search/redirect)
