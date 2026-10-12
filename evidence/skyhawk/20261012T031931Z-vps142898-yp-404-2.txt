@@ -1,0 +1,133 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T031931Z-vps142898-yp-404-2
+Task: yp-404-2
+Generated (UTC): 2026-10-12T03:19:33Z
+Host: vps142898
+---
+== yp_memorial module ==
+total 20
+drwxrwxr-x 3 n790725 n790725 4096 May 21 11:10 .
+drwxrwxr-x 6 n790725 n790725 4096 Oct 11 22:53 ..
+drwxrwxr-x 3 n790725 n790725 4096 May 21 11:10 src
+-rw-rw-r-- 1 n790725 n790725  187 May 21 11:10 yp_memorial.info.yml
+-rw-rw-r-- 1 n790725 n790725  214 May 21 11:10 yp_memorial.routing.yml
+name: YP Memorial
+type: module
+description: Displays YP memorial memories from Webform submissions.
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - webform:webform
+yp_memorial.memories:
+  path: '/memories-of-yp'
+  defaults:
+    _controller: '\Drupal\yp_memorial\Controller\MemoriesController::page'
+    _title: 'Memories of YP'
+  requirements:
+    _permission: 'access content'
+Controller
+<?php
+
+namespace Drupal\yp_memorial\Controller;
+
+use Drupal\Core\Controller\ControllerBase;
+use Drupal\webform\Entity\WebformSubmission;
+
+class MemoriesController extends ControllerBase {
+
+  public function page() {
+    $output = '<div class="yp-memories-wrap">';
+    $output .= '<div class="yp-memory-submit"><a href="/webform/yp_memories">Share a Memory or Photo</a></div>';
+
+    $sids = \Drupal::entityQuery('webform_submission')
+      ->condition('webform_id', 'yp_memories')
+      ->sort('created', 'DESC')
+      ->accessCheck(FALSE)
+      ->execute();
+
+    if ($sids) {
+      $submissions = WebformSubmission::loadMultiple($sids);
+
+      foreach ($submissions as $submission) {
+        $data = $submission->getData();
+
+        $name = !empty($data['name']) ? htmlspecialchars($data['name']) : 'Anonymous';
+        $memory = !empty($data['memory']) ? nl2br(htmlspecialchars($data['memory'])) : '';
+        $created = date('F j, Y', $submission->getCreatedTime());
+
+        $photo_html = '';
+
+        if (!empty($data['photo'])) {
+          $fid = is_array($data['photo']) ? reset($data['photo']) : $data['photo'];
+          $file = \Drupal\file\Entity\File::load($fid);
+
+          if ($file) {
+            $url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+            $photo_html = '<div class="yp-memory-photo"><img src="' . $url . '" alt=""></div>';
+          }
+        }
+
+        $output .= '<article class="yp-memory-card">';
+        $output .= $photo_html;
+        $output .= '<div class="yp-memory-name">' . $name . '</div>';
+        $output .= '<div class="yp-memory-date">' . $created . '</div>';
+        $output .= '<div class="yp-memory-text">' . $memory . '</div>';
+        $output .= '</article>';
+      }
+    }
+    else {
+      $output .= '<div class="yp-memory-empty">No memories have been shared yet.</div>';
+    }
+
+    $output .= '</div>';
+
+    return [
+      '#markup' => $output,
+    ];
+  }
+
+yp_memorial_enabled=1
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php.bak.1779389139
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php.bak.1779389260
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php.bak.1779389552
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php.bak.1779389675
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php.bak.1779390499
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php.bak.1779393497
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php.crashfix.1779388843
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php.final-working.1779395406
+web/modules/custom/yp_memorial/src/Controller/MemoriesController.php.finalbak.1779390640
+a81524a Remove 8 .pre- backup copies from Git (6 from baseline 3246c05, 2 from fd1ea8e); originals committed, copies in ~/quarantine/20260927T021755Z
+3246c05 Establish Skyhawk.org reconstructable application baseline
+== block 12 link targets ==
+href="/form/yp-memories"
+href="/memories-of-yp"
+href="/yp-memorial-live.html"
+== access log: path + status + day for yp requests ==
+      6 08/Oct/2026 /yp-memorial-live.html 404
+      1 09/Oct/2026 /page-not-found 200
+      1 09/Oct/2026 /search/node
+      1 09/Oct/2026 /sites/default/files/css/css_LTTl-Cbjj6e9aqCPnLiezaihTVlwLDRSmWbWhQAyj7U.css
+      1 09/Oct/2026 /sites/default/files/css/css_Wbc76tGtfsmQannFI4ZaKCfFRyD7gVpbiMbT_nd3dt4.css
+      1 09/Oct/2026 /sites/default/files/css/css_pqb0UKbrtgXK61OYZpqMxo8SNG2QFfmGXuXFdycOjK0.css
+      1 09/Oct/2026 /sites/default/files/css/css_wZpz70MHx2x7gGf9Q9PDSlpsHcmML-w084qtdJP7I-U.css
+      1 09/Oct/2026 /sites/default/files/styles/skyhawk_gallery_large/public/images-buno-160241-160264/160264-32_frommelt.jpg
+      9 09/Oct/2026 /yp-memorial-live.html 404
+      4 10/Oct/2026 /yp-memorial-live.html 404
+      1 11/Oct/2026 / 200
+      1 11/Oct/2026 /admin/people 200
+      1 11/Oct/2026 /reunions 200
+      1 11/Oct/2026 /sites/default/files/css/css_LTTl-Cbjj6e9aqCPnLiezaihTVlwLDRSmWbWhQAyj7U.css
+      1 11/Oct/2026 /sites/default/files/css/css_MptJYV2pdJipHgzaMoSrt6DkU2OJEONojtZn70dsB_I.css
+      1 11/Oct/2026 /sites/default/files/css/css_Wbc76tGtfsmQannFI4ZaKCfFRyD7gVpbiMbT_nd3dt4.css
+      1 11/Oct/2026 /sites/default/files/css/css_sHVfxlPmjNSMlCS4XwrVLttDdcg51bIkY4npNgpRQt4.css
+      1 11/Oct/2026 /sites/default/files/js/js_3PRHk8wtpWtHsLcDmyulDJShMPfbOPGfzDLRKUYYKdY.js
+      1 11/Oct/2026 /sites/default/files/js/js_IL0Qg9P8CAWxoocKt3xW6XQkDHSFWVh-g66sjw3KjpM.js
+      1 11/Oct/2026 /sites/default/files/js/js_Rou3L2PPCYgQ4s30ym_BIDmep5IGb0tAgeIdYqgRUhs.js
+      2 11/Oct/2026 /sites/default/files/css/css_pqb0UKbrtgXK61OYZpqMxo8SNG2QFfmGXuXFdycOjK0.css
+      2 11/Oct/2026 /sites/default/files/css/css_wZpz70MHx2x7gGf9Q9PDSlpsHcmML-w084qtdJP7I-U.css
+      2 11/Oct/2026 /sites/default/files/styles/skyhawk_gallery_large/public/images-buno-160241-160264/160264-32_frommelt.jpg
+     12 11/Oct/2026 /yp-memorial-live.html 404
+== route check ==
+/sites/default/files/memorial/yp-memorial-live.html -> 200
+READ-ONLY - nothing written
