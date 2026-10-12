@@ -1,0 +1,74 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T023611Z-vps142898-repo-fix
+Task: repo-fix
+Generated (UTC): 2026-10-12T02:36:20Z
+Host: vps142898
+---
+== PRE-FLIGHT ==
+config drift before (names):
+contact.form.feedback
+contact.form.sitewide
+imagemagick.settings
+system.action.user_add_role_action.authenticated_user
+system.action.user_add_role_action.modeling_controller
+system.action.user_remove_role_action.authenticated_user
+system.action.user_remove_role_action.modeling_controller
+system.maintenance
+system.site
+update.settings
+user.role.authenticated_user
+user.role.modeling
+user.role.modeling_controller
+webform.webform.contact
+BACKUP=/home/n790725/backups/repo-fix-20261012T023611Z
+== ACTION 1: settings.php backups out of web root ==
+moved_total=0
+== ACTION 2: .gitignore ==
+== ACTION 3: wrapper paths for the VPS ==
+6:PHP="/usr/local/bin/php84-skyhawk"
+7:COMPOSER="/usr/local/bin/composer"
+9:GIT="/usr/bin/git"
+== ACTION 4: retire obsolete downloads/.htaccess (served only the quarantined debug file) ==
+== COMMIT A: repo hygiene + wrapper ==
+== COMMIT B: record live ReunionUploadForm recipient change ==
+== ACTION 5: export active config ==
+ // The .yml files in your export directory will be deleted and replaced with   
+ // the active config.: yes.                                                    
+
+ [success] Configuration successfully exported to sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync.
+sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync
+== VERIFY ==
+WORKTREE_NOT_CLEAN:
+?? web/sites/default/settings.php.pre-adopt-20261002T154124Z
+?? web/sites/default/settings.php.pre-db-20261002T032730Z
+?? web/sites/default/settings.php.pre-finalize-20261002T160144Z
+?? web/sites/default/settings.php.pre-line-repair-20261002T192322Z
+?? web/sites/default/settings.php.pre-live-db-20261002T154542Z
+?? web/sites/default/settings.php.pre-proven-trusted-host-20261002T191545Z
+?? web/sites/default/settings.php.pre-trusted-host-20261002T190638Z
+?? web/sites/default/settings.php.pre-trusted-host-live-20261002T191156Z
+ [notice] No differences between DB and sync directory.
+== PUSH ==
+LOCAL=b1c1ba6ecbcf8cd1d5330da06634babb869407e5 REMOTE=b1c1ba6ecbcf8cd1d5330da06634babb869407e5
+PARITY=OK
+b1c1ba6 Config export: contact routing, imagemagick, removed role actions (2026-10-11/12)
+77c8708 Record live ReunionUploadForm notify-recipient change made on production
+68e64ad VPS repo hygiene: wrapper paths for InMotion, ignore web/private symlink and settings.php backups, drop obsolete downloads/.htaccess
+a642bea Build reunion event landing page
+== WRAPPER CHECK (read-only subcommand) ==
+DRUPAL_WEB=/home/n790725/drupalbeta/web
+BRANCH=main
+ORIGIN=git@github-skyhawk:Skyhawk-Association/skyhawk.org.git
+LOCAL_HEAD=b1c1ba6ecbcf8cd1d5330da06634babb869407e5
+REMOTE_MAIN=b1c1ba6ecbcf8cd1d5330da06634babb869407e5
+CONFIG_DIFF_COUNT=0
+COMPOSER_GIT_STATE=DIRTY
+?? web/sites/default/settings.php.pre-adopt-20261002T154124Z
+?? web/sites/default/settings.php.pre-db-20261002T032730Z
+?? web/sites/default/settings.php.pre-finalize-20261002T160144Z
+?? web/sites/default/settings.php.pre-line-repair-20261002T192322Z
+?? web/sites/default/settings.php.pre-live-db-20261002T154542Z
+?? web/sites/default/settings.php.pre-proven-trusted-host-20261002T191545Z
+?? web/sites/default/settings.php.pre-trusted-host-20261002T190638Z
+?? web/sites/default/settings.php.pre-trusted-host-live-20261002T191156Z
+RESULT=DONE
