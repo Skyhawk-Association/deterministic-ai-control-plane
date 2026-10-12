@@ -1,0 +1,30 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T132609Z-vps142898-linkfix-and-trim
+Task: linkfix-and-trim
+Generated (UTC): 2026-10-12T13:26:11Z
+Host: vps142898
+---
+== uri errors in log before ==
+4
+
+OTHER_SCHEMELESS node.field_hotel_link id=49466 uri=https://book.passkey.com/go/USMCA4SKY
+OTHER_SCHEMELESS node.field_hotel_link id=49466 uri=https://book.passkey.com/go/USMCA4SKY
+OTHER_SCHEMELESS node.field_hotel_link id=49466 uri=https://book.passkey.com/go/USMCA4SKY
+OTHER_SCHEMELESS node.field_registration_link id=49466 uri=https://www.events.afr-reg.com/e/Skyhawkers26
+OTHER_SCHEMELESS node.field_registration_link id=49466 uri=https://www.events.afr-reg.com/e/Skyhawkers26
+OTHER_SCHEMELESS node.field_registration_link id=49466 uri=https://www.events.afr-reg.com/e/Skyhawkers26
+OTHER_SCHEMELESS node.field_reunion_photos_link id=49466 uri=internal:/reunions/2026/photos
+OTHER_SCHEMELESS node.field_reunion_photos_link id=49466 uri=internal:/reunions/2026/photos
+OTHER_SCHEMELESS node.field_reunion_upload_link id=49466 uri=internal:/form/reunion-2026-photo-upload
+OTHER_SCHEMELESS node.field_reunion_upload_link id=49466 uri=internal:/form/reunion-2026-photo-upload
+MODE=dry fixable_rows=0 other_schemeless=1078
+AFFECTED_NODES=
+RESULT=NOTHING_TO_FIX
+LINKFIX SKIPPED (dry run not OK or nothing to fix)
+== delete manual dumps superseded by a newer nightly dump ==
+newest nightly: skyhawk-20261012T053003Z.sql.gz 2026-10-12 01:30:24
+DELETE skyhawk-pre-honeypot-20261012T024440Z.sql.gz 86891731
+DELETE skyhawk-pre-join-20261012T025312Z.sql.gz 75126413
+manual_remaining=0
+/dev/ploop49556p1  158G  114G   38G  76% /
+RESULT=DONE
