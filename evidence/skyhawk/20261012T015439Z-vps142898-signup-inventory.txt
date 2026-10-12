@@ -1,0 +1,107 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T015439Z-vps142898-signup-inventory
+Task: signup-inventory
+Generated (UTC): 2026-10-12T01:54:40Z
+Host: vps142898
+---
+== user.settings ==
+register="admin_only"
+verify_mail=false
+cancel_method="user_cancel_block"
+password_strength=true
+notify={"cancel_confirm":true,"password_reset":true,"status_activated":true,"status_blocked":true,"status_canceled":true,"register_admin_created":true,"register_no_approval_required":true,"register_pending_approval":true}
+site_mail=[addr]@skyhawk.org mail_notification=[addr]@gmail.com
+== user.mail templates (subject only) ==
+cancel_confirm                     subj="Account cancellation request for [user:display-name] at [site:name]" body_len=389
+password_reset                     subj="Replacement login information for [user:display-name] at [site:name]" body_len=428
+register_admin_created             subj="An administrator created an account for you." body_len=488
+register_no_approval_required      subj="Account details for [user:display-name] at [site:name]" body_len=460
+register_pending_approval          subj="Account details for [user:display-name] at [site:name] (pending admin approval)" body_len=294
+register_pending_approval_admin    subj="Account details for [user:display-name] at [site:name] (pending admin approval)" body_len=66
+status_activated                   subj="Account details for [user:display-name] at [site:name] (approved)" body_len=477
+status_blocked                     subj="Account details for [user:display-name] at [site:name] (blocked)" body_len=93
+status_canceled                    subj="Account details for [user:display-name] at [site:name] (canceled)" body_len=94
+== roles (id | label | weight | is_admin | perms | users) ==
+admin                    | Admin                  | -10 | 1 |   0 | 4
+co                       | CO                     |  -9 | 0 | 320 | 6
+xo                       | XO                     |  -8 | 0 | 111 | 11
+board                    | Board                  |  -7 | 0 |  30 | 16
+sectreas                 | SecTreas               |  -6 | 0 |  50 | 5
+journal                  | Journal                |  -5 | 0 |  58 | 7
+modeling                 | Modeling               |  -4 | 0 |  24 | 3
+sdo_coordinator          | SDO Coordinator        |  -3 | 0 |  31 | 6
+sdo                      | SDO                    |  -2 | 0 |  19 | 7
+authorized_user          | Authorized User        |  -1 | 0 |  13 | 734
+anonymous                | Anonymous user         |   0 | 0 |   7 | -
+authenticated            | Authenticated User     |   1 | 0 |  12 | -
+authenticated_user       | Authenticated User     |   1 | 0 |  17 | 2
+blade                    | Blade                  |   2 | 0 |   6 | 1
+reunion_staff            | Reunion Staff          |   3 | 0 |  16 | 1
+photo_reviewer           | Photo Reviewer         |   4 | 0 |   3 | 1
+modeling_controller      | Modeling Controller    |   5 | 0 |  21 | 1
+DUPLICATE_LABEL "Authenticated User": authenticated, authenticated_user
+== roles holding user-admin permissions ==
+admin: IS_ADMIN 
+co: administer permissions, administer users
+sectreas: administer account settings, administer permissions, administer users
+sdo_coordinator: administer account settings, administer permissions, administer users
+sdo: administer users
+authenticated_user: administer account settings, administer permissions, administer users
+== permissions of selected roles ==
+-- sectreas (50): access content; access contextual links; access site-wide contact form; access toolbar; access user contact forms; access user profiles; administer account settings; administer permissions; administer user display; administer user fields; administer user form display; administer users; cancel account; change own username; create article_board content; create article_readyroom content; create book content; create import_users feeds; create url aliases; delete own files; edit own article_board content; edit own article_readyroom content; edit own article_unit content; edit own book content; execute entity:save_action user; execute user_add_role_action user; execute user_block_user_action user; execute user_remove_role_action user; execute user_unblock_user_action user; execute vbo_cancel_user_action user; import import_users feeds; import own import_users feeds; revert article_readyroom revisions; schedule_import import_users feeds; schedule_import own import_users feeds; search content; select account cancellation method; unlock import_users feeds; update import_users feeds; update own import_users feeds; use advanced search; use text format basic_html; use text format restricted_html; use text format unrestricted_html; view article_journal_public revisions; view media; view own import_users feeds; view own unpublished content; view page revisions; view user email addresses
+-- modeling (24): access content; access contextual links; access site-wide contact form; access user contact forms; access user profiles; change own username; create article_modeling content; create book content; create url aliases; delete own article_modeling content; delete own files; edit any article_modeling content; edit own article_modeling content; edit own book content; revert article_modeling revisions; search content; use advanced search; use text format basic_html; use text format full_html; use text format restricted_html; view article_journal_public revisions; view media; view own unpublished content; view page revisions
+-- authenticated (12): access content; access site-wide contact form; change own username; delete own files; search content; subscribe to newsletters; use advanced search; use text format webform_default; view article_journal_public revisions; view media; view own unpublished content; view page revisions
+-- authenticated_user (17): access content; access site-wide contact form; access user contact forms; access user profiles; administer account settings; administer permissions; administer users; change own username; delete own files; search content; use advanced search; view article_journal_public revisions; view import_users feeds; view media; view own import_users feeds; view own unpublished content; view page revisions
+-- modeling_controller (21): access administration pages; access content; access content overview; create model_build content; create modeling_review_page content; delete any model_build content; delete any modeling_review_page content; delete model_build revisions; delete modeling_review_page revisions; delete own model_build content; delete own modeling_review_page content; edit any model_build content; edit any modeling_review_page content; edit own model_build content; edit own modeling_review_page content; revert model_build revisions; revert modeling_review_page revisions; view latest version; view model_build revisions; view modeling_review_page revisions; view own unpublished content
+== user fields ==
+feeds_item                         type=feeds_item             required=0
+field_a_4_squadrons                type=string                 required=0
+field_address                      type=string                 required=0
+field_callsign_nickname            type=string                 required=0
+field_city                         type=string                 required=0
+field_first_name                   type=string                 required=0
+field_hours                        type=integer                required=0
+field_initial                      type=string                 required=0
+field_last_name                    type=string                 required=0
+field_mdate                        type=datetime               required=0
+field_mnbr                         type=integer                required=0
+field_other_phone                  type=telephone              required=0
+field_phone                        type=telephone              required=0
+field_remarks                      type=string                 required=0
+field_renewal_date                 type=datetime               required=0
+field_sdo                          type=boolean                required=0
+field_sdo_units                    type=list_string            required=0
+field_state                        type=string                 required=0
+field_traps                        type=integer                required=0
+field_zip_code                     type=string                 required=0
+user_picture                       type=image                  required=0
+== user form displays ==
+default status=1 components=account,contact,field_a_4_squadrons,field_address,field_callsign_nickname,field_city,field_first_name,field_hours,field_initial,field_last_name,field_mdate,field_mnbr,field_other_phone,field_phone,field_remarks,field_renewal_date,field_sdo,field_sdo_units,field_state,field_traps,field_zip_code,path,simplenews,timezone
+== user counts ==
+active=733 blocked=2
+created_last_90d=6
+never_logged_in=278
+== modules (enabled / present in codebase) ==
+honeypot                   enabled=0 present=0
+captcha                    enabled=0 present=0
+recaptcha                  enabled=0 present=0
+recaptcha_v3               enabled=0 present=0
+friendlycaptcha            enabled=0 present=0
+turnstile                  enabled=0 present=0
+antibot                    enabled=0 present=0
+administerusersbyrole      enabled=0 present=0
+role_delegation            enabled=0 present=0
+user_registrationpassword  enabled=0 present=0
+email_registration         enabled=0 present=0
+rules                      enabled=0 present=0
+eca                        enabled=0 present=0
+webform                    enabled=1 present=1
+symfony_mailer             enabled=0 present=0
+mailsystem                 enabled=0 present=0
+smtp                       enabled=0 present=0
+== register page (anonymous) ==
+READ-ONLY - nothing written
+/user/register -> 403
+edit-actions
+edit-keys
+edit-submit
