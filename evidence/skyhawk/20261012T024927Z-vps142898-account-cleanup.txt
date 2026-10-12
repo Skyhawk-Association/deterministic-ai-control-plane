@@ -1,0 +1,24 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T024927Z-vps142898-account-cleanup
+Task: account-cleanup
+Generated (UTC): 2026-10-12T02:49:29Z
+Host: vps142898
+---
+MODE=dry
+uid=16 action=deceased active=0 roles=xo,board,sdo_coordinator,sdo,authorized_user remove=xo,board,sdo_coordinator,sdo block=yes
+uid=35 action=deceased active=1 roles=xo,sdo,authorized_user remove=xo,sdo block=yes
+uid=38 action=deceased active=1 roles=sdo,authorized_user remove=sdo block=yes
+uid=2229 action=drop_admin active=1 roles=admin,co,xo,board,journal,blade,authorized_user remove=admin
+RESULT=DRY_RUN_OK (nothing written)
+== APPLY ==
+MODE=apply
+uid=16 action=deceased active=0 roles=xo,board,sdo_coordinator,sdo,authorized_user remove=xo,board,sdo_coordinator,sdo block=yes
+uid=35 action=deceased active=1 roles=xo,sdo,authorized_user remove=xo,sdo block=yes
+uid=38 action=deceased active=1 roles=sdo,authorized_user remove=sdo block=yes
+uid=2229 action=drop_admin active=1 roles=admin,co,xo,board,journal,blade,authorized_user remove=admin
+BACKUP=/home/n790725/backups/config/acct-cleanup-20261012T024929Z/before.json
+VERIFY uid=16 active=0 roles=authorized_user
+VERIFY uid=35 active=0 roles=authorized_user
+VERIFY uid=38 active=0 roles=authorized_user
+VERIFY uid=2229 active=1 roles=co,xo,board,journal,blade,authorized_user
+RESULT=APPLIED
