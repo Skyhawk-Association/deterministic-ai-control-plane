@@ -1,0 +1,56 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T025308Z-vps142898-join-deploy
+Task: join-deploy
+Generated (UTC): 2026-10-12T02:53:46Z
+Host: vps142898
+---
+== PRE-FLIGHT ==
+LOCAL_HEAD=e06fa399bfc276203d70cb8182d3af748d5d96af
+REMOTE_MAIN=e06fa399bfc276203d70cb8182d3af748d5d96af
+CONFIG_DIFF_COUNT=0
+COMPOSER_GIT_STATE=CLEAN
+== DB BACKUP ==
+BACKUP_OK 75126413 /home/n790725/backups/db/manual/skyhawk-pre-join-20261012T025312Z.sql.gz
+== MODULE ==
+No syntax errors detected in web/modules/custom/skyhawk_join/skyhawk_join.module
+ [success] Module skyhawk_join has been installed.
+== CONFIG ==
+register_display=account,field_address,field_city,field_first_name,field_last_name,field_phone,field_state,field_zip_code
+user.settings register=visitors_admin_approval verify_mail=true
+uid2229 roles=journal,blade,authorized_user
+ [success] Cache rebuild complete.
+== SMOKE (anonymous) ==
+/user/register -> 200
+edit-mail            3
+edit-name            3
+field-first-name     5
+field-last-name      4
+field-address        5
+field-city           5
+field-state          5
+field-zip-code       5
+field-phone          5
+captcha              16
+honeypot             1
+field-mnbr           0
+field-renewal-date   0
+field-traps          0
+field-sdo            0
+id="edit-field-address-0-value" REQUIRED
+id="edit-field-city-0-value" REQUIRED
+id="edit-field-first-name-0-value" REQUIRED
+id="edit-field-last-name-0-value" REQUIRED
+id="edit-field-phone-0-value" REQUIRED
+id="edit-field-state-0-value" REQUIRED
+id="edit-field-zip-code-0-value" REQUIRED
+/ -> 200
+/user/login -> 200
+/form/contact -> 200
+== EXPORT + COMMIT ==
+sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync
+LOCAL_HEAD=8b145feb196a6a1bdca8436a71ed7d0e86666318
+REMOTE_MAIN=8b145feb196a6a1bdca8436a71ed7d0e86666318
+CONFIG_DIFF_COUNT=0
+COMPOSER_GIT_STATE=CLEAN
+ROLLBACK (if needed): drush cset user.settings register admin_only -y
+RESULT=DEPLOYED_AWAITING_ACCEPTANCE_TEST
