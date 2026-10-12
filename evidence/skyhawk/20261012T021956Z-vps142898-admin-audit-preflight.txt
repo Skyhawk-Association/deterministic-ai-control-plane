@@ -1,0 +1,95 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T021956Z-vps142898-admin-audit-preflight
+Task: admin-audit-preflight
+Generated (UTC): 2026-10-12T02:20:02Z
+Host: vps142898
+---
+######## PART 1: admin-role usage audit
+watchdog_oldest=2026-10-10 rows=100147
+== co ==
+uid=1     active=1 last_access=2026-10-11 nodes_authored=457 node_revisions=579 user_admin_log_entries=1 last=2026-10-11 roles=admin,authorized_user,board,co,journal,sdo,sdo_coordinator,sectreas,xo
+uid=9     active=1 last_access=2026-03-09 nodes_authored=118 node_revisions=1210 user_admin_log_entries=0 last=- roles=authorized_user,co,xo
+uid=11    active=1 last_access=2026-09-30 nodes_authored=574 node_revisions=1015 user_admin_log_entries=0 last=- roles=admin,authorized_user,board,co,journal,photo_reviewer,sdo,sdo_coordinator,sectreas,xo
+uid=34    active=1 last_access=2026-09-29 nodes_authored=0 node_revisions=3 user_admin_log_entries=0 last=- roles=authorized_user,board,co,xo
+uid=2191  active=1 last_access=2026-10-08 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=authorized_user,co
+uid=2229  active=1 last_access=2025-05-12 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=admin,authorized_user,blade,board,co,journal,xo
+== sectreas ==
+uid=1     active=1 last_access=2026-10-11 nodes_authored=457 node_revisions=579 user_admin_log_entries=1 last=2026-10-11 roles=admin,authorized_user,board,co,journal,sdo,sdo_coordinator,sectreas,xo
+uid=11    active=1 last_access=2026-09-30 nodes_authored=574 node_revisions=1015 user_admin_log_entries=0 last=- roles=admin,authorized_user,board,co,journal,photo_reviewer,sdo,sdo_coordinator,sectreas,xo
+uid=21    active=1 last_access=2026-08-13 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=authorized_user,board,sectreas
+uid=30    active=1 last_access=2026-10-04 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=authorized_user,board,sectreas
+uid=1041  active=1 last_access=2026-08-17 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=authorized_user,board,sdo_coordinator,sectreas
+== sdo_coordinator ==
+uid=1     active=1 last_access=2026-10-11 nodes_authored=457 node_revisions=579 user_admin_log_entries=1 last=2026-10-11 roles=admin,authorized_user,board,co,journal,sdo,sdo_coordinator,sectreas,xo
+uid=11    active=1 last_access=2026-09-30 nodes_authored=574 node_revisions=1015 user_admin_log_entries=0 last=- roles=admin,authorized_user,board,co,journal,photo_reviewer,sdo,sdo_coordinator,sectreas,xo
+uid=16    active=0 last_access=2024-11-07 nodes_authored=0 node_revisions=49 user_admin_log_entries=0 last=- roles=authorized_user,board,sdo,sdo_coordinator,xo
+uid=31    active=1 last_access=2022-10-19 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=authorized_user,board,sdo_coordinator
+uid=683   active=1 last_access=2026-08-18 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=authorized_user,board,sdo_coordinator
+uid=1041  active=1 last_access=2026-08-17 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=authorized_user,board,sdo_coordinator,sectreas
+== sdo ==
+uid=1     active=1 last_access=2026-10-11 nodes_authored=457 node_revisions=579 user_admin_log_entries=1 last=2026-10-11 roles=admin,authorized_user,board,co,journal,sdo,sdo_coordinator,sectreas,xo
+uid=11    active=1 last_access=2026-09-30 nodes_authored=574 node_revisions=1015 user_admin_log_entries=0 last=- roles=admin,authorized_user,board,co,journal,photo_reviewer,sdo,sdo_coordinator,sectreas,xo
+uid=16    active=0 last_access=2024-11-07 nodes_authored=0 node_revisions=49 user_admin_log_entries=0 last=- roles=authorized_user,board,sdo,sdo_coordinator,xo
+uid=18    active=1 last_access=2026-10-02 nodes_authored=0 node_revisions=1156 user_admin_log_entries=0 last=- roles=authorized_user,sdo,xo
+uid=35    active=1 last_access=2022-08-24 nodes_authored=0 node_revisions=11 user_admin_log_entries=0 last=- roles=authorized_user,sdo,xo
+uid=38    active=1 last_access=2022-01-19 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=authorized_user,sdo
+uid=864   active=1 last_access=2026-08-14 nodes_authored=0 node_revisions=0 user_admin_log_entries=0 last=- roles=authorized_user,sdo
+== user-admin log message kinds by any non-admin role holder (counts) ==
+    1  New user: %name %email.
+READ-ONLY - nothing written
+######## PART 2: honeypot/captcha preflight
+== host/disk ==
+vps142898.inmotionhosting.com
+/dev/ploop49556p1  158G  113G   39G  75% /
+== wrapper ==
+-rwxr-xr-x 1 n790725 n790725 9811 Aug 28 23:18 bin/skyhawk-composer
+3:PROJECT="$HOME/drupalbeta"
+4:WEB="$PROJECT/web"
+7:COMPOSER="/home/darwus/composer/composer.phar"
+8:DRUSH="$PROJECT/vendor/bin/drush"
+11:PENDING="$PROJECT/.skyhawk-composer-git-pending"
+20:    cd "$PROJECT" ||
+21:        fail "Cannot enter canonical project root: $PROJECT"
+23:    [ "$PWD" = "$PROJECT" ] ||
+77:    [ "$("$GIT" rev-parse --show-toplevel 2>/dev/null)" = "$PROJECT" ] ||
+208:        echo "PROJECT=$PROJECT"
+== git ==
+main
+a642bea Wed Sep 30 16:56:53 2026 +0000 Build reunion event landing page
+origin	git@github-skyhawk:Skyhawk-Association/skyhawk.org.git (fetch)
+origin	git@github-skyhawk:Skyhawk-Association/skyhawk.org.git (push)
+uncommitted_paths=11
+== composer ==
+-rwxr-xr-x 1 root root 73 Oct  1 22:19 /usr/local/bin/composer84-skyhawk
+        "drupal/core-recommended": "^11.3",
+== drush/config ==
+Drupal version : 11.4.8                                                      
+PHP version    : 8.4.24                                                      
+Drupal config  : sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2NnzS 
+                 V17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync             
+ --------------------------------------------- ---------- 
+  Name                                          State     
+ --------------------------------------------- ---------- 
+  contact.form.feedback                         Differ    
+                                                ent       
+  contact.form.sitewide                         Differ    
+                                                ent       
+  imagemagick.settings                          Differ    
+                                                ent       
+  system.action.user_add_role_action.authenti   Only in   
+  cated_user                                    sync dir  
+  system.action.user_add_role_action.modeling   Only in   
+  _controller                                   sync dir  
+  system.action.user_remove_role_action.authe   Only in   
+  nticated_user                                 sync dir  
+== package availability (read-only) ==
+name     : drupal/honeypot
+versions : 2.2.x-dev, 2.2.2, 2.2.1, 2.2.0, 2.1.x-dev, 2.1.4, 2.1.3, 2.1.2, 2.1.1, 2.1.0, 2.0.x-dev, 2.0.2, 2.0.1, 2.0.0, 1.x-dev, 1.31.0, 1.30.0, 1.29.0, 1.28.0, 1.27.0, 1.26.0, 1.25.0, 1.24.0, 1.23.0, 1.22.0, 1.21.0, 1.19.0-beta14, 1.19.0-beta13, 1.18.0-beta6, 1.18.0-beta5, 1.18.0-beta4, 1.18.0-beta3, 1.18.0-beta2, 1.18.0-beta1, 1.18.0-alpha15, 1.16.0-beta11, 1.16.0-beta10, 1.16.0-beta6, 1.14.0-beta5, 1.14.0-beta4, 1.14.0-beta3, 1.14.0-beta2, 1.14.0-beta1, dev-2.0.x, dev-2.2.x, dev-2.1.x, dev-1.x
+names    : drupal/honeypot
+requires
+requires (dev)
+name     : drupal/captcha
+versions : 2.x-dev, 2.0.10, 2.0.9, 2.0.8, 2.0.7, 2.0.6, 2.0.5, 2.0.4, 2.0.3, 2.0.2, 2.0.1, 2.0.0, 2.0.0-beta3, 2.0.0-beta2, 2.0.0-beta1, 2.0.0-alpha0, 1.x-dev, 1.17.0, 1.16.0, 1.15.0, 1.14.0, 1.13.0, 1.12.0, 1.11.0, 1.10.0, 1.9.0, 1.8.0, 1.7.0, 1.6.0, 1.5.0, 1.4.0, 1.3.0, 1.2.0, 1.1.0, 1.0.0, 1.0.0-beta4, 1.0.0-beta3, 1.0.0-beta2, 1.0.0-beta1, 1.0.0-alpha1, 1.0.0-alpha0, dev-2.x, dev-1.x
+names    : drupal/captcha
+requires
+requires (dev)
