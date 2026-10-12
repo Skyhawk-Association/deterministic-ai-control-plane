@@ -1,0 +1,36 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T021044Z-vps142898-role-cleanup-apply
+Task: role-cleanup-apply
+Generated (UTC): 2026-10-12T02:10:49Z
+Host: vps142898
+---
+MODE=dry
+authenticated_user holders=2253,2258
+modeling_controller holders=17
+modeling holders=1,11,17
+authenticated_user holder uid=2253 admin=0 (role removed regardless, per Gene)
+authenticated_user holder uid=2258 admin=0 (role removed regardless, per Gene)
+modeling keeps uid=17; modeling removed from admin uids=1,11
+permissions added to modeling (19): access administration pages; access content overview; create model_build content; create modeling_review_page content; delete any model_build content; delete any modeling_review_page content; delete model_build revisions; delete modeling_review_page revisions; delete own model_build content; delete own modeling_review_page content; edit any model_build content; edit any modeling_review_page content; edit own model_build content; edit own modeling_review_page content; revert model_build revisions; revert modeling_review_page revisions; view latest version; view model_build revisions; view modeling_review_page revisions
+dependents of authenticated_user: update=- delete=system.action.user_add_role_action.authenticated_user,system.action.user_remove_role_action.authenticated_user
+  (only its own add/remove-role bulk actions go with it - expected)
+dependents of modeling_controller: update=- delete=system.action.user_add_role_action.modeling_controller,system.action.user_remove_role_action.modeling_controller
+  (only its own add/remove-role bulk actions go with it - expected)
+RESULT=DRY_RUN_OK (nothing written)
+== APPLY ==
+MODE=apply
+authenticated_user holders=2253,2258
+modeling_controller holders=17
+modeling holders=1,11,17
+authenticated_user holder uid=2253 admin=0 (role removed regardless, per Gene)
+authenticated_user holder uid=2258 admin=0 (role removed regardless, per Gene)
+modeling keeps uid=17; modeling removed from admin uids=1,11
+permissions added to modeling (19): access administration pages; access content overview; create model_build content; create modeling_review_page content; delete any model_build content; delete any modeling_review_page content; delete model_build revisions; delete modeling_review_page revisions; delete own model_build content; delete own modeling_review_page content; edit any model_build content; edit any modeling_review_page content; edit own model_build content; edit own modeling_review_page content; revert model_build revisions; revert modeling_review_page revisions; view latest version; view model_build revisions; view modeling_review_page revisions
+dependents of authenticated_user: update=- delete=system.action.user_add_role_action.authenticated_user,system.action.user_remove_role_action.authenticated_user
+  (only its own add/remove-role bulk actions go with it - expected)
+dependents of modeling_controller: update=- delete=system.action.user_add_role_action.modeling_controller,system.action.user_remove_role_action.modeling_controller
+  (only its own add/remove-role bulk actions go with it - expected)
+BACKUP=/home/n790725/backups/config/roles-pre-cleanup-20261012T021045Z
+VERIFY roles_exist authenticated_user=0 modeling_controller=0
+VERIFY modeling holders=17 perms=43
+RESULT=APPLIED
