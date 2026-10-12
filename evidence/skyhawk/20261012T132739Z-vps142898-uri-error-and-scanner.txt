@@ -1,0 +1,86 @@
+SKYHAWK AI REPORT
+Report-ID: 20261012T132739Z-vps142898-uri-error-and-scanner
+Task: uri-error-and-scanner
+Generated (UTC): 2026-10-12T13:27:40Z
+Host: vps142898
+---
+######## URI error detail
+== wid 1563029 2026-10-11T13:23:21-04:00
+url: http://www.skyhawk.org/directory-listing/sajournals
+referer: 
+message: The URI '/sites/default/files/sajournals/1995-1.1.pdf' is invalid. You must use a valid URI scheme.
+  #0 /home/n790725/drupalbeta/web/modules/custom/skyhawk_gallery/skyhawk_gallery.module(144): Drupal\Core\Url::fromUri()
+  #1 [internal function]: skyhawk_gallery_node_view()
+  #2 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(389): call_user_func_array()
+  #3 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(340): Drupal\Core\Extension\ModuleHandler->{closure:Drupal\Core\Extension\ModuleHandler::invokeAll(
+  #4 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(388): Drupal\Core\Extension\ModuleHandler->invokeAllWith()
+  #5 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Entity/EntityViewBuilder.php(304): Drupal\Core\Extension\ModuleHandler->invokeAll()
+  #6 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Entity/EntityViewBuilder.php(255): Drupal\Core\Entity\EntityViewBuilder->buildMultiple()
+  #7 [internal function]: Drupal\Core\Entity\EntityViewBuilder->build()
+  #8 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Security/DoTrustedCallbackTrait.php(107): call_user_func_array()
+  #9 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(914): Drupal\Core\Render\Renderer->doTrustedCallback()
+  #10 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(447): Drupal\Core\Render\Renderer->doCallback()
+  #11 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(230): Drupal\Core\Render\Renderer->doRender()
+  #12 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/MainContent/HtmlRenderer.php(242): Drupal\Core\Render\Renderer->render()
+  #13 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(638): Drupal\Core\Render\MainContent\HtmlRenderer->{closure:Drupal\Core\Render\MainContent\HtmlRenderer::p
+== wid 1556021 2026-10-11T07:42:27-04:00
+url: http://www.skyhawk.org/directory-listing/sajournals
+referer: 
+message: The URI '/sites/default/files/sajournals/1995-1.1.pdf' is invalid. You must use a valid URI scheme.
+  #0 /home/n790725/drupalbeta/web/modules/custom/skyhawk_gallery/skyhawk_gallery.module(144): Drupal\Core\Url::fromUri()
+  #1 [internal function]: skyhawk_gallery_node_view()
+  #2 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(389): call_user_func_array()
+  #3 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(340): Drupal\Core\Extension\ModuleHandler->{closure:Drupal\Core\Extension\ModuleHandler::invokeAll(
+  #4 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(388): Drupal\Core\Extension\ModuleHandler->invokeAllWith()
+  #5 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Entity/EntityViewBuilder.php(304): Drupal\Core\Extension\ModuleHandler->invokeAll()
+  #6 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Entity/EntityViewBuilder.php(255): Drupal\Core\Entity\EntityViewBuilder->buildMultiple()
+  #7 [internal function]: Drupal\Core\Entity\EntityViewBuilder->build()
+  #8 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Security/DoTrustedCallbackTrait.php(107): call_user_func_array()
+  #9 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(914): Drupal\Core\Render\Renderer->doTrustedCallback()
+  #10 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(447): Drupal\Core\Render\Renderer->doCallback()
+  #11 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(230): Drupal\Core\Render\Renderer->doRender()
+  #12 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/MainContent/HtmlRenderer.php(242): Drupal\Core\Render\Renderer->render()
+  #13 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(638): Drupal\Core\Render\MainContent\HtmlRenderer->{closure:Drupal\Core\Render\MainContent\HtmlRenderer::p
+== wid 1556018 2026-10-11T07:42:24-04:00
+url: http://www.skyhawk.org/directory-listing/sajournals
+referer: 
+message: The URI '/sites/default/files/sajournals/1995-1.1.pdf' is invalid. You must use a valid URI scheme.
+  #0 /home/n790725/drupalbeta/web/modules/custom/skyhawk_gallery/skyhawk_gallery.module(144): Drupal\Core\Url::fromUri()
+  #1 [internal function]: skyhawk_gallery_node_view()
+  #2 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(389): call_user_func_array()
+  #3 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(340): Drupal\Core\Extension\ModuleHandler->{closure:Drupal\Core\Extension\ModuleHandler::invokeAll(
+  #4 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(388): Drupal\Core\Extension\ModuleHandler->invokeAllWith()
+  #5 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Entity/EntityViewBuilder.php(304): Drupal\Core\Extension\ModuleHandler->invokeAll()
+  #6 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Entity/EntityViewBuilder.php(255): Drupal\Core\Entity\EntityViewBuilder->buildMultiple()
+  #7 [internal function]: Drupal\Core\Entity\EntityViewBuilder->build()
+  #8 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Security/DoTrustedCallbackTrait.php(107): call_user_func_array()
+  #9 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(914): Drupal\Core\Render\Renderer->doTrustedCallback()
+  #10 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(447): Drupal\Core\Render\Renderer->doCallback()
+  #11 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(230): Drupal\Core\Render\Renderer->doRender()
+  #12 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/MainContent/HtmlRenderer.php(242): Drupal\Core\Render\Renderer->render()
+  #13 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(638): Drupal\Core\Render\MainContent\HtmlRenderer->{closure:Drupal\Core\Render\MainContent\HtmlRenderer::p
+== wid 1553017 2026-10-11T06:12:22-04:00
+url: https://skyhawk.org/directory-listing/sajournals
+referer: 
+message: The URI '/sites/default/files/sajournals/1995-1.1.pdf' is invalid. You must use a valid URI scheme.
+  #0 /home/n790725/drupalbeta/web/modules/custom/skyhawk_gallery/skyhawk_gallery.module(144): Drupal\Core\Url::fromUri()
+  #1 [internal function]: skyhawk_gallery_node_view()
+  #2 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(389): call_user_func_array()
+  #3 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(340): Drupal\Core\Extension\ModuleHandler->{closure:Drupal\Core\Extension\ModuleHandler::invokeAll(
+  #4 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Extension/ModuleHandler.php(388): Drupal\Core\Extension\ModuleHandler->invokeAllWith()
+  #5 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Entity/EntityViewBuilder.php(304): Drupal\Core\Extension\ModuleHandler->invokeAll()
+  #6 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Entity/EntityViewBuilder.php(255): Drupal\Core\Entity\EntityViewBuilder->buildMultiple()
+  #7 [internal function]: Drupal\Core\Entity\EntityViewBuilder->build()
+  #8 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Security/DoTrustedCallbackTrait.php(107): call_user_func_array()
+  #9 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(914): Drupal\Core\Render\Renderer->doTrustedCallback()
+  #10 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(447): Drupal\Core\Render\Renderer->doCallback()
+  #11 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(230): Drupal\Core\Render\Renderer->doRender()
+  #12 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/MainContent/HtmlRenderer.php(242): Drupal\Core\Render\Renderer->render()
+  #13 /home/n790725/drupalbeta/web/core/lib/Drupal/Core/Render/Renderer.php(638): Drupal\Core\Render\MainContent\HtmlRenderer->{closure:Drupal\Core\Render\MainContent\HtmlRenderer::p
+######## ai-report scanner
+-rwxrwxr-x 1 n790725 n790725 2008 Oct  4 13:09 /home/n790725/bin/ai-report
+25 /home/n790725/bin/ai-report
+2:# ai-report: stdin -> secret-gated, redacted report -> DACP Git evidence/skyhawk -> one-line result
+12:if grep -qiE 'BEGIN [A-Z ]*PRIVATE KEY|passw(or)?d[[:space:]]*[:=]|api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]|token[[:space:]]*[:=]' "$RAW"; then echo "AI_REPORT=BLOCKED_SECRET LOCAL=$RAW"; exit 2; fi
+14:  sed -E 's/[0-9]{1,3}(\.[0-9]{1,3}){3}/[ip]/g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g' "$RAW"; } > "$OUT"
+19:git config user.name "ai-report ($HS)"; git config user.email "[email]"
