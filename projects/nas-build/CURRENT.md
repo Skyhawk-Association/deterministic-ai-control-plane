@@ -1,6 +1,6 @@
 # NAS Build Current State
 
-Status date: 2026-10-05
+Status date: 2026-10-12
 
 ## Objective
 
@@ -56,9 +56,17 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
   - 8: ZZ30PBPL
   - All eight are Seagate IronWolf 12 TB ST12000VN0008, firmware SC60.
 
-- First power-on attempt produced no response despite two verified-working AC cords/outlets and PSU rocker at I. Direct JFP1 power-switch bypass test across pins 6/8 also produced no response, eliminating the chassis power switch as the immediate cause. The motherboard 24-pin ATX cable was then fully reseated at both PSU and motherboard ends; a repeat direct JFP1 pins 6/8 start attempt still produced no fans, LEDs, click, or other response.
-- PSU standalone retest initially appeared dead because Seasonic Hybrid/Fanless mode kept the fan stopped. After switching the PSU fan control to Normal mode, the paper-clip test succeeded, confirming the PSU can power on standalone. Do not classify the PSU as failed from fan non-rotation while Hybrid mode is enabled.
-- Multimeter test at the motherboard end of the disconnected 24-pin ATX harness measured 5.0 VDC on pin 9 (+5VSB) to ground with AC applied and PSU switched on, confirming standby voltage reaches the motherboard connector.
+- Historical no-power evidence before outside service: PSU paper-clip test passed in Normal fan mode; +5VSB measured 5.0 VDC at the motherboard-end 24-pin harness; PS_ON was later measured at about 5 V at rest and 0 V when JFP1 pins 6/8 were shorted, showing the motherboard asserted PS_ON.
+- Gene reports that an outside tech center diagnosed a failed Ryzen 7 8700G and replaced/handled the CPU. The exact tech-center test method was not recorded, so the causal diagnosis is user-reported rather than independently verified here.
+- After service, Gene observed the system POST successfully. MSI Click BIOS X identifies BIOS E7E59AMSI.2AC4 dated 2026-09-02 and detects an AMD Ryzen 7 8700G.
+- BIOS reports 64 GB RAM as two 32 GB DIMMs in A2/B2 at 4800 MT/s with EXPO off.
+- BIOS idle CPU temperature was observed at about 66 C with CPU voltage about 1.428 V. Gene reports the CPU cooler fan is operating.
+- BIOS clock is incorrect, showing approximately 2026-04-06/07; set correct date/time before TrueNAS installation.
+- Current front-panel wiring after service: JFP1 HDD LED 1(+)/3(-), Power LED 2(+)/4(-), Reset 5/7, Power SW 6/8.
+- Current boot SSD data wiring after service: Crucial MX500 -> SATA_S1 (bottom port of the SATA_S1/S2 stack); Patriot Burst Elite -> SATA_S2 (top port).
+- Both SFF-8087 breakout cables remain connected to the LSI 9207-8i. They do not connect to the motherboard.
+- EPS cables are intended to route behind the motherboard tray rather than over the CPU cooler.
+- Gene observed that the Crucial MX500 is a used drive with a "NEMONG COMPUTER" sticker and that the system booted into an existing Korean Windows 10 installation on it while offline. The TrueNAS installation is expected to wipe this drive.
 
 ## Software / installer state
 
@@ -76,19 +84,13 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 
 ## Next hardware sequence
 
-1. Lay the CS383 for motherboard installation and inspect the motherboard tray.
-2. Match chassis standoffs to actual MSI motherboard mounting holes. Remove or relocate any standoff that would sit under solid PCB.
-3. Lower the assembled motherboard onto only the matched standoffs, align integrated rear I/O, start all board screws loosely, then secure evenly without over-tightening.
-4. Case front-panel, front USB, front audio, and the two drive-cage PWM fan leads are connected to the motherboard as recorded above.
-5. HBA retention and data cabling are complete: both SFF-8087 forward-breakout cables are connected at the HBA and all eight SATA branch connectors are securely attached to CS383 backplane SATA 1-8 using the recorded upper=1-4, lower=5-8 mapping.
-6. Boot SSD SATA data and power connections are complete.
-8. PSU-side modular cabling is complete: 24-pin motherboard, two RE81/E81 CPU/EPS, and two SATA/peripheral harnesses are connected; 12V-2x6/600 W and both RG92/G92 PCIe cables remain intentionally unused.
-9. PSU is installed in the CS383 with required modular cables attached and mounting screws snug.
-10. Motherboard-side 24-pin and both CPU/EPS power connections are complete; both CS383 backplane PSU power connections are complete.
-11. Eight IronWolf drives are installed; verify physical bay numbering against the recorded tray serial inventory before first power.
-12. Perform a no-AC pre-power inspection.
-13. First POST with monitor/keyboard; verify CPU, 64 GB RAM, sane CPU temperature/fan behavior, boot devices, and HBA visibility before TrueNAS installation.
-14. Use the already-created TrueNAS installer USB only after destination boot devices are unambiguously identified.
+1. Enter BIOS setup or the F11 boot menu using a rear motherboard USB keyboard connection.
+2. Set the correct BIOS date/time before installing TrueNAS.
+3. Confirm both boot SSDs are visible in BIOS Storage as SATA_S1 / SATA_S2.
+4. Confirm drive-cage fan RPM visibility; prior BIOS observation showed SYS Fan 1 as N/A and should not be assumed resolved.
+5. Boot the already-created TrueNAS Community Edition 25.10.7 installer USB.
+6. Install only to the 250 GB Crucial MX500 and 240 GB Patriot Burst Elite boot SSDs as the intended mirrored boot targets. Do not select any of the eight 12 TB IronWolf data drives.
+7. After installation, check MX500 SMART wear and verify the LSI 9207-8i operating mode/firmware identity before considering any firmware action.
 
 ## Hard stop conditions
 
