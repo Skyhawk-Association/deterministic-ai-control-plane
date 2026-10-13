@@ -81,5 +81,5 @@ The exact binaries remain outside public Git under the project binary-document p
 - USER-STATED-EXPLICIT: IGD/UMA graphics settings, UEFI mode, disabling Re-Size BAR, disabling Above 4G, and one CMOS clear did not restore video with the HBA installed.
 - USER-STATED-EXPLICIT: Both boot SSDs were disconnected for these tests.
 - USER-STATED-EXPLICIT: With the HBA removed and no boot SSD connected, the board reached A9 / 00 and the green BOOT LED, consistent with reaching setup / no bootable device.
-- UNRESOLVED: Debug-code and EZ Debug LED state with the HBA installed have not yet been recorded.
+- USER-STATED-EXPLICIT: With the HBA in the third full-length PCIe slot, no SFF-8087 storage cables attached to the HBA, and both boot SSDs disconnected, the board displayed `00` with the green BOOT LED and still produced no motherboard HDMI video.
 - UNRESOLVED: HBA firmware/mode and option-ROM state are not identified.
