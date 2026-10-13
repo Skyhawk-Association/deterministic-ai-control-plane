@@ -92,3 +92,16 @@ The exact binaries remain outside public Git under the project binary-document p
 - USER-STATED-EXPLICIT: Switching firmware mode from UEFI to CSM caused loss of the previously working no-HBA video/POST path after save/reboot.
 - USER-STATED-EXPLICIT: Clearing CMOS afterward restored normal POST/video with the HBA removed and both boot SSDs disconnected.
 
+## 2026-10-13 installation, network, and drive-health evidence
+
+- TOOL-VERIFIED (PowerShell on Envy): official TrueNAS 25.10.7 SHA-256 `54ce9441ce66966a392e28f63604ca3c2c083d0bec4db7bb5af2f74f7a007c8e`; `TrueNAS-SCALE-25.10.7-VERIFIED.iso` MATCH; `TrueNAS-SCALE-25.10.7.iso` (b0d5c3dd...) and `.fresh.iso` (3723959c...) NO_MATCH. PNY USB 2.0 FD (serial 087E013260C0) written and read back with matching hash: `RESULT=TRUENAS_USB_WRITTEN_VERIFIED`.
+- TOOL-VERIFIED: write to 7.5 GB "Generic Flash Disk" failed at ~1,024 MB with "The device is not ready."
+- IMAGE-EVIDENCED: TrueNAS installer and first boot with HBA installed; `mpt2sas_cm0` loaded; eight `ST12000VN0008-3M SC60` direct-access devices at scsi 0:0:0-0:0:7.
+- IMAGE-EVIDENCED: installer showed `vfat` on CT250MX500SSD1 and no filesystem on Patriot Burst Elite; erase warning listed only the Crucial.
+- TOOL-VERIFIED (`ip -br link/addr`): `enp6s0` NO-CARRIER on UDM port 3 before VLAN change; link UP on switch; DHCP initially missed after slow link-up; re-applied via console interface Save -> address 192.168.40.14 (IoT); after UDM port 3 set to VLAN 20 -> 192.168.20.14.
+- CLAUDE-OBSERVED (UniFi web UI): UDM Pro port 3 native VLAN set to Family Network (20) and re-read as saved; client `truenas` (fc:9d:05:06:49:fe) fixed IP 192.168.20.14 with Virtual Network Override off, re-read after page reload. An accidental Virtual Network Override (IoT) tick during editing was found and cleared before final save.
+- TOOL-VERIFIED (`smartctl -H -A`): sdi CT250MX500SSD1 PASSED, Power_On_Hours 2019, Percent_Lifetime_Remain normalized 075 (raw 25 used), Reallocate_NAND_Blk_Cnt 0, Reported_Uncorrect 0, Current_Pending_ECC_Cnt 0. sdj Patriot PASSED, Power_On_Hours 3, Reallocated_Sector_Ct 0, Reported_Uncorrect 0.
+- TOOL-VERIFIED (`smartctl -t long`): long tests started on sda-sdh; reported completion times Wed 2026-10-14 04:13:45-06:06:45 EDT.
+- TOOL-VERIFIED: `pool-gate.service` started; log shows `START pool_gate (pool=tank model=ST12000VN0008 expect=8)` and `WAIT 8 drive(s) still testing` at 2026-10-13 14:58:43 EDT.
+- USER-STATED-EXPLICIT: Amazon accepted return of the original defective 8700G.
+

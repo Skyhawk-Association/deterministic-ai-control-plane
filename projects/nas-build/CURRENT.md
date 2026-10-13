@@ -1,6 +1,6 @@
 # NAS Build Current State
 
-Status date: 2026-10-12
+Status date: 2026-10-13
 
 ## Objective
 
@@ -67,6 +67,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Both SFF-8087 breakout cables remain connected to the LSI 9207-8i. They do not connect to the motherboard.
 - EPS cables are intended to route behind the motherboard tray rather than over the CPU cooler.
 - CORRECTION 2026-10-13: Gene clarified that the used drive with the "NEMONG COMPUTER" sticker and existing Korean Windows 10 installation is the Patriot Burst Elite 240 GB, not the Crucial MX500. The Patriot is therefore the legacy/used boot device to isolate during initial TrueNAS installation.
+- SUPERSEDING EVIDENCE 2026-10-13 (device-reported SMART, see EVIDENCE.md): Crucial MX500 reports 2,019 power-on hours and Percent_Lifetime_Remain 75 (25% of rated life used); Patriot Burst Elite reports 3 power-on hours. The TrueNAS installer also showed a vfat (EFI) partition on the Crucial and none on the Patriot, and the F11 menu showed Windows Boot Manager on the Crucial. The Crucial MX500 is therefore the previously used, heavily written drive; the Patriot is effectively new. The earlier "Patriot is the used drive" correction is contradicted by device evidence.
 
 ## 2026-10-13 HBA / video fault state
 
@@ -91,14 +92,29 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 
 - IMAGE-EVIDENCED 2026-10-13: MSI F11 boot menu with the Patriot disconnected shows `Windows Boot Manager (SATA S1: CT250MX500SSD1)` and `UEFI: PNY USB 2.0 FD PMAP, Partition 1`. This proves the Crucial MX500 currently carries a Windows Boot Manager EFI entry; it does not establish where the prior Korean Windows installation's full OS volume resided.
 
+## 2026-10-13 TrueNAS installation and commissioning state
+
+- TOOL-VERIFIED: PNY USB 2.0 FD 14.4 GB (serial 087E013260C0) rewritten on the Envy at ~09:44 EDT from `TrueNAS-SCALE-25.10.7-VERIFIED.iso`; ISO SHA-256 `54ce9441ce66966a392e28f63604ca3c2c083d0bec4db7bb5af2f74f7a007c8e` matched the official TrueNAS .sha256, and a raw read-back of the USB matched the same hash. The two other local ISO copies (`TrueNAS-SCALE-25.10.7.iso`, `.fresh.iso`) do NOT match the official hash and must not be used. An earlier write to a 7.5 GB "Generic Flash Disk" failed mid-write ("device not ready") and that stick is not usable as installer media.
+- IMAGE-EVIDENCED: The rewritten PNY booted the TrueNAS 25.10.7 installer with the LSI 9207-8i installed and video working. The earlier HBA black-screen symptom did not recur in this boot; its root cause remains unexplained.
+- IMAGE-EVIDENCED: Installer disk list showed all eight ST12000VN0008 (10.91 TiB) plus CT250MX500SSD1 (232.89 GiB) and Patriot Burst Elite (223.57 GiB). TrueNAS was installed to the Crucial MX500 ONLY; the erase warning named only that disk. Install succeeded. Boot pool = `boot-pool` on the Crucial. Patriot remains unused (planned boot-pool mirror).
+- IMAGE-EVIDENCED: First boot loaded `mpt2sas` and enumerated all eight IronWolfs behind the HBA. TrueNAS Disks page lists serials ZZ30N1YX, ZZ30PAWE, ZZ30PC78, ZZ30PBLQ, ZZ30N2BG, ZZ30N4AC, ZZ30N4DB, ZZ30PBPL at 10.91 TiB, no pool.
+- Network: onboard 5G NIC `enp6s0`, MAC `fc:9d:05:06:49:fe`. Link negotiates slowly after boot; if DHCP is missed, console option 1 -> Save -> `a` re-applies DHCP. UDM Pro (UDMP Pennsylvania) port 3 changed by Claude, with Gene approval, from native Default (1) to Family Network (VLAN 20); NAS cable moved to UDM port 3. UniFi fixed IP reservation 192.168.20.14 (Virtual Network Override OFF, verified after reload). Web UI: https://192.168.20.14, admin user `truenas_admin`.
+- UniFi network map (UDMP Pennsylvania, CLAUDE-OBSERVED): Default 1 192.168.1.0/24; Family Network 20 192.168.20.0/24 (house computers); Camera 30; IoT 40 192.168.40.0/24; Server 50 192.168.50.0/24 (Synology); Guest 99. ES-24-500W EdgeSwitch (unadopted, 192.168.1.3) on UDM port 8.
+- Timezone America/New_York; clock verified correct in TrueNAS.
+- SSD SMART (TOOL-VERIFIED via smartctl): Crucial MX500 PASSED, 2,019 POH, 25% life used, 0 reallocated/pending/uncorrectable. Patriot PASSED, 3 POH, 0 reallocated/uncorrectable.
+- SMART LONG tests started 2026-10-13 ~12:55 EDT on all eight IronWolfs; estimated completion 04:14-06:07 EDT 2026-10-14 (sdc last).
+- A TrueNAS update is pending; Gene decision: do not apply until the long tests finish (reboot would abort them).
+- Gene decisions: NAS on VLAN 20; pool `tank` = 8-wide RAIDZ2 (unencrypted); datasets tank/immich, tank/plex, tank/nextcloud, tank/general per NAS_Software_Setup_Guide.pdf (that guide's 6-drive/~48 TB Stage 3 is stale; 8-wide RAIDZ2 expected ~58 TiB usable).
+- Unattended gate armed: `/home/truenas_admin/pool_gate.sh` (SHA-256 `0f5a2baae9dc4a221e4f6ca0d7254e3de8352f90717673cb16b2166d84fc8212`) running as systemd unit `pool-gate.service`, log `/home/truenas_admin/pool_gate.log`. It creates the pool and datasets only if all eight long tests report "Completed without error" with health PASSED, exactly eight ST12000VN0008 are present, no pool `tank` exists, and no data disk has partitions; otherwise it logs `RESULT=ABORT_*` and does nothing. Deadline 2026-10-14 14:00 EDT.
+- Original defective Ryzen 7 8700G (OPN 100-100001236SBX, S/N 9MQ4290R50085) returned to Amazon; no AMD RMA filed.
+
 ## Software / installer state
 
 - IMAGE-EVIDENCED 2026-10-13: Selecting `UEFI: PNY USB 2.0 FD PMAP, Partition 1` from the MSI F11 boot menu returned immediately to the same boot-device menu instead of starting the TrueNAS installer. This narrows the current blocker to the installer-media/UEFI boot path rather than the Windows Boot Manager entry on the Crucial SSD.
 
 - TrueNAS Community Edition target: 25.10.7.
 - Windows PowerShell reported `RESULT=TRUENAS_ISO_VERIFIED`.
-- TrueNAS installer USB has already been created and is standing by for installation.
-- Monitor and keyboard are standing by for first POST/BIOS and TrueNAS installation.
+- TrueNAS 25.10.7 is installed and running (see 2026-10-13 installation section above).
 
 ## Known corrections to older planning material
 
@@ -107,15 +123,15 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Case cable-management wiring visible behind the motherboard tray is not an obstruction under the motherboard.
 - Manufacturer documentation controls standoff placement, PSU sequence/orientation, connector use, and HBA installation when it conflicts with the planning guides.
 
-## Next hardware sequence
+## Next sequence
 
-1. Enter BIOS setup or the F11 boot menu using a rear motherboard USB keyboard connection.
-2. Set the correct BIOS date/time before installing TrueNAS.
-3. Confirm both boot SSDs are visible in BIOS Storage as SATA_S1 / SATA_S2.
-4. Confirm drive-cage fan RPM visibility; prior BIOS observation showed SYS Fan 1 as N/A and should not be assumed resolved.
-5. Boot the already-created TrueNAS Community Edition 25.10.7 installer USB.
-6. For the initial TrueNAS installation, use the 250 GB Crucial MX500 as the sole connected internal boot target and keep the used Patriot Burst Elite 240 GB disconnected. After TrueNAS is proven booting from the Crucial, reconnect the Patriot only for deliberate erase/attachment as the boot-pool mirror. Do not select any of the eight 12 TB IronWolf data drives.
-7. After installation, check MX500 SMART wear and verify the LSI 9207-8i operating mode/firmware identity before considering any firmware action.
+1. Morning 2026-10-14: `cat ~/pool_gate.log` in TrueNAS System -> Shell. If `RESULT=SUCCESS`, verify pool `tank` ONLINE (~58 TiB) and four datasets. If `RESULT=ABORT_*`, diagnose by reason before any manual pool creation.
+2. Apply the pending TrueNAS update and reboot.
+3. Attach the Patriot as the boot-pool mirror.
+4. Configure email alerts and a recurring SMART test schedule.
+5. Apps pool -> Tailscale -> Immich -> Plex -> Nextcloud -> snapshot and scrub schedules (NAS_Software_Setup_Guide.pdf order).
+6. Migrate data from the Synology (VLAN 50) and the HTPC recovery set.
+7. Verify LSI 9207-8i firmware/mode identity before considering any firmware action.
 
 ## Hard stop conditions
 
