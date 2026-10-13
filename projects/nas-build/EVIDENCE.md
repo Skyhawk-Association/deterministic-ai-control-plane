@@ -71,7 +71,7 @@ The exact binaries remain outside public Git under the project binary-document p
 - USER-STATED-EXPLICIT: BIOS detected Ryzen 7 8700G and 64 GB RAM as 2x32 GB in A2/B2 at 4800 MT/s with EXPO off.
 - USER-STATED-EXPLICIT: BIOS idle CPU temperature observed around 66 C at about 1.428 V; Gene reports the CPU cooler fan is operating.
 - USER-STATED-EXPLICIT: BIOS clock observed incorrect at approximately 2026-04-06/07.
-- USER-STATED-EXPLICIT: Crucial MX500 has a "NEMONG COMPUTER" sticker and booted an existing Korean Windows 10 installation while offline. It is intended to be wiped during TrueNAS installation.
+- CORRECTION / USER-STATED-EXPLICIT 2026-10-13: Gene clarified that the Patriot Burst Elite 240 GB, not the Crucial MX500, has the "NEMONG COMPUTER" sticker and booted the existing Korean Windows 10 installation while offline.
 - Historical electrical evidence before service: PSU paper-clip test passed in Normal fan mode; +5VSB measured 5.0 VDC; PS_ON was measured about 5 V at rest and 0 V when JFP1 6/8 were shorted, showing the board asserted PS_ON.
 
 ## 2026-10-13 HBA / video troubleshooting evidence
