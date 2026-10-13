@@ -73,3 +73,13 @@ The exact binaries remain outside public Git under the project binary-document p
 - USER-STATED-EXPLICIT: BIOS clock observed incorrect at approximately 2026-04-06/07.
 - USER-STATED-EXPLICIT: Crucial MX500 has a "NEMONG COMPUTER" sticker and booted an existing Korean Windows 10 installation while offline. It is intended to be wiped during TrueNAS installation.
 - Historical electrical evidence before service: PSU paper-clip test passed in Normal fan mode; +5VSB measured 5.0 VDC; PS_ON was measured about 5 V at rest and 0 V when JFP1 6/8 were shorted, showing the board asserted PS_ON.
+
+## 2026-10-13 HBA / video troubleshooting evidence
+
+- USER-STATED-EXPLICIT: Motherboard HDMI video works and BIOS is usable with the LSI 9207-8i removed.
+- USER-STATED-EXPLICIT: Installing the LSI 9207-8i causes black/no motherboard HDMI video in both PCI_E1 and a lower full-length PCIe slot.
+- USER-STATED-EXPLICIT: IGD/UMA graphics settings, UEFI mode, disabling Re-Size BAR, disabling Above 4G, and one CMOS clear did not restore video with the HBA installed.
+- USER-STATED-EXPLICIT: Both boot SSDs were disconnected for these tests.
+- USER-STATED-EXPLICIT: With the HBA removed and no boot SSD connected, the board reached A9 / 00 and the green BOOT LED, consistent with reaching setup / no bootable device.
+- UNRESOLVED: Debug-code and EZ Debug LED state with the HBA installed have not yet been recorded.
+- UNRESOLVED: HBA firmware/mode and option-ROM state are not identified.
