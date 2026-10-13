@@ -66,7 +66,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Current boot SSD data wiring after service: Crucial MX500 -> SATA_S1 (bottom port of the SATA_S1/S2 stack); Patriot Burst Elite -> SATA_S2 (top port).
 - Both SFF-8087 breakout cables remain connected to the LSI 9207-8i. They do not connect to the motherboard.
 - EPS cables are intended to route behind the motherboard tray rather than over the CPU cooler.
-- Gene observed that the Crucial MX500 is a used drive with a "NEMONG COMPUTER" sticker and that the system booted into an existing Korean Windows 10 installation on it while offline. The TrueNAS installation is expected to wipe this drive.
+- CORRECTION 2026-10-13: Gene clarified that the used drive with the "NEMONG COMPUTER" sticker and existing Korean Windows 10 installation is the Patriot Burst Elite 240 GB, not the Crucial MX500. The Patriot is therefore the legacy/used boot device to isolate during initial TrueNAS installation.
 
 ## 2026-10-13 HBA / video fault state
 
@@ -109,7 +109,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 3. Confirm both boot SSDs are visible in BIOS Storage as SATA_S1 / SATA_S2.
 4. Confirm drive-cage fan RPM visibility; prior BIOS observation showed SYS Fan 1 as N/A and should not be assumed resolved.
 5. Boot the already-created TrueNAS Community Edition 25.10.7 installer USB.
-6. Install only to the 250 GB Crucial MX500 and 240 GB Patriot Burst Elite boot SSDs as the intended mirrored boot targets. Do not select any of the eight 12 TB IronWolf data drives.
+6. For the initial TrueNAS installation, use the 250 GB Crucial MX500 as the sole connected internal boot target and keep the used Patriot Burst Elite 240 GB disconnected. After TrueNAS is proven booting from the Crucial, reconnect the Patriot only for deliberate erase/attachment as the boot-pool mirror. Do not select any of the eight 12 TB IronWolf data drives.
 7. After installation, check MX500 SMART wear and verify the LSI 9207-8i operating mode/firmware identity before considering any firmware action.
 
 ## Hard stop conditions
