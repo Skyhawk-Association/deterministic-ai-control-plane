@@ -62,3 +62,14 @@ Three HBA-related PDFs were supplied directly in the working session and hashed 
 - `SAS2_Flash_Utility_Software_Ref_Guide.pdf` — SHA-256 `04708a22726274be2ea673940611b332993f367b94f8aaf782311f498182c978`.
 
 The exact binaries remain outside public Git under the project binary-document policy. Their identities, hashes, official source links, and build-relevant facts are persisted in `REFERENCES.md` and `references/HBA_LSI_SAS9207-8i.md`.
+
+## 2026-10-12 POST recovery evidence
+
+- USER-STATED-EXPLICIT: Gene reports an outside tech center diagnosed a failed Ryzen 7 8700G and replaced/handled the CPU. The exact diagnostic method used by the tech center was not recorded, so the failed-CPU causal diagnosis is not independently verified in this project evidence.
+- USER-STATED-EXPLICIT: After service, Gene observed successful POST and MSI Click BIOS X.
+- USER-STATED-EXPLICIT: BIOS string observed: E7E59AMSI.2AC4, dated 2026-09-02.
+- USER-STATED-EXPLICIT: BIOS detected Ryzen 7 8700G and 64 GB RAM as 2x32 GB in A2/B2 at 4800 MT/s with EXPO off.
+- USER-STATED-EXPLICIT: BIOS idle CPU temperature observed around 66 C at about 1.428 V; Gene reports the CPU cooler fan is operating.
+- USER-STATED-EXPLICIT: BIOS clock observed incorrect at approximately 2026-04-06/07.
+- USER-STATED-EXPLICIT: Crucial MX500 has a "NEMONG COMPUTER" sticker and booted an existing Korean Windows 10 installation while offline. It is intended to be wiped during TrueNAS installation.
+- Historical electrical evidence before service: PSU paper-clip test passed in Normal fan mode; +5VSB measured 5.0 VDC; PS_ON was measured about 5 V at rest and 0 V when JFP1 6/8 were shorted, showing the board asserted PS_ON.
