@@ -80,7 +80,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - USER-STATED-EXPLICIT: CMOS was cleared once during the 2026-10-12/13 troubleshooting session.
 - USER-STATED-EXPLICIT: Both boot SSDs were disconnected during these tests.
 - USER-STATED-EXPLICIT: Without the HBA installed, the board reached Digi-Debug A9 / 00 with the green BOOT LED while no bootable device was connected.
-- UNRESOLVED: Digi-Debug code and EZ Debug LED state with the HBA installed have not yet been observed.
+- USER-STATED-EXPLICIT: With the HBA installed in the third full-length PCIe slot, both SFF-8087 storage cables disconnected from the HBA, and both boot SSDs disconnected, the board reached Digi-Debug `00` with the green BOOT LED lit but motherboard HDMI remained black/no video. This shows the symptom persists with no downstream SATA/backplane connection and is not unique to PCI_E1.
 - UNRESOLVED: Exact HBA firmware version/mode (IT vs IR), option-ROM contents, and whether this specific card works in another machine remain unknown.
 - HBA firmware must not be erased or flashed until exact adapter identity/current firmware/tool/target/recovery path are verified from current Broadcom authority.
 
