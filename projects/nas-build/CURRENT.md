@@ -83,6 +83,10 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - USER-STATED-EXPLICIT: With the HBA installed in the third full-length PCIe slot, both SFF-8087 storage cables disconnected from the HBA, and both boot SSDs disconnected, the board reached Digi-Debug `00` with the green BOOT LED lit but motherboard HDMI remained black/no video. This shows the symptom persists with no downstream SATA/backplane connection and is not unique to PCI_E1.
 - UNRESOLVED: Exact HBA firmware version/mode (IT vs IR), option-ROM contents, and whether this specific card works in another machine remain unknown.
 - HBA firmware must not be erased or flashed until exact adapter identity/current firmware/tool/target/recovery path are verified from current Broadcom authority.
+- USER-STATED-EXPLICIT: Forcing Chipset Gen Switch to Gen3 did not restore HDMI video with the HBA present.
+- USER-STATED-EXPLICIT: Changing UEFI/CSM Mode from UEFI to CSM caused the previously working no-HBA firmware-video path to fail/freeze after save/reboot.
+- USER-STATED-EXPLICIT: A subsequent Clear CMOS restored normal POST/video with the HBA removed and both boot SSDs disconnected.
+
 
 ## Software / installer state
 
