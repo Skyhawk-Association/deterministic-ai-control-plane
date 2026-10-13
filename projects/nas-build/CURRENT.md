@@ -68,6 +68,22 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - EPS cables are intended to route behind the motherboard tray rather than over the CPU cooler.
 - Gene observed that the Crucial MX500 is a used drive with a "NEMONG COMPUTER" sticker and that the system booted into an existing Korean Windows 10 installation on it while offline. The TrueNAS installation is expected to wipe this drive.
 
+## 2026-10-13 HBA / video fault state
+
+- USER-STATED-EXPLICIT: With the LSI 9207-8i removed, motherboard HDMI video works and BIOS is usable.
+- USER-STATED-EXPLICIT: With the LSI 9207-8i installed, motherboard HDMI output is black/no video.
+- USER-STATED-EXPLICIT: The same black-screen behavior occurred with the HBA installed in PCI_E1 and in a lower full-length PCIe slot, so the symptom is not unique to one tested slot.
+- USER-STATED-EXPLICIT: Gene ruled out the HDMI cable/monitor path based on prior successful use and repeated current testing.
+- USER-STATED-EXPLICIT: BIOS graphics settings tested with the HBA present included Initiate Graphic Adapter = IGD and Integrated Graphics = UMA Auto; no change.
+- USER-STATED-EXPLICIT: BIOS UEFI/CSM Mode was already UEFI.
+- USER-STATED-EXPLICIT: Re-Size BAR and Above 4G were disabled; no change.
+- USER-STATED-EXPLICIT: CMOS was cleared once during the 2026-10-12/13 troubleshooting session.
+- USER-STATED-EXPLICIT: Both boot SSDs were disconnected during these tests.
+- USER-STATED-EXPLICIT: Without the HBA installed, the board reached Digi-Debug A9 / 00 with the green BOOT LED while no bootable device was connected.
+- UNRESOLVED: Digi-Debug code and EZ Debug LED state with the HBA installed have not yet been observed.
+- UNRESOLVED: Exact HBA firmware version/mode (IT vs IR), option-ROM contents, and whether this specific card works in another machine remain unknown.
+- HBA firmware must not be erased or flashed until exact adapter identity/current firmware/tool/target/recovery path are verified from current Broadcom authority.
+
 ## Software / installer state
 
 - TrueNAS Community Edition target: 25.10.7.
