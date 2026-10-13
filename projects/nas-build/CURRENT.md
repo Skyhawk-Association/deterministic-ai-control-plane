@@ -93,6 +93,8 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 
 ## Software / installer state
 
+- IMAGE-EVIDENCED 2026-10-13: Selecting `UEFI: PNY USB 2.0 FD PMAP, Partition 1` from the MSI F11 boot menu returned immediately to the same boot-device menu instead of starting the TrueNAS installer. This narrows the current blocker to the installer-media/UEFI boot path rather than the Windows Boot Manager entry on the Crucial SSD.
+
 - TrueNAS Community Edition target: 25.10.7.
 - Windows PowerShell reported `RESULT=TRUENAS_ISO_VERIFIED`.
 - TrueNAS installer USB has already been created and is standing by for installation.
