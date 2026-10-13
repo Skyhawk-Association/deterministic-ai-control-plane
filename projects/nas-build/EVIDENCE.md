@@ -83,3 +83,7 @@ The exact binaries remain outside public Git under the project binary-document p
 - USER-STATED-EXPLICIT: With the HBA removed and no boot SSD connected, the board reached A9 / 00 and the green BOOT LED, consistent with reaching setup / no bootable device.
 - USER-STATED-EXPLICIT: With the HBA in the third full-length PCIe slot, no SFF-8087 storage cables attached to the HBA, and both boot SSDs disconnected, the board displayed `00` with the green BOOT LED and still produced no motherboard HDMI video.
 - UNRESOLVED: HBA firmware/mode and option-ROM state are not identified.
+- USER-STATED-EXPLICIT: Setting Chipset Gen Switch to Gen3 did not restore motherboard HDMI video with the HBA installed.
+- USER-STATED-EXPLICIT: Switching firmware mode from UEFI to CSM caused loss of the previously working no-HBA video/POST path after save/reboot.
+- USER-STATED-EXPLICIT: Clearing CMOS afterward restored normal POST/video with the HBA removed and both boot SSDs disconnected.
+
