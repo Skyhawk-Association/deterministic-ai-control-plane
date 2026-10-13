@@ -77,6 +77,8 @@ The exact binaries remain outside public Git under the project binary-document p
 
 - IMAGE-EVIDENCED 2026-10-13: MSI F11 boot menu shows `Windows Boot Manager (SATA S1: CT250MX500SSD1)` and `UEFI: PNY USB 2.0 FD PMAP, Partition 1` while the Patriot is disconnected. Therefore the Crucial MX500 is not presently a blank/clean disk from the firmware's perspective; it contains or exposes a Windows EFI boot entry. This does not by itself contradict Gene's correction that the Patriot was the used Korean SSD, because the image does not identify the location of the full Windows installation.
 
+- IMAGE-EVIDENCED 2026-10-13: After Gene selected `UEFI: PNY USB 2.0 FD PMAP, Partition 1` in the MSI F11 menu and pressed Enter, the firmware returned to the same boot-device menu instead of launching the TrueNAS installer. The PNY device is enumerated by UEFI, but the current media does not successfully hand off into the installer on this machine.
+
 ## 2026-10-13 HBA / video troubleshooting evidence
 
 - USER-STATED-EXPLICIT: Motherboard HDMI video works and BIOS is usable with the LSI 9207-8i removed.
