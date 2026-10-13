@@ -88,6 +88,9 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - USER-STATED-EXPLICIT: A subsequent Clear CMOS restored normal POST/video with the HBA removed and both boot SSDs disconnected.
 
 
+
+- IMAGE-EVIDENCED 2026-10-13: MSI F11 boot menu with the Patriot disconnected shows `Windows Boot Manager (SATA S1: CT250MX500SSD1)` and `UEFI: PNY USB 2.0 FD PMAP, Partition 1`. This proves the Crucial MX500 currently carries a Windows Boot Manager EFI entry; it does not establish where the prior Korean Windows installation's full OS volume resided.
+
 ## Software / installer state
 
 - TrueNAS Community Edition target: 25.10.7.
