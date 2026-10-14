@@ -1,6 +1,6 @@
 # NAS Build Current State
 
-Status date: 2026-10-13
+Status date: 2026-10-14
 
 ## Objective
 
@@ -92,6 +92,30 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 
 - IMAGE-EVIDENCED 2026-10-13: MSI F11 boot menu with the Patriot disconnected shows `Windows Boot Manager (SATA S1: CT250MX500SSD1)` and `UEFI: PNY USB 2.0 FD PMAP, Partition 1`. This proves the Crucial MX500 currently carries a Windows Boot Manager EFI entry; it does not establish where the prior Korean Windows installation's full OS volume resided.
 
+## 2026-10-14 state (CURRENT - read first)
+
+BASE BUILD COMPLETE.
+
+- Drives: all 8 IronWolf SMART long tests "Completed without error", health PASSED (2026-10-14 04:29).
+- Pool `tank`: single 8-wide RAIDZ2 vdev, ONLINE, 0 errors, 61.93 TiB usable. Datasets tank/immich, tank/plex, tank/nextcloud, tank/general (+ TrueNAS tank/.system). Weekly scrub Sundays 00:00. Auto TRIM off (HDD pool).
+- Created 08:00 by pool_gate.sh after first attempt failed safely (`midclt call -job` invalid; correct flag `-j`).
+- Boot: Patriot (223.57 GiB) could not be attached as a mirror to the Crucial (232.89 GiB) - too small. Gene reinstalled TrueNAS 25.10.7 onto BOTH SSDs (Fresh Install) and restored the saved configuration. boot-pool is now mirror-0 of two SSD partitions, ONLINE, no errors. `tank` re-imported via config restore, ONLINE.
+- During the restart before the reinstall, no video and Digi-Debug 80/81 were observed; after the reinstall the system booted with console video normally. Root cause of the intermittent no-video-with-HBA behavior remains unexplained.
+- Network: 192.168.20.14 (VLAN 20 Family, UDM Pro port 3, UniFi fixed IP by MAC fc:9d:05:06:49:fe). Time/timezone correct (America/New_York).
+- Update profile MISSION_CRITICAL; 25.10.7 "System is up to date".
+- Configuration backup: System -> Advanced Settings -> Manage Configuration -> Download File (with Password Secret Seed). Fresh backup taken after mirror/email/alerts were configured; stored off-NAS by Gene.
+- Email: Send Mail Method GMail OAuth, From "Home TrueNas" saweba4master1@gmail.com; test mail succeeded. truenas_admin email set via `midclt call user.update` (UI user edit form would not save). Test alert sent successfully via the E-Mail alert service (level Warning).
+- SMART schedule: not available in the 25.10 UI; implemented as a root cron job (System -> Advanced Settings -> Cron Jobs) "Monthly SMART long test - IronWolfs", 01:00 on day 1 of each month, command loops `smartctl -t long` over all ST12000VN0008 disks.
+- Disk temperatures at idle: IronWolfs 40-49 C; the 60 C dashboard maximum is an SSD. Revisit drive-cage fan curve (SYS_FAN5/SYS_FAN6) if IronWolfs sit in the mid-50s under load.
+
+## Next sequence (2026-10-14)
+
+1. Tailscale (remote access) before any app is exposed.
+2. Apps pool -> Immich -> Plex -> Nextcloud per NAS_Software_Setup_Guide.pdf (Stage 3 of that guide is stale: 8 drives, ~62 TiB).
+3. Periodic snapshot tasks on user-data datasets.
+4. Data migration from the Synology (VLAN 50) and the HTPC recovery set.
+5. Verify LSI 9207-8i firmware/mode before any firmware action; investigate intermittent no-video-with-HBA only if it recurs.
+
 ## 2026-10-13 TrueNAS installation and commissioning state
 
 - TOOL-VERIFIED: PNY USB 2.0 FD 14.4 GB (serial 087E013260C0) rewritten on the Envy at ~09:44 EDT from `TrueNAS-SCALE-25.10.7-VERIFIED.iso`; ISO SHA-256 `54ce9441ce66966a392e28f63604ca3c2c083d0bec4db7bb5af2f74f7a007c8e` matched the official TrueNAS .sha256, and a raw read-back of the USB matched the same hash. The two other local ISO copies (`TrueNAS-SCALE-25.10.7.iso`, `.fresh.iso`) do NOT match the official hash and must not be used. An earlier write to a 7.5 GB "Generic Flash Disk" failed mid-write ("device not ready") and that stick is not usable as installer media.
@@ -123,15 +147,9 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Case cable-management wiring visible behind the motherboard tray is not an obstruction under the motherboard.
 - Manufacturer documentation controls standoff placement, PSU sequence/orientation, connector use, and HBA installation when it conflicts with the planning guides.
 
-## Next sequence
+## Superseded 2026-10-13 next sequence
 
-1. Morning 2026-10-14: `cat ~/pool_gate.log` in TrueNAS System -> Shell. If `RESULT=SUCCESS`, verify pool `tank` ONLINE (~58 TiB) and four datasets. If `RESULT=ABORT_*`, diagnose by reason before any manual pool creation.
-2. Apply the pending TrueNAS update and reboot.
-3. Attach the Patriot as the boot-pool mirror.
-4. Configure email alerts and a recurring SMART test schedule.
-5. Apps pool -> Tailscale -> Immich -> Plex -> Nextcloud -> snapshot and scrub schedules (NAS_Software_Setup_Guide.pdf order).
-6. Migrate data from the Synology (VLAN 50) and the HTPC recovery set.
-7. Verify LSI 9207-8i firmware/mode identity before considering any firmware action.
+Superseded by "Next sequence (2026-10-14)" above.
 
 ## Hard stop conditions
 

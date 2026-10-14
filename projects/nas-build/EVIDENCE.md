@@ -105,3 +105,13 @@ The exact binaries remain outside public Git under the project binary-document p
 - TOOL-VERIFIED: `pool-gate.service` started; log shows `START pool_gate (pool=tank model=ST12000VN0008 expect=8)` and `WAIT 8 drive(s) still testing` at 2026-10-13 14:58:43 EDT.
 - USER-STATED-EXPLICIT: Amazon accepted return of the original defective 8700G.
 
+## 2026-10-14 evidence
+
+- TOOL-VERIFIED (gate log): 04:29:07 ALL 8 LONG TESTS PASSED; `midclt call -job` rejected ("unrecognized arguments: -ob"), RESULT=FAILED_POOL_CREATE, nothing created. 08:00:38 CREATE tank RAIDZ2 sda..sdh; 08:00:47-48 DATASET immich/plex/nextcloud/general; 08:00:49 RESULT=SUCCESS.
+- TOOL-VERIFIED (audit 08:06): boot-pool 232G ONLINE (single disk, pre-reinstall); tank 87.3T raw ONLINE, raidz2-0 8 members, 0/0/0 errors; avail 61.9T; sda-sdh PASSED + Extended offline Completed without error; enp6s0 192.168.20.14/24; version 25.10.7.
+- IMAGE-EVIDENCED: System -> Update 25.10.7 "System is up to date", profile MISSION_CRITICAL.
+- USER-STATED-EXPLICIT 11:14-11:19: restart before reinstall showed no video, disk activity, LSI LED flashing, Digi-Debug 80/81. 11:41: Gene shut down, reinstalled to both SSDs, uploaded config; console then showed web UI address normally.
+- IMAGE-EVIDENCED 11:45: Boot Pool Status boot-pool ONLINE, mirror-0 with sde3 and sdj3 ONLINE, 0 errors. Storage Dashboard: tank 1 x RAIDZ2 8 wide 10.91 TiB, usable 61.93 TiB, "Online, no errors", scheduled scrub Sundays 00:00, Auto TRIM off.
+- IMAGE-EVIDENCED 11:51: disk temperature reports, IronWolf maxima 43-49 C over the prior hour.
+- IMAGE-EVIDENCED/USER-STATED: GMail OAuth applied (From Home TrueNas saweba4master1@gmail.com); test mail worked; test alert worked; fresh config backup downloaded; cron job "Monthly SMART long test" at 01:00 day 1, user root, enabled.
+
