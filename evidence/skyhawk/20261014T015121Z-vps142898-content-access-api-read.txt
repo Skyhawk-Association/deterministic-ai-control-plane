@@ -1,0 +1,153 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T015121Z-vps142898-content-access-api-read
+Task: content-access-api-read
+Generated (UTC): 2026-10-14T01:51:21Z
+Host: vps142898
+---
+===== content_access_get_settings (262-278)
+function content_access_get_settings(string $setting, string $type_name): mixed {
+  $node_type = NodeType::load($type_name);
+  if ($node_type === NULL) {
+    throw new \RuntimeException(sprintf('Node type %s was not found.', $type_name));
+  }
+  $settings = $node_type->getThirdPartySettings('content_access');
+  if (empty($settings)) {
+    $settings = [];
+  }
+  $settings += content_access_get_setting_defaults($type_name);
+
+  if ($setting === 'all') {
+    return $settings;
+  }
+
+  return $settings[$setting] ?? NULL;
+}
+===== content_access_set_settings (285-309)
+function content_access_set_settings($settings, $type_name): void {
+  $node_type = NodeType::load($type_name);
+  if ($node_type === NULL) {
+    throw new \RuntimeException(sprintf('Node type %s was not found.', $type_name));
+  }
+  // Do not store default values so we do not have to care about syncing our
+  // settings with the permissions.
+  foreach (content_access_get_setting_defaults($type_name) as $setting => $default_value) {
+    if (isset($settings[$setting]) && $settings[$setting] == $default_value) {
+      unset($settings[$setting]);
+    }
+  }
+  // Unset all the keys before updating settings so if some option like
+  // "per_node" is unchecked now -> it won't be left as is.
+  if (!empty($existing_settings = $node_type->getThirdPartySettings('content_access'))) {
+    foreach (array_keys($existing_settings) as $setting) {
+      $node_type->unsetThirdPartySetting('content_access', $setting);
+    }
+  }
+  foreach ($settings as $key => $setting_value) {
+    $node_type->setThirdPartySetting('content_access', $key, $setting_value);
+  }
+  $node_type->save();
+  drupal_static_reset('content_access_get_type_grant');
+}
+===== content_access_get_per_node_settings (569-580)
+function content_access_get_per_node_settings(NodeInterface $node) {
+  $query = \Drupal::database()->query("SELECT settings FROM {content_access} WHERE nid = :nid", [
+    ':nid' => $node->id(),
+  ]);
+  $result = $query->fetch(PDO::FETCH_OBJ);
+
+  if (!empty($result->settings)) {
+    return json_decode($result->settings, TRUE);
+  }
+
+  return [];
+}
+===== content_access_save_per_node_settings (585-609)
+function content_access_save_per_node_settings(NodeInterface $node, $settings) {
+  $database = \Drupal::database();
+
+  $count = $database->select('content_access')
+    ->fields('c', ['settings'])
+    ->condition('nid', $node->id())
+    ->countQuery()
+    ->execute()
+    ->fetchField();
+
+  if ($count > 0) {
+    $database->update('content_access')
+      ->condition('nid', $node->id())
+      ->fields(['settings' => json_encode($settings)])
+      ->execute();
+  }
+  else {
+    $database->insert('content_access')
+      ->fields(['nid' => $node->id(), 'settings' => json_encode($settings)])
+      ->execute();
+  }
+
+  // Make content_access_per_node_setting() use the new settings.
+  content_access_per_node_setting(NULL, $node, $settings);
+}
+===== content_access_per_node_setting (545-560)
+function content_access_per_node_setting($op, NodeInterface $node, ?array $settings = NULL) {
+  static $grants = [];
+
+  if (isset($settings)) {
+    // Update settings cache.
+    $grants[$node->id()] = $settings;
+    return $settings;
+  }
+
+  if (!isset($grants[$node->id()]) || $grants[$node->id()] === FALSE) {
+    $grants[$node->id()] = content_access_get_per_node_settings($node);
+  }
+
+  // Return the content type defaults if no per node settings are available.
+  return $grants[$node->id()][$op] ?? content_access_get_settings($op, $node->getType());
+}
+===== content_access_mass_update (804-833)
+function content_access_mass_update(array $types) {
+  $query = \Drupal::database()->select('node', 'n')
+    ->fields('n', ['nid'])
+    ->condition('n.type', $types, 'IN');
+
+  $count = $query->countQuery()->execute()->fetchField();
+
+  node_access_needs_rebuild(TRUE);
+
+  // If there not too much nodes affected, try to do it.
+  if ($count <= ContentAccessInterface::CONTENT_ACCESS_MASS_UPDATE_THRESHOLD) {
+    $records = $query->execute();
+
+    foreach ($records as $node) {
+      $node = Node::load($node->nid);
+      $grants = \Drupal::entityTypeManager()->getAccessControlHandler('node')->acquireGrants($node);
+      \Drupal::service('node.grant_storage')->write($node, $grants);
+    }
+
+    foreach (Cache::getBins() as $cache_backend) {
+      $cache_backend->deleteAll();
+    }
+
+    node_access_needs_rebuild(FALSE);
+
+    return TRUE;
+  }
+
+  return FALSE;
+}
+===== roles
+admin
+co
+xo
+board
+sectreas
+journal
+modeling
+sdo_coordinator
+sdo
+authorized_user
+anonymous
+authenticated
+blade
+reunion_staff
+photo_reviewer
