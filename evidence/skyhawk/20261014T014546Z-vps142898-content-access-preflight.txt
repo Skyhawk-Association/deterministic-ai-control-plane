@@ -1,0 +1,34 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T014546Z-vps142898-content-access-preflight
+Task: content-access-preflight
+Generated (UTC): 2026-10-14T01:45:52Z
+Host: vps142898
+---
+== drupal/php
+11.4.8
+8.4.24
+== composer
+/usr/local/bin/composer
+Composer version 2.10.3 2026-08-27 13:34:23
+PHP version 8.4.24 (/opt/alt/php-fpm84/usr/bin/php)
+Run the "diagnose" command to get more detailed diagnostics output.
+== content_access already in codebase?
+
+In ShowCommand.php line 321:
+                                                                                                         
+== modules implementing node grants (existing access control)
+none
+node_access rows: 1
+== dry run: what composer would install
+./composer.json has been updated
+Running composer update drupal/content_access
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 1 install, 0 updates, 0 removals
+  - Locking drupal/content_access (2.1.0)
+Installing dependencies from lock file (including require-dev)
+Package operations: 1 install, 0 updates, 0 removals
+  - Installing drupal/content_access (2.1.0)
+104 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+No security vulnerability advisories found.
