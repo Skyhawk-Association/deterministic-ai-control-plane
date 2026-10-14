@@ -1,0 +1,98 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T014759Z-vps142898-content-access-install
+Task: content-access-install
+Generated (UTC): 2026-10-14T01:48:32Z
+Host: vps142898
+---
+commit 2bb5a21
+content_access_install.sh: OK
+db backup skyhawk-pre-content-access-20261014T014759Z.sql.gz 71167621 bytes
+  - Locking drupal/content_access (2.1.0)
+Installing dependencies from lock file (including require-dev)
+  - Installing drupal/content_access (2.1.0): Extracting archive
+versions : * 2.1.0
+ [success] Module content_access has been installed. (Permissions)
+enabled=yes needs_rebuild=yes node_access_rows=1
+public sanity: Brazil Skyhawks anon http=301 ; home http=200
+== content_access API (functions) ==
+24:function content_access_help($route_name, RouteMatchInterface $route_match) {
+64:function content_access_user_update(EntityInterface $account) {
+88:function content_access_node_grants(AccountInterface $account, $op) {
+109:function content_access_node_access_records(NodeInterface $node) {
+172:function content_access_node_delete(NodeInterface $node) {
+181:function content_access_entity_insert(EntityInterface $entity) {
+195:function content_access_entity_operation(EntityInterface $entity) {
+219:function content_access_entity_delete(EntityInterface $entity) {
+234:function content_access_enabled() {
+241:function content_access_disabling($set = NULL) {
+262:function content_access_get_settings(string $setting, string $type_name): mixed {
+285:function content_access_set_settings($settings, $type_name): void {
+314:function content_access_available_settings() {
+330:function content_access_get_setting_defaults($type) {
+349:function content_access_get_permission_access($perm, $reset = FALSE) {
+369:function content_access_get_permission_by_op($op, $type) {
+392:function content_access_get_type_grant(NodeInterface $node) {
+437:function content_access_proccess_grant($grant, $gid, NodeInterface $node): array {
+445:function content_access_process_grant($grant, $gid, NodeInterface $node): array {
+470:function content_access_own_op(NodeInterface $node, array $any_roles, array $own_roles) {
+506:function content_access_get_rids_per_node_op($op, NodeInterface $node) {
+545:function content_access_per_node_setting($op, NodeInterface $node, ?array $settings = NULL) {
+569:function content_access_get_per_node_settings(NodeInterface $node) {
+585:function content_access_save_per_node_settings(NodeInterface $node, $settings) {
+617:function content_access_delete_per_node_settings(NodeInterface $node) {
+640:function content_access_optimize_grants(&$grants, NodeInterface $node) {
+697:function content_access_node_access_explain($row) {
+721:function content_access_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+737:function _content_access_get_operations($type = NULL) {
+753:function _content_access_get_node_permissions($type) {
+760:function content_access_get_role_gid($role) {
+773:function content_access_get_acl_id(NodeInterface $node, $op) {
+785:function _content_access_remove_acls($type) {
+804:function content_access_mass_update(array $types) {
+840:function content_access_user_admin_perm_submit($form, FormStateInterface $form_state) {
+== src classes ==
+src/Access/ContentAccessAdminSettingsAccessCheck.php
+src/Access/ContentAccessNodePageAccessCheck.php
+src/ContentAccessInterface.php
+src/Controller/ContentAccessController.php
+src/Form/ContentAccessAdminSettingsForm.php
+src/Form/ContentAccessPageForm.php
+src/Form/ContentAccessRoleBasedFormTrait.php
+== config schema ==
+content_access.settings:
+  type: config_object
+  label: 'Content Access settings'
+  mapping:
+    content_access_roles_gids:
+      type: sequence
+      label: 'Role - Grant Id mapping array'
+      sequence:
+        type: integer
+        label: 'Grant ID'
+
+node.type.*.third_party.content_access:
+  type: mapping
+  label: 'Content Access settings'
+  mapping:
+    view_own:
+      type: sequence
+      label: 'Roles that can view own content'
+      sequence:
+        type: string
+        label: 'Role ID'
+    view:
+      type: sequence
+      label: 'Roles that can view any content'
+      sequence:
+        type: string
+        label: 'Role ID'
+    per_node:
+      type: boolean
+      label: 'Per-node access control'
+    priority:
+      type: integer
+      label: 'Access priority'
+== config objects now ==
+content_access.settings
+commit 63e1abc
+push: OK
