@@ -94,6 +94,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 
 ## 2026-10-14 state (CURRENT - read first)
 
+- IMAGE-EVIDENCED 2026-10-14: With the Android phone on cellular (5G, not house Wi-Fi) and connected to Tailscale, `http://100.97.199.3` reached the TrueNAS sign-in page. This verifies end-to-end remote VPN access to the NAS from outside the home LAN. The TrueNAS page warns that HTTP is not HTTPS, but the transport path is inside the encrypted Tailscale tunnel.
 - IMAGE-EVIDENCED 2026-10-14: Tailscale app is installed and Running in TrueNAS, and the Tailscale Machines page shows `truenas-scale` online at 100.97.199.3 under the same tailnet/account as the Envy and Mac. Initial VPN join is therefore verified.
 - USER-STATED-EXPLICIT 2026-10-14: Android device `hacker-deux` is now connected to the same tailnet. Gene reports that HTTPS to the NAS Tailscale IP does not work; use of the Tailscale path should therefore be tested with plain HTTP over the encrypted Tailscale tunnel unless/until a matching HTTPS certificate/name is configured.
 BASE BUILD COMPLETE.
