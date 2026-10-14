@@ -1,0 +1,12 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T021406Z-vps142898-who-handles-what-page
+Task: who-handles-what-page
+Generated (UTC): 2026-10-14T02:14:07Z
+Host: vps142898
+---
+/tmp/tmp.p167sImWyM/r/projects/skyhawk/scripts/whohandleswhat_create.php: OK
+created nid=49787 alias=/article-readyroom/who-handles-what
+per-node public exception: none (locked by type default)
+anon_api=deny member_api=allow anon_http=403
+contact links in page: 15
+RESULT=PASS
