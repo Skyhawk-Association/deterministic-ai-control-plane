@@ -1,0 +1,252 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T012723Z-vps142898-sitefixes-uid1-inspect
+Task: sitefixes-uid1-inspect
+Generated (UTC): 2026-10-14T01:27:23Z
+Host: vps142898
+---
+commit f5f871c
+sitefixes_inspect.sh: OK
+== module files ==
+skyhawk_site_fixes.info.yml 151 bytes
+skyhawk_site_fixes.install 5883 bytes
+skyhawk_site_fixes.install.bak.20260823212317 3150 bytes
+skyhawk_site_fixes.install.bak.20260823213747 5121 bytes
+skyhawk_site_fixes.libraries.yml 913 bytes
+skyhawk_site_fixes.libraries.yml.backup-20260824T205358Z-1860331 693 bytes
+skyhawk_site_fixes.libraries.yml.bak.20260823200857 554 bytes
+skyhawk_site_fixes.libraries.yml.bak.20260823224334 662 bytes
+skyhawk_site_fixes.libraries.yml.bak.20260823231119 555 bytes
+skyhawk_site_fixes.libraries.yml.before-repoint.1779492955 55 bytes
+skyhawk_site_fixes.module 52312 bytes
+skyhawk_site_fixes.module.bak-20260827T150853Z-2317167 21574 bytes
+skyhawk_site_fixes.module.bak-20260827T151223Z-2317167 21574 bytes
+skyhawk_site_fixes.module.bak-20260830T015425Z-3327557 22679 bytes
+skyhawk_site_fixes.module.bak-20260830T023755Z-3327557 23778 bytes
+skyhawk_site_fixes.module.bak-20260830T025507Z-3327557 27069 bytes
+skyhawk_site_fixes.module.bak-20260830T025735Z-3327557 27069 bytes
+skyhawk_site_fixes.module.bak.20260823192852 20180 bytes
+skyhawk_site_fixes.module.bak.20260823212744 20804 bytes
+skyhawk_site_fixes.module.bak.20260823213747 21266 bytes
+skyhawk_site_fixes.module.before-ready-room-hide.1779538138 196 bytes
+skyhawk_site_fixes.routing.yml 4430 bytes
+skyhawk_site_fixes.routing.yml.backup-20260824T205358Z-1860331 1711 bytes
+skyhawk_site_fixes.routing.yml.bak.20260823193109 1240 bytes
+skyhawk_site_fixes.routing.yml.bak.20260823224334 2244 bytes
+skyhawk_site_fixes.services.yml 15 bytes
+== functions in skyhawk_site_fixes.module ==
+8:function skyhawk_site_fixes_page_attachments(array &$attachments) {
+12:function skyhawk_site_fixes_preprocess_menu(array &$variables) {
+30:function skyhawk_site_fixes_preprocess_menu__main(&$variables) {
+44:function skyhawk_site_fixes_file_download($uri) {
+66:function skyhawk_site_fixes_node_insert(\Drupal\node\NodeInterface $node) {
+73:function _skyhawk_journal_send_blast(\Drupal\node\NodeInterface $node) {
+96:  $mailer      = \Drupal::service('plugin.manager.mail');
+108:    $email = $user->getEmail();
+112:    $result = $mailer->mail('skyhawk_site_fixes', 'journal_blast', $email, $langcode,
+124: * Implements hook_mail().
+127:function skyhawk_site_fixes_mail($key, &$message, $params) {
+252: * Implements hook_theme().
+255:function skyhawk_site_fixes_theme($existing, $type, $theme, $path) {
+266: * Implements hook_preprocess_views_view_field().
+269:function skyhawk_site_fixes_preprocess_views_view_field(&$variables) {
+281: * Implements hook_cron().
+284:function skyhawk_site_fixes_cron() {
+306: * Implements hook_page_attachments_alter().
+323:function skyhawk_site_fixes_page_attachments_alter(array &$attachments): void {
+437:function skyhawk_site_fixes_gabby_unit_key(string $value): string {
+463:function skyhawk_site_fixes_gabby_unit_map(): array {
+578:function skyhawk_site_fixes_form_views_exposed_form_alter(
+669:function skyhawk_site_fixes_views_query_alter(
+791:function skyhawk_site_fixes_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+1121:function skyhawk_site_fixes_preprocess_views_view(array &$variables) {
+1127:function skyhawk_site_fixes_entity_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+1137: * Implements hook_preprocess_node().
+1144:function skyhawk_site_fixes_preprocess_node(array &$variables): void {
+1180: * Implements hook_form_alter().
+1187:function skyhawk_site_fixes_form_alter(
+1256: * Implements hook_mail_alter().
+1261:function skyhawk_site_fixes_mail_alter(array &$message): void {
+1334:function skyhawk_site_fixes_form_node_reunion_event_edit_form_alter(
+1642:function skyhawk_site_fixes_form_skyhawk_upload_token_admin_form_alter(
+1854: * Implements hook_form_FORM_ID_alter() for user_login_form.
+1856:function skyhawk_site_fixes_form_user_login_form_alter(
+1877:function skyhawk_site_fixes_user_login_message_validate(
+1935: * Implements hook_form_FORM_ID_alter() for user_pass.
+1937:function skyhawk_site_fixes_form_user_pass_alter(
+1954: * Implements hook_form_FORM_ID_alter() for user_pass_reset.
+1956:function skyhawk_site_fixes_form_user_pass_reset_alter(
+1977: * Implements hook_preprocess_status_messages().
+1982:function skyhawk_site_fixes_preprocess_status_messages(
+== skyhawk_site_fixes.module lines 40-160 ==
+    40	    $variables['#cache']['contexts'][] = 'user';
+    41	  }
+    42	}
+    43	
+    44	function skyhawk_site_fixes_file_download($uri) {
+    45	  if (strpos($uri, 'private://sajournals/') !== 0) {
+    46	    return;
+    47	  }
+    48	  if (strpos($uri, 'private://sajournals/archive/') === 0) {
+    49	    return -1;
+    50	  }
+    51	  $account = \Drupal::currentUser();
+    52	  if ($account->isAnonymous()) {
+    53	    return -1;
+    54	  }
+    55	  if ($account->hasRole('authorized_user') || $account->hasRole('admin')) {
+    56	    return [
+    57	      'Content-Type'           => 'application/pdf',
+    58	      'Content-Disposition'    => 'inline; filename="' . basename($uri) . '"',
+    59	      'Cache-Control'          => 'private, no-cache',
+    60	      'X-Content-Type-Options' => 'nosniff',
+    61	    ];
+    62	  }
+    63	  return -1;
+    64	}
+    65	
+    66	function skyhawk_site_fixes_node_insert(\Drupal\node\NodeInterface $node) {
+    67	  if ($node->bundle() !== 'journal' || !$node->isPublished()) {
+    68	    return;
+    69	  }
+    70	  _skyhawk_journal_send_blast($node);
+    71	}
+    72	
+    73	function _skyhawk_journal_send_blast(\Drupal\node\NodeInterface $node) {
+    74	  $label   = $node->get('field_journal_label')->value ?: $node->getTitle();
+    75	  $nid     = $node->id();
+    76	  $base    = \Drupal::request()->getSchemeAndHttpHost();
+    77	  $alias   = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $nid);
+    78	  $url     = $base . ($alias !== '/node/' . $nid ? $alias : '/node/' . $nid);
+    79	
+    80	  // TEST MODE: send only to UID 1 (adminscoot).
+    81	  // To go live, change condition to ->condition('uid', 0, '>')
+    82	  $uids = \Drupal::entityQuery('user')
+    83	    ->accessCheck(FALSE)
+    84	    ->condition('status', 1)
+    85	    ->condition('uid', 1)
+    86	    ->execute();
+    87	
+    88	  if (empty($uids)) {
+    89	    \Drupal::logger('skyhawk_journal')->warning('Journal blast: no active users found.');
+    90	    return;
+    91	  }
+    92	
+    93	  $site_config = \Drupal::config('system.site');
+    94	  $from        = $site_config->get('mail') ?: '[addr]';
+    95	  $langcode    = \Drupal::languageManager()->getDefaultLanguage()->getId();
+    96	  $mailer      = \Drupal::service('plugin.manager.mail');
+    97	
+    98	  $subject = "New SA Journal Available: $label";
+    99	  $body    = "A new issue of the Skyhawk Association Journal is now available.\n\n"
+   100	           . "Issue: $label\n\n"
+   101	           . "Log in to view and download:\n$url\n\n"
+   102	           . "If you have trouble with the link, log in at $base and navigate to SA Journal.\n\n"
+   103	           . "-- The Skyhawk Association";
+   104	
+   105	  $sent = $failed = 0;
+   106	  $users = \Drupal\user\Entity\User::loadMultiple($uids);
+   107	  foreach ($users as $user) {
+   108	    $email = $user->getEmail();
+   109	    if (empty($email)) {
+   110	      continue;
+   111	    }
+   112	    $result = $mailer->mail('skyhawk_site_fixes', 'journal_blast', $email, $langcode,
+   113	      ['subject' => $subject, 'body' => $body, 'from' => $from], $from, TRUE);
+   114	    $result['result'] ? $sent++ : $failed++;
+   115	  }
+   116	
+   117	  \Drupal::logger('skyhawk_journal')->notice(
+   118	    'Journal blast "@label": @sent sent, @failed failed.',
+   119	    ['@label' => $label, '@sent' => $sent, '@failed' => $failed]
+   120	  );
+   121	}
+   122	
+   123	/**
+   124	 * Implements hook_mail().
+   125	 * Handles journal blast and reunion email notifications.
+   126	 */
+   127	function skyhawk_site_fixes_mail($key, &$message, $params) {
+   128	  /*
+   129	   * SKYHAWK_REUNION_KEEPER_MAIL_V1
+   130	   *
+   131	   * Keeper instructions and explicit acknowledgment receipts use the
+   132	   * normal configured Drupal/A2 mail backend.
+   133	   */
+   134	  if (
+   135	    in_array(
+   136	      $key,
+   137	      [
+   138	        'reunion_keeper_instructions',
+   139	        'reunion_keeper_ack_receipt',
+   140	      ],
+   141	      TRUE
+   142	    )
+   143	  ) {
+   144	
+   145	    $message['subject'] =
+   146	      (string) (
+   147	        $params['subject']
+   148	        ?? ''
+   149	      );
+   150	
+   151	    $message['body'][] =
+   152	      (string) (
+   153	        $params['body']
+   154	        ?? ''
+   155	      );
+   156	
+   157	    return;
+   158	  }
+   159	
+   160	  $site_name = \Drupal::config('system.site')->get('name');
+== every reference to UID 1 / user load 1 / TEST MODE in the module tree (excluding backups) ==
+/home/n790725/drupalbeta/web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:80:  // TEST MODE: send only to UID 1 (adminscoot).
+== backup clutter inside the module tree ==
+104K	/home/n790725/drupalbeta/web/modules/custom/skyhawk_site_fixes/backups
+  generic-intake-request-20260830T023426Z-3327557
+  intake-persistence-20260830T024355Z-3327557
+  src/Form/UploadTokenAdminForm.php.bak.20260823213747 8141 bytes
+  src/Form/UploadTokenForm.php.bak.20260823232342 5999 bytes
+  src/Form/UploadTokenAdminForm.php.bak-20260830T033404Z-2668138 10206 bytes
+  src/Form/ReunionManageForm.php.bak.20260823215617 5509 bytes
+  src/Form/UploadTokenAdminForm.php.bak-20260830T030305Z-3327557 10206 bytes
+  src/Form/UploadTokenForm.php.bak.20260824030005 6084 bytes
+  src/Form/UploadTokenAdminForm.php.bak-20260830T134429Z-2668138 10206 bytes
+  src/Form/UploadTokenAdminForm.php.bak.20260823215617 7955 bytes
+  src/Form/ReunionUploadForm.php.bak.20260823215617 11109 bytes
+  src/Form/UploadTokenAdminForm.php.bak.20260823193614 4034 bytes
+  src/Form/UploadTokenAdminForm.php.bak-20260830T030538Z-3327557 10206 bytes
+  src/Form/UploadTokenAdminForm.php.bak.20260823194432 4962 bytes
+  src/Form/JournalUploadForm.php.bak.20260823215617 15589 bytes
+  src/Form/UploadTokenAdminForm.php.bak-20260830T134911Z-2668138 10206 bytes
+  src/Form/UploadTokenAdminForm.php.bak.20260823212744 5089 bytes
+  src/Form/ReunionTokenAdminForm.php.bak.20260823215617 1677 bytes
+  src/Form/UploadTokenAdminForm.php.bak-20260830T030137Z-3327557 10206 bytes
+  src/Controller/UploadTokenController.php.bak.20260823201541 4974 bytes
+  src/Controller/UploadTokenController.php.bak.20260823212744 5232 bytes
+  src/Controller/ReunionController.php.bak.20260823215617 2781 bytes
+  src/Controller/UploadTokenController.php.bak.20260823213747 6363 bytes
+  src/Controller/UploadTokenController.php.bak.20260823224252 7348 bytes
+  skyhawk_site_fixes.module.bak-20260827T150853Z-2317167 21574 bytes
+  skyhawk_site_fixes.libraries.yml.bak.20260823200857 554 bytes
+  skyhawk_site_fixes.install.bak.20260823213747 5121 bytes
+  skyhawk_site_fixes.module.bak-20260830T025507Z-3327557 27069 bytes
+  skyhawk_site_fixes.module.bak-20260830T015425Z-3327557 22679 bytes
+  skyhawk_site_fixes.module.bak-20260830T023755Z-3327557 23778 bytes
+  skyhawk_site_fixes.routing.yml.bak.20260823193109 1240 bytes
+  skyhawk_site_fixes.libraries.yml.bak.20260823224334 662 bytes
+  skyhawk_site_fixes.libraries.yml.bak.20260823231119 555 bytes
+  skyhawk_site_fixes.module.bak-20260830T025735Z-3327557 27069 bytes
+  skyhawk_site_fixes.install.bak.20260823212317 3150 bytes
+  skyhawk_site_fixes.module.bak.20260823192852 20180 bytes
+  skyhawk_site_fixes.module.bak.20260823213747 21266 bytes
+  skyhawk_site_fixes.module.bak.20260823212744 20804 bytes
+  skyhawk_site_fixes.routing.yml.bak.20260823224334 2244 bytes
+  skyhawk_site_fixes.module.bak-20260827T151223Z-2317167 21574 bytes
+  css/skyhawk-global.css.bak-20260828T171221Z-1268730 40618 bytes
+== is drupalbeta under git, and are these tracked? ==
+git repo: yes, branch main
+tracked files under module backups/: 0
+tracked .bak files: 26
+uncommitted changes in module: 0
+INSPECT ONLY - nothing written
