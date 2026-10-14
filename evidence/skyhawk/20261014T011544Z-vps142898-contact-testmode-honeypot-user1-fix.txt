@@ -1,0 +1,31 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T011544Z-vps142898-contact-testmode-honeypot-user1-fix
+Task: contact-testmode-honeypot-user1-fix
+Generated (UTC): 2026-10-14T01:15:53Z
+Host: vps142898
+---
+commit cbb23f8
+contact_fix_testmode_honeypot_user1.php: OK
+contact_fix_run.sh: OK
+backup webform.contact.pre-testmode-fix-20261014T011545Z.yml 693 lines
+  email_confirmation       test_text_left=no body_len=341
+  email_notification       test_text_left=no body_len=455
+  route_correction         test_text_left=no body_len=455
+  route_former             test_text_left=no body_len=455
+  route_history            test_text_left=no body_len=455
+  route_journal            test_text_left=no body_len=455
+  route_membership_login   test_text_left=no body_len=455
+  route_membership_paypal  test_text_left=no body_len=455
+  route_modeling           test_text_left=no body_len=455
+  route_patch_orders       test_text_left=no body_len=455
+  route_research           test_text_left=no body_len=455
+  route_story              test_text_left=no body_len=455
+handlers_changed=11
+honeypot={"honeypot":true,"time_restriction":true}
+notification body now starts: Skyhawk Association Contact SubmissionUnit: [webform_submission:values:unit:value]Category: [webform_submission:values:category:value]Name: 
+user1 mail is Association mailbox: yes
+RESULT=PASS
+ [success] Cache rebuild complete.
+== public form check (anonymous) ==
+form loads: 200
+honeypot markers in form HTML:       1 honeypot       1 honeypot_time       1 url-textfield 
