@@ -110,11 +110,19 @@ BASE BUILD COMPLETE.
 
 ## Next sequence (2026-10-14)
 
-1. Tailscale (remote access) before any app is exposed.
-2. Apps pool -> Immich -> Plex -> Nextcloud per NAS_Software_Setup_Guide.pdf (Stage 3 of that guide is stale: 8 drives, ~62 TiB).
-3. Periodic snapshot tasks on user-data datasets.
-4. Data migration from the Synology (VLAN 50) and the HTPC recovery set.
-5. Verify LSI 9207-8i firmware/mode before any firmware action; investigate intermittent no-video-with-HBA only if it recurs.
+1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
+2. Tailscale remote access before any app is exposed.
+3. Apps pool -> Immich -> Plex -> Nextcloud per NAS_Software_Setup_Guide.pdf (Stage 3 of that guide is stale: 8 drives, ~62 TiB). Validate Immich CPU fallback if AMD iGPU acceleration is unavailable; for Plex, verify whether Radeon 780M hardware transcoding is actually working; Nextcloud is the last/most complex app and is expected to serve 5 users with approximately 3 TB quotas.
+4. Periodic snapshot tasks on tank/immich, tank/nextcloud, and tank/general, with a practical initial retention target of roughly 2-4 weeks. Have snapshot protection in place before substantial real user data lands.
+5. SMB share(s) plus a non-admin NAS user for the Envy and Mac, using tank/general for ordinary file access.
+6. Data migration from the Synology (VLAN 50) and the HTPC recovery set. Verify file counts and checksums before retiring or deleting any source copy.
+7. Establish a second/off-site copy for irreplaceable data (especially photos and documents), either via TrueNAS Cloud Sync to a suitable provider or replication to the old Synology if it is retained as a backup target. RAIDZ2 is not a backup.
+8. Add a UPS and configure the TrueNAS UPS service for clean shutdown on power loss.
+9. Housekeeping: download a fresh configuration backup with secret seed after each major configuration change; continue watching IronWolf temperatures under load and raise SYS_FAN5/SYS_FAN6 if needed; consider disabling Usage collection & UI error reporting if desired for privacy.
+10. Verify LSI 9207-8i firmware/mode before any firmware action; investigate intermittent no-video-with-HBA only if it recurs.
+
+- USER-DIRECTED 2026-10-14: Gene wants the chassis closed up and moved to its final storage location before the remaining commissioning work. Routine TrueNAS configuration should then be performed through the web UI from the Envy; the local downstairs console is reserved primarily for boot/network/recovery situations when the web UI is unavailable.
+
 
 ## 2026-10-13 TrueNAS installation and commissioning state
 
