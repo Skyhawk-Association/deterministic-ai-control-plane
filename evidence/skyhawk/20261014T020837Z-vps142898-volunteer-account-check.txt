@@ -1,0 +1,14 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T020837Z-vps142898-volunteer-account-check
+Task: volunteer-account-check
+Generated (UTC): 2026-10-14T02:08:37Z
+Host: vps142898
+---
+TERRY    account=NONE
+MARK     account=yes active=yes can_open_ready_room=yes roles=board,sectreas,authorized_user
+JOE      account=yes active=yes can_open_ready_room=yes roles=modeling,authorized_user
+EDITOR   account=yes active=yes can_open_ready_room=yes roles=journal,authorized_user
+DAVE     account=yes active=yes can_open_ready_room=yes roles=xo,board,journal,authorized_user
+GP       account=yes active=yes can_open_ready_room=yes roles=xo,sdo,authorized_user
+STENDER  account=yes active=yes can_open_ready_room=yes roles=board,sdo_coordinator,authorized_user
+LINDER   account=yes active=yes can_open_ready_room=yes roles=board,sdo_coordinator,authorized_user
