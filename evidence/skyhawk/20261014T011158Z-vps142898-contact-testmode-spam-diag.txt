@@ -1,0 +1,45 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T011158Z-vps142898-contact-testmode-spam-diag
+Task: contact-testmode-spam-diag
+Generated (UTC): 2026-10-14T01:12:00Z
+Host: vps142898
+---
+commit 251ac86
+contact_spam_diag.php: OK
+== config objects containing 'TEST MODE' or 'adminscoot' ==
+  webform.webform.contact
+== contact webform email handlers ==
+  email_confirmation       body=341chars html=y test_line=none
+  email_notification       body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_correction         body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_former             body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_history            body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_journal            body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_membership_login   body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_membership_paypal  body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_modeling           body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_patch_orders       body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_research           body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+  route_story              body=519chars html=y test_line="Skyhawk Association Contact SubmissionTEST MODE: Delivered only to adminscoot."
+== other hooks: custom module code mentioning TEST MODE ==
+  modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module:80: // TEST MODE: send only to UID 1 (adminscoot).
+  modules/custom/skyhawk_site_fixes/backups/intake-persistence-20260830T024355Z-3327557/skyhawk_site_fixes.module:80: // TEST MODE: send only to UID 1 (adminscoot).
+  modules/custom/skyhawk_site_fixes/backups/generic-intake-request-20260830T023426Z-3327557/skyhawk_site_fixes.module:80: // TEST MODE: send only to UID 1 (adminscoot).
+== spam-protection modules ==
+  honeypot         in_codebase=yes enabled=yes
+  antibot          in_codebase=no enabled=no
+  captcha          in_codebase=yes enabled=yes
+  recaptcha        in_codebase=no enabled=no
+  recaptcha_v3     in_codebase=no enabled=no
+  friendlycaptcha  in_codebase=no enabled=no
+  cleantalk        in_codebase=no enabled=no
+  webform_spam     in_codebase=no enabled=no
+  webform default antispam (honeypot setting in webform.settings): {"captcha":{"replace_administration_mode":true}}
+  contact form third_party_settings: []
+== submissions on contact form: last 14 days, gibberish-looking (no spaces in name+subject, >=12 chars) ==
+  total=43 gibberish_like=13
+== user 1 / mailbox uniqueness ==
+  user1 name=adminscoot mail_is_association_mailbox=no mail_domain=gmail.com
+  accounts already using the Association mailbox: none
+  site mail (system.site) is [email]: yes
+DIAG ONLY - nothing written
