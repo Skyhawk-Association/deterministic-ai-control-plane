@@ -1,0 +1,39 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T013356Z-vps142898-sitefixes-declutter-and-readyroom-check
+Task: sitefixes-declutter-and-readyroom-check
+Generated (UTC): 2026-10-14T01:34:02Z
+Host: vps142898
+---
+commit 1673e0f
+sitefixes_declutter.sh: OK
+readyroom_exposure_check.php: OK
+===== DECLUTTER =====
+files to move: 54
+copied and verified: 54 -> /home/n790725/backups/code/skyhawk_site_fixes-clutter-20261014T013357Z
+removed: tracked=26 untracked=28
+left in module matching clutter patterns: 0; backups dir exists: no
+commit d528c3a
+module php lint: No syntax errors detected in web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.module
+push: OK
+ahead of remote: 0
+===== READY ROOM EXPOSURE =====
+EXPOSED    nid=478    http=200 login_prompt=y type=article_readyroom "Ready Room"
+EXPOSED    nid=755    http=200 login_prompt=y type=article_readyroom "A-4 Images-BuNo"
+NO-SNIPPET nid=344    http=200 login_prompt=y type=article_readyroom "Association Gatherings"
+EXPOSED    nid=473    http=200 login_prompt=y type=article_readyroom "Brazil Skyhawks"
+EXPOSED    nid=684    http=200 login_prompt=y type=article_readyroom "BuNo 152101 History "
+EXPOSED    nid=360    http=200 login_prompt=y type=article_readyroom "BuNo 154172 - 154217 (PG 1)"
+EXPOSED    nid=596    http=200 login_prompt=y type=article_readyroom "BuNo 154614-154657 (PG 1)"
+NO-SNIPPET nid=586    http=200 login_prompt=y type=article_readyroom "BuNo 155071 History"
+EXPOSED    nid=76     http=200 login_prompt=y type=article_readyroom "Al Carpenter Combat Flight"
+NO-SNIPPET nid=78     http=200 login_prompt=y type=article_readyroom "The Hotrod by Bob Rahn"
+EXPOSED    nid=80     http=200 login_prompt=y type=article_readyroom "Marine Flight School Primer"
+EXPOSED    nid=77     http=200 login_prompt=y type=article_readyroom "Pre-March 1965 Classification-Loss Codes"
+EXPOSED    nid=726    http=200 login_prompt=y type=article_readyroom "Ready Room Photo Album - disguised with the cover of a techn"
+EXPOSED    nid=85     http=200 login_prompt=y type=article_readyroom "Webmaster's Editors SOP"
+EXPOSED    nid=693    http=200 login_prompt=y type=article_readyroom "Story of the Skyhawk by Tommy Thomason"
+EXPOSED    nid=79     http=200 login_prompt=y type=article_readyroom "Loss of Verdin by Bob Rahn"
+EXPOSED    nid=82     http=200 login_prompt=y type=article_readyroom "Hal Vincent Skyhawk Flights"
+bundles under Ready Room aliases: {"article_readyroom":18}
+TOTAL exposed=14 hidden=0 untestable=3 unpublished_skipped=1
+CHECK ONLY - nothing written
