@@ -1,0 +1,52 @@
+SKYHAWK AI REPORT
+Report-ID: 20261014T015452Z-vps142898-readyroom-content-access-stepB
+Task: readyroom-content-access-stepB
+Generated (UTC): 2026-10-14T01:55:03Z
+Host: vps142898
+---
+commit 14d1666
+content_access_configure.php: OK
+readyroom_ca_verify.php: OK
+content_access_stepB.sh: OK
+type settings before: {"view":["anonymous","authenticated"],"per_node":false}
+type settings after:  {"view":["admin","co","xo","board","sectreas","journal","modeling","sdo_coordinator","sdo","authorized_user","blade"],"per_node":true}
+per-node public nid=473 view_includes_anonymous=yes "Brazil Skyhawks"
+per-node public nid=76 view_includes_anonymous=yes "Al Carpenter Combat Flight"
+per-node public nid=78 view_includes_anonymous=yes "The Hotrod by Bob Rahn"
+per-node public nid=80 view_includes_anonymous=yes "Marine Flight School Primer"
+per-node public nid=693 view_includes_anonymous=yes "Story of the Skyhawk by Tommy Thomason"
+per-node public nid=79 view_includes_anonymous=yes "Loss of Verdin by Bob Rahn"
+per-node public nid=82 view_includes_anonymous=yes "Hal Vincent Skyhawk Flights"
+CONFIG_DONE
+== rebuilding node access (all nodes) ==
+fi
+
+exec "${dir}/drush" "$@"
+rebuild seconds: 0
+== verification ==
+BAD  nid=75     LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "Board Meeting 09APR2011"
+OK   nid=76     PUBLIC  published=1 anon_http=200 anon_api=allow member_api=allow "Al Carpenter Combat Flight"
+BAD  nid=77     LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "Pre-March 1965 Classification-Loss Codes"
+OK   nid=78     PUBLIC  published=1 anon_http=200 anon_api=allow member_api=allow "The Hotrod by Bob Rahn"
+OK   nid=79     PUBLIC  published=1 anon_http=200 anon_api=allow member_api=allow "Loss of Verdin by Bob Rahn"
+OK   nid=80     PUBLIC  published=1 anon_http=200 anon_api=allow member_api=allow "Marine Flight School Primer"
+OK   nid=82     PUBLIC  published=1 anon_http=200 anon_api=allow member_api=allow "Hal Vincent Skyhawk Flights"
+BAD  nid=85     LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "Webmaster's Editors SOP"
+BAD  nid=344    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "Association Gatherings"
+BAD  nid=360    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "BuNo 154172 - 154217 (PG 1)"
+OK   nid=473    PUBLIC  published=1 anon_http=200 anon_api=allow member_api=allow "Brazil Skyhawks"
+BAD  nid=478    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "Ready Room"
+BAD  nid=586    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "BuNo 155071 History"
+BAD  nid=587    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "BuNo 155070 History"
+BAD  nid=596    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "BuNo 154614-154657 (PG 1)"
+BAD  nid=684    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "BuNo 152101 History "
+OK   nid=693    PUBLIC  published=1 anon_http=200 anon_api=allow member_api=allow "Story of the Skyhawk by Tommy Thomason"
+BAD  nid=726    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "Ready Room Photo Album - disguised with the cover "
+BAD  nid=755    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "A-4 Images-BuNo"
+BAD  nid=756    LOCKED  published=1 anon_http=200 anon_api=allow member_api=allow "File Upload Locations (Directories/Folders)"
+OK   nid=48561  LOCKED  published=0 anon_http=0 anon_api=deny member_api=deny "Association e-Mail IDs"
+member test account available: yes
+ordinary public page (VA-12) anon http=200
+anon search "152101": http=200 locked_title_shown=YES
+node_access realms: {"all":"1"} needs_rebuild=yes
+RESULT=FAIL (14)
