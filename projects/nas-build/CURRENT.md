@@ -94,6 +94,7 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 
 ## 2026-10-14 state (CURRENT - read first)
 
+- IMAGE-EVIDENCED 2026-10-14: Tailscale app is installed and Running in TrueNAS, and the Tailscale Machines page shows `truenas-scale` online at 100.97.199.3 under the same tailnet/account as the Envy and Mac. Initial VPN join is therefore verified.
 BASE BUILD COMPLETE.
 
 - Drives: all 8 IronWolf SMART long tests "Completed without error", health PASSED (2026-10-14 04:29).
