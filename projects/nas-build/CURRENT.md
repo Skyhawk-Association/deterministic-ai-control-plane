@@ -117,6 +117,8 @@ BASE BUILD COMPLETE.
 
 - USER-SUPPLIED COMMAND OUTPUT 2026-10-14: Immich is RUNNING on TrueNAS, version 1.14.50 / v3.3.1_1.14.50, published on host port 30041. Server, PostgreSQL, machine-learning, and Redis services are running. Data uses /mnt/tank/immich/data and PostgreSQL uses /mnt/tank/immich/pgData. Post-install permissions are apps:apps 770 for data and netdata:docker 770 for pgData. Initial deployment uses the default CPU machine-learning image; AMD GPU enablement remains a later controlled change.
 
+- USER-DIRECTED 2026-10-14: Immich is to become the canonical photo/video source after the existing Mac archive is bulk-uploaded and verified. Ongoing phone photos should flow into Immich. The Mac and Envy are intended to hold independent local backup copies sourced one-way from Immich/NAS rather than act as peer canonical stores. Do not use bidirectional sync or have one backup computer be the only source for the other. Backup design must include both Immich asset files and Immich database dumps; at least one offsite copy remains separately required because NAS, Mac, and Envy are co-located.
+
 ## Next sequence (2026-10-14)
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
