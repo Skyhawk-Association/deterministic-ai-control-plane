@@ -2,6 +2,8 @@
 
 ## Change Synopsis
 
+- 2026-10-15 (evidence-forced correction under Operational Use and Correction Authority 0.2; authoritative/DACP_Existing_Configuration_And_Endpoint_Evidence_Gate_0.1.md): adds existing-configuration inspection vs setup gate, client-specific reachability binding, and transfer/integrity/indexing evidence separation; adds D27-D29 regression fixtures. No application implementation or new authority is implied.
+
 - 2026-10-10 (Gene direction; platforms/inmotion/OPERATING_REFERENCE_0.1.md): establishes a standalone InMotion VPS operating reference, separate from Skyhawk site records; reuse stable verified facts and recheck only task-relevant mutable conditions instead of repeating full hosting reviews.
 
 - 2026-10-06 (operational correction under Operational Use and Correction Authority 0.2; authoritative/DACP_Handoff_Claim_Integrity_Control_0.1.md): adds handoff claim-evidence classes and blocks promotion of ambiguous user wording or model inference into verified/user-confirmed fact; adds D26 regression.
@@ -68,7 +70,8 @@ For InMotion Hosting/VPS/CWP questions, read `platforms/inmotion/OPERATING_REFER
 16. authoritative/DACP_Decision_Record_2026-10-02_Reality_Conformance_Heuristic.md when contradiction/reorientation is germane.
 17. authoritative/DACP_Governance_Status_Audit_2026-10-02.md when approval/status ambiguity is germane.
 18. authoritative/DACP_Handoff_Claim_Integrity_Control_0.1.md when summaries, handoffs, troubleshooting baselines, or executor transfers are germane.
-19. predecessor specifications only for provenance/comparison.
+19. authoritative/DACP_Existing_Configuration_And_Endpoint_Evidence_Gate_0.1.md when already-configured systems, multi-client route claims, bulk transfers, or app ingestion are germane.
+20. predecessor specifications only for provenance/comparison.
 
 ## Operational state
 
