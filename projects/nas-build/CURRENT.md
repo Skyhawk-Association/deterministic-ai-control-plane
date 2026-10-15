@@ -111,6 +111,8 @@ BASE BUILD COMPLETE.
 - SMART schedule: not available in the 25.10 UI; implemented as a root cron job (System -> Advanced Settings -> Cron Jobs) "Monthly SMART long test - IronWolfs", 01:00 on day 1 of each month, command loops `smartctl -t long` over all ST12000VN0008 disks.
 - Disk temperatures at idle: IronWolfs 40-49 C; the 60 C dashboard maximum is an SSD. Revisit drive-cage fan curve (SYS_FAN5/SYS_FAN6) if IronWolfs sit in the mid-50s under load.
 
+- USER-VERIFIED 2026-10-14: Immich preflight completed on TrueNAS 25.10.7. Catalog reports Immich community 1.14.50 / v3.3.1_1.14.50, not installed. `tank/immich/data` and `tank/immich/pgData` exist at `/mnt/tank/immich/data` and `/mnt/tank/immich/pgData`. `data` is owned by apps:apps mode 770; `pgData` is root:root mode 770 pending Immich PostgreSQL automatic-permissions handling. AMD Phoenix1 GPU is visible at PCI 0000:78:00.0 and available to host; initial Immich install will use CPU/default ML first and GPU enablement will be a later verified change.
+
 ## Next sequence (2026-10-14)
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
