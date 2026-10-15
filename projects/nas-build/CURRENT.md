@@ -119,6 +119,8 @@ BASE BUILD COMPLETE.
 
 - USER-DIRECTED 2026-10-14: Immich is to become the canonical photo/video source after the existing Mac archive is bulk-uploaded and verified. Ongoing phone photos should flow into Immich. The Mac and Envy are intended to hold independent local backup copies sourced one-way from Immich/NAS rather than act as peer canonical stores. Do not use bidirectional sync or have one backup computer be the only source for the other. Backup design must include both Immich asset files and Immich database dumps; at least one offsite copy remains separately required because NAS, Mac, and Envy are co-located.
 
+- USER-SUPPLIED COMMAND OUTPUT 2026-10-14: Plex stable app 1.3.15 / Plex Media Server 1.43.4.10903-e5521bd8c installed successfully and is now RUNNING on host port 32400. Persistent bind mounts are /mnt/tank/plex/config -> /config and /mnt/tank/plex/data -> /data; both child datasets were created under tank/plex and set to apps:apps (UID/GID 568), mode 770, ACL disabled before install. TrueNAS app notes confirm AMD GPU devices /dev/dri and /dev/kfd are passed read/write into the Plex container. This proves device exposure, not successful hardware transcoding; that must still be verified from an actual Plex transcode session after account/server setup.
+
 ## Next sequence (2026-10-14)
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
