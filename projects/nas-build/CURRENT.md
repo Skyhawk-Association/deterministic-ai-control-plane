@@ -113,6 +113,8 @@ BASE BUILD COMPLETE.
 
 - USER-VERIFIED 2026-10-14: Immich preflight completed on TrueNAS 25.10.7. Catalog reports Immich community 1.14.50 / v3.3.1_1.14.50, not installed. `tank/immich/data` and `tank/immich/pgData` exist at `/mnt/tank/immich/data` and `/mnt/tank/immich/pgData`. `data` is owned by apps:apps mode 770; `pgData` is root:root mode 770 pending Immich PostgreSQL automatic-permissions handling. AMD Phoenix1 GPU is visible at PCI 0000:78:00.0 and available to host; initial Immich install will use CPU/default ML first and GPU enablement will be a later verified change.
 
+- USER-SUPPLIED COMMAND OUTPUT 2026-10-14: Immich install via supported TrueNAS `app.create` completed successfully. `app.query` reports `immich` state `RUNNING`, version `1.14.50` / human version `v3.3.1_1.14.50`, server published on host port 30041, and server/Postgres/machine-learning/Redis containers running. Data bind mount is `/mnt/tank/immich/data`; PostgreSQL bind mount is `/mnt/tank/immich/pgData`. Post-install permissions are `apps:apps 770` for data and `netdata:docker 770` for pgData, confirming PostgreSQL automatic-permissions handling completed. Initial install uses default CPU machine-learning image; AMD GPU enablement remains a later controlled change.
+
 ## Next sequence (2026-10-14)
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
