@@ -1,6 +1,6 @@
 # NAS Build Current State
 
-Status date: 2026-10-14
+Status date: 2026-10-16
 
 ## Objective
 
@@ -124,6 +124,20 @@ BASE BUILD COMPLETE.
 - USER-SUPPLIED COMMAND OUTPUT 2026-10-14: Nextcloud stable app 2.3.78 / Nextcloud 35.0.1 installed successfully on host port 30027. The install output shows persistent bind mounts `/mnt/tank/nextcloud/html` -> `/var/www/html`, `/mnt/tank/nextcloud/data` -> `/var/www/html/data`, and `/mnt/tank/nextcloud/postgres_data` -> `/var/lib/postgresql`. Post-install verification reported `RESULT=NEXTCLOUD_RUNNING`, version 35.0.1, maintenance mode false, no pending database upgrade, PostgreSQL UID/GID 999/999, and script exit 0. Base Nextcloud installation is therefore verified; remote-access/trusted-domain validation is now complete; remaining commissioning includes user accounts/quotas and snapshot protection before substantial user data.
 
 - NEXTCLOUD SECURE ACCESS VERIFIED 2026-10-14: Tailscale HTTPS certificates were enabled for the tailnet after Gene explicitly accepted Certificate Transparency disclosure for the node hostname. Nextcloud now trusts `truenas-scale.tail6e87d7.ts.net` and is configured with `overwriteprotocol=https`, `overwritehost=truenas-scale.tail6e87d7.ts.net`, and `overwrite.cli.url=https://truenas-scale.tail6e87d7.ts.net`. USER-SUPPLIED COMMAND OUTPUT: `tailscale serve status` reports `https://truenas-scale.tail6e87d7.ts.net (tailnet only)` with `/` proxied to `http://127.0.0.1:30027`; `tailscale funnel status` also reports the route as `(tailnet only)`, with no public Funnel endpoint reported. TOOL-VERIFIED FROM ENVY: the Tailscale hostname resolves to `100.97.199.3`; Tailscale ping succeeds; HTTPS certificate validation succeeds and the secure URL returns the normal Nextcloud redirect path; direct LAN `http://192.168.20.14:30027/` returns HTTP 302 with `Location: https://truenas-scale.tail6e87d7.ts.net/login`. USER-STATED-EXPLICIT: Gene is logged into Nextcloud successfully in the Envy browser and Pixel browser over the secure route. Tailscale itself remains in host-network mode; do not redesign it merely to attach to Nextcloud's private Docker network because that could disrupt remote TrueNAS host access.
+
+## 2026-10-16 Pixel -> Immich uploader (ACHIEVED)
+
+- Goal: manual run on the Pixel (Termux) over Wi-Fi with mobile data off; upload all photos/videos to Immich with no duplicates.
+- Immich API: `http://100.97.199.3:30041/api` over Tailscale.
+- Script: `~/.local/bin/pixel-nas-new-only` (all-directories version), SHA-256 `bfabe08ab39be52a91529814d210cb5fe1a5f0345b544e2f89a278506becfd68`. Prior camera-only version kept at `~/.local/bin/pixel-nas-new-only.bak` (copy also at `Download/pixel-nas-new-only.txt`).
+- Behavior: scans `/storage/emulated/0` excluding `Android/` and dot-directories; matches by SHA-256 against `known-sha256.txt` + `hash-cache.tsv`; records Immich "duplicate" responses; verifies each new upload by SHA-1; refuses to run unless on `wlan0`.
+- API key: `~/.config/pixel-nas/immich-key` (mode 600). Never print or expose it. Log: `~/.local/share/pixel-nas/new-only.log`.
+- USER-SUPPLIED COMMAND OUTPUT 2026-10-15/16: first full run `uploaded=5 already_on_server=0 failed=0 (newly hashed 4407)`.
+- USER-SUPPLIED COMMAND OUTPUT 2026-10-16: run from hotel Wi-Fi in New Jersey `uploaded=5 already_on_server=0 failed=0 (newly hashed 5)`; log shows these 5 VERIFIED_NEW paths are distinct from the first run's 5. Immediate re-run `uploaded=0 already_on_server=0 failed=0 (newly hashed 0)` - no-duplicate behavior verified. Remote use over non-home Wi-Fi verified.
+- USER-SUPPLIED COMMAND OUTPUT 2026-10-16: old termux-job-scheduler job 44110 no longer exists; `--pending` reports no pending jobs. No automatic schedule remains; uploader is manual by design.
+- Daily use: Wi-Fi on, mobile data off, Tailscale on -> `bash ~/.local/bin/pixel-nas-new-only`.
+- WATCH: Do NOT enable Immich mobile-app backup on the Pixel (risk of duplicating the uploader's assets).
+- WATCH: 49-asset count discrepancy in Immich, not yet investigated.
 
 ## Next sequence (2026-10-14)
 
