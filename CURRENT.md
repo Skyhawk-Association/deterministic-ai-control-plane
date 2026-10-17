@@ -2,6 +2,7 @@
 
 ## Change Synopsis
 
+- 2026-10-17 (Gene decision; authoritative/DACP_Operating_Controls_0.1.md): activates the single Operating Controls file (C-01 to C-26: endpoints, decision allocation, credentials and identity, destructive actions and bulk data, evidence, simplicity and automation, cross-AI) and adds D30-D31 regression fixtures. No credentials are granted or changed by this entry.
 - 2026-10-15 (evidence-forced correction under Operational Use and Correction Authority 0.2; authoritative/DACP_Existing_Configuration_And_Endpoint_Evidence_Gate_0.1.md): adds existing-configuration inspection vs setup gate, client-specific reachability binding, and transfer/integrity/indexing evidence separation; adds D27-D29 regression fixtures. No application implementation or new authority is implied.
 
 - 2026-10-10 (Gene direction; platforms/inmotion/OPERATING_REFERENCE_0.1.md): establishes a standalone InMotion VPS operating reference, separate from Skyhawk site records; reuse stable verified facts and recheck only task-relevant mutable conditions instead of repeating full hosting reviews.
@@ -71,7 +72,8 @@ For InMotion Hosting/VPS/CWP questions, read `platforms/inmotion/OPERATING_REFER
 17. authoritative/DACP_Governance_Status_Audit_2026-10-02.md when approval/status ambiguity is germane.
 18. authoritative/DACP_Handoff_Claim_Integrity_Control_0.1.md when summaries, handoffs, troubleshooting baselines, or executor transfers are germane.
 19. authoritative/DACP_Existing_Configuration_And_Endpoint_Evidence_Gate_0.1.md when already-configured systems, multi-client route claims, bulk transfers, or app ingestion are germane.
-20. predecessor specifications only for provenance/comparison.
+20. authoritative/DACP_Operating_Controls_0.1.md for all consequential work (endpoints, approvals, credentials, destructive or bulk actions, persistent automation, evidence claims).
+21. predecessor specifications only for provenance/comparison.
 
 ## Operational state
 
