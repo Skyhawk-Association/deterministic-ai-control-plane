@@ -107,7 +107,7 @@ The exact binaries remain outside public Git under the project binary-document p
 
 ## 2026-10-14 evidence
 
-- IMAGE-EVIDENCED 2026-10-14: Android phone screenshot shows 5G cellular service and the TrueNAS sign-in page loaded at `100.97.199.3/ui/signin` over Tailscale. This independently verifies remote NAS reachability outside the house Wi-Fi/LAN. The UI displays its normal warning that the page itself is HTTP rather than HTTPS.
+- IMAGE-EVIDENCED 2026-10-14: Android phone screenshot shows 5G cellular service and the TrueNAS sign-in page loaded at `<NAS-TAILSCALE-IP>/ui/signin` over Tailscale. This independently verifies remote NAS reachability outside the house Wi-Fi/LAN. The UI displays its normal warning that the page itself is HTTP rather than HTTPS.
 
 - TOOL-VERIFIED (gate log): 04:29:07 ALL 8 LONG TESTS PASSED; `midclt call -job` rejected ("unrecognized arguments: -ob"), RESULT=FAILED_POOL_CREATE, nothing created. 08:00:38 CREATE tank RAIDZ2 sda..sdh; 08:00:47-48 DATASET immich/plex/nextcloud/general; 08:00:49 RESULT=SUCCESS.
 - TOOL-VERIFIED (audit 08:06): boot-pool 232G ONLINE (single disk, pre-reinstall); tank 87.3T raw ONLINE, raidz2-0 8 members, 0/0/0 errors; avail 61.9T; sda-sdh PASSED + Extended offline Completed without error; enp6s0 192.168.20.14/24; version 25.10.7.
