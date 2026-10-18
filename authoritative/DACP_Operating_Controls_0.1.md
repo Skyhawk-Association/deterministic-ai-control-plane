@@ -3,9 +3,10 @@
 ## Change Synopsis
 
 - 2026-10-17: Creates the single Operating Controls file with 26 controls (C-01 to C-26) in groups A-G. Adds regression fixtures D30-D31. Does not change credentials, and records no new grant.
+- 2026-10-18: Adds C-27 (read the project record before asking or recalling) in group E and fixture D32. Does not change C-01 to C-26, credentials or authority. Gene direction 2026-10-18 23:06 Madrid.
 
 **Status:** ACTIVE NORMATIVE. Gene decision.
-**Authority:** Gene decision 2026-10-17 03:09 ET ("Single file and approval in toto"), approving the 26 controls he marked on 2026-10-17 (02:11, 02:17, 02:38 ET) as drafted in the review document of the same date.
+**Authority:** Gene decision 2026-10-17 03:09 ET ("Single file and approval in toto"), approving the 26 controls he marked on 2026-10-17 (02:11, 02:17, 02:38 ET) as drafted in the review document of the same date. C-27 added by Gene direction 2026-10-18 23:06 Madrid.
 **Refines, does not replace:** `authoritative/Project Instructions 0.7.txt`, `authoritative/DACP_Interim_Decision_Authority_0.3.md`, `authoritative/DACP_Application_Implementation_Authorization_0.7.md`, `docs/BOOTSTRAP_CONTRACT.md`, Heuristics H-017.
 **Enforcement level:** manual application at the CAR gate, same as D27-D29. No automatic runtime enforcement is claimed.
 **Language:** MUST / MUST NOT bind executors. GENE marks a decision only Gene makes.
@@ -44,6 +45,7 @@
 - **C-19 Evidence classes.** Claims carry one of the four canonical classes from `authoritative/DACP_Handoff_Claim_Integrity_Control_0.1.md`: VERIFIED, USER-STATED-EXPLICIT, INFERRED, UNRESOLVED. No other labels.
 - **C-20 Version and state claims.** A claim about DACP version, active specification, or repository state MUST cite the main HEAD commit SHA and the uncached route used (git clone / ls-remote, api.github.com, raw.githubusercontent.com). A rendered github.com `/blob/` page, memory, a mirror, or another AI's statement is not evidence. No uncached route = say so; do not assert. Field evidence: on 2026-10-16 a rendered /blob/ page led to a wrong denial that 0.1.7-DELTA was active. User-level adapter text SHOULD name `https://raw.githubusercontent.com/Skyhawk-Association/deterministic-ai-control-plane/main/CURRENT.md` and require recording the HEAD SHA.
 - **C-21 Verification.** Verify by state check first, not command completion or UI acknowledgement. The other AI is an adversarial reviewer, not a certifier. A dispute between agents is a five-line diff with links.
+- **C-27 Read the project record first.** When a task names a project system (for example the NAS, Immich, the Pixel uploader, skyhawk.org, InMotion, the association portal), the executor MUST read the project record listed under "Project records" in CURRENT.md before asking Gene about that system's state or stating it from recollection, and MUST cite the record section and date relied on. If the record is silent or older than the question needs, say so and ask Gene one specific question. Test: an answer about a project system cites a record section and date, or states that none exists. Asking Gene something the record answers fails.
 
 ## F. Simplicity and automation
 
