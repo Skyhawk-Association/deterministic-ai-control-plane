@@ -2,6 +2,7 @@
 
 ## Change Synopsis
 
+- 2026-10-18 (Gene direction): adds a "Project records" section to CURRENT.md pointing to the active project records (projects/nas-build, projects/skyhawk, projects/association-portal). Pointers are paths only; no project state is copied into CURRENT.md. No new authority, controls or credentials are implied.
 - 2026-10-17 (Gene decision; authoritative/DACP_Operating_Controls_0.1.md): activates the single Operating Controls file (C-01 to C-26: endpoints, decision allocation, credentials and identity, destructive actions and bulk data, evidence, simplicity and automation, cross-AI) and adds D30-D31 regression fixtures. No credentials are granted or changed by this entry.
 - 2026-10-15 (evidence-forced correction under Operational Use and Correction Authority 0.2; authoritative/DACP_Existing_Configuration_And_Endpoint_Evidence_Gate_0.1.md): adds existing-configuration inspection vs setup gate, client-specific reachability binding, and transfer/integrity/indexing evidence separation; adds D27-D29 regression fixtures. No application implementation or new authority is implied.
 
@@ -50,6 +51,14 @@ For the proposed second Drupal site, public blogs, board discussion, restricted 
 ## Provider-level reference
 
 For InMotion Hosting/VPS/CWP questions, read `platforms/inmotion/OPERATING_REFERENCE_0.1.md` in addition to applicable DACP controls. Its purpose is to eliminate repeated broad reviews while preserving narrow task-time checks, proper authority boundaries, and independent verification. Do not substitute it for site-specific authority when site internals are material.
+
+## Project records
+
+These are the active project records. They hold current project state and are separate from DACP runtime and heuristics. Read the record for the project a task names before asking Gene about that project's state or recalling it, and cite the record section and date you relied on. This section lists paths only; the records, not this file, carry state.
+
+- NAS build, Immich, Pixel uploader, Plex, Nextcloud, Synology migration: `projects/nas-build/CURRENT.md` (also `projects/nas-build/EVIDENCE.md`, `projects/nas-build/README.md`, `projects/nas-build/REFERENCES.md`).
+- Skyhawk website and migration (skyhawk.org, Drupal, InMotion VPS site work): `projects/skyhawk/RULES.md`, `projects/skyhawk/LOST-D.md`, `projects/skyhawk/ENVIRONMENT.md`, `projects/skyhawk/GITHUB.md`, `projects/skyhawk/TERMUX.md`.
+- Association portal: `projects/association-portal/CURRENT.md` (see also the Association portal project section above).
 
 ## Load order before consequential DACP work
 
