@@ -138,6 +138,13 @@ BASE BUILD COMPLETE.
 - Daily use: Wi-Fi on, mobile data off, Tailscale on -> `bash ~/.local/bin/pixel-nas-new-only`.
 - WATCH: Do NOT enable Immich mobile-app backup on the Pixel (risk of duplicating the uploader's assets).
 - WATCH: 49-asset count discrepancy in Immich, not yet investigated.
+- USER-SUPPLIED COMMAND OUTPUT 2026-10-18 (hotel Wi-Fi, Spain): first run refused to upload: `curl: (28) Connection timed out after 8003 milliseconds` / `NAS not reachable (Tailscale on?)`. Script exited safely with no upload.
+
+- USER-SUPPLIED COMMAND OUTPUT 2026-10-18: next run `DONE: uploaded=258 already_on_server=0 failed=0 (newly hashed 258)`. Immediate repeat `DONE: uploaded=0 already_on_server=0 failed=0 (newly hashed 0)` - no-duplicate behavior reproduced. Completion level: component (upload run). Coverage of every Pixel folder and the Immich-side asset count were NOT checked.
+
+- USER-DIRECTED 2026-10-19: keep the Termux uploader for now. Eventual direction: move to native Immich app backup because other users will need the same capability. NOT authorized yet: any switch requires Gene's approval after duplicate handling, folder coverage and a safe transition are established. WATCH about enabling app backup on the Pixel still stands until then.
+
+- OPEN: 49-asset discrepancy; Pixel folder coverage check; Immich total vs +258 (Gene: later).
 
 ## Next sequence (2026-10-14)
 
