@@ -1,0 +1,37 @@
+SKYHAWK AI REPORT
+Report-ID: 20261023T192519Z-vps142898-skyhawk-native-verify-20261023
+Task: skyhawk-native-verify-20261023
+Generated (UTC): 2026-10-23T19:25:19Z
+Host: vps142898
+---
+TASK=skyhawk-native-verify-20261023 START=2026-10-23T19:25:19Z HOST=vps142898.inmotionhosting.com USER=n790725
+CLI_WRAPPER_VERSION
+PHP 8.4.27 (cli) (built: Oct 23 2026 01:33:50) (NTS)
+Copyright (c) The PHP Group
+Zend Engine v4.4.27, Copyright (c) Zend Technologies
+    with Zend OPcache v8.4.27, Copyright (c), by Zend Technologies
+CLI_WRAPPER_RC=0
+NATIVE_VERSION
+PHP Fatal error:  Unable to start pcre module in Unknown on line 0
+NATIVE_RC=254
+PCRE_NATIVE
+PHP Fatal error:  Unable to start pcre module in Unknown on line 0
+PCRE_NATIVE_RC=254
+PCRE_WRAPPER
+10.39 2021-10-29 JIT=1
+PCRE_WRAPPER_RC=0
+PCRE_CONFIG
+10.39
+-L/usr/local/lib -lpcre2-8
+PCRE_JIT_UCP
+UCP)
+NO_JIT)
+FPM_CONFIG_TEST
+[23-Oct-2026 15:25:19] NOTICE: PHP message: PHP Fatal error:  Unable to start pcre module in Unknown on line 0
+FPM_TEST_RC=254
+FPM_SERVICE_ACTIVE
+active
+FPM_SERVICE_RC=0
+FPM_OVERRIDE
+Environment=LD_LIBRARY_PATH=/opt/skyhawk/pcre2-10.39-jit/lib
+END=2026-10-23T19:25:19Z
