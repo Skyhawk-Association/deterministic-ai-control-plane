@@ -2,6 +2,7 @@
 
 ## Change Synopsis
 
+- 2026-10-25 (Gene decision; authoritative/DACP_Operating_Controls_0.1.md): adds control C-28 (external-effect confirmation, verbatim handoffs) and regression fixture D33. Private DACP records (checkpoints, candidates) now live in the private repo Skyhawk-Association/dacp-private; Google Drive DACP records are frozen provenance. No new credentials or authority are implied.
 - 2026-10-18 (Gene direction; authoritative/DACP_Operating_Controls_0.1.md): adds control C-27 (read the project record before asking or recalling) and regression fixture D32. No new credentials or authority are implied.
 - 2026-10-18 (Gene direction): adds a "Project records" section to CURRENT.md pointing to the active project records (projects/nas-build, projects/skyhawk, projects/association-portal). Pointers are paths only; no project state is copied into CURRENT.md. No new authority, controls or credentials are implied.
 - 2026-10-17 (Gene decision; authoritative/DACP_Operating_Controls_0.1.md): activates the single Operating Controls file (C-01 to C-26: endpoints, decision allocation, credentials and identity, destructive actions and bulk data, evidence, simplicity and automation, cross-AI) and adds D30-D31 regression fixtures. No credentials are granted or changed by this entry.

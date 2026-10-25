@@ -4,6 +4,7 @@
 
 - 2026-10-17: Creates the single Operating Controls file with 26 controls (C-01 to C-26) in groups A-G. Adds regression fixtures D30-D31. Does not change credentials, and records no new grant.
 - 2026-10-18: Adds C-27 (read the project record before asking or recalling) in group E and fixture D32. Does not change C-01 to C-26, credentials or authority. Gene direction 2026-10-18 23:06 Madrid.
+- 2026-10-25: Adds C-28 (external-effect confirmation and verbatim handoffs) in group G and fixture D33. Does not change C-01 to C-27, credentials or authority. Gene decision 2026-10-25 21:19 Madrid ("All" on the dacp-private candidate triage, item 12).
 
 **Status:** ACTIVE NORMATIVE. Gene decision.
 **Authority:** Gene decision 2026-10-17 03:09 ET ("Single file and approval in toto"), approving the 26 controls he marked on 2026-10-17 (02:11, 02:17, 02:38 ET) as drafted in the review document of the same date. C-27 added by Gene direction 2026-10-18 23:06 Madrid.
@@ -58,3 +59,4 @@
 - **C-24 Fixtures before effectiveness.** A control is not described as verified-effective until a regression fixture exists in the matrix. Fixtures D30 (architecture fork) and D31 (bulk ingestion) are added with this file.
 - **C-25 Burden measurement.** Burden and correction rates are measured lightly from existing evidence (handoffs, receipts, commit trailers). No timesheets.
 - **C-26 Nothing becomes DACP without GENE.** No draft, candidate, or agent consensus becomes DACP without Gene's decision through the versioned process. Agent agreement is not field evidence.
+- **C-28 External effect and verbatim handoffs.** Before any action whose effect reaches a person other than GENE and the executors (email, a form submission that notifies someone, a message, post or invite), the executor MUST show GENE one line, "This sends <what> to <whom> as <sender>", and act only on GENE's yes to that line. A test aimed at a filter or blocker sends rejected cases only unless GENE says otherwise. In any cross-executor handoff, GENE's instructions MUST be quoted verbatim under a GENE (verbatim) heading; the author's reading goes under INTERPRETATION (unconfirmed) unless GENE confirmed it. A receiving executor MUST NOT take an external-effect or consequential action on unconfirmed interpretation alone. Trigger is the action's effect, not the executor's sense of ambiguity.
