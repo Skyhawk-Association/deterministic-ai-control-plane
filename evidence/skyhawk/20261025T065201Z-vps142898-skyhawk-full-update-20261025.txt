@@ -1,0 +1,295 @@
+SKYHAWK AI REPORT
+Report-ID: 20261025T065201Z-vps142898-skyhawk-full-update-20261025
+Task: skyhawk-full-update-20261025
+Generated (UTC): 2026-10-25T06:52:01Z
+Host: vps142898
+---
+PROJECT=/home/n790725/drupalbeta
+DRUPAL_WEB=/home/n790725/drupalbeta/web
+BRANCH=main
+ORIGIN=git@github-skyhawk:Skyhawk-Association/skyhawk.org.git
+LOCAL_HEAD=63e1abc06f6a8dbf0027aed666563e5d96eae4b2
+REMOTE_MAIN=63e1abc06f6a8dbf0027aed666563e5d96eae4b2
+CONFIG_DIFF_COUNT=4
+COMPOSER_GIT_STATE=CONFIG_DRIFT
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 0 installs, 56 updates, 0 removals
+  - Upgrading composer/ca-bundle (1.5.14 => 1.6.0)
+  - Upgrading doctrine/lexer (3.0.2 => 3.0.3)
+  - Upgrading doctrine/persistence (4.2.0 => 4.2.1)
+  - Upgrading drupal/bootstrap_barrio (5.5.20 => 5.5.22)
+  - Upgrading drupal/core (11.4.8 => 11.4.11)
+  - Upgrading drupal/core-composer-scaffold (11.4.8 => 11.4.11)
+  - Upgrading drupal/core-dev (11.4.8 => 11.4.11)
+  - Upgrading drupal/core-project-message (11.4.8 => 11.4.11)
+  - Upgrading drupal/core-recommended (11.4.8 => 11.4.11)
+  - Upgrading drupal/libraries (4.1.1 => 4.2.1)
+  - Upgrading drupal/video_embed_field (3.1.0 => 3.1.1)
+  - Upgrading drupal/views_bootstrap (5.5.2 => 5.5.6)
+  - Upgrading drupal/views_bulk_operations (4.4.8 => 4.4.9)
+  - Upgrading guzzlehttp/guzzle (7.15.5 => 7.16.0)
+  - Upgrading guzzlehttp/promises (2.5.3 => 2.6.0)
+  - Upgrading guzzlehttp/psr7 (2.13.1 => 2.13.2)
+  - Upgrading laminas/laminas-feed (2.26.2 => 2.26.3)
+  - Upgrading laravel/prompts (v0.3.24 => v0.3.26)
+  - Upgrading open-telemetry/api (1.10.0 => 1.10.1)
+  - Upgrading phpdocumentor/reflection-common (2.2.0 => 2.2.1)
+  - Upgrading phpdocumentor/type-resolver (2.0.0 => 2.1.0)
+  - Upgrading phpstan/phpdoc-parser (2.3.5 => 2.3.6)
+  - Upgrading phpstan/phpstan (2.2.16 => 2.3.2)
+  - Upgrading phpstan/phpstan-phpunit (2.0.19 => 2.1.1)
+  - Upgrading phpunit/phpunit (11.5.56 => 11.5.57)
+  - Upgrading seld/phar-utils (1.2.2 => 1.2.3)
+  - Upgrading symfony/browser-kit (v7.4.17 => v7.4.21)
+  - Upgrading symfony/console (v7.4.19 => v7.4.21)
+  - Upgrading symfony/dependency-injection (v7.4.17 => v7.4.21)
+  - Upgrading symfony/error-handler (v7.4.17 => v7.4.20)
+  - Upgrading symfony/filesystem (v7.4.18 => v7.4.21)
+  - Upgrading symfony/finder (v7.4.19 => v7.4.20)
+  - Upgrading symfony/http-foundation (v7.4.19 => v7.4.21)
+  - Upgrading symfony/http-kernel (v7.4.19 => v7.4.21)
+  - Upgrading symfony/lock (v7.4.18 => v7.4.21)
+  - Upgrading symfony/polyfill-iconv (v1.37.0 => v1.43.0)
+  - Upgrading symfony/polyfill-intl-grapheme (v1.41.0 => v1.43.0)
+  - Upgrading symfony/polyfill-intl-idn (v1.42.0 => v1.43.0)
+  - Upgrading symfony/polyfill-intl-normalizer (v1.42.0 => v1.43.0)
+  - Upgrading symfony/polyfill-mbstring (v1.38.2 => v1.43.0)
+  - Upgrading symfony/polyfill-php80 (v1.37.0 => v1.43.0)
+  - Upgrading symfony/polyfill-php82 (v1.38.1 => v1.43.0)
+  - Upgrading symfony/polyfill-php83 (v1.41.0 => v1.43.0)
+  - Upgrading symfony/polyfill-php84 (v1.38.1 => v1.43.0)
+  - Upgrading symfony/polyfill-php85 (v1.41.0 => v1.43.0)
+  - Upgrading symfony/polyfill-php86 (v1.41.0 => v1.43.0)
+  - Upgrading symfony/process (v7.4.19 => v7.4.21)
+  - Upgrading symfony/psr-http-message-bridge (v7.4.8 => v7.4.21)
+  - Upgrading symfony/routing (v7.4.18 => v7.4.21)
+  - Upgrading symfony/runtime (v7.4.14 => v7.4.21)
+  - Upgrading symfony/serializer (v7.4.19 => v7.4.21)
+  - Upgrading symfony/string (v7.4.19 => v7.4.21)
+  - Upgrading symfony/validator (v7.4.19 => v7.4.21)
+  - Upgrading symfony/var-dumper (v7.4.18 => v7.4.21)
+  - Upgrading symfony/yaml (v7.4.18 => v7.4.21)
+  - Upgrading webmozart/assert (2.4.1 => 2.5.0)
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Package operations: 0 installs, 56 updates, 0 removals
+  - Downloading symfony/runtime (v7.4.21)
+  - Downloading drupal/core-composer-scaffold (11.4.11)
+  - Downloading drupal/core-project-message (11.4.11)
+  - Downloading composer/ca-bundle (1.6.0)
+  - Downloading symfony/finder (v7.4.20)
+  - Downloading symfony/polyfill-iconv (v1.43.0)
+  - Downloading symfony/polyfill-mbstring (v1.43.0)
+  - Downloading symfony/polyfill-intl-normalizer (v1.43.0)
+  - Downloading symfony/polyfill-intl-grapheme (v1.43.0)
+  - Downloading symfony/string (v7.4.21)
+  - Downloading symfony/console (v7.4.21)
+  - Downloading doctrine/persistence (4.2.1)
+  - Downloading symfony/polyfill-intl-idn (v1.43.0)
+  - Downloading symfony/yaml (v7.4.21)
+  - Downloading symfony/polyfill-php83 (v1.43.0)
+  - Downloading symfony/validator (v7.4.21)
+  - Downloading symfony/polyfill-php84 (v1.43.0)
+  - Downloading symfony/serializer (v7.4.21)
+  - Downloading symfony/routing (v7.4.21)
+  - Downloading symfony/http-foundation (v7.4.21)
+  - Downloading symfony/psr-http-message-bridge (v7.4.21)
+  - Downloading symfony/process (v7.4.21)
+  - Downloading symfony/polyfill-php86 (v1.43.0)
+  - Downloading symfony/polyfill-php85 (v1.43.0)
+  - Downloading doctrine/lexer (3.0.3)
+  - Downloading symfony/var-dumper (v7.4.21)
+  - Downloading symfony/error-handler (v7.4.20)
+  - Downloading symfony/http-kernel (v7.4.21)
+  - Downloading symfony/filesystem (v7.4.21)
+  - Downloading symfony/dependency-injection (v7.4.21)
+  - Downloading symfony/polyfill-php80 (v1.43.0)
+  - Downloading guzzlehttp/psr7 (2.13.2)
+  - Downloading guzzlehttp/promises (2.6.0)
+  - Downloading guzzlehttp/guzzle (7.16.0)
+  - Downloading drupal/core (11.4.11)
+  - Downloading drupal/bootstrap_barrio (5.5.22)
+  - Downloading symfony/lock (v7.4.21)
+  - Downloading symfony/browser-kit (v7.4.21)
+  - Downloading phpunit/phpunit (11.5.57)
+  - Downloading phpstan/phpstan (2.3.2)
+  - Downloading phpstan/phpstan-phpunit (2.1.1)
+  - Downloading webmozart/assert (2.5.0)
+  - Downloading phpstan/phpdoc-parser (2.3.6)
+  - Downloading phpdocumentor/reflection-common (2.2.1)
+  - Downloading phpdocumentor/type-resolver (2.1.0)
+  - Downloading symfony/polyfill-php82 (v1.43.0)
+  - Downloading open-telemetry/api (1.10.1)
+  - Downloading seld/phar-utils (1.2.3)
+  - Downloading laminas/laminas-feed (2.26.3)
+  - Downloading drupal/libraries (4.2.1)
+  - Downloading drupal/video_embed_field (3.1.1)
+  - Downloading drupal/views_bootstrap (5.5.6)
+  - Downloading drupal/views_bulk_operations (4.4.9)
+  - Downloading laravel/prompts (v0.3.26)
+  - Upgrading symfony/runtime (v7.4.14 => v7.4.21): Extracting archive
+  - Upgrading drupal/core-composer-scaffold (11.4.8 => 11.4.11): Extracting archive
+  - Upgrading drupal/core-project-message (11.4.8 => 11.4.11): Extracting archive
+  - Upgrading composer/ca-bundle (1.5.14 => 1.6.0): Extracting archive
+  - Upgrading symfony/finder (v7.4.19 => v7.4.20): Extracting archive
+  - Upgrading symfony/polyfill-iconv (v1.37.0 => v1.43.0): Extracting archive
+  - Upgrading symfony/polyfill-mbstring (v1.38.2 => v1.43.0): Extracting archive
+  - Upgrading symfony/polyfill-intl-normalizer (v1.42.0 => v1.43.0): Extracting archive
+  - Upgrading symfony/polyfill-intl-grapheme (v1.41.0 => v1.43.0): Extracting archive
+  - Upgrading symfony/string (v7.4.19 => v7.4.21): Extracting archive
+  - Upgrading symfony/console (v7.4.19 => v7.4.21): Extracting archive
+  - Upgrading doctrine/persistence (4.2.0 => 4.2.1): Extracting archive
+  - Upgrading symfony/polyfill-intl-idn (v1.42.0 => v1.43.0): Extracting archive
+  - Upgrading symfony/yaml (v7.4.18 => v7.4.21): Extracting archive
+  - Upgrading symfony/polyfill-php83 (v1.41.0 => v1.43.0): Extracting archive
+  - Upgrading symfony/validator (v7.4.19 => v7.4.21): Extracting archive
+  - Upgrading symfony/polyfill-php84 (v1.38.1 => v1.43.0): Extracting archive
+  - Upgrading symfony/serializer (v7.4.19 => v7.4.21): Extracting archive
+  - Upgrading symfony/routing (v7.4.18 => v7.4.21): Extracting archive
+  - Upgrading symfony/http-foundation (v7.4.19 => v7.4.21): Extracting archive
+  - Upgrading symfony/psr-http-message-bridge (v7.4.8 => v7.4.21): Extracting archive
+  - Upgrading symfony/process (v7.4.19 => v7.4.21): Extracting archive
+  - Upgrading symfony/polyfill-php86 (v1.41.0 => v1.43.0): Extracting archive
+  - Upgrading symfony/polyfill-php85 (v1.41.0 => v1.43.0): Extracting archive
+  - Upgrading doctrine/lexer (3.0.2 => 3.0.3): Extracting archive
+  - Upgrading symfony/var-dumper (v7.4.18 => v7.4.21): Extracting archive
+  - Upgrading symfony/error-handler (v7.4.17 => v7.4.20): Extracting archive
+  - Upgrading symfony/http-kernel (v7.4.19 => v7.4.21): Extracting archive
+  - Upgrading symfony/filesystem (v7.4.18 => v7.4.21): Extracting archive
+  - Upgrading symfony/dependency-injection (v7.4.17 => v7.4.21): Extracting archive
+  - Upgrading symfony/polyfill-php80 (v1.37.0 => v1.43.0): Extracting archive
+  - Upgrading guzzlehttp/psr7 (2.13.1 => 2.13.2): Extracting archive
+  - Upgrading guzzlehttp/promises (2.5.3 => 2.6.0): Extracting archive
+  - Upgrading guzzlehttp/guzzle (7.15.5 => 7.16.0): Extracting archive
+  - Upgrading drupal/core (11.4.8 => 11.4.11): Extracting archive
+  - Upgrading drupal/bootstrap_barrio (5.5.20 => 5.5.22): Extracting archive
+  - Upgrading symfony/lock (v7.4.18 => v7.4.21): Extracting archive
+  - Upgrading symfony/browser-kit (v7.4.17 => v7.4.21): Extracting archive
+  - Upgrading phpunit/phpunit (11.5.56 => 11.5.57): Extracting archive
+  - Upgrading phpstan/phpstan (2.2.16 => 2.3.2): Extracting archive
+  - Upgrading phpstan/phpstan-phpunit (2.0.19 => 2.1.1): Extracting archive
+  - Upgrading webmozart/assert (2.4.1 => 2.5.0): Extracting archive
+  - Upgrading phpstan/phpdoc-parser (2.3.5 => 2.3.6): Extracting archive
+  - Upgrading phpdocumentor/reflection-common (2.2.0 => 2.2.1): Extracting archive
+  - Upgrading phpdocumentor/type-resolver (2.0.0 => 2.1.0): Extracting archive
+  - Upgrading symfony/polyfill-php82 (v1.38.1 => v1.43.0): Extracting archive
+  - Upgrading open-telemetry/api (1.10.0 => 1.10.1): Extracting archive
+  - Upgrading seld/phar-utils (1.2.2 => 1.2.3): Extracting archive
+  - Upgrading drupal/core-dev (11.4.8 => 11.4.11)
+  - Upgrading drupal/core-recommended (11.4.8 => 11.4.11)
+  - Upgrading laminas/laminas-feed (2.26.2 => 2.26.3): Extracting archive
+  - Upgrading drupal/libraries (4.1.1 => 4.2.1): Extracting archive
+  - Upgrading drupal/video_embed_field (3.1.0 => 3.1.1): Extracting archive
+  - Upgrading drupal/views_bootstrap (5.5.2 => 5.5.6): Extracting archive
+  - Upgrading drupal/views_bulk_operations (4.4.8 => 4.4.9): Extracting archive
+  - Upgrading laravel/prompts (v0.3.24 => v0.3.26): Extracting archive
+Generating autoload files
+104 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+phpstan/extension-installer: Extensions installed
+> composer/composer: installed
+> composer/pcre: installed
+> mglaman/phpstan-drupal: installed
+> phpstan/phpstan-deprecation-rules: installed
+> phpstan/phpstan-phpunit: installed
+Scaffolding files for drupal/core:
+  - Copy [web-root]/.htaccess from assets/scaffold/files/htaccess
+  - Copy [web-root]/sites/example.settings.local.php from assets/scaffold/files/example.settings.local.php
+No security vulnerability advisories found.
+ [warning] Operations on Unicode strings are emulated on a best-effort basis. Install  
+the PHP mbstring extension [1] for improved Unicode support.
+
+[1] http://php.net/mbstring
+ (Currently using Unicode library Standard PHP
+)
+ [success] No pending updates.
+ [success] Cache rebuild complete.
+
+COMPOSER_GIT_STATE=PENDING
+Functional site verification is required before finish.
+ M composer.lock
+ M web/.htaccess
+ M web/sites/example.settings.local.php
+Drupal version   : 11.4.11                                                   
+Site URI         : https://skyhawk.org                                       
+DB driver        : mysql                                                     
+DB hostname      : localhost                                                 
+DB port          : 3306                                                      
+DB username      : n790725_skyhawk                                           
+DB name          : n790725_skyhawk                                           
+Database         : Connected                                                 
+Drupal bootstrap : Successful                                                
+Default theme    : bootstrap_barrio                                          
+Admin theme      : bootstrap_barrio                                          
+PHP binary       : /opt/alt/php-fpm84/usr/bin/php                            
+PHP config       : /opt/alt/php-fpm84/usr/php/php.ini                        
+PHP OS           : Linux                                                     
+PHP version      : 8.4.27                                                    
+Drush script     : /home/n790725/drupalbeta/vendor/bin/drush.php             
+Drush version    : [ip]                                                  
+Drush temp       : /tmp                                                      
+Drush configs    : /home/n790725/drupalbeta/vendor/drush/drush/drush.yml     
+Install profile  : standard                                                  
+Drupal root      : /home/n790725/drupalbeta/web                              
+Site path        : sites/default                                             
+Files, Public    : sites/default/files                                       
+Files, Private   : /home/n790725/drupalbeta/private                          
+Files, Temp      : /tmp                                                      
+Drupal config    : sites/default/files/config_Ubo9gqxEHpoMEZNKbhJkVBUc9sN2Nn 
+                   zSV17M10F5hE7w77uws5OFNHtqnAAjUCO9dChbQn6-2A/sync         
+ ----------------------------- ------------ 
+  Name                          State       
+ ----------------------------- ------------ 
+  content_access.settings       Only in DB  
+  core.extension                Different   
+  node.type.article_readyroom   Different   
+  webform.webform.contact       Different   
+ ----------------------------- ------------ 
+doctrine/lexer	3.0.2	3.0.3
+doctrine/persistence	4.2.0	4.2.1
+drupal/bootstrap_barrio	5.5.20	5.5.22
+drupal/core	11.4.8	11.4.11
+drupal/core-composer-scaffold	11.4.8	11.4.11
+drupal/core-project-message	11.4.8	11.4.11
+drupal/core-recommended	11.4.8	11.4.11
+drupal/libraries	4.1.1	4.2.1
+drupal/video_embed_field	3.1.0	3.1.1
+drupal/views_bootstrap	5.5.2	5.5.6
+drupal/views_bulk_operations	4.4.8	4.4.9
+guzzlehttp/guzzle	7.15.5	7.16.0
+guzzlehttp/promises	2.5.3	2.6.0
+guzzlehttp/psr7	2.13.1	2.13.2
+laminas/laminas-feed	2.26.2	2.26.3
+laravel/prompts	v0.3.24	v0.3.26
+phpstan/phpstan	2.2.16	2.3.2
+symfony/console	v7.4.19	v7.4.21
+symfony/dependency-injection	v7.4.17	v7.4.21
+symfony/error-handler	v7.4.17	v7.4.20
+symfony/filesystem	v7.4.18	v7.4.21
+symfony/finder	v7.4.19	v7.4.20
+symfony/http-foundation	v7.4.19	v7.4.21
+symfony/http-kernel	v7.4.19	v7.4.21
+symfony/polyfill-iconv	v1.37.0	v1.43.0
+symfony/polyfill-intl-grapheme	v1.41.0	v1.43.0
+symfony/polyfill-intl-idn	v1.42.0	v1.43.0
+symfony/polyfill-intl-normalizer	v1.42.0	v1.43.0
+symfony/polyfill-mbstring	v1.38.2	v1.43.0
+symfony/polyfill-php80	v1.37.0	v1.43.0
+symfony/polyfill-php83	v1.41.0	v1.43.0
+symfony/polyfill-php84	v1.38.1	v1.43.0
+symfony/polyfill-php85	v1.41.0	v1.43.0
+symfony/polyfill-php86	v1.41.0	v1.43.0
+symfony/process	v7.4.19	v7.4.21
+symfony/psr-http-message-bridge	v7.4.8	v7.4.21
+symfony/routing	v7.4.18	v7.4.21
+symfony/runtime	v7.4.14	v7.4.21
+symfony/serializer	v7.4.19	v7.4.21
+symfony/string	v7.4.19	v7.4.21
+symfony/validator	v7.4.19	v7.4.21
+symfony/var-dumper	v7.4.18	v7.4.21
+symfony/yaml	v7.4.18	v7.4.21
+https://skyhawk.org/ 200
+https://skyhawk.org/user/login 200
+https://www.skyhawk.org/ 200
+https://www.skyhawk.org/user/login 200
