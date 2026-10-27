@@ -172,32 +172,6 @@ Sanitized per C-10: no addresses, MACs, tailnet names or serials. Detailed inven
   - Optional: tailnet DNS pointed at Pi-hole for ad blocking while travelling; Pi UDP GRO tuning.
   - Pixel uploader: the 2026-10-19 run was cut off (no PASS_COMPLETE); a stale lock left by the killed run blocked the next start. Self-clearing lock proposed, not built.
   - Envy, Mac and iMac unattended-recovery items (auto-login, sleep, independent remote access) not yet inventoried.
-## 2026-10-27 Remote operability and network hardening
-
-Sanitized per C-10: no addresses, MACs, tailnet names or serials. Detailed inventory belongs in dacp-private (not yet written).
-
-- USER-STATED-EXPLICIT: NAS physical closeout (step 1 below) was completed before the Spain trip: panels on, final location, continuous uptime since.
-- USER-STATED-EXPLICIT: Whole-house natural-gas generator (about 10 s transfer); gateway, switch, both NASes, Envy, Mac mini and iMac are on three UPS units. Gene accepts generator-failure risk; UPS signalling and auto-power-on are out of scope. The earlier "add a UPS" item is superseded.
-- TOOL-VERIFIED 2026-10-27 (Claude, Gene's UniFi session, read-only): both UniFi sites (Pennsylvania home, Delaware) inventoried, plus the unmanaged EdgeSwitch web UI. UPnP off and gateway SSH off at both sites; automatic backups on; IPS on in notify-and-block with region blocking.
-- CHANGES 2026-10-27 (Gene clicked; Claude read back each one):
-  - Pennsylvania gateway: all four inbound port forwards PAUSED (HTPC media server, a legacy port-80 forward aimed at an unused address, Pi SSH, Pi WireGuard). No inbound forwards are active. IPS had logged external intrusion attempts against the Pi via those forwards.
-  - Pennsylvania IPS: outgoing detection exclusion added for the skyhawk.org server only. Cause: outbound SSH from the Mac mini and Envy to that server was blocked 14 times on 2026-10-25 under the "Scanning Activity" policy.
-  - Basement Pi (Raspberry Pi 4) rebuilt on a new 128 GB card. Old card (Raspbian 10, end of life; half-upgraded Pi-hole; nightly backups to a missing host with remote rm -rf) removed intact, labelled, kept as the rollback. New: Raspberry Pi OS Lite 64-bit (Debian 13), key-only SSH (password authentication off, verified), Pi-hole v6 (core 6.5, web 6.6.1, FTL 6.8) migrated from the old config, listening mode changed from local to ALL. The old "local" mode refused queries from the Family VLAN, so ad blocking was ineffective for user devices. Verified from the Family VLAN: ad domain blocked, normal domain resolves.
-  - Tailscale on the Pi as an approved exit node (accept-dns off). Verified 2026-10-27 about 12:02 ET: Pixel on cellular with the Pi as exit node showed the home WAN address.
-  - Tailscale key expiry disabled on the Pi, Envy, Mac mini and TrueNAS. Pixel keeps expiry (Gene).
-- USER-DIRECTED: exit node None at home; select the Pi when travelling; Allow LAN access off.
-- CORRECTIONS: the temperature controller is NOT PoE-powered (its switch port draws 0 W), so it cannot be power-cycled from the switch. The Basement Pi IS PoE-powered, so it can be power-cycled from the EdgeSwitch UI. The Mac is an M4. The basement iMac exists on the Family VLAN; its switch port is unresolved (port labels are stale).
-- OPEN:
-  - C-10: this file already contains LAN addresses, a MAC, a tailnet name and drive serials. Redaction decision pending (Gene). Whether C-10 also applies to dacp-private is pending (Gene).
-  - Proton VPN clients (5, disabled) and a "Full Tunnel" policy route with kill switch remain. Deletion not executed.
-  - Delaware: switch uplink to the gateway negotiates 100 Mbps (cable or port fault); WAN packet-loss event 2026-10-26.
-  - EdgeSwitch: factory admin username, old firmware, about 285 days uptime.
-  - Stale Pennsylvania firewall objects (camera address list, rules for a removed network, a nonexistent subnet in the local list).
-  - Both sites auto-update OS and apps daily (unattended gateway restarts). Gene decision pending.
-  - No independent remote path to the EdgeSwitch yet (needed to power-cycle the Pi if the Pi hangs): Tailscale subnet route from the NAS proposed.
-  - Optional: tailnet DNS pointed at Pi-hole for ad blocking while travelling; Pi UDP GRO tuning.
-  - Pixel uploader: the 2026-10-19 run was cut off (no PASS_COMPLETE); a stale lock left by the killed run blocked the next start. Self-clearing lock proposed, not built.
-  - Envy, Mac and iMac unattended-recovery items (auto-login, sleep, independent remote access) not yet inventoried.
 ## Next sequence (2026-10-14)
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
