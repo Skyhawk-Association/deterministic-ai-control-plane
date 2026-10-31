@@ -1,6 +1,6 @@
 # NAS Build Current State
 
-Status date: 2026-10-27
+Status date: 2026-10-31
 
 ## Objective
 
@@ -125,7 +125,7 @@ BASE BUILD COMPLETE.
 
 - NEXTCLOUD SECURE ACCESS VERIFIED 2026-10-14: Tailscale HTTPS certificates were enabled for the tailnet after Gene explicitly accepted Certificate Transparency disclosure for the node hostname. Nextcloud now trusts `truenas-scale.tail6e87d7.ts.net` and is configured with `overwriteprotocol=https`, `overwritehost=truenas-scale.tail6e87d7.ts.net`, and `overwrite.cli.url=https://truenas-scale.tail6e87d7.ts.net`. USER-SUPPLIED COMMAND OUTPUT: `tailscale serve status` reports `https://truenas-scale.tail6e87d7.ts.net (tailnet only)` with `/` proxied to `http://127.0.0.1:30027`; `tailscale funnel status` also reports the route as `(tailnet only)`, with no public Funnel endpoint reported. TOOL-VERIFIED FROM ENVY: the Tailscale hostname resolves to `<NAS-TAILSCALE-IP>`; Tailscale ping succeeds; HTTPS certificate validation succeeds and the secure URL returns the normal Nextcloud redirect path; direct LAN `http://192.168.20.14:30027/` returns HTTP 302 with `Location: https://truenas-scale.tail6e87d7.ts.net/login`. USER-STATED-EXPLICIT: Gene is logged into Nextcloud successfully in the Envy browser and Pixel browser over the secure route. Tailscale itself remains in host-network mode; do not redesign it merely to attach to Nextcloud's private Docker network because that could disrupt remote TrueNAS host access.
 
-## 2026-10-16 Pixel -> Immich uploader (ACHIEVED)
+## 2026-10-16 Pixel -> Immich uploader (SUPERSEDED 2026-10-31: DEFECTIVE, see "2026-10-31 Pixel -> Immich" below)
 
 - Goal: manual run on the Pixel (Termux) over Wi-Fi with mobile data off; upload all photos/videos to Immich with no duplicates.
 - Immich API: `http://<NAS-TAILSCALE-IP>:<IMMICH-PORT>/api` over Tailscale.
@@ -172,6 +172,22 @@ Sanitized per C-10: no addresses, MACs, tailnet names or serials. Detailed inven
   - Optional: tailnet DNS pointed at Pi-hole for ad blocking while travelling; Pi UDP GRO tuning.
   - Pixel uploader: the 2026-10-19 run was cut off (no PASS_COMPLETE); a stale lock left by the killed run blocked the next start. Self-clearing lock proposed, not built.
   - Envy, Mac and iMac unattended-recovery items (auto-login, sleep, independent remote access) not yet inventoried.
+## 2026-10-31 Pixel -> Immich: uploader defect found, switched to the Immich app (IN PROGRESS)
+
+Sanitized per C-10 (no addresses).
+
+- TOOL-VERIFIED 2026-10-27 15:19 ET (read-only Termux audit, Immich bulk-upload-check by SHA-1 against the uploader API key's account): Pixel media under shared storage (excluding Android/ and dot-dirs) = 6,497 files; in Immich 2,158; MISSING 4,339 (DCIM/Camera 1,827 missing; Screenshots 1,598; ChatGPT 534; others smaller). Unreadable 0.
+- ROOT CAUSE (INFERRED, strong): the Termux uploader decides "already uploaded" from its own preloaded SHA-256 list, never by asking Immich. First run hashed 4,407 files and uploaded 5. Its "0 failed / no duplicates" reports were true of its own list and meaningless for Immich. The 2026-10-16 "ACHIEVED" status above was therefore wrong.
+- 2026-10-27: a corrective Termux bulk upload (pixel-upload-missing.py, server-side checksum dedupe) uploaded 47 files ("created") before Android killed Termux after its wake lock was released. Termux upload route abandoned.
+- USER-DIRECTED 2026-10-27: switch to the native Immich mobile app (reverses the 2026-10-19 keep-Termux direction). Earlier WATCH against app backup is withdrawn: Immich deduplicates per account by checksum, so files already uploaded are not stored twice.
+- USER-DIRECTED 2026-10-27: Immich account used is the existing admin account (storage label "admin", the geneatwell login). No other Immich account exists; logins with Gene's primary email fail. Immich password changed by Gene 2026-10-27 (an earlier screenshot exposed the old one).
+- APP CONFIG, USER-SUPPLIED SCREENSHOTS 2026-10-31: Immich app 3.3.4, server 3.3.1 (3.3.5 available, not applied). Backup Albums: all device albums selected (Camera, Screenshots, ChatGPT, WhatsApp Images/Video/Animated Gifs, DCIM, Download, Pictures and subfolders, Internal Storage, others). Backup Options: cellular OFF for photos and videos (source-verified: uploads then require Wi-Fi), Charging OFF (Gene decision pending), Sync albums OFF. Networking: Automatic URL switching ON; local = home Wi-Fi "Atwell" + LAN endpoint; external = Tailscale endpoint, validated (green check). Away from home Tailscale must be on; at home it is not needed.
+- 2026-10-31 15:02 ET: Enable Backup ON and uploading (Backup 3,089 -> 3,188, Remainder 6,858 -> 6,759 within one minute; Total 9,947). App total exceeds the audit's 6,497 because it also includes folders the Termux scan skipped (e.g. WhatsApp under Android/media) - INFERRED.
+- UNVERIFIED: that the 3,034 pre-existing "Backup" count includes the Termux uploads (consistent, not proven per file).
+- NEXT: when Remainder = 0, run the read-only audit (~/.local/bin/pixel-audit.py) - acceptance = MISSING: 0 against the same account. Then retire pixel-nas-new-only and pixel-upload-missing.py (Gene decides on deletion); keep pixel-audit.py.
+- OPEN: Charging decision; confirm Immich password change by fresh login; credential storage for the Immich login (Chrome did not offer to save); other three users wait until the Pixel passes.
+- LESSONS (candidate, not yet filed): success must be verified at the destination, never from the tool's own log; UI steps must come from vendor docs or source, not memory.
+
 ## Next sequence (2026-10-14)
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
