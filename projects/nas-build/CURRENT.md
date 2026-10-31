@@ -172,7 +172,7 @@ Sanitized per C-10: no addresses, MACs, tailnet names or serials. Detailed inven
   - Optional: tailnet DNS pointed at Pi-hole for ad blocking while travelling; Pi UDP GRO tuning.
   - Pixel uploader: the 2026-10-19 run was cut off (no PASS_COMPLETE); a stale lock left by the killed run blocked the next start. Self-clearing lock proposed, not built.
   - Envy, Mac and iMac unattended-recovery items (auto-login, sleep, independent remote access) not yet inventoried.
-## 2026-10-31 Pixel -> Immich: uploader defect found, switched to the Immich app (IN PROGRESS)
+## 2026-10-31 Pixel -> Immich: uploader defect found, switched to the Immich app (ACHIEVED 2026-10-31 16:09 ET)
 
 Sanitized per C-10 (no addresses).
 
@@ -184,6 +184,9 @@ Sanitized per C-10 (no addresses).
 - APP CONFIG, USER-SUPPLIED SCREENSHOTS 2026-10-31: Immich app 3.3.4, server 3.3.1 (3.3.5 available, not applied). Backup Albums: all device albums selected (Camera, Screenshots, ChatGPT, WhatsApp Images/Video/Animated Gifs, DCIM, Download, Pictures and subfolders, Internal Storage, others). Backup Options: cellular OFF for photos and videos (source-verified: uploads then require Wi-Fi), Charging OFF (Gene decision pending), Sync albums OFF. Networking: Automatic URL switching ON; local = home Wi-Fi "Atwell" + LAN endpoint; external = Tailscale endpoint, validated (green check). Away from home Tailscale must be on; at home it is not needed.
 - 2026-10-31 15:02 ET: Enable Backup ON and uploading (Backup 3,089 -> 3,188, Remainder 6,858 -> 6,759 within one minute; Total 9,947). App total exceeds the audit's 6,497 because it also includes folders the Termux scan skipped (e.g. WhatsApp under Android/media) - INFERRED.
 - UNVERIFIED: that the 3,034 pre-existing "Backup" count includes the Termux uploads (consistent, not proven per file).
+- ACCEPTANCE, TOOL-VERIFIED 2026-10-31 16:02-16:09 ET: Immich app Backup 9,949 / Total 9,950 (one upload error). Independent read-only audit (pixel-audit.py, Immich bulk-upload-check by SHA-1): IN_IMMICH 6,530, MISSING 2. Missing #1: a screenshot taken 16:00 that day - re-check returned "duplicate" (already uploaded by the app). Missing #2: DCIM/Camera/PXL_20260120_160011755.mp4 is a 0-byte file (empty recording) - nothing to upload; this is the app's one "upload error". Result: every non-empty photo and video on the Pixel is in Immich, no duplicates (server checksum dedupe).
+- RESOLVES: the 2026-10-16 49-asset discrepancy and folder-coverage WATCH items are superseded by this per-file audit.
+- SOURCE-VERIFIED (Immich mobile source): the app stops uploading when sent to the background (handleAppPause -> stopForegroundBackup); background mode is a short-burst worker for new media after the trigger delay. Large backlogs require the app open on screen. New photos are picked up by the background worker.
 - NEXT: when Remainder = 0, run the read-only audit (~/.local/bin/pixel-audit.py) - acceptance = MISSING: 0 against the same account. Then retire pixel-nas-new-only and pixel-upload-missing.py (Gene decides on deletion); keep pixel-audit.py.
 - OPEN: Charging decision; confirm Immich password change by fresh login; credential storage for the Immich login (Chrome did not offer to save); other three users wait until the Pixel passes.
 - LESSONS (candidate, not yet filed): success must be verified at the destination, never from the tool's own log; UI steps must come from vendor docs or source, not memory.
