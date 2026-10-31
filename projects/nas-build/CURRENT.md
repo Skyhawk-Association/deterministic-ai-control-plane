@@ -191,6 +191,18 @@ Sanitized per C-10 (no addresses).
 - OPEN: Charging decision; confirm Immich password change by fresh login; credential storage for the Immich login (Chrome did not offer to save); other three users wait until the Pixel passes.
 - LESSONS (candidate, not yet filed): success must be verified at the destination, never from the tool's own log; UI steps must come from vendor docs or source, not memory.
 
+## 2026-10-31 evening: snapshots, old Synology, HTPC backup scan
+
+Sanitized per C-10.
+
+- TOOL-VERIFIED 2026-10-31 18:43 ET: a periodic snapshot task for tank/immich ALREADY EXISTED (task id 1): recursive, retention 3 WEEK, daily 03:10, enabled. Snapshots present for tank/immich, /data, /import, /library, /pgData (03:10 today) plus a manual run 18:42. Next-sequence item 4 is therefore DONE for tank/immich. USER-DIRECTED: leave retention at 3 weeks; do not modify the task.
+- USER-DIRECTED: SSH service enabled on TrueNAS 2026-10-31 (key-only; password authentication off; Envy key on truenas_admin). Temporary - to be switched off when the Synology work is finished.
+- USER-DIRECTED: the Mac and Envy cannot hold the NAS contents; the one-way-copy-to-Mac/Envy design is withdrawn. Second-copy target to be the old Synology (as a plain SMB target, no Synology apps), then off-site separately.
+- TOOL-VERIFIED (read-only, DSM API): old Synology DS416play - 4x Seagate IronWolf 8 TB (SMART normal), SHR-1 Btrfs volume 23.0 TB total / 15.5 TB used; CPU ~100%, load ~13-18 on 4 cores, media re-indexing in progress. Two USB WD My Book drives (3.76 TB each, ~full) contain only a Hyper Backup target (Synology_1.hbk). Shares include Movies (785 files, 1.02 TB), TV (242 files, 60 GB), HTPC Backup (78,503 files, 6.78 TB), Computer Room Backup, Computer Room Time Machine, photo, homes, ActiveBackupforBusiness, Plex (not readable by Gene's account).
+- CHANGE 2026-10-31 (Claude via DSM API, Gene-directed "stop the indexing"): stopped Media Server, Synology Photos, Video Station; stop sent to Universal Search and Audio Station (status unconfirmed). System media re-indexing still running.
+- USER-DIRECTED: save Movies, TV and HTPC Backup to the NAS (Movies/TV -> tank/plex/data; HTPC Backup -> tank/general/htpc-backup), then wipe the rest. HOLD: Gene has said the old backups may contain photos lost in the earlier mass deletion; the Synology must not be wiped until its backups are searched (HTPC Backup, Computer Room Backup, Time Machine, photo/homes, Active Backup, Hyper Backup).
+- IN PROGRESS: read-only scan on the NAS of the HTPC Backup share (mounted read-only via CIFS at /tmp/syno): 24,550 Windows Backup ZIPs (table-of-contents read only) plus File History plain files and a 205.8 GB WindowsImageBackup VHDX of the HTPC system drive (2024-06-09). Copy job prepared but not started.
+
 ## Next sequence (2026-10-14)
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
