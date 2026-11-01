@@ -59,3 +59,4 @@
 - 2026-11-01: list created from ChatGPT's report (15 gaps), unverified (Claude).
 - 2026-11-01: verified against the live folders: 12 confirmed, 3 not missing, 8 further candidates, 4 anomalies (Claude).
 - 2026-11-01: verified the page serves public://sajournals (105 journal nodes); gap set unchanged (Claude).
+- 2026-11-01 18:56 ET: live journal PDFs fingerprinted (SHA-256, both folders, exit 0). Content-based Synology scan RUNNING on the home NAS (temporary container `pdfscan`, python:3.12-slim, Synology mounted read-only; results in `skyhawk-d6-recovery/pdf-search/summary.txt` and `candidates.tsv`). Next: read the summary, then record FOUND / NOT FOUND per gap here (Claude).
