@@ -216,6 +216,15 @@ Sanitized per C-10 (no emails or addresses).
 - USER-ACTION 2026-10-31 ~20:35 ET: four Tailscale invite links (role Member, one per person) and the app instructions sent by Gene via WhatsApp. Free plan allows 6 users (5 in use).
 - OPEN: verify family-group restriction from the first joined family phone (Immich reachable, NAS admin page not); confirm each invitee signs in with the email listed in the policy groups; set Immich External domain for future welcome links; switch NAS SSH off after the Synology work.
 
+## 2026-10-31 late: old-Synology photo search - findings and copy in progress
+
+- TOOL-VERIFIED (read-only scans on the NAS over read-only CIFS mounts at /tmp/syno): HTPC Backup share is NOT a photo source. Windows Backup sets 2019-2024 hold ~430 images over 200 KB, all application data (Plex artwork, app packages); the large video counts are the movie library (also present in the Movies share). Decision basis: HTPC Backup (6.78 TB) need not be saved; the Movies+TV save remains (~1.1 TB).
+- TOOL-VERIFIED: the Synology "photo" share holds 47,950 images over 200 KB (94.6 GB; 47,001 .jpg), file dates 1980-01-05 .. 2017-09-07, including personal folders (e.g. Pictures/My Pictures/..., an iPhoto Library). Strong candidate for photos lost in the earlier mass deletion; overlap with Immich and the Mac archive NOT yet checked.
+- IN PROGRESS 2026-10-31 21:36 ET (Gene approved): rsync of the photo share to /mnt/tank/general/synology-photo (detached on the NAS; log /tmp/photo-copy.log). Next: verify copy file-by-file vs source, snapshot tank/general (no snapshot task covers it yet), then fingerprint-compare against Immich.
+- IN PROGRESS: read-only scan of the homes and Computer Room Backup shares (/tmp/scan3.txt).
+- HOLD stands: no wipe of the Synology until all shares are searched (remaining: Computer Room Time Machine on the Mac, Active Backup, Hyper Backup on the USB drives).
+- NOTE: /tmp/syno mounts do not survive a NAS reboot; NAS SSH remains enabled (key-only) until the Synology work is done.
+
 ## Next sequence (2026-10-14)
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
