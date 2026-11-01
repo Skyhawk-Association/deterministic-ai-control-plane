@@ -4,6 +4,8 @@
 
 **Verified 2026-11-01 (Claude)** against a read-only listing of both live folders on the InMotion server: `/home/n790725/drupalbeta/web/private/sajournals` (incl. `archive/`) and `/home/n790725/drupalbeta/web/sites/default/files/sajournals`. Naming: `YYYY-V.I.pdf` (volume = year - 1994), plus `-spreads` and `print friendly` variants.
 
+**Which files the /sa-journal page uses (VERIFIED 2026-11-01, drush sql:query, read-only):** the page lists the 105 `journal` nodes. Their `field_pdf` points to `public://sajournals/...` (= `web/sites/default/files/sajournals`) for every issue; `field_pdf_print` is set on 12 nodes, also `public://`, except Spring 2026 (Vol. 32 No. 1), whose only file is `field_pdf_print` = `private://sajournals/Skyhawk-Vol32-1-spreads.pdf` (its `field_pdf` is empty). So the PUBLIC folder is what the page serves; `private/sajournals` is not used by the page apart from that one file. The 20 issues without a node are exactly the 20 gaps below (12 confirmed + 8 if published).
+
 **Assumption, not verified:** four issues per year (the live folders hold .1-.4 for most years). Gene to confirm which issues were actually published.
 
 ## Confirmed missing from both live folders (12 of ChatGPT's 15)
@@ -46,7 +48,7 @@
 
 - `Winter 2012-2013.pdf` (14,996,025 B, plus 8 identical `_2`..`_9` copies in each folder): issue number unknown; not identical in size to 2012-18.4 or 2013-19.1.
 - `1999-4.1.pdf` (11,772,716 B, public folder): volume 4 is 1998; differs from `1998-4.1.pdf` (12,877,927 B) and `1999-5.1.pdf` (10,848,974 B). Misnamed issue?
-- Every .1 issue (1995-2022) exists only in the public `sites/default/files/sajournals` folder, not in `private/sajournals`. Whether the site's journal pages can reach them is not checked.
+- Every .1 issue (1995-2022) exists only in the public folder; that is the folder the page uses, so this is not a defect.
 - 2026 32.1 exists only as `private/sajournals/Skyhawk-Vol32-1-spreads.pdf` (thumbnail present in public).
 
 ## Verification plan (remaining)
@@ -56,3 +58,4 @@
 ## Change log
 - 2026-11-01: list created from ChatGPT's report (15 gaps), unverified (Claude).
 - 2026-11-01: verified against the live folders: 12 confirmed, 3 not missing, 8 further candidates, 4 anomalies (Claude).
+- 2026-11-01: verified the page serves public://sajournals (105 journal nodes); gap set unchanged (Claude).
