@@ -225,6 +225,16 @@ Sanitized per C-10 (no emails or addresses).
 - HOLD stands: no wipe of the Synology until all shares are searched (remaining: Computer Room Time Machine on the Mac, Active Backup, Hyper Backup on the USB drives).
 - NOTE: /tmp/syno mounts do not survive a NAS reboot; NAS SSH remains enabled (key-only) until the Synology work is done.
 
+## 2026-11-01: Synology homes search, Drupal 6 dump recovery, launch-method correction
+
+- TOOL-VERIFIED 07:00 ET: Synology photo-share copy complete - rsync dry-run against /mnt/tank/general/synology-photo shows 71,102 files, 190.2 GB, 0 files left to transfer.
+- TOOL-VERIFIED (size2, 07:24-10:39 ET): Synology Drive backups in homes/geneatwell/Drive/Backup - Computer-Room-IMAC.local ~/Downloads 10,452,194 files / 12,964 GB (most of the Synology's 15.5 TB used), ~/Pictures 100,578 / 192.3 GB, ~/Music 35,811 / 176.6 GB, ~/Movies 444 / 64.1 GB, 31 recup_dir.* folders (PhotoRec output, ~15,000 files / ~80 GB); DESKTOP-FEAHE8A 52,816 / 233.2 GB; Hacker.local 199,762 / 252.9 GB. A 2014 Time Machine set inside the iMac backup holds one complete snapshot (13 GB) and is NOT the duplication source. Downloads contains ~55 daily full copies of the skyhawk.org drupalbeta tree (2021); website photos are out of scope (USER-DIRECTED).
+- USER-DIRECTED: Skyhawk Association photos/documents on the Synology are out of scope; old Drupal databases are in scope (the Drupal 6 -> 8 migration dropped the photo research data). Detail and status in projects/skyhawk/LOST-D.md, 2026-11-01 section.
+- TOOL-VERIFIED (drupalfind, 10:40-16:57 ET): 340 database dumps found (all in homes and CRB; none in photo or HTPC); no raw MySQL data folders anywhere. Copied (dumps only, all dates, plus the drupal638 code folder without sites/*/files) to /mnt/tank/general/skyhawk-d6-recovery: 18.00 GB, rsync verify 0 left, 2,227 SHA-256 hashes in SHA256SUMS. Site-file tarballs excluded (USER-STATED: files only, no databases).
+- CORRECTION (launch method): background jobs started as `sudo nohup ... &` (or `sudo bash -c '... &'`) die or fail once the SSH session ends; children that outlive sudo get "Function not implemented" for every external command. Reliable method: `sudo systemd-run --collect --unit=<name> <command>`; check with `systemctl is-active <name>` (a finished --collect unit reports "could not be found"/inactive).
+- TEMPORARY: Docker container `d6db` (mariadb:10.11, --network none, empty root password because unreachable, data in skyhawk-d6-recovery/db-scratch) holds the 2016-04-09 Drupal 6 database. Gene: KEEP until the live-site comparison is done; remove afterwards.
+- OPEN: the 2014 Time Machine set inside the iMac backup includes usr/local/mysql that the geneatwell CIFS account cannot read (not needed so far).
+
 ## Next sequence - status as of 2026-10-31 22:20 ET
 
 | # | Item | Status |
@@ -234,7 +244,7 @@ Sanitized per C-10 (no emails or addresses).
 | 3 | App commissioning | Immich DONE (v3.3.5, Pixel backup verified, 4 family accounts). Plex transcoding test OPEN. Nextcloud users OPEN (quota now ~250 GB/person for small files, not 3 TB). Immich GPU ML deferred. |
 | 4 | Snapshot tasks | tank/immich DONE (pre-existing task, 3 weeks daily 03:10). tank/general and tank/nextcloud OPEN - tank/general now receives the Synology photo copy. |
 | 5 | SMB shares + non-admin user for Envy/Mac | OPEN; to be designed with music, Time Machine and Windows backup targets |
-| 6 | Migration from the Synology / HTPC | REDEFINED 2026-10-31: HTPC Backup not needed (no photos); save Movies+TV (~1.1 TB) and the photo share (copy in progress); search remaining shares before any wipe |
+| 6 | Migration from the Synology / HTPC | REDEFINED 2026-10-31: HTPC Backup not needed (no photos). Photo share COPIED and verified 2026-11-01. Drupal dumps COPIED 2026-11-01. Movies+TV (~1.1 TB) not started. homes Drive backups measured, copy undecided. Search remaining shares before any wipe |
 | 7 | Second / off-site copy | OPEN; old Synology to be a plain SMB target after it is searched and wiped; off-site still required |
 | 8 | UPS | SUPERSEDED: three UPS units plus whole-house generator (USER-STATED 2026-10-27) |
 | 9 | Housekeeping | OPEN (config backup after today's changes recommended) |
