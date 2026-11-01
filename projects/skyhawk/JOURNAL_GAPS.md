@@ -2,34 +2,57 @@
 
 **Purpose:** the list of Journal issues missing from skyhawk.org. Every Journal published since 1995 exists as a PDF somewhere (USER-STATED, Gene, 2026-11-01); this file tracks which ones the website lacks and where each is found.
 
-**Status of this list: UNVERIFIED.** The 15 gaps below were reported by ChatGPT on 2026-11-01 (relayed by Gene in the Claude session). ChatGPT did not show its source listing or commit it (its write to dacp-private failed). Claude has not checked any entry against the live `sajournals` folder. Treat each line as a candidate gap until verified.
+**Verified 2026-11-01 (Claude)** against a read-only listing of both live folders on the InMotion server: `/home/n790725/drupalbeta/web/private/sajournals` (incl. `archive/`) and `/home/n790725/drupalbeta/web/sites/default/files/sajournals`. Naming: `YYYY-V.I.pdf` (volume = year - 1994), plus `-spreads` and `print friendly` variants.
 
-**Naming on the live site:** journals sit under `private://sajournals/` (and `sajournals/archive/`), file names like `1995-1.1.pdf` (year-volume.issue). Exact file names for the gaps were not provided, except where noted.
+**Assumption, not verified:** four issues per year (the live folders hold .1-.4 for most years). Gene to confirm which issues were actually published.
 
-| # | Year | Issue | Variants | Live site | Synology / other copy | Notes |
-|---|---|---|---|---|---|---|
-| 1 | 2000 | 6.3 | | missing (reported) | not yet searched | May be inside `2000-6.2&6.3.pdf` (combined issue?) |
-| 2 | 2002 | 8.3 | | missing (reported) | not yet searched | |
-| 3 | 2002 | 8.4 | | missing (reported) | not yet searched | |
-| 4 | 2003 | 9.2 | | missing (reported) | not yet searched | |
-| 5 | 2003 | 9.3 | | missing (reported) | not yet searched | |
-| 6 | 2003 | 9.4 | | missing (reported) | not yet searched | |
-| 7 | 2004 | 10.1 | | missing (reported) | not yet searched | |
-| 8 | 2004 | 10.2 | | missing (reported) | not yet searched | |
-| 9 | 2013 | 19.2 | | missing (reported) | not yet searched | |
-| 10 | 2013 | 19.3 | | missing (reported) | not yet searched | |
-| 11 | 2015 | 21.2 | | missing (reported) | not yet searched | |
-| 12 | 2015 | 21.3 | | missing (reported) | not yet searched | |
-| 13 | 2017 | 23.3 | | missing (reported) | not yet searched | |
-| 14 | 2025 | 31-2 | Spreads, Print-friendly | missing (reported) | not yet searched | |
-| 15 | 2025 | 31-3 | Spreads, Print-friendly | missing (reported) | not yet searched | |
+## Confirmed missing from both live folders (12 of ChatGPT's 15)
 
-**Related (LOST-D, parked 2026-10-09):** "missing journal issues awaiting digital copies (Mat Garretson)".
+| # | Year | Issue | Expected file name | Synology / other copy |
+|---|---|---|---|---|
+| 1 | 2002 | 8.3 | 2002-8.3.pdf | not yet searched |
+| 2 | 2002 | 8.4 | 2002-8.4.pdf | not yet searched |
+| 3 | 2003 | 9.2 | 2003-9.2.pdf | not yet searched |
+| 4 | 2003 | 9.3 | 2003-9.3.pdf | not yet searched |
+| 5 | 2003 | 9.4 | 2003-9.4.pdf | not yet searched |
+| 6 | 2004 | 10.1 | 2004-10.1.pdf | not yet searched |
+| 7 | 2013 | 19.2 | 2013-19.2.pdf | not yet searched |
+| 8 | 2013 | 19.3 | 2013-19.3.pdf | not yet searched |
+| 9 | 2015 | 21.2 | 2015-21.2.pdf | not yet searched |
+| 10 | 2017 | 23.3 | 2017-23.3.pdf | not yet searched |
+| 11 | 2025 | 31.2 | 2025-31.2.pdf, -spreads, print friendly | not yet searched |
+| 12 | 2025 | 31.3 | 2025-31.3.pdf, -spreads, print friendly | not yet searched |
 
-## Verification plan
-1. Read-only listing of the live `sajournals` folders, to confirm each gap and record exact file names.
-2. Search the old-Synology PDF list (home NAS, `skyhawk-d6-recovery/pdf-search/`) and the Drupal 6 journal records for each issue.
-3. Update the two right-hand columns per issue: FOUND (path, size, SHA-256) or NOT FOUND (for Mat Garretson).
+## ChatGPT-reported gaps that are NOT missing (3)
+
+| Year | Issue | Present on the live site as |
+|---|---|---|
+| 2000 | 6.3 | `2000-6.3.pdf` (11,228,184 B, both folders) and combined `2000-6.2-6.3.pdf` / `2000-6.2&6.3.pdf` (22,429,231 B) |
+| 2004 | 10.2 | `2004-10.2.pdf` (9,560,374 B, both folders) |
+| 2015 | 21.3 | `2015-21.3.pdf` (3,320,899 B, both folders) |
+
+## Further candidates not on ChatGPT's list (8): missing IF they were published
+
+| Year | Issue | Note |
+|---|---|---|
+| 1995 | 1.2, 1.3, 1.4 | only 1995-1.1 exists |
+| 1996 | 2.4 | |
+| 2008 | 14.4 | 2008-2011 each have .1-.3 only: possibly three issues a year then |
+| 2009 | 15.4 | |
+| 2010 | 16.4 | |
+| 2011 | 17.4 | |
+
+## Anomalies for Gene
+
+- `Winter 2012-2013.pdf` (14,996,025 B, plus 8 identical `_2`..`_9` copies in each folder): issue number unknown; not identical in size to 2012-18.4 or 2013-19.1.
+- `1999-4.1.pdf` (11,772,716 B, public folder): volume 4 is 1998; differs from `1998-4.1.pdf` (12,877,927 B) and `1999-5.1.pdf` (10,848,974 B). Misnamed issue?
+- Every .1 issue (1995-2022) exists only in the public `sites/default/files/sajournals` folder, not in `private/sajournals`. Whether the site's journal pages can reach them is not checked.
+- 2026 32.1 exists only as `private/sajournals/Skyhawk-Vol32-1-spreads.pdf` (thumbnail present in public).
+
+## Verification plan (remaining)
+1. Gene: confirm the publication schedule (which candidates above were real issues), identify the Winter 2012-2013 and 1999-4.1 files.
+2. Search the old-Synology PDFs (home NAS, read-only) and the Drupal 6 journal records for each confirmed gap; record FOUND (path, size, SHA-256) or NOT FOUND (for Mat Garretson).
 
 ## Change log
 - 2026-11-01: list created from ChatGPT's report (15 gaps), unverified (Claude).
+- 2026-11-01: verified against the live folders: 12 confirmed, 3 not missing, 8 further candidates, 4 anomalies (Claude).
