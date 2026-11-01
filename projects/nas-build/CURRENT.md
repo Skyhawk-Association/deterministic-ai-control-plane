@@ -203,6 +203,19 @@ Sanitized per C-10.
 - USER-DIRECTED: save Movies, TV and HTPC Backup to the NAS (Movies/TV -> tank/plex/data; HTPC Backup -> tank/general/htpc-backup), then wipe the rest. HOLD: Gene has said the old backups may contain photos lost in the earlier mass deletion; the Synology must not be wiped until its backups are searched (HTPC Backup, Computer Room Backup, Time Machine, photo/homes, Active Backup, Hyper Backup).
 - IN PROGRESS: read-only scan on the NAS of the HTPC Backup share (mounted read-only via CIFS at /tmp/syno): 24,550 Windows Backup ZIPs (table-of-contents read only) plus File History plain files and a 205.8 GB WindowsImageBackup VHDX of the HTPC system drive (2024-06-09). Copy job prepared but not started.
 
+## 2026-10-31 night: Immich 3.3.5, family users, Tailscale access rules
+
+Sanitized per C-10 (no emails or addresses).
+
+- TOOL-VERIFIED 2026-10-31 ~19:15 ET: Immich upgraded on TrueNAS via app.upgrade (snapshot_hostpaths true) from v3.3.1 to v3.3.5; web UI shows "Server Online v3.3.5". Phone app reconnected.
+- TOOL-VERIFIED: Immich nightly DB dumps exist in the Immich data backups folder (daily 02:00, ~466 MB each), covered by the tank/immich snapshot task.
+- USER-ACTION 2026-10-31: four family Immich accounts created by Gene (photo quota 3072 GiB each; son has admin rights per Gene). Welcome emails were NOT sent (SMTP not configured at creation; Immich sends the welcome only at creation - source-verified, no resend). Credentials delivered by Gene via WhatsApp.
+- USER-ACTION: Immich email notifications configured (Gmail SMTP, app password, SMTPS on port 465); test email sent successfully.
+- USER-DIRECTED: quotas recalibrated - photos (Immich) are the bulk at 3 TB per person as a ceiling; Nextcloud is for small files only (~250 GB proposed, not yet set). Supersedes the earlier "Nextcloud ~3 TB per user" plan. Computer (Time Machine / Windows image) backups: not yet designed; Gene's priority is his own photos, music, and whatever is needed to restore the M4 and the Envy.
+- TOOL-VERIFIED 2026-10-31 19:40 ET: Tailscale access policy replaced (Gene saved; backup of the default policy kept by Gene). Structure: group:trusted (Gene, son) -> all destinations; group:family (three others) -> NAS Immich port only, plus autogroup:internet (exit node use). Default "ssh autogroup:self check" rule kept. Post-change test from the Envy: NAS Immich, NAS web, NAS SSH and Pi SSH all reachable over Tailscale.
+- USER-ACTION 2026-10-31 ~20:35 ET: four Tailscale invite links (role Member, one per person) and the app instructions sent by Gene via WhatsApp. Free plan allows 6 users (5 in use).
+- OPEN: verify family-group restriction from the first joined family phone (Immich reachable, NAS admin page not); confirm each invitee signs in with the email listed in the policy groups; set Immich External domain for future welcome links; switch NAS SSH off after the Synology work.
+
 ## Next sequence (2026-10-14)
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
