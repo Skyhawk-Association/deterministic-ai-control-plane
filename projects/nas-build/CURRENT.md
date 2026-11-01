@@ -225,7 +225,24 @@ Sanitized per C-10 (no emails or addresses).
 - HOLD stands: no wipe of the Synology until all shares are searched (remaining: Computer Room Time Machine on the Mac, Active Backup, Hyper Backup on the USB drives).
 - NOTE: /tmp/syno mounts do not survive a NAS reboot; NAS SSH remains enabled (key-only) until the Synology work is done.
 
-## Next sequence (2026-10-14)
+## Next sequence - status as of 2026-10-31 22:20 ET
+
+| # | Item | Status |
+|---|---|---|
+| 1 | Physical closeout and final placement | DONE (before the Spain trip; USER-STATED) |
+| 2 | Tailscale remote access | DONE; access policy now group-based (2026-10-31 night section) |
+| 3 | App commissioning | Immich DONE (v3.3.5, Pixel backup verified, 4 family accounts). Plex transcoding test OPEN. Nextcloud users OPEN (quota now ~250 GB/person for small files, not 3 TB). Immich GPU ML deferred. |
+| 4 | Snapshot tasks | tank/immich DONE (pre-existing task, 3 weeks daily 03:10). tank/general and tank/nextcloud OPEN - tank/general now receives the Synology photo copy. |
+| 5 | SMB shares + non-admin user for Envy/Mac | OPEN; to be designed with music, Time Machine and Windows backup targets |
+| 6 | Migration from the Synology / HTPC | REDEFINED 2026-10-31: HTPC Backup not needed (no photos); save Movies+TV (~1.1 TB) and the photo share (copy in progress); search remaining shares before any wipe |
+| 7 | Second / off-site copy | OPEN; old Synology to be a plain SMB target after it is searched and wiped; off-site still required |
+| 8 | UPS | SUPERSEDED: three UPS units plus whole-house generator (USER-STATED 2026-10-27) |
+| 9 | Housekeeping | OPEN (config backup after today's changes recommended) |
+| 10 | HBA firmware / no-video fault | OPEN, only if it recurs |
+
+Additional OPEN items: Immich External domain setting; family-group Tailscale restriction to be proven from the first family phone; NAS SSH to be switched off after the Synology work; Mac archive into Immich (External Library proposed); music location and sizes.
+
+## Next sequence (2026-10-14) - original list, kept for history
 
 1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
 2. Tailscale remote access is verified. Nextcloud now uses tailnet-only HTTPS at `https://truenas-scale.tail6e87d7.ts.net`; no public Funnel endpoint is reported.
