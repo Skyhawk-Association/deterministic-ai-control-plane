@@ -225,6 +225,15 @@ Sanitized per C-10 (no emails or addresses).
 - HOLD stands: no wipe of the Synology until all shares are searched (remaining: Computer Room Time Machine on the Mac, Active Backup, Hyper Backup on the USB drives).
 - NOTE: /tmp/syno mounts do not survive a NAS reboot; NAS SSH remains enabled (key-only) until the Synology work is done.
 
+## 2026-11-02: Live snapshot-task correction (USER-SUPPLIED COMMAND OUTPUT)
+
+- Read-only TrueNAS command `sudo midclt call pool.snapshottask.query` returned three existing, enabled, recursive daily snapshot tasks. All report state FINISHED with a named snapshot dated 2026-11-02:
+  - `tank/immich`: id 1, daily 03:10, 3 WEEK retention, `tank/immich@auto-2026-11-02_03-10`.
+  - `tank/nextcloud`: id 2, daily 03:20, 3 WEEK retention, `tank/nextcloud@auto-2026-11-02_03-20`.
+  - `tank/general`: id 3, daily 03:30, 3 WEEK retention, `tank/general@auto-2026-11-02_03-30`.
+- CORRECTION: Earlier 2026-10-31/11-01 status entries calling general and nextcloud snapshot tasks OPEN are stale. No duplicate tasks needed; no snapshot settings were changed in this session.
+- Plex migration: user-supplied pilot output on 2026-11-02 shows 20 TV video files and one movie copied from read-only Synology mounts to `/mnt/tank/plex/data/{TV,Movies}`; 21/21 SHA-256 comparisons passed, no deletions. Full ~1.075 TB transfer scripted and syntax/launch-tool checked; NOT STARTED, pending Gene's later go-ahead.
+
 ## 2026-11-01: Synology homes search, Drupal 6 dump recovery, launch-method correction
 
 - TOOL-VERIFIED 07:00 ET: Synology photo-share copy complete - rsync dry-run against /mnt/tank/general/synology-photo shows 71,102 files, 190.2 GB, 0 files left to transfer.
