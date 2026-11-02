@@ -2,6 +2,7 @@
 
 ## Change Synopsis
 
+- 2026-11-02 (Gene decision, verbatim: "NO DRIVE"): Google Drive is not used by any executor for DACP work: no reading, writing, searching, sharing or checkpointing there. Git is the source for everything except secrets; private records go to Skyhawk-Association/dacp-private. Existing Drive files stay frozen provenance and are not consulted. No new credentials or authority are implied.
 - 2026-10-25 (Gene decision; authoritative/DACP_Operating_Controls_0.1.md): adds control C-28 (external-effect confirmation, verbatim handoffs) and regression fixture D33. Private DACP records (checkpoints, candidates) now live in the private repo Skyhawk-Association/dacp-private; Google Drive DACP records are frozen provenance. No new credentials or authority are implied.
 - 2026-10-18 (Gene direction; authoritative/DACP_Operating_Controls_0.1.md): adds control C-27 (read the project record before asking or recalling) and regression fixture D32. No new credentials or authority are implied.
 - 2026-10-18 (Gene direction): adds a "Project records" section to CURRENT.md pointing to the active project records (projects/nas-build, projects/skyhawk, projects/association-portal). Pointers are paths only; no project state is copied into CURRENT.md. No new authority, controls or credentials are implied.
@@ -131,5 +132,7 @@ and nothing else.
 H01CHECK is retired.
 
 ## Canonical-source rule
+
+Google Drive is not used (Gene, 2026-11-02, "NO DRIVE"): do not read, write, search or checkpoint DACP material there.
 
 Canonical Git governs current public DACP specification/governance state. Mirrors, prior chats, summaries, remembered state, private state, and diagnostics do not override it.
