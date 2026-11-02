@@ -254,7 +254,9 @@ Sanitized per C-10 (no emails or addresses).
 - Built by ChatGPT (handoff 2026-11-02, scripts/results in the Envy dacp-work folder): dataset tank/general/family-smb (NFSv4 ACL), group family_smb (GID 3000), SMB users jake, jennie, philip, jo-anne, shares FamilyShared (browsable) and <user>Private (not browsable) for each, SMB1 off, guest off (restrict anonymous = 2).
 - TOOL-VERIFIED (Claude, read-only, 18:40 ET): middleware cifs RUNNING and enabled; smbd/nmbd/winbind active; 445/139 listening; all five shares loaded; all four users in the Samba passdb with normal flags. The earlier interrupted service-start job did complete.
 - ROOT CAUSE (TOOL-VERIFIED): Windows logins failed because Samba itself rejected the passwords (smbclient on the NAS: NT_STATUS_LOGON_FAILURE). Gene reset each password in the TrueNAS UI; afterwards all four users pass on the NAS (smbclient //127.0.0.1): FamilyShared OK, own Private OK, another user's Private NT_STATUS_ACCESS_DENIED (isolation holds). Listing tests only, no files written.
-- OPEN: Windows test from the Envy; write test; Mac test; family remote access (the Tailscale family grant allows only tcp:30041 to the NAS, so SMB tcp:445 is not reachable for family over Tailscale unless Gene changes the policy).
+- TOOL-VERIFIED 18:56 ET: Windows 11 (Envy) over Tailscale to \\100.97.199.3 as jake: net use FamilyShared exit 0, write OK (test file smb-test-jake.txt left in FamilyShared), jakePrivate listed, connections removed afterwards. The Envy is in group:trusted, so this proves the NAS side over Tailscale, not the family restriction.
+- USER-DIRECTED 2026-11-02: family members are never at home and need the shares away from home. Change given to Gene: family grant ip ["tcp:30041","tcp:445"] (dst nas only). Whether it is saved: NOT YET CONFIRMED.
+- OPEN: proof from a family device away from home (SMB reachable, own private share only); Mac test; which device types the family uses (Windows / Mac / iPhone / Android).
 
 ## Next sequence - status as of 2026-10-31 22:20 ET
 
