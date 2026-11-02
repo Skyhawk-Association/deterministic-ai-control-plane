@@ -235,6 +235,11 @@ Sanitized per C-10 (no emails or addresses).
 - TEMPORARY: Docker container `d6db` (mariadb:10.11, --network none, empty root password because unreachable, data in skyhawk-d6-recovery/db-scratch) holds the 2016-04-09 Drupal 6 database. Gene: KEEP until the live-site comparison is done; remove afterwards.
 - OPEN: the 2014 Time Machine set inside the iMac backup includes usr/local/mysql that the geneatwell CIFS account cannot read (not needed so far).
 
+## 2026-11-02 Gene decisions
+
+- USER-STATED: no further time on the old Synology. The journal content scan (container pdfscan) was terminated by Gene. Not copied and left on the Synology: Movies/TV, iMac/old-Envy/Hacker.local Drive backups, CRB Envy and Time Machine, family home folders. The no-wipe HOLD stands by default (nothing is deleted unless Gene decides).
+- USER-STATED: off-site / second NAS copy dropped (item 7).
+
 ## Next sequence - status as of 2026-10-31 22:20 ET
 
 | # | Item | Status |

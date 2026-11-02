@@ -60,3 +60,4 @@
 - 2026-11-01: verified against the live folders: 12 confirmed, 3 not missing, 8 further candidates, 4 anomalies (Claude).
 - 2026-11-01: verified the page serves public://sajournals (105 journal nodes); gap set unchanged (Claude).
 - 2026-11-01 18:56 ET: live journal PDFs fingerprinted (SHA-256, both folders, exit 0). Content-based Synology scan RUNNING on the home NAS (temporary container `pdfscan`, python:3.12-slim, Synology mounted read-only; results in `skyhawk-d6-recovery/pdf-search/summary.txt` and `candidates.tsv`). Next: read the summary, then record FOUND / NOT FOUND per gap here (Claude).
+- 2026-11-02 13:40 ET: USER-STATED (Gene): the content scan of the old-Envy backup was terminated; no results. Gene: no further Synology work. Synology / other copy column stays "not yet searched". Remaining route for the 12 confirmed gaps: other sources (e.g. Mat Garretson, per LOST-D parked item).
