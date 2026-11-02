@@ -249,6 +249,13 @@ Sanitized per C-10 (no emails or addresses).
 - USER-STATED: no further time on the old Synology. The journal content scan (container pdfscan) was terminated by Gene. Not copied and left on the Synology: Movies/TV, iMac/old-Envy/Hacker.local Drive backups, CRB Envy and Time Machine, family home folders. The no-wipe HOLD stands by default (nothing is deleted unless Gene decides).
 - USER-STATED: off-site / second NAS copy dropped (item 7).
 
+## 2026-11-02 evening: family SMB shares (ChatGPT build, Claude diagnosis)
+
+- Built by ChatGPT (handoff 2026-11-02, scripts/results in the Envy dacp-work folder): dataset tank/general/family-smb (NFSv4 ACL), group family_smb (GID 3000), SMB users jake, jennie, philip, jo-anne, shares FamilyShared (browsable) and <user>Private (not browsable) for each, SMB1 off, guest off (restrict anonymous = 2).
+- TOOL-VERIFIED (Claude, read-only, 18:40 ET): middleware cifs RUNNING and enabled; smbd/nmbd/winbind active; 445/139 listening; all five shares loaded; all four users in the Samba passdb with normal flags. The earlier interrupted service-start job did complete.
+- ROOT CAUSE (TOOL-VERIFIED): Windows logins failed because Samba itself rejected the passwords (smbclient on the NAS: NT_STATUS_LOGON_FAILURE). Gene reset each password in the TrueNAS UI; afterwards all four users pass on the NAS (smbclient //127.0.0.1): FamilyShared OK, own Private OK, another user's Private NT_STATUS_ACCESS_DENIED (isolation holds). Listing tests only, no files written.
+- OPEN: Windows test from the Envy; write test; Mac test; family remote access (the Tailscale family grant allows only tcp:30041 to the NAS, so SMB tcp:445 is not reachable for family over Tailscale unless Gene changes the policy).
+
 ## Next sequence - status as of 2026-10-31 22:20 ET
 
 | # | Item | Status |
