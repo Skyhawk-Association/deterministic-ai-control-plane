@@ -260,6 +260,21 @@ Sanitized per C-10 (no emails or addresses).
 - Plex policy (support.plex.tv): remote playback of personal video needs Plex Pass (server owner) or Remote Watch Pass; VPN connections may count as remote.
 - OPEN, Gene decision: enable Plex Remote Access publishing vs replace Plex with Jellyfin (direct connection over Tailscale, no plex.tv broker, no remote fee).
 
+## 2026-11-03 Plex Tailscale-only remote playback: Gene-confirmed success
+
+This is the latest Plex outcome and supersedes the earlier failed-remote-playback / public-Remote-Access-versus-Jellyfin OPEN line above. Historical troubleshooting evidence remains unchanged.
+
+- **USER-STATED-EXPLICIT (2026-11-03):** Gene confirmed native Plex playback on his Pixel by saying "Working" after testing with phone Wi-Fi off, cellular on, and Tailscale connected. **Endpoint 1: PASSED, USER-STATED-EXPLICIT.** This is Gene's report of the actual end-to-end playback test, not independent application telemetry.
+- **VERIFIED from uploaded diagnostic log (2026-11-03, 08:41-09:02 ET):** Plex connection-registration PUT requests containing a raw Tailscale 100.x address received repeated HTTP 403 responses and backed off; the older Plex cloud connection listing remained stale. Other Plex cloud requests returned HTTP 200, so account authentication alone was not the failure.
+- **VERIFIED from uploaded diagnostic log (09:18:15 ET):** Replacing the raw Tailscale custom access URL with the NAS MagicDNS hostname using HTTP resulted in HTTP 200 for the Plex server connection-registration PUT. This fixed registration at component level but did not by itself satisfy the native Android playback endpoint.
+- **VERIFIED from Gene's TrueNAS Tailscale-app shell output (2026-11-03):** Existing tailnet-only HTTPS Serve mapping on port 443 to Nextcloud's local backend was preserved; a separate tailnet-only HTTPS Serve mapping on port 8443 to Plex's local backend was added. Pre/post status output confirmed the existing Nextcloud handler remained unchanged. No Funnel or router port forwarding was enabled.
+- **VERIFIED from Gene's Plex Network settings screenshot (2026-11-03):** Custom server access URLs was saved as the NAS's MagicDNS HTTPS endpoint on port 8443. Plex local-network bandwidth policy was left as previously configured. The subsequent Pixel app playback is the actual acceptance evidence.
+- **VERIFIED from Gene's TrueNAS installed-app screenshot (2026-11-03):** Updated Plex app shows Plex Media Server version `1.43.6.11085-d1e52e169`, TrueNAS chart version `1.3.24`, with rollback available. This screenshot proves the installed version; **post-update Pixel playback has not yet been separately reported**.
+- **USER-STATED-EXPLICIT:** Gene is **not ready to distribute Plex access to family**. Family access/permissions/invitations remain ON HOLD; no family rollout is authorized. Existing family tailnet rules do not yet grant the Plex HTTPS port; any later expansion is a separate Gene decision.
+- **UNRESOLVED:** Post-update native Pixel playback recheck, if desired; Plex transcoding under actual transcoding conditions. A public Plex Remote Access configuration is not part of the accepted Tailscale-only design.
+
+**DACP handoff guard:** Do not re-open the solved raw-IP registration issue or propose public port forwarding. Distinguish Gene-confirmed native app playback before the server upgrade from the unverified post-upgrade acceptance state.
+
 ## 2026-11-02 photo backup scope rule (Gene, verbatim)
 
 - USER-STATED-EXPLICIT 20:56 ET: "i only want the myriad backups of the skyhawk association downloaded over the years to NOT be included in the backup to the NAS. we are already backing up the live site to the mac and that is fine for what we are doing with the skyhawk association. my own photos taken of any aircraft are to be saved to the NAS."
