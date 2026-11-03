@@ -252,7 +252,7 @@ Sanitized per C-10 (no emails or addresses).
 ## 2026-11-03 Plex media copied from the Synology (COMPLETE, verified)
 
 - TOOL-VERIFIED (user-supplied log, 08:02 ET): systemd unit plexcopy ran ChatGPT's plex-full-transfer.sh (rsync --ignore-existing from read-only /tmp/syno/{Movies,TV} to /mnt/tank/plex/data/{Movies,TV}, then rsync -c checksum verify). Log: VERIFY PASS Movies, VERIFY PASS TV, COMPLETE 2026-11-03T12:54:18Z. Expected scope from preflight: Movies 785 files / 1.02 TB, TV 242 files / 60 GB. Nothing deleted; Synology sources untouched. Log: /mnt/tank/general/plex-migration/full-transfer.log.
-- OPEN: Plex libraries pointed at /data/Movies and /data/TV (container paths per the Plex app) and scanned; playback check.
+- OPEN: Plex libraries pointed at the Movies and TV folders (path as seen inside the Plex app NOT yet verified) and scanned; playback check.
 
 ## 2026-11-02 photo backup scope rule (Gene, verbatim)
 
