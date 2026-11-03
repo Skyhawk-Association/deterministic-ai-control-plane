@@ -265,7 +265,7 @@ Sanitized per C-10 (no emails or addresses).
 
 ## 2026-11-03 TrueNAS configuration backup
 
-- USER-STATED (18:20 ET): config backup run "finished" (tar of /data/freenas-v1.db + /data/pwenc_secret, copied to the Envy C:\Users\genea\Documents\TrueNAS-config\ with SHA-256 compare; NAS temp copy removed on match). Whether the run printed VERIFIED was not reported to Claude. Contains secrets: never in Git.
+- USER-STATED (18:20 ET): config backup run "finished" (tar of /data/freenas-v1.db + /data/pwenc_secret, copied to the Envy C:\Users\genea\Documents\TrueNAS-config\ with SHA-256 compare; NAS temp copy removed on match). USER-STATED 18:57 ET: the run printed VERIFIED (SHA-256 match). Contains secrets: never in Git.
 - CORRECTION (Claude): the first backup block captured `ssh -t` output in a PowerShell variable, which hid the sudo prompt; Gene waited over an hour. Rule: never capture or redirect the output of a command that prompts for a password; write results to a file on the remote side and fetch it separately.
 
 ## 2026-11-03 Plex media copied from the Synology (COMPLETE, verified)
