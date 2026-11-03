@@ -249,6 +249,13 @@ Sanitized per C-10 (no emails or addresses).
 - USER-STATED: no further time on the old Synology. The journal content scan (container pdfscan) was terminated by Gene. Not copied and left on the Synology: Movies/TV, iMac/old-Envy/Hacker.local Drive backups, CRB Envy and Time Machine, family home folders. The no-wipe HOLD stands by default (nothing is deleted unless Gene decides).
 - USER-STATED: off-site / second NAS copy dropped (item 7).
 
+## 2026-11-03 Photo consolidation into Immich: plan approved (Gene: "let it happen", 14:38 ET)
+
+- Endpoint: all of Gene's photos in Immich (Immich is the master from here on), Skyhawk Association website copies excluded, Gene's own aircraft photos kept.
+- C-18 bulk ingestion terms: owner = Gene's Immich account (geneatwell@gmail.com); destination mode = upload into Immich-managed storage (tank/immich, nightly snapshots), NOT an External Library and NOT an intermediate NAS mirror (Gene: no two-step merge); sources = Mac ArchiveSSD PicturesBackup (98,451 media files, 47,763 distinct) + the 13,240 Synology-copy files not on the Mac; duplicate policy = exact duplicates skipped by fingerprint (Immich uploader checks the server first), near-duplicates reviewed afterwards with Immich's duplicate tool, nothing deleted at any source; website exclusion = exact fingerprint match against the Mac's live-site mirror (/Volumes/SkyhawkBackup/skyhawk-vps-files/current), not file-name patterns; reconciliation = count to-upload vs uploaded vs skipped per source, recorded in Git.
+- Tool: official Immich command-line uploader, run where the files are (Mac; NAS for the Synology set), API key entered by Gene at a hidden prompt. Albums per source for review.
+- Sequence: (1) fingerprint the site mirror on the Mac + export Immich fingerprints (read-only); (2) final counts; (3) uploader install + API key; (4) 50-photo pilot; (5) overnight run.
+
 ## 2026-11-03 Plex media copied from the Synology (COMPLETE, verified)
 
 - TOOL-VERIFIED (user-supplied log, 08:02 ET): systemd unit plexcopy ran ChatGPT's plex-full-transfer.sh (rsync --ignore-existing from read-only /tmp/syno/{Movies,TV} to /mnt/tank/plex/data/{Movies,TV}, then rsync -c checksum verify). Log: VERIFY PASS Movies, VERIFY PASS TV, COMPLETE 2026-11-03T12:54:18Z. Expected scope from preflight: Movies 785 files / 1.02 TB, TV 242 files / 60 GB. Nothing deleted; Synology sources untouched. Log: /mnt/tank/general/plex-migration/full-transfer.log.
