@@ -249,6 +249,12 @@ Sanitized per C-10 (no emails or addresses).
 - USER-STATED: no further time on the old Synology. The journal content scan (container pdfscan) was terminated by Gene. Not copied and left on the Synology: Movies/TV, iMac/old-Envy/Hacker.local Drive backups, CRB Envy and Time Machine, family home folders. The no-wipe HOLD stands by default (nothing is deleted unless Gene decides).
 - USER-STATED: off-site / second NAS copy dropped (item 7).
 
+## 2026-11-02 photo backup scope rule (Gene, verbatim)
+
+- USER-STATED-EXPLICIT 20:56 ET: "i only want the myriad backups of the skyhawk association downloaded over the years to NOT be included in the backup to the NAS. we are already backing up the live site to the mac and that is fine for what we are doing with the skyhawk association. my own photos taken of any aircraft are to be saved to the NAS."
+- Applied as: exclude copies of the Skyhawk website (downloaded site backups, site file trees, files identical to live-site files); keep every personal photo, including aircraft photos. File-name patterns (BuNo, squadron) are NOT used to exclude, because they would catch Gene's own aircraft photos.
+- 2026-11-02 comparison (exact bytes): 13,240 distinct Synology photo-share files (24.1 GB) are not in the Mac archive; list in dacp-private evidence/photo-compare-20261102. Site copies not yet removed from that count.
+
 ## 2026-11-02 evening: family SMB shares (ChatGPT build, Claude diagnosis)
 
 - Built by ChatGPT (handoff 2026-11-02, scripts/results in the Envy dacp-work folder): dataset tank/general/family-smb (NFSv4 ACL), group family_smb (GID 3000), SMB users jake, jennie, philip, jo-anne, shares FamilyShared (browsable) and <user>Private (not browsable) for each, SMB1 off, guest off (restrict anonymous = 2).
