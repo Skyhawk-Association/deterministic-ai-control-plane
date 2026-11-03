@@ -249,6 +249,11 @@ Sanitized per C-10 (no emails or addresses).
 - USER-STATED: no further time on the old Synology. The journal content scan (container pdfscan) was terminated by Gene. Not copied and left on the Synology: Movies/TV, iMac/old-Envy/Hacker.local Drive backups, CRB Envy and Time Machine, family home folders. The no-wipe HOLD stands by default (nothing is deleted unless Gene decides).
 - USER-STATED: off-site / second NAS copy dropped (item 7).
 
+## 2026-11-03 Plex media copied from the Synology (COMPLETE, verified)
+
+- TOOL-VERIFIED (user-supplied log, 08:02 ET): systemd unit plexcopy ran ChatGPT's plex-full-transfer.sh (rsync --ignore-existing from read-only /tmp/syno/{Movies,TV} to /mnt/tank/plex/data/{Movies,TV}, then rsync -c checksum verify). Log: VERIFY PASS Movies, VERIFY PASS TV, COMPLETE 2026-11-03T12:54:18Z. Expected scope from preflight: Movies 785 files / 1.02 TB, TV 242 files / 60 GB. Nothing deleted; Synology sources untouched. Log: /mnt/tank/general/plex-migration/full-transfer.log.
+- OPEN: Plex libraries pointed at /data/Movies and /data/TV (container paths per the Plex app) and scanned; playback check.
+
 ## 2026-11-02 photo backup scope rule (Gene, verbatim)
 
 - USER-STATED-EXPLICIT 20:56 ET: "i only want the myriad backups of the skyhawk association downloaded over the years to NOT be included in the backup to the NAS. we are already backing up the live site to the mac and that is fine for what we are doing with the skyhawk association. my own photos taken of any aircraft are to be saved to the NAS."
