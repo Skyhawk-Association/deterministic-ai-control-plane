@@ -254,7 +254,11 @@ Sanitized per C-10 (no emails or addresses).
 - TOOL-VERIFIED (user-supplied log, 08:02 ET): systemd unit plexcopy ran ChatGPT's plex-full-transfer.sh (rsync --ignore-existing from read-only /tmp/syno/{Movies,TV} to /mnt/tank/plex/data/{Movies,TV}, then rsync -c checksum verify). Log: VERIFY PASS Movies, VERIFY PASS TV, COMPLETE 2026-11-03T12:54:18Z. Expected scope from preflight: Movies 785 files / 1.02 TB, TV 242 files / 60 GB. Nothing deleted; Synology sources untouched. Log: /mnt/tank/general/plex-migration/full-transfer.log.
 - TOOL-VERIFIED 08:09 ET: container ix-plex-plex-1 healthy; /mnt/tank/plex/data is /data inside Plex; server "TrueNAS Plex" claimed to Plex account geneatwell; NO libraries existed (why nothing showed in Plex).
 - DONE 08:11 ET (Gene ran, Claude verified): libraries created via the local server API (HTTP 201 each): "Movies" -> /data/Movies (type movie), "TV Shows" -> /data/TV (type show); scan started automatically.
-- OPEN: playback check after the scan.
+- VERIFIED 08:19 ET: Plex Web at http://192.168.20.14:32400/web shows both libraries with metadata.
+- Phone away from home (5G + Tailscale): "TrueNAS Plex is Currently Unavailable". Evidence: plex.tv lists only https 172.16.2.2:32400 (container bridge address) and lastSeenAt 2026-11-03T06:42:13Z does not advance.
+- Changes made 08:36-08:44 ET (all reversible): customConnections = http://192.168.20.14:32400,http://100.97.199.3:32400; LanNetworksBandwidth = 192.168.20.0/24,100.64.0.0/10; Plex app network.host_network false -> true (app.update). Result: plex.tv listing UNCHANGED (still 172.16.2.2, lastSeen 06:42Z). Remote Access (PublishServerOnPlexOnlineKey) = 0.
+- Plex policy (support.plex.tv): remote playback of personal video needs Plex Pass (server owner) or Remote Watch Pass; VPN connections may count as remote.
+- OPEN, Gene decision: enable Plex Remote Access publishing vs replace Plex with Jellyfin (direct connection over Tailscale, no plex.tv broker, no remote fee).
 
 ## 2026-11-02 photo backup scope rule (Gene, verbatim)
 
