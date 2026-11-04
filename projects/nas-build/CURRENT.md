@@ -266,6 +266,13 @@ Sanitized per C-10 (no emails or addresses).
 - **Remaining acceptance:** after both jobs finish, verify service/runner exit results and reconcile per-source expected file sets against Immich asset records. Do not claim bulk ingestion COMPLETE from timer creation or a CLI dry run.
 - Morning reconciliation: compare upload logs and Immich fingerprints against both final lists.
 
+## 2026-11-03 evening: Gene's Immich closeout target for 2026-11-04
+
+- **USER-STATED-EXPLICIT (Gene, 2026-11-03 evening):** "3 I can verify is working properly. All photos/ whatapp/etc have uploaded once I use tailscale on a wifi connection. we will reverify." This concerns ongoing native Immich Pixel backup (the earlier closeout item 3), not the still-running Mac bulk import or the NAS Synology upload.
+- **USER-STATED-EXPLICIT (Gene, 2026-11-03 evening):** "I want all finished tomorrow asap to include amd gpu acceleration. good night." Target date: **2026-11-04**. AMD Radeon 780M iGPU acceleration for Immich machine learning is now **in scope for the next Immich closeout**, superseding the earlier optional/deferred categorization. No GPU configuration change has yet been executed or proven; check TrueNAS/Immich support and available device access, preserve CPU fallback, and verify actual GPU usage under a test workload before claiming acceleration.
+- **Next closeout:** confirm both 30,873-file Mac manifest and 12,600-file Synology manifest upload outcomes with destination-side reconciliation; verify usability/indexing; reverify automatic Pixel Wi-Fi+Tailscale uploads (reported working by Gene); verify snapshots, database dumps and recovery; complete authorized housekeeping; configure and test Immich AMD GPU acceleration where supported without disrupting the functioning service.
+- **Limits:** This entry is a target and user report, not proof that overnight jobs completed, GPU acceleration works, or the full Immich endpoint is complete. No family rollout, new backup destination, destructive cleanup, or unattended new action is authorized by this note.
+
 ## 2026-11-03 TrueNAS configuration backup
 
 - USER-STATED (18:20 ET): config backup run "finished" (tar of /data/freenas-v1.db + /data/pwenc_secret, copied to the Envy C:\Users\genea\Documents\TrueNAS-config\ with SHA-256 compare; NAS temp copy removed on match). USER-STATED 18:57 ET: the run printed VERIFIED (SHA-256 match). Contains secrets: never in Git.
