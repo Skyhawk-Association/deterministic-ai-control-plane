@@ -124,7 +124,7 @@ Immich
 - GPU: TrueNAS GPU passthrough on; Video Transcoding > Hardware Acceleration = VAAPI, hardware decoding on. The server container sees /dev/dri/renderD128 and runs as uid 568 in group 107 (render). VERIFIED: a forced transcode wrote an encoded video whose ffprobe encoder tag is h264_vaapi. Video transcoding runs on the Radeon 780M.
 - Transcode policy: Only videos not in an accepted format (H.264; AAC/MP3/Opus; MOV/Ogg/WebM).
 - To test transcoding: temporarily set the policy to All videos, run Refresh encoded videos on one video (viewer > the three-dots menu), check the output file's encoder tag with ffprobe, then revert the policy. A live process watcher misses short jobs.
-- ML acceleration (ROCm): not done; Claude recommends skipping it (780M not officially supported by ROCm; the TrueNAS app may not offer a rocm image). Gene decision open.
+- ML acceleration (ROCm): NOT DOING (Gene decision 2026-11-06 11:47 ET: "fuck no"). ML stays on the CPU.
 - Duplicate review: Gene will do it himself, remotely from outside the US.
 
 Plex
@@ -146,7 +146,7 @@ Tailscale policy (USER-SUPPLIED, emails redacted): group:trusted -> everything; 
 |---|---|---|
 | 1 | Physical closeout | DONE |
 | 2 | Tailscale remote access | DONE; family rule includes Nextcloud since 2026-11-06. Family-device proof OPEN (needs a family phone) |
-| 3 | App commissioning | Immich DONE (GPU video transcoding verified). Nextcloud DONE (warnings cleared, 5 users). Plex DONE (CPU transcoding). Immich ML GPU: recommended skip, Gene decision |
+| 3 | App commissioning | Immich DONE (GPU video transcoding verified). Nextcloud DONE (warnings cleared, 5 users). Plex DONE (CPU transcoding). Immich ML GPU: NOT DOING (Gene decision 2026-11-06 11:47 ET) |
 | 4 | Snapshot tasks | DONE (immich, nextcloud, general; recursive) |
 | 4a | Restore test | Component PASS 2026-11-06; full rebuild test not done |
 | 5 | SMB shares + computer backups (Time Machine for the Mac, image for the Envy) | OPEN; needs design |
