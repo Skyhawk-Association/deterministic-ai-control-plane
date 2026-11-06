@@ -1,6 +1,6 @@
 # NAS Build Current State
 
-Status date: 2026-10-31
+Status date: 2026-11-06
 
 ## Objective
 
@@ -92,7 +92,72 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 
 - IMAGE-EVIDENCED 2026-10-13: MSI F11 boot menu with the Patriot disconnected shows `Windows Boot Manager (SATA S1: CT250MX500SSD1)` and `UEFI: PNY USB 2.0 FD PMAP, Partition 1`. This proves the Crucial MX500 currently carries a Windows Boot Manager EFI entry; it does not establish where the prior Korean Windows installation's full OS volume resided.
 
-## 2026-10-14 state (CURRENT - read first)
+## 2026-11-05/06 state (CURRENT - read first; supersedes the 2026-10-31 status table below)
+
+Sanitized per C-10 (placeholders for addresses; no emails). Detail and raw evidence: dacp-private checkpoints/session-status-20261105.md and checkpoints/DACP_CLAUDE_SESSION_20261106T0146Z_nextcloud-smtp-resume.md.
+
+Access and working constraints
+- NAS SSH is OFF (Gene decision 2026-11-05). NAS work goes through the TrueNAS web UI and its shells: System > Shell (host), or Apps > <app> > Workloads > Containers > row icons (>_ shell, folder = mounts, lines = logs).
+- Claude has NO browser access to the NAS (Gene revoked it 2026-11-06 10:26 ET; the temporary read-only TrueNAS user claude-ro was deleted by Gene). Gene relays output.
+- UI paths given to Gene must come from vendor docs for the installed version or from Gene's own screenshots, never from memory (see dacp-private candidates CAND-20261031T2310Z and CAND-20261106T0232Z).
+- Off-home access to everything on the NAS is Tailscale-only: no router port forwarding, no Funnel, Plex Remote Access deliberately off (Plex's red "!" on Remote Access is expected and cannot be hidden).
+- Gene rule (USER-STATED 2026-11-06): no cloud services for any backup copy; Gene-owned hardware/media only (reason: third-party breaches, e.g. Experian, T-Mobile).
+
+Versions (VERIFIED from screenshots 2026-11-05/06): TrueNAS 25.10.7; Immich app v3.3.5 (catalog 1.14.59, community train; v3.3.6 offered, HELD by Gene); Nextcloud 35.0.2; tailscale app update offered, HELD by Gene.
+
+Dataset layout (VERIFIED zfs list 2026-11-06)
+- tank/immich 818G = library 450G (date-organized originals), data 362G (upload/ originals, encoded-video/, backups/ DB dumps), pgData 5.07G, import 205K.
+- tank/nextcloud 1.81G = data 177M, html 1.29G, postgres_data 352M.
+- Snapshot tasks are recursive (immich 03:10, nextcloud 03:20 daily, 3 weeks). Snapshot files live in each CHILD's .zfs/snapshot, not the parent's.
+- An irreplaceable-only copy (Immich + Nextcloud) is about 820 GB.
+
+Backup and restore (VERIFIED 2026-11-06, component level)
+- From snapshot auto-2026-11-06: one Immich library file, one Immich data/upload file and one Nextcloud file each copied out and SHA-256-matched to live: PASS.
+- Immich DB dump data/backups/immich-db-backup-20261106T020000-v3.3.5-pg18.4.sql.gz: gzip -t PASS, "dump complete" marker PASS.
+- NOT tested: full Immich rebuild from a dump; Nextcloud DB restore.
+- TrueNAS config (25.10.7, with the secret seed) downloaded by Gene on 2026-11-06 and copied to the Mac ~/TrueNAS-config-backups/ (SHA-256 MATCH). The config menu is System > Advanced Settings > Manage Configuration in 25.10 (it is not under General). Contains secrets: never in Git.
+
+Immich
+- Fingerprint reconciliation 2026-11-05: Mac 30,873/30,873 and Synology 12,600/12,600 in Immich by SHA-1; 138,364 checksums total.
+- App limits: cpus 4, memory 12288 MB. TrueNAS app.update REPLACES resources.limits; always send cpus and memory together.
+- External domain: http://<NAS-MAGICDNS-SHORTNAME>:30041.
+- GPU: TrueNAS GPU passthrough on; Video Transcoding > Hardware Acceleration = VAAPI, hardware decoding on. The server container sees /dev/dri/renderD128 and runs as uid 568 in group 107 (render). VERIFIED: a forced transcode wrote an encoded video whose ffprobe encoder tag is h264_vaapi. Video transcoding runs on the Radeon 780M.
+- Transcode policy: Only videos not in an accepted format (H.264; AAC/MP3/Opus; MOV/Ogg/WebM).
+- To test transcoding: temporarily set the policy to All videos, run Refresh encoded videos on one video (viewer > the three-dots menu), check the output file's encoder tag with ffprobe, then revert the policy. A live process watcher misses short jobs.
+- ML acceleration (ROCm): not done; Claude recommends skipping it (780M not officially supported by ROCm; the TrueNAS app may not offer a rocm image). Gene decision open.
+- Duplicate review: Gene will do it himself, remotely from outside the US.
+
+Plex
+- Lifetime Plex Pass (Gene). Transcoder: hardware acceleration and hardware encoding on, device AMD Phoenix1, GPU and CPU transcode limits Unlimited, background transcodes 1.
+- VERIFIED 2026-11-06 (fresh session at 240p): Transcode with NO (hw). Plex does not use the 780M; the CPU transcodes easily. Test CLOSED; it does not compete with Immich for the GPU.
+
+Nextcloud
+- SMTP via Gmail SSL/TLS port 465 with a dedicated app password: test email works. Cause of the earlier failure: settings not saved before the test (the log showed attempts to the localhost default mail port).
+- Background jobs: Cron. 2FA enforced for all accounts (TOTP on Gene's account).
+- trusted_proxies = <APP-BRIDGE-GATEWAY> (value in dacp-private; VERIFIED from nextcloud.log remoteAddr; the forwarded-for warning cleared). overwriteprotocol/overwritehost were already set. HSTS max-age=15552000 added below the .htaccess marker (backup .htaccess.bak-20261105). Missing indices added, mimetype repair run, maintenance_window_start=6 (UTC), default_phone_region=US. Remaining notices (AppAPI daemon, server ID) are informational and left as-is by design.
+- 5 accounts created by Gene, invitation emails sent (USER-STATED). Quotas about 250 GB each (not verified by Claude).
+- OPEN, LAN-only residual: whether direct LAN hits on the app port also arrive as the proxy address.
+
+Tailscale policy (USER-SUPPLIED, emails redacted): group:trusted -> everything; group:family -> NAS tcp:30041 (Immich), tcp:445 (SMB) and tcp:443 (Nextcloud, added 2026-11-06), plus internet exit; default SSH self-check kept. By IP, port 443 on the NAS tailnet address answers only for the MagicDNS name (Nextcloud); the TrueNAS UI does not answer there.
+
+## Next sequence - status as of 2026-11-06
+
+| # | Item | Status |
+|---|---|---|
+| 1 | Physical closeout | DONE |
+| 2 | Tailscale remote access | DONE; family rule includes Nextcloud since 2026-11-06. Family-device proof OPEN (needs a family phone) |
+| 3 | App commissioning | Immich DONE (GPU video transcoding verified). Nextcloud DONE (warnings cleared, 5 users). Plex DONE (CPU transcoding). Immich ML GPU: recommended skip, Gene decision |
+| 4 | Snapshot tasks | DONE (immich, nextcloud, general; recursive) |
+| 4a | Restore test | Component PASS 2026-11-06; full rebuild test not done |
+| 5 | SMB shares + computer backups (Time Machine for the Mac, image for the Envy) | OPEN; needs design |
+| 6 | Synology migration and wipe | Photos, Drupal dumps, Movies+TV copied; further share search and wipe ON HOLD (Gene) |
+| 7 | Second / off-site copy | DEFERRED by Gene; no-cloud rule; candidate: Immich -> ArchiveSSD sync after remote operability is proven |
+| 8 | UPS | SUPERSEDED (UPS + generator) |
+| 9 | Housekeeping | TrueNAS config backup DONE 2026-11-06. App updates (immich 3.3.6, tailscale) HELD |
+| 10 | HBA no-video fault | Only if it recurs |
+| 11 | Remote operability from abroad (NAS, Tailscale, skyhawk.org) | NEXT STAGE after the NAS (Gene sequencing 2026-11-06) |
+
+## 2026-10-14 state (historical; see the 2026-11-05/06 state above)
 
 - IMAGE-EVIDENCED 2026-10-14: With the Android phone on cellular (5G, not house Wi-Fi) and connected to Tailscale, `http://<NAS-TAILSCALE-IP>` reached the TrueNAS sign-in page. This verifies end-to-end remote VPN access to the NAS from outside the home LAN. The TrueNAS page warns that HTTP is not HTTPS, but the transport path is inside the encrypted Tailscale tunnel.
 - IMAGE-EVIDENCED 2026-10-14: Tailscale app is installed and Running in TrueNAS, and the Tailscale Machines page shows `truenas-scale` online at <NAS-TAILSCALE-IP> under the same tailnet/account as the Envy and Mac. Initial VPN join is therefore verified.
@@ -325,7 +390,7 @@ This is the latest Plex outcome and supersedes the earlier failed-remote-playbac
 - USER-DIRECTED 2026-11-02: family members are never at home and need the shares away from home. Change given to Gene: family grant ip ["tcp:30041","tcp:445"] (dst nas only). USER-SUPPLIED policy text 19:02 ET shows the family grant as ["tcp:30041", "tcp:445"] to "nas"; trusted, exit-node and ssh sections unchanged.
 - OPEN: proof from a family device away from home (SMB reachable, own private share only); Mac test; which device types the family uses (Windows / Mac / iPhone / Android).
 
-## Next sequence - status as of 2026-10-31 22:20 ET
+## Next sequence - status as of 2026-10-31 22:20 ET (SUPERSEDED by the 2026-11-06 table above)
 
 | # | Item | Status |
 |---|---|---|
