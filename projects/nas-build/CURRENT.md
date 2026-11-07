@@ -157,6 +157,7 @@ Tailscale policy (USER-SUPPLIED, emails redacted): group:trusted -> everything; 
 | 10 | HBA no-video fault | Only if it recurs |
 | 11 | Remote operability from abroad (NAS, Tailscale, skyhawk.org) | NEXT STAGE after the NAS (Gene sequencing 2026-11-06) |
 | 12 | Monitoring (Gene: "add to the list, no need for now") | DEFERRED. Layer 1 (built in): TrueNAS alert email test (email already set up via GMail OAuth); Veeam email on Error/Warning (needs a Gmail app password). Layer 2 (custom nightly freshness check of TM, Veeam, Immich dumps and uploads; needs C-04/C-22 approval, default off). |
+| 14 | Unattended recovery (2026-11-07, VERIFIED) | Mac: autorestart on, never sleeps, wake-on-LAN on, Tailscale is a root daemon (Homebrew) so it is reachable at the login window after a power cut; no auto-login. Envy: Modern Standby with network connected, Tailscale unattended (ForceDaemon); auto-login UNKNOWN; Veeam catches up after wake. iMac: not covered. Gateways keep daily auto-updates (Claude recommendation; Gene asked "why not?"). EdgeSwitch host-only route: deferred until after the trip (risk to the remote path). TrueNAS system update: not applied, hold until back. Immich backup-only-while-charging: NO (Gene). |
 | 13 | Leftovers | NFS share on immich/library disabled and the NFS service stopped 2026-11-06 (share still defined; delete later if wanted) |
 
 ## 2026-10-14 state (historical; see the 2026-11-05/06 state above)
