@@ -149,13 +149,15 @@ Tailscale policy (USER-SUPPLIED, emails redacted): group:trusted -> everything; 
 | 3 | App commissioning | Immich DONE (GPU video transcoding verified). Nextcloud DONE (warnings cleared, 5 users). Plex DONE (CPU transcoding). Immich ML GPU: NOT DOING (Gene decision 2026-11-06 11:47 ET) |
 | 4 | Snapshot tasks | DONE (immich, nextcloud, general; recursive) |
 | 4a | Restore test | Component PASS 2026-11-06; full rebuild test not done |
-| 5 | SMB shares + computer backups (Time Machine for the Mac, image for the Envy) | OPEN; needs design |
+| 5 | Computer backups | Mac: Time Machine to SMB share timemachine (user mac-tm, quota 490 GB = 2x the 245 GB disk), first backup completed 2026-11-06 (RESULT 0, 69.5 GB); OPEN: confirm the quota survives a backup, one test-file restore at the Mac. Envy: Veeam Agent Free 13.1.2.812 full image to SMB share envy-backup (user envy-bk, owner-only ACL), keep 7 days, daily 12:30 AM; first full Success 2026-11-06 19:45 (2.8 TB read); OPEN: check the first incremental (duration/CPU; Gene rule: drop Veeam for robocopy if heavy), recovery USB, test-file restore, size cap on envy-backup undecided (a ZFS cap makes Veeam fail, it does not roll old points) |
 | 6 | Synology migration and wipe | Photos, Drupal dumps, Movies+TV copied; further share search and wipe ON HOLD (Gene) |
 | 7 | Second / off-site copy | DEFERRED by Gene; no-cloud rule; candidate: Immich -> ArchiveSSD sync after remote operability is proven |
 | 8 | UPS | SUPERSEDED (UPS + generator) |
 | 9 | Housekeeping | TrueNAS config backup DONE 2026-11-06. App updates (immich 3.3.6, tailscale) HELD |
 | 10 | HBA no-video fault | Only if it recurs |
 | 11 | Remote operability from abroad (NAS, Tailscale, skyhawk.org) | NEXT STAGE after the NAS (Gene sequencing 2026-11-06) |
+| 12 | Monitoring (Gene: "add to the list, no need for now") | DEFERRED. Layer 1 (built in): TrueNAS alert email test (email already set up via GMail OAuth); Veeam email on Error/Warning (needs a Gmail app password). Layer 2 (custom nightly freshness check of TM, Veeam, Immich dumps and uploads; needs C-04/C-22 approval, default off). |
+| 13 | Leftovers | NFS share on immich/library disabled and the NFS service stopped 2026-11-06 (share still defined; delete later if wanted) |
 
 ## 2026-10-14 state (historical; see the 2026-11-05/06 state above)
 
