@@ -9,6 +9,27 @@
 
 **Public file. Never put here:** passwords, SSH/API keys, token links (upload, manage or verify tokens), member personal data (names, email or contact details of attendees or contributors), backup contents, database contents, server IP addresses.
 
+## 2026-11-07 Drupal core + contributed modules Composer update (ChatGPT; publication pending)
+
+- **GENE (verbatim, 2026-11-07):** "Need to use composer to update core and some of the modules on the site." / "Inmotion on the pixel" / "Verify" / "Fuck me. We have the fucking Backup. Just do the fucking updates."
+- **INTERPRETATION (unconfirmed):** Execute the previously established full `bin/skyhawk-composer update` for production Drupal core and eligible stable contributed modules; preserve the separate `finish` gate until verified functional acceptance. No database restore, forced Git publish, third-party messages, or unrelated infrastructure changes inferred.
+- **Execution context & reach:** Gene's own interactive SSH prompt was `[n790725@vps142898 ~]﻿# LOST-D â€” Skyhawk.org active work (passdown)
+
+**Canonical passdown for any AI executor (Claude or ChatGPT).** Read this file first in every session:
+`https://raw.githubusercontent.com/Skyhawk-Association/deterministic-ai-control-plane/main/projects/skyhawk/LOST-D.md`
+
+**Freshness:** the raw URL can lag a few minutes behind a push; right after a push, verify with git (clone or ls-remote).
+
+**Update rule:** every verified consequential step updates this file (last verified step, next step, open decisions) and pushes it in the same run as the change. The Drupal LOST-D page (node 2479) points here.
+
+**Public file. Never put here:** passwords, SSH/API keys, token links (upload, manage or verify tokens), member personal data (names, email or contact details of attendees or contributors), backup contents, database contents, server IP addresses.
+
+ on the Pixel; ChatGPT used already-documented authorized Mac-mini -> InMotion SSH as unprivileged `n790725` through Desktop Commander to execute and independently monitor the update. No root or new credentials. The Pixel session was not exited or reused.
+- **VERIFIED PRE-FLIGHT:** Site Git local/remote main both `c3dc5d22820c90aa7040069e305bdb6767d65b9c`, clean tree, no previous Composer pending marker, no Drupal config drift. Disk at update start 158G total / 121G used / 31G available (81%); user quota ~53G used of 100G. November 7 scheduled database dump `skyhawk-20261107T063004Z.sql.gz` exists on VPS and Mac ArchiveSSD; independently computed matching SHA-256 `6fce8b7fdc09492726dfa542ef5ab6f85015c4c15e8cd11b65651fa70af389bc`. Mac `backup.log` records DB `sha_match` and files `FILES OK` on 2026-11-07. No fresh isolated restore test was performed. Existing DB copy was preserved.
+- **VERIFIED EXECUTION:** One production update via established `/home/n790725/drupalbeta/bin/skyhawk-composer update` using one-off detached runner (private report `~/ai-reports/skyhawk-composer-20261107/output.log`, state `SUCCEEDED rc=0`). Composer dependency changes completed, `composer audit` reported no vulnerability advisories, Drupal database `updb` performed `captcha_post_update_clear_plain_session_ids`, Drush cache rebuild succeeded. Current locked versions confirmed by Composer: `drupal/core-recommended 11.4.12`, `drupal/captcha 2.0.12`, `drupal/file_mdm 3.2.1`, `drupal/image_effects 5.0.1`, `drupal/imagemagick 5.0.2`, `drupal/token 1.18.0`. Installed Drush status reports Drupal 11.4.12, bootstrap successful, DB connected; `config:status --format=json` returned `[]`; locked audit returned no advisories. Only `composer.lock` is Git-modified, wrapper marker `.skyhawk-composer-git-pending` exists (normal uncommitted state). Mac independent anonymous HTTP checks (after recovery): homepage 200, user login 200, Webform /form/contact 200, /contact 403, restricted Ready Room article 403.
+- **OPEN reliability finding:** Immediately after the wrapper reported success, five independently tested HTTP GET routes returned **500**, later all returned expected 200/403. Thus temporary service interruption occurred; cause not established. Drupal watchdog most recent error was an unrelated Drush inline PHP ParseError; it does not explain the 500s. Do not assert that the temporary error's causal origin is known. Check site health before Git publication and watch for recurrence.
+- **PUBLICATION GATE:** `skyhawk-composer finish` **NOT RUN**. Gene has not expressly provided functional acceptance of the updated site for this particular transaction; the latest instruction authorizes the update, not a verified `finish` acceptance. Before finish: confirm stable authenticated functional routes as applicable, no new errors, and explicit Gene acceptance; then finish once using required attribution, verify main HEAD parity and clear pending marker. DO NOT re-run `skyhawk-composer update` while pending. Preserve this live result and the backup. No other workstream changed.
+
 ## 2026-11-01 Drupal 6 photo research data RECOVERED from old dumps (Claude, Gene decisions)
 
 - **Problem (USER-STATED):** the Drupal 6 -> Drupal 8 migration dropped the research data attached to the site's photos; the images survive on the live site with the same file names, the data did not.
