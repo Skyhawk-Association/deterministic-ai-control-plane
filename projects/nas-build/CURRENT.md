@@ -46,14 +46,14 @@ Assemble, verify, install, and commission the home NAS without relying on chat-m
 - Gene performed a final physical check of all wired/LSI connections completed to this point and secured the wire bundles.
 - Two Cable Matters 0.5 m / 1.6 ft Internal Mini-SAS SFF-8087-to-4x-SATA forward-breakout cables, model 104016-0.5m, are now physically in hand. They are intended to connect the LSI 9207-8i's J5/J6 ports to the eight CS383 backplane SATA data inputs.
 - IronWolf tray numbering and serial inventory from photographed labels:
-  - 1: ZZ30N1YX
-  - 2: ZZ30PAWE
-  - 3: ZZ30PC78
-  - 4: ZZ30PBLQ
-  - 5: ZZ30N2BG
-  - 6: ZZ30N4AC
-  - 7: ZZ30N4DB
-  - 8: ZZ30PBPL
+  - 1: (serial in dacp-private inventory/nas-private-inventory.md)
+  - 2: (serial in dacp-private inventory/nas-private-inventory.md)
+  - 3: (serial in dacp-private inventory/nas-private-inventory.md)
+  - 4: (serial in dacp-private inventory/nas-private-inventory.md)
+  - 5: (serial in dacp-private inventory/nas-private-inventory.md)
+  - 6: (serial in dacp-private inventory/nas-private-inventory.md)
+  - 7: (serial in dacp-private inventory/nas-private-inventory.md)
+  - 8: (serial in dacp-private inventory/nas-private-inventory.md)
   - All eight are Seagate IronWolf 12 TB ST12000VN0008, firmware SC60.
 
 - Historical no-power evidence before outside service: PSU paper-clip test passed in Normal fan mode; +5VSB measured 5.0 VDC at the motherboard-end 24-pin harness; PS_ON was later measured at about 5 V at rest and 0 V when JFP1 pins 6/8 were shorted, showing the motherboard asserted PS_ON.
@@ -171,7 +171,7 @@ BASE BUILD COMPLETE.
 - Created 08:00 by pool_gate.sh after first attempt failed safely (`midclt call -job` invalid; correct flag `-j`).
 - Boot: Patriot (223.57 GiB) could not be attached as a mirror to the Crucial (232.89 GiB) - too small. Gene reinstalled TrueNAS 25.10.7 onto BOTH SSDs (Fresh Install) and restored the saved configuration. boot-pool is now mirror-0 of two SSD partitions, ONLINE, no errors. `tank` re-imported via config restore, ONLINE.
 - During the restart before the reinstall, no video and Digi-Debug 80/81 were observed; after the reinstall the system booted with console video normally. Root cause of the intermittent no-video-with-HBA behavior remains unexplained.
-- Network: 192.168.20.14 (VLAN 20 Family, UDM Pro port 3, UniFi fixed IP by MAC fc:9d:05:06:49:fe). Time/timezone correct (America/New_York).
+- Network: <NAS-LAN-IP> (VLAN 20 Family, UDM Pro port 3, UniFi fixed IP by MAC <NAS-NIC-MAC>). Time/timezone correct (America/New_York).
 - Update profile MISSION_CRITICAL; 25.10.7 "System is up to date".
 - Configuration backup: System -> Advanced Settings -> Manage Configuration -> Download File (with Password Secret Seed). Fresh backup taken after mirror/email/alerts were configured; stored off-NAS by Gene.
 - Email: Send Mail Method GMail OAuth, From "Home TrueNas" saweba4master1@gmail.com; test mail succeeded. truenas_admin email set via `midclt call user.update` (UI user edit form would not save). Test alert sent successfully via the E-Mail alert service (level Warning).
@@ -190,7 +190,7 @@ BASE BUILD COMPLETE.
 
 - USER-SUPPLIED COMMAND OUTPUT 2026-10-14: Nextcloud stable app 2.3.78 / Nextcloud 35.0.1 installed successfully on host port 30027. The install output shows persistent bind mounts `/mnt/tank/nextcloud/html` -> `/var/www/html`, `/mnt/tank/nextcloud/data` -> `/var/www/html/data`, and `/mnt/tank/nextcloud/postgres_data` -> `/var/lib/postgresql`. Post-install verification reported `RESULT=NEXTCLOUD_RUNNING`, version 35.0.1, maintenance mode false, no pending database upgrade, PostgreSQL UID/GID 999/999, and script exit 0. Base Nextcloud installation is therefore verified; remote-access/trusted-domain validation is now complete; remaining commissioning includes user accounts/quotas and snapshot protection before substantial user data.
 
-- NEXTCLOUD SECURE ACCESS VERIFIED 2026-10-14: Tailscale HTTPS certificates were enabled for the tailnet after Gene explicitly accepted Certificate Transparency disclosure for the node hostname. Nextcloud now trusts `truenas-scale.tail6e87d7.ts.net` and is configured with `overwriteprotocol=https`, `overwritehost=truenas-scale.tail6e87d7.ts.net`, and `overwrite.cli.url=https://truenas-scale.tail6e87d7.ts.net`. USER-SUPPLIED COMMAND OUTPUT: `tailscale serve status` reports `https://truenas-scale.tail6e87d7.ts.net (tailnet only)` with `/` proxied to `http://127.0.0.1:30027`; `tailscale funnel status` also reports the route as `(tailnet only)`, with no public Funnel endpoint reported. TOOL-VERIFIED FROM ENVY: the Tailscale hostname resolves to `<NAS-TAILSCALE-IP>`; Tailscale ping succeeds; HTTPS certificate validation succeeds and the secure URL returns the normal Nextcloud redirect path; direct LAN `http://192.168.20.14:30027/` returns HTTP 302 with `Location: https://truenas-scale.tail6e87d7.ts.net/login`. USER-STATED-EXPLICIT: Gene is logged into Nextcloud successfully in the Envy browser and Pixel browser over the secure route. Tailscale itself remains in host-network mode; do not redesign it merely to attach to Nextcloud's private Docker network because that could disrupt remote TrueNAS host access.
+- NEXTCLOUD SECURE ACCESS VERIFIED 2026-10-14: Tailscale HTTPS certificates were enabled for the tailnet after Gene explicitly accepted Certificate Transparency disclosure for the node hostname. Nextcloud now trusts `<NAS-MAGICDNS-NAME>` and is configured with `overwriteprotocol=https`, `overwritehost=<NAS-MAGICDNS-NAME>`, and `overwrite.cli.url=https://<NAS-MAGICDNS-NAME>`. USER-SUPPLIED COMMAND OUTPUT: `tailscale serve status` reports `https://<NAS-MAGICDNS-NAME> (tailnet only)` with `/` proxied to `http://127.0.0.1:30027`; `tailscale funnel status` also reports the route as `(tailnet only)`, with no public Funnel endpoint reported. TOOL-VERIFIED FROM ENVY: the Tailscale hostname resolves to `<NAS-TAILSCALE-IP>`; Tailscale ping succeeds; HTTPS certificate validation succeeds and the secure URL returns the normal Nextcloud redirect path; direct LAN `http://<NAS-LAN-IP>:30027/` returns HTTP 302 with `Location: https://<NAS-MAGICDNS-NAME>/login`. USER-STATED-EXPLICIT: Gene is logged into Nextcloud successfully in the Envy browser and Pixel browser over the secure route. Tailscale itself remains in host-network mode; do not redesign it merely to attach to Nextcloud's private Docker network because that could disrupt remote TrueNAS host access.
 
 ## 2026-10-16 Pixel -> Immich uploader (SUPERSEDED 2026-10-31: DEFECTIVE, see "2026-10-31 Pixel -> Immich" below)
 
@@ -229,7 +229,7 @@ Sanitized per C-10: no addresses, MACs, tailnet names or serials. Detailed inven
 - USER-DIRECTED: exit node None at home; select the Pi when travelling; Allow LAN access off.
 - CORRECTIONS: the temperature controller is NOT PoE-powered (its switch port draws 0 W), so it cannot be power-cycled from the switch. The Basement Pi IS PoE-powered, so it can be power-cycled from the EdgeSwitch UI. The Mac is an M4. The basement iMac exists on the Family VLAN; its switch port is unresolved (port labels are stale).
 - OPEN:
-  - C-10: this file already contains LAN addresses, a MAC, a tailnet name and drive serials. Redaction decision pending (Gene). Whether C-10 also applies to dacp-private is pending (Gene).
+  - C-10: DONE 2026-11-07 (Gene "yes"): addresses, MAC, tailnet name and serials replaced by placeholders; values in dacp-private inventory/nas-private-inventory.md. Public Git history still holds the old values. Whether C-10 also applies to dacp-private is pending (Gene).
   - Proton VPN clients (5, disabled) and a "Full Tunnel" policy route with kill switch remain. Deletion not executed.
   - Delaware: switch uplink to the gateway negotiates 100 Mbps (cable or port fault); WAN packet-loss event 2026-10-26.
   - EdgeSwitch: factory admin username, old firmware, about 285 days uptime.
@@ -356,9 +356,9 @@ Sanitized per C-10 (no emails or addresses).
 - TOOL-VERIFIED (user-supplied log, 08:02 ET): systemd unit plexcopy ran ChatGPT's plex-full-transfer.sh (rsync --ignore-existing from read-only /tmp/syno/{Movies,TV} to /mnt/tank/plex/data/{Movies,TV}, then rsync -c checksum verify). Log: VERIFY PASS Movies, VERIFY PASS TV, COMPLETE 2026-11-03T12:54:18Z. Expected scope from preflight: Movies 785 files / 1.02 TB, TV 242 files / 60 GB. Nothing deleted; Synology sources untouched. Log: /mnt/tank/general/plex-migration/full-transfer.log.
 - TOOL-VERIFIED 08:09 ET: container ix-plex-plex-1 healthy; /mnt/tank/plex/data is /data inside Plex; server "TrueNAS Plex" claimed to Plex account geneatwell; NO libraries existed (why nothing showed in Plex).
 - DONE 08:11 ET (Gene ran, Claude verified): libraries created via the local server API (HTTP 201 each): "Movies" -> /data/Movies (type movie), "TV Shows" -> /data/TV (type show); scan started automatically.
-- VERIFIED 08:19 ET: Plex Web at http://192.168.20.14:32400/web shows both libraries with metadata.
-- Phone away from home (5G + Tailscale): "TrueNAS Plex is Currently Unavailable". Evidence: plex.tv lists only https 172.16.2.2:32400 (container bridge address) and lastSeenAt 2026-11-03T06:42:13Z does not advance.
-- Changes made 08:36-08:44 ET (all reversible): customConnections = http://192.168.20.14:32400,http://100.97.199.3:32400; LanNetworksBandwidth = 192.168.20.0/24,100.64.0.0/10; Plex app network.host_network false -> true (app.update). Result: plex.tv listing UNCHANGED (still 172.16.2.2, lastSeen 06:42Z). Remote Access (PublishServerOnPlexOnlineKey) = 0.
+- VERIFIED 08:19 ET: Plex Web at http://<NAS-LAN-IP>:32400/web shows both libraries with metadata.
+- Phone away from home (5G + Tailscale): "TrueNAS Plex is Currently Unavailable". Evidence: plex.tv lists only https <APP-BRIDGE-ADDR>:32400 (container bridge address) and lastSeenAt 2026-11-03T06:42:13Z does not advance.
+- Changes made 08:36-08:44 ET (all reversible): customConnections = http://<NAS-LAN-IP>:32400,http://<NAS-TAILSCALE-IP>:32400; LanNetworksBandwidth = <VLAN20-SUBNET>,100.64.0.0/10; Plex app network.host_network false -> true (app.update). Result: plex.tv listing UNCHANGED (still <APP-BRIDGE-ADDR>, lastSeen 06:42Z). Remote Access (PublishServerOnPlexOnlineKey) = 0.
 - Plex policy (support.plex.tv): remote playback of personal video needs Plex Pass (server owner) or Remote Watch Pass; VPN connections may count as remote.
 - OPEN, Gene decision: enable Plex Remote Access publishing vs replace Plex with Jellyfin (direct connection over Tailscale, no plex.tv broker, no remote fee).
 
@@ -388,7 +388,7 @@ This is the latest Plex outcome and supersedes the earlier failed-remote-playbac
 - Built by ChatGPT (handoff 2026-11-02, scripts/results in the Envy dacp-work folder): dataset tank/general/family-smb (NFSv4 ACL), group family_smb (GID 3000), SMB users jake, jennie, philip, jo-anne, shares FamilyShared (browsable) and <user>Private (not browsable) for each, SMB1 off, guest off (restrict anonymous = 2).
 - TOOL-VERIFIED (Claude, read-only, 18:40 ET): middleware cifs RUNNING and enabled; smbd/nmbd/winbind active; 445/139 listening; all five shares loaded; all four users in the Samba passdb with normal flags. The earlier interrupted service-start job did complete.
 - ROOT CAUSE (TOOL-VERIFIED): Windows logins failed because Samba itself rejected the passwords (smbclient on the NAS: NT_STATUS_LOGON_FAILURE). Gene reset each password in the TrueNAS UI; afterwards all four users pass on the NAS (smbclient //127.0.0.1): FamilyShared OK, own Private OK, another user's Private NT_STATUS_ACCESS_DENIED (isolation holds). Listing tests only, no files written.
-- TOOL-VERIFIED 18:56 ET: Windows 11 (Envy) over Tailscale to \\100.97.199.3 as jake: net use FamilyShared exit 0, write OK (test file smb-test-jake.txt left in FamilyShared), jakePrivate listed, connections removed afterwards. The Envy is in group:trusted, so this proves the NAS side over Tailscale, not the family restriction.
+- TOOL-VERIFIED 18:56 ET: Windows 11 (Envy) over Tailscale to \\<NAS-TAILSCALE-IP> as jake: net use FamilyShared exit 0, write OK (test file smb-test-jake.txt left in FamilyShared), jakePrivate listed, connections removed afterwards. The Envy is in group:trusted, so this proves the NAS side over Tailscale, not the family restriction.
 - USER-DIRECTED 2026-11-02: family members are never at home and need the shares away from home. Change given to Gene: family grant ip ["tcp:30041","tcp:445"] (dst nas only). USER-SUPPLIED policy text 19:02 ET shows the family grant as ["tcp:30041", "tcp:445"] to "nas"; trusted, exit-node and ssh sections unchanged.
 - OPEN: proof from a family device away from home (SMB reachable, own private share only); Mac test; which device types the family uses (Windows / Mac / iPhone / Android).
 
@@ -411,8 +411,8 @@ Additional OPEN items: Immich External domain setting; family-group Tailscale re
 
 ## Next sequence (2026-10-14) - original list, kept for history
 
-1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://192.168.20.14 before continuing.
-2. Tailscale remote access is verified. Nextcloud now uses tailnet-only HTTPS at `https://truenas-scale.tail6e87d7.ts.net`; no public Funnel endpoint is reported.
+1. Physical closeout and final placement: cleanly shut down TrueNAS, reinstall the CS383 panels, move the NAS to its final storage location, reconnect Ethernet and power, boot, and verify the normal web UI at https://<NAS-LAN-IP> before continuing.
+2. Tailscale remote access is verified. Nextcloud now uses tailnet-only HTTPS at `https://<NAS-MAGICDNS-NAME>`; no public Funnel endpoint is reported.
 3. Base app installation is complete for Immich, Plex, and Nextcloud. Remaining app commissioning: validate Immich CPU fallback if AMD iGPU acceleration is unavailable; verify whether Plex Radeon 780M hardware transcoding actually works from a real transcode session; configure Nextcloud for the planned 5 users with approximately 3 TB quotas; its intended Tailscale HTTPS access path is now validated.
 4. Periodic snapshot tasks on tank/immich, tank/nextcloud, and tank/general, with a practical initial retention target of roughly 2-4 weeks. Have snapshot protection in place before substantial real user data lands.
 5. SMB share(s) plus a non-admin NAS user for the Envy and Mac, using tank/general for ordinary file access.
@@ -427,19 +427,19 @@ Additional OPEN items: Immich External domain setting; family-group Tailscale re
 
 ## 2026-10-13 TrueNAS installation and commissioning state
 
-- TOOL-VERIFIED: PNY USB 2.0 FD 14.4 GB (serial 087E013260C0) rewritten on the Envy at ~09:44 EDT from `TrueNAS-SCALE-25.10.7-VERIFIED.iso`; ISO SHA-256 `54ce9441ce66966a392e28f63604ca3c2c083d0bec4db7bb5af2f74f7a007c8e` matched the official TrueNAS .sha256, and a raw read-back of the USB matched the same hash. The two other local ISO copies (`TrueNAS-SCALE-25.10.7.iso`, `.fresh.iso`) do NOT match the official hash and must not be used. An earlier write to a 7.5 GB "Generic Flash Disk" failed mid-write ("device not ready") and that stick is not usable as installer media.
+- TOOL-VERIFIED: PNY USB 2.0 FD 14.4 GB (serial in dacp-private inventory) rewritten on the Envy at ~09:44 EDT from `TrueNAS-SCALE-25.10.7-VERIFIED.iso`; ISO SHA-256 `54ce9441ce66966a392e28f63604ca3c2c083d0bec4db7bb5af2f74f7a007c8e` matched the official TrueNAS .sha256, and a raw read-back of the USB matched the same hash. The two other local ISO copies (`TrueNAS-SCALE-25.10.7.iso`, `.fresh.iso`) do NOT match the official hash and must not be used. An earlier write to a 7.5 GB "Generic Flash Disk" failed mid-write ("device not ready") and that stick is not usable as installer media.
 - IMAGE-EVIDENCED: The rewritten PNY booted the TrueNAS 25.10.7 installer with the LSI 9207-8i installed and video working. The earlier HBA black-screen symptom did not recur in this boot; its root cause remains unexplained.
 - IMAGE-EVIDENCED: Installer disk list showed all eight ST12000VN0008 (10.91 TiB) plus CT250MX500SSD1 (232.89 GiB) and Patriot Burst Elite (223.57 GiB). TrueNAS was installed to the Crucial MX500 ONLY; the erase warning named only that disk. Install succeeded. Boot pool = `boot-pool` on the Crucial. Patriot remains unused (planned boot-pool mirror).
-- IMAGE-EVIDENCED: First boot loaded `mpt2sas` and enumerated all eight IronWolfs behind the HBA. TrueNAS Disks page lists serials ZZ30N1YX, ZZ30PAWE, ZZ30PC78, ZZ30PBLQ, ZZ30N2BG, ZZ30N4AC, ZZ30N4DB, ZZ30PBPL at 10.91 TiB, no pool.
-- Network: onboard 5G NIC `enp6s0`, MAC `fc:9d:05:06:49:fe`. Link negotiates slowly after boot; if DHCP is missed, console option 1 -> Save -> `a` re-applies DHCP. UDM Pro (UDMP Pennsylvania) port 3 changed by Claude, with Gene approval, from native Default (1) to Family Network (VLAN 20); NAS cable moved to UDM port 3. UniFi fixed IP reservation 192.168.20.14 (Virtual Network Override OFF, verified after reload). Web UI: https://192.168.20.14, admin user `truenas_admin`.
-- UniFi network map (UDMP Pennsylvania, CLAUDE-OBSERVED): Default 1 192.168.1.0/24; Family Network 20 192.168.20.0/24 (house computers); Camera 30; IoT 40 192.168.40.0/24; Server 50 192.168.50.0/24 (Synology); Guest 99. ES-24-500W EdgeSwitch (unadopted, 192.168.1.3) on UDM port 8.
+- IMAGE-EVIDENCED: First boot loaded `mpt2sas` and enumerated all eight IronWolfs behind the HBA. TrueNAS Disks page lists all eight serials (dacp-private inventory) at 10.91 TiB, no pool.
+- Network: onboard 5G NIC `enp6s0`, MAC `<NAS-NIC-MAC>`. Link negotiates slowly after boot; if DHCP is missed, console option 1 -> Save -> `a` re-applies DHCP. UDM Pro (UDMP Pennsylvania) port 3 changed by Claude, with Gene approval, from native Default (1) to Family Network (VLAN 20); NAS cable moved to UDM port 3. UniFi fixed IP reservation <NAS-LAN-IP> (Virtual Network Override OFF, verified after reload). Web UI: https://<NAS-LAN-IP>, admin user `truenas_admin`.
+- UniFi network map (UDMP Pennsylvania, CLAUDE-OBSERVED): Default 1 <VLAN1-SUBNET>; Family Network 20 <VLAN20-SUBNET> (house computers); Camera 30; IoT 40 <VLAN40-SUBNET>; Server 50 <VLAN50-SUBNET> (Synology); Guest 99. ES-24-500W EdgeSwitch (unadopted, <EDGESWITCH-IP>) on UDM port 8.
 - Timezone America/New_York; clock verified correct in TrueNAS.
 - SSD SMART (TOOL-VERIFIED via smartctl): Crucial MX500 PASSED, 2,019 POH, 25% life used, 0 reallocated/pending/uncorrectable. Patriot PASSED, 3 POH, 0 reallocated/uncorrectable.
 - SMART LONG tests started 2026-10-13 ~12:55 EDT on all eight IronWolfs; estimated completion 04:14-06:07 EDT 2026-10-14 (sdc last).
 - A TrueNAS update is pending; Gene decision: do not apply until the long tests finish (reboot would abort them).
 - Gene decisions: NAS on VLAN 20; pool `tank` = 8-wide RAIDZ2 (unencrypted); datasets tank/immich, tank/plex, tank/nextcloud, tank/general per NAS_Software_Setup_Guide.pdf (that guide's 6-drive/~48 TB Stage 3 is stale; 8-wide RAIDZ2 expected ~58 TiB usable).
 - Unattended gate armed: `/home/truenas_admin/pool_gate.sh` (SHA-256 `0f5a2baae9dc4a221e4f6ca0d7254e3de8352f90717673cb16b2166d84fc8212`) running as systemd unit `pool-gate.service`, log `/home/truenas_admin/pool_gate.log`. It creates the pool and datasets only if all eight long tests report "Completed without error" with health PASSED, exactly eight ST12000VN0008 are present, no pool `tank` exists, and no data disk has partitions; otherwise it logs `RESULT=ABORT_*` and does nothing. Deadline 2026-10-14 14:00 EDT.
-- Original defective Ryzen 7 8700G (OPN 100-100001236SBX, S/N 9MQ4290R50085) returned to Amazon; no AMD RMA filed.
+- Original defective Ryzen 7 8700G (OPN 100-100001236SBX) returned to Amazon; no AMD RMA filed.
 
 ## Software / installer state
 
