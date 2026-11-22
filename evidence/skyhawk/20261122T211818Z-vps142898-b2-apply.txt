@@ -1,0 +1,38 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T211818Z-vps142898-b2-apply
+Task: b2-apply
+Generated (UTC): 2026-11-22T21:18:24Z
+Host: vps142898
+---
+=== B2_SH mode=apply 20261122T211818Z
+d9a374e7411b5de8b9806466b63b94d4565dd5f2a8fa991a374cba73ab2d04c7  /home/n790725/b2.sh
+8a679f2f615b1a2dd12f60a37d16ba472c1061e3e73ec35f52d98fead5afc710  /home/n790725/b2_edit.php
+PRE git HEAD==origin/main 9e4c92f
+PRE git status = exactly the 4 expected sync modifications
+PRE config:status = exactly the 2 deleted Webforms Only in sync
+# RULES + GERMANE REFERENCE READ
+EDIT skyhawk_site_fixes/skyhawk_site_fixes.routing.yml in=OK out=OK
+EDIT skyhawk_site_fixes/skyhawk_site_fixes.libraries.yml in=OK out=OK
+EDIT skyhawk_site_fixes/src/Controller/SystemStatusController.php in=OK out=OK
+EDIT yp_memorial/src/Controller/MemoriesController.php in=OK out=OK
+(dry write to temp ok)
+(dry write to temp ok)
+(dry write to temp ok)
+(dry write to temp ok)
+EDIT_COMPLETE
+PREFLIGHT problems=0
+BACKUP files=13 sha256=26752dc17723e4616d08406d9379216460ba8196d121b15151243ec45816c95c path=/home/n790725/backups/code/b2-pre-20261122T211818Z.tar.gz
+# RULES + GERMANE REFERENCE READ
+EDIT skyhawk_site_fixes/skyhawk_site_fixes.routing.yml in=OK out=OK
+EDIT skyhawk_site_fixes/skyhawk_site_fixes.libraries.yml in=OK out=OK
+EDIT skyhawk_site_fixes/src/Controller/SystemStatusController.php in=OK out=OK
+EDIT yp_memorial/src/Controller/MemoriesController.php in=OK out=OK
+WROTE skyhawk_site_fixes/skyhawk_site_fixes.routing.yml sha256=c18b72b2c41963e7d76c2e183665384296cb52fd5ac70926d4924f9e30cf4bf1
+WROTE skyhawk_site_fixes/skyhawk_site_fixes.libraries.yml sha256=568d27beb9ad5371bcc3e1a1fdf60a55a17004ba142a3a3522c691a75601a1b6
+WROTE skyhawk_site_fixes/src/Controller/SystemStatusController.php sha256=be0c44a02d212a0c6a4aa2fd8ff4b2b20fe9ab2801126ca510659ff2f6791649
+WROTE yp_memorial/src/Controller/MemoriesController.php sha256=602df3dfa54348e3ddf13eb79b97b220c6a2ffa00cedd5ad9fadf1271d329750
+EDIT_COMPLETE
+/home/n790725/b2.sh: line 45: 1112143 Segmentation fault      (core dumped) php -l "$f" > /dev/null
+ROLLBACK: php -l failed SystemStatusController.php
+ROLLBACK_DONE code and deleted-form sync files restored to HEAD; pending sync files untouched
+=== B2_END
