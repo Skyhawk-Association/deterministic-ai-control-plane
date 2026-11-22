@@ -1,0 +1,45 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T204927Z-vps142898-clean-e-dry
+Task: clean-e-dry
+Generated (UTC): 2026-11-22T20:49:28Z
+Host: vps142898
+---
+=== CLEANE_SH mode=dry 20261122T204927Z
+44bf21a057fb0e573d9e138e8b670bc2604c2ce230cd75b8f3f93af949644eb8  /home/n790725/clean_e.php
+ddcceeb628b4d70aa3757f1ed2cae4b6e8773c003fa8955cc9df2e7d742d2d04  /home/n790725/clean_e.sh
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== CLEANE mode=dry 2026-11-22T20:49:28+00:00
+SCAN text_columns=0
+PRE png fid=61717 status=1 text_refs=0 OK
+PRE png fid=61718 status=1 text_refs=0 OK
+PRE png fid=61719 status=1 text_refs=0 OK
+TEMP fid=60183 class=private://sajournals nodisk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=60228 class=private://sajournals nodisk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=60368 class=public://2020-04 disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=60491 class=public:/ disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61067 class=private://JournalPDF nodisk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61137 class=public://darwsafolders/sajournals nodisk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61211 class=public:/ disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61490 class=public://yp_memories disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61527 class=public://inline-images disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61528 class=public://yp_memories disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61549 class=private://sajournals nodisk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61762 class=private://skyhawk_contributions disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61771 class=private://webform/reunion_2026_photo_upload/_sid_ disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61792 class=public://webform/reunion_2026_photo_upload/_sid_ disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61793 class=public://webform/reunion_2026_photo_upload/_sid_ disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61794 class=public://webform/reunion_2026_photo_upload/_sid_ disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61947 class=public://2026-09 disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=61962 class=public://2026-09 disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=62054 class=public://sites/default/files disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=62055 class=public://inline-images disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=62444 class=public://webform/reunion_2026_photo_upload/_sid_ disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+TEMP fid=62482 class=public://webform/reunion_2026_photo_upload/_sid_ disk text_refs=0 usage=0 LEAVE_FOR_CRON_PURGE
+PRE temporary_maximum_age=0 (expect 0)
+SUMMARY png=3/3 temporary=22 keep_make_permanent=0 leave_for_cron_purge=22 files_to_archive=20 survivors_sha256=8906a874ae4da76e7989c68029d559eaaa749ee7187c65cd865d758bcf846577
+PREFLIGHT problems=0
+DRY_RUN_COMPLETE no changes made
+=== CLEANE_END
+CLEANE_END_PRESENT=YES
+PRIVATE_FILE /home/n790725/ai-reports/clean-e-private-dry-20261122T204927Z.txt bytes=2507 sha256=ad4780531e3f824419c052e4d2a06ae7b967612b8a1366124e568dd5bfb0de0a
