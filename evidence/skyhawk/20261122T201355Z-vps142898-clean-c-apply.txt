@@ -1,0 +1,31 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T201355Z-vps142898-clean-c-apply
+Task: clean-c-apply
+Generated (UTC): 2026-11-22T20:14:01Z
+Host: vps142898
+---
+=== CLEANC_SH mode=apply 20261122T201355Z
+a02ae4908cc567b99a883e252bb5a5bc70cc7b54e7211a4bdfe232d31b77a8f8  /home/n790725/clean_c.php
+61dd907bb8fc82246e60c82b9c8839e8e376124e173529c569ce9038117a4978  /home/n790725/clean_c.sh
+tar: Removing leading `/' from member names
+TAR_RECHECK OK files=57 sha256=ab30574dc778b9a83e000ded92ab08424f0b5f8beeeb071325c6f5d141f427b5
+8.4.28
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== CLEANC mode=apply 2026-11-22T20:13:56+00:00 A=38 B=135 Q=19 P=10
+PRE A ok=38/38
+PRE B ok=135/135
+PRE Q ok=19/19
+PRE P ok=10/10
+PREFLIGHT problems=0
+ROWS count=202 sha256=e24e7a8950ffe4e52095886b8b93c8ca20eee10a505f4e28ba1833c8d8969010
+APPLY_PRECHECK rows_match_backup=YES
+DELETE records_deleted=192 records_remaining=0 A_files_remaining_on_disk=0 (expect 192, 0, 0) VERIFIED
+PERMANENT journals=10/10 VERIFIED
+TEMP_ROWS_REMAINING 27 (left for Gene: hash upload folders, reunion/inline/yp/misc, journal rows with no file)
+APPLY_COMPLETE
+=== CLEANC_END
+CLEANC_END_PRESENT=YES
+QUARANTINE_FILES 19
+QUARANTINE_DELETED files=19 now_exists=no
+CACHE_REBUILT
