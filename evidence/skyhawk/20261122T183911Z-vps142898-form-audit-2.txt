@@ -1,0 +1,102 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T183911Z-vps142898-form-audit-2
+Task: form-audit-2
+Generated (UTC): 2026-11-22T18:39:12Z
+Host: vps142898
+---
+=== AUDIT2_SH 2026-11-22T18:39:11Z
+4950d4e88bd874a410016170941e7955bc434d262d0c051fc20f9ad93f4fe3bf  /home/n790725/form_audit_2.php
+6f84c775569037d010fe69b2e5def31798459445cb29fb5d4a4dc9486ff72e07  /home/n790725/form_audit_2.sh
+--- routing entries (private file only)
+upload_transition_observation controller: _controller: '\Drupal\skyhawk_site_fixes\Controller\UploadTransitionObservationController::record'
+--- handler files for the open routes (full text in local private file only)
+HANDLER web/modules/custom/skyhawk_site_fixes/src/Form/ManagedFileCoreControlForm.php lines=63 sha256=eddf57f4779daf744faa91a105c19a2fea73eda1cefb772e0054a0cf5aebbb1e
+  flag function submitForm                  1
+  flag ->save\(                             0
+  flag ->delete\(                           0
+  flag plugin\.manager\.mail                0
+  flag file_save|FileRepository|writeData   0
+  flag getContent\(\)                       0
+  flag Drupal::state\(\)                    0
+  flag getEditable                          0
+HANDLER web/modules/custom/skyhawk_site_fixes/src/Controller/UploadTransitionObservationController.php lines=146 sha256=0002945d7899abc6717946aaf1e7ab23f740fd6a84d09c63dee7272b7d769658
+  flag function submitForm                  0
+  flag ->save\(                             0
+  flag ->delete\(                           0
+  flag plugin\.manager\.mail                0
+  flag file_save|FileRepository|writeData   0
+  flag getContent\(\)                       1
+  flag Drupal::state\(\)                    0
+  flag getEditable                          0
+--- callers of the two open routes and token checks (lines in local private file only; counts here)
+CALLERS 3
+TOKENCHK web/modules/custom/skyhawk_site_fixes/src/Form/ReunionManageForm.php hash_equals=0 access_denied=2 token_refs=7
+TOKENCHK web/modules/custom/skyhawk_site_fixes/src/Form/ReunionUploadForm.php hash_equals=1 access_denied=2 token_refs=11
+TOKENCHK web/modules/custom/skyhawk_site_fixes/src/Controller/ReunionController.php hash_equals=0 access_denied=0 token_refs=6
+LOCAL_CODE_FILE /home/n790725/ai-reports/form-audit-2-code-20261122T183911Z.txt bytes=10883 sha256=4a0e83ee29f901dc765a0d3e808d47bd9a153dfb1d9a004950fdb8f02eea7f56
+--- drush php:script (recorded php84 shim on PATH)
+8.4.28
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== AUDIT2 2026-11-22T18:39:11+00:00
+--- files attached to submissions
+  yp_memories SID 2 fid=61237 size=161285 mime=image/jpeg ext=jpg scheme=public perm=Y uid=11 created=2026-05-21
+  yp_memories SID 4 fid=61238 size=552833 mime=image/jpeg ext=jpg scheme=public perm=Y uid=0 created=2026-05-22
+  yp_memories SID 5 fid=61239 size=2073730 mime=image/jpeg ext=jpg scheme=public perm=Y uid=0 created=2026-05-24
+  yp_memories SID 6 fid=61487 size=159525 mime=image/jpeg ext=jpg scheme=public perm=Y uid=0 created=2026-05-24
+  yp_memories SID 7 fid=61489 size=259121 mime=image/jpeg ext=jpg scheme=public perm=Y uid=0 created=2026-05-24
+  yp_memories SID 8 fid=61491 size=2172227 mime=image/jpeg ext=jpg scheme=public perm=Y uid=11 created=2026-05-26
+  yp_memories SID 9 fid=61503 size=1606471 mime=image/jpeg ext=jpg scheme=public perm=Y uid=0 created=2026-05-28
+  yp_memories SID 10 fid=61530 size=122064 mime=image/jpeg ext=jpeg scheme=public perm=Y uid=0 created=2026-07-19
+FILES yp_memories submissions=38 with_files=8 total_bytes=7107256
+FILES reunion_2026_photo_upload submissions=30 with_files=30 total_bytes=323671547
+FILES volunteer_submission submissions=0 with_files=0 total_bytes=0
+FILES trustee_feedback submissions=0 with_files=0 total_bytes=0
+--- uid 0 (anonymous) managed files by directory, all time
+ANONFILES public://media-icons/generic status=1 n=1 bytes=5294 last=2026-07-11 mime={"image\/png":1}
+ANONFILES public://oembed_thumbnails status=1 n=78 bytes=1177127 last=2020-05-04 mime={"image\/jpeg":78}
+ANONFILES public://reunions status=1 n=6 bytes=1535094 last=2026-07-26 mime={"application\/pdf":6}
+ANONFILES public://reunions/2026 status=1 n=2 bytes=3912170 last=2026-09-13 mime={"application\/octet-stream":2}
+ANONFILES public://webform/reunion_2026_photo_upload/24 status=1 n=1 bytes=182348 last=2026-09-15 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/27 status=1 n=1 bytes=2865856 last=2026-09-19 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/28 status=1 n=1 bytes=135212 last=2026-09-19 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/29 status=1 n=1 bytes=2951982 last=2026-09-19 mime={"image\/png":1}
+ANONFILES public://webform/reunion_2026_photo_upload/30 status=1 n=1 bytes=4256190 last=2026-09-20 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/31 status=1 n=1 bytes=767356 last=2026-09-20 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/32 status=1 n=1 bytes=37202 last=2026-09-20 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/33 status=1 n=1 bytes=1191083 last=2026-09-20 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/34 status=1 n=1 bytes=744010 last=2026-09-20 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/35 status=1 n=1 bytes=2678340 last=2026-09-20 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/36 status=1 n=7 bytes=37278084 last=2026-09-20 mime={"image\/jpeg":7}
+ANONFILES public://webform/reunion_2026_photo_upload/43 status=1 n=1 bytes=4712505 last=2026-09-21 mime={"image\/jpeg":1}
+ANONFILES public://webform/reunion_2026_photo_upload/46 status=1 n=2 bytes=5947199 last=2026-09-23 mime={"image\/jpeg":2}
+ANONFILES public://webform/reunion_2026_photo_upload/47 status=1 n=9 bytes=37941942 last=2026-09-27 mime={"image\/jpeg":9}
+ANONFILES public://webform/reunion_2026_photo_upload/48 status=1 n=4 bytes=19733303 last=2026-09-27 mime={"image\/jpeg":4}
+ANONFILES public://webform/reunion_2026_photo_upload/49 status=1 n=5 bytes=21611112 last=2026-09-28 mime={"image\/jpeg":5}
+ANONFILES public://webform/reunion_2026_photo_upload/_sid_ status=0 n=4 bytes=13337133 last=2026-11-01 mime={"image\/jpeg":3,"image\/png":1}
+ANONFILES public://yp_memories status=0 n=20 bytes=2479057 last=2026-07-19 mime={"text\/html":14,"application\/xml":2,"application\/pdf":3,"image\/jpeg":1}
+ANONFILES public://yp_memories status=1 n=6 bytes=4773744 last=2026-07-19 mime={"image\/jpeg":6}
+--- contact daily submissions 2026-10-11 to now (LINKCYR = subject or message contains http(s)://, www. or Cyrillic)
+CONTACT 2026-10-11 n=17 linkcyr=14
+CONTACT 2026-10-12 n=8 linkcyr=4
+CONTACT 2026-10-13 n=10 linkcyr=1
+CONTACT 2026-10-14 n=6 linkcyr=4
+CONTACT 2026-10-15 n=6 linkcyr=3
+CONTACT 2026-10-16 n=6 linkcyr=6
+CONTACT 2026-10-17 n=4 linkcyr=3
+CONTACT 2026-10-18 n=6 linkcyr=6
+CONTACT 2026-10-19 n=3 linkcyr=3
+CONTACT 2026-10-20 n=6 linkcyr=5
+CONTACT 2026-10-21 n=4 linkcyr=4
+CONTACT 2026-10-22 n=5 linkcyr=5
+CONTACT 2026-10-23 n=3 linkcyr=3
+CONTACT 2026-10-24 n=5 linkcyr=4
+CONTACT 2026-10-25 n=5 linkcyr=3
+CONTACT 2026-10-26 n=1 linkcyr=0
+CONTACT 2026-10-27 n=1 linkcyr=0
+CONTACT 2026-11-02 n=1 linkcyr=0
+CONTACT 2026-11-11 n=1 linkcyr=0
+CONTACT 2026-11-12 n=1 linkcyr=0
+CONTACT 2026-11-22 n=1 linkcyr=0
+=== AUDIT2_END
+AUDIT2_END_PRESENT=YES
