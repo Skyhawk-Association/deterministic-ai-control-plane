@@ -1,0 +1,175 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T181351Z-vps142898-form-audit-1c
+Task: form-audit-1c
+Generated (UTC): 2026-11-22T18:13:52Z
+Host: vps142898
+---
+10752e70c55fecc1f28c125d3ec914096b6b642cd52da29bbaba9e74b763cfda  /home/n790725/form_audit_1.php
+8.4.28
+DRUSH_RC=0
+=== AUDIT1 2026-11-22T18:13:52+00:00
+--- modules
+MODULE honeypot=ON
+MODULE captcha=ON
+MODULE antibot=off
+MODULE webform_spam_protection=off
+MODULE recaptcha=off
+MODULE turnstile=off
+MODULE cleantalk=off
+MODULE contact=ON
+MODULE comment=off
+MODULE webform=ON
+--- anonymous permissions
+access content
+search content
+subscribe to newsletters
+view article_journal_public revisions
+view media
+view page revisions
+--- user.settings register=visitors_admin_approval
+--- honeypot
+protect_all_forms=false time_limit=5
+form_settings={"user_register_form":true,"user_pass":false,"feedback_contact_message_form":false,"_contact_message_form":false}
+--- captcha default="captcha\/Math"
+CAPTCHA_POINT contact_message_personal_form status=off type="default"
+CAPTCHA_POINT node_155242_155289_form status=off type="default"
+CAPTCHA_POINT node_article_board_form status=off type="default"
+CAPTCHA_POINT node_article_form status=off type="default"
+CAPTCHA_POINT node_article_journal_private_form status=off type="default"
+CAPTCHA_POINT node_article_journal_public_form status=off type="default"
+CAPTCHA_POINT node_article_modeling_form status=off type="default"
+CAPTCHA_POINT node_article_readyroom_form status=off type="default"
+CAPTCHA_POINT node_article_unit_form status=off type="default"
+CAPTCHA_POINT node_attendee_memory_form status=off type="default"
+CAPTCHA_POINT node_book_form status=off type="default"
+CAPTCHA_POINT node_buno_batch_form status=off type="default"
+CAPTCHA_POINT node_bureau_numbers_form status=off type="default"
+CAPTCHA_POINT node_dir_listing_form status=off type="default"
+CAPTCHA_POINT node_gabby_s_histories_form status=off type="default"
+CAPTCHA_POINT node_journal_form status=off type="default"
+CAPTCHA_POINT node_journal_index_form status=off type="default"
+CAPTCHA_POINT node_model_build_form status=off type="default"
+CAPTCHA_POINT node_modeling_review_page_form status=off type="default"
+CAPTCHA_POINT node_newsletter_issue_form status=off type="default"
+CAPTCHA_POINT node_page_form status=off type="default"
+CAPTCHA_POINT node_pdf_form status=off type="default"
+CAPTCHA_POINT node_reunion_attendance_form status=off type="default"
+CAPTCHA_POINT node_reunion_event_form status=off type="default"
+CAPTCHA_POINT node_reunion_person_form status=off type="default"
+CAPTCHA_POINT node_reunion_series_form status=off type="default"
+CAPTCHA_POINT node_simplenews_issue_form status=off type="default"
+CAPTCHA_POINT node_skyhawk_association_journal_inde_form status=off type="default"
+CAPTCHA_POINT node_song_form status=off type="default"
+CAPTCHA_POINT node_squadron_form status=off type="default"
+CAPTCHA_POINT node_state_abbreviations_form status=off type="default"
+CAPTCHA_POINT user_login_form status=off type="default"
+CAPTCHA_POINT user_pass status=off type="default"
+CAPTCHA_POINT user_register_form status=ON type="captcha\/Math"
+--- webforms
+WEBFORM contact status="open" open=Y anon_create=Y
+  create_rule={"roles":["anonymous","authenticated"],"users":[],"permissions":[]}
+  elements=name:textfield email:email category:select unit:select subject:textfield(pattern) message:textarea(pattern) captcha_math:captcha actions:webform_actions
+  handlers=email_confirmation:email:on email_notification:email:on route_correction:email:on route_former:email:on route_history:email:on route_journal:email:on route_membership_login:email:on route_membership_paypal:email:on route_modeling:email:on route_patch_orders:email:on route_research:email:on route_story:email:on
+  third_party[honeypot]={"honeypot":true,"time_restriction":true}
+  limit_total=null limit_user=null confidential=false
+WEBFORM reunion_2026_photo_upload status="open" open=Y anon_create=Y
+  create_rule={"roles":["anonymous","authenticated"],"users":[],"permissions":[]}
+  elements=intro:webform_markup person_lookup:select public_credit:textfield photos:webform_image_file caption:textarea rights_consent:checkbox
+  handlers=none
+  limit_total=null limit_user=null confidential=false
+WEBFORM trustee_feedback status="open" open=Y anon_create=Y
+  create_rule={"roles":["anonymous","authenticated"],"users":[],"permissions":[]}
+  elements=page_select:select comment:textarea
+  handlers=none
+  limit_total=null limit_user=null confidential=false
+WEBFORM volunteer_submission status="open" open=Y anon_create=Y
+  create_rule={"roles":["anonymous","authenticated"],"users":[],"permissions":[]}
+  elements=volunteer_name:textfield volunteer_tenure:textfield volunteer_photo:managed_file volunteer_activity:textarea volunteer_why:textfield
+  handlers=none
+  limit_total=null limit_user=null confidential=false
+WEBFORM yp_memories status="open" open=Y anon_create=Y
+  create_rule={"roles":["anonymous","authenticated"],"users":[],"permissions":[]}
+  elements=name:textfield email:email relationship:textfield memory:textarea photo:managed_file consent:checkbox
+  handlers=none
+  limit_total=null limit_user=null confidential=false
+--- submissions per webform (counts only; BOT = every text value is a 6+ char mixed-case alnum token)
+SUBS contact total=116 BOT=0 HUMAN=116 EMPTY=0 first=2026-08-16 last=2026-11-22
+  2026-08 {"HUMAN":3}
+  2026-09 {"HUMAN":6}
+  2026-10 {"HUMAN":103}
+  2026-11 {"HUMAN":4}
+SUBS reunion_2026_photo_upload total=30 BOT=0 HUMAN=30 EMPTY=0 first=2026-09-13 last=2026-09-28
+  2026-09 {"HUMAN":30}
+SUBS trustee_feedback total=0 BOT=0 HUMAN=0 EMPTY=0 first=- last=-
+SUBS volunteer_submission total=0 BOT=0 HUMAN=0 EMPTY=0 first=- last=-
+SUBS yp_memories total=38 BOT=0 HUMAN=38 EMPTY=0 first=2026-05-21 last=2026-10-31
+  2026-05 {"HUMAN":9}
+  2026-07 {"HUMAN":1}
+  2026-10 {"HUMAN":28}
+  --- yp_memories rows (no field values printed; shape only, rows from 2026-07-20 on)
+  SID 1 2026-05-21 07:16Z HUMAN draft=N sticky=N uid=0
+  SID 2 2026-05-21 18:29Z HUMAN draft=N sticky=N uid=11
+  SID 3 2026-05-21 20:21Z HUMAN draft=N sticky=N uid=0
+  SID 4 2026-05-22 20:19Z HUMAN draft=N sticky=N uid=0
+  SID 5 2026-05-24 08:56Z HUMAN draft=N sticky=N uid=0
+  SID 6 2026-05-24 19:42Z HUMAN draft=N sticky=N uid=0
+  SID 7 2026-05-24 21:13Z HUMAN draft=N sticky=N uid=0
+  SID 8 2026-05-26 13:05Z HUMAN draft=N sticky=N uid=11
+  SID 9 2026-05-28 21:21Z HUMAN draft=N sticky=N uid=0
+  SID 10 2026-07-19 23:16Z HUMAN draft=N sticky=N uid=0
+  SID 79 2026-10-12 15:54Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=37,@] OTHER cls=a9 ; memory[len=18] BOTSHAPE cls=aA ; name[len=20] BOTSHAPE cls=aA ; relationship[len=22] BOTSHAPE cls=aA
+  SID 89 2026-10-13 15:58Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=28,@] OTHER cls=a9 ; memory[len=19] BOTSHAPE cls=aA ; name[len=23] BOTSHAPE cls=aA ; relationship[len=24] BOTSHAPE cls=aA
+  SID 94 2026-10-13 22:50Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=25,@] OTHER cls=a ; memory[len=19] BOTSHAPE cls=aA ; name[len=21] BOTSHAPE cls=aA ; relationship[len=23] BOTSHAPE cls=aA
+  SID 106 2026-10-15 18:43Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=37,@] OTHER cls=a9 ; memory[len=20] BOTSHAPE cls=aA ; name[len=16] BOTSHAPE cls=aA ; relationship[len=19] BOTSHAPE cls=aA
+  SID 107 2026-10-15 19:31Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=27,@] OTHER cls=a9 ; memory[len=23] BOTSHAPE cls=aA ; name[len=22] BOTSHAPE cls=aA ; relationship[len=21] BOTSHAPE cls=aA
+  SID 108 2026-10-15 20:42Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=23,@] OTHER cls=a9 ; memory[len=19] BOTSHAPE cls=aA ; name[len=19] BOTSHAPE cls=aA ; relationship[len=20] BOTSHAPE cls=aA
+  SID 114 2026-10-16 17:59Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=20,@] OTHER cls=a ; memory[len=24] BOTSHAPE cls=aA ; name[len=22] BOTSHAPE cls=aA ; relationship[len=18] BOTSHAPE cls=aA
+  SID 117 2026-10-16 22:37Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=19,@] OTHER cls=a ; memory[len=24] BOTSHAPE cls=aA ; name[len=21] BOTSHAPE cls=aA ; relationship[len=24] BOTSHAPE cls=aA
+  SID 119 2026-10-17 03:50Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=21,@] OTHER cls=a ; memory[len=17] BOTSHAPE cls=aA ; name[len=19] BOTSHAPE cls=aA ; relationship[len=19] BOTSHAPE cls=aA
+  SID 124 2026-10-17 20:50Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=29,@] OTHER cls=a9 ; memory[len=17] BOTSHAPE cls=aA ; name[len=23] BOTSHAPE cls=aA ; relationship[len=18] BOTSHAPE cls=aA
+  SID 127 2026-10-18 03:06Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=19,@] OTHER cls=a ; memory[len=20] BOTSHAPE cls=aA ; name[len=20] BOTSHAPE cls=aA ; relationship[len=23] BOTSHAPE cls=aA
+  SID 128 2026-10-18 09:04Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=29,@] OTHER cls=a9 ; memory[len=17] BOTSHAPE cls=aA ; name[len=20] BOTSHAPE cls=aA ; relationship[len=22] BOTSHAPE cls=aA
+  SID 129 2026-10-18 12:53Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=27,@] OTHER cls=a9 ; memory[len=21] BOTSHAPE cls=aA ; name[len=16] BOTSHAPE cls=aA ; relationship[len=21] BOTSHAPE cls=aA
+  SID 137 2026-10-19 20:51Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=24,@] OTHER cls=a ; memory[len=16] BOTSHAPE cls=aA ; name[len=16] BOTSHAPE cls=aA ; relationship[len=24] BOTSHAPE cls=aA
+  SID 142 2026-10-20 20:36Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=21,@] OTHER cls=a ; memory[len=24] BOTSHAPE cls=aA ; name[len=17] BOTSHAPE cls=aA ; relationship[len=20] BOTSHAPE cls=aA
+  SID 148 2026-10-21 17:54Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=39,@] OTHER cls=a ; memory[len=23] BOTSHAPE cls=aA ; name[len=17] BOTSHAPE cls=aA ; relationship[len=20] BOTSHAPE cls=aA
+  SID 150 2026-10-22 01:16Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=20,@] OTHER cls=a ; memory[len=20] BOTSHAPE cls=aA ; name[len=16] BOTSHAPE cls=aA ; relationship[len=19] BOTSHAPE cls=aA
+  SID 154 2026-10-22 09:46Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=20,@] OTHER cls=a9 ; memory[len=18] BOTSHAPE cls=aA ; name[len=18] BOTSHAPE cls=aA ; relationship[len=16] BOTSHAPE cls=aA
+  SID 156 2026-10-22 19:11Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=24,@] OTHER cls=a ; memory[len=18] BOTSHAPE cls=aA ; name[len=22] BOTSHAPE cls=aA ; relationship[len=23] BOTSHAPE cls=aA
+  SID 160 2026-10-23 18:46Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=23,@] OTHER cls=a ; memory[len=21] BOTSHAPE cls=aA ; name[len=18] BOTSHAPE cls=aA ; relationship[len=22] BOTSHAPE cls=aA
+  SID 167 2026-10-24 20:01Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=25,@] OTHER cls=a9 ; memory[len=19] BOTSHAPE cls=aA ; name[len=21] BOTSHAPE cls=aA ; relationship[len=23] BOTSHAPE cls=aA
+  SID 173 2026-10-25 21:20Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=23,@] OTHER cls=a9 ; memory[len=19] BOTSHAPE cls=aA ; name[len=16] BOTSHAPE cls=aA ; relationship[len=19] BOTSHAPE cls=aA
+  SID 175 2026-10-26 16:13Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=23,@] OTHER cls=a ; memory[len=18] BOTSHAPE cls=aA ; name[len=18] BOTSHAPE cls=aA ; relationship[len=17] BOTSHAPE cls=aA
+  SID 176 2026-10-26 22:13Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=19,@] OTHER cls=a ; memory[len=18] BOTSHAPE cls=aA ; name[len=22] BOTSHAPE cls=aA ; relationship[len=17] BOTSHAPE cls=aA
+  SID 178 2026-10-27 17:08Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=21,@] OTHER cls=a9 ; memory[len=21] BOTSHAPE cls=aA ; name[len=16] BOTSHAPE cls=aA ; relationship[len=16] BOTSHAPE cls=aA
+  SID 179 2026-10-27 19:51Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=19,@] OTHER cls=a ; memory[len=24] BOTSHAPE cls=aA ; name[len=18] BOTSHAPE cls=aA ; relationship[len=21] BOTSHAPE cls=aA
+  SID 180 2026-10-27 21:53Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=26,@] OTHER cls=a9 ; memory[len=24] BOTSHAPE cls=aA ; name[len=23] BOTSHAPE cls=aA ; relationship[len=22] BOTSHAPE cls=aA
+  SID 181 2026-10-31 21:16Z HUMAN draft=N sticky=N uid=0 | consent[len=1] OTHER cls=9 ; email[len=29,@] OTHER cls=a9 ; memory[len=19] BOTSHAPE cls=aA ; name[len=22] BOTSHAPE cls=aA ; relationship[len=24] BOTSHAPE cls=aA
+--- custom routes (skyhawk*/yp_memorial) and anonymous access
+ROUTE skyhawk_gallery.photo_contribute /photo-contribute methods=GET,POST anon=ANON_DENY form=\Drupal\skyhawk_gallery\Form\PhotoContributionForm req={"_permission":"contribute skyhawk photos"}
+ROUTE skyhawk_gallery.photo_review /admin/skyhawk/photo-review methods=GET,POST anon=ANON_DENY form=\Drupal\skyhawk_gallery\Form\PhotoReviewForm req={"_permission":"review skyhawk photo contributions"}
+ROUTE skyhawk_gallery.unknowns /buno-unknowns methods=GET,POST anon=ANON_DENY form=- req={"_permission":"contribute skyhawk photos"}
+ROUTE skyhawk_site_fixes.journal_upload /journal-upload methods=GET,POST anon=ANON_DENY form=\Drupal\skyhawk_site_fixes\Form\JournalUploadForm req={"_role":"journal+admin"}
+ROUTE skyhawk_site_fixes.managed_file_core_control /skyhawk/managed-file-core-control methods=GET,POST anon=ANON_OK form=\Drupal\skyhawk_site_fixes\Form\ManagedFileCoreControlForm req={"_access":"TRUE"}
+ROUTE skyhawk_site_fixes.reunion_keeper_ack /reunion/keeper/acknowledge/{token} methods=GET,POST anon=PARAMS(token) form=- req={"_access":"TRUE","token":"[a-f0-9]{64}"}
+ROUTE skyhawk_site_fixes.reunion_manage /reunion/manage/{token} methods=GET,POST anon=PARAMS(token) form=\Drupal\skyhawk_site_fixes\Form\ReunionManageForm req={"_access":"TRUE"}
+ROUTE skyhawk_site_fixes.reunion_newsletter_update /ready-room/reunion/{node}/newsletter methods=GET,POST anon=PARAMS(node) form=\Drupal\skyhawk_site_fixes\Form\ReunionNewsletterUpdateForm req={"_user_is_logged_in":"TRUE"}
+ROUTE skyhawk_site_fixes.reunion_ready_room /ready-room/reunions methods=GET,POST anon=ANON_DENY form=- req={"_custom_access":"\\Drupal\\skyhawk_site_fixes\\Controller\\ReunionReadyRoomController::listAccess"}
+ROUTE skyhawk_site_fixes.reunion_ready_room_manage /ready-room/reunion/{node} methods=GET,POST anon=PARAMS(node) form=- req={"_custom_access":"\\Drupal\\skyhawk_site_fixes\\Controller\\ReunionReadyRoomController::manageAccess"}
+ROUTE skyhawk_site_fixes.reunion_request /ready-room/reunions/request methods=GET,POST anon=ANON_DENY form=\Drupal\skyhawk_site_fixes\Form\ReunionRequestForm req={"_role":"authorized_user"}
+ROUTE skyhawk_site_fixes.reunion_token_admin /admin/skyhawk/reunion-token methods=GET,POST anon=ANON_DENY form=\Drupal\skyhawk_site_fixes\Form\ReunionTokenAdminForm req={"_permission":"administer site configuration"}
+ROUTE skyhawk_site_fixes.reunion_upload /community/event-submission/{token} methods=GET,POST anon=PARAMS(token) form=\Drupal\skyhawk_site_fixes\Form\ReunionUploadForm req={"_access":"TRUE"}
+ROUTE skyhawk_site_fixes.reunion_verify /reunion/verify/{token} methods=GET,POST anon=PARAMS(token) form=- req={"_access":"TRUE"}
+ROUTE skyhawk_site_fixes.reunion_worker /ready-room/reunion/{node}/worker methods=GET,POST anon=PARAMS(node) form=\Drupal\skyhawk_site_fixes\Form\ReunionWorkerForm req={"_custom_access":"\\Drupal\\skyhawk_site_fixes\\Controller\\ReunionReadyRoomController::ownerAccess"}
+ROUTE skyhawk_site_fixes.system_status /admin/skyhawk/system-status methods=GET,POST anon=ANON_DENY form=- req={"_permission":"administer site configuration"}
+ROUTE skyhawk_site_fixes.upload_token_admin /admin/skyhawk/upload-tokens methods=GET,POST anon=ANON_DENY form=\Drupal\skyhawk_site_fixes\Form\UploadTokenAdminForm req={"_permission":"administer site configuration"}
+ROUTE skyhawk_site_fixes.upload_token_view /upload/{token} methods=GET,POST anon=PARAMS(token) form=\Drupal\skyhawk_site_fixes\Form\UploadTokenForm req={"_access":"TRUE","token":"[a-f0-9]{32}"}
+ROUTE skyhawk_site_fixes.upload_transition_observation /skyhawk/upload-transition-observation methods=GET,POST anon=ANON_OK form=- req={"_access":"TRUE"}
+ROUTE view.public_skyhawk_journal_index.data_export_1 /download/views methods=GET anon=ANON_DENY form=- req={"_permission":"view any article_journal_public content","_format":"json"}
+ROUTE view.public_skyhawk_journal_index.page_1 /skyhawk-public-journal-index methods=GET,POST anon=ANON_DENY form=- req={"_permission":"view any article_journal_public content","_format":"html"}
+ROUTE view.public_skyhawk_journal_index.page_2 /skyhawk-public-journal-index-page2 methods=GET,POST anon=ANON_DENY form=- req={"_permission":"view any article_journal_public content","_format":"html"}
+ROUTE view.skyhawk_journal_index.page_1 /skyhawk-journal-index methods=GET,POST anon=ANON_DENY form=- req={"_role":"authorized_user","_format":"html"}
+ROUTE view.skyhawk_songs.page_1 /skyhawk-songs methods=GET,POST anon=ANON_OK form=- req={"_permission":"access content","_format":"html"}
+ROUTE yp_memorial.memories /memories-of-yp methods=GET,POST anon=ANON_OK form=- req={"_permission":"access content"}
+=== AUDIT1_END
+AUDIT1_END_PRESENT=YES
