@@ -1,0 +1,62 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T185921Z-vps142898-fix-4-dry
+Task: fix-4-dry
+Generated (UTC): 2026-11-22T18:59:24Z
+Host: vps142898
+---
+=== FIX4_SH mode=dry 20261122T185921Z
+d0358f46fea3971e6b929615492caeacfb86842829f14760c97366598a9ae60c  /home/n790725/fix_4.php
+9d9279e7b2984fc67dc4ee6636c94a655628af6dee0b5d21ef96a2ea56cee027  /home/n790725/fix_4.sh
+8.4.28
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== FIX4 mode=dry 2026-11-22T18:59:21+00:00
+PRE fid=61505 size=53 ext=html OK sha256=467d71ee32d566e7298be026f2176a4b4d0ff99074a80d295a4cdd250c3bf5f2
+PRE fid=61506 size=195855 ext=html OK sha256=3ae46c8c03e51fedd65273edc5649fd57866d9395b5982a1f30748aa310d2a53
+PRE fid=61507 size=199493 ext=html OK sha256=f92f84ec414d73f6b5b49827805b6825c20abdcc7b81b185110af1f7149b56a3
+PRE fid=61508 size=28699 ext=html OK sha256=a7edcba3b5dbacb999f64ebcf4eb88136897fd745fc5774f3caaf79bc7c792aa
+PRE fid=61509 size=53 ext=html OK sha256=50947f5bb6ed48a7cd0747a9bd752c7e869b9a75f78ee3aa45fb43a8f29b8529
+PRE fid=61510 size=2856 ext=xml OK sha256=93cf4c41a8e9db7c948d94232ab5bfed4e81dfaccb3ac5ab15b18515ef501107
+PRE fid=61511 size=1936 ext=xml OK sha256=93273b686c1708f8748d2a611be07bb1ed938cbd4810030f0c835b143811767a
+PRE fid=61512 size=197292 ext=html OK sha256=5be7e422927785f9f73646fff4ac1735f0622200cded0db7845f124675c3e6fc
+PRE fid=61513 size=196892 ext=html OK sha256=dd8df9e7e63d42951342ad290d2e8e51a64baa3a4ecb5ac439a9067d5e30b6d9
+PRE fid=61514 size=196937 ext=html OK sha256=c4171349777bca0db76eb52483e45228e81fbe18b26e9e158836fb021fdb84e0
+PRE fid=61515 size=196906 ext=html OK sha256=70e33c5be31d641560e4c20d7b399a83db71643c8cb1f24bb55e7c24009bc940
+PRE fid=61516 size=197040 ext=html OK sha256=605a4f11397b3939bdfc40ca2ab44525f6148cade17ab580e0b6c9aa9fe7acf9
+PRE fid=61517 size=196981 ext=html OK sha256=5643eb8bdac3de97d56febda5efbe35959b28b272f43b196df9ae9ee8cd8eacb
+PRE fid=61519 size=196896 ext=html OK sha256=0f915f373d335938d0f1fc2bcb5020210dd0844980ac7b69812fd6c73f0d1051
+PRE fid=61520 size=197264 ext=html OK sha256=0d9efc8172fed27ad2785eec6e404ced1cc20357f2e194fa04ac14b35060cd33
+PRE fid=61521 size=53 ext=html OK sha256=467d71ee32d566e7298be026f2176a4b4d0ff99074a80d295a4cdd250c3bf5f2
+PRE fid=61522 size=85831 ext=pdf OK sha256=d6e356b856983fb40560dee73840c7f712020ce1d858ccfe50e81f3b8c2bc2a0
+PRE fid=61523 size=132942 ext=pdf OK sha256=fde860ac787b64cdf4e59469740717f83625c3591ebc4fed64835587a369f39c
+PRE fid=61524 size=133014 ext=pdf OK sha256=d792937e446dbf377227b134980ef076b41ad4122128d57b89abb6273bc15597
+PRE yp_memories.photo ext_now="(webform default)" -> "jpg jpeg png"
+PRE volunteer_submission.volunteer_photo ext_now="(webform default)" -> "jpg jpeg png"
+PREFLIGHT targets_ok=19/19 problems=0
+DRY_RUN_COMPLETE no changes made
+=== FIX4_END
+FIX4_END_PRESENT=YES
+--- anonymous HTTP status of the 19 spam URLs (expect dry=200, apply=404)
+HTTP fid=61505 200
+HTTP fid=61506 200
+HTTP fid=61507 200
+HTTP fid=61508 200
+HTTP fid=61509 200
+HTTP fid=61510 200
+HTTP fid=61511 200
+HTTP fid=61512 200
+HTTP fid=61513 200
+HTTP fid=61514 200
+HTTP fid=61515 200
+HTTP fid=61516 200
+HTTP fid=61517 200
+HTTP fid=61519 200
+HTTP fid=61520 200
+HTTP fid=61521 200
+HTTP fid=61522 200
+HTTP fid=61523 200
+HTTP fid=61524 200
+HTTP_SUMMARY 200=19 404=0 other=0
+--- config status and Git (sync files)
+ [notice] No differences between DB and sync directory.
+QUARANTINE files=0 mode=700
