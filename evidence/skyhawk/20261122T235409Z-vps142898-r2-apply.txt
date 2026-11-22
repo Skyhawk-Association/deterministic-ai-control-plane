@@ -1,0 +1,38 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T235409Z-vps142898-r2-apply
+Task: r2-apply
+Generated (UTC): 2026-11-22T23:54:15Z
+Host: vps142898
+---
+=== R2_SH mode=apply 20261122T235409Z
+e433c61d391963b44128b4044b5692ca02be9278d1b708bc2742faa3a3c4acd5  /home/n790725/r2.sh
+de4cccf2930b4209c778750f04f44c95f991467911b73a3e64fcaa8f60384c06  /home/n790725/r2_edit.php
+PRE git HEAD==origin/main 1f36d52
+PRE git status clean
+# RULES + GERMANE REFERENCE READ
+EDIT ReunionRequestForm.php in=OK out=OK
+EDIT ReunionNewsletterUpdateForm.php in=OK out=OK
+(dry write to temp ok)
+(dry write to temp ok)
+EDIT_COMPLETE
+PREFLIGHT problems=0
+BACKUP files=2 sha256=0dcdf97cc12aa5df8e8b68b0b3d2b30c153a97c683f5f205e5b43028763abdf0 path=/home/n790725/backups/code/r2-pre-20261122T235409Z.tar.gz
+# RULES + GERMANE REFERENCE READ
+EDIT ReunionRequestForm.php in=OK out=OK
+EDIT ReunionNewsletterUpdateForm.php in=OK out=OK
+WROTE ReunionRequestForm.php sha256=a64e0889f9d49aa0719a9e1471565984df3b79a4d7ef2affe3b12c01c9b248ba
+WROTE ReunionNewsletterUpdateForm.php sha256=a281049cb1d1d88f0785790fc84ebefd306623b4c280af4bced3c2b8f0cc48e2
+EDIT_COMPLETE
+CACHE_REBUILT
+SELFTEST ReunionRequestForm LOGGED=1 (expect LOGGED=1)
+SELFTEST ReunionNewsletterUpdateForm LOGGED=1 (expect LOGGED=1)
+WEBROOT_DOWNLOADS absent (expected)
+ .../src/Form/ReunionNewsletterUpdateForm.php       |  65 ++--------
+ .../src/Form/ReunionRequestForm.php                | 133 ++-------------------
+ 2 files changed, 17 insertions(+), 181 deletions(-)
+COMMIT 5680b0cf875ab92b363d92fe912cc87eb1e1e66b
+PUSHED
+PARITY local==remote 5680b0cf875ab92b363d92fe912cc87eb1e1e66b VERIFIED
+GIT_STATUS_AFTER lines=0 (expect 0)
+APPLY_COMPLETE
+=== R2_END
