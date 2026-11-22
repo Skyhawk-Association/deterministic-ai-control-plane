@@ -1,0 +1,32 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T191102Z-vps142898-fix-5-apply
+Task: fix-5-apply
+Generated (UTC): 2026-11-22T19:11:09Z
+Host: vps142898
+---
+=== FIX5_SH mode=apply 20261122T191102Z
+609b206dcbe1dc9b0bb604cb7a884adb43ed71e814220be9a218aa76f5c5852a  /home/n790725/fix_5.php
+8d914975955b1bca421b53a79a61db5fea522c97c69cd2ff1659ac0a76f67885  /home/n790725/fix_5.sh
+8.4.28
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== FIX5 mode=apply 2026-11-22T19:11:02+00:00
+PRE template captcha={"#type":"captcha","#captcha_type":"captcha\/Math"} honeypot={"honeypot":true,"time_restriction":true}
+PRE yp_memories open=Y captcha_math_present=N honeypot_now=[]
+PRE reunion_2026_photo_upload open=Y captcha_math_present=N honeypot_now=[]
+PREFLIGHT problems=0
+BACKUP webform.webform.yp_memories sha256=2d31f3d6c746cb7ce9a70960f7170d2e72a396c891c06196f6846b5cbad17ab9 path=/home/n790725/backups/config/webform.webform.yp_memories.pre-protect-20261122T191102Z.yml
+BACKUP webform.webform.reunion_2026_photo_upload sha256=d9f1d3029208f11a39d2871a48b30e42c8b272c805080c6cc9bfdd7be92602b8 path=/home/n790725/backups/config/webform.webform.reunion_2026_photo_upload.pre-protect-20261122T191102Z.yml
+PROTECT yp_memories captcha={"#type":"captcha","#captcha_type":"captcha\/Math"} honeypot={"honeypot":true,"time_restriction":true} VERIFIED
+SYNC webform.webform.yp_memories written
+PROTECT reunion_2026_photo_upload captcha={"#type":"captcha","#captcha_type":"captcha\/Math"} honeypot={"honeypot":true,"time_restriction":true} VERIFIED
+SYNC webform.webform.reunion_2026_photo_upload written
+APPLY_COMPLETE
+=== FIX5_END
+FIX5_END_PRESENT=YES
+CACHE_REBUILT
+--- anonymous GET of each form (markup counts; expect dry=0, apply>0)
+FORM yp_memories http=200 captcha_response=1 honeypot_time=1
+FORM reunion_2026_photo_upload http=200 captcha_response=1 honeypot_time=1
+--- config status and Git (sync files)
+ [notice] No differences between DB and sync directory.
