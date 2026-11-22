@@ -1,0 +1,28 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T201033Z-vps142898-clean-c-backup
+Task: clean-c-backup
+Generated (UTC): 2026-11-22T20:10:35Z
+Host: vps142898
+---
+=== CLEANC_SH mode=backup 20261122T201033Z
+a02ae4908cc567b99a883e252bb5a5bc70cc7b54e7211a4bdfe232d31b77a8f8  /home/n790725/clean_c.php
+61dd907bb8fc82246e60c82b9c8839e8e376124e173529c569ce9038117a4978  /home/n790725/clean_c.sh
+8.4.28
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== CLEANC mode=backup 2026-11-22T20:10:34+00:00 A=38 B=135 Q=19 P=10
+PRE A ok=38/38
+PRE B ok=135/135
+PRE Q ok=19/19
+PRE P ok=10/10
+PREFLIGHT problems=0
+ROWS count=202 sha256=e24e7a8950ffe4e52095886b8b93c8ca20eee10a505f4e28ba1833c8d8969010
+MANIFEST rows=202 paths=38 sha256=d4badcc22c7023406a8789307f93db43584c67a980b7bceced5e25aac82f7bda path=/home/n790725/backups/files/cleanup-c-20261122T201033Z.json
+BACKUP_MANIFEST_READY (bash side builds and tests the tar)
+=== CLEANC_END
+CLEANC_END_PRESENT=YES
+QUARANTINE_FILES 19
+TAR_GZIP_TEST OK
+tar: Removing leading `/' from member names
+TAR files=57/57 restore_test_sha_match=57/57 bytes=10019210 sha256=ab30574dc778b9a83e000ded92ab08424f0b5f8beeeb071325c6f5d141f427b5 path=/home/n790725/backups/files/cleanup-c-20261122T201033Z.tar.gz
+BACKUP_READY
