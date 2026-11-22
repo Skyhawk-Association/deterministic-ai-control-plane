@@ -1,0 +1,25 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T191034Z-vps142898-fix-5-dry
+Task: fix-5-dry
+Generated (UTC): 2026-11-22T19:10:37Z
+Host: vps142898
+---
+=== FIX5_SH mode=dry 20261122T191034Z
+609b206dcbe1dc9b0bb604cb7a884adb43ed71e814220be9a218aa76f5c5852a  /home/n790725/fix_5.php
+8d914975955b1bca421b53a79a61db5fea522c97c69cd2ff1659ac0a76f67885  /home/n790725/fix_5.sh
+8.4.28
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== FIX5 mode=dry 2026-11-22T19:10:35+00:00
+PRE template captcha={"#type":"captcha","#captcha_type":"captcha\/Math"} honeypot={"honeypot":true,"time_restriction":true}
+PRE yp_memories open=Y captcha_math_present=N honeypot_now=[]
+PRE reunion_2026_photo_upload open=Y captcha_math_present=N honeypot_now=[]
+PREFLIGHT problems=0
+DRY_RUN_COMPLETE no changes made
+=== FIX5_END
+FIX5_END_PRESENT=YES
+--- anonymous GET of each form (markup counts; expect dry=0, apply>0)
+FORM yp_memories http=200 captcha_response=0 honeypot_time=0
+FORM reunion_2026_photo_upload http=200 captcha_response=0 honeypot_time=0
+--- config status and Git (sync files)
+ [notice] No differences between DB and sync directory.
