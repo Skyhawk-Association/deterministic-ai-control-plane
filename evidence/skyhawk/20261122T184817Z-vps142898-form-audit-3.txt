@@ -1,0 +1,309 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T184817Z-vps142898-form-audit-3
+Task: form-audit-3
+Generated (UTC): 2026-11-22T18:48:24Z
+Host: vps142898
+---
+=== AUDIT3_SH 2026-11-22T18:48:17Z
+d4e66b13ec2a060a0f2a644e3871cf24533a60af6e2ea83c8b28425c917c5cf8  /home/n790725/form_audit_3.php
+b9cb7e7449d3c75c0b4f06beba6429f5583198a1f1bd6d0cae28f18db7d5e807  /home/n790725/form_audit_3.sh
+8.4.28
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== AUDIT3 2026-11-22T18:48:17+00:00
+system.file temporary_maximum_age=0 default_scheme="public"
+cron_last=2026-11-22T18:33:45+00:00 age_hours=0.2
+file_public_path=sites/default/files
+--- upload element settings
+UPLOAD yp_memories.photo type=managed_file ext="(webform default)" max="(default)" scheme="(default)" multiple=false
+UPLOAD reunion_2026_photo_upload.photos type=webform_image_file ext="jpg jpeg png webp avif heic heif" max="12 MB" scheme="public" multiple=20
+UPLOAD volunteer_submission.volunteer_photo type=managed_file ext="(webform default)" max="(default)" scheme="(default)" multiple=false
+webform default file ext managed_file="gif jpg jpeg png bmp eps tif pict psd txt rtf html odf pdf doc docx ppt pptx xls xlsx xml avi mov mp3 mp4 ogg wav bz2 dmg gz jar rar sit svg tar zip" image="gif jpg jpeg png"
+--- all temporary (status 0) managed files
+TEMP fid=60158 dir=private://association ext=pdf mime=application/pdf size=386943 uid=9 created=2019-08-05 02:18Z on_disk=N usage=N
+TEMP fid=60171 dir=temporary:/ ext=gif mime=image/gif size=11107 uid=9 created=2019-09-08 19:12Z on_disk=N usage=N
+TEMP fid=60172 dir=temporary:/ ext=gif mime=image/gif size=11107 uid=9 created=2019-09-08 19:13Z on_disk=N usage=N
+TEMP fid=60173 dir=temporary:/ ext=jpg mime=image/jpeg size=23453 uid=9 created=2019-09-08 19:15Z on_disk=N usage=N
+TEMP fid=60174 dir=temporary:/ ext=gif mime=image/gif size=11107 uid=9 created=2019-09-08 19:19Z on_disk=N usage=N
+TEMP fid=60183 dir=private://sajournals ext=pdf mime=application/pdf size=11649340 uid=23 created=2019-10-25 18:10Z on_disk=N usage=N
+TEMP fid=60228 dir=private://sajournals ext=pdf mime=application/pdf size=11139693 uid=23 created=2020-02-21 05:08Z on_disk=N usage=N
+TEMP fid=60237 dir=temporary:/ ext=csv mime=text/csv size=794 uid=11 created=2020-03-27 13:59Z on_disk=N usage=N
+TEMP fid=60238 dir=temporary:/ ext=csv mime=text/csv size=794 uid=11 created=2020-03-29 14:27Z on_disk=N usage=N
+TEMP fid=60239 dir=temporary:/ ext=csv mime=text/csv size=834 uid=11 created=2020-03-29 18:43Z on_disk=N usage=N
+TEMP fid=60240 dir=temporary:/ ext=csv mime=text/csv size=870 uid=11 created=2020-03-29 18:45Z on_disk=N usage=N
+TEMP fid=60241 dir=temporary:/ ext=csv mime=text/csv size=870 uid=11 created=2020-03-29 18:47Z on_disk=N usage=N
+TEMP fid=60242 dir=temporary:/ ext=csv mime=text/csv size=886 uid=11 created=2020-03-29 18:47Z on_disk=N usage=N
+TEMP fid=60250 dir=temporary:/ ext=csv mime=text/csv size=698 uid=11 created=2020-04-02 00:30Z on_disk=N usage=N
+TEMP fid=60251 dir=temporary:/ ext=csv mime=text/csv size=698 uid=11 created=2020-04-02 00:33Z on_disk=N usage=N
+TEMP fid=60252 dir=temporary:/ ext=csv mime=text/csv size=752 uid=11 created=2020-04-02 00:42Z on_disk=N usage=N
+TEMP fid=60253 dir=temporary:/ ext=csv mime=text/csv size=752 uid=11 created=2020-04-02 00:52Z on_disk=N usage=N
+TEMP fid=60254 dir=temporary:/ ext=csv mime=text/csv size=809 uid=11 created=2020-04-02 11:59Z on_disk=N usage=N
+TEMP fid=60255 dir=temporary:/ ext=csv mime=text/csv size=315 uid=11 created=2020-04-02 12:13Z on_disk=N usage=N
+TEMP fid=60256 dir=temporary:/ ext=csv mime=text/csv size=300 uid=11 created=2020-04-02 12:15Z on_disk=N usage=N
+TEMP fid=60257 dir=temporary:/ ext=csv mime=text/csv size=317 uid=11 created=2020-04-02 13:40Z on_disk=N usage=N
+TEMP fid=60258 dir=temporary:/ ext=csv mime=text/csv size=317 uid=11 created=2020-04-02 13:47Z on_disk=N usage=N
+TEMP fid=60259 dir=temporary:/ ext=csv mime=text/csv size=740 uid=11 created=2020-04-02 21:45Z on_disk=N usage=N
+TEMP fid=60260 dir=temporary:/ ext=csv mime=text/csv size=740 uid=11 created=2020-04-02 22:17Z on_disk=N usage=N
+TEMP fid=60261 dir=temporary:/ ext=csv mime=text/csv size=744 uid=11 created=2020-04-02 22:20Z on_disk=N usage=N
+TEMP fid=60262 dir=temporary:/ ext=csv mime=text/csv size=742 uid=11 created=2020-04-02 22:43Z on_disk=N usage=N
+TEMP fid=60263 dir=temporary:/ ext=csv mime=text/csv size=742 uid=11 created=2020-04-02 22:50Z on_disk=N usage=N
+TEMP fid=60264 dir=temporary:/ ext=csv mime=text/csv size=754 uid=11 created=2020-04-02 22:53Z on_disk=N usage=N
+TEMP fid=60265 dir=temporary:/ ext=csv mime=text/csv size=731 uid=11 created=2020-04-02 22:56Z on_disk=N usage=N
+TEMP fid=60266 dir=temporary:/ ext=csv mime=text/csv size=771 uid=11 created=2020-04-02 23:02Z on_disk=N usage=N
+TEMP fid=60267 dir=temporary:/ ext=csv mime=text/csv size=778 uid=11 created=2020-04-02 23:03Z on_disk=N usage=N
+TEMP fid=60268 dir=temporary:/ ext=csv mime=text/csv size=814 uid=11 created=2020-04-03 00:42Z on_disk=N usage=N
+TEMP fid=60354 dir=temporary:/ ext=csv mime=text/csv size=2865 uid=11 created=2020-04-03 15:21Z on_disk=N usage=N
+TEMP fid=60355 dir=temporary:/ ext=csv mime=text/csv size=84581 uid=11 created=2020-04-03 21:18Z on_disk=N usage=N
+TEMP fid=60356 dir=temporary:/ ext=csv mime=text/csv size=84587 uid=11 created=2020-04-03 23:52Z on_disk=N usage=N
+TEMP fid=60357 dir=temporary:/ ext=csv mime=text/csv size=341 uid=11 created=2020-04-04 14:57Z on_disk=N usage=N
+TEMP fid=60358 dir=temporary:/ ext=csv mime=text/csv size=359 uid=11 created=2020-04-04 15:01Z on_disk=N usage=N
+TEMP fid=60359 dir=temporary:/ ext=csv mime=text/csv size=1225 uid=11 created=2020-04-04 18:42Z on_disk=N usage=N
+TEMP fid=60361 dir=temporary:/ ext=csv mime=text/csv size=1225 uid=11 created=2020-04-04 18:47Z on_disk=N usage=N
+TEMP fid=60362 dir=temporary:/ ext=csv mime=text/csv size=84587 uid=11 created=2020-04-04 21:43Z on_disk=N usage=N
+TEMP fid=60366 dir=public://2020-04 ext=pdf mime=application/pdf size=23297649 uid=11 created=2020-04-07 19:39Z on_disk=N usage=N
+TEMP fid=60368 dir=public://2020-04 ext=pdf mime=application/pdf size=19996274 uid=11 created=2020-04-07 19:52Z on_disk=Y usage=N
+TEMP fid=60373 dir=temporary:/ ext=csv mime=text/csv size=369 uid=11 created=2020-04-12 00:20Z on_disk=N usage=N
+TEMP fid=60374 dir=temporary:/ ext=csv mime=text/csv size=380 uid=11 created=2020-04-12 00:23Z on_disk=N usage=N
+TEMP fid=60375 dir=temporary:/ ext=csv mime=text/csv size=380 uid=11 created=2020-04-12 00:30Z on_disk=N usage=N
+TEMP fid=60376 dir=temporary:/ ext=csv mime=text/csv size=380 uid=11 created=2020-04-12 00:34Z on_disk=N usage=N
+TEMP fid=60377 dir=temporary:/ ext=csv mime=text/csv size=353 uid=11 created=2020-04-12 00:35Z on_disk=N usage=N
+TEMP fid=60378 dir=temporary:/ ext=csv mime=text/csv size=358 uid=11 created=2020-04-12 00:36Z on_disk=N usage=N
+TEMP fid=60379 dir=temporary:/ ext=csv mime=text/csv size=406 uid=11 created=2020-04-12 00:42Z on_disk=N usage=N
+TEMP fid=60380 dir=temporary:/ ext=csv mime=text/csv size=403 uid=11 created=2020-04-12 00:43Z on_disk=N usage=N
+TEMP fid=60381 dir=temporary:/ ext=csv mime=text/csv size=402 uid=11 created=2020-04-12 00:46Z on_disk=N usage=N
+TEMP fid=60382 dir=temporary:/ ext=csv mime=text/csv size=439 uid=11 created=2020-04-12 01:01Z on_disk=N usage=N
+TEMP fid=60383 dir=temporary:/ ext=csv mime=text/csv size=457 uid=11 created=2020-04-12 01:07Z on_disk=N usage=N
+TEMP fid=60384 dir=temporary:/ ext=csv mime=text/csv size=461 uid=11 created=2020-04-12 01:09Z on_disk=N usage=N
+TEMP fid=60385 dir=temporary:/ ext=csv mime=text/csv size=461 uid=11 created=2020-04-12 01:18Z on_disk=N usage=N
+TEMP fid=60386 dir=temporary:/ ext=csv mime=text/csv size=465 uid=11 created=2020-04-12 01:20Z on_disk=N usage=N
+TEMP fid=60387 dir=temporary:/ ext=csv mime=text/csv size=531 uid=11 created=2020-04-12 01:23Z on_disk=N usage=N
+TEMP fid=60388 dir=temporary:/ ext=csv mime=text/csv size=516 uid=11 created=2020-04-12 01:25Z on_disk=N usage=N
+TEMP fid=60389 dir=temporary:/ ext=csv mime=text/csv size=439 uid=11 created=2020-04-12 01:27Z on_disk=N usage=N
+TEMP fid=60390 dir=temporary:/ ext=csv mime=text/csv size=453 uid=11 created=2020-04-12 01:28Z on_disk=N usage=N
+TEMP fid=60391 dir=temporary:/ ext=csv mime=text/csv size=451 uid=11 created=2020-04-12 01:34Z on_disk=N usage=N
+TEMP fid=60392 dir=temporary:/ ext=csv mime=text/csv size=461 uid=11 created=2020-04-12 01:38Z on_disk=N usage=N
+TEMP fid=60393 dir=temporary:/ ext=csv mime=text/csv size=482 uid=11 created=2020-04-12 02:12Z on_disk=N usage=N
+TEMP fid=60394 dir=temporary:/ ext=csv mime=text/csv size=482 uid=11 created=2020-04-12 02:22Z on_disk=N usage=N
+TEMP fid=60395 dir=temporary:/ ext=csv mime=text/csv size=482 uid=11 created=2020-04-12 02:23Z on_disk=N usage=N
+TEMP fid=60396 dir=temporary:/ ext=csv mime=text/csv size=482 uid=11 created=2020-04-12 02:24Z on_disk=N usage=N
+TEMP fid=60397 dir=temporary:/ ext=csv mime=text/csv size=488 uid=11 created=2020-04-12 02:25Z on_disk=N usage=N
+TEMP fid=60398 dir=temporary:/ ext=csv mime=text/csv size=453 uid=11 created=2020-04-12 02:26Z on_disk=N usage=N
+TEMP fid=60399 dir=temporary:/ ext=csv mime=text/csv size=453 uid=11 created=2020-04-12 02:32Z on_disk=N usage=N
+TEMP fid=60400 dir=temporary:/ ext=csv mime=text/csv size=464 uid=11 created=2020-04-12 02:35Z on_disk=N usage=N
+TEMP fid=60401 dir=temporary:/ ext=csv mime=text/csv size=475 uid=11 created=2020-04-12 02:37Z on_disk=N usage=N
+TEMP fid=60402 dir=temporary:/ ext=csv mime=text/csv size=470 uid=11 created=2020-04-12 02:38Z on_disk=N usage=N
+TEMP fid=60403 dir=temporary:/ ext=csv mime=text/csv size=469 uid=11 created=2020-04-12 02:39Z on_disk=N usage=N
+TEMP fid=60404 dir=temporary:/ ext=csv mime=text/csv size=458 uid=11 created=2020-04-12 02:39Z on_disk=N usage=N
+TEMP fid=60405 dir=temporary:/ ext=csv mime=text/csv size=457 uid=11 created=2020-04-12 02:42Z on_disk=N usage=N
+TEMP fid=60406 dir=temporary:/ ext=csv mime=text/csv size=455 uid=11 created=2020-04-12 02:45Z on_disk=N usage=N
+TEMP fid=60407 dir=temporary:/ ext=csv mime=text/csv size=457 uid=11 created=2020-04-12 21:12Z on_disk=N usage=N
+TEMP fid=60408 dir=temporary:/ ext=csv mime=text/csv size=457 uid=11 created=2020-04-12 21:14Z on_disk=N usage=N
+TEMP fid=60409 dir=temporary:/ ext=csv mime=text/csv size=457 uid=11 created=2020-04-12 21:15Z on_disk=N usage=N
+TEMP fid=60410 dir=temporary:/ ext=csv mime=text/csv size=475 uid=11 created=2020-04-12 21:24Z on_disk=N usage=N
+TEMP fid=60411 dir=temporary:/ ext=csv mime=text/csv size=470 uid=11 created=2020-04-12 21:25Z on_disk=N usage=N
+TEMP fid=60412 dir=temporary:/ ext=csv mime=text/csv size=466 uid=11 created=2020-04-12 21:26Z on_disk=N usage=N
+TEMP fid=60413 dir=temporary:/ ext=csv mime=text/csv size=458 uid=11 created=2020-04-12 21:30Z on_disk=N usage=N
+TEMP fid=60414 dir=temporary:/ ext=csv mime=text/csv size=1203 uid=11 created=2020-04-14 14:12Z on_disk=N usage=N
+TEMP fid=60415 dir=temporary:/ ext=csv mime=text/csv size=1203 uid=11 created=2020-04-14 14:34Z on_disk=N usage=N
+TEMP fid=60416 dir=temporary:/ ext=csv mime=text/csv size=1329 uid=11 created=2020-04-14 23:00Z on_disk=N usage=N
+TEMP fid=60417 dir=temporary:/ ext=csv mime=text/csv size=655 uid=11 created=2020-04-14 23:19Z on_disk=N usage=N
+TEMP fid=60418 dir=temporary:/ ext=csv mime=text/csv size=655 uid=11 created=2020-04-14 23:38Z on_disk=N usage=N
+TEMP fid=60419 dir=temporary:/ ext=csv mime=text/csv size=1221 uid=11 created=2020-04-15 22:53Z on_disk=N usage=N
+TEMP fid=60420 dir=temporary:/ ext=csv mime=text/csv size=1221 uid=11 created=2020-04-15 23:01Z on_disk=N usage=N
+TEMP fid=60421 dir=temporary:/ ext=csv mime=text/csv size=1207 uid=11 created=2020-04-15 23:09Z on_disk=N usage=N
+TEMP fid=60422 dir=temporary:/ ext=csv mime=text/csv size=1002 uid=11 created=2020-04-15 23:14Z on_disk=N usage=N
+TEMP fid=60423 dir=temporary:/ ext=csv mime=text/csv size=992 uid=11 created=2020-04-15 23:33Z on_disk=N usage=N
+TEMP fid=60424 dir=temporary:/ ext=csv mime=text/csv size=992 uid=11 created=2020-04-15 23:42Z on_disk=N usage=N
+TEMP fid=60425 dir=temporary:/ ext=csv mime=text/csv size=996 uid=11 created=2020-04-16 00:16Z on_disk=N usage=N
+TEMP fid=60426 dir=temporary:/ ext=csv mime=text/csv size=1006 uid=11 created=2020-04-16 00:19Z on_disk=N usage=N
+TEMP fid=60427 dir=temporary:/ ext=csv mime=text/csv size=2099 uid=11 created=2020-04-16 00:24Z on_disk=N usage=N
+TEMP fid=60428 dir=temporary:/ ext=csv mime=text/csv size=2099 uid=11 created=2020-04-16 01:47Z on_disk=N usage=N
+TEMP fid=60429 dir=temporary:/ ext=csv mime=text/csv size=2099 uid=11 created=2020-04-16 01:51Z on_disk=N usage=N
+TEMP fid=60430 dir=temporary:/ ext=csv mime=text/csv size=2099 uid=11 created=2020-04-16 01:53Z on_disk=N usage=N
+TEMP fid=60431 dir=temporary:/ ext=csv mime=text/csv size=2099 uid=11 created=2020-04-16 01:54Z on_disk=N usage=N
+TEMP fid=60432 dir=temporary:/ ext=csv mime=text/csv size=2099 uid=11 created=2020-04-16 02:02Z on_disk=N usage=N
+TEMP fid=60433 dir=temporary:/ ext=csv mime=text/csv size=776 uid=11 created=2020-04-16 02:07Z on_disk=N usage=N
+TEMP fid=60434 dir=temporary:/ ext=csv mime=text/csv size=2089 uid=11 created=2020-04-16 16:12Z on_disk=N usage=N
+TEMP fid=60435 dir=temporary:/ ext=csv mime=text/csv size=2089 uid=11 created=2020-04-16 16:46Z on_disk=N usage=N
+TEMP fid=60479 dir=temporary:/ ext=jpg mime=image/jpeg size=42787 uid=11 created=2020-04-21 02:19Z on_disk=N usage=N
+TEMP fid=60480 dir=temporary:/ ext=jpg mime=image/jpeg size=42787 uid=11 created=2020-04-21 02:20Z on_disk=N usage=N
+TEMP fid=60481 dir=temporary:/ ext=jpg mime=image/jpeg size=42787 uid=11 created=2020-04-21 02:22Z on_disk=N usage=N
+TEMP fid=60491 dir=public:/ ext=png mime=image/png size=7873 uid= created=2020-04-23 22:45Z on_disk=Y usage=N
+TEMP fid=60986 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609603661 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 16:07Z on_disk=N usage=N
+TEMP fid=60987 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609603779 ext=json mime=application/octet-stream size=0 uid=11 created=2021-01-02 16:09Z on_disk=N usage=N
+TEMP fid=60988 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609603810 ext=json mime=application/octet-stream size=0 uid=11 created=2021-01-02 16:10Z on_disk=N usage=N
+TEMP fid=60989 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609607141 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 17:05Z on_disk=N usage=N
+TEMP fid=60990 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609610190 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 17:56Z on_disk=N usage=N
+TEMP fid=60991 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609610606 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 18:03Z on_disk=N usage=N
+TEMP fid=60992 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609610620 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 18:03Z on_disk=N usage=N
+TEMP fid=60993 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609610682 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 18:04Z on_disk=N usage=N
+TEMP fid=60994 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609610776 ext=xml mime=application/xml size=0 uid=11 created=2021-01-02 18:06Z on_disk=N usage=N
+TEMP fid=60996 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609613029 ext=json mime=application/octet-stream size=0 uid=11 created=2021-01-02 18:43Z on_disk=N usage=N
+TEMP fid=60997 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609613079 ext=json mime=application/octet-stream size=0 uid=11 created=2021-01-02 18:44Z on_disk=N usage=N
+TEMP fid=60998 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609613316 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 18:48Z on_disk=N usage=N
+TEMP fid=60999 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609613413 ext=xml mime=application/xml size=0 uid=11 created=2021-01-02 18:50Z on_disk=N usage=N
+TEMP fid=61000 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609621924 ext=xml mime=application/xml size=0 uid=11 created=2021-01-02 21:12Z on_disk=N usage=N
+TEMP fid=61001 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609622114 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 21:15Z on_disk=N usage=N
+TEMP fid=61002 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609622311 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 21:18Z on_disk=N usage=N
+TEMP fid=61003 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609622360 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 21:19Z on_disk=N usage=N
+TEMP fid=61004 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609622383 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 21:19Z on_disk=N usage=N
+TEMP fid=61005 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609622979 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 21:29Z on_disk=N usage=N
+TEMP fid=61006 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609623012 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 21:30Z on_disk=N usage=N
+TEMP fid=61007 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609623149 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 21:32Z on_disk=N usage=N
+TEMP fid=61008 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609623193 ext=csv mime=text/csv size=0 uid=11 created=2021-01-02 21:33Z on_disk=N usage=N
+TEMP fid=61009 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609623349 ext=json mime=application/octet-stream size=0 uid=11 created=2021-01-02 21:35Z on_disk=N usage=N
+TEMP fid=61010 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609624239 ext=json mime=application/octet-stream size=0 uid=11 created=2021-01-02 21:50Z on_disk=N usage=N
+TEMP fid=61011 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609683024 ext=csv mime=text/csv size=0 uid=11 created=2021-01-03 14:10Z on_disk=N usage=N
+TEMP fid=61012 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609683438 ext=csv mime=text/csv size=0 uid=11 created=2021-01-03 14:17Z on_disk=N usage=N
+TEMP fid=61013 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609684016 ext=csv mime=text/csv size=0 uid=11 created=2021-01-03 14:26Z on_disk=N usage=N
+TEMP fid=61014 dir=private://views_data_export/public_skyhawk_journal_index_data_export_1/11-1609684047 ext=json mime=application/octet-stream size=0 uid=11 created=2021-01-03 14:27Z on_disk=N usage=N
+TEMP fid=61041 dir=temporary:/ ext=jpg mime=image/jpeg size=8893 uid=1060 created=2021-01-29 00:35Z on_disk=N usage=N
+TEMP fid=61042 dir=temporary:/ ext=jpg mime=image/jpeg size=8893 uid=1060 created=2021-01-29 00:36Z on_disk=N usage=N
+TEMP fid=61067 dir=private://JournalPDF ext=pdf mime=application/pdf size=1322761 uid=11 created=2021-06-19 21:48Z on_disk=N usage=N
+TEMP fid=61137 dir=public://darwsafolders/sajournals ext=pdf mime=application/pdf size=24616701 uid=23 created=2023-01-10 22:24Z on_disk=N usage=N
+TEMP fid=61160 dir=public://darwsafolders/sajournals ext=pdf mime=application/pdf size=28055882 uid=23 created=2024-01-15 17:09Z on_disk=Y usage=N
+TEMP fid=61161 dir=public://darwsafolders/sajournals ext=pdf mime=application/pdf size=28018356 uid=23 created=2024-01-15 17:09Z on_disk=Y usage=N
+TEMP fid=61211 dir=public:/ ext=png mime=image/png size=1701250 uid=11 created=2025-01-18 18:33Z on_disk=Y usage=N
+TEMP fid=61490 dir=public://yp_memories ext=jpg mime=image/jpeg size=2327152 uid=11 created=2026-05-26 12:23Z on_disk=Y usage=N
+TEMP fid=61505 dir=public://yp_memories ext=html mime=text/html size=53 uid=0 created=2026-06-17 23:18Z on_disk=Y usage=N
+TEMP fid=61506 dir=public://yp_memories ext=html mime=text/html size=195855 uid=0 created=2026-06-17 23:22Z on_disk=Y usage=N
+TEMP fid=61507 dir=public://yp_memories ext=html mime=text/html size=199493 uid=0 created=2026-06-17 23:23Z on_disk=Y usage=N
+TEMP fid=61508 dir=public://yp_memories ext=html mime=text/html size=28699 uid=0 created=2026-06-17 23:24Z on_disk=Y usage=N
+TEMP fid=61509 dir=public://yp_memories ext=html mime=text/html size=53 uid=0 created=2026-06-18 12:17Z on_disk=Y usage=N
+TEMP fid=61510 dir=public://yp_memories ext=xml mime=application/xml size=2856 uid=0 created=2026-06-18 12:34Z on_disk=Y usage=N
+TEMP fid=61511 dir=public://yp_memories ext=xml mime=application/xml size=1936 uid=0 created=2026-06-18 12:34Z on_disk=Y usage=N
+TEMP fid=61512 dir=public://yp_memories ext=html mime=text/html size=197292 uid=0 created=2026-06-18 12:34Z on_disk=Y usage=N
+TEMP fid=61513 dir=public://yp_memories ext=html mime=text/html size=196892 uid=0 created=2026-06-18 12:34Z on_disk=Y usage=N
+TEMP fid=61514 dir=public://yp_memories ext=html mime=text/html size=196937 uid=0 created=2026-06-18 12:35Z on_disk=Y usage=N
+TEMP fid=61515 dir=public://yp_memories ext=html mime=text/html size=196906 uid=0 created=2026-06-18 12:35Z on_disk=Y usage=N
+TEMP fid=61516 dir=public://yp_memories ext=html mime=text/html size=197040 uid=0 created=2026-06-18 12:35Z on_disk=Y usage=N
+TEMP fid=61517 dir=public://yp_memories ext=html mime=text/html size=196981 uid=0 created=2026-06-18 12:35Z on_disk=Y usage=N
+TEMP fid=61519 dir=public://yp_memories ext=html mime=text/html size=196896 uid=0 created=2026-06-18 12:35Z on_disk=Y usage=N
+TEMP fid=61520 dir=public://yp_memories ext=html mime=text/html size=197264 uid=0 created=2026-06-18 12:35Z on_disk=Y usage=N
+TEMP fid=61521 dir=public://yp_memories ext=html mime=text/html size=53 uid=0 created=2026-06-18 18:00Z on_disk=Y usage=N
+TEMP fid=61522 dir=public://yp_memories ext=pdf mime=application/pdf size=85831 uid=0 created=2026-06-19 14:21Z on_disk=Y usage=N
+TEMP fid=61523 dir=public://yp_memories ext=pdf mime=application/pdf size=132942 uid=0 created=2026-06-19 14:24Z on_disk=Y usage=N
+TEMP fid=61524 dir=public://yp_memories ext=pdf mime=application/pdf size=133014 uid=0 created=2026-06-19 14:24Z on_disk=Y usage=N
+TEMP fid=61527 dir=public://inline-images ext=jpg mime=image/jpeg size=190405 uid=18 created=2026-07-15 19:21Z on_disk=Y usage=N
+TEMP fid=61528 dir=public://yp_memories ext=jpeg mime=image/jpeg size=122064 uid=0 created=2026-07-19 23:15Z on_disk=Y usage=N
+TEMP fid=61531 dir=public://sajournals ext=pdf mime=application/pdf size=14996025 uid=11 created=2026-07-21 22:46Z on_disk=Y usage=N
+TEMP fid=61534 dir=public://sajournals ext=pdf mime=application/pdf size=14996025 uid=11 created=2026-07-21 22:54Z on_disk=Y usage=N
+TEMP fid=61535 dir=public://sajournals ext=pdf mime=application/pdf size=14996025 uid=11 created=2026-07-21 23:01Z on_disk=Y usage=N
+TEMP fid=61541 dir=public://sajournals ext=pdf mime=application/pdf size=14996025 uid=11 created=2026-07-22 00:10Z on_disk=Y usage=N
+TEMP fid=61542 dir=public://sajournals ext=pdf mime=application/pdf size=14996025 uid=11 created=2026-07-22 00:12Z on_disk=Y usage=N
+TEMP fid=61549 dir=private://sajournals ext=pdf mime=application/pdf size=16495893 uid=11 created=2026-07-22 01:41Z on_disk=N usage=N
+TEMP fid=61552 dir=public://sajournals ext=pdf mime=application/pdf size=32914503 uid=11 created=2026-07-22 01:46Z on_disk=Y usage=N
+TEMP fid=61553 dir=public://sajournals ext=pdf mime=application/pdf size=32914503 uid=11 created=2026-07-22 01:48Z on_disk=Y usage=N
+TEMP fid=61598 dir=public://sajournals ext=pdf mime=application/pdf size=9027297 uid=11 created=2026-07-23 02:41Z on_disk=Y usage=N
+TEMP fid=61712 dir=private://uploads/e04ea99acde5c3710a12ebfe1a348534 ext=png mime=image/png size=1718987 uid=11 created=2026-08-24 20:57Z on_disk=Y usage=N
+TEMP fid=61713 dir=private://uploads/2bbaea9c5b898d28664295bb83b8814d ext=png mime=image/png size=1718987 uid=11 created=2026-08-24 20:59Z on_disk=Y usage=N
+TEMP fid=61714 dir=private://uploads/738e567d0ffbd822c7fa455307906d2f ext=png mime=image/png size=1718987 uid=11 created=2026-08-24 21:09Z on_disk=Y usage=N
+TEMP fid=61715 dir=private://uploads/738e567d0ffbd822c7fa455307906d2f ext=png mime=image/png size=1718987 uid=11 created=2026-08-24 21:11Z on_disk=Y usage=N
+TEMP fid=61716 dir=private://uploads/core-control ext=png mime=image/png size=1718987 uid=11 created=2026-08-25 17:05Z on_disk=Y usage=N
+TEMP fid=61720 dir=private://uploads ext=jpg mime=image/jpeg size=65968 uid=11 created=2026-08-25 19:45Z on_disk=Y usage=N
+TEMP fid=61721 dir=private://uploads ext=jpg mime=image/jpeg size=65968 uid=11 created=2026-08-25 19:45Z on_disk=Y usage=N
+TEMP fid=61722 dir=private://uploads ext=png mime=image/png size=103463 uid=11 created=2026-08-25 19:50Z on_disk=Y usage=N
+TEMP fid=61723 dir=private://uploads ext=png mime=image/png size=115335 uid=11 created=2026-08-25 19:50Z on_disk=Y usage=N
+TEMP fid=61724 dir=private://uploads ext=png mime=image/png size=103463 uid=11 created=2026-08-25 20:00Z on_disk=Y usage=N
+TEMP fid=61725 dir=private://uploads ext=png mime=image/png size=115335 uid=11 created=2026-08-25 20:01Z on_disk=Y usage=N
+TEMP fid=61726 dir=private://uploads ext=png mime=image/png size=103463 uid=11 created=2026-08-25 21:00Z on_disk=Y usage=N
+TEMP fid=61727 dir=private://uploads ext=png mime=image/png size=115335 uid=11 created=2026-08-25 21:00Z on_disk=Y usage=N
+TEMP fid=61728 dir=private://uploads ext=png mime=image/png size=103463 uid=11 created=2026-08-25 21:07Z on_disk=Y usage=N
+TEMP fid=61729 dir=private://uploads ext=png mime=image/png size=115335 uid=11 created=2026-08-25 21:07Z on_disk=Y usage=N
+TEMP fid=61730 dir=private://uploads ext=png mime=image/png size=103463 uid=11 created=2026-08-25 21:07Z on_disk=Y usage=N
+TEMP fid=61731 dir=private://uploads ext=png mime=image/png size=115335 uid=11 created=2026-08-25 21:07Z on_disk=Y usage=N
+TEMP fid=61732 dir=private://uploads ext=png mime=image/png size=103463 uid=11 created=2026-08-25 21:30Z on_disk=Y usage=N
+TEMP fid=61733 dir=private://uploads ext=png mime=image/png size=115335 uid=11 created=2026-08-25 21:30Z on_disk=Y usage=N
+TEMP fid=61734 dir=private://uploads ext=png mime=image/png size=103463 uid=11 created=2026-08-25 21:42Z on_disk=Y usage=N
+TEMP fid=61735 dir=private://uploads ext=png mime=image/png size=115335 uid=11 created=2026-08-25 21:42Z on_disk=Y usage=N
+TEMP fid=61736 dir=private://uploads/core-control ext=png mime=image/png size=103463 uid=11 created=2026-08-25 21:43Z on_disk=Y usage=N
+TEMP fid=61737 dir=private://uploads/core-control ext=png mime=image/png size=115335 uid=11 created=2026-08-25 21:43Z on_disk=Y usage=N
+TEMP fid=61738 dir=private://uploads/core-control ext=png mime=image/png size=103463 uid=11 created=2026-08-25 21:46Z on_disk=Y usage=N
+TEMP fid=61739 dir=private://uploads/core-control ext=png mime=image/png size=115335 uid=11 created=2026-08-25 21:46Z on_disk=Y usage=N
+TEMP fid=61740 dir=private://uploads/core-control ext=png mime=image/png size=103463 uid=11 created=2026-08-25 21:59Z on_disk=Y usage=N
+TEMP fid=61741 dir=private://uploads/core-control ext=png mime=image/png size=115335 uid=11 created=2026-08-25 21:59Z on_disk=Y usage=N
+TEMP fid=61742 dir=private://uploads/core-control ext=png mime=image/png size=103463 uid=11 created=2026-08-25 22:00Z on_disk=Y usage=N
+TEMP fid=61743 dir=private://uploads/core-control ext=png mime=image/png size=115335 uid=11 created=2026-08-25 22:00Z on_disk=Y usage=N
+TEMP fid=61744 dir=private://uploads/core-control ext=png mime=image/png size=103463 uid=11 created=2026-08-25 22:13Z on_disk=Y usage=N
+TEMP fid=61745 dir=private://uploads/core-control ext=jpg mime=image/jpeg size=1030241 uid=11 created=2026-08-25 22:13Z on_disk=Y usage=N
+TEMP fid=61746 dir=private://uploads/core-control ext=png mime=image/png size=115335 uid=11 created=2026-08-25 22:13Z on_disk=Y usage=N
+TEMP fid=61747 dir=private://uploads/core-control ext=png mime=image/png size=103463 uid=11 created=2026-08-25 22:22Z on_disk=Y usage=N
+TEMP fid=61748 dir=private://uploads/core-control ext=png mime=image/png size=115335 uid=11 created=2026-08-25 22:22Z on_disk=Y usage=N
+TEMP fid=61749 dir=private://uploads/core-control ext=png mime=image/png size=103463 uid=11 created=2026-08-25 22:22Z on_disk=Y usage=N
+TEMP fid=61750 dir=private://uploads/core-control ext=png mime=image/png size=115335 uid=11 created=2026-08-25 22:22Z on_disk=Y usage=N
+TEMP fid=61751 dir=private://uploads/core-control ext=jpg mime=image/jpeg size=1584777 uid=11 created=2026-08-25 23:17Z on_disk=Y usage=N
+TEMP fid=61752 dir=private://uploads/core-control ext=png mime=image/png size=103463 uid=11 created=2026-08-26 00:53Z on_disk=Y usage=N
+TEMP fid=61753 dir=private://uploads/core-control ext=png mime=image/png size=115335 uid=11 created=2026-08-26 00:53Z on_disk=Y usage=N
+TEMP fid=61754 dir=private://uploads/core-control ext=jpg mime=image/jpeg size=1030241 uid=11 created=2026-08-26 00:53Z on_disk=Y usage=N
+TEMP fid=61755 dir=private://uploads/core-control ext=png mime=image/png size=103463 uid=11 created=2026-08-26 01:18Z on_disk=Y usage=N
+TEMP fid=61757 dir=private://uploads/core-control ext=jpg mime=image/jpeg size=1030241 uid=11 created=2026-08-26 01:18Z on_disk=Y usage=N
+TEMP fid=61758 dir=private://uploads/87c1e4b9f27bbf59f8f01be1410767d4 ext=mp4 mime=video/mp4 size=48808795 uid=11 created=2026-08-26 01:41Z on_disk=Y usage=N
+TEMP fid=61762 dir=private://skyhawk_contributions ext=jpg mime=image/jpeg size=2611059 uid=11 created=2026-08-26 15:15Z on_disk=Y usage=N
+TEMP fid=61771 dir=private://webform/reunion_2026_photo_upload/_sid_ ext=heic mime=application/octet-stream size=1818550 uid=1 created=2026-09-13 22:23Z on_disk=Y usage=N
+TEMP fid=61792 dir=public://webform/reunion_2026_photo_upload/_sid_ ext=jpg mime=image/jpeg size=6080333 uid=11 created=2026-09-20 18:18Z on_disk=Y usage=N
+TEMP fid=61793 dir=public://webform/reunion_2026_photo_upload/_sid_ ext=jpg mime=image/jpeg size=5693827 uid=0 created=2026-09-20 19:40Z on_disk=Y usage=N
+TEMP fid=61794 dir=public://webform/reunion_2026_photo_upload/_sid_ ext=jpg mime=image/jpeg size=5693827 uid=0 created=2026-09-20 19:43Z on_disk=Y usage=N
+TEMP fid=61947 dir=public://2026-09 ext=docx mime=application/vnd.openxmlformats-officedocument.wordprocessingml.document size=13693 uid=11 created=2026-09-23 01:52Z on_disk=Y usage=N
+TEMP fid=61962 dir=public://2026-09 ext=docx mime=application/vnd.openxmlformats-officedocument.wordprocessingml.document size=22419 uid=11 created=2026-09-23 01:56Z on_disk=Y usage=N
+TEMP fid=62054 dir=public://sites/default/files ext=jpg mime=image/jpeg size=600762 uid=11 created=2026-09-23 02:31Z on_disk=Y usage=N
+TEMP fid=62055 dir=public://inline-images ext=jpg mime=image/jpeg size=600762 uid=11 created=2026-09-23 02:48Z on_disk=Y usage=N
+TEMP fid=62444 dir=public://webform/reunion_2026_photo_upload/_sid_ ext=png mime=image/png size=68 uid=0 created=2026-09-30 17:37Z on_disk=Y usage=N
+TEMP fid=62482 dir=public://webform/reunion_2026_photo_upload/_sid_ ext=jpeg mime=image/jpeg size=1949411 uid=0 created=2026-11-01 01:15Z on_disk=Y usage=N
+--- debug downloads files
+DEBUGFILE index=1 absent
+DEBUGFILE index=2 absent
+=== AUDIT3_END
+--- anonymous HTTP HEAD of temporary public files (fid only; URLs stay in private list)
+HTTP fid=60368 000 
+HTTP fid=60491 000 
+HTTP fid=61160 000 
+HTTP fid=61161 000 
+HTTP fid=61211 000 
+HTTP fid=61490 000 
+HTTP fid=61505 000 
+HTTP fid=61506 000 
+HTTP fid=61507 000 
+HTTP fid=61508 000 
+HTTP fid=61509 000 
+HTTP fid=61510 000 
+HTTP fid=61511 000 
+HTTP fid=61512 000 
+HTTP fid=61513 000 
+HTTP fid=61514 000 
+HTTP fid=61515 000 
+HTTP fid=61516 000 
+HTTP fid=61517 000 
+HTTP fid=61519 000 
+HTTP fid=61520 000 
+HTTP fid=61521 000 
+HTTP fid=61522 000 
+HTTP fid=61523 000 
+HTTP fid=61524 000 
+HTTP fid=61527 000 
+HTTP fid=61528 000 
+HTTP fid=61531 000 
+HTTP fid=61534 000 
+HTTP fid=61535 000 
+HTTP fid=61541 000 
+HTTP fid=61542 000 
+HTTP fid=61552 000 
+HTTP fid=61553 000 
+HTTP fid=61598 000 
+HTTP fid=61792 000 
+HTTP fid=61793 000 
+HTTP fid=61794 000 
+HTTP fid=61947 000 
+HTTP fid=61962 000 
+HTTP fid=62054 000 
+HTTP fid=62055 000 
+HTTP fid=62444 000 
+HTTP fid=62482 000 
+URL_LIST /home/n790725/ai-reports/form-audit-3-urls-20261122T184817Z.txt lines=44 sha256=4d1dca383c9fb42d2a38d3e51d96ad9dd3bab9b3545c1fb6b95cef03e919aae0
+--- debug endpoint and files over anonymous HTTP
+DEBUG_HTTP index=1 404 text/html; charset=utf-8
+DEBUG_HTTP index=2 404 text/html; charset=utf-8
+HTTP GET /skyhawk/upload-transition-observation (no params) 400
+--- where the observer JS libraries are attached (counts only)
+LIBREF upload_transition_observer libraries_yml=2 php_attach_refs=1
+LIBREF pixel_execution_probe libraries_yml=0 php_attach_refs=0
+AUDIT3_END_PRESENT=YES
