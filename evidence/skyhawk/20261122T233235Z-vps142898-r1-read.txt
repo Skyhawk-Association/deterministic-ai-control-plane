@@ -1,0 +1,17 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T233235Z-vps142898-r1-read
+Task: r1-read
+Generated (UTC): 2026-11-22T23:32:35Z
+Host: vps142898
+---
+=== R1_SH 20261122T233235Z
+SCRIPT_HASH_VERIFIED
+GIT head=1f36d52 origin=1f36d52 status_lines=0
+FILE #1 lines=662 sha256=ee7f0b611ea24489a9b880447a5f9824f89708f558bd5fb17de06d9449586c17 debug_refs=4
+FILE #2 lines=777 sha256=a9a9a2a16b50e5177cdfd2bba7ef93281d402f225380148a21ce357cb060767b debug_refs=4
+--- any other writer to /downloads or chatgpt-debug in custom code
+REFS files=2
+--- /downloads directory (listing in private file only)
+DOWNLOADS absent
+PRIVATE_FILE_REDACTED bytes=47887 sha256=7e260abd90c02aafaaa62c34217ed39325dfe2c5d095406e0cd3e034eeff4c8d
+=== R1_END
