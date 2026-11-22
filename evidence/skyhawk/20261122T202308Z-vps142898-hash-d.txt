@@ -1,0 +1,40 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T202308Z-vps142898-hash-d
+Task: hash-d
+Generated (UTC): 2026-11-22T20:23:10Z
+Host: vps142898
+---
+=== HASHD_SH 20261122T202308Z
+fb77bc532470da5bc3c0cd2356cfab3c1cbdc8cedbc54c8543f3016f97f990a2  /home/n790725/hash_d.php
+eeaa2bac2f791fdc6aee79ef62376856da0534ed55a271e80282e10f41058e50  /home/n790725/hash_d.sh
+TOPLEVEL files=3 subfolders=11
+FOLDER 1 files=1 bytes=1723083 dates=2026-08-24..2026-08-24 types=[png:1 ] duplicate_content_groups=0
+FOLDER 2 files=2 bytes=3442070 dates=2026-08-24..2026-08-24 types=[png:2 ] duplicate_content_groups=1
+FOLDER 3 files=4 bytes=568890446 dates=2026-08-25..2026-08-25 types=[heic:1 mp4:3 ] duplicate_content_groups=0
+FOLDER 4 files=3 bytes=771643 dates=2026-08-30..2026-08-30 types=[pdf:3 ] duplicate_content_groups=1
+FOLDER 5 files=0 bytes=4096 dates=.. types=[] duplicate_content_groups=0
+FOLDER 6 files=0 bytes=4096 dates=.. types=[] duplicate_content_groups=0
+FOLDER 7 files=0 bytes=4096 dates=.. types=[] duplicate_content_groups=0
+FOLDER 8 files=0 bytes=4096 dates=.. types=[] duplicate_content_groups=0
+FOLDER 9 files=1 bytes=1723083 dates=2026-08-24..2026-08-24 types=[png:1 ] duplicate_content_groups=0
+FOLDER 10 files=0 bytes=4096 dates=.. types=[] duplicate_content_groups=0
+FOLDER 11 files=0 bytes=4096 dates=.. types=[] duplicate_content_groups=0
+CODE_REFS files=4
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== HASHD 2026-11-22T20:23:10+00:00 folders=11
+TOKEN_STORES config_keys=0 key_value_upload_names=3
+DBFOLDER 1 records=1 permanent=0 temporary=1 in_use=0 owners=1 referencing_entities=0
+DBFOLDER 2 records=2 permanent=0 temporary=2 in_use=0 owners=1 referencing_entities=0
+DBFOLDER 3 records=4 permanent=3 temporary=1 in_use=0 owners=1 referencing_entities=0
+DBFOLDER 4 records=3 permanent=3 temporary=0 in_use=0 owners=1 referencing_entities=0
+DBFOLDER 5 records=0 permanent=0 temporary=0 in_use=0 owners=0 referencing_entities=0
+DBFOLDER 6 records=0 permanent=0 temporary=0 in_use=0 owners=0 referencing_entities=0
+DBFOLDER 7 records=0 permanent=0 temporary=0 in_use=0 owners=0 referencing_entities=0
+DBFOLDER 8 records=0 permanent=0 temporary=0 in_use=0 owners=0 referencing_entities=0
+DBFOLDER 9 records=1 permanent=0 temporary=1 in_use=0 owners=1 referencing_entities=0
+DBFOLDER 10 records=0 permanent=0 temporary=0 in_use=0 owners=0 referencing_entities=0
+DBFOLDER 11 records=0 permanent=0 temporary=0 in_use=0 owners=0 referencing_entities=0
+=== HASHD_END
+PRIVATE_FILE /home/n790725/ai-reports/hash-d-private-20261122T202308Z.txt bytes=4536 sha256=0aac5cf7728794eb3f88f6f154e288b9434f8c6412675df58ecd820ce42437f7
+HASHD_END_PRESENT=YES
