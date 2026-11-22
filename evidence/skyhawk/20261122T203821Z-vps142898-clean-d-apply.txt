@@ -1,0 +1,38 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T203821Z-vps142898-clean-d-apply
+Task: clean-d-apply
+Generated (UTC): 2026-11-22T20:38:25Z
+Host: vps142898
+---
+=== CLEAND_SH mode=apply 20261122T203821Z
+2ae64103708fe0539456de0440666f714b3dc440afffcb833b006be71282a205  /home/n790725/clean_d.php
+dba8fee69c2df477bf3572ae9a2d5929d8269f00508ac47eb24b3560d46a4baa  /home/n790725/clean_d.sh
+FOLDERS_BEFORE subfolders=11 files=14 bytes=581735958
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== CLEAND mode=apply 2026-11-22T20:38:21+00:00 targets=11
+PRE fid=61712 status=0 size=1718987 OK
+PRE fid=61713 status=0 size=1718987 OK
+PRE fid=61714 status=0 size=1718987 OK
+PRE fid=61715 status=0 size=1718987 OK
+PRE fid=61758 status=0 size=48808795 OK
+PRE fid=61759 status=1 size=1784728 OK
+PRE fid=61760 status=1 size=494445609 OK
+PRE fid=61761 status=1 size=23847218 OK
+PRE fid=61763 status=1 size=255849 OK
+PRE fid=61764 status=1 size=255849 OK
+PRE fid=61765 status=1 size=255849 OK
+PRE other_records_inside_hash_folders=0 (expect 0)
+NOT_TARGET private://uploads record (left untouched): fid=61717 status=1 in_use=N size=1718987 created=2026-08-25 top_level
+NOT_TARGET private://uploads record (left untouched): fid=61718 status=1 in_use=N size=1718987 created=2026-08-25 top_level
+NOT_TARGET private://uploads record (left untouched): fid=61719 status=1 in_use=N size=1718987 created=2026-08-25 top_level
+SURVIVORS file_managed_rows=50012 sha256=21bf6008f89c0b3bd805888ff9f027af4fd49c910647a77ae5482d10f4f67a11
+PREFLIGHT ok=11/11 problems=0 bytes_on_disk=576529845
+APPLY_PRECHECK rows_match_backup=YES survivors_match_backup=YES
+DELETE records_remaining=0 files_remaining=0 survivors=UNCHANGED VERIFIED
+APPLY_COMPLETE
+=== CLEAND_END
+CLEAND_END_PRESENT=YES
+EMPTY_FOLDERS_REMOVED 11
+FOLDERS_AFTER subfolders=0 files=3 bytes=5161057
+CACHE_REBUILT
