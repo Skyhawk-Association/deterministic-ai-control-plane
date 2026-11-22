@@ -1,0 +1,59 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T213542Z-vps142898-b2-apply-r3
+Task: b2-apply-r3
+Generated (UTC): 2026-11-22T21:35:54Z
+Host: vps142898
+---
+=== B2_SH mode=apply 20261122T213542Z
+3f64fed942507b4bdd2aad919a76df1dccbd579ca46602e47f04f97d6b5fd388  /home/n790725/b2.sh
+8a679f2f615b1a2dd12f60a37d16ba472c1061e3e73ec35f52d98fead5afc710  /home/n790725/b2_edit.php
+PRE git HEAD==origin/main 9e4c92f
+PRE git status = the expected sync modifications only (3 files)
+PRE config:status = exactly the 2 deleted Webforms Only in sync
+# RULES + GERMANE REFERENCE READ
+EDIT skyhawk_site_fixes/skyhawk_site_fixes.routing.yml in=OK out=OK
+EDIT skyhawk_site_fixes/skyhawk_site_fixes.libraries.yml in=OK out=OK
+EDIT skyhawk_site_fixes/src/Controller/SystemStatusController.php in=OK out=OK
+EDIT yp_memorial/src/Controller/MemoriesController.php in=OK out=OK
+(dry write to temp ok)
+(dry write to temp ok)
+(dry write to temp ok)
+(dry write to temp ok)
+EDIT_COMPLETE
+PREFLIGHT problems=0
+BACKUP files=13 sha256=0f81719b97e85ee7cad0307e1a419fb69c7535ed38e13f8e9ad1a426b35b7baa path=/home/n790725/backups/code/b2-pre-20261122T213542Z.tar.gz
+# RULES + GERMANE REFERENCE READ
+EDIT skyhawk_site_fixes/skyhawk_site_fixes.routing.yml in=OK out=OK
+EDIT skyhawk_site_fixes/skyhawk_site_fixes.libraries.yml in=OK out=OK
+EDIT skyhawk_site_fixes/src/Controller/SystemStatusController.php in=OK out=OK
+EDIT yp_memorial/src/Controller/MemoriesController.php in=OK out=OK
+WROTE skyhawk_site_fixes/skyhawk_site_fixes.routing.yml sha256=c18b72b2c41963e7d76c2e183665384296cb52fd5ac70926d4924f9e30cf4bf1
+WROTE skyhawk_site_fixes/skyhawk_site_fixes.libraries.yml sha256=568d27beb9ad5371bcc3e1a1fdf60a55a17004ba142a3a3522c691a75601a1b6
+WROTE skyhawk_site_fixes/src/Controller/SystemStatusController.php sha256=be0c44a02d212a0c6a4aa2fd8ff4b2b20fe9ab2801126ca510659ff2f6791649
+WROTE yp_memorial/src/Controller/MemoriesController.php sha256=602df3dfa54348e3ddf13eb79b97b220c6a2ffa00cedd5ad9fadf1271d329750
+EDIT_COMPLETE
+CACHE_REBUILT
+CONFIG_STATUS No differences between DB and sync directory
+HTTP observer_route=404 core_control_route=404 (expect 404 404) memories=200 (expect 200) yp_cards=10 (expect 10)
+STATUS_PAGE rows=3 (expect 3) YP_CACHE_TAG=YES (expect YES)
+STAGED
+ .../skyhawk_site_fixes/js/pixel_execution_probe.js | 217 --------------------
+ .../js/upload_transition_observer.js               |  76 -------
+ .../skyhawk_site_fixes.libraries.yml               |   4 -
+ .../skyhawk_site_fixes.routing.yml                 |  17 --
+ .../src/Controller/SystemStatusController.php      |  43 ----
+ .../UploadTransitionObservationController.php      | 146 --------------
+ .../src/Form/ManagedFileCoreControlForm.php        |  63 ------
+ .../src/Controller/MemoriesController.php          |   4 +
+ .../sync/system.file.yml                           |   2 +-
+ .../webform.webform.reunion_2026_photo_upload.yml  |  11 +-
+ .../sync/webform.webform.trustee_feedback.yml      | 217 --------------------
+ .../sync/webform.webform.volunteer_submission.yml  | 222 ---------------------
+ .../sync/webform.webform.yp_memories.yml           |  12 +-
+ 13 files changed, 26 insertions(+), 1008 deletions(-)
+COMMIT 30e6e0dce0b64938b109f839242755fe1c930b35
+PUSHED
+PARITY local==remote 30e6e0dce0b64938b109f839242755fe1c930b35 VERIFIED
+GIT_STATUS_AFTER lines=0 (expect 0)
+APPLY_COMPLETE
+=== B2_END
