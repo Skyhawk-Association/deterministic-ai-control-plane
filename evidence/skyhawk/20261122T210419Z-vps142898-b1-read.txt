@@ -1,0 +1,42 @@
+SKYHAWK AI REPORT
+Report-ID: 20261122T210419Z-vps142898-b1-read
+Task: b1-read
+Generated (UTC): 2026-11-22T21:04:22Z
+Host: vps142898
+---
+=== B1_SH 20261122T210419Z
+941b74889cb7619eeee88fe20b928b539c5b4c5c652c57a22e6e59146072514f  /home/n790725/b1_read.sh
+--- site git state
+GIT branch=main head=9e4c92f7693471b49a1a31cc9c88c5e6a70ebb5f status_lines=4
+GIT origin_main=9e4c92f7693471b49a1a31cc9c88c5e6a70ebb5f ahead_behind=0/0
+--- files step B will edit (full text in private file)
+FILE web/modules/custom/skyhawk_site_fixes/src/Controller/SystemStatusController.php lines=125 sha256=f266533edbdcf05d7c325c8eb8b13dc89af173a6b462e5e908ec710c2c0b2f4a tracked=Y
+FILE web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.routing.yml lines=141 sha256=e68213e24f17ce0716f5e85ceab5fdd82b8322b0e780a24090da39f32b53987b tracked=Y
+FILE web/modules/custom/skyhawk_site_fixes/skyhawk_site_fixes.libraries.yml lines=50 sha256=75f73f493d79500f1d5f1bf98daf39e99512efbbdeca70a7f21829ff5b45cda4 tracked=Y
+FILE web/modules/custom/skyhawk_site_fixes/src/Form/ManagedFileCoreControlForm.php lines=63 sha256=eddf57f4779daf744faa91a105c19a2fea73eda1cefb772e0054a0cf5aebbb1e tracked=Y
+FILE web/modules/custom/skyhawk_site_fixes/src/Controller/UploadTransitionObservationController.php lines=146 sha256=0002945d7899abc6717946aaf1e7ab23f740fd6a84d09c63dee7272b7d769658 tracked=Y
+FILE web/modules/custom/skyhawk_site_fixes/js/upload_transition_observer.js lines=76 sha256=ed43549df21fd24a77aca0ddd8be147c4a9d6d920626a801322013e51e3aea7a tracked=Y
+FILE web/modules/custom/skyhawk_site_fixes/js/pixel_execution_probe.js lines=217 sha256=0bd2b030ae87e6facff05ffaa70766fcd8c15b86b52a63166ac7b96fe6430d98 tracked=Y
+FILE web/modules/custom/yp_memorial/yp_memorial.routing.yml lines=7 sha256=23376922e18b95b6dd925ac26ec806c316cda63413e8ebdbce2c0835aa454be4 tracked=Y
+FILE web/modules/custom/yp_memorial/yp_memorial.info.yml lines=7 sha256=3af40bde67743317b1d98dbed583a362c6bec1d57036d6e843f500a29c90ca03 tracked=Y
+FILE web/modules/custom/yp_memorial/src/Controller/MemoriesController.php lines=61 sha256=79a326616ee4799973fc3e5d022f62cb4c59d707fbd15fb3675c467172a21e42 tracked=Y
+--- other references to the debug pieces anywhere in custom code/themes (lines in private file)
+REFS files=9 lines=28
+--- config sync directory
+SYNC_DIR_REDACTED
+SYNCFILE webform.webform.trustee_feedback absent
+SYNCFILE webform.webform.volunteer_submission absent
+SYNCFILE webform.webform.yp_memories absent
+SYNCFILE webform.webform.reunion_2026_photo_upload absent
+SYNCFILE system.file absent
+ -------------------------------------- -------------- 
+ -------------------------------------- -------------- 
+  webform.webform.trustee_feedback       Only in sync  
+  webform.webform.volunteer_submission   Only in sync  
+ -------------------------------------- -------------- 
+--- status page and YP page (anonymous HTTP)
+HTTP /admin/skyhawk/system-status 403
+HTTP /memories-of-yp 200
+PRIVATE_FILE /home/n790725/ai-reports/b1-private-20261122T210419Z.txt bytes=35278 sha256=ec0d15bfa50c610b1e7f82841abf23a8b261fb3c502f1cbc96eef2b0fe740ebe
+=== B1_END
+OTHER_LINES_REDACTED=3
