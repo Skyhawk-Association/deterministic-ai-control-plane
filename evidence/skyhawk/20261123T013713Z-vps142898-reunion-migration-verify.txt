@@ -1,0 +1,21 @@
+SKYHAWK AI REPORT
+Report-ID: 20261123T013713Z-vps142898-reunion-migration-verify
+Task: reunion-migration-verify
+Generated (UTC): 2026-11-23T01:37:13Z
+Host: vps142898
+---
+HEAD 49605718d0e1bbf78899e4ad5bab1b5440df144e
+REMOTE 49605718d0e1bbf78899e4ad5bab1b5440df144e
+STATUS_LINES 0
+LOG 4960571 Generalize Reunion newsletter updates to event-scoped authority
+LOG 394a986 Update Drupal core 11.4.12 to 11.4.13 (security) - Authorized-by: Gene 2026-11-22
+LOG 5680b0c Reunion forms: log debug evidence to Drupal log instead of public /downloads
+LOG 1f36d52 Add Google Search Console verification file for https://skyhawk.org/ (must stay in place)
+LOG 30e6e0d Remove upload-debug routes and JS, add YP cache tag, reconcile Webform sync config
+R2_ANCESTOR YES
+FILE ReunionNewsletterUpdateForm sha256=0a699173b0936a2e chatgpt_debug=0 downloads_write=0 logger_report=1 fixed_49464=0
+FILE ReunionRequestForm sha256=a64e0889f9d49aa0 chatgpt_debug=0 downloads_write=0 logger_report=1 fixed_49464=0
+SHOW 4960571 Generalize Reunion newsletter updates to event-scoped authority
+
+ .../src/Form/ReunionNewsletterUpdateForm.php       | 53 ++++++++++++----------
+ 1 file changed, 28 insertions(+), 25 deletions(-)
