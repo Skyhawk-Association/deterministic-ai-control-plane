@@ -1,0 +1,24 @@
+SKYHAWK AI REPORT
+Report-ID: 20261123T020235Z-vps142898-own-apply
+Task: own-apply
+Generated (UTC): 2026-11-23T02:02:40Z
+Host: vps142898
+---
+=== OWN_SH mode=apply 20261123T020235Z
+b79de9c986f49969b6191f53daf8c0b918ad9edf0873f3f49493b59329cc8215  /home/n790725/own.php
+7b5363097160ef93f3d109b5e2e182ec26c8b64f52a22500fdee3671907c0153  /home/n790725/own.sh
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== OWN mode=apply 2026-11-23T02:02:35+00:00
+PRE node nid=49466 bundle=reunion_event published=Y owner_uid=0 title_len=29
+PRE uid=11 name=Blade active=Y roles=authenticated,admin,co,xo,board,sectreas,journal,sdo_coordinator,sdo,authorized_user,photo_reviewer
+ACCESS_BEFORE skyhawk_site_fixes.reunion_newsletter_update=ALLOW skyhawk_site_fixes.reunion_worker=DENY skyhawk_site_fixes.reunion_ready_room_manage=DENY
+PREFLIGHT problems=0
+BACKUP sha256=d5d362f59ce2590386b2c450c418412c7e284e6570aaf4e662392be7907c00d3 path=/home/n790725/backups/nodes/node-49466-pre-owner-20261123T020235Z.json
+OWNER_AFTER uid=11 (expect 11) other_fields=UNCHANGED
+ACCESS_AFTER skyhawk_site_fixes.reunion_newsletter_update=ALLOW skyhawk_site_fixes.reunion_worker=ALLOW skyhawk_site_fixes.reunion_ready_room_manage=ALLOW
+APPLY_VERIFIED
+=== OWN_END
+OWN_END_PRESENT=YES
+CACHE_REBUILT
+HTTP /node/49466 301
