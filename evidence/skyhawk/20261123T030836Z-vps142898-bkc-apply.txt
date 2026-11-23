@@ -1,0 +1,91 @@
+SKYHAWK AI REPORT
+Report-ID: 20261123T030836Z-vps142898-bkc-apply
+Task: bkc-apply
+Generated (UTC): 2026-11-23T03:08:36Z
+Host: vps142898
+---
+=== BKC rev4 mode=apply 20261123T030020Z
+SCRIPT sha256=3676add7623507721964ea6e995524b7b0467346e709e17df3bdf1f8672330ff
+  M4_LOGIC 15:if rsync -a -e "ssh -o ConnectTimeout=20 -o ServerAliveInterval=15 -o BatchMode=yes" Inmotion:backups/db/ "$DBDEST/db/" 2>>"$LOG"; then
+  M4_LOGIC 24:  echo "$TS FAIL rsync DB from VPS" >> "$LOG"
+  M4_LOGIC 27:find "$DBDEST/db" -name 'skyhawk-*.sql.gz*' -mtime +90 -delete
+  M4_LOGIC 32:  if rsync -a --chmod=Du+w --delete --backup --backup-dir="$CHANGED" --partial --partial-dir=.rsync-partial     -e "ssh -o ConnectTimeout=20 -o ServerAliveInterval=30 -o ServerAliveCountMax=20 -o BatchMode=yes"     Inmotion:/home/n790725/drupalbeta/ "$FILESROOT/current/" >>"$LOG" 2>&1; then
+  M4_LOGIC 37:  echo "$TS FILES RETRY attempt=$ATTEMPT rsync_rc=$FILES_RC" >> "$LOG"
+  M4_LOGIC 42:  FILES=$(find "$FILESROOT/current" -type f ! -path '*/.rsync-partial/*' | wc -l | tr -d ' ')
+  M4_LOGIC 44:  if [ -d "$CHANGED" ] && [ -z "$(find "$CHANGED" -mindepth 1 -print -quit 2>/dev/null)" ]; then
+  M4_LOGIC 47:  find "$FILESROOT/_changed" -mindepth 1 -maxdepth 1 -type d -mtime +90 -exec rm -rf {} +
+  M4_LOGIC 50:  echo "$TS FILES FAIL rsync_rc=$FILES_RC after=3_attempts" >> "$LOG"
+  BACKUP_SCRIPT sha256=59a6669784dc068fff4df58296d1f6566df961ddc29cc02b037369296e5a0468 keep14=1 keep1=0 keep_lines=1
+    PRUNE_LOGIC 2:# Nightly Skyhawk DB backup: dump (cache tables structure-only), verify, keep 14, log.
+    PRUNE_LOGIC 4:DIR=$HOME/backups/db; LOG=$DIR/backup.log; KEEP=14; TS=$(date -u +%Y%m%dT%H%M%SZ); F=$DIR/skyhawk-$TS.sql.gz
+    PRUNE_LOGIC 7:if vendor/bin/drush sql:dump --structure-tables-key=common 2>>$LOG | gzip > "$F.part" && gzip -t "$F.part" && [ "$(gzip -dc "$F.part" | grep -c 'CREATE TABLE')" -gt 100 ]; then
+    PRUNE_LOGIC 10:else rm -f "$F.part"; echo "$TS FAIL dump or verify" >> $LOG; rm -rf "$S"; exit 1; fi
+    PRUNE_LOGIC 11:ls -1t $DIR/skyhawk-*.sql.gz | tail -n +$((KEEP+1)) | while read -r o; do rm -f "$o" "$o.sha256"; done
+    PRUNE_LOGIC 12:rm -rf "$S"
+    CRON 30 1 * * * $HOME/bin/skyhawk-db-backup.sh >/dev/null 2>&1
+  DF /dev/ploop37966p1  158G  122G   30G  81% /
+INV m4_copy=N gzip=OK sidecars=0 size=134422219 sha=6013cb6e6255daf16142bf1636a5b0d46ddb6b625884f2c8c1ec0a3bfb2518f7 /home/n790725/backups/db/manual/skyhawk-pre-update-20261025.sql.gz.gz
+INV m4_copy=N gzip=OK sidecars=0 size=119208709 sha=5cbe560ca3ffad82a401dfb30b9f277d3c6849aaddcd1462550c1e8a1522a469 /home/n790725/backups/db/reunion-owner-pre-20261123T015559Z.sql.gz.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=131198301 sha=680b3def892edacbc8524c9bad204d4650409d5ec691118748f642aac0d76491 /home/n790725/backups/db/skyhawk-20261110T063003Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=131213630 sha=9045ebd14d2b86e2c65548a62eaff802059f7c9660123964f72a3c8895d97b09 /home/n790725/backups/db/skyhawk-20261111T063009Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=141377815 sha=3e9c6c1155d02557d1eaffec96c88628ec82b0c645ffccad0cac421cc5364480 /home/n790725/backups/db/skyhawk-20261112T063001Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=148928183 sha=8ca29c9b9eee206549ea9297452d5ada6a3033cdab2dfe32648435234084f13c /home/n790725/backups/db/skyhawk-20261113T063005Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=150085607 sha=34b6b65000d9ac0ff46f65030c24939064724f7dd211f9b0861cc54c8d865884 /home/n790725/backups/db/skyhawk-20261114T063002Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=148315487 sha=89a43249f580d1a62c0e4d954f0bc83931614ad688b56891211345fa67f34b7a /home/n790725/backups/db/skyhawk-20261115T063005Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=135027203 sha=06e3c0bc1c19799730ca9dddda6afc1c24e65135d2de55abd2166c3c3f61188b /home/n790725/backups/db/skyhawk-20261116T063001Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=156093170 sha=85e0b530c0ee7567ab3080454d286ae483cd2abb39b09f174d782e11dc821c2d /home/n790725/backups/db/skyhawk-20261117T063003Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=147276564 sha=91a7c535149a2091ac6117ee1688afcfe56cf46ea906a11db967cccf4c48cc29 /home/n790725/backups/db/skyhawk-20261118T063005Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=134038976 sha=a6b7abcb5f92eed95efd56a6d02163cf8887186dcab06d635252108676cf8955 /home/n790725/backups/db/skyhawk-20261119T063003Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=146666372 sha=b6859f556910e75d43ade810b605a4a62a638e41958f5758d0d4bcbda04079a0 /home/n790725/backups/db/skyhawk-20261121T063003Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=151928504 sha=64e8bd6ba4467f95f1cd409a7957c5a9b994dcf1a9662a91b0fcb710159f8ce8 /home/n790725/backups/db/skyhawk-20261122T063007Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=81944189 sha=db34ee7e7e4f21ca0f3c3c2e788a320da485e569dbb44d246f9aa83266b6735a /home/n790725/backups/db/skyhawk-20261123T000613Z.sql.gz
+INV m4_copy=Y gzip=OK sidecars=1 size=83144219 sha=b54ed023c0561409939a857d381a23f3775b45d58f34d4abbc1c8d46f7aee48a /home/n790725/backups/db/skyhawk-20261123T000849Z.sql.gz
+INV m4_copy=N gzip=OK sidecars=0 size=71167621 sha=19f1b6452327fe600526ab7b31ad5a3bc5d1df1884490504573b6562c931ce42 /home/n790725/backups/manual/skyhawk-pre-content-access-20261014T014759Z.sql.gz
+INV m4_copy=N gzip=OK sidecars=0 size=146588898 sha=bd607f72e6184dbe497347c40d129ac6f1c84ab6006876cbd32d855f02cbd265 /home/n790725/skyhawk-migration/cutover-darwus_beta-20261004T211918Z.sql.gz.gz
+INV m4_copy=N gzip=OK sidecars=0 size=137828228 sha=a008602a371f58dfd3693c6408c52e302615b81d8a788affb1ef1d6f3bdb5801 /home/n790725/skyhawk-migration/db-pre-final-import/pre-import-20261004T143512Z.sql.gz
+INV m4_copy=N gzip=OK sidecars=0 size=76596075 sha=9da9e09c7a9d078ba5eab95d6a7853bef664236b37c68c2421595f5181e24846 /home/n790725/skyhawk-migration/final-drupalbeta-2026-10-04_02-00-04.sql.gz
+INV m4_copy=N gzip=OK sidecars=0 size=136902527 sha=09d71d517c606d1a418d10fdf11aab64b8e3515a689ea9a9f903fcea42a7232b /home/n790725/skyhawk-migration/incoming/darwus_beta-initial-20261002.sql.gz
+INV m4_copy=N gzip=OK sidecars=0 size=98504944 sha=ba7a3641125deeaa1f7f52b521c183e067132afe0f76e3e150396c96ff584239 /home/n790725/skyhawk-migration/pre-cutover-n790725_skyhawk-20261004T215602Z.sql.gz
+INVENTORY dumps=22 already_on_archivessd=14 to_copy=8
+COPIED_VERIFIED /home/n790725/backups/db/manual/skyhawk-pre-update-20261025.sql.gz.gz -> /Volumes/ArchiveSSD/skyhawk-archive/vps-db-historical/skyhawk-pre-update-20261025.sql.gz.gz
+COPIED_VERIFIED /home/n790725/backups/db/reunion-owner-pre-20261123T015559Z.sql.gz.gz -> /Volumes/ArchiveSSD/skyhawk-archive/vps-db-historical/reunion-owner-pre-20261123T015559Z.sql.gz.gz
+COPIED_VERIFIED /home/n790725/backups/manual/skyhawk-pre-content-access-20261014T014759Z.sql.gz -> /Volumes/ArchiveSSD/skyhawk-archive/vps-db-historical/skyhawk-pre-content-access-20261014T014759Z.sql.gz
+COPIED_VERIFIED /home/n790725/skyhawk-migration/cutover-darwus_beta-20261004T211918Z.sql.gz.gz -> /Volumes/ArchiveSSD/skyhawk-archive/vps-db-historical/cutover-darwus_beta-20261004T211918Z.sql.gz.gz
+COPIED_VERIFIED /home/n790725/skyhawk-migration/db-pre-final-import/pre-import-20261004T143512Z.sql.gz -> /Volumes/ArchiveSSD/skyhawk-archive/vps-db-historical/pre-import-20261004T143512Z.sql.gz
+COPIED_VERIFIED /home/n790725/skyhawk-migration/final-drupalbeta-2026-10-04_02-00-04.sql.gz -> /Volumes/ArchiveSSD/skyhawk-archive/vps-db-historical/final-drupalbeta-2026-10-04_02-00-04.sql.gz
+COPIED_VERIFIED /home/n790725/skyhawk-migration/incoming/darwus_beta-initial-20261002.sql.gz -> /Volumes/ArchiveSSD/skyhawk-archive/vps-db-historical/darwus_beta-initial-20261002.sql.gz
+COPIED_VERIFIED /home/n790725/skyhawk-migration/pre-cutover-n790725_skyhawk-20261004T215602Z.sql.gz -> /Volumes/ArchiveSSD/skyhawk-archive/vps-db-historical/pre-cutover-n790725_skyhawk-20261004T215602Z.sql.gz
+KEEP_THIS /home/n790725/backups/db/reunion-owner-pre-20261123T015559Z.sql.gz.gz sha=5cbe560ca3ffad82a401dfb30b9f277d3c6849aaddcd1462550c1e8a1522a469
+DELETE_TARGETS dumps=21
+  TARGET /home/n790725/backups/db/manual/skyhawk-pre-update-20261025.sql.gz.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261110T063003Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261111T063009Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261112T063001Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261113T063005Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261114T063002Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261115T063005Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261116T063001Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261117T063003Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261118T063005Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261119T063003Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261121T063003Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261122T063007Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261123T000613Z.sql.gz
+  TARGET /home/n790725/backups/db/skyhawk-20261123T000849Z.sql.gz
+  TARGET /home/n790725/backups/manual/skyhawk-pre-content-access-20261014T014759Z.sql.gz
+  TARGET /home/n790725/skyhawk-migration/cutover-darwus_beta-20261004T211918Z.sql.gz.gz
+  TARGET /home/n790725/skyhawk-migration/db-pre-final-import/pre-import-20261004T143512Z.sql.gz
+  TARGET /home/n790725/skyhawk-migration/final-drupalbeta-2026-10-04_02-00-04.sql.gz
+  TARGET /home/n790725/skyhawk-migration/incoming/darwus_beta-initial-20261002.sql.gz
+  TARGET /home/n790725/skyhawk-migration/pre-cutover-n790725_skyhawk-20261004T215602Z.sql.gz
+SIDECAR_PATHS 14
+DELETED paths=35/35 remaining=0
+KEEP_AFTER keep1=1 keep14=0 diff_lines=2 VERIFIED script_backup=/home/n790725/bin/skyhawk-db-backup.sh.pre-keep1-20261123T030020Z
+SURVIVORS sha256_before=a8cf5811edec74936bc7fd0c59c330425ec4983512b3aee9559033ee16986cef after=a8cf5811edec74936bc7fd0c59c330425ec4983512b3aee9559033ee16986cef UNCHANGED
+SERVER_APPLY_OK
+FINAL server_dumps=1 kept=/home/n790725/backups/db/reunion-owner-pre-20261123T015559Z.sql.gz.gz
+BACKUP_SCRIPT sha256=cb7e0620d019d9e8115b86c33952b0cdeeaffd192518123da309a1727818522e keep14=0 keep1=1 keep_lines=1
+DF /dev/ploop37966p1  158G  120G   32G  79% /
+APPLY_VERIFIED one server DB backup (newest), also on ArchiveSSD
+ROLLBACK: dumps = copy back from /Volumes/ArchiveSSD/skyhawk-vps-backups/db / /Volumes/ArchiveSSD/skyhawk-archive/vps-db-historical; KEEP = restore ~/bin/skyhawk-db-backup.sh.pre-keep1-20261123T030020Z
+=== BKC_END
