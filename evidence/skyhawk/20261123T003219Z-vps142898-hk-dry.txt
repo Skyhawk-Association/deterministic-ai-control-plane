@@ -1,0 +1,63 @@
+SKYHAWK AI REPORT
+Report-ID: 20261123T003219Z-vps142898-hk-dry
+Task: hk-dry
+Generated (UTC): 2026-11-23T00:32:20Z
+Host: vps142898
+---
+=== HK_SH mode=dry 20261123T003219Z
+3fe0865a38b4d17bff7e58c873047aec947a1febc01eec9eb8687e07d9303001  /home/n790725/hk.sh
+PRESENT files=50
+  form_audit_1.php
+  form_audit_1.out
+  form_audit_2.php
+  form_audit_2.sh
+  form_audit_2.out
+  form_audit_3.php
+  form_audit_3.sh
+  form_audit_3.out
+  fix_4.php
+  fix_4.sh
+  fix_4.dry.out
+  fix_4.apply.out
+  fix_5.php
+  fix_5.sh
+  fix_5.dry.out
+  fix_5.apply.out
+  fix_6.php
+  fix_6.sh
+  fix_6.dry.out
+  fix_6b.php
+  fix_6b.sh
+  fix_6b.dry.out
+  find_a.php
+  find_a.sh
+  find_a.out
+  hash_d.php
+  hash_d.sh
+  hash_d.out
+  clean_c.php
+  clean_c.sh
+  clean_c.dry.out
+  clean_c.backup.out
+  clean_c.apply.out
+  clean_d.php
+  clean_d.sh
+  clean_d.dry.out
+  clean_d.backup.out
+  clean_d.apply.out
+  clean_e.php
+  clean_e.sh
+  clean_e.dry.out
+  clean_e.backup.out
+  clean_e.apply.out
+  b1_read.sh
+  b2.sh
+  b2_edit.php
+  r1_read.sh
+  r2.sh
+  r2_edit.php
+  upd.sh
+NOT_IN_LIST (left alone):
+SURVIVORS_BEFORE sha256=f628ec079172a50c6b452c4d322452f3708501bb6126969652264976cee5c461
+DRY_RUN_COMPLETE no changes made
+=== HK_END
