@@ -1,0 +1,102 @@
+SKYHAWK AI REPORT
+Report-ID: 20261123T000840Z-vps142898-upd-update
+Task: upd-update
+Generated (UTC): 2026-11-23T00:10:10Z
+Host: vps142898
+---
+=== UPD_SH mode=update 20261123T000840Z
+a0b48a7ec1fb338ffa8cb2bb4e597b56552bbef066d1712f91492f052fcf808f  /home/n790725/upd.sh
+PRE git HEAD==origin/main 5680b0c
+PRE git status clean
+PRE wrapper present
+BRANCH=main
+ORIGIN=git@github-skyhawk:Skyhawk-Association/skyhawk.org.git
+LOCAL_HEAD=5680b0cf875ab92b363d92fe912cc87eb1e1e66b
+REMOTE_MAIN=5680b0cf875ab92b363d92fe912cc87eb1e1e66b
+CONFIG_DIFF_COUNT=0
+COMPOSER_GIT_STATE=CLEAN
+PRE wrapper state CLEAN
+PRE config:status []
+DRUPAL_VERSION_BEFORE 11.4.12
+--- composer audit (locked) BEFORE
+Found 2 security vulnerability advisories affecting 1 package:
+Package: drupal/core
+Severity: 
+Advisory ID: SA-CORE-2026-017
+CVE: CVE-2026-132165
+Title: Drupal core - Highly critical - Remote code execution - SA-CORE-2026-017
+URL: https://www.drupal.org/sa-core-2026-017
+Affected versions: <10.6.22 || >=11.0.0 <11.3.22 || >=11.4.0 <11.4.13
+Reported at: 2026-11-18T17:43:11+00:00
+--------
+Package: drupal/core
+Severity: 
+Advisory ID: SA-CORE-2026-018
+CVE: CVE-2026-132166
+Title: Drupal core - Moderately critical - Gadget chain - SA-CORE-2026-018
+URL: https://www.drupal.org/sa-core-2026-018
+Affected versions: <10.6.22 || >=11.0.0 <11.3.22 || >=11.4.0 <11.4.13
+Reported at: 2026-11-18T17:50:21+00:00
+--- outdated direct drupal/* BEFORE
+Legend:
+! patch or minor release available - update recommended
+~ major release available - update possible
+drupal/core-composer-scaffold 11.4.12      ! 11.4.13 A flexible Composer pro...
+drupal/core-dev               11.4.12      ! 11.4.13 require-dev dependencie...
+drupal/core-project-message   11.4.12      ! 11.4.13 Adds a message after Co...
+drupal/core-recommended       11.4.12      ! 11.4.13 Core and its dependenci...
+drupal/embed                  1.10.0       ! 1.12.0  Provides a framework fo...
+drupal/entity_browser         2.17.0       ! 2.18.0  Entity browsing and sel...
+drupal/entity_embed           1.7.0        ! 1.8.0   Allows any entity to be...
+drupal/extlink                3.0.0        ! 3.0.1   Modify behavior and app...
+drupal/inline_entity_form     3.0.0        ! 3.1.0   Provides a widget for i...
+drupal/pathauto               1.15.0       ! 1.16.0  Provides a mechanism fo...
+drupal/upgrade_status         5.0.0-alpha3 ! 5.0.0   Review Drupal major upg...
+drupal/views_infinite_scroll  2.0.3        ! 2.0.4   A pager which allows an...
+PREFLIGHT problems=0
+--- fresh database backup (recorded script)
+DB_BACKUP OK file=skyhawk-20261123T000849Z.sql.gz bytes=83144219 sha256=b54ed023c0561409939a857d381a23f3775b45d58f34d4abbc1c8d46f7aee48a
+--- bin/skyhawk-composer update (exactly once)
+WRAPPER_UPDATE rc=0 log=/home/n790725/ai-reports/upd-composer-20261123T000840Z.log
+ 22/39 [===============>------------]  56%
+ 25/39 [=================>----------]  64%
+ 29/39 [====================>-------]  74%
+ 33/39 [=======================>----]  84%
+ 37/39 [==========================>-]  94%
+ 38/39 [===========================>]  97%
+ 39/39 [============================] 100%
+4 package suggestions were added by new dependencies, use `composer suggest` to see details.
+Package doctrine/common is abandoned, you should avoid using it. No replacement was suggested.
+Generating autoload files
+105 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+phpstan/extension-installer: Extensions installed
+> composer/composer: installed
+> composer/pcre: installed
+> mglaman/phpstan-drupal: installed
+> phpstan/phpstan-deprecation-rules: installed
+> phpstan/phpstan-phpunit: installed
+No security vulnerability advisories found.
+ [success] No pending updates.
+ [success] Cache rebuild complete.
+
+COMPOSER_GIT_STATE=PENDING
+Functional site verification is required before finish.
+ M composer.lock
+--- postchecks
+DRUPAL_VERSION_AFTER 11.4.13
+CONFIG_STATUS_AFTER []
+UPDB_PENDING 
+No security vulnerability advisories found.
+GIT_CHANGED  M composer.lock;
+HTTP / 200
+HTTP /user/login 200
+HTTP /form/contact 200
+HTTP /memories-of-yp 200
+HTTP /form/yp-memories 200
+START_HEAD=5680b0cf875ab92b363d92fe912cc87eb1e1e66b
+OPERATION=update
+ARG='' 
+GENERATED=2026-11-22T19:09:58-05:00
+UPDATE_RUN_COMPLETE rc=0 (finish NOT run; awaiting Gene's functional acceptance)
+=== UPD_END
