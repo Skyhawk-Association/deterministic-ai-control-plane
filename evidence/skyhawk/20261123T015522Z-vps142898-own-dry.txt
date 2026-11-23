@@ -1,0 +1,20 @@
+SKYHAWK AI REPORT
+Report-ID: 20261123T015522Z-vps142898-own-dry
+Task: own-dry
+Generated (UTC): 2026-11-23T01:55:23Z
+Host: vps142898
+---
+=== OWN_SH mode=dry 20261123T015522Z
+b79de9c986f49969b6191f53daf8c0b918ad9edf0873f3f49493b59329cc8215  /home/n790725/own.php
+7b5363097160ef93f3d109b5e2e182ec26c8b64f52a22500fdee3671907c0153  /home/n790725/own.sh
+DRUSH_RC=0
+# RULES + GERMANE REFERENCE READ
+=== OWN mode=dry 2026-11-23T01:55:23+00:00
+PRE node nid=49466 bundle=reunion_event published=Y owner_uid=0 title_len=29
+PRE uid=11 name=Blade active=Y roles=authenticated,admin,co,xo,board,sectreas,journal,sdo_coordinator,sdo,authorized_user,photo_reviewer
+ACCESS_BEFORE skyhawk_site_fixes.reunion_newsletter_update=ALLOW skyhawk_site_fixes.reunion_worker=DENY skyhawk_site_fixes.reunion_ready_room_manage=DENY
+PREFLIGHT problems=0
+DRY_RUN_COMPLETE no changes made
+=== OWN_END
+OWN_END_PRESENT=YES
+HTTP /node/49466 301
