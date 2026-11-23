@@ -1,0 +1,66 @@
+SKYHAWK AI REPORT
+Report-ID: 20261123T003314Z-vps142898-hk-apply
+Task: hk-apply
+Generated (UTC): 2026-11-23T00:33:15Z
+Host: vps142898
+---
+=== HK_SH mode=apply 20261123T003314Z
+3fe0865a38b4d17bff7e58c873047aec947a1febc01eec9eb8687e07d9303001  /home/n790725/hk.sh
+PRESENT files=50
+  form_audit_1.php
+  form_audit_1.out
+  form_audit_2.php
+  form_audit_2.sh
+  form_audit_2.out
+  form_audit_3.php
+  form_audit_3.sh
+  form_audit_3.out
+  fix_4.php
+  fix_4.sh
+  fix_4.dry.out
+  fix_4.apply.out
+  fix_5.php
+  fix_5.sh
+  fix_5.dry.out
+  fix_5.apply.out
+  fix_6.php
+  fix_6.sh
+  fix_6.dry.out
+  fix_6b.php
+  fix_6b.sh
+  fix_6b.dry.out
+  find_a.php
+  find_a.sh
+  find_a.out
+  hash_d.php
+  hash_d.sh
+  hash_d.out
+  clean_c.php
+  clean_c.sh
+  clean_c.dry.out
+  clean_c.backup.out
+  clean_c.apply.out
+  clean_d.php
+  clean_d.sh
+  clean_d.dry.out
+  clean_d.backup.out
+  clean_d.apply.out
+  clean_e.php
+  clean_e.sh
+  clean_e.dry.out
+  clean_e.backup.out
+  clean_e.apply.out
+  b1_read.sh
+  b2.sh
+  b2_edit.php
+  r1_read.sh
+  r2.sh
+  r2_edit.php
+  upd.sh
+NOT_IN_LIST (left alone):
+SURVIVORS_BEFORE sha256=f628ec079172a50c6b452c4d322452f3708501bb6126969652264976cee5c461
+ARCHIVE files=50 restore_test_sha_match=50/50 sha256=1992a679ed03b5869d6dd774625f925a674945f7d30ca472a06ba2fcb9e6efc1 path=/home/n790725/backups/scripts/session-scripts-20261122-20261123T003314Z.tar.gz
+AI_WORK_DIR kept (absent or not empty)
+SURVIVORS_AFTER sha256=f628ec079172a50c6b452c4d322452f3708501bb6126969652264976cee5c461 UNCHANGED
+REMOVED 50/50 remaining=0 VERIFIED
+=== HK_END
