@@ -1,0 +1,93 @@
+SKYHAWK AI REPORT
+Report-ID: 20261125T162033Z-vps142898-photo-inventory
+Task: photo-inventory
+Generated (UTC): 2026-11-25T16:34:25Z
+Host: vps142898
+---
+16:20:33Z START host=vps142898.inmotionhosting.com user=n790725 root=/home/n790725 ppi=300 jobs=2
+16:20:33Z IDENTIFY Version: ImageMagick 6.9.13-60 Q16 x86_64 19889 https://legacy.imagemagick.org
+16:34:25Z SCAN_STATUS=COMPLETE find_rc=0 tee_rc=0 xargs_rc=0 find_errors=0 candidates=100901 rows=100901
+7c784d55c7889fb67e62c14d1b3c1854ea8a2b4ad29b540bba57d551ff8a2bcc  /home/n790725/ai-reports/photo-inventory-20261125T162033Z/inventory.tsv
+16:34:25Z END out=/home/n790725/ai-reports/photo-inventory-20261125T162033Z
+SCAN_STATUS=COMPLETE
+PRINT_PPI=300  buckets = ORIGINAL files by long edge in inches at that ppi
+area                                               total    orig   lt4in  4to6in  6to9in    9in+   deriv  unread
+drupalbeta/private/webform                             2       0       0       0       0       0       0       2
+drupalbeta/web/sites/default/files                    21      21      15       4       1       1       0       0
+drupalbeta/web/sites/default/files/2020-04             5       5       0       5       0       0       0       0
+drupalbeta/web/sites/default/files/carousel            3       3       3       0       0       0       0       0
+drupalbeta/web/sites/default/files/color               1       1       1       0       0       0       0       0
+drupalbeta/web/sites/default/files/darwsafolders    4871    4871    3134    1238     324     175       0       0
+drupalbeta/web/sites/default/files/embed_buttons       3       3       3       0       0       0       0       0
+drupalbeta/web/sites/default/files/images-a4-unknown    1956    1956    1687     136      53      80       0       0
+drupalbeta/web/sites/default/files/images-a4-unknown2     177     177     169       4       3       1       0       0
+drupalbeta/web/sites/default/files/images-buno-137812-139970     352     352     297      38      12       5       0       0
+drupalbeta/web/sites/default/files/images-buno-142082-142141     213     213     204       6       2       1       0       0
+drupalbeta/web/sites/default/files/images-buno-142142-142235     153     153     132      16       4       1       0       0
+drupalbeta/web/sites/default/files/images-buno-142416-142953     739     739     650      40      39      10       0       0
+drupalbeta/web/sites/default/files/images-buno-144868-145061     551     551     512      25      14       0       0       0
+drupalbeta/web/sites/default/files/images-buno-145062-147849    1068    1068     964      89      10       5       0       0
+drupalbeta/web/sites/default/files/images-buno-148304-148612     687     687     620      43       5      19       0       0
+drupalbeta/web/sites/default/files/images-buno-148613-148614      71      71      69       2       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-149487-149646     551     551     474      52      19       6       0       0
+drupalbeta/web/sites/default/files/images-buno-149647-150600     637     637     590      36       5       6       0       0
+drupalbeta/web/sites/default/files/images-buno-151022-151201     495     495     455      32       0       8       0       0
+drupalbeta/web/sites/default/files/images-buno-151984-152100     321     321     308      11       1       1       0       0
+drupalbeta/web/sites/default/files/images-buno-152101-152101      24      24      23       1       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-152102-153690    1170    1170    1090      59      12       9       0       0
+drupalbeta/web/sites/default/files/images-buno-154172-154217     391     391     354      15       6      16       0       0
+drupalbeta/web/sites/default/files/images-buno-154287-154657     768     768     741      23       3       1       0       0
+drupalbeta/web/sites/default/files/images-buno-154903-154910     305     305     246      28       9      22       0       0
+drupalbeta/web/sites/default/files/images-buno-154911-154912     132     132     106      12      11       3       0       0
+drupalbeta/web/sites/default/files/images-buno-154970-155069     750     750     662      46      15      27       0       0
+drupalbeta/web/sites/default/files/images-buno-155070-155070       3       3       3       0       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-155071-155071       3       3       3       0       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-155072-155119     270     270     243      21       2       4       0       0
+drupalbeta/web/sites/default/files/images-buno-155242-155289       8       8       7       0       1       0       0       0
+drupalbeta/web/sites/default/files/images-buno-156891-156950     225     225     211      11       3       0       0       0
+drupalbeta/web/sites/default/files/images-buno-157395-157428       1       1       1       0       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-157904-157913     405     405     317      57       2      29       0       0
+drupalbeta/web/sites/default/files/images-buno-157914-157917     132     132     114      12       0       6       0       0
+drupalbeta/web/sites/default/files/images-buno-158073-158147     311     311     280      25       4       2       0       0
+drupalbeta/web/sites/default/files/images-buno-158148-158435     505     505     473      26       1       5       0       0
+drupalbeta/web/sites/default/files/images-buno-158453-158723     457     457     415      19       3      20       0       0
+drupalbeta/web/sites/default/files/images-buno-158726-159098      32      32      31       1       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-159099-159104       3       3       3       0       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-159470-159493     195     195     187       5       0       3       0       0
+drupalbeta/web/sites/default/files/images-buno-159515-159545      72      72      66       5       0       1       0       0
+drupalbeta/web/sites/default/files/images-buno-159778-159790     105     105     103       2       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-159795-159798      41      41      35       5       1       0       0       0
+drupalbeta/web/sites/default/files/images-buno-159799-159824      27      27      26       0       0       1       0       0
+drupalbeta/web/sites/default/files/images-buno-160022-160045     218     218     213       5       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-160180-160209     119     119     117       2       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-160210-160215      53      53      53       0       0       0       0       0
+drupalbeta/web/sites/default/files/images-buno-160241-160264     282     282     240       8       1      33       0       0
+drupalbeta/web/sites/default/files/images-common     338     338     329       5       1       3       0       0
+drupalbeta/web/sites/default/files/images-general    1177    1177     909     195      43      30       0       0
+drupalbeta/web/sites/default/files/images-modeling     317     317     226      14      59      18       0       0
+drupalbeta/web/sites/default/files/images-newspaper    1969    1969    1240     686      28      15       0       0
+drupalbeta/web/sites/default/files/images-nona4s     343     343     335       8       0       0       0       0
+drupalbeta/web/sites/default/files/images-people    1772    1772    1607      98      20      47       0       0
+drupalbeta/web/sites/default/files/images-sa-activities     639     639     618      18       0       3       0       0
+drupalbeta/web/sites/default/files/images-unit-patches    1332    1332    1316      13       1       2       0       0
+drupalbeta/web/sites/default/files/images-unit-reunions      88      88      85       3       0       0       0       0
+drupalbeta/web/sites/default/files/images-units     2526    2526    1674     719      95      38       0       0
+drupalbeta/web/sites/default/files/images-units-ships     304     304     247      50       5       2       0       0
+drupalbeta/web/sites/default/files/inline-images       2       2       1       0       0       1       0       0
+drupalbeta/web/sites/default/files/media-icons         4       4       4       0       0       0       0       0
+drupalbeta/web/sites/default/files/memorial            1       1       1       0       0       0       0       0
+drupalbeta/web/sites/default/files/modeling           37      37      13       6      18       0       0       0
+drupalbeta/web/sites/default/files/oembed_thumbnails     123     123     123       0       0       0       0       0
+drupalbeta/web/sites/default/files/reunion-test        1       0       0       0       0       0       0       1
+drupalbeta/web/sites/default/files/reunions            9       6       3       3       0       0       0       3
+drupalbeta/web/sites/default/files/sajournals        161     161     137      24       0       0       0       0
+drupalbeta/web/sites/default/files/sajournals-public      13      13      10       3       0       0       0       0
+drupalbeta/web/sites/default/files/sites               2       2       0       0       0       2       0       0
+drupalbeta/web/sites/default/files/styles          37913       0       0       0       0       0   37801     112
+drupalbeta/web/sites/default/files/vma131-preview     360     360      96      33     231       0       0       0
+drupalbeta/web/sites/default/files/watermark          16      16      16       0       0       0       0       0
+drupalbeta/web/sites/default/files/webform            94      94       2       4       4      84       0       0
+drupalbeta/web/sites/default/files/youtube            85      85      85       0       0       0       0       0
+drupalbeta/web/sites/default/files/yp_memories         8       8       3       0       1       4       0       0
+skyhawk-migration/files                            31383   31067   25580    4001     819     667     316       0
+ALL_ORIGINALS=62666 lt4in=51310 4to6in=8048 6to9in=1891 9in+=1417
