@@ -962,6 +962,8 @@ Image styles (12)
 
 ### Backup Architecture
 
+**Current InMotion production Composer exception (Gene, 2026-11-28):** [RULES.md](RULES.md#composer--git-completion-gate) governs the continuous six-step maintenance procedure. The pre-update database dump is created and verified on InMotion only, then retained as the sole server dump after update, functional verification and Git publication. No manual download or local checksum comparison is a gate. The nightly Mac archive remains unchanged. The following A2 entries are historical and do not govern InMotion Composer maintenance.
+
 - A2 maintenance database-backup directory: /home/darwus/skyhawk_backups - present.
 
 - Before destructive or material database work, create a full A2 database backup, download it to the local machine being used, compare SHA-256 hashes, and require an exact match before mutation.
@@ -1092,7 +1094,7 @@ Repository structure, authentication, exclusions, update procedure and reconstru
 
 - The wrapper explicitly uses the proven PHP, Composer PHAR, project Drush, Drupal root, Git executable and canonical project root.
 
-- finish refuses publication while Drupal configuration differs from sync.
+- finish refuses publication while Drupal configuration differs from sync. For routine InMotion production Composer maintenance the assigned executor completes `finish` after functional verification without another routine human approval, then performs and verifies server backup retention and updates LOST-D as required by RULES.md (Gene, 2026-11-28). The A2 wrapper path above is historical; use the current verified production project root on InMotion.
 
 ## Reunion Multi-Photo Upload Architecture
 

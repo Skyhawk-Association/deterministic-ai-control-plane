@@ -91,6 +91,8 @@ Human work navigation: LOST-D is the master active-work list and the shared AI p
 
 ### Consequential Change Backup Rule
 
+**Skyhawk production Composer maintenance exception (Gene decision, 2026-11-28):** the six-step site procedure in the Composer / Git Completion Gate below supersedes the local-download, local-hash comparison and temporary-server-dump removal requirements in this section for that procedure only. No other backup or destructive-action rules are changed.
+
 Before a structural database change, migration, destructive operation, or other consequential change for which database rollback could reasonably matter:
 
 - Create a specifically named database backup on the server.
@@ -467,9 +469,9 @@ Near a usage limit. When Gene says a usage limit is near (for example 90 percent
 
 - A2 is not the long-term database-backup repository. Database dumps created on A2 during maintenance are temporary working/transfer artifacts unless explicitly designated otherwise. Do not accumulate redundant database archives on the same hosting account as the live database.
 
-- The established Mac database-backup workflow remains authoritative. The Mac already downloads the Drupal database nightly. When work is being performed from the Mac and a newer database copy is required, replace/update the latest local backup using the already-established Mac replacement and retention pattern. Do not redesign that working retention scheme as part of unrelated Drupal work.
+- The established Mac nightly database archive remains unchanged. For Skyhawk production Composer maintenance, do not manually download, duplicate or archive the pre-update database backup on any other machine; follow the server-only procedure below. The existing Mac nightly workflow is not a maintenance gate.
 
-- Protect before removing. A consequential change may require a temporary A2 backup for immediate rollback. Once the change is verified and the data is safely represented by the established backup process, remove unnecessary A2 temporary copies rather than allowing them to become accidental permanent archives.
+- Protect before removing. The historical A2 temporary-backup procedure applies where independently relevant, not to Skyhawk production Composer maintenance on InMotion. For the latter, retain the verified pre-update dump and remove only superseded eligible server dumps and their checksum sidecars after verified update and Git publication, as specified below.
 
 - Deletion requires knowledge. "I do not recognize this" means inspect it. "This is positively identified as temporary, duplicate, abandoned, superseded, or safely backed up" means it may become a cleanup candidate.
 
@@ -739,7 +741,7 @@ Purpose: These eight invariants govern AI-generated Skyhawk maintenance. They re
 
 ### Composer / Git Completion Gate
 
-- Normal Skyhawk dependency maintenance uses /home/darwus/drupalbeta/bin/skyhawk-composer.
+- Normal Skyhawk production dependency maintenance on InMotion uses the existing project-local `bin/skyhawk-composer` wrapper from the verified production project root. The former A2 path is historical.
 
 - skyhawk-composer update is the normal full-update command. Package names or Composer options may follow for targeted updates.
 
@@ -749,14 +751,27 @@ Purpose: These eight invariants govern AI-generated Skyhawk maintenance. They re
 
 - After mutation, Drupal database updates and cache rebuild run before the transaction becomes pending.
 
-- finish is the explicit human functional-acceptance and publication act.
+- For the authorized six-step Composer maintenance procedure below, the executor runs `finish` and supplies functional acceptance after independent functional checks pass; no separate human acceptance prompt is required. Other maintenance transactions retain their applicable acceptance requirements.
 
 - finish requires zero active-vs-sync Drupal configuration differences.
 
 - The staged set is safety-checked and Composer-validated before commit.
 
-- Maintenance is complete only after push and exact local/remote commit parity.
+- For the six-step production Composer procedure, push and exact local/remote commit parity are necessary but not sufficient: the server backup-retention postcondition and LOST-D update must also pass.
 
-- Composer hooks must never automatically commit or push.
+- Composer hooks must never automatically commit or push. The authorized executor explicitly invokes the existing finish workflow as step 4; this does not authorize a new scheduler or persistent automation.
+
+#### Skyhawk production Composer maintenance — Gene-approved six-step procedure (2026-11-28)
+
+Scope: Skyhawk.org production on InMotion only. Initial authorization of the full maintenance job authorizes the assigned executor (ChatGPT or Claude, one at a time) to execute these six steps continuously in order. Do not create artificial interim approval gates or request routine re-approval. This is a site-specific procedure, not a change to global DACP controls.
+
+1. Create and verify a database backup on InMotion only. Use a uniquely named pre-update dump; verify compression/SQL integrity, recorded size/table count and SHA-256 by independent server read-back before mutation. No manual off-server copy or extra dump is required. Retain this exact dump as the rollback survivor.
+2. Update core, themes, modules and dependencies using the existing Composer wrapper, with clean Git and verified remote parity before mutation.
+3. Run Drupal database updates, rebuild caches and verify website functionality, database connectivity, pending database updates, configuration drift and Composer security findings. Automatically diagnose, correct and retest routine technical errors within scope; stop for unresolved material risks or genuine authority boundaries.
+4. Commit, push and independently verify Git using the existing `finish` workflow and attribution rules after functional checks pass; no separate routine human acceptance. Verify remote HEAD parity, clean working tree and absence of the pending marker.
+5. Delete superseded InMotion Skyhawk database backup files and their associated checksum sidecars, retaining the exact verified backup created in step 1. Inventory exact candidates, counts and survivor hashes before acting, dry-run and independently verify that only eligible superseded backups are targeted. The standing scope does not authorize removal of live databases, unrelated files or unique unrecoverable data; global C-16/C-17 requirements still apply to genuinely destructive actions. No new historical preservation copies or manual Mac transfer merely for this routine maintenance.
+6. Verify exactly one Skyhawk database backup remains on InMotion, that it is the step-1 file with unchanged SHA-256, and that the site remains operational. Record the verified result and any unresolved items in LOST-D and independently verify its Git persistence.
+
+Completion means all six steps pass. Do not declare full maintenance complete at step 3 or 4. The existing nightly Mac archive and server `KEEP=1` schedule remain unchanged. No change to other site operations, systems, credentials or global DACP controls is implied.
 
 MEMORY USE RULE: Do not use conversation history, model memory, prior-chat recollection, shared/project memory, or any other stored conversational memory unless Gene explicitly asks for memory to be used in the current task. If Gene does not explicitly authorize memory use, do not consult, rely on, or cite it. Use the current Rules, germane references, verified live state, and current evidence instead.

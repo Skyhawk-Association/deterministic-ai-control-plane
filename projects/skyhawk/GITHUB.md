@@ -144,13 +144,13 @@ Keep this reference concise and current. Record durable repository architecture 
 
 ## Composer Maintenance Integration
 
-- Composer does not update GitHub by itself. Skyhawk mutating dependency maintenance uses /home/darwus/drupalbeta/bin/skyhawk-composer.
+- Composer does not update GitHub by itself. Skyhawk production dependency maintenance uses the project-local `bin/skyhawk-composer` on InMotion from the verified production project root (former A2 paths below are historical).
 
 - skyhawk-composer update performs the normal full update; package names may follow for targeted updates.
 
 - Mutating work enters a pending state after Composer, Drupal database updates and cache rebuild.
 
-- finish is the human acceptance/publication step.
+- For routine Skyhawk production Composer maintenance, the assigned executor runs `finish` after verified functional checks without a separate human acceptance request, under Gene's six-step procedure (2026-11-28) in [RULES.md](RULES.md#skyhawk-production-composer-maintenance--gene-approved-six-step-procedure-2026-11-28). Git publication is step 4, not the completion endpoint: verified server-only backup retention and LOST-D publication follow. Other transaction types retain their applicable acceptance gates.
 
 - finish requires zero Drupal configuration drift, safety-checks staged files, validates Composer state, commits, pushes and proves local/remote parity.
 

@@ -26,6 +26,6 @@
 
 - Do not exit the A2 session during ordinary work.
 
-- Sole routine exception: when a generated backup must be downloaded to the Pixel, finish the A2 preparation, intentionally exit to the Pixel prompt, download with scp -P 22, compare A2 and Pixel SHA-256 values, and reconnect interactively to A2 after a successful match.
+- Historical A2 routine exception (not applicable to InMotion production Composer maintenance under RULES.md, Gene 2026-11-28, which requires server-only backup): when a generated backup must be downloaded to the Pixel, finish the A2 preparation, intentionally exit to the Pixel prompt, download with scp -P 22, compare A2 and Pixel SHA-256 values, and reconnect interactively to A2 after a successful match.
 
 - Executable blocks must actually stop after a failed prerequisite. Never emit a success result after a failed gate.
